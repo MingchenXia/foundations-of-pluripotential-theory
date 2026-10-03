@@ -25,7 +25,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q07-02` [second-read] Global theta-psh theory, normalized compactness and minimal singularities; definitions are in Q06
 - `Q07-03` [second-read] Pseudo-effective, nef, big and modified nef cones; Siu decomposition
 - `Q07-04` [second-read] Non-Kahler and non-nef loci including the non-big boundary case
-- `Q07-05` [drafting] FS/generalized FS, global curvature and metric theory, compact positive-metric extension with uniform constants and compact Bergman approximation; quadratic metric convention is in Q06
+- `Q07-05` [second-read] FS/generalized FS, global curvature and metric theory, compact positive-metric extension with uniform constants and compact Bergman approximation; quadratic metric convention is in Q06
 
 ## Q09 — Non-pluripolar products
 

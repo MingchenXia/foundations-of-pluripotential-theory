@@ -1,6 +1,6 @@
-# Remaining arbitrary-submanifold extension proof
+# Compact submanifold extension: proof architecture
 
-Working proof architecture, not a completed theorem or review. Preserve Q07-05 drafting until every step is written and checked. The point/Bergman portion is independently proved; it does not need this larger interface.
+This architecture is now implemented in the complete Q07 proofs, ending with thm:compact-submanifold-extension and cor:compact-positive-metric-extension. The full chapter has two direct reads, final build and visual evidence in research/reviews/2026-10-03-q07-extension.json. This dossier explains the construction; the saved TeX and review record supply the actual completion evidence. The independently proved point/Bergman portion does not depend on this larger interface.
 
 ## Route through gentle approximations
 
@@ -8,7 +8,7 @@ For an original strict singular metric, use Q06 decreasing gentle potentials Phi
 
 For codimension q=0 the section extends itself. For q>=1 construct R_Y>0 off Y, zero exactly on Y, by a finite squared-cutoff sum of local normal-coordinate squared norms and a positive term away from Y. Normalize R_Y very small. It is comparable to squared normal distance, and on a principalization R_Y pulls back to a divisor monomial times a smooth strictly positive function. Generator comparisons and the Q06 cutoff Hessian calculation should prove both dd^c log R_Y >= -b omega and dd^c log(R_Y+epsilon) >= -b omega, uniformly in epsilon, with b depending only on fixed geometry. Use a squared partition sum equal to one, so addition of epsilon is represented by adding epsilon to every local kernel. The outside chart has a constant kernel and overlaps only where normal generators have a fixed positive lower bound.
 
-## Twisted estimate to prove
+## Twisted estimate
 
 For smooth metric h, let a,b be smooth positive functions bounded above/below for the fixed approximation parameter. Apply the proved Bochner identity to the metric a*h. Its adjoint is delta_(a*h)=delta_h-a^{-1}(barpartial a)^*. Expanding cancels the a^{-1} gradient square on the two sides, giving the Bochner inequality with curvature a*iTheta_h-i*partialbarpartial a and a cross term. Bound the cross term below by -b|delta_h v|²-b^{-1}|(barpartial a)^*v|². Thus
 
@@ -56,4 +56,4 @@ For a gentle metric, solve on X minus its poles and Y, using the complete cutoff
 
 The correction norm controls its ordinary h norm uniformly because R_Y^q*(-log R_Y)² is bounded and a_e+b_e <= C*(-log(epsilon+R_Y))². The ordinary h norm of G_e tends to zero. Holomorphic compactness yields a gentle-metric extension with C depending only on geometry. Then the Phi_j limit gives the original metric and the same C. The corollary for T tensor L^k has k0 determined by k*delta-b_T>=N, with the fixed canonical cost included in N. Convert factorial volumes if comparing with the sample's omega powers.
 
-This route still needs every calculation, the residue lemma, constants and local scopes written and directly reviewed. It is not completion evidence.
+The calculations, residue lemma, constants and local scopes are written and twice directly reviewed in the active chapter. Earlier appendix verification gates and later book work remain open.
