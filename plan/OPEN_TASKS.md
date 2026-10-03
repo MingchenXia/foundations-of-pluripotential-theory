@@ -2,34 +2,12 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **P01**. Prioritize its measure/distribution foundations before complex theory.
-
-## P01 — Measures and distributions
-
-- `P01-01` [planned] Radon measures, regularity and integration on Euclidean open sets
-- `P01-02` [drafting] Test functions, distributions, convolution and approximate identities
-- `P01-03` [planned] Positive distributions as Radon measures; distributional derivatives
-- `P01-04` [planned] Weak convergence, tightness, Fubini, monotone and dominated convergence with exact hypotheses
-- `P01-05` [planned] Directed sets, Willard subnets, weak topologies and compactness principles actually used by later chapters
-
-## P02 — Harmonic functions and the Dirichlet problem
-
-- `P02-01` [planned] Fundamental solutions and the scalar Euclidean Laplacian in every dimension
-- `P02-02` [planned] Mean-value characterization, Weyl lemma, Poisson kernels and Harnack inequalities
-- `P02-03` [planned] Green functions, Perron construction, barriers and regular boundary points
-- `P02-04` [planned] Uniqueness, exhaustion and precise assumptions for boundary values
-
-## P03 — Subharmonic functions
-
-- `P03-01` [planned] Submean and distributional characterizations; canonical pointwise representative
-- `P03-02` [planned] Local integrability, maximum principles and Riesz decomposition
-- `P03-03` [planned] Decreasing limits, upper envelopes, exceptional sets and Choquet lemma
-- `P03-04` [planned] Compactness in L1_loc, Hartogs lemma and removable polar singularities
+Next coherent writing unit: **P04**.
 
 ## P04 — Riesz potentials, energy and capacity
 
 - `P04-01` [planned] Logarithmic and Newtonian potentials, positive energy and equilibrium measures
-- `P04-02` [planned] Capacity, outer regularity and polar sets; zero-capacity exceptional sets
+- `P04-02` [planned] Capacity, outer regularity and polar sets; zero-capacity and envelope discrepancy sets
 - `P04-03` [planned] Energy estimates and Cauchy--Schwarz under the correct kernel assumptions
 - `P04-04` [planned] Quasi-continuity and approximation of sets, including compact exhaustion
 

@@ -1,2 +1,243 @@
 \chapter{Subharmonic functions}
 \label{chap:p03}
+A positive Laplacian permits singularities: the logarithmic and Newtonian fundamental solutions have a negative infinite pole. The pointwise function still satisfies a mean inequality, and that inequality determines its values from its almost-everywhere class. We develop this passage before taking limits and envelopes, where a pointwise supremum may fail to be upper semicontinuous. Throughout, $\Omega\subset\mathbb R^d$ is open and $d\geq1$.
+
+\section{Mean inequalities and comparison}
+\label{sec:subharmonic-comparison}
+\begin{definition}\label{def:subharmonic}
+A function $u:\Omega\to[-\infty,\infty)$ is subharmonic\index{subharmonic function} if it is upper semicontinuous and, at every $x\in\Omega$, satisfies
+\begin{equation}\label{eq:subharmonic-submean}
+ u(x)\leq\frac{1}{s_{d-1}}\int_{S^{d-1}}u(x+r\omega)\,\mathrm d S(\omega)
+\end{equation}
+for every sufficiently small positive $r$. The radius bound may depend on $x$. The integral has a value in $[-\infty,\infty)$ because upper semicontinuity bounds $u$ above on the compact sphere. We allow the function identically $-\infty$ and write $\SH(\Omega)$ for this class. A function is superharmonic if its negative is subharmonic.
+\end{definition}
+Upper semicontinuity means $u(x)\geq\limsup_{y\to x}u(y)$, including $y=x$ in the supremum over neighborhoods. Such a function is Borel measurable and is bounded above on compact sets. These assertions follow respectively from openness of $\{u<a\}$ and a finite cover by neighborhoods with finite upper bounds. We use $M_u(x,r)$ for the sphere mean in \eqref{eq:subharmonic-submean}, also for functions with negative infinite values. Subharmonicity as defined is local. Harmonic functions belong to $\SH(\Omega)$ by \cref{prop:spherical-mean-derivative}.
+
+\Needspace{6\baselineskip}
+\begin{lemma}\label{lem:usc-majorants}
+On a compact metric space, every upper semicontinuous $f$ with values in $[-\infty,\infty)$ is the decreasing limit of finite continuous functions. For any finite Borel measure, their integrals decrease to the integral of $f$.
+\end{lemma}
+\begin{proof}
+Choose a positive integer $n_0$ exceeding an upper bound for $f$, and for $n\geq n_0$ put
+\[
+ f_n(x)=\sup_y\bigl(\max\{f(y),-n\}-n\operatorname{dist}(x,y)\bigr).
+\]
+This is finite and $n$-Lipschitz. It decreases with $n$ and dominates $f$. If its limit at $x$ exceeded $f(x)$, choose a finite number between them and points $y_n$ giving values above that number. Their distances to $x$ tend to zero, since $f$ has a fixed upper bound. For large $n$ the truncation $-n$ cannot give these values, so $f(y_n)$ exceeds that number, contradicting upper semicontinuity at $x$. Thus $f_n\downarrow f$. Apply monotone convergence to a fixed upper bound minus $f_n$ for the integral assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:subharmonic-comparison}
+A function in $\SH(\Omega)$ satisfies the harmonic comparison principle: if $D\Subset\Omega$ is open, $h$ is harmonic on $D$ and continuous on $\overline D$, and
+\[
+ \limsup_{D\ni x\to\zeta}u(x)\leq h(\zeta),\qquad\zeta\in\partial D,
+\]
+then $u\leq h$ on $D$. Conversely, an upper semicontinuous function satisfying this comparison on balls is subharmonic. For a subharmonic $u$, the sphere means $M_u(x,r)$ increase with $r$ whenever $\overline{B(x,r)}\subset\Omega$, and decrease to $u(x)$ as $r\downarrow0$. The ball submean inequality holds as well.
+\end{theorem}
+\begin{proof}
+Subtract $h$ and add $\varepsilon|x|^2$. If the resulting upper semicontinuous function attains a finite maximum at an interior point, its local sphere mean exceeds its value by at least $\varepsilon r^2$, by \eqref{eq:subharmonic-submean} and the harmonic mean identity. This contradicts maximality. A finite cover of the boundary by neighborhoods where $u-h$ has upper bound $\delta>0$ therefore gives $u-h\leq\delta+\varepsilon\sup_{\overline D}|x|^2$ throughout $D$: a larger value would yield a maximum in a compact subset of $D$. Let $\varepsilon$ and $\delta$ decrease to zero.
+
+For the converse, fix $\overline{B(x,R)}\subset\Omega$ and decrease continuous majorants of $u|_{\partial B}$ to it by \cref{lem:usc-majorants}. Comparison bounds $u$ by each majorant's Poisson extension. At the center these extensions have the corresponding sphere means, so their decreasing limit proves \eqref{eq:subharmonic-submean} for radius $R$. For $0<r<R$, average the same comparison over the sphere of radius $r$; the harmonic mean equals the center value. Decreasing the majorants gives $M_u(x,r)\leq M_u(x,R)$. Upper semicontinuity bounds the upper limit of the means as $r\downarrow0$ by $u(x)$; the submean inequality gives the reverse bound. Polar integration gives the ball inequality, including infinite negative integrals.
+\end{proof}
+The comparison proof also applies to a bounded open $D$ without compact closure in $\Omega$, provided $u$ is subharmonic on $D$ and has the stated boundary upper limits. Subtracting a harmonic function preserves subharmonicity. Positive multiples, sums and finite maxima preserve it, by the mean inequality and upper semicontinuity. A zero multiple is understood to be the zero function, even at a pole.
+
+\Needspace{6\baselineskip}
+\begin{proposition}\label{prop:subharmonic-maximum}
+On a domain, a subharmonic function attaining a finite global maximum inside is constant. On a bounded open set, nonpositive boundary upper limits imply that it is nonpositive inside.
+\end{proposition}
+\begin{proof}
+At a maximum point, the sphere submean inequality forces equality with the maximum on every sufficiently small sphere: a strict drop at one point, by upper semicontinuity, would give a drop on a cap of positive surface measure. Thus the maximum locus is open. It is also closed by upper semicontinuity, so connectedness proves the first assertion. The second is the boundary comparison just proved, with the harmonic function zero.
+\end{proof}
+
+\begin{proposition}\label{prop:subharmonic-local-integrability}
+On every connected component, a subharmonic function is either identically $-\infty$ or belongs to $L^1_{\loc}$. In the latter case it is finite almost everywhere.
+\end{proposition}
+\begin{proof}
+At a point $x$ with $u(x)>-\infty$, choose a ball compactly contained in the domain and an upper bound $M$ for $u$ there. The ball submean inequality bounds the integral of the nonnegative function $M-u$ by the ball volume times $M-u(x)$. Thus $u$ is integrable near $x$.
+
+Let $Y$ be the set of points with a neighborhood on which $u$ is integrable. It is open and nonempty. If $y$ is in its relative closure, choose $r>0$ with $\overline{B(y,3r)}\subset\Omega$. A nonempty open subset of $Y\cap B(y,r)$ contains a point $x$ where $u(x)$ is finite. The ball $B(x,2r)$ contains a neighborhood of $y$ and lies in $B(y,3r)$; the preceding estimate proves integrability there. Hence $Y$ is also closed in its component and equals it. Local integrability implies finiteness almost everywhere.
+\end{proof}
+
+\begin{theorem}\label{thm:subharmonic-decreasing}
+A decreasing sequence in $\SH(\Omega)$ has a subharmonic limit. On each component that limit is either identically $-\infty$ or locally integrable. In the second case the convergence is in $L^1$ on compact subsets if the first term is locally integrable. In the first case it is locally uniform to $-\infty$.
+\end{theorem}
+\begin{proof}
+The decreasing limit is upper semicontinuous. All sphere inequalities hold for all compactly contained balls by \cref{thm:subharmonic-comparison}. On a fixed sphere, subtract the terms from an upper bound for the first one and use monotone convergence; the inequalities pass to the limit. \Cref{prop:subharmonic-local-integrability} gives the alternative. If the limit $u$ and $u_1$ are locally integrable, then $0\leq u_j-u\leq u_1-u$ almost everywhere, so dominated convergence gives the $L^1$ assertion. If $u=-\infty$, the increasing open sets $\{u_j<-A\}$ cover every compact set for every finite $A$. A finite subcover and monotonicity give the uniform assertion.
+\end{proof}
+
+\Needspace{14\baselineskip}
+\section{Riesz measures and pointwise representatives}
+\label{sec:riesz-representative}
+The kernels $E_d$ of \eqref{eq:laplacian-fundamental-solution} are given the value $-\infty$ at zero for $d\geq2$, and the value zero there for $d=1$.
+
+\begin{proposition}\label{prop:fundamental-potential}
+For a finite positive measure $\nu$ with compact support in $\mathbb R^d$, the potential
+\[
+ p(x)=\int E_d(x-y)\,\mathrm d\nu(y)
+\]
+is subharmonic, locally integrable, and satisfies $\Delta p=\nu$ distributionally.
+\end{proposition}
+\begin{proof}
+For $d\geq2$, $E_d$ is harmonic away from its pole, and at the pole its local mean inequality is automatic; it is upper semicontinuous there. Thus it is subharmonic by locality. For $d=1$, the triangle inequality gives the midpoint inequality for $|x|/2$, hence the same conclusion. The functions $E_d^{(m)}=\max\{E_d,-m\}$ are continuous subharmonic functions and decrease to $E_d$. Integrating their translates against the finite measure gives continuous subharmonic functions: continuity follows from uniform continuity of the kernel on compact sets of differences, and the sphere inequality follows from Fubini. Their decreasing limit is $p$, by monotone convergence after subtraction from a common upper bound on a compact set of differences. \Cref{thm:subharmonic-decreasing} proves subharmonicity.
+
+For compact $K$ and support $L$ of $\nu$, choose a ball containing $K-L$. Tonelli gives
+\[
+ \int_K\int|E_d(x-y)|\,\mathrm d\nu(y)\,\mathrm d x
+ \leq\nu(L)\int_{B(0,R)}|E_d(z)|\,\mathrm d z<\infty.
+\]
+Hence $p$ is locally integrable. For a test $\chi$, Fubini and the fundamental-solution identity give
+\[
+ \int p\Delta\chi\,\mathrm d x
+ =\int\left(\int E_d(x-y)\Delta\chi(x)\,\mathrm d x\right)\mathrm d\nu(y)
+ =\int\chi(y)\,\mathrm d\nu(y).
+\]
+This proves the distributional equation.
+\end{proof}
+
+\begin{theorem}\label{thm:subharmonic-distribution}
+If $u\in\SH(\Omega)$ is not identically $-\infty$ on any component, then $\Delta u$ is a positive distribution, hence a Radon measure. Conversely, every real distribution $T$ with $\Delta T\geq0$ has a unique subharmonic representative $u$, which is locally integrable. This representative satisfies
+\begin{equation}\label{eq:canonical-subharmonic}
+ u*\rho_\varepsilon\downarrow u\quad(\varepsilon\downarrow0),\qquad
+ u(x)=\lim_{r\downarrow0}\frac{1}{|B(x,r)|}\int_{B(x,r)}u(y)\,\mathrm d y.
+\end{equation}
+In particular, two locally integrable subharmonic functions equal almost everywhere are equal everywhere.
+\end{theorem}
+\begin{proof}
+First suppose $u$ is subharmonic and locally integrable. Fubini applied to its local integrals shows that $u*\rho_\varepsilon$ satisfies the sphere inequality on $\Omega_\varepsilon$. It is smooth. Taylor's formula used in \cref{thm:harmonic-mean-characterization} then gives $\Delta(u*\rho_\varepsilon)\geq0$. For a nonnegative test $\chi$, local $L^1$ convergence gives
+\[
+ \langle\Delta u,\chi\rangle=\lim_{\varepsilon\downarrow0}\int\Delta(u*\rho_\varepsilon)\chi\,\mathrm d x\geq0.
+\]
+\Cref{thm:positive-distribution-measure} makes this distribution a Radon measure.
+
+Conversely let $\mu=\Delta T$. On a relatively compact ball $B\subset\Omega$, choose a nonnegative smooth cutoff $\eta$ compactly supported in $\Omega$ and equal to one near $\overline B$. The potential $p=E_d*(\eta\mu)$ of \cref{prop:fundamental-potential} satisfies $\Delta p=\mu$ near $\overline B$. Thus $T-p$ is harmonic there distributionally. Weyl's lemma supplies a smooth real harmonic function $h$, and $p+h$ is a locally integrable subharmonic representative of $T$ on $B$.
+
+For any locally integrable subharmonic function, polar integration writes $u*\rho_\varepsilon(x)$ as a probability average of $M_u(x,\varepsilon t)$ for $0<t<1$, with weights $s_{d-1}\rho(te_1)t^{d-1}\,\mathrm d t$, where $e_1$ is the first coordinate unit vector. The monotonicity of the sphere means makes these convolutions decrease as $\varepsilon$ decreases. They dominate $u(x)$ by the submean inequality, and upper semicontinuity bounds their upper limit by $u(x)$, even at a pole. The ball averages have the same bounds and limit. This proves \eqref{eq:canonical-subharmonic}. It also proves uniqueness, since convolutions depend only on the almost-everywhere class. Therefore the local representatives constructed on balls agree on overlaps and define the desired global representative.
+\end{proof}
+The positive Radon measure $\mu_u=\Delta u$ is the Riesz measure\index{Riesz measure} in our convention. Some plane-potential sources divide it by $2\pi$; here $\mu_{\log|z|}=2\pi\delta_0$.
+
+\begin{theorem}[Riesz decomposition]\label{thm:riesz-decomposition}
+Let $u$ be locally integrable and subharmonic on $\Omega$, and let $\eta\in C_c^\infty(\Omega)$ be nonnegative and equal to one on an open set $V$. Then on $V$,
+\[
+ u=E_d*(\eta\mu_u)+h,
+\]
+where $h$ is smooth harmonic. The equality holds pointwise, including at poles.
+\end{theorem}
+\begin{proof}
+The two locally integrable functions have the same distributional Laplacian on $V$. Weyl's lemma gives their harmonic difference there. The potential plus that harmonic function is subharmonic and agrees almost everywhere with $u$; uniqueness in \cref{thm:subharmonic-distribution} gives pointwise equality.
+\end{proof}
+
+\begin{example}\label{ex:subharmonic-convex-log}
+On an interval, a subharmonic function different from $-\infty$ is a finite continuous convex function. Indeed, its local Riesz potential uses the continuous kernel $|x-y|/2$, so the decomposition makes it continuous and finite. The sphere inequality is the midpoint inequality. Iteration gives the convex inequality for dyadic coefficients, and continuity gives it for every coefficient in $[0,1]$. Conversely a finite convex function is continuous in the interior: its chord slopes bound the one-sided differences on smaller intervals. The midpoint inequality then proves subharmonicity.
+
+If $f$ is holomorphic and not identically zero on a plane domain, $\log|f|$ is subharmonic. Near a zero $a$ of order $m$, factor $f(z)=(z-a)^mg(z)$ with $g$ nonvanishing. A local holomorphic logarithm of $g$ makes $\log|g|$ harmonic, while $\log|z-a|=2\pi E_2(z-a)$. Thus
+\[
+ \Delta\log|f|=2\pi\sum_{f(a)=0}\operatorname{ord}_a(f)\delta_a.
+\]
+Zeros are locally finite, so this is a Radon measure. For $\log|f|^2$ the coefficient is $4\pi$.
+\end{example}
+
+\Needspace{12\baselineskip}
+\section{Compactness and Hartogs' lemma}
+\label{sec:subharmonic-compactness}
+\begin{lemma}\label{lem:subharmonic-l1-bounds}
+Let $\Omega$ be a domain and let $u_j\in\SH(\Omega)$ have a common finite upper bound on every compact subset. If $x_j$ stay in one compact subset and $u_j(x_j)$ have a common finite lower bound, then, after passage to a subsequence, the $u_j$ have uniform $L^1$ bounds on every compact subset.
+\end{lemma}
+\begin{proof}
+Pass to a subsequence with $x_j\to x_0\in\Omega$. Each $u_j$ is locally integrable by \cref{prop:subharmonic-local-integrability}. Choose $r>0$ with $\overline{B(x_0,4r)}\subset\Omega$, and an upper bound $M\geq0$ on that ball. For large $j$, $|x_j-x_0|<r$ and
+\[
+ \int_{B(x_0,r)}(M-u_j)\,\mathrm d x
+ \leq\int_{B(x_j,2r)}(M-u_j)\,\mathrm d x
+ \leq |B(0,2r)|(M-u_j(x_j)).
+\]
+This gives a uniform $L^1$ bound near $x_0$; the finitely many omitted terms cause no problem.
+
+Let $Y$ consist of the points having a neighborhood with such uniform bounds. It is open and nonempty. If $y$ belongs to its relative closure, choose $r>0$ with $\overline{B(y,4r)}\subset\Omega$ and a fixed open ball $A\Subset Y\cap B(y,r/2)$. Its uniform integral bound gives, for each $j$, a point $z_j\in A$ with $u_j(z_j)\geq-C$, where $C$ depends only on $A$ and that bound: otherwise the integral of $|u_j|$ on $A$ would exceed it. Choose a common upper bound $M\geq0$ on $B(y,4r)$. The same estimate on $B(z_j,2r)$, which contains $B(y,r)$ and lies inside $B(y,3r)$, gives a uniform $L^1$ bound near $y$. Thus $Y$ is closed and equals $\Omega$. A finite neighborhood cover gives the bound on each compact set.
+\end{proof}
+
+\begin{theorem}\label{thm:subharmonic-compactness}
+For a sequence in $\SH(\Omega)$ on a domain, with a common upper bound on every compact subset, either it tends locally uniformly to $-\infty$, or a subsequence converges in $L^1_{\loc}$ to a locally integrable subharmonic function. For a locally integrable sequence with these upper bounds, distributional convergence to a real distribution also implies $L^1_{\loc}$ convergence to its canonical subharmonic representative.
+\end{theorem}
+\begin{proof}
+Failure of local uniform divergence supplies a compact set, a subsequence, and points in it with a uniform finite lower bound. \Cref{lem:subharmonic-l1-bounds} gives uniform local $L^1$ bounds. Choose relatively compact open sets $\Omega_m$ increasing to $\Omega$ and upper bounds $M_m\geq0$ there. On $\Omega_m$, the positive measures $(M_m-u_j)\,\mathrm d x$ have uniformly bounded masses on compact sets. \Cref{thm:local-measure-selection}, and a diagonal extraction over $m$, make their integrals converge on every compactly supported continuous test. Consequently $\int u_j\chi$ converges for every smooth test $\chi$. The local $L^1$ bounds give a local order-zero estimate for these limits, so they define a real distribution $T$. Positivity of $\Delta u_j$ passes to $\Delta T$. Let $u$ be its representative from \cref{thm:subharmonic-distribution}.
+
+For a fixed small $\varepsilon$, the convolutions $u_j*\rho_\varepsilon$ converge uniformly on compact subsets of $\Omega_\varepsilon$ to $u*\rho_\varepsilon$. Distributional convergence gives pointwise convergence. The common local $L^1$ bounds control the first derivatives of their fixed kernels and hence give equicontinuity; a finite cover converts pointwise convergence to uniform convergence. Since $u_j\leq u_j*\rho_\varepsilon$, for a nonnegative smooth test $\chi$ and $\delta>0$ the function $a=u*\rho_\varepsilon+\delta$ dominates $u_j$ on $\Supp\chi$ for large $j$, and also dominates $u$. Therefore
+\[
+ \begin{aligned}
+ \limsup_j\int|u_j-u|\chi\,\mathrm d x
+ &\leq\lim_j\int(a-u_j)\chi\,\mathrm d x+\int(a-u)\chi\,\mathrm d x\\
+ &=2\int(u*\rho_\varepsilon+\delta-u)\chi\,\mathrm d x.
+ \end{aligned}
+\]
+Let $\delta\downarrow0$ and then $\varepsilon\downarrow0$, using the local $L^1$ approximation. Choosing $\chi=1$ near a prescribed compact set proves the assertion.
+
+For the final statement the local $L^1$ bounds follow already from distributional convergence and the assumed upper bounds. Indeed, for a nonnegative cutoff $\chi$ equal to one near a compact set, choose $M\geq0$ bounding $u_j$ on its support. Then $|u_j|\leq2M-u_j$, and the integrals against $\chi$ on the right are bounded because $\int u_j\chi$ converges. The preceding convolution argument applies to the whole sequence.
+\end{proof}
+
+\begin{theorem}[Hartogs' lemma]\label{thm:hartogs-subharmonic}
+Suppose locally integrable subharmonic functions $u_j$ converge in $L^1_{\loc}$ to $v$. Then $v$ has a canonical subharmonic representative $u$, and for $x_j\to x$ in $\Omega$,
+\[
+ \limsup_j u_j(x_j)\leq u(x).
+\]
+For every compact $K\subset\Omega$ and $f\in C(K)$,
+\[
+ \limsup_j\sup_K(u_j-f)\leq\sup_K(u-f).
+\]
+In particular, a strict continuous majorant of $u$ on $K$ eventually majorizes all $u_j$ there.
+\end{theorem}
+\begin{proof}
+Distributional convergence and positivity give $\Delta v\geq0$, so \cref{thm:subharmonic-distribution} defines $u$. For fixed sufficiently small $\varepsilon$, local $L^1$ convergence makes the convolutions converge uniformly near $x$, by the supremum bound for the fixed kernel. Thus
+\[
+ \limsup_j u_j(x_j)\leq u*\rho_\varepsilon(x).
+\]
+Let $\varepsilon\downarrow0$ in \eqref{eq:canonical-subharmonic}. To prove the compact-set assertion, a subsequence realizing a larger upper limit would have maximizing points in $K$, by upper semicontinuity. Extract a convergent subsequence of those points and apply the first assertion and continuity of $f$. This also handles a right side equal to $-\infty$. For a strict majorant, upper semicontinuity and compactness give $\sup_K(u-f)<0$, so the final assertion follows.
+\end{proof}
+
+\section{Upper envelopes and countable selection}
+\label{sec:subharmonic-envelopes}
+For a locally bounded-above function $F$ with values in $[-\infty,\infty)$, its upper semicontinuous regularization\index{upper semicontinuous regularization} is
+\[
+ F^*(x)=\inf_{r>0}\sup_{B(x,r)\cap\Omega}F.
+\]
+It is upper semicontinuous, dominates $F$, and is the smallest such majorant: a strict upper bound for an upper semicontinuous majorant holds on some neighborhood of a point. We take the supremum of an empty family to be $-\infty$.
+
+\begin{lemma}[Choquet's lemma]\label{lem:choquet-selection}
+For any nonempty family of locally uniformly bounded-above functions on $\Omega$, there is a countable subfamily with the same upper semicontinuous regularization of its supremum.
+\end{lemma}
+\begin{proof}
+Enumerate the rational balls compactly contained in $\Omega$, repeating each infinitely often. If $B_j$ is the $j$th ball and $F$ is the full supremum, choose a family member $v_j$ with $\sup_{B_j}v_j>\sup_{B_j}F-1/j$ whenever that supremum is finite; if it is $-\infty$, choose any member. For $v=\sup_jv_j$, repetition gives $\sup_Bv=\sup_BF$ on every rational ball. Such balls form a base of neighborhoods, hence $v^*=F^*$.
+\end{proof}
+
+\begin{theorem}\label{thm:subharmonic-envelope}
+Let $\{u_t\}$ be a family in $\SH(\Omega)$ with a common upper bound on every compact subset. Then $F^*=(\sup_tu_t)^*$ is subharmonic. The supremum $F$ is Lebesgue measurable for the completed Lebesgue measure and equals $F^*$ almost everywhere. It may differ from $F^*$ pointwise.
+\end{theorem}
+\begin{proof}
+The empty family gives the constant $-\infty$. Work on each component. If every member is identically $-\infty$ there, the assertion is immediate. Otherwise adjoin a fixed nontrivial member to the sequence in \cref{lem:choquet-selection}, and let $v_j$ be the successive finite maxima. They increase, have a common local upper bound, and dominate one locally integrable subharmonic function. Dominated convergence applied to an upper bound minus $v_j$ on compact sets gives an $L^1_{\loc}$ limit $v=\sup_jv_j$. Its distributional Laplacian is positive; let $w$ be its canonical representative.
+
+Since $v_j\leq v$ almost everywhere, convolution and \eqref{eq:canonical-subharmonic} give $v_j\leq w$ everywhere. Thus $v\leq w$ and $v^*\leq w$. Conversely the ball averages of $w$ equal those of $v$ and are bounded above by the supremum of $v$ on that ball. Their limit gives $w\leq v^*$. Hence $w=v^*=F^*$. Now $v\leq F\leq F^*=w$ and $v=w$ almost everywhere. Completeness of Lebesgue measure gives the stated measurability and almost-everywhere equality.
+\end{proof}
+
+\begin{example}\label{ex:envelope-pointwise-gap}
+On $B(0,1)\subset\mathbb R^d$ with $d\geq2$, put $q=E_d-C<0$, choosing the fixed constant $C$ large enough in dimension two. The subharmonic functions $u_j=\max\{-1,q/j\}$ increase. Their limit is zero off the origin and $-1$ at the origin; its upper semicontinuous regularization is zero everywhere. Thus even an increasing sequence of bounded subharmonic functions need not have an upper semicontinuous pointwise limit.
+\end{example}
+
+\section{Polar sets and removable singularities}
+\label{sec:polar-removability}
+\begin{definition}\label{def:polar-set}
+A set $A\subset\Omega$ is polar\index{polar set} if each point of $A$ has a connected open neighborhood $V\subset\Omega$ and a subharmonic $\psi$ on $V$, different from $-\infty$, with $A\cap V\subset\{\psi=-\infty\}$.
+\end{definition}
+Polar sets have Lebesgue measure zero: a countable subcover of the local neighborhoods exists since Euclidean space has a countable base, and each pole set has measure zero by \cref{prop:subharmonic-local-integrability}. Subsets of polar sets are polar. Singletons are polar in dimension at least two, by $E_d$; in dimension one the only polar set is empty, by \cref{ex:subharmonic-convex-log}. The null set conclusion alone does not characterize polar sets.
+
+\begin{theorem}\label{thm:polar-removable}
+Let $A$ be relatively closed and polar in $\Omega$. If $u\in\SH(\Omega\setminus A)$ is bounded above on $K\setminus A$ for every compact $K\subset\Omega$, it has a unique subharmonic extension to $\Omega$, given on $A$ by
+\[
+ \widetilde u(x)=\limsup_{\Omega\setminus A\ni y\to x}u(y).
+\]
+If $\Omega$ is a domain, $\Omega\setminus A$ is connected.
+\end{theorem}
+\begin{proof}
+The extension by the displayed upper limit is upper semicontinuous and locally bounded above; off $A$ keep the original values. To prove subharmonicity it suffices to work on a small connected neighborhood $V$ with a local polar function $\psi$, and shrink $V$ so that $\psi\leq0$ there. For $\varepsilon>0$ define $v_\varepsilon=u+\varepsilon\psi$ off $A$ and $v_\varepsilon=-\infty$ on $A\cap V$. At points of $A$, the local upper bound for $u$ and upper semicontinuity of $\psi$ give $v_\varepsilon\to-\infty$; elsewhere the sum is subharmonic. The mean inequality at a point of $A$ is automatic. Thus $v_\varepsilon$ is subharmonic on $V$.
+
+If $u$ is identically $-\infty$ on $V\setminus A$, its extension is so on $V$. Otherwise $u$ is finite on a set of positive measure in some component of $V\setminus A$, by local integrability. The function $\psi$ is finite almost everywhere on $V$, so every $v_\varepsilon$ is nontrivial. They increase as $\varepsilon\downarrow0$ and have a common local upper bound. \Cref{thm:subharmonic-envelope} gives a subharmonic regularized limit $w$. It agrees almost everywhere off $A$ with $u$; it is nontrivial, hence locally integrable. In particular no open component there can have $u$ identically $-\infty$. Uniqueness of representatives gives $w=u$ pointwise off $A$.
+
+Upper semicontinuity gives $w(x)\geq\widetilde u(x)$ on $A$. For the reverse inequality use the ball-average identity for $w$. Since $A$ is null and $w=u$ off $A$, each average is at most the supremum of $u$ on that ball minus $A$. Letting the radius decrease gives $w(x)\leq\widetilde u(x)$. Thus the extension is subharmonic locally, hence globally. Any other nontrivial subharmonic extension agrees almost everywhere with it and therefore everywhere. In the identically infinite case an extension must also be $-\infty$ by the same ball-average identity or local integrability alternative.
+
+Finally, if $\Omega\setminus A$ had two disjoint nonempty open parts covering it, give them values zero and one. This is subharmonic off $A$ and locally bounded. Its extension on the connected $\Omega$ takes values in $[0,1]$ and attains its global maximum one inside. \Cref{prop:subharmonic-maximum} makes it constant, contradicting its zero values on the other part.
+\end{proof}

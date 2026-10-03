@@ -15,6 +15,7 @@
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
 \usepackage{multicol}        % used for the two-column index
+\usepackage{needspace}       % keep selected statements together after page review
 \usepackage[bottom]{footmisc}% places footnotes at page bottom
 
 \usepackage{newtxtext}       %
@@ -29,6 +30,10 @@ colorlinks=true,
 linktoc=all
 }
 \makeatletter
+% Share the section theorem counter while retaining each environment's reference type.
+\@for\bookenv:=conjecture,corollary,definition,example,lemma,problem,proposition,question,remark\do{%
+  \expandafter\let\csname c@\bookenv\endcsname\c@theorem
+}
 \renewcommand*{\theHtheorem}{\theHsection.\arabic{theorem}}
 \makeatother
 
@@ -166,5 +171,4 @@ linktoc=all
 
 %\includeonly{author/chapter_pshfunctions,author/chapter_npp,author/chapter_envelopes,author/chapter_Bergman}
 %\includeonly{author/chapter_envelopes,author/chapter_comp,author/chapter_Bergman}
-
 
