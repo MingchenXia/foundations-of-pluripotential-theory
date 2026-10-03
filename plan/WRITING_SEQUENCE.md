@@ -22,6 +22,8 @@ Within a stage, take the earliest unfinished chapter whose prerequisites are ver
 
 P01 supplies positive-functional representation and compactness without silently importing functional analysis. P02 constructs Perron solutions using continuous subsolutions, so it does not depend on P03. Its Green interface is bounded regular domains, without a symmetry claim. P03 supplies pointwise representatives and almost-everywhere envelope equality; the stronger polar discrepancy theorem belongs to P04's finite-energy/capacity argument. P04 then proves explicit ball Green symmetry, kernel energy, compact and outer relative capacity, capacitability, polar discrepancy sets and quasi-continuity. These boundaries keep the first chapters acyclic.
 
+Q02 proves Kiselman minimum under an explicit invariant exhaustion and for product tubes. Q04 supplies the pseudoconvex boundary-distance foundation before deriving the general pseudoconvex-tube formulation. Q02 also proves extension across Hausdorff-null sets; A01 supplies the analytic dimension estimate before this is advertised as codimension-two extension. These are internal proof interfaces, not accepted external inputs.
+
 Maintain the sample's dd^c, Lelong, multiplier-weight, quadratic-metric and rational analytic-singularity conventions throughout. The Nakamaye regularization interface has exactly its two recorded conclusions; approximation properties not present in that statement require separate results. Resolution/principalization is the only initially permitted long geometric input; its exact source statements still need registration. All other listed major results require proofs unless the author grants an exact external interface.
 
 ## Source coverage and research

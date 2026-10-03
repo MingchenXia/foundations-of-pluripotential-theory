@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **Q02**.
-
-## Q02 — Plurisubharmonic functions
-
-- `Q02-01` [planned] Usual psh definition on all connected line-section components, and the dimension-zero case
-- `Q02-02` [planned] PSHD automatic upper semicontinuity including truncation, Borel measurability, boundedness and pointwise identification
-- `Q02-03` [planned] Holomorphic pullback, gluing, extension, envelopes, decreasing nets and Choquet selection
-- `Q02-04` [planned] L1_loc compactness, Hartogs lemma and Kiselman minimum principle without circular use of PSHD
+Next coherent writing unit: **Q03**.
 
 ## Q03 — Pluripolar sets and the plurifine topology
 
@@ -21,7 +14,7 @@ Next coherent writing unit: **Q02**.
 ## Q04 — Weighted L2 estimates and holomorphic extension
 
 - `Q04-01` [planned] Hilbert-space duality and the basic dbar estimate, boundary terms and domains of operators
-- `Q04-02` [planned] Hörmander solvability with singular psh weights and exhaustion
+- `Q04-02` [planned] Pseudoconvex boundary distance, general Kiselman minimum, and Hörmander solvability with singular psh weights and exhaustion
 - `Q04-03` [planned] Pointwise interpolation using logarithmic poles with controlled constants
 - `Q04-04` [planned] Ohsawa--Takegoshi in the exact local and compact forms used later, proved rather than silently imported
 
@@ -134,7 +127,7 @@ Next coherent writing unit: **Q02**.
 
 ## A01 — Complex spaces and modifications
 
-- `A01-01` [planned] Reduced spaces, normalization, unibranch loci and psh descent
+- `A01-01` [planned] Local analytic dimension and codimension-two psh extension; reduced spaces, normalization, unibranch loci and psh descent
 - `A01-02` [planned] Resolution and principalization as explicit external interfaces
 - `A01-03` [planned] Relative principalization and behavior on strict transforms needed in Nakamaye
 - `A01-04` [planned] Zariski main, connected fibers and extension on singular spaces

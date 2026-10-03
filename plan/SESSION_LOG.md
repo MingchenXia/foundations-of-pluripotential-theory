@@ -1,5 +1,11 @@
 # Session log
 
+## 2026-10-03 — Plurisubharmonic functions completed
+
+Completed and activated Q02: the usual definition with adjacent automatic USC proof, canonical positive-Hessian characterization, holomorphic maps and max gluing, nets/envelopes/compactness, two exceptional-set extension criteria, and invariant-exhaustion/product-tube Kiselman minimum. Both complete reads and final visual/build evidence are in `research/reviews/2026-10-03-q02.json` and its Markdown companion. There are 33 verified and 77 planned obligations. The PDF has 117 pages; the whole book remains unfinished. Q04 supplies the full pseudoconvex-tube consequence; A01 supplies analytic dimension and the codimension-two application. The 117-page source archive rebuilt in an empty directory with matching page text using the same TeX/font installation. Next: Q03’s pluripolarity and plurifine foundations, with recursive prerequisites proved rather than imported.
+
+Automatic approval review rejected the export of local Q01 commit 72a6859 and the PR #5 update because private GitHub destination/payload authorization was not established. The user approval question is pending. No workaround or remote update was attempted; local writing continues.
+
 ## 2026-10-03 — Complex forms and positive currents completed
 
 Completed and activated Q01 with exterior calculus, positivity cones and mass bounds, local positive-current potentials, contour preparation and the full holomorphic Poincare–Lelong identity, proper/submersion current maps and the exact potential-pullback pole condition. The four tasks have both direct reads, final build and visual evidence in `research/reviews/2026-10-03-q01.json` and its Markdown companion. There are now 29 verified obligations and 81 planned obligations. The draft has 103 PDF pages; the whole book, semantic source audit and final integration remain unfinished.
