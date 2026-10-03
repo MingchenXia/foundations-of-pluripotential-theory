@@ -1,5 +1,11 @@
 # Session log
 
+## 2026-10-03 — Complex forms and positive currents completed
+
+Completed and activated Q01 with exterior calculus, positivity cones and mass bounds, local positive-current potentials, contour preparation and the full holomorphic Poincare–Lelong identity, proper/submersion current maps and the exact potential-pullback pole condition. The four tasks have both direct reads, final build and visual evidence in `research/reviews/2026-10-03-q01.json` and its Markdown companion. There are now 29 verified obligations and 81 planned obligations. The draft has 103 PDF pages; the whole book, semantic source audit and final integration remain unfinished.
+
+Independently fetched Demailly's unannotated June 21, 2012 manuscript from its university URL and retained/hash-registered it separately from the annotated supplied copy. Exact source scopes and the factor-of-two dd^c conversion are recorded. Poincare–Lelong uses null coordinate projections and slice measures, without forward analytic-set or extension dependencies. The 103-page source archive rebuilt in an empty directory with matching extracted page text; the same TeX/font installation was used. Release diagnostics are retained in `research/reviews/logs/2026-10-03-q01-release.log`. Next unit is Q02, including the adjacent upper-semicontinuity redundancy proof. The private P06 push and PR CI runs at head 8547db5 both passed (37117268233 and 37117272175). New checkpoint CI is not assumed from those results.
+
 ## 2026-10-03 — Energy and capacity completed
 
 Completed and activated P04, with separate Newtonian/conditional logarithmic energy, equilibrium measures, explicit ball Green symmetry, continuous potentials, compact/outer capacity, capacitability, polar discrepancy sets and quasi-continuity. Two complete direct mathematical/editorial reads, builds and visual reviews are recorded in `research/reviews/2026-10-03-p04.md` and its JSON companion. The current draft has 67 PDF pages and 17 verified obligations. Whole-book work remains unfinished; next unit is P05.

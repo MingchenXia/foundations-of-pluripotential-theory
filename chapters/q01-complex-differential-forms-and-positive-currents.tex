@@ -1,2 +1,378 @@
 \chapter{Complex differential forms and positive currents}
-\label{chap:q01}
+\label{chap:complex-currents}
+
+On an open set in $\mathbb{C}^n$, the scalar Laplacian records only the trace of the complex Hessian. Positivity in every complex direction requires the whole Hessian, and changes of holomorphic coordinates must preserve this information. Differential forms express that invariance. Currents extend it to measures and locally integrable potentials, including the logarithms whose Hessians record zeros of holomorphic functions.
+
+\section{Complex coordinates and exterior differentiation}
+\label{sec:complex-exterior-calculus}
+
+Write $z_j=x_j+\mathrm{i}y_j$ on $\mathbb{C}^n$. Our coordinate operators and covectors are
+\[
+ \partial_{z_j}=\tfrac12(\partial_{x_j}-\mathrm{i}\partial_{y_j}),\qquad
+ \partial_{\bar z_j}=\tfrac12(\partial_{x_j}+\mathrm{i}\partial_{y_j}),\qquad
+ \mathrm{d}z_j=\mathrm{d}x_j+\mathrm{i}\mathrm{d}y_j.
+\]
+A smooth function is holomorphic when all its $\partial_{\bar z_j}$ derivatives vanish. The one-variable Cauchy formula, applied successively in a polydisc, gives
+\[
+ f(z)=\frac{1}{(2\pi\mathrm{i})^n}
+ \int_{|\zeta_1|=r_1}\cdots\int_{|\zeta_n|=r_n}
+ \frac{f(\zeta)\,\mathrm{d}\zeta_1\cdots\mathrm{d}\zeta_n}
+ {\prod_j(\zeta_j-z_j)}.
+\]
+Expanding each denominator on a smaller polydisc gives a normally convergent power series, and differentiating the contour formula gives all its derivatives. In particular, the identity theorem follows: a holomorphic function zero on a nonempty open subset of a connected domain is identically zero. Indeed, the set of points at which all Taylor coefficients vanish is both closed and open.
+
+\begin{definition}\label{def:complex-manifold}
+A complex manifold of dimension $n$ is a Hausdorff space with a countable basis and an atlas of homeomorphisms onto open subsets of $\mathbb{C}^n$, whose coordinate changes are holomorphic with holomorphic inverses. A map between complex manifolds is holomorphic if its coordinate expressions are holomorphic. A complex submanifold is locally a coordinate plane in holomorphic coordinates.
+\end{definition}
+\index{complex manifold}\index{holomorphic map}
+The underlying real manifold has dimension $2n$. A smooth holomorphic map with invertible derivative has a holomorphic local inverse: the real inverse function theorem gives a smooth inverse, and its derivative is complex linear by differentiating the identity. The countable-basis assumption will let local measure compactness be used on a countable collection of charts.
+
+A differential $k$-form is a smooth field of alternating $k$-linear covectors. Its exterior product is characterized by alternating multiplication of covectors. Complexifying the real covectors gives the direct decomposition
+\[
+ \Lambda^k=\bigoplus_{p+q=k}\Lambda^{p,q},\qquad
+ \alpha^{p,q}=\sum_{|I|=p,\,|J|=q}\alpha_{I,J}\,\mathrm{d}z_I\wedge\mathrm{d}\bar z_J,
+\]
+where multi-indices are increasing. The exterior derivative is defined in real coordinates by differentiating coefficients and placing the coordinate differential on the left. The chain rule makes this definition invariant under coordinate changes. It satisfies
+\[
+ \mathrm{d}(\alpha\wedge\gamma)=\mathrm{d}\alpha\wedge\gamma+(-1)^k\alpha\wedge\mathrm{d}\gamma,
+ \qquad \mathrm{d}^2=0
+\]
+for a $k$-form $\alpha$. Holomorphic coordinate changes preserve types, so $\mathrm{d}=\partial+\bar\partial$, with
+\[
+ \partial^2=\bar\partial^2=0,\qquad
+ \partial\bar\partial=-\bar\partial\partial.
+\]
+Complex conjugation interchanges types. A form is real when it equals its conjugate. The orientation of a complex chart is that of
+$\mathrm{d}x_1\wedge\mathrm{d}y_1\wedge\cdots\wedge\mathrm{d}x_n\wedge\mathrm{d}y_n$; it agrees on overlapping charts because a complex-linear change has real determinant $|\det_{\mathbb C}|^2>0$.
+
+\begin{proposition}\label{prop:manifold-cutoffs-stokes}
+A complex manifold has smooth partitions of unity subordinate to every open cover. If $\alpha$ is a compactly supported smooth $(2n-1)$-form, then $\int_X\mathrm{d}\alpha=0$.
+\end{proposition}
+\begin{proof}
+Choose a countable cover by coordinate balls with compact closures. Finite unions of such closures, enlarged at each stage to contain the preceding union in their interiors, give compact sets $K_j\subset\Int K_{j+1}$ exhausting $X$. For a prescribed open cover, cover each compact annulus $K_j\setminus\Int K_{j-1}$ by finitely many smaller coordinate balls whose larger closures lie in a member of that cover and in $\Int K_{j+1}\setminus K_{j-2}$. Here initial negative indices mean the empty set. Euclidean smooth cutoffs supported in the larger balls and positive on the smaller ones form a locally finite family. Their sum is positive, and division by that sum gives the partition.
+
+For a compactly supported form in one chart, the integral of each coefficient derivative is zero by Fubini and the fundamental theorem of calculus on a real coordinate line. Apply this to $\mathrm{d}(\chi_a\alpha)$ for the partition just constructed. Only finitely many terms meet the support of $\alpha$, and their sum is $\mathrm{d}\alpha$ since $\sum_a\mathrm{d}\chi_a=0$.
+\end{proof}
+\index{partition of unity}\index{Stokes' theorem}
+
+For later computations put
+\begin{equation}\label{eq:euclidean-hermitian-form}
+ \beta=\frac{\mathrm{i}}2\sum_{j=1}^n\mathrm{d}z_j\wedge\mathrm{d}\bar z_j,
+ \qquad \frac{\beta^n}{n!}=\mathrm{d}V_{2n}.
+\end{equation}
+\Needspace{5\baselineskip}
+The normalization fixed in the conventions reads
+\begin{equation}\label{eq:complex-hessian-normalization}
+ \ddc u=\frac{\mathrm{i}}{2\pi}\partial\bar\partial u
+ =\frac{\mathrm{i}}{2\pi}\sum_{j,k}u_{j\bar k}\,\mathrm{d}z_j\wedge\mathrm{d}\bar z_k,
+ \qquad \Delta u=4\sum_j u_{j\bar j}.
+\end{equation}
+These identities apply to distributions as well as smooth functions.
+
+\section{Currents and positivity}
+\label{sec:positive-currents}
+
+Let $X$ have dimension $n$. A current of degree $k$ is a continuous linear functional on compactly supported smooth $(2n-k)$-forms, with the test-function topology of \cref{def:distribution} on every coefficient and compact support. A current of bidegree $(p,q)$ vanishes on all test types except $(n-p,n-q)$. Its \emph{bidimension} is $(n-p,n-q)$. Locally it is a form with distribution coefficients. A locally integrable form $\alpha$ gives the current $T_\alpha(\varphi)=\int_X\alpha\wedge\varphi$.
+\index{current}\index{current!bidegree and bidimension}
+The definitions
+\[
+ (\mathrm{d}T)(\varphi)=(-1)^{k+1}T(\mathrm{d}\varphi),\qquad
+ (T\wedge\alpha)(\varphi)=T(\alpha\wedge\varphi)
+\]
+for a degree-$k$ current and a smooth form $\alpha$ agree with differentiation and multiplication of smooth forms. The type components define $\partial T$ and $\bar\partial T$. Differentiation is continuous for weak convergence of currents. A current is closed if $\mathrm{d}T=0$. When it has one pure type, this is equivalent to $\partial T=\bar\partial T=0$ because these derivatives have different types. The product rule follows by applying the displayed definitions to a test form; multiplication of two general distribution coefficients is not defined by them.
+
+Positivity is a finite-dimensional assertion before it is an assertion about currents. On a complex vector space $V$ of dimension $n$, a real $(p,p)$-form is \emph{strongly positive} if it is a finite sum with nonnegative coefficients of forms
+\begin{equation}\label{eq:strong-positive-generator}
+ \mathrm{i}^{p^2}\theta_1\wedge\cdots\wedge\theta_p
+ \wedge\bar\theta_1\wedge\cdots\wedge\bar\theta_p
+ =\bigwedge_{j=1}^p(\mathrm{i}\theta_j\wedge\bar\theta_j).
+\end{equation}
+It is \emph{weakly positive} if its exterior product with every strongly positive $(n-p,n-p)$-form is a nonnegative volume form. Degree zero means a nonnegative scalar.
+\index{positivity!strong}\index{positivity!weak}
+
+\begin{proposition}\label{prop:positivity-cones}
+The strongly positive cone is closed and spans the real $(p,p)$-forms. The form $\beta^p$ lies in its interior. A real $(p,p)$-form is weakly positive exactly when its restriction to every complex $p$-plane is nonnegative. Holomorphic pullback preserves both notions; the product of strongly positive forms is strongly positive, and the product of a weakly positive form with a strongly positive form is weakly positive when its degree is at most $n$.
+\end{proposition}
+\begin{proof}
+For a decomposable $p$-covector $\theta$, normalize its coefficient norm to one. The resulting generators form a compact set: they are the images of orthonormal $p$-frames and phases under $\theta\mapsto\mathrm{i}^{p^2}\theta\wedge\bar\theta$. The linear functional given by exterior multiplication with $\beta^{n-p}$ is a fixed positive constant on this normalized set, as follows by completing a frame to an orthonormal basis. Its convex hull is compact. To see this without a compactness assertion for arbitrary convex hulls, any convex combination of more than $N+1$ points in a real $N$-dimensional space has an affine dependence; subtract a multiple of that dependence until one coefficient becomes zero. Iteration reduces to at most $N+1$ points, a compact parametrization. The trace functional bounds the coefficient of every element of the cone in this compact hull, proving closedness.
+
+The generators span the real forms. Indeed, a linear functional zero on all generators yields a Hermitian sesquilinear form $B$ on $\Lambda^pV^*$ for which
+$B(\theta_1\wedge\cdots\wedge\theta_p,\theta_1\wedge\cdots\wedge\theta_p)=0$ for every tuple. Polarization in each of the $p$ variables, using its values at $a+b$ and $a+\mathrm{i}b$, gives the same pairing with independent tuples in the two slots. Decomposable covectors span $\Lambda^pV^*$, so $B=0$.
+
+Choose finitely many normalized generators $q_r$ spanning the real form space. Average each $q_r$ under the coordinate sign changes $(\pm1)^n$ and all coordinate permutations. The signs cancel off-diagonal coefficients indexed by distinct multi-indices; the permutations equalize the diagonal coefficients. The coefficient trace is one, so every average is
+\[
+ \binom np^{-1}\mathrm{i}^{p^2}\sum_{|I|=p}\mathrm{d}z_I\wedge\mathrm{d}\bar z_I
+ =\frac{2^p}{p!\binom np}\beta^p.
+\]
+The sum of these finite averages is a positive multiple of $\beta^p$, expressed as a combination of generators with strictly positive coefficients and including all $q_r$. A small arbitrary real perturbation can be expressed by small changes of the coefficients of the $q_r$. They remain positive, proving the interior assertion. The degrees $p=0,n$ have the same conclusion in their one-dimensional spaces.
+
+Given a complex $p$-plane, choose coordinates in which it is $z_{p+1}=\cdots=z_n=0$. Exterior multiplication by $\bigwedge_{j>p}(\mathrm{i}\mathrm{d}z_j\wedge\mathrm{d}\bar z_j)$ reads exactly the coefficient of the restriction to that plane. Such complementary products generate the strongly positive cone. This proves the restriction criterion. Under a complex-linear map, generators pull back to generators or zero; the restriction criterion proves weak positivity, since a map on a $p$-plane either has rank $p$ or annihilates its top-degree restriction. Products follow by multiplying the generators and using the defining dual test.
+\end{proof}
+
+For $(1,1)$-forms, weak and strong positivity coincide: writing the form as $\mathrm{i}\sum a_{j\bar k}\mathrm{d}z_j\wedge\mathrm{d}\bar z_k$, the plane criterion is positivity of its Hermitian matrix, and diagonalization expresses it as a sum of generators. In general the two notions differ. For example in dimension four, $\theta=\mathrm{d}z_1\wedge\mathrm{d}z_2+\mathrm{d}z_3\wedge\mathrm{d}z_4$ gives a weakly positive $\theta\wedge\bar\theta$ which is not strongly positive. A sum of decomposable rank-one Hermitian forms equal to this rank-one form would have every summand proportional to $\theta$; but $\theta\wedge\theta\ne0$, whereas a decomposable two-form has square zero.
+
+\begin{definition}\label{def:positive-current}
+A current $T$ of bidegree $(p,p)$ is positive if $T(\varphi)\ge0$ for every compactly supported smooth test form $\varphi$ which is strongly positive of bidegree $(n-p,n-p)$. Weak convergence means convergence on every smooth test form. In a coordinate chart, the trace measure is
+$\mu_T(\chi)=T(\chi\beta^{n-p})$.
+\end{definition}
+\index{positive current}\index{trace measure!of a positive current}
+
+\Needspace{8\baselineskip}
+\begin{theorem}\label{thm:positive-current-order-zero}
+A positive current is real and has measure coefficients. On a relatively compact coordinate chart, the total variation of every coefficient is bounded by a constant times its trace measure. A sequence of positive currents with locally bounded trace masses has a weakly convergent subsequence. Positivity, and closedness when imposed, pass to its limit.
+\end{theorem}
+\begin{proof}
+Put $q=n-p$. The interior assertion in \cref{prop:positivity-cones} implies that for any constant real $(q,q)$-form $\tau$ there is $C_\tau$ such that $C_\tau\beta^q\pm\tau$ are strongly positive. For a nonnegative scalar test function $\chi$, positivity gives real values for $T(\chi\tau)$ and
+\[
+ |T(\chi\tau)|\le C_\tau\mu_T(\chi).
+\]
+The distributions $C_\tau\mu_T\pm T(\,\cdot\,\tau)$ are positive measures by \cref{thm:positive-distribution-measure}. Thus $T(\,\cdot\,\tau)$ is a signed measure with total variation at most $C_\tau\mu_T$. A finite real basis of test forms gives realness and all coefficient bounds; complex coefficients are combinations of this basis.
+
+Apply \cref{thm:local-measure-selection} to these finitely many positive measures and their differences. A diagonal subsequence over a countable chart cover and compact exhaustions gives coefficient limits in every chart. They agree on overlaps because evaluation on a fixed smooth test form commutes with the coordinate change. They therefore define a current. Testing strongly positive forms proves positivity of the limit; testing their derivatives proves closedness.
+\end{proof}
+
+Convolution with a nonnegative mollifier in a coordinate chart smooths a positive current and preserves its positivity on the smaller chart. To justify the assertion for a variable test form, interchange convolution and evaluation: translations of the form are strongly positive in the same coordinate frame, and their nonnegative average is strongly positive by the closed convex cone property. Closedness is preserved since constant-coordinate derivatives commute with convolution. A smooth strongly positive form can also be multiplied with a positive current: its product with a strongly positive test form is an admissible test.
+
+\begin{example}\label{ex:submanifold-current}
+If $Z$ is a closed complex submanifold of dimension $r$ in $X$, integration $[Z](\varphi)=\int_Z\varphi|_Z$ is a positive closed current of bidegree $(n-r,n-r)$. Compact subsets of $X$ meet a compact subset of $Z$, so the integral is locally finite. Positivity follows from the restriction criterion, and closedness follows from \cref{prop:manifold-cutoffs-stokes} applied on $Z$.
+\end{example}
+\index{integration current}
+
+\section{Local potentials for closed \texorpdfstring{$(1,1)$}{(1,1)}-currents}
+\label{sec:local-complex-potentials}
+
+Fix a coordinate domain in $\mathbb{C}^n$, $n\ge1$. A positive $(1,1)$-current has the expression
+\[
+ T=\frac{\mathrm{i}}{2\pi}\sum_{j,k}t_{j\bar k}\,\mathrm{d}z_j\wedge\mathrm{d}\bar z_k.
+\]
+Its coefficient matrix is Hermitian and positive in the distributional sense: $\sum t_{j\bar k}\xi_j\bar\xi_k$ is a positive measure for every constant vector $\xi$. This follows by testing complementary coordinate products after a unitary change of coordinates. Conversely these matrix inequalities imply positivity. For a smooth matrix this is the $(1,1)$-form criterion; smoothing proves it for a distributional matrix, since its smoothings are positive and tend weakly to the original current. In particular $\mu=\sum_jt_{j\bar j}$ is a positive measure. Closedness is expressed by
+\begin{equation}\label{eq:closed-hessian-coefficients}
+ \partial_{z_l}t_{j\bar k}=\partial_{z_j}t_{l\bar k},\qquad
+ \partial_{\bar z_l}t_{j\bar k}=\partial_{\bar z_k}t_{j\bar l}.
+\end{equation}
+
+The smooth local exactness needed below has an explicit integral proof.
+\begin{lemma}\label{lem:smooth-dbar-poincare}
+On a sufficiently small polydisc, a smooth $\bar\partial$-closed $(0,1)$-form is $\bar\partial f$ for a smooth function $f$. A smooth real closed $(1,1)$-form is locally $\ddc v$ for a smooth real function $v$.
+\end{lemma}
+\begin{proof}
+In one complex variable, $K(z)=1/(\pi z)$ satisfies $\partial_{\bar z}K=\delta_0$. For completeness, integrate $\partial_{\bar z}\varphi/z$ outside a disc of radius $\varepsilon$. Stokes' formula for $\varphi\,\mathrm{d}z/z$ gives the inner boundary contribution $-2\pi\mathrm{i}\varphi(0)+o(1)$; since $\mathrm{d}\bar z\wedge\mathrm{d}z=2\mathrm{i}\,\mathrm{d}V_2$, the integral tends to $-\pi\varphi(0)$. This is the asserted distributional derivative. Consequently convolution with $K$ solves $\partial_{\bar z}f=a$ for a compactly supported smooth $a$. The solution is smooth because derivatives may be moved onto $a$ and $K$ is locally integrable.
+
+Write the given form as $\sum a_j\mathrm{d}\bar z_j$. Multiply $a_1$ by a cutoff in the first coordinate alone, equal to one on a smaller disc, and apply the preceding operator in that variable, treating all other coordinates as parameters. Subtract $\bar\partial f_1$. On the smaller first disc the first component is zero, and closedness gives $\partial_{\bar z_1}a_j^{(1)}=0$ for $j>1$. Solve the second component with a cutoff in the second coordinate alone. The integral preserves holomorphic dependence on the first variable, so the first component stays zero. Repeating through all variables on a smaller polydisc gives $f=\sum_jf_j$.
+
+For the second assertion, on a real ball a smooth closed $k$-form $\omega$, $k>0$, has the primitive
+\[
+ (H\omega)_x(v_1,\ldots,v_{k-1})
+ =\int_0^1t^{k-1}\omega_{tx}(x,v_1,\ldots,v_{k-1})\,\mathrm{d}t.
+\]
+Differentiation under the integral, and the product rule, give $\mathrm{d}H\omega+H\mathrm{d}\omega=\omega$: the integrand is the derivative of $t^k\omega_{tx}(v_1,\ldots,v_k)$ after the terms involving $\mathrm{d}\omega$ are included; its value at $t=0$ is zero. Apply this to the real closed two-form $R$, obtaining $R=\mathrm{d}\alpha$ with $\alpha$ real. Its $(0,2)$-part gives $\bar\partial\alpha^{0,1}=0$. On a smaller polydisc, the first assertion gives $\alpha^{0,1}=\bar\partial f$, while realness gives $\alpha^{1,0}=\partial\bar f$. Hence
+\[
+ R=\partial\bar\partial(f-\bar f)=2\mathrm{i}\partial\bar\partial\Img f
+   =\ddc(4\pi\Img f).
+\]
+\end{proof}
+\index{Dolbeault lemma!smooth local}\index{Poincare lemma!smooth local}
+
+\Needspace{8\baselineskip}
+\begin{theorem}\label{thm:local-positive-current-potential}
+Every positive closed $(1,1)$-current on a complex manifold of positive dimension has, near each point, a real locally integrable potential $u$ with $\ddc u=T$. In a coordinate chart $u$ has its canonical subharmonic representative. Two such canonical local potentials differ by addition of a smooth pluriharmonic function, meaning a real smooth function with zero complex Hessian.
+\end{theorem}
+\begin{proof}
+Choose a compactly supported nonnegative cutoff $\chi$ equal to one on a neighborhood of the point. With the scalar fundamental solution $E_{2n}$ of \cref{prop:laplacian-fundamental-solution}, set
+$u_0=4E_{2n}*(\chi\mu)$, where $\mu=\sum_jt_{j\bar j}$. By \cref{prop:fundamental-potential}, $u_0$ is locally integrable and subharmonic; locally $\Delta u_0=4\mu$. The real closed current $R=T-\ddc u_0$ has coefficient trace zero. Writing its coefficients $r_{j\bar k}$ in the same normalization, \eqref{eq:closed-hessian-coefficients} gives
+\[
+ \tfrac14\Delta r_{j\bar k}
+ =\sum_l\partial_{z_l}\partial_{\bar z_l}r_{j\bar k}
+ =\partial_{z_j}\partial_{\bar z_k}\sum_l r_{l\bar l}=0.
+\]
+Weyl's lemma, \cref{thm:weyl}, makes every coefficient smooth. By \cref{lem:smooth-dbar-poincare}, $R=\ddc v$ for a smooth real $v$ on a smaller neighborhood. Thus $u=u_0+v$ is the desired potential, and $\Delta u=4\mu\ge0$. Its canonical subharmonic representative exists by \cref{thm:subharmonic-distribution}. Here $v$ is harmonic, since the trace of $R$ is zero, so this representative is also the pointwise sum of $v$ and the subharmonic potential $u_0$.
+
+If $u$ and $\widetilde u$ are two potentials, their difference as $L^1_{\loc}$ classes has zero complex Hessian and hence zero Laplacian. Weyl's lemma makes it a smooth function $h$ with $\ddc h=0$. Canonical representatives commute with addition of the harmonic function $h$, because their small-ball averages do. Therefore $\widetilde u=u+h$ pointwise, including at poles; no difference of two minus-infinite values is taken.
+\end{proof}
+\index{local potential!of a positive current}\index{pluriharmonic function}
+
+A real smooth function $h$ is pluriharmonic exactly when it is locally the real part of a holomorphic function. One implication follows by differentiation. For the other, $\ddc h=0$ makes $\partial h$ a holomorphic closed one-form. On a small ball its primitive is holomorphic: the formula $g(z)=2\int_0^1\sum_j z_j h_{z_j}(tz)\,\mathrm{d}t$ gives $\partial g=2\partial h$ by differentiating and using closedness. Thus $\Real g-h$ is constant, and that constant can be adjusted. This also proves that a nowhere zero holomorphic function has locally pluriharmonic $\log|f|^2$, by a local holomorphic logarithm obtained from the one-variable logarithm near its nonzero value.
+
+\begin{proposition}\label{prop:positive-hessian-holomorphic-composition}
+Let $u$ be the canonical subharmonic representative of a real $L^1_{\loc}$ function on a domain $\Omega\subset\mathbb{C}^n$, and suppose $\ddc u\ge0$. For a holomorphic map $F:D\to\Omega$, where $D\subset\mathbb{C}^m$ is a domain and $m\ge1$, its composition $u\circ F$ is either identically $-\infty$ on a connected component of $D$, or is locally integrable and subharmonic there with positive complex Hessian. In particular restriction to a complex line has this alternative on each connected component.
+\end{proposition}
+\begin{proof}
+Locally convolve $u$ with the nonnegative radial mollifiers of \cref{thm:subharmonic-distribution}. The smooth functions $u_\varepsilon$ decrease pointwise to $u$ as $\varepsilon\downarrow0$, and their complex Hessians are positive by convolution. For a smooth $u_\varepsilon$, the chain rule gives
+\[
+ (u_\varepsilon\circ F)_{a\bar b}
+ =\sum_{j,k}(u_\varepsilon)_{j\bar k}(F)\,
+   \frac{\partial F_j}{\partial w_a}\,
+   \overline{\frac{\partial F_k}{\partial w_b}}.
+\]
+Its matrix is positive, hence its scalar Laplacian is nonnegative. The decreasing-limit theorem \cref{thm:subharmonic-decreasing} proves the alternative locally and gives $L^1_{\loc}$ convergence in the nontrivial case. Its distributional complex Hessian is the positive limit. The local alternatives agree across overlapping neighborhoods: a subharmonic function that is minus infinity on a nonempty open subset of a connected domain is identically minus infinity by its local integrability alternative. Propagating across a chain of neighborhoods proves the component statement.
+\end{proof}
+
+\section{Holomorphic zeros and the Poincar\'e--Lelong formula}
+\label{sec:poincare-lelong}
+
+A holomorphic logarithm is pluriharmonic away from its zeros. The current at a zero must record the one-variable vanishing order, even when several sheets meet. The local preparation argument makes the sheets visible without requiring a general theory of analytic sets.
+
+\begin{lemma}\label{lem:holomorphic-zero-null}
+The zero set of a nonzero holomorphic function on a connected domain in $\mathbb{C}^n$, $n\ge1$, has Lebesgue measure zero. At a zero, there is a complex linear coordinate system in which the function is not identically zero on any coordinate axis through that point.
+\end{lemma}
+\begin{proof}
+For $n=1$, zeros are isolated by the Taylor expansion and hence countable on a domain. Inductively, expand the function in the last variable on a polydisc. At least one coefficient is a nonzero holomorphic function of the other variables. Outside its zero set, which is null by induction, the last-variable function is nonzero and its zeros are null in that plane. Fubini proves the assertion on the polydisc; a countable cover proves it on the domain.
+
+At a zero moved to the origin, let $P_m$ be the first nonzero homogeneous term of the Taylor series. The complement of $\{P_m=0\}$ is open and dense, since a polynomial vanishing on an open set has every coefficient zero by differentiation. Choose a basis $v_1,\ldots,v_n$ in this complement, successively avoiding the proper linear span of the previous vectors. The restriction along each $v_j$ has leading term $t^mP_m(v_j)$ and is nonzero. Taking these vectors as coordinate axes proves the second assertion.
+\end{proof}
+
+\begin{theorem}[Weierstrass preparation]\label{thm:local-weierstrass-preparation}
+Suppose $f$ is holomorphic near $0$ in $\mathbb{C}^{n-1}\times\mathbb{C}$, and $w\mapsto f(0,w)$ has a zero of order $m\ge1$ at zero. On a smaller polydisc,
+\[
+ f(z',w)=g(z',w)W(z',w),\qquad
+ W=w^m+a_1(z')w^{m-1}+\cdots+a_m(z'),
+\]
+where $g$ is holomorphic and nowhere zero, the coefficients $a_j$ are holomorphic, and $a_j(0)=0$.
+\end{theorem}
+\begin{proof}
+Choose $\rho>0$ so that zero is the only zero of $f(0,w)$ in $|w|\le\rho$. After shrinking the base, $f(z',w)$ is nonzero on a fixed annulus about $|w|=\rho$. The argument principle and deformation of the contour show that every fiber has exactly $m$ zeros inside that circle, counted with multiplicity. They stay in a smaller concentric disc.
+
+\Needspace{5\baselineskip}
+Their power sums are the holomorphic functions
+\[
+ S_k(z')=\frac{1}{2\pi\mathrm{i}}\int_{|w|=\rho}
+ w^k\frac{f_w(z',w)}{f(z',w)}\,\mathrm{d}w.
+\]
+The elementary symmetric functions $e_k$ of these roots satisfy
+\[
+ ke_k=\sum_{j=1}^k(-1)^{j-1}e_{k-j}S_j,\qquad e_0=1.
+\]
+This identity follows by comparing coefficients in the logarithmic derivative of $\prod_l(1+t\lambda_l)$, so every $e_k$ is holomorphic. The monic polynomial $W$ with those roots has the required coefficients and $W(0,w)=w^m$.
+
+For a fixed base point, both $f/W$ and $W/f$ extend holomorphically in $w$ by cancellation of zeros with the same multiplicities. On the fixed annulus they are jointly holomorphic. Their Cauchy integrals on a circle in that annulus extend them jointly across the inner disc: differentiating the integral in the base variables is permitted on the nonvanishing contour. The two extensions have product one, proving that $g=f/W$ is a holomorphic unit.
+\end{proof}
+\index{Weierstrass preparation}
+
+\begin{proposition}\label{prop:holomorphic-logarithm-hessian}
+If $f$ is a nonzero holomorphic function on a connected domain, then $\log|f|^2$ is locally integrable, with its value $-\infty$ on the zero set. It is its canonical subharmonic representative and has positive complex Hessian. In a coordinate polydisc, for every scalar smooth compactly supported test function $\varphi$,
+\begin{equation}\label{eq:logarithm-coordinate-slices}
+ \big\langle(\log|f|^2)_{j\bar j},\varphi\big\rangle
+ =\pi\int_{\mathbb{C}^{n-1}}\sum_{a:\,f(z',a)=0}
+       m(z',a)\varphi(z',a)\,\mathrm{d}V_{2n-2}(z'),
+\end{equation}
+where $z'$ omits coordinate $j$, the sum concerns the zeros in that fiber, and fibers on which $f$ is identically zero may be discarded as a null set. In particular each diagonal Hessian measure gives zero mass to the inverse image of a Lebesgue-null base set.
+\end{proposition}
+\begin{proof}
+At a zero choose one of the directions in \cref{lem:holomorphic-zero-null} and apply \cref{thm:local-weierstrass-preparation}. The logarithm of the unit is bounded on a smaller polydisc. The roots of $W$ stay in a fixed bounded disc, and
+\[
+ \int_{|w|<r}\big|\log|w-a|\big|\,\mathrm{d}V_2(w)\le C
+\]
+uniformly for $a$ in that disc: the negative part is bounded by the integral of $-\log|w|$ on the unit disc after translation, and the positive part is bounded on the common bounded region. For each fiber the absolute logarithm of the product is at most the sum of the absolute logarithms of its $m$ factors. Tonelli therefore gives local integrability; no choice of ordered root functions is needed. Away from the zeros the logarithm is smooth.
+
+In one variable, factoring at each zero and using \cref{ex:subharmonic-convex-log} gives
+$\Delta\log|f|^2=4\pi\sum_a m(a)\delta_a$ locally. In a coordinate polydisc the identically zero fibers lie in the zero set of a nonzero holomorphic Taylor coefficient in the base, hence in a null set by \cref{lem:holomorphic-zero-null}. Fubini applied to the locally integrable logarithm and the test derivative proves \eqref{eq:logarithm-coordinate-slices}. Its right-hand side is measurable as a function of the base because on each nontrivial fiber it equals the integral of $\log|f|^2\,\partial_w\partial_{\bar w}\varphi/\pi$. Absolute integrability follows from Fubini on the left before applying the fiber formula.
+
+Every diagonal directional derivative is thus positive, including after any unitary coordinate change. The matrix criterion preceding \cref{lem:smooth-dbar-poincare} gives $\ddc\log|f|^2\ge0$, and \cref{thm:positive-current-order-zero} gives its measure coefficients. To justify the last assertion of the statement, test \eqref{eq:logarithm-coordinate-slices} with a product of a base test function and a fixed nonnegative fiber test function. The base projection of this weighted diagonal measure has an integrable density. Exhausting the fiber by nonnegative cutoffs proves that the diagonal measure cannot charge the inverse image of a null base set.
+
+The trace is positive, so \cref{thm:subharmonic-distribution} supplies a canonical subharmonic representative. It agrees with the logarithm at nonzero points, where the latter is continuous. At a zero of Taylor order $m\ge1$, $|f(z)|\le C|z-a|^m$ near $a$. Its ball-average logarithm tends to $-\infty$ as the radius tends to zero. Thus the canonical value there is $-\infty$ as asserted.
+\end{proof}
+\index{holomorphic function!logarithm of modulus}
+
+We next specify the integration current independently of the logarithmic Hessian. For the zero set $V$ of $f$, let $V_{\mathrm{reg}}$ consist of points where
+\[
+ f=g\,a^m,\qquad g\ne0,\quad \mathrm{d}a\ne0,\quad m\ge1
+\]
+on a neighborhood, with $a$ and $g$ holomorphic. The holomorphic inverse function theorem makes $a$ one coordinate, so $V$ there is a smooth complex hypersurface. The integer $m$ is its transverse vanishing order and is independent of that coordinate: a different defining coordinate has the same order by a one-variable transverse restriction. It is locally constant on each such sheet. This regular locus is open in $V$; write $S=V\setminus V_{\mathrm{reg}}$.
+
+\begin{lemma}\label{lem:divisor-exceptional-projections}
+Near each zero there are linear coordinates and a polydisc such that, for every coordinate projection $\pi_j$ omitting $z_j$, the set $S$ is contained in $\pi_j^{-1}(N_j)$ for a Lebesgue-null base set $N_j$.
+\end{lemma}
+\begin{proof}
+Choose the basis in \cref{lem:holomorphic-zero-null}. Prepare $f$ in each coordinate direction on its own smaller polydisc. We show that outside a null base set, every zero of the prepared polynomial has the regular form just specified.
+
+On a connected base, its holomorphic functions form an integral domain by the identity theorem. Let $K$ be their fraction field. A monic polynomial $W\in K[w]$ factors as $\prod_l P_l^{m_l}$ with distinct monic irreducible polynomials $P_l$: existence follows by splitting a reducible polynomial into lower-degree factors repeatedly. Polynomial division over a field gives the Euclidean algorithm, so distinct irreducibles are relatively prime and an irreducible divides a product only if it divides one factor. This also gives uniqueness up to ordering. Since the field has characteristic zero, $P_l'$ is nonzero of smaller degree, so $P_l$ and $P_l'$ are relatively prime. Thus the square-free polynomial $P=\prod_lP_l$ satisfies $AP+BP'=1$ for polynomials $A,B\in K[w]$ by the Euclidean algorithm.
+
+Clear the finitely many denominators in these polynomials and factors. Off the zero set of their product $h(z')$, which is a nonzero holomorphic function, they all have holomorphic coefficients, their identities hold, and $P$ has only simple roots. A simple root is a holomorphic function $a(z')$ locally: isolate it by a small circle, on which $P$ remains nonzero for nearby base points, and use the single-root contour integral
+\[
+ a(z')=\frac{1}{2\pi\mathrm{i}}\int w\frac{P_w(z',w)}{P(z',w)}\,\mathrm{d}w.
+\]
+On that neighborhood $W=(w-a(z'))^{m_l}$ times a holomorphic unit, since the other roots stay outside the isolating circle; division by the factor is jointly holomorphic by the Cauchy argument in preparation. Therefore $f$ has the required regular form. The exceptional base $N_j=\{h=0\}$ is null by \cref{lem:holomorphic-zero-null}. Intersecting the finitely many preparation neighborhoods gives a common polydisc with the asserted inclusions. For $n=1$, the base is a point, the factors are linear over $\mathbb{C}$, and the exceptional set is empty.
+\end{proof}
+
+\begin{theorem}[Poincar\'e--Lelong]\label{thm:poincare-lelong}
+Let $f$ be holomorphic on a complex manifold and not identically zero on any connected component. The weighted integration over $V_{\mathrm{reg}}$, with transverse multiplicity $m$, has locally finite mass and defines a positive closed current $[\Div(f)]$ after its coefficient measures are extended by zero on $S$. It satisfies
+\begin{equation}\label{eq:poincare-lelong-normalized}
+ \ddc\log|f|^2=[\Div(f)].
+\end{equation}
+\end{theorem}
+\begin{proof}
+In dimension zero the function has no zeros and both currents are zero. In positive dimension put $T=\ddc\log|f|^2$. By \cref{prop:holomorphic-logarithm-hessian}, it is a positive closed current with measure coefficients. In the coordinates of \cref{lem:divisor-exceptional-projections}, its diagonal Hessian measures give $S$ zero mass by \eqref{eq:logarithm-coordinate-slices}. Their sum controls its trace, and the trace controls all coefficients by \cref{thm:positive-current-order-zero}. Thus $T$ gives $S$ zero mass.
+
+At a regular point take the coordinate $t=a$. The logarithm of the unit is pluriharmonic. In one complex variable, $\partial_t\partial_{\bar t}\log|t|^2=\pi\delta_0$, and $\mathrm{i}\,\mathrm{d}t\wedge\mathrm{d}\bar t=2\mathrm{d}V_2$; hence our normalization gives $\ddc\log|t|^2=[0]$. Fubini in the other coordinates gives $\ddc\log|t|^2=[t=0]$ with its complex orientation. The calculation is invariant under the holomorphic coordinate change: approximate a locally integrable potential by smooth functions, use the smooth chain rule, and pass in $L^1_{\loc}$, where the Jacobians on smaller coordinate neighborhoods are bounded. Consequently $T=m[V_{\mathrm{reg}}]$ locally away from $S$; it is zero away from $V$.
+
+The trace of this weighted integration on every compact set away from $S$ equals the restriction of the locally finite trace of $T$. Exhaustion of $X\setminus S$ therefore bounds its mass even on compact sets meeting $S$. Its coefficients are bounded by a constant times this trace, by the pointwise positivity estimate used in \cref{thm:positive-current-order-zero}. Extending these integration measures by zero on $S$ gives a current $[\Div(f)]$ with locally finite mass. It equals $T$ off $S$, and both have zero mass on $S$, proving \eqref{eq:poincare-lelong-normalized} everywhere. Closedness follows from $\mathrm{d}\ddc=0$.
+\end{proof}
+\index{Poincare--Lelong formula}\index{divisor!integration current}
+
+\begin{example}\label{ex:poincare-lelong-products}
+For $f(z)=z_1^{a_1}\cdots z_r^{a_r}$ with positive integers $a_j$, the formula gives $\ddc\log|f|^2=\sum_{j=1}^r a_j[z_j=0]$, including at intersections of the coordinate hypersurfaces. More generally, for a local quotient $f=g/h$ of nonzero holomorphic functions, the locally integrable function $\log|g|^2-\log|h|^2$ has Hessian $[\Div(g)]-[\Div(h)]$. This is independent of the quotient representation: $gh'=g'h$ makes the two logarithmic differences equal almost everywhere, hence as distributions. Pointwise values at simultaneous zeros need not be assigned to use this identity.
+\end{example}
+
+\section{Maps of currents and local mass}
+\label{sec:current-maps}
+
+Let $F:X\to Y$ be holomorphic, with $\dim_{\mathbb C}X=m$ and $\dim_{\mathbb C}Y=n$. Pullback of smooth forms is given by the derivative of $F$ and commutes with exterior differentiation. For currents, the support and the rank of the map determine which operations exist.
+
+\begin{proposition}\label{prop:proper-current-pushforward}
+If the restriction of $F$ to $\Supp T$ is proper, a current $T$ of bidegree $(p,q)$ on $X$ has a pushforward $F_*T$ of bidegree $(p+n-m,q+n-m)$ on $Y$. It commutes with $\mathrm{d}$, $\partial$ and $\bar\partial$ and preserves positivity for currents of type $(p,p)$. A bidegree outside the range $0,\ldots,n$ means the zero current.
+\end{proposition}
+\begin{proof}
+For a compactly supported test form $\varphi$ on $Y$, properness on the support makes
+$\Supp T\cap F^{-1}(\Supp\varphi)$ compact. Choose a nonnegative compactly supported cutoff $\chi$ equal to one on a neighborhood of this set, and define
+\[
+ (F_*T)(\varphi)=T(\chi F^*\varphi).
+\]
+The value is independent of $\chi$, since two choices differ by a form zero on a neighborhood of the support of $T$ wherever $F^*\varphi$ can be nonzero. For tests with a fixed compact support, a single cutoff works, proving continuity. Pullback preserves the test type, giving the stated bidegree. In a differentiation test the terms containing $\mathrm{d}\chi$ vanish for the same support reason. The current sign agrees because the degree changes by the even integer $2(n-m)$. Thus differentiation commutes. If $\varphi$ is strongly positive, so is $\chi F^*\varphi$ by \cref{prop:positivity-cones}, proving positivity.
+\end{proof}
+\index{current!proper pushforward}
+In particular, the current in \cref{ex:submanifold-current} is the pushforward of the constant degree-zero current $1$ under the proper inclusion $Z\hookrightarrow X$. A nonproper map can still satisfy the proposition for a compactly supported current.
+
+\begin{proposition}\label{prop:submersion-current-pullback}
+If $F$ is a holomorphic submersion, every current on $Y$ has a pullback $F^*T$ of the same bidegree on $X$. The operation is continuous for weak convergence, commutes with differentiation and preserves positivity.
+\end{proposition}
+\begin{proof}
+Near a source point the map is a coordinate projection. Indeed, after choosing an invertible $n$-minor of its derivative, the map consisting of its $n$ components and the remaining $m-n$ source coordinates is a holomorphic local coordinate system by the inverse function theorem. In these coordinates, for each distribution coefficient $a$ on the base define its pullback by
+\[
+ \langle F^*a,\psi\rangle
+ =\left\langle a,\int_{\mathbb{C}^{m-n}}\psi(z,w)\,\mathrm{d}V_{2m-2n}(w)\right\rangle.
+\]
+Integration in $w$ maps a compactly supported smooth test function continuously to one on the base. Pull back the coordinate differentials as for smooth forms. This constructs a continuous map of currents, agreeing with smooth pullback. Smooth approximation of the target current proves that the constructions in two such charts agree: apply the same target approximations on their overlap, for which the coordinate-invariance of smooth pullback holds, and pass to the weak limit. The construction therefore glues. Coefficient differentiation or the same approximation proves commutation with the type derivatives. For a positive current, local convolution gives positive smooth approximants by \cref{thm:positive-current-order-zero}; their pullbacks are positive by \cref{prop:positivity-cones}, and positivity passes to the limit.
+\end{proof}
+\index{current!submersion pullback}
+
+Positive closed $(1,1)$-currents also admit a pullback under certain maps that are not submersions. The local potentials specify its domain.
+\begin{proposition}\label{prop:potential-current-pullback}
+Let $T$ be a positive closed $(1,1)$-current on $Y$, and let $F:X\to Y$ be holomorphic. Suppose that near every source point one can choose a canonical local potential $u$ of $T$ such that $u\circ F$ is not identically $-\infty$ on any connected component of that neighborhood. Then
+\[
+ F^*T=\ddc(u\circ F)
+\]
+defines a positive closed current independent of the chosen potentials. It agrees with smooth pullback and with submersion pullback whenever those constructions apply.
+\end{proposition}
+\begin{proof}
+By \cref{prop:positive-hessian-holomorphic-composition}, the composition is locally integrable with positive complex Hessian. On an overlap, two potentials differ by addition of a smooth pluriharmonic function, by \cref{thm:local-positive-current-potential}. Locally that function is the real part of a holomorphic function, so its composition with $F$ has zero complex Hessian. The currents therefore agree on overlaps. The condition itself is unchanged by adding such a smooth function. Closedness follows from $\mathrm{d}\ddc=0$.
+
+For smooth potentials the formula is the chain rule. For a submersion, the coordinate-projection formula pulls back locally integrable functions to locally integrable functions, and commutes with $\ddc$. The canonical composition agrees with that function class by \cref{prop:positive-hessian-holomorphic-composition}, proving agreement. Smooth local potentials for a smooth $T$ are supplied by \cref{lem:smooth-dbar-poincare}.
+\end{proof}
+\index{current!pullback by local potentials}
+
+\begin{example}\label{ex:undefined-pole-pullback}
+On $\mathbb{C}^2$, $T=[z_1=0]$ has potential $\log|z_1|^2$ by \cref{thm:poincare-lelong}. Under $F(w)=(0,w)$ its composition is identically $-\infty$, so the potential pullback is undefined. Under $G(w)=(w,0)$ it is $\log|w|^2$, giving $G^*T=[0]$. The condition in \cref{prop:potential-current-pullback} distinguishes these two restrictions at the operation where the pole is met.
+\end{example}
+
+A Hermitian metric on $X$ is a smooth field of positive definite Hermitian quadratic forms on its tangent spaces. In coordinates write it as $h=\sum h_{j\bar k}\mathrm{d}z_j\otimes\mathrm{d}\bar z_k$, and associate the real form
+$\omega=(\mathrm{i}/2)\sum h_{j\bar k}\mathrm{d}z_j\wedge\mathrm{d}\bar z_k$. A partition of unity combines the coordinate Euclidean metrics into such a global metric. It need not be closed.
+
+\Needspace{6\baselineskip}
+For a positive $(p,p)$-current define its metric trace measure by
+\[
+ \sigma_{T,\omega}=T\wedge\frac{\omega^{n-p}}{(n-p)!}.
+\]
+This is a positive measure by \cref{def:positive-current}. On each compact coordinate neighborhood, the positive eigenvalues of $h$ have uniform positive lower and finite upper bounds. Diagonalization then bounds its trace above and below by constants times the coordinate trace: expanding $\omega^{n-p}$ gives positive sums of complementary coordinate generators, with their coefficients between the corresponding powers of these eigenvalue bounds. Thus a bound for $\sigma_{T,\omega}$ on compact sets is equivalent to the local trace bounds in \cref{thm:positive-current-order-zero}, independently of the chosen smooth Hermitian metric.
+\index{Hermitian metric}\index{trace measure!metric trace}
+
+For a complex submanifold $Z$ of dimension $r$, the restriction $\omega^r/r!$ is its induced Riemannian volume form. To verify the normalization, take an orthonormal complex tangent basis; the associated real basis puts the restriction in the form $\sum_{j=1}^r\mathrm{d}x_j\wedge\mathrm{d}y_j$, whose $r$th divided power is the oriented volume. Consequently the metric trace of $[Z]$ is its volume measure. In dimension zero the forms of positive degree, and all $(1,1)$-currents, are zero; integration and degree-zero currents reduce to sums over the discrete points of the manifold.

@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **Q01**.
-
-## Q01 — Complex differential forms and positive currents
-
-- `Q01-01` [planned] Complex coordinates, differential forms, currents and weak positivity
-- `Q01-02` [planned] Local dd^c potentials and the distributional complex Hessian
-- `Q01-03` [planned] Poincare--Lelong with dd^c log|f|^2=[div(f)]
-- `Q01-04` [planned] Pullback, pushforward, local potentials and their exact domains of definition
+Next coherent writing unit: **Q02**.
 
 ## Q02 — Plurisubharmonic functions
 
