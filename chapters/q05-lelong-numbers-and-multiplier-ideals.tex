@@ -1,2 +1,594 @@
 \chapter{Lelong numbers and multiplier ideals}
 \label{chap:q05}
+
+Logarithmic growth measures the concentration of a plurisubharmonic function's Hessian at a point. Holomorphic extension makes its integrability ideals coherent. Their orders detect analytic Lelong level sets, and extension from moving slices gives strong openness. On higher models these ideals recover divisorial growth and integrability thresholds.
+
+Let $X$ be a complex manifold. Weights are plurisubharmonic and not identically $-\infty$ on any component unless a restriction convention says otherwise. Local integrability uses any smooth positive volume form; its densities are comparable on compact coordinate neighborhoods.
+
+\section{Logarithmic growth and the Jensen formula}
+\label{sec:lelong-jensen}
+
+\begin{proposition}\label{prop:lelong-logarithmic-growth}
+Let $u$ be plurisubharmonic near $a\in\mathbb C^n$, $n\geq1$, and put
+\[
+ N(t)=\sup_{|z-a|<\exp(t/2)}u(z)
+\]
+for sufficiently negative $t$. This is finite, nondecreasing and convex. The limit
+\begin{equation}\label{eq:lelong-growth-definition}
+ \nu(u,a)=\lim_{t\to-\infty}\frac{N(t)}{t}
+\end{equation}
+exists in $[0,\infty)$. For every sufficiently small $r_0$,
+\begin{equation}\label{eq:lelong-attained-growth}
+ u(z)\leq\nu(u,a)\log\frac{|z-a|^2}{r_0^2}
+                +\sup_{B(a,r_0)}u,\qquad 0<|z-a|<r_0.
+\end{equation}
+Consequently $\nu(u,a)$ is the largest $c\geq0$ for which
+$u(z)\leq c\log|z-a|^2+O(1)$ near $a$. It is unchanged by a holomorphic coordinate change or by addition of a bounded function, whenever the resulting function is plurisubharmonic.
+\end{proposition}
+\begin{proof}
+Translate $a$ to zero and first use the sphere supremum $S(r)=\sup_{|z|=r}u(z)$. It is finite above by local upper boundedness and finite below: if it were $-\infty$, comparison on every complex disc through zero would make $u$ identically $-\infty$ in that ball. For $0<r_1<r_2<r_3$, restrict $u$ to a complex line through zero. On its annulus between $r_1$ and $r_3$, comparison with the harmonic function affine in $\log|\zeta|^2$, having boundary values $S(r_j)$ at the two radii, bounds the restriction. Taking the supremum on the sphere of radius $r_2$ proves convexity in $\log r^2$. An identically minus-infinite restriction contributes no larger value. Disc comparison makes $S$ nondecreasing. A finite convex function is continuous, as follows by bounding its interior secant slopes between two fixed exterior secants. Thus $S(r)=\sup_{\rho<r}S(\rho)=\sup_{B(0,r)}u$, which proves the assertions about $N$.
+
+The slopes of a finite convex nondecreasing function have a nonnegative finite limit $c$ at the left endpoint $-\infty$, bounded by any fixed later secant slope. Fixing one endpoint and comparing secants shows $N(t)/t\to c$. Moreover $N(t)-ct$ is nondecreasing, so $N(t)\leq c(t-t_0)+N(t_0)$ for $t<t_0$. This is \eqref{eq:lelong-attained-growth}. Any other stated growth bound gives $N(t)\leq c't+C$ and hence $c\geq c'$ after division by negative $t$. Holomorphic coordinates and their inverses are locally Lipschitz, so they change $\log|z-a|^2$ by a bounded quantity. The largest-coefficient characterization proves both invariance assertions.
+\end{proof}
+
+\begin{definition}\label{def:lelong-number}
+The number in \eqref{eq:lelong-growth-definition} is the \emph{Lelong number} of $u$ at $a$. For a positive closed $(1,1)$-current $T$, set $\nu(T,a)=\nu(u,a)$ using a local plurisubharmonic potential $\ddc u=T$. Such potentials exist by \cref{thm:local-positive-current-potential,thm:psh-distribution-representative}; their differences are smooth pluriharmonic, so this definition is independent of the potential. In dimension zero we set the Lelong number of a finite weight to zero.
+\end{definition}
+\index{Lelong number!logarithmic growth}
+
+We use $\mathrm d^c=\frac{\mathrm i}{4\pi}(\bar\partial-\partial)$, so $\mathrm d\mathrm d^c=\ddc$, and write
+$\beta=\ddc|z-a|^2=\pi^{-1}\sum_j\mathrm d x_j\wedge\mathrm d y_j$.
+The unit sphere in $\mathbb R^{2n}$ has area $s_{2n-1}=2\pi^n/(n-1)!$: this follows by computing $\int_{\mathbb R^{2n}}\exp(-|z|^2)\,\mathrm dV=\pi^n$ first by products of the elementary Gaussian integral and then in polar coordinates. For $\mu=\Delta u$, define
+\begin{equation}\label{eq:lelong-ball-density}
+ D_u(a,r)=\frac{\mu(B(a,r))}{2s_{2n-1}r^{2n-2}}
+    =\frac1{r^{2n-2}}\int_{B(a,r)}\ddc u\wedge\beta^{n-1}.
+\end{equation}
+The last equality follows from
+$\ddc u\wedge\beta^{n-1}=\frac{(n-1)!}{4\pi^n}\Delta u\,\mathrm dV$
+for smooth $u$, and then by distributions. The wedge here has only one nonsmooth factor and is already defined in \cref{chap:complex-currents}.
+
+\Needspace{14\baselineskip}
+\begin{theorem}[Jensen--Lelong]\label{thm:euclidean-jensen-lelong}
+For $\overline{B(a,R)}$ in the domain of $u$, its normalized spherical mean $M_u(a,r)$ is finite for every $0<r<R$. The function $D_u(a,r)$ is nondecreasing, and
+\begin{equation}\label{eq:euclidean-jensen-lelong}
+ M_u(a,r_2)-M_u(a,r_1)
+       =\int_{\log r_1^2}^{\log r_2^2}D_u(a,\exp(t/2))\,\mathrm dt,
+       \qquad 0<r_1<r_2<R.
+\end{equation}
+In particular
+\begin{equation}\label{eq:lelong-density-limit}
+ \nu(u,a)=\lim_{r\downarrow0}D_u(a,r)
+          =\lim_{r\downarrow0}\frac{M_u(a,r)}{\log r^2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For smooth $u$, \cref{prop:spherical-mean-derivative} gives
+$\frac{\mathrm d}{\mathrm dt}M_u(a,\exp(t/2))=D_u(a,\exp(t/2))$.
+For $n=1$, $D_u(a,r)$ is the mass of the positive measure $\ddc u$ on the disc and is nondecreasing. If $n\geq2$, put $\alpha=\ddc\log|z-a|^2$ on the punctured ball. It is semipositive: its Hermitian matrix is a positive multiple of $|z-a|^{-2}I-|z-a|^{-4}\overline{(z-a)}(z-a)^t$. Stokes' formula on an annulus, with the closed form $T=\ddc u$, gives
+\[
+ \begin{aligned}
+ \int_{r_1<|z-a|<r_2}T\wedge\alpha^{n-1}
+ &=\left[\int_{|z-a|=r}T\wedge\mathrm d^c\log|z-a|^2
+                                    \wedge\alpha^{n-2}\right]_{r_1}^{r_2}\\
+ &=D_u(a,r_2)-D_u(a,r_1).
+ \end{aligned}
+\]
+Indeed on the sphere the tangential restrictions of $\alpha$ and $\mathrm d^c\log|z-a|^2$ equal respectively $r^{-2}\beta$ and $r^{-2}\mathrm d^c|z-a|^2$, and Stokes on the ball gives $\int_{\partial B}T\wedge\mathrm d^c|z-a|^2\wedge\beta^{n-2}=\int_B T\wedge\beta^{n-1}$. Positivity proves monotonicity.
+
+Now take radial smoothings $u_\varepsilon\downarrow u$ on a slightly larger ball and subtract a constant so that all are nonpositive there. Fix $r$ and choose $b\in B(a,r)$ with $u(b)>-\infty$. The Poisson kernel on this sphere, evaluated at $b$, is bounded below by a positive multiple of normalized surface measure. Subharmonic comparison therefore gives a uniform bound on $\int_{S^{2n-1}}-u_\varepsilon(a+r\omega)\,\mathrm dS(\omega)$, because $u_\varepsilon(b)\geq u(b)$. Monotone convergence proves finiteness of $M_u(a,r)$ and convergence of the smoothed means. The same limit proves Poisson comparison for the integrable boundary values of $u$.
+
+The positive measures $\Delta u_\varepsilon$ converge weakly locally to $\mu$. Their ball masses converge at every radius with $\mu(\partial B(a,r))=0$; only countably many radii are excluded. On a fixed annulus these masses are uniformly bounded by the mass of a slightly larger ball, using a smooth cutoff. The smooth monotonicity thus passes on the dense set of continuity radii, and then everywhere by left continuity of the open-ball masses. Dominated convergence in the smooth mean identity proves \eqref{eq:euclidean-jensen-lelong} for all endpoints. Its right side makes $M_u(a,\exp(t/2))$ convex and gives its left slope $\lim_{r\downarrow0}D_u(a,r)$.
+
+It remains to compare that slope with the supremum slope. For $u\leq0$ and $0<\eta<1$, the Poisson kernel at every $z\in B(a,\eta r)$ is at least
+$\kappa_\eta=(1-\eta)/(1+\eta)^{2n-1}$ times its value at the center. Hence
+\[
+ \sup_{B(a,\eta r)}u\leq\kappa_\eta M_u(a,r),
+ \qquad M_u(a,r)\leq\sup_{B(a,r)}u.
+\]
+Divide by negative $\log r^2$, let $r\downarrow0$, and then let $\eta\downarrow0$. The two slopes agree. Adding back the subtracted constant changes neither slope, proving \eqref{eq:lelong-density-limit}.
+\end{proof}
+\index{Jensen--Lelong formula}
+
+\begin{proposition}\label{prop:lelong-calculus}
+For plurisubharmonic $u,v$ and $b>0$,
+\[
+ \begin{aligned}
+ \nu(u+v,a)&=\nu(u,a)+\nu(v,a),&\nu(bu,a)&=b\nu(u,a),\\
+ \nu(\max\{u,v\},a)&=\min\{\nu(u,a),\nu(v,a)\}.
+ \end{aligned}
+\]
+If $(u_j)$ is any nonempty locally uniformly upper bounded family and $u=(\sup_j u_j)^*$, then $\nu(u,a)=\inf_j\nu(u_j,a)$. If $u_j\to u$ in $L^1_{\loc}$ and $a_j\to a$, then
+\begin{equation}\label{eq:lelong-upper-semicontinuity}
+ \limsup_j\nu(u_j,a_j)\leq\nu(u,a).
+\end{equation}
+For a nonzero holomorphic germ $f$, $\nu(\log|f|^2,a)=\operatorname{ord}_a f$; in particular $\nu(\log|z-a|^2,a)=1$.
+\end{proposition}
+\begin{proof}
+Linearity of finite spherical means proves addition and scaling. A larger function has a smaller growth coefficient. For the maximum, \eqref{eq:lelong-attained-growth} supplies the reverse inequality to the resulting upper bound. For the family, use a common upper bound $B$ on $B(a,r_0)$. If $c=\inf_j\nu(u_j,a)$, the negativity of $\log(|z-a|^2/r_0^2)$ gives $u_j(z)\leq c\log(|z-a|^2/r_0^2)+B$ uniformly. The same bound holds for the supremum and its upper regularization off $a$. If $c>0$, the bound tends to $-\infty$ at $a$ and remains valid there by regularization; if $c=0$, its growth consequence is immediate. Conversely $u\geq u_j$ for each $j$.
+
+For \eqref{eq:lelong-upper-semicontinuity}, the positive measures $\Delta u_j$ converge weakly locally to $\Delta u$. Fix $0<r<R$ with $\Delta u(\partial B(a,r))=0$. If $0<s<r$, then $B(a_j,s)\subset B(a,r)$ for late $j$. The upper bound for masses on the compact set $\overline{B(a,r)}$ gives
+\[
+ \limsup_j\nu(u_j,a_j)
+ \leq\frac{\Delta u(\overline{B(a,r)})}{2s_{2n-1}s^{2n-2}}.
+\]
+First let $s\uparrow r$, then let continuity radii $r\downarrow0$, and use \eqref{eq:lelong-density-limit}. Finally the first nonzero homogeneous term of the convergent power series of $f$ gives $\sup_{B(a,r)}|f|\asymp r^{\operatorname{ord}_a f}$. The same elementary supremum calculation for $|z-a|^2$ proves its normalization.
+\end{proof}
+\index{Lelong number!semicontinuity}
+
+\Needspace{15\baselineskip}
+\section{Coherent ideals from weighted integrability}
+\label{sec:multiplier-ideal-coherence}
+
+The passage from a Hilbert space of holomorphic functions to a coherent ideal needs two local algebra facts. We prove them here to keep the analytic generation argument explicit.
+
+\begin{lemma}\label{lem:analytic-krull-closure}
+Let $R=\mathcal O_{X,x}$, let $\mathfrak m$ be its maximal ideal, and let $E$ be a submodule of a finite $R$-module $F$. Then
+\[
+ \bigcap_{k\geq1}(E+\mathfrak m^kF)=E.
+\]
+In particular, if holomorphic functions converging locally uniformly have their germs in a fixed ideal $J\subset R$, the limit germ belongs to $J$.
+\end{lemma}
+\begin{proof}
+We give the Noetherian argument behind the intersection. For a Noetherian ring $A$, $A[t]$ is Noetherian. Indeed the leading coefficients of polynomials in an ideal form a finitely generated ideal of $A$. Choose corresponding polynomials and let $N$ be the largest of their degrees. A polynomial in the original ideal of degree at least $N$ can have its leading term cancelled using their suitable monomial multiples. Repeat until the degree is below $N$. The remainders form a submodule of the finite module $A^N$, which is finitely generated by the module version of \cref{prop:analytic-noetherian}. Thus the original ideal is finitely generated. Iterating proves the same assertion for finitely many variables. This reasoning uses only the ascending-chain property, so applies to any Noetherian $A$.
+
+Choose generators of $\mathfrak m$. The graded ring $\mathcal R=\bigoplus_{k\geq0}\mathfrak m^kt^k$ is generated over $R$ by their products with $t$, and is a quotient of a polynomial ring; hence it is Noetherian. The graded module $\bigoplus_{k\geq0}\mathfrak m^kFt^k$ is finite over $\mathcal R$. Its submodule $\bigoplus_{k\geq0}(E\cap\mathfrak m^kF)t^k$ has finitely many homogeneous generators, of degrees at most some $s$. Comparing degree $k\geq s$ gives the Artin--Rees equality
+\[
+ E\cap\mathfrak m^kF=\mathfrak m^{k-s}(E\cap\mathfrak m^sF).
+\]
+For completeness, a generator of degree $d\leq s$ multiplied by $\mathfrak m^{k-d}$ lies in the right side because $\mathfrak m^{s-d}(E\cap\mathfrak m^dF)\subset E\cap\mathfrak m^sF$; the reverse inclusion is immediate.
+
+For any finite module $Q$, its submodule $G=\bigcap_k\mathfrak m^kQ$ is finite. Apply the equality to $G\subset Q$ with $k=s+1$: it gives $G=\mathfrak mG$. If $g_1,\ldots,g_r$ generate $G$, write $g_i=\sum_j a_{ij}g_j$ with $a_{ij}\in\mathfrak m$. Multiplication by the adjugate of $I-(a_{ij})$ shows $\det(I-(a_{ij}))g_i=0$. This determinant is a unit, so $G=0$. Apply this to $Q=F/E$ to prove the intersection statement.
+
+For the last assertion, convergence is convergence of every finite jet by Cauchy's formula. The image of $J$ in the finite-dimensional vector space $R/\mathfrak m^k$ is closed, so the limit belongs to $J+\mathfrak m^k$ for every $k$. The intersection just proved finishes the argument.
+\end{proof}
+\index{Artin--Rees lemma}\index{Krull intersection theorem}
+
+\Needspace{9\baselineskip}
+\begin{lemma}[Strong Noetherian property]\label{lem:strong-analytic-noetherian}
+An increasing sequence of coherent subsheaves of a coherent analytic sheaf is stationary near every point. It is stationary on each compact set after one sufficiently large index. In particular a sheaf of ideals generated by countably many holomorphic functions is coherent and locally generated by a finite initial segment.
+\end{lemma}
+\begin{proof}
+The compact assertion follows by a finite cover once the local assertion is proved. Locally a coherent sheaf is a quotient of a finite free sheaf; take inverse images of the subsheaves. For a free sheaf of rank $r$, projection to its last coordinate gives an increasing sequence of coherent ideals, and the kernels form such a sequence in rank $r-1$. If the images and kernels have both stopped increasing, so have the original subsheaves: subtract a section of the earlier subsheaf with the same last coordinate, and use equality of the kernels. Induction on rank reduces the problem to ideals.
+
+We induct on the coordinate dimension $n$; dimension zero is finite-dimensional algebra. On a connected coordinate neighborhood a coherent ideal that is nonzero somewhere has a nonzero germ everywhere. To check this, both its zero-stalk and its nonzero-stalk loci are open: finite generation proves the first claim, and a nonzero holomorphic generator has a nonzero germ at every point of a small connected representative by the identity theorem. If every ideal in the chain is zero, there is nothing to prove. Otherwise choose a nonzero element of one ideal at the given point, and by Weierstrass preparation take a monic polynomial $P(z',w)$ of degree $\mu$ belonging to that ideal. If it has degree zero, that ideal and all later ones are the unit ideal, so we are done. Shrink to a product on which its zero set $Z$ is proper and finite over a base ball in $\mathbb C^{n-1}$. Division identifies the direct image of $\mathcal O/(P)$ with the free base module having basis $1,w,\ldots,w^{\mu-1}$.
+
+We spell out the finite-direct-image fact needed here. A coherent module killed by $P$ has coherent direct image on this base. Near a finite fiber choose finite presentations in disjoint neighborhoods of its points. The roots of $P$ separate into clusters on these neighborhoods; their monic factors have holomorphic coefficients, obtained from contour integrals of $w^kP_w/P$. Chinese remainders separate the corresponding finite algebras. Reduce each presentation matrix modulo its monic factor by division and replace multiplication by $w$ by the companion matrix on its finite free base module. This gives a finite matrix of holomorphic base functions presenting the direct image. Properness confines the fibers of a smaller base neighborhood to the chosen neighborhoods, so these presentations account for the entire direct image. They prove coherence without a general direct-image theorem. They also show exactness: its stalk at a base point is the finite direct sum of the stalks over that fiber, since properness lets one restrict a representative of each of those germs to the inverse image of a common smaller base neighborhood.
+
+For all indices after the one containing $P$, the quotients of the ideals by $(P)$ are consequently an increasing sequence of coherent submodules of the free base module of rank $\mu$. By the dimension induction and the rank reduction already proved they are stationary near the base point. Exactness of the finite direct image makes the original ideals stationary near the source point. This proves the local assertion. Finally apply it to the coherent ideals generated by the first $j$ members of a countable family; coherence of each finite ideal follows from \cref{thm:oka-coherence,lem:coherent-sheaf-algebra}.
+\end{proof}
+\index{Noetherian property!strong analytic}
+
+\begin{definition}\label{def:multiplier-ideal}
+For a plurisubharmonic weight $\varphi$ on $X$, its \emph{multiplier ideal} is the subsheaf
+\[
+ \mathcal I(\varphi)_x
+ =\{f\in\mathcal O_{X,x}: |f|^2\mathrm e^{-\varphi}
+                              \text{ is integrable near }x\}.
+\]
+The zero germ always belongs. For an identically minus-infinite weight the ideal is zero; the integrand of the zero function is understood as zero. Values on the measure-zero pole set do not change integrability. Holomorphic coordinate Jacobians prove that the definition is intrinsic.
+\end{definition}
+\index{multiplier ideal}
+
+It is an ideal because holomorphic coefficients are locally bounded and $|f+g|^2\leq2|f|^2+2|g|^2$. If $\varphi\leq\psi+O(1)$, then $\mathcal I(\varphi)\subset\mathcal I(\psi)$. Bounded perturbations preserve the ideal.
+
+\begin{theorem}\label{thm:multiplier-ideal-coherence}
+The sheaf $\mathcal I(\varphi)$ is coherent. On a bounded polydisc $\Omega$ where $\varphi$ is bounded above, it is generated by the weighted holomorphic Hilbert space
+\[
+ H_\varphi(\Omega)=\left\{F\in\mathcal O(\Omega):
+             \|F\|_\varphi^2=\int_\Omega|F|^2\mathrm e^{-\varphi}\,\mathrm dV<\infty\right\}.
+\]
+Any orthonormal basis of this space generates the same sheaf, and a finite initial segment generates it near each point.
+\end{theorem}
+\begin{proof}
+In dimension zero a finite weight gives the full local ring, generated by the constant one. Assume $n\geq1$ and subtract a constant to arrange $\varphi\leq0$. Weighted convergence implies ordinary $L^2$ convergence and, by holomorphic submeans, locally uniform convergence. Thus the holomorphic subspace of weighted $L^2$ is closed and is a Hilbert space. It is separable: multiplication by $\mathrm e^{-\varphi/2}$ embeds the ambient weighted space isometrically into ordinary $L^2(\Omega)$, which is separable by approximation with simple functions on rational boxes. A closed subspace is separable, as follows by choosing one point in each nonempty member of the countable family of rational-radius balls centered on a dense ambient set. Gram--Schmidt applied to a countable dense sequence gives an orthonormal basis $(e_j)$, finite or countable. Orthogonal projection and density give the norm-convergent expansion in this basis.
+
+Let $\mathcal J$ be the ideal generated by the $e_j$. It is coherent by \cref{lem:strong-analytic-noetherian}. Every element of $H_\varphi$ is a locally uniform limit of their linear combinations and hence has its germ in $\mathcal J$ by \cref{lem:analytic-krull-closure}. Thus $\mathcal J$ is exactly the ideal generated by $H_\varphi$, and $\mathcal J\subset\mathcal I(\varphi)$.
+
+Fix $f\in\mathcal I(\varphi)_x$ and an integer $s\geq0$. Choose a smooth cutoff $\chi$, equal to one near $x$, whose compact support lies where $f$ is holomorphic and weighted integrable. The form $\alpha=f\bar\partial\chi$, extended by zero, is closed and supported away from $x$. Apply \cref{thm:hormander-singular-lower-bound} on $\Omega$ with singular part
+$\varphi+(n+s)\log|z-x|^2$ and smooth part $|z|^2$. The logarithmic singular part is plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}. The derivative data have finite norm because their support avoids $x$, and the smooth Hessian lower bound is the identity. We obtain $\bar\partial u=\alpha$ with
+\[
+ \int_\Omega |u|^2\mathrm e^{-\varphi-|z|^2}|z-x|^{-2(n+s)}\,\mathrm dV<\infty.
+\]
+Near $x$ this solution is holomorphic by Weyl's lemma. Since $\varphi$ is locally bounded above, its order of vanishing is at least $s+1$: if its first nonzero homogeneous term had degree $k\leq s$, polar integration of that term would give the divergent radial integral $\int_0^r t^{2k-2s-1}\,\mathrm dt$. Orthogonality of different homogeneous degrees on spheres justifies this lower bound for the full series.
+
+The extra weight factors have a bounded reciprocal on the bounded domain, so $u\in L^2(\Omega,\mathrm e^{-\varphi})$. Hence $F=\chi f-u$ belongs to $H_\varphi$ and $f-F\in\mathfrak m_x^{s+1}$. We have proved $f\in\mathcal J_x+\mathfrak m_x^{s+1}$ for every $s$. The Krull intersection statement gives $f\in\mathcal J_x$, completing the proof.
+\end{proof}
+
+\begin{lemma}\label{lem:bounded-hilbert-ideal-generation}
+Let $H_\varphi(\Omega)$ be as in \cref{thm:multiplier-ideal-coherence}, and let $g_1,\ldots,g_r$ be members generating its ideal near $x$. On some fixed neighborhood $V$ of $x$, every $F\in H_\varphi(\Omega)$ has a representation $F=\sum_i g_i h_i$ with holomorphic coefficients satisfying
+\[
+ \sup_V|h_i|\leq C\|F\|_\varphi.
+\]
+The neighborhood and constant are independent of $F$. Consequently, for every positive integer $m$ and local generators $g_i$ chosen from $H_{m\varphi}(\Omega)$,
+\begin{equation}\label{eq:weight-versus-multiplier-generators}
+ \varphi\leq\frac1m\log\sum_i|g_i|^2+C_m
+\end{equation}
+on a smaller neighborhood, with $C_m$ independent of the evaluation point.
+\end{lemma}
+\begin{proof}
+Choose decreasing coordinate balls $V_j$ about $x$ inside the generator neighborhood. For positive integers $j,k$, let $S_{j,k}$ consist of the members $F$ of $H_\varphi$ admitting such a representation on $V_j$ with $\sup_{V_j}|h_i|\leq k$. Each $S_{j,k}$ is closed in $H_\varphi$: norm convergence gives locally uniform convergence of the $F$, while bounded coefficients have a locally uniformly convergent subsequence by Cauchy estimates, \cref{prop:arzela-ascoli}, and diagonal selection. The limit coefficients on $V_j$ have the same bound and represent the limit function. The union of these closed sets is the whole Hilbert space, because every germ has a local representation, whose coefficients are bounded on a smaller ball.
+
+A complete metric space cannot be a countable union of closed sets with empty interior. To recall the proof, if all had empty interior, choose successively closed balls of positive radii at most $2^{-j}$, each inside the interior of the previous ball and outside the $j$th closed set. The centers form a Cauchy sequence; its limit lies in all the balls and in none of the closed sets, a contradiction. Apply this to $H_\varphi$. Some $S_{j,k}$ therefore contains a ball of radius $\delta$ about $F_0$. Subtract the coefficient representations of $F_0$ and $F_0+F$ for $\|F\|_\varphi<\delta$. This represents $F$ with coefficient bounds $2k$ on the same $V_j$. Scaling gives the asserted bound for every $F$, with a fixed constant such as $4k/\delta$; the zero function uses zero coefficients.
+
+For the last assertion apply this estimate to the space with weight $m\varphi$. At each $a$ with finite $\varphi(a)$, \cref{cor:ot-point-value-bound} supplies a member with value one and squared norm at most $C_\Omega\mathrm e^{-m\varphi(a)}$. The coefficient estimate yields $1\leq C\mathrm e^{-m\varphi(a)}\sum_i|g_i(a)|^2$. Taking logarithms proves \eqref{eq:weight-versus-multiplier-generators}. At poles the inequality holds with the extended-value convention, including common zeros of the generators.
+\end{proof}
+
+\section{Analytic Lelong level sets and generic values}
+\label{sec:siu-level-sets}
+
+For a nonzero coherent ideal $\mathfrak a$ near $x$, write $\operatorname{ord}_x\mathfrak a=\min\{\operatorname{ord}_x f:f\in\mathfrak a_x,\ f\ne0\}$. On a connected chart this is finite if the ideal is nonzero somewhere, by the identity observation in \cref{lem:strong-analytic-noetherian}.
+
+\begin{lemma}\label{lem:multiplier-order-lelong-bounds}
+For $m\geq1$ and $n=\dim X\geq1$,
+\begin{equation}\label{eq:multiplier-order-lelong-bounds}
+ m\nu(\varphi,x)-n
+       <\operatorname{ord}_x\mathcal I(m\varphi)
+       \leq m\nu(\varphi,x).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Work on a bounded polydisc and normalize $\varphi\leq0$. Its weighted Hilbert space is nonzero: choose $a$ where $\varphi(a)$ is finite and apply \cref{cor:ot-point-value-bound}. Let $k$ be its smallest vanishing order at $x$. Coherence and Hilbert-space generation identify this with $\operatorname{ord}_x\mathcal I(m\varphi)$. For a germ of order $k$ the bound \eqref{eq:lelong-attained-growth} makes its weighted integral at least a positive constant times
+$\int_0^r t^{2k-2m\nu+2n-1}\,\mathrm dt$. The spherical norm of its first homogeneous term is positive. Integrability therefore requires $k+n>m\nu$.
+
+For the other inequality, every weighted holomorphic $F$ has order at least $k$ at $x$. Taylor's formula on a fixed interior polydisc and the submean bound for its ordinary $L^2$ norm give
+\[
+ |F(a)|^2\leq C_k|a-x|^{2k}\|F\|_{m\varphi}^2
+\]
+on a smaller neighborhood. To see the uniform constant, Cauchy's estimate bounds each coefficient by a fixed multiple of $R^{-|\alpha|}\|F\|_{L^2}$ on a polydisc of radius $R$; sum the resulting geometric series over $|\alpha|\geq k$ at $|a-x|<R/2$. The normalized weight bounds the ordinary norm by the weighted norm. For $\varphi(a)>-\infty$, point-value extension supplies $F(a)=1$ and $\|F\|_{m\varphi}^2\leq C_\Omega\mathrm e^{-m\varphi(a)}$. Consequently
+$\varphi(a)\leq(k/m)\log|a-x|^2+C$. At its poles this bound holds as well. The largest-growth characterization yields $k\leq m\nu$.
+\end{proof}
+
+\begin{theorem}[Siu]\label{thm:siu-lelong-level-sets}
+For every $c>0$, the set
+\[
+ E_c(\varphi)=\{x\in X:\nu(\varphi,x)\geq c\}
+\]
+is a proper analytic subset on every positive-dimensional connected component. The same assertion holds for a positive closed $(1,1)$-current.
+\end{theorem}
+\begin{proof}
+For a coherent ideal with local generators $g_1,\ldots,g_r$, the locus where its order is at least an integer $k\geq1$ is defined by the finitely many equations $\partial^\alpha g_j=0$ for $|\alpha|<k$. Derivatives of a coefficient times a generator show that this condition is independent of the chosen generators. Thus this locus is analytic; for $k\leq0$ it is the whole chart. By \eqref{eq:multiplier-order-lelong-bounds},
+\begin{equation}\label{eq:siu-as-jet-intersection}
+ E_c(\varphi)=\bigcap_{m\geq1}
+ \left\{x:\operatorname{ord}_x\mathcal I(m\varphi)
+                          \geq\lfloor mc-n\rfloor+1\right\}.
+\end{equation}
+Indeed $\nu\geq c$ gives every strict lower order bound, while if $\nu<c$, the upper order bound fails the displayed condition for sufficiently large $m$.
+
+An intersection of analytic subsets of a fixed open set is analytic. Here is the local justification for a possibly infinite intersection. At a point in the intersection, the sum of their defining germ ideals is finitely generated by \cref{prop:analytic-noetherian}. Thus a finite subfamily has the same intersection germ. Choose a representative of this finite intersection with only its finitely many branches through the point. Every other analytic set contains the germ of each branch; the identity theorem on its connected regular locus, \cref{cor:analytic-global-components}, makes it contain that branch throughout a smaller common representative of the finite intersection. One fixed such representative suffices because all the other analytic sets are defined on the original common open set. At a point outside the intersection one member already excludes a neighborhood. Apply this observation to \eqref{eq:siu-as-jet-intersection}.
+
+Positive Lelong number forces $\varphi(x)=-\infty$ by \eqref{eq:lelong-attained-growth} and the ball submean inequality at its center. The pole set has no open subset by local integrability, so $E_c$ is proper. Local potentials give the current assertion.
+\end{proof}
+\index{Siu theorem!Lelong level sets}
+
+\begin{proposition}\label{prop:generic-divisorial-lelong}
+For an irreducible analytic subset $Z\subset X$, let
+$\nu(\varphi,Z)=\inf_{x\in Z}\nu(\varphi,x)$. This value is attained outside a countable union of proper analytic subsets of $Z$. If $E$ is a prime divisor on a smooth model $\pi:Y\to X$, define
+\[
+ \nu(\varphi,E)=\nu(\varphi\circ\pi,E).
+\]
+It depends only on the prime divisor over $X$, rather than the representing model.
+\end{proposition}
+\begin{proof}
+Put $\lambda=\inf_Z\nu(\varphi,\cdot)$. Each $Z\cap E_{\lambda+1/j}(\varphi)$ is a proper analytic subset, and outside their union the value is $\lambda$. If $\dim Z>0$, a countable union of proper analytic subsets cannot cover its regular locus: in a regular coordinate ball each has zero $2\dim Z$-dimensional measure by \cref{prop:analytic-dimension-drop,cor:analytic-strata-hausdorff}. If $Z$ is a point the assertion is immediate. A pulled-back weight is plurisubharmonic by holomorphic composition and is not identically minus-infinite, since the model is an isomorphism over a dense open subset. On a common smooth model, \cref{prop:smooth-bimeromorphic-divisor-locus} identifies the generic neighborhoods of a divisor and its strict transform biholomorphically. The coordinate invariance of Lelong numbers proves independence.
+\end{proof}
+\index{Lelong number!generic}\index{Lelong number!divisorial}
+
+\begin{proposition}\label{prop:generic-lelong-uniform-growth}
+If $Z$ is a connected smooth submanifold of positive codimension and $z=(z',z'')$ are coordinates with $Z=\{z'=0\}$, then near every point of $Z$,
+\[
+ \varphi(z)\leq\nu(\varphi,Z)\log|z'|^2+C,\qquad z'\ne0.
+\]
+This coefficient is the largest coefficient with such a bound near a generic point of $Z$. If $\pi$ is the blowup of a point $x$ in positive dimension and $E=\pi^{-1}(x)$, then $\nu(\varphi,E)=\nu(\varphi,x)$.
+\end{proposition}
+\begin{proof}
+Choose one radius $r_0$ and one upper bound for $\varphi$ on all balls of radius $r_0$ centered at points $(0,y)$ in a smaller coordinate neighborhood. Apply \eqref{eq:lelong-attained-growth} with center $(0,z'')$. Its coefficient is at least $\lambda=\nu(\varphi,Z)$, and the logarithm is negative on the smaller neighborhood, so this gives the displayed bound with a constant independent of $z''$. A bound with coefficient $c$ gives Lelong number at least $c$ at every nearby point of $Z$; the generic-value proposition forces $c\leq\lambda$.
+
+For the blowup, the local charts have $|z-x|^2=|w_1|^2(1+|w'|^2)$ and $E=\{w_1=0\}$. The point growth bound pulled back to any compact chart neighborhood therefore gives $\nu(\varphi,E)\geq\nu(\varphi,x)$. Conversely the uniform bound just proved for the smooth divisor $E$ bounds $\varphi\circ\pi$ by $\nu(\varphi,E)\log|w_1|^2+C$ near each point of $E$. Cover the compact fiber by finitely many smaller charts; on them $\log|w_1|^2$ and $\log|z-x|^2$ differ by bounded terms. Properness confines the inverse image of a small base neighborhood to their union. The resulting base bound has coefficient $\nu(\varphi,E)$, so it cannot exceed $\nu(\varphi,x)$. In dimension one the blowup of the point ideal is the identity and the same equality is immediate.
+\end{proof}
+
+\section{Restriction, products and integral closure}
+\label{sec:multiplier-ideal-operations}
+
+For a holomorphic map $f:X\to Y$ and an ideal $\mathfrak a\subset\mathcal O_Y$, we denote by $f^{-1}\mathfrak a\cdot\mathcal O_X$ its image ideal, locally generated by compositions of its generators with $f$. For a submanifold $Z\subset X$, the restriction image of an ideal $\mathfrak a$ is
+\[
+ \mathfrak a|_Z^{\mathrm{im}}
+ =\mathfrak a/(\mathfrak a\cap\mathcal I_Z)\subset\mathcal O_Z.
+\]
+Here $\mathcal I_Z$ is the defining ideal of $Z$. The image is the object that enters integrability comparisons; the abstract tensor product with $\mathcal O_Z$ can have an additional kernel.
+
+\begin{theorem}\label{thm:multiplier-restriction-subadditivity}
+If $Z\subset X$ is a complex submanifold, then
+\begin{equation}\label{eq:multiplier-restriction}
+ \mathcal I(\varphi|_Z)\subset\mathcal I(\varphi)|_Z^{\mathrm{im}}.
+\end{equation}
+On a component where $\varphi|_Z\equiv-\infty$, the left side is zero. For weights $\varphi_i$ on $X_i$ and projections $p_i:X_1\times X_2\to X_i$,
+\begin{equation}\label{eq:multiplier-external-product}
+ \mathcal I(\varphi_1\circ p_1+\varphi_2\circ p_2)
+ =(p_1^{-1}\mathcal I(\varphi_1)\cdot\mathcal O)
+  (p_2^{-1}\mathcal I(\varphi_2)\cdot\mathcal O).
+\end{equation}
+In particular, for weights $\varphi,\psi$ on $X$,
+\begin{equation}\label{eq:multiplier-subadditivity}
+ \mathcal I(\varphi+\psi)\subset\mathcal I(\varphi)\mathcal I(\psi).
+\end{equation}
+\end{theorem}
+\begin{proof}
+The first inclusion is exactly \cref{cor:integrable-germ-restriction}: extend each weighted integrable holomorphic germ on $Z$ to one on $X$. Zero germs handle the identically minus-infinite restrictions.
+
+For the product work on bounded polydiscs $\Omega_i$ with $\varphi_i\leq0$. Let $(e_j)$ and $(g_k)$ be orthonormal bases of their weighted holomorphic spaces. The products $e_j(z)g_k(w)$ are orthonormal by Fubini and form a complete basis of the product weighted holomorphic space. We justify completeness. For a function $F$ in that space, almost every $w$ gives a slice in $H_{\varphi_1}(\Omega_1)$, with coefficients
+\[
+ a_j(w)=\int_{\Omega_1}F(z,w)\overline{e_j(z)}
+                                  \mathrm e^{-\varphi_1(z)}\,\mathrm dV_z.
+\]
+These are holomorphic and belong to $H_{\varphi_2}(\Omega_2)$. To check holomorphicity without assuming a bounded weight, first integrate on compact subsets of $\Omega_1$ where $\mathrm e^{-\varphi_1}$ is truncated to a finite value. The resulting integrals are holomorphic in $w$ by Cauchy's formula and Fubini. Their coefficient errors tend to zero in $L^2(\Omega_2,\mathrm e^{-\varphi_2})$, by Cauchy--Schwarz in $z$ and the norm of the omitted part of $e_j$. Ordinary local $L^2$ convergence then gives a holomorphic limit by Weyl's lemma. The same Cauchy--Schwarz estimate bounds $\|a_j\|_{\varphi_2}$ by $\|F\|_{\varphi_1\oplus\varphi_2}$. If $F$ is orthogonal to all products, every $a_j$ is orthogonal to all $g_k$, hence vanishes. Slice completeness then gives $F=0$ almost everywhere, and therefore everywhere.
+
+Coherence and Hilbert-space generation now prove \eqref{eq:multiplier-external-product}. More explicitly, each basis product belongs to the ideal on its right. Their norm-convergent expansions converge locally uniformly, and their limit germs remain in this coherent ideal by \cref{lem:analytic-krull-closure}. Thus the weighted Hilbert space, and hence its generated multiplier ideal, is contained in that ideal. Conversely, products of locally weighted integrable germs are integrable by Fubini; finite sums and bounded holomorphic coefficients preserve integrability. Finally apply \eqref{eq:multiplier-restriction} to the diagonal of $X\times X$ and use \eqref{eq:multiplier-external-product} to obtain \eqref{eq:multiplier-subadditivity}.
+\end{proof}
+\index{multiplier ideal!restriction}\index{multiplier ideal!subadditivity}
+
+\begin{corollary}\label{cor:multiplier-holomorphic-pullback}
+For any holomorphic map $f:X\to Y$,
+\[
+ \mathcal I(\varphi\circ f)\subset f^{-1}\mathcal I(\varphi)\cdot\mathcal O_X.
+\]
+There is equality if $f$ is a submersion. The zero-ideal convention applies on components where the composition is identically minus-infinite.
+\end{corollary}
+\begin{proof}
+A submersion is locally a coordinate projection, by the holomorphic inverse function theorem. Formula \eqref{eq:multiplier-external-product} with weight zero on the other factor gives equality. For a general map, its graph is a submanifold of $X\times Y$. Apply \eqref{eq:multiplier-restriction} to the pullback of $\varphi$ by the projection to $Y$, whose ideal is the projection image ideal by the submersion case. Restriction to the graph gives the claimed inclusion.
+\end{proof}
+\index{multiplier ideal!pullback}
+
+\begin{proposition}\label{prop:multiplier-integral-closure}
+Every multiplier ideal is integrally closed. More explicitly, if $g_1,\ldots,g_r\in\mathcal I(\varphi)_x$ and a holomorphic germ $F$ satisfies $|F|\leq C(\sum_j|g_j|^2)^{1/2}$ near $x$, then $F\in\mathcal I(\varphi)_x$.
+\end{proposition}
+\begin{proof}
+The weighted integrand is at most $C^2\sum_j|g_j|^2\mathrm e^{-\varphi}$. For integral closure, recall its meaning: if a germ $F$ satisfies
+$F^r+a_1F^{r-1}+\cdots+a_r=0$ with $a_j\in\mathcal I(\varphi)_x^j$, it must belong to the ideal. Choose finite generators $g$ by coherence and representatives on one neighborhood. The coefficients satisfy $|a_j|\leq C_j|g|^j$, because each is a finite sum of products of $j$ generators with bounded holomorphic coefficients. If $|g|>0$, divide the polynomial equation by $|g|^r$. Its elementary root bound gives $|F|\leq C|g|$: for $|F|/|g|$ larger than a fixed constant, the leading term has larger modulus than the sum of the other terms, a contradiction. At $|g|=0$ the equation forces $F=0$. The preceding integrability bound completes the proof.
+\end{proof}
+\index{integrally closed ideal!multiplier ideal}
+
+\section{Strong openness by extension from moving slices}
+\label{sec:strong-openness}
+
+The extension estimate has a constant independent of the weight. This uniformity turns integrability on nearby slices into a contradiction when an ideal fails to contain a germ. Two curve facts make the contradiction quantitative.
+
+\begin{lemma}\label{lem:bounded-domination-curve}
+Let $F,g_1,\ldots,g_r$ be holomorphic near $0\in\mathbb C^n$, with $F$ not identically zero. If no neighborhood bound $|F|\leq C|g|$ holds, there is an irreducible analytic curve through zero on whose normalization $F$ is nonzero off zero and each $g_j/F$ extends holomorphically with value zero at zero. After a linear coordinate choice and a parametrization it has the form
+\[
+ \gamma(t)=(t^q,\gamma_2(t),\ldots,\gamma_n(t)),\qquad
+ |\gamma_j(t)|\leq C|t|^q,
+\]
+for an integer $q\geq1$.
+\end{lemma}
+\begin{proof}
+Failure of the bound gives $z_i\to0$, with $F(z_i)\ne0$ and $|g(z_i)|/|F(z_i)|\to0$. Blow up the ideal $(F,g_1,\ldots,g_r)$ as in \cref{prop:analytic-blowup-universal}. Its graph points over $z_i$ have a subsequence tending, by properness, to a point $b$ over zero with projective coordinates $[1:0:\cdots:0]$. In this chart the quotients $g_j/F$ are holomorphic and vanish at $b$. Retain an irreducible local branch through $b$ on which the graph is dense. The inverse image of zero and the zero set of the pulled-back $F$ are proper analytic subgerms on it; the latter is proper because the chart generator of the pulled-back ideal is a nonzerodivisor. Curve selection, \cref{prop:analytic-curve-selection}, gives a curve avoiding both on its punctured part. Its projection is nonconstant, and its quotients have the stated limits.
+
+The projected curve has an analytic representative: restrict its parametrizing disc so that the zero fiber is isolated and its boundary avoids zero; over a small target ball the map is proper with finite fibers, and \cref{thm:proper-analytic-image} applies. Normalize that image curve by \cref{prop:analytic-curve-parametrization}. The bounded quotients extend on its parameter disc by one-variable removal and still have value zero. Choose a linear first coordinate whose order on the normalized curve is the smallest order of its coordinate functions, say $q$. Its leading coefficient is nonzero. A holomorphic $q$th root of its unit factor changes the parameter so that this coordinate is $t^q$. The remaining coordinates have order at least $q$ and satisfy the displayed bounds. If there are no $g_j$, simply select any curve avoiding $F=0$; the same parametrization applies.
+\end{proof}
+
+\begin{lemma}\label{lem:curve-extension-norm-lower-bound}
+Fix such a curve in a polydisc $\Omega=\Delta_R\times P\subset\mathbb C\times\mathbb C^{n-1}$, and a holomorphic $F$ with $F\circ\gamma$ nonzero off zero. There are $r,c>0$, depending on this fixed data, such that every $0<|a|<r$ and every $H\in\mathcal O(\Omega)$ satisfying
+\[
+ H|_{\{z_1=a\}}=F|_{\{z_1=a\}},\qquad
+ (H/F)\circ\gamma\text{ holomorphic at }0\text{ with value }0,
+\]
+obey
+\begin{equation}\label{eq:curve-extension-norm-lower-bound}
+ \int_\Omega|H|^2\,\mathrm dV\geq c|a|^{-2}.
+\end{equation}
+For $n=1$ the fiber polydisc has dimension zero and its norm is counting measure.
+\end{lemma}
+\begin{proof}
+Choose $\rho>0$ so that all curve points for $|t|\leq\rho$ lie in a fixed smaller fiber polydisc and $\rho^q<R$. Submean inequalities on fiber balls give
+\[
+ \int_\Omega|H|^2\,\mathrm dV
+ \geq c_0\int_{|t|<\rho}|H(\gamma(t))|^2
+                           q^2|t|^{2q-2}\,\mathrm dA_t.
+\]
+Indeed each of the $q$ points over a nonzero $z_1$ is a fixed positive distance from the fiber boundary; sum their point estimates and integrate in $z_1$. The substitution $z_1=t^q$ has Jacobian $q^2|t|^{2q-2}$. Constants absorb the fixed number $q$ of estimates. This calculation is also valid when the fiber is a point.
+
+Write $F\circ\gamma=t^m v(t)$ with $v$ nowhere zero on this disc, and $h=(H/F)\circ\gamma=\sum_{\ell\geq1}c_\ell t^\ell$. The lower bound for $|v|$ and angular orthogonality give
+\[
+ \int_\Omega|H|^2\,\mathrm dV
+ \geq c_1\sum_{\ell\geq1}
+                \frac{|c_\ell|^2\rho^{2(\ell+m+q)}}{\ell+m+q}.
+\]
+At all roots $b^q=a$, the matching condition gives $h(b)=1$. Their average eliminates degrees not divisible by $q$ and gives $\sum_{j\geq1}c_{qj}a^j=1$. Cauchy--Schwarz yields
+\[
+ 1\leq c_1^{-1}\|H\|_{L^2(\Omega)}^2
+ \sum_{j\geq1}\frac{(qj+m+q)|a|^{2j}}{\rho^{2(qj+m+q)}}.
+\]
+For $|a|\leq\rho^q/2$, the geometric series and its derivative bound the sum by a fixed constant times $|a|^2$. This proves \eqref{eq:curve-extension-norm-lower-bound} with constants independent of $a$ and $H$.
+\end{proof}
+
+\begin{theorem}\label{thm:monotone-multiplier-stability}
+Let $\psi_j$ be an increasing sequence of plurisubharmonic weights with $\psi_j\to\varphi$ almost everywhere, where $\varphi$ is plurisubharmonic. Then at every $x\in X$,
+\begin{equation}\label{eq:monotone-multiplier-stability}
+ \bigcup_j\mathcal I(\psi_j)_x=\mathcal I(\varphi)_x.
+\end{equation}
+For sufficiently large $j$ these stalks are equal. The required index may depend on $x$ and the sequence.
+\end{theorem}
+\begin{proof}
+We induct on $n=\dim X$. In dimension zero all finite weights have the full local ring as ideal. The almost-everywhere inequalities $\psi_j\leq\varphi$ hold pointwise by the canonical-representative order property of \cref{thm:psh-distribution-representative}. Thus the left side is contained in the right side.
+
+Fix $F\in\mathcal I(\varphi)_0$ in a coordinate neighborhood and suppose its germ is not in the ideal $J=\bigcup_j\mathcal I(\psi_j)_0$. This is an ideal because the sequence is increasing. The Noetherian local ring makes $J$ finitely generated, say by germs $g_1,\ldots,g_r$, all belonging to one index $j_0$. Choose representatives on a neighborhood where these generators are $\psi_{j_0}$-weighted integrable and $F$ is $\varphi$-weighted integrable. A bound $|F|\leq C|g|$ there would put $F$ in $\mathcal I(\psi_{j_0})$, so no such local bound holds. Apply \cref{lem:bounded-domination-curve} and choose a fixed product polydisc $\Delta_{R_0}\times P_0$ in the resulting coordinates, with an inner product $\Omega=\Delta_R\times P\Subset\Delta_{R_0}\times P_0$, containing the small curve used in \cref{lem:curve-extension-norm-lower-bound}. Normalize by a constant so that $\varphi\leq0$ on the outer product; the same bound holds for all $\psi_j$.
+
+Fubini gives an integrable function of one variable
+\[
+ G(a)=\int_{P_0}|F(a,w)|^2\mathrm e^{-\varphi(a,w)}\,\mathrm dV_w.
+\]
+There is a sequence $a_i\to0$, $a_i\ne0$, with $|a_i|^2G(a_i)\to0$, outside any specified measure-zero set. Otherwise $G(a)\geq c|a|^{-2}$ almost everywhere in some punctured disc, contradicting its integrability. Exclude the null sets where these slices are not integrable, where any of the countably many restricted weights is identically minus-infinite, or where the almost-everywhere convergence fails on the slice. These are null by Fubini and the local integrability of the weights. Each remaining restricted weight is plurisubharmonic on $P_0$.
+
+By the dimension induction, at every point of the compact set $\overline P$ the germ $F(a_i,\cdot)$ belongs to $\mathcal I(\psi_j(a_i,\cdot))$ for some index. A finite cover of this compact set gives one index with finite weighted integral on the fixed inner fiber $P$. Increase the index, if necessary, and use monotone convergence of the decreasing nonnegative integrands, dominated by this finite integral, to obtain an index $j_i$ such that
+\[
+ \int_P|F(a_i,w)|^2\mathrm e^{-\psi_{j_i}(a_i,w)}\,\mathrm dV_w
+                          \leq2G(a_i).
+\]
+Here $G(a_i)>0$: the curve has a point on this slice where $F\ne0$; in dimension one the fiber integral is its positive weighted value. The fixed inner fiber is essential; none of the domains in this step depends on $i$.
+
+Extend from $z_1=a_i$ to $\Omega$ by \cref{thm:local-ot-extension}. The normal variable $z_1-a_i$ has range in a disc of radius $2R$ for late $i$, so the extension constant is fixed. We obtain $H_i\in\mathcal O(\Omega)$ matching $F$ on that slice with
+\[
+ \int_\Omega|H_i|^2\mathrm e^{-\psi_{j_i}}\,\mathrm dV\leq C G(a_i).
+\]
+Its germ is in $J$. Thus $H_i=\sum_l b_lg_l$ as germs at zero, and $(H_i/F)\circ\gamma$ is holomorphic with value zero there. Since $F\circ\gamma$ has no other zeros in the fixed small parameter disc, this quotient is holomorphic throughout that disc. Because $\psi_{j_i}\leq0$, the last estimate bounds the unweighted norm as well. The curve lower bound gives $c|a_i|^{-2}\leq C G(a_i)$, contradicting the choice of $a_i$. We conclude $F\in J$.
+
+Finally take finite generators of $\mathcal I(\varphi)_x$. By the established union equality they all belong to one index. The two inclusions then give equality of stalks for that and every later index.
+\end{proof}
+\index{multiplier ideal!monotone stability}
+
+\Needspace{14\baselineskip}
+\begin{corollary}[Strong openness]\label{cor:strong-openness}
+For a plurisubharmonic weight $\varphi$,
+\begin{equation}\label{eq:strong-openness}
+ \mathcal I(\varphi)_x=\bigcup_{\varepsilon>0}
+                   \mathcal I((1+\varepsilon)\varphi)_x.
+\end{equation}
+More generally, for another plurisubharmonic weight $\chi$,
+\[
+ \mathcal I(\varphi)_x=\bigcup_{\varepsilon>0}
+                   \mathcal I(\varphi+\varepsilon\chi)_x.
+\]
+Each equality is local; one positive $\varepsilon$ works for all generators of the stalk.
+\end{corollary}
+\begin{proof}
+Subtract constants on a relatively compact neighborhood to make the weights nonpositive. This changes no multiplier ideal, including those with any fixed positive coefficient. Apply \cref{thm:monotone-multiplier-stability} first to $(1+1/j)\varphi$, then to $\varphi+(1/j)\chi$. They increase to $\varphi$ almost everywhere. Monotonicity in the positive parameter gives the stated unions. Finite generation supplies a common positive parameter for the entire stalk.
+\end{proof}
+\index{strong openness theorem}
+
+\begin{example}\label{ex:multiplier-monomial-threshold}
+For $\varphi=c\log|z|^2$ on a disc and $c\geq0$, polar integration gives $\mathcal I(\varphi)=(z^{\lfloor c\rfloor})$: a germ of order $k$ is integrable exactly when $k+1>c$. For $c=0$ the weight is interpreted as zero. At a positive integer $c$, the order $c-1$ gives a divergent logarithmic radial integral. This strict boundary also explains why increasing weights are the regime in \cref{thm:monotone-multiplier-stability}. For $\varphi_j=(1-1/j)\log|z|^2$, $j\geq2$, the weights decrease to $\log|z|^2$, yet all their ideals are $\mathcal O$ and the limit ideal is $(z)$.
+\end{example}
+
+\section{Birational change of variables and logarithmic thresholds}
+\label{sec:multiplier-birational-integrability}
+
+Let $\pi:Y\to X$ be a proper bimeromorphic map of complex manifolds. In local coordinates its complex Jacobian determinant $J_\pi$ is holomorphic and not identically zero. Under changes of source or target coordinates it is multiplied by a nowhere zero holomorphic factor. Its zero divisor therefore defines an effective Cartier divisor $K_{Y/X}$, the \emph{relative canonical divisor}. This is the divisor of the map of top holomorphic differential forms: $\pi^*(\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n)=J_\pi\,\mathrm dw_1\wedge\cdots\wedge\mathrm dw_n$.
+
+\Needspace{17\baselineskip}
+\begin{definition}\label{def:divisorial-order-discrepancy}
+The \emph{center} of a prime divisor $E$ on $Y$ is the analytic set $\pi(E)\subset X$, analytic by proper mapping and unchanged on a common model. The order $\operatorname{ord}_E f$ of a holomorphic germ pulled back from $X$ is its vanishing order along a generic smooth point of $E$. The \emph{log discrepancy} is
+\[
+ A_X(E)=1+\operatorname{ord}_E K_{Y/X}.
+\]
+Both quantities depend only on the prime divisor over $X$. Indeed on a common smooth model the maps are isomorphisms over the generic points of its strict transforms by \cref{prop:smooth-bimeromorphic-divisor-locus}, so those orders are preserved. The chain rule $J_{\pi\circ\rho}=(J_\pi\circ\rho)J_\rho$ proves the same assertion for discrepancy. In particular $A_X(E)\geq1$, and a divisor already on $X$ has discrepancy one. For the zero germ set its order equal to $+\infty$.
+\end{definition}
+\index{log discrepancy}\index{relative canonical divisor}\index{divisorial order}\index{prime divisor!center}
+
+\begin{proposition}\label{prop:birational-weighted-change-variables}
+A germ $f$ belongs to $\mathcal I(\varphi)_x$ if and only if, near every point of the compact fiber $\pi^{-1}(x)$, the function
+\begin{equation}\label{eq:birational-weighted-integrand}
+ |f\circ\pi|^2|J_\pi|^2\mathrm e^{-\varphi\circ\pi}
+\end{equation}
+is integrable in source coordinates. Thus
+\begin{equation}\label{eq:multiplier-birational-transform}
+ \mathcal I(\varphi)
+ =\pi_*\bigl(\mathcal O_Y(K_{Y/X})\mathcal I(\varphi\circ\pi)\bigr)
+\end{equation}
+as subsheaves of meromorphic functions, identified with holomorphic functions on $X$.
+\end{proposition}
+\begin{proof}
+Outside an analytic set $S\subset X$ of codimension at least two the map is a biholomorphism by \cref{prop:smooth-bimeromorphic-divisor-locus}. Analytic subsets of positive codimension have Lebesgue measure zero by \cref{cor:analytic-strata-hausdorff}. On this complement the real Jacobian is $|J_\pi|^2$, as follows by expressing a complex linear differential as a real matrix and taking its determinant. The ordinary change-of-variables formula applies first to nonnegative simple functions and then by monotone convergence, without an integrability assumption. A partition of unity on relatively compact source charts gives the same equality for integrals; coordinate volume factors are bounded on smaller charts. The omitted source analytic set $\pi^{-1}(S)$ also has measure zero. Hence weighted integrability on a base neighborhood implies local integrability of \eqref{eq:birational-weighted-integrand} at every point of its inverse image.
+
+Conversely, finitely many integrable neighborhoods cover the compact fiber. Properness confines the inverse image of a sufficiently small base neighborhood to their union. The integral there is bounded by the finite sum of their integrals, and change of variables gives base integrability.
+
+In a source chart, $\mathcal O_Y(K_{Y/X})$ is generated meromorphically by $J_\pi^{-1}$. Thus the ideal membership on the right of \eqref{eq:multiplier-birational-transform} is exactly the integrability just proved for a pulled-back holomorphic function. To exclude extra meromorphic sections, any section there is holomorphic off $S$: there $J_\pi$ is a unit and the ideal consists of holomorphic functions. A holomorphic function off this codimension-two set extends to $X$. Indeed $\log|f|$ is plurisubharmonic off its zero set and extends there with its minus-infinite values; \cref{cor:analytic-codimension-two-psh-removal} makes it locally bounded above across $S$, and \cref{lem:bounded-holomorphic-removal} then extends $f$. The extended function has the original meromorphic pullback by equality on the dense open subset. This proves the sheaf identity.
+\end{proof}
+\index{multiplier ideal!birational transformation}
+
+\Needspace{22\baselineskip}
+\begin{theorem}\label{thm:analytic-log-resolution-integrability}
+Suppose near $x$ that
+\[
+ \varphi=c\log\left(\sum_{j=1}^r|g_j|^2\right)+b,
+ \qquad c>0,\quad b\text{ bounded},
+\]
+where the $g_j$ generate a nonzero holomorphic ideal $\mathfrak a$. Choose a log resolution $\pi:Y\to X$ of that ideal as supplied by \cref{thm:analytic-resolution-input,thm:marked-order-one-input}, with $\mathfrak a\mathcal O_Y=\mathcal O_Y(-D)$ and $D=\sum_i d_iE_i$ having simple normal crossings support. A holomorphic germ $f$ is in $\mathcal I(\varphi)_x$ exactly when
+\begin{equation}\label{eq:analytic-strict-valuative-threshold}
+ \operatorname{ord}_{E_i}f+A_X(E_i)>c d_i
+\end{equation}
+for every component $E_i$ meeting $\pi^{-1}(x)$. These include the strict transforms of divisors already on $X$. Equivalently,
+\begin{equation}\label{eq:analytic-multiplier-divisor-formula}
+ \mathcal I(\varphi)=\pi_*\mathcal O_Y(K_{Y/X}-\lfloor cD\rfloor).
+\end{equation}
+In the rational-coefficient case this computes the multiplier ideal of analytic singularities in the book's convention.
+\end{theorem}
+\begin{proof}
+Near a point of $Y$ take normal-crossing coordinates with local generator $s=\prod_{i=1}^{\ell}w_i^{d_i}$ for the pulled-back ideal. Write $g_j\circ\pi=s h_j$. The $h_j$ generate the unit ideal; on a smaller neighborhood their squared sum is bounded above and below by positive constants. Thus $\varphi\circ\pi=c\sum_{i=1}^{\ell}d_i\log|w_i|^2+O(1)$.
+
+Put $h=(f\circ\pi)J_\pi$. We must test integrability of $|h|^2\prod_i|w_i|^{-2cd_i}$. For a holomorphic function this holds exactly when $\operatorname{ord}_{w_i=0}h+1>cd_i$ for every coordinate hypersurface present. Sufficiency follows by factoring these powers from $h$ and integrating each variable in polar coordinates. For necessity, if a power is insufficient, restrict the other coordinates to a small open set where the remaining coefficient on that hypersurface is nonzero. Its modulus is bounded below there for small normal coordinate; Fubini and the divergent one-variable radial integral show failure. This argument includes nonintegral $cd_i$ and the logarithmic divergence at equality. Additivity of holomorphic vanishing orders and \cref{prop:birational-weighted-change-variables} give \eqref{eq:analytic-strict-valuative-threshold}.
+
+Since $\operatorname{ord}_{E_i}f+\operatorname{ord}_{E_i}J_\pi$ is an integer, the strict inequality is equivalent to its being at least $\lfloor cd_i\rfloor$. This is precisely the divisor condition in \eqref{eq:analytic-multiplier-divisor-formula}. Divisors not in $D$ impose no additional integrability condition on a holomorphic germ, because $J_\pi$ is holomorphic. Compactness of the fiber reduces all local checks to finitely many charts.
+\end{proof}
+
+\begin{proposition}\label{prop:general-necessary-valuative-bound}
+If $f\in\mathcal I(\varphi)_x$, there is $\varepsilon>0$ such that for every prime divisor $E$ over a sufficiently small neighborhood of $x$ whose center contains $x$,
+\begin{equation}\label{eq:general-necessary-valuative-bound}
+ \operatorname{ord}_E f+A_X(E)>(1+\varepsilon)\nu(\varphi,E).
+\end{equation}
+The parameter $\varepsilon$ is the same for all these divisors.
+\end{proposition}
+\begin{proof}
+Strong openness gives $f\in\mathcal I((1+\varepsilon)\varphi)_x$ for one $\varepsilon>0$, with integrability on a fixed neighborhood. On a model representing any such $E$, the change-of-variables proposition gives weighted integrability of $h=(f\circ\pi)J_\pi$. Near a generic regular point take $E=\{w_1=0\}$ and write $h=w_1^k v$, where $v$ is nonzero along a dense open subset of $E$ and $k=\operatorname{ord}_Ef+A_X(E)-1$. On almost every normal one-variable slice the weighted integrand is integrable by Fubini and $v$ is nonzero at its center. The restricted weight has Lelong number at least $\nu(\varphi,E)$: its logarithmic growth bound is the restriction of the full growth bound at the center, whose Lelong number is at least this infimum. The one-dimensional lower radial integral in \cref{lem:multiplier-order-lelong-bounds} then requires $k+1>(1+\varepsilon)\nu(\varphi,E)$. This proves the inequality. The zero germ satisfies it under the stated infinite-order convention.
+\end{proof}
+\index{multiplier ideal!valuative bounds}
+
+\begin{corollary}\label{cor:divisorial-lelong-ideal-recovery}
+For every prime divisor $E$ over $X$ and positive integer $m$,
+\begin{equation}\label{eq:divisorial-multiplier-order-bounds}
+ m\nu(\varphi,E)-A_X(E)
+      <\operatorname{ord}_E\mathcal I(m\varphi)
+      \leq m\nu(\varphi,E).
+\end{equation}
+Here the order of the ideal is the minimum of the orders of its local generators near the center. In particular
+\[
+ \nu(\varphi,E)=\lim_{m\to\infty}\frac1m
+                           \operatorname{ord}_E\mathcal I(m\varphi).
+\]
+\end{corollary}
+\begin{proof}
+Choose finite generators from the weighted Hilbert space on a neighborhood of the center. Each is integrable with weight $m\varphi$, so the slice argument in \cref{prop:general-necessary-valuative-bound} gives its order plus $A_X(E)$ strictly larger than $m\nu(\varphi,E)$. The minimum of finitely many orders satisfies the same bound. Pull back \eqref{eq:weight-versus-multiplier-generators} to the model. At a generic smooth point of $E$, the generators have a common factor of order equal to the ideal order and their remaining factors generate the unit ideal there. Thus the logarithm of their squared sum has generic Lelong number equal to that order. Comparison of growth coefficients gives the upper inequality. Division by $m$ and passage to the limit proves recovery.
+\end{proof}
+\index{Lelong number!recovery from multiplier ideals}
+
+\begin{theorem}\label{thm:general-valuative-multiplier-criterion}
+A holomorphic germ $f$ belongs to $\mathcal I(\varphi)_x$ if and only if there exists $\varepsilon>0$ such that, for every prime divisor $E$ over a sufficiently small neighborhood of $x$ with $x$ in its center,
+\begin{equation}\label{eq:uniform-valuative-multiplier-criterion}
+ \operatorname{ord}_E f+A_X(E)\geq(1+\varepsilon)\nu(\varphi,E).
+\end{equation}
+The same criterion results if $\geq$ is replaced by $>$. The positive parameter is uniform over all the divisors, whereas the inequalities on a fixed analytic log resolution are the strict finite family in \eqref{eq:analytic-strict-valuative-threshold}.
+\end{theorem}
+\begin{proof}
+Necessity, including the strict version, is \cref{prop:general-necessary-valuative-bound}. Conversely assume \eqref{eq:uniform-valuative-multiplier-criterion} for a nonzero germ and fix $p=1+\varepsilon/2$. Choose an integer $m>1$ large enough that $p\geq m/(m-1)$. On a small neighborhood take finite Hilbert-space generators $g_i$ of $\mathcal I(m\varphi)$ and put
+\[
+ \varphi_m=\frac1m\log\sum_i|g_i|^2.
+\]
+This is plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}. The bound \eqref{eq:weight-versus-multiplier-generators}, pulled back to any model, gives $\nu(\varphi_m,E)\leq\nu(\varphi,E)$. Our hypothesis therefore implies
+\[
+ \operatorname{ord}_E f+A_X(E)>p\nu(\varphi_m,E)
+\]
+for every divisor in question. If $\nu(\varphi_m,E)>0$, the difference between $1+\varepsilon$ and $p$ makes this strict; if that number is zero, positivity of the discrepancy and nonnegativity of the holomorphic order make it strict. Resolve the ideal $(g_i)$. Every component of its divisor meeting the fiber has center containing $x$, so \cref{thm:analytic-log-resolution-integrability} gives $f\in\mathcal I(p\varphi_m)_x$.
+
+We transfer this integrability to $\varphi$ using the definition of the generators rather than a convergence assertion. They satisfy
+\begin{equation}\label{eq:multiplier-generator-exponential-integrability}
+ \mathrm e^{m(\varphi_m-\varphi)}
+                =\sum_i|g_i|^2\mathrm e^{-m\varphi}\in L^1_{\loc}.
+\end{equation}
+Shrink once more and subtract a constant from $\varphi_m$ so that $\varphi_m\leq0$; this changes none of these integrability statements. On the set $\varphi\geq p\varphi_m$ we have $|f|^2\mathrm e^{-\varphi}\leq|f|^2\mathrm e^{-p\varphi_m}$. On its complement,
+\[
+ (m-1)\varphi-m\varphi_m
+       \leq((m-1)p-m)\varphi_m\leq0,
+\]
+and therefore
+\[
+ |f|^2\mathrm e^{-\varphi}
+ =|f|^2\mathrm e^{m(\varphi_m-\varphi)}
+                 \mathrm e^{(m-1)\varphi-m\varphi_m}
+ \leq C\mathrm e^{m(\varphi_m-\varphi)}.
+\]
+The constant is a local bound for $|f|^2$. The pole and generator-zero sets are null, so all algebraic comparisons are used only where the exponents are finite. Formula \eqref{eq:multiplier-generator-exponential-integrability} and the already established $p\varphi_m$-integrability prove $f\in\mathcal I(\varphi)_x$. The zero germ is immediate. Sufficiency for the strict version follows from sufficiency for the non-strict version.
+\end{proof}
+\index{multiplier ideal!valuative criterion}
+
+\begin{example}\label{ex:strict-transform-integrability}
+For $c>0$ and $\varphi=c\log|z_1|^2$ on a polydisc, the identity map is already a log resolution. Its only relevant divisor is $E=\{z_1=0\}$, with discrepancy one; the criterion is $\operatorname{ord}_E f+1>c$. Considering exceptional divisors alone would omit this integrability test. For the blowup of a point in dimension $n\geq2$, the chart $z_1=w_1$, $z_j=w_1w_j$ for $j>1$ gives $J_\pi=w_1^{n-1}$ and $A_X(E)=n$, in agreement with the radial threshold for $c\log|z|^2$.
+\end{example}

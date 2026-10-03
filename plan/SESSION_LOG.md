@@ -55,3 +55,11 @@ Completed A01-01–03 with two complete direct reads and final build/visual evid
 Next independent work: Q05 Lelong numbers and multiplier ideals. Retrieved the published Guan–Zhou strong-openness paper from the official Annals DOI page and directly read all 12 pages, including the complete induction proof; its multiplier-coherence, bounded-domination curve selection and movable extension inputs must be supplied internally. No whole-book completion is claimed. Private GitHub export remains blocked by automatic approval review; the existing approval request is unanswered, so no retry.
 
 The source-only archive rebuild succeeded in an empty directory; all 200 pages match the checked PDF in extracted text. The reviewed PDF and archive are available locally in build/release/.
+
+## 2026-10-03 — Lelong numbers and multiplier ideals
+
+Wrote and activated Q05 with complete internal proofs of multiplier coherence, Siu, restriction/subadditivity, increasing-weight stability, strong openness and the uniform-parameter general valuative criterion. Both full direct reads, final build and page inspection are recorded in the Q05 review. Added a separately scoped Q02 proof of logarithmic holomorphic norms. The draft has 222 pages and 48/110 verified obligations; Q05 remains second-read because A01-04 and the conservative whole-chapter gate remain unfinished. The FN question is unanswered and its criterion is not used.
+
+Independently retrieved and retained the published Guan–Zhou paper (read in full), the dated Demailly Analytic Methods author version and Boucksom's 11 September 2023 notes; exact reading scopes and version distinctions are recorded. Corrected the sample's exceptional-only finite criterion by including strict transforms. Next: Q06 local Bergman approximation, analytic singularities and quantitative patching. Whole-book writing, semantic source coverage and integration remain unfinished. The earlier private GitHub export approval is pending after auto-review rejection; no retry or workaround was attempted.
+
+The 222-page source archive rebuilt in an empty directory with matching extracted page text. The local PDF and source package are in build/release/.

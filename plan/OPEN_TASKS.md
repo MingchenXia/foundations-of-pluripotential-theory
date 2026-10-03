@@ -6,10 +6,10 @@ Next coherent writing unit: **A01**.
 
 ## Q05 — Lelong numbers and multiplier ideals
 
-- `Q05-01` [planned] Lelong--Jensen formula, generic/divisorial Lelong numbers and Siu semicontinuity
-- `Q05-02` [planned] Coherence, restriction, subadditivity, integral closure and pullback of multiplier ideals
-- `Q05-03` [planned] Strong openness and stability in the exact monotonic regime used by the sample
-- `Q05-04` [planned] Log discrepancies, change of variables and valuative criteria including strict inequalities
+- `Q05-01` [second-read] Lelong--Jensen formula, generic/divisorial Lelong numbers and Siu semicontinuity
+- `Q05-02` [second-read] Coherence, restriction, subadditivity, integral closure and pullback of multiplier ideals
+- `Q05-03` [second-read] Strong openness and stability in the exact monotonic regime used by the sample
+- `Q05-04` [second-read] Log discrepancies, change of variables and valuative criteria including strict inequalities
 
 ## Q06 — Analytic singularities and Demailly approximation
 
