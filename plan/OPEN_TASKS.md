@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **Q04**.
-
-## Q04 — Weighted L2 estimates and holomorphic extension
-
-- `Q04-01` [planned] Hilbert-space duality and the basic dbar estimate, boundary terms and domains of operators
-- `Q04-02` [planned] Pseudoconvex boundary distance, general Kiselman minimum, and Hörmander solvability with singular psh weights and exhaustion
-- `Q04-03` [planned] Pointwise interpolation using logarithmic poles with controlled constants
-- `Q04-04` [planned] Ohsawa--Takegoshi in the exact local and compact forms used later, proved rather than silently imported
+Next coherent writing unit: **A01**.
 
 ## Q05 — Lelong numbers and multiplier ideals
 
@@ -32,7 +25,7 @@ Next coherent writing unit: **Q04**.
 - `Q07-02` [planned] theta-psh and quasi-psh functions, normalized compactness and minimal singularities
 - `Q07-03` [planned] Pseudo-effective, nef, big and modified nef cones; Siu decomposition
 - `Q07-04` [planned] Non-Kahler and non-nef loci including the non-big boundary case
-- `Q07-05` [planned] Hermitian metrics as quadratic forms, curvature, FS and generalized FS metrics
+- `Q07-05` [planned] Quadratic Hermitian metrics, curvature, FS/generalized FS, compact positive-metric extension with uniform constants and compact Bergman approximation
 
 ## Q09 — Non-pluripolar products
 

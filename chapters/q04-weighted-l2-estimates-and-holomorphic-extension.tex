@@ -1,2 +1,441 @@
-\chapter{Weighted L2 estimates and holomorphic extension}
+\chapter{Weighted \texorpdfstring{$L^2$}{L2} estimates and holomorphic extension}
 \label{chap:q04}
+
+A local holomorphic function multiplied by a cutoff acquires a $\bar\partial$ error. Solving that error with a weighted norm produces a global holomorphic function. A logarithmic pole in the weight can force the correction to vanish at a specified point; an additional bounded change of weight gives the estimate needed to extend from a hyperplane. The operator domains matter in both constructions. We establish their density by interior cutoffs before passing to singular weights.
+
+\section{Hilbert spaces and closed operator complexes}
+\label{sec:hilbert-operator-complexes}
+
+A complex Hilbert space is a complete inner-product space; our inner products are linear in the first variable. Weighted $L^2$ spaces use the inner product $\langle f,g\rangle=\int f\bar g\,\mathrm d\mu$. Their completeness follows directly from integration. Indeed, from any Cauchy sequence select a subsequence whose successive norms have summable bounds. The triangle inequality and monotone convergence show that the sum of their absolute differences belongs to $L^2$. Thus the subsequence converges almost everywhere and in $L^2$; the Cauchy property gives convergence of the entire sequence. This also proves completeness for a finite tuple of coefficients.
+
+\begin{proposition}\label{prop:hilbert-projection-representation}
+Every nonempty closed convex subset of a Hilbert space has a unique point of smallest distance to a given point. For a closed linear subspace $M$, this gives $H=M\oplus M^\perp$. Every bounded linear functional is $x\mapsto\langle x,y\rangle$ for a unique $y\in H$, with norm $\|y\|$.
+\end{proposition}
+\begin{proof}
+Translate the given point to zero and let $d$ be the infimum of the norms in the convex set. If $x_j$ is a minimizing sequence, the parallelogram identity gives
+\[
+ \|x_j-x_k\|^2=2\|x_j\|^2+2\|x_k\|^2
+                  -4\|(x_j+x_k)/2\|^2
+ \le2\|x_j\|^2+2\|x_k\|^2-4d^2.
+\]
+It is Cauchy, so completeness and closedness give the minimizer. The same identity proves uniqueness. For a linear subspace, varying the minimizer by $t v$, first for real $t$ and then for imaginary $t$, shows that the residual is perpendicular to $M$.
+
+For a nonzero bounded functional $L$, its kernel is closed. Project a vector outside that kernel onto it, obtaining a nonzero residual $e\perp\ker L$. The identity $x-(L(x)/L(e))e\in\ker L$ gives
+$L(x)=L(e)\langle x,e\rangle/\|e\|^2$. Set $y=\overline{L(e)}e/\|e\|^2$. This represents $L$ and its norm; uniqueness follows by testing the difference of two representing vectors. The zero functional uses $y=0$. Taking conjugates gives the corresponding statement for conjugate-linear functionals.
+\end{proof}
+\index{Hilbert space!projection}\index{Riesz representation!Hilbert space}
+
+\begin{proposition}\label{prop:hilbert-weak-sequences}
+Every bounded sequence in a Hilbert space has a weakly convergent subsequence. A weak limit $x$ satisfies $\|x\|\le\liminf\|x_j\|$.
+\end{proposition}
+\begin{proof}
+The closed span of the sequence is separable: finite combinations with rational real and imaginary coefficients form a countable dense set. Gram--Schmidt applied to that set gives a finite or countable orthonormal family with dense span. Each coordinate of the bounded sequence is bounded. Diagonal subselection makes all coordinates converge to numbers $a_k$. Pythagoras gives $\sum_k|a_k|^2\le C^2$, so completeness defines $x=\sum_k a_ke_k$. Finite-coordinate convergence and uniform boundedness imply convergence against every vector in that closed span, by finite approximation. Projection onto the span proves weak convergence against all vectors in the space. Finally, if $x\ne0$, testing against $x/\|x\|$ gives $\|x\|\le\liminf\|x_j\|$; the case $x=0$ follows from nonnegativity.
+\end{proof}
+\index{weak convergence!Hilbert space}
+
+Let $T:\operatorname{Dom}T\subset H_0\to H_1$ be linear with dense domain. Its Hilbert adjoint is defined by
+\[
+ y\in\operatorname{Dom}T^*\quad\Longleftrightarrow\quad
+ x\longmapsto\langle Tx,y\rangle\text{ is bounded in }\|x\|,
+ \qquad\langle Tx,y\rangle=\langle x,T^*y\rangle.
+\]
+Density and the preceding representation theorem make $T^*y$ unique. Closedness of $T$ means that its graph is closed in $H_0\oplus H_1$.
+
+\begin{lemma}\label{lem:closed-operator-adjoint}
+The adjoint is closed. If $T$ is closed and densely defined, then $T^*$ is densely defined and $T^{**}=T$. Moreover $\ker T^*=(\operatorname{Ran}T)^\perp$.
+\end{lemma}
+\begin{proof}
+Passing the defining identity to a limit proves closedness. Orthogonality to the graph has the exact description
+\[
+ (\operatorname{Gr}T)^\perp
+       =\{(-T^*y,y):y\in\operatorname{Dom}T^*\}.
+\]
+If $v\perp\operatorname{Dom}T^*$, decompose $(0,v)$ into a graph vector $(x,Tx)$ and an orthogonal graph vector $(-T^*y,y)$. Thus $x=T^*y$ and $v=Tx+y$. Taking its inner product with $y$ gives $0=\|x\|^2+\|y\|^2$, so $v=0$. This proves density. Applying the displayed graph identity twice and using $(M^\perp)^\perp=M$ for a closed subspace proves $T^{**}=T$. The kernel identity is its defining adjoint identity with $T^*y=0$.
+\end{proof}
+\index{operator!closed and adjoint}
+
+\begin{theorem}\label{thm:hilbert-complex-solvability}
+Let $T:H_0\to H_1$ and $S:H_1\to H_2$ be closed densely defined operators with $\operatorname{Ran}T\subset\ker S$. Suppose $g\in\ker S$, $0\le M<\infty$, and
+\[
+ |\langle g,f\rangle|^2\le M\bigl(\|T^*f\|^2+\|Sf\|^2\bigr)
+ \quad(f\in\operatorname{Dom}T^*\cap\operatorname{Dom}S).
+\]
+Then $Tu=g$ has a solution with $\|u\|^2\le M$. The solution of smallest norm exists and is unique; it is perpendicular to $\ker T$.
+\end{theorem}
+\begin{proof}
+Since $S$ is closed, $\ker S$ is closed. Write $f=f_0+f_1$ according to $H_1=\ker S\oplus(\ker S)^\perp$. The latter summand is perpendicular to $\operatorname{Ran}T$, so it belongs to $\ker T^*$. For $f\in\operatorname{Dom}T^*$ we therefore have $f_0\in\operatorname{Dom}T^*\cap\operatorname{Dom}S$, $T^*f_0=T^*f$, and $\langle g,f\rangle=\langle g,f_0\rangle$. The assumed inequality gives
+$|\langle g,f\rangle|\le\sqrt M\|T^*f\|$.
+
+Consequently $T^*f\mapsto\langle g,f\rangle$ is a well-defined bounded conjugate-linear functional on $\operatorname{Ran}T^*$. Extend it continuously to its closure and set it zero on the perpendicular complement. Hilbert representation gives $u\in H_0$, $\|u\|\le\sqrt M$, with $\langle u,T^*f\rangle=\langle g,f\rangle$ for all $f\in\operatorname{Dom}T^*$. The double-adjoint identity says exactly $u\in\operatorname{Dom}T$ and $Tu=g$. All solutions form the closed affine subspace $u+\ker T$. Projection proves the last assertions.
+\end{proof}
+
+\section{Pseudoconvexity and boundary distance}
+\label{sec:pseudoconvex-distance}
+
+\begin{definition}\label{def:pseudoconvex-domain}
+An open set $\Omega\subset\mathbb C^n$ is pseudoconvex if it has a finite continuous plurisubharmonic exhaustion: a function $\rho$ for which every $\{\rho\le c\}$ is compact in $\Omega$. The definition is applied componentwise when needed. A continuous plurisubharmonic function is strictly plurisubharmonic if locally subtracting some positive multiple of $|z|^2$ leaves a plurisubharmonic function.
+\end{definition}
+\index{pseudoconvex domain}\index{plurisubharmonic function!strict}
+
+\begin{lemma}\label{lem:polynomial-disc-comparison}
+An upper semicontinuous locally bounded-above function satisfies the plurisubharmonic submean inequalities if, on every affine closed complex disc, comparison at its center holds with every harmonic function of the form $\Real P$, where $P$ is a polynomial, which bounds it above on the circle.
+\end{lemma}
+\begin{proof}
+Approximate the upper semicontinuous circle data from above by continuous functions using \cref{lem:usc-majorants}. A continuous real circle function is uniformly approximated by real trigonometric polynomials: convolve with
+$N^{-1}|\sum_{k=0}^{N-1}\mathrm e^{\mathrm i k\theta}|^2$.
+This kernel has normalized integral one and tends uniformly to zero off every neighborhood of zero; uniform continuity proves uniform approximation. Each resulting real trigonometric polynomial is the circle restriction of $\Real P$. Add the uniform approximation error to make it an upper bound. Its center value is its circle average. Comparison and decreasing integration of the original majorants give the circle submean inequality, including an integral equal to $-\infty$. This is the required criterion on every line.
+\end{proof}
+
+\Needspace{8\baselineskip}
+\begin{lemma}[Richberg]\label{lem:richberg-euclidean}
+If $u$ is continuous on $\Omega\subset\mathbb C^n$ and $u-a|z|^2$ is plurisubharmonic for some $a>0$, then for every positive continuous $\varepsilon$ there is a smooth $v$ with
+\[
+ u\le v\le u+\varepsilon,\qquad v-\tfrac a2|z|^2\in\PSH(\Omega).
+\]
+\end{lemma}
+\begin{proof}
+Choose a countable locally finite family of balls $B_i=B(c_i,r_i)\Subset\Omega$ whose concentric inner balls of radii $r_i/3$ cover $\Omega$. Such a family is obtained by finitely covering each compact exhaustion shell with balls contained in a slightly larger shell; each compact then meets only finitely many balls. Choose $0<\delta_i<a/2$ so small that all the errors below are less than $\min_{\overline B_i}\varepsilon/4$, and set
+\[
+ u_i=u*\rho_{h_i}+\delta_i\bigl((2r_i/3)^2-|z-c_i|^2\bigr)
+ \quad\hbox{on }B_i.
+\]
+There is $\eta_i>0$, as small as required, such that the quadratic addition is above $2\eta_i$ on the inner ball and below $-2\eta_i$ on the outer sphere. Choose $h_i$ sufficiently small that $0\le u*\rho_{h_i}-u<\eta_i$ near $\overline B_i$. Then $u_i>u+\eta_i$ on the inner ball and $u_i<u-\eta_i$ near the outer sphere. Also $u_i+\eta_i\le u+\varepsilon$ on $B_i$, and each complex Hessian is at least $a/2$ times the identity.
+
+For finitely many real variables define the smooth maximum
+\[
+ M_\eta(t)=\int_{\mathbb R^p}\max_i(t_i+\eta_i x_i)
+                         \prod_i\theta(x_i)\,\mathrm dx,
+\]
+where $\theta$ is smooth, nonnegative, even, supported in $(-1,1)$ and has integral one. It is convex and increasing, lies between $\max t_i$ and $\max(t_i+\eta_i)$, and satisfies $M_\eta(t+c)=M_\eta(t)+c$. Deleting a variable leaves the value unchanged if $t_i+\eta_i\le\max_{j\ne i}(t_j-\eta_j)$: it cannot contribute to the maximum for any integration parameters. Smoothness follows by viewing the formula as convolution of the maximum. Its smooth Hessian chain rule preserves the common lower bound $a/2$, since its first derivatives are nonnegative and sum to one.
+
+At $z$ use the finitely many $u_i$ for which $z\in B_i$. Near a boundary point of $B_i$, some inner ball supplies a branch $u_j-\eta_j>u$, whereas $u_i+\eta_i<u$. Branch deletion makes the local formulas agree smoothly across that boundary. They define a global smooth $v$. The inner cover gives $v\ge u$, the upper estimate gives $v\le u+\varepsilon$, and the Hessian bound proves the last assertion.
+\end{proof}
+\index{Richberg smoothing}
+
+\begin{theorem}\label{thm:oka-boundary-distance}
+For a proper pseudoconvex $\Omega\subset\mathbb C^n$, the function $-\log d(z,\mathbb C^n\setminus\Omega)$ is continuous plurisubharmonic. Conversely this property of the boundary distance implies pseudoconvexity. Every pseudoconvex open set has a nonnegative smooth strictly plurisubharmonic exhaustion.
+\end{theorem}
+\begin{proof}
+Write
+\[
+ \delta(z,\xi)=\sup\{r>0:z+\xi\Delta_r\subset\Omega\}.
+\]
+Compactness of any smaller closed disc shows that $\delta$ is lower semicontinuous in $(z,\xi)$, including its possible value $+\infty$. Thus $-\log\delta$ is upper semicontinuous and locally bounded above. We prove its submean inequalities with \cref{lem:polynomial-disc-comparison}. Suppose on $|t|=1$,
+$-\log\delta(z_0+t a,\xi_0+t b)\le\Real P(t)$,
+and consider the holomorphic map
+\[
+ h(t,w)=z_0+t a+w\mathrm e^{-P(t)}(\xi_0+t b).
+\]
+The center discs $h(\overline\Delta,0)$ lie in $\Omega$, and $h(\partial\Delta,w)$ lies in $\Omega$ for every $|w|<1$. The radii $r$ for which $h(\overline\Delta\times\overline\Delta_r)\subset\Omega$ form an initial interval with positive length. If its supremum $R$ were less than one, the boundary image $h(\partial\Delta\times\overline\Delta_R)$ would be compact in $\Omega$. Let $c$ bound an exhaustion $\rho$ on that image. For $|w|<R$, the subharmonic maximum principle in $t$ gives $\rho(h(t,w))\le c$. The compact set $\{\rho\le c\}\Subset\Omega$ contains all these images and their limits at $|w|=R$. Compactness and continuity of $h$ then permit a slightly larger radius, a contradiction. Hence all $|w|<1$ are admitted. At $t=0$ this is the desired polynomial comparison for $-\log\delta$.
+
+At a fixed $z$, the distance to the complement is $\inf_{|\xi|=1}\delta(z,\xi)$. A nearest complement point supplies one such direction; every shorter segment lies in the distance ball. Therefore $-\log d$ is the supremum of the directional functions. It is continuous because $d$ is positive and Lipschitz. Its circle submean inequality follows by taking the supremum after the individual inequalities, so it is plurisubharmonic.
+
+Conversely $u(z)=|z|^2+\max\{-\log d(z),0\}$ is a continuous exhaustion with $u-|z|^2$ plurisubharmonic. It tends to infinity when a sequence leaves every compact subset, either by its norm or by its distance to the complement. \Cref{lem:richberg-euclidean}, with error one, gives a smooth exhaustion $u\le s\le u+1$ with $s-|z|^2/2$ plurisubharmonic. For $\Omega=\mathbb C^n$, use $s=|z|^2$. Adding a constant makes these exhaustions nonnegative.
+\end{proof}
+\index{Oka's lemma}\index{boundary distance!plurisubharmonic logarithm}
+
+\begin{corollary}\label{cor:pseudoconvex-sublevels-products}
+Products of pseudoconvex open sets are pseudoconvex. If $s\ge0$ is a smooth plurisubharmonic exhaustion, each nonempty $\{s<c\}$ is pseudoconvex and relatively compact. In particular a pseudoconvex domain has a compactly contained increasing pseudoconvex exhaustion.
+\end{corollary}
+\begin{proof}
+The sum of two nonnegative exhaustions exhausts the product. On $\{s<c\}$ use $|z|^2+(c-s)^{-1}$, a continuous plurisubharmonic exhaustion by the convex increasing chain rule. Its sublevels stay a positive distance from the level $s=c$ and in the compact sublevel of the original exhaustion. Let $c\uparrow\infty$; connectedness of these sets is not required for solving equations componentwise.
+\end{proof}
+
+\begin{corollary}\label{cor:kiselman-pseudoconvex-tube}
+The conclusion of \cref{thm:kiselman-invariant-exhaustion} holds for every pseudoconvex domain invariant under imaginary tube translations and having convex real fibers, with no separately specified invariant exhaustion.
+\end{corollary}
+\begin{proof}
+For a proper such domain its boundary distance is invariant under those translations. By \cref{thm:oka-boundary-distance},
+\[
+ \psi(z,w)=|z|^2+|\Real w|^2+
+           \max\{-\log d((z,w),\mathbb C^{m+k}\setminus\Omega),0\}
+\]
+is continuous, nonnegative and plurisubharmonic. On its real slice each closed sublevel is bounded in $(z,\Real w)$ and stays a positive distance from the complement, hence is compact in that slice. This is precisely the exhaustion required there. For the full space omit the distance term. Apply that theorem.
+\end{proof}
+
+\section{Interior density and the weighted estimate}
+\label{sec:weighted-dbar-estimate}
+
+The estimates below use the coefficient Hessian $H_q=(q_{j\bar k})$, rather than the coefficients of $\ddc q$. With $\beta=(\mathrm i/2)\sum_j\mathrm dz_j\wedge\mathrm d\bar z_j$, the inequality $\ddc q\ge\epsilon\beta$ is equivalent to $H_q\ge\pi\epsilon I$ by \eqref{eq:complex-hessian-normalization}. The weight is $\mathrm e^{-p}$.
+
+On an open subset of $\mathbb C^n$, the squared norm of $\sum_j f_j\,\mathrm d\bar z_j$ is $\sum_j|f_j|^2$; for a $(0,2)$-form use the sum over $j<k$. In dimension one the latter space is zero. For smooth real weights $\varphi_1,\varphi_2,\varphi_3$, put
+\[
+ H_0=L^2(\mathrm e^{-\varphi_1}),\quad
+ H_1=L^2_{(0,1)}(\mathrm e^{-\varphi_2}),\quad
+ H_2=L^2_{(0,2)}(\mathrm e^{-\varphi_3}).
+\]
+Take $T=\bar\partial:H_0\to H_1$ and $S=\bar\partial:H_1\to H_2$ on their maximal distributional domains: the distributional derivative must belong to the indicated target space. These are closed, since convergence in these norms implies local distributional convergence. Compactly supported smooth functions or forms are dense by \cref{lem:mollifier-density}, since the smooth weights are bounded above and below on compact sets. Also $ST=0$ distributionally, so $\operatorname{Ran}T\subset\ker S$.
+
+Testing the adjoint against compactly supported functions gives, for every $f\in\operatorname{Dom}T^*$,
+\begin{equation}\label{eq:three-weight-adjoint}
+ T^*f=-\mathrm e^{\varphi_1-\varphi_2}
+       \sum_j\bigl(\partial_{z_j}f_j-(\partial_{z_j}\varphi_2)f_j\bigr).
+\end{equation}
+For a compactly supported smooth $f$ this formula also proves membership in the adjoint domain by integration by parts. A formal expression alone is not a characterization of the adjoint on an arbitrary domain: testing only compact supports can omit boundary conditions.
+
+\begin{lemma}\label{lem:three-weight-density}
+Suppose $\psi$ is smooth and there are $\chi_\nu\in C_c^\infty(\Omega)$, $0\le\chi_\nu\le1$, eventually equal to one near every compact set, with $|\bar\partial\chi_\nu|^2\le\mathrm e^\psi$. If $\varphi_k=\varphi+(k-3)\psi$, then compactly supported smooth $(0,1)$-forms are dense in $\operatorname{Dom}T^*\cap\operatorname{Dom}S$ for the norm
+$\|f\|_{H_1}+\|T^*f\|_{H_0}+\|Sf\|_{H_2}$.
+\end{lemma}
+\begin{proof}
+For $f$ in that intersection, multiplication by $\chi_\nu$ preserves both domains. For the adjoint, apply its defining identity to $\chi_\nu u\in\operatorname{Dom}T$ and subtract the product-rule term; this proves the adjoint product rule for every $u\in\operatorname{Dom}T$. For $S$, use the distributional product rule. Formula \eqref{eq:three-weight-adjoint} consequently gives
+\[
+ \begin{split}
+ T^*(\chi_\nu f)-\chi_\nu T^*f
+    &=-\mathrm e^{\varphi_1-\varphi_2}\sum_j(\partial_{z_j}\chi_\nu)f_j,\\
+ S(\chi_\nu f)-\chi_\nu Sf&=\bar\partial\chi_\nu\wedge f.
+ \end{split}
+\]
+The pointwise wedge norm is at most the product of the two norms, as follows by a unitary change sending the first factor to its first coordinate. Both squared error norms are therefore bounded by
+$\int |f|^2|\bar\partial\chi_\nu|^2\mathrm e^{-\varphi}$,
+and hence by $\|f\|_{H_1}^2$. Their integrands tend pointwise to zero and are dominated by $|f|^2\mathrm e^{-\varphi_2}$. Dominated convergence, together with convergence of $\chi_\nu f$, $\chi_\nu T^*f$ and $\chi_\nu Sf$, proves compact-support approximation.
+
+Now $f$ has compact support. The adjoint formula shows $\sum_j\partial_{z_j}f_j\in L^2_{\loc}$; $Sf$ is also locally $L^2$. Convolve the coefficients on a fixed compact neighborhood. The constant-coefficient derivatives commute with convolution, while the smooth zeroth-order coefficients in \eqref{eq:three-weight-adjoint} pass by local $L^2$ convergence. All weights there are equivalent to the unweighted norm. Thus the smooth convolutions converge in the indicated graph norm, proving density.
+\end{proof}
+\index{operator!graph norm density}
+
+\begin{proposition}\label{prop:interior-bochner-identity}
+For a real smooth $\varphi$ and a compactly supported smooth $(0,1)$-form $f$, write $\delta_j=-\partial_{z_j}+\partial_{z_j}\varphi$. Then
+\[
+ \int\left|\sum_j\delta_j f_j\right|^2\mathrm e^{-\varphi}
+   +\int|\bar\partial f|^2\mathrm e^{-\varphi}
+ =\int\sum_{j,k}\varphi_{j\bar k}f_j\bar f_k\mathrm e^{-\varphi}
+   +\int\sum_{j,k}|\partial_{\bar z_k}f_j|^2\mathrm e^{-\varphi}.
+\]
+Consequently, for the weights of the density lemma and any $t>0$,
+\begin{equation}\label{eq:three-weight-basic-estimate}
+ \int\sum_{j,k}\varphi_{j\bar k}f_j\bar f_k\mathrm e^{-\varphi}
+ \le(1+t^{-1})\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2
+      +(1+t)\int|f|^2|\bar\partial\psi|^2\mathrm e^{-\varphi}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Integration by parts makes $\delta_j$ adjoint to $\partial_{\bar z_j}$ in the $\varphi$-weighted norm, and
+$\partial_{\bar z_k}\delta_j-\delta_j\partial_{\bar z_k}=\varphi_{j\bar k}$.
+Thus expansion of $\|\sum\delta_jf_j\|^2$ gives the Hessian term plus
+$\sum_{j,k}\langle\partial_{\bar z_k}f_j,\partial_{\bar z_j}f_k\rangle_\varphi$.
+Expanding
+$|\bar\partial f|^2=\sum_{j<k}|\partial_{\bar z_j}f_k-\partial_{\bar z_k}f_j|^2$
+cancels those cross terms and leaves the sum of all derivative squares. This proves the identity. Here $\mathrm e^\psi T^*f=\sum\delta_jf_j-\sum\psi_{z_j}f_j$. Apply
+$|A+B|^2\le(1+t^{-1})|A|^2+(1+t)|B|^2$.
+The first term has squared norm $\|T^*f\|_{H_0}^2$, since $\varphi_1=\varphi-2\psi$; the $S$ norm uses $\varphi_3=\varphi$. Drop the nonnegative derivative term and bound $|\sum\psi_{z_j}f_j|^2$ by $|\bar\partial\psi|^2|f|^2$. This gives \eqref{eq:three-weight-basic-estimate}.
+\end{proof}
+\index{Bochner--Kodaira identity!interior scalar form}
+
+For a semipositive Hermitian matrix $A$, write $A[b]=\sum_{j,k}A_{j\bar k}b_j\bar b_k$ and define its dual coefficient energy by
+\[
+ |\alpha|_{A^{-1}}^2
+   =\sup_{b\ne0}\frac{|\sum_j\alpha_j\bar b_j|^2}
+                            {\sum_{j,k}A_{j\bar k}b_j\bar b_k}.
+\]
+A quotient with zero denominator is zero when its numerator is zero and is infinite otherwise. Equivalently diagonalize the Hermitian form, sum $|\alpha_j|^2/\lambda_j$ on its positive eigenspaces, and require zero components on its null space. This convention specifies the inverse even when $A$ is singular, and avoids an index-transposition ambiguity in matrix notation.
+
+\Needspace{12\baselineskip}
+\begin{theorem}[H\"ormander]\label{thm:hormander-smooth-weight}
+Let $\Omega\subset\mathbb C^n$ be pseudoconvex, $n\ge1$, and let $\varphi$ be smooth and strictly plurisubharmonic. For $\alpha\in L^2_{\loc,(0,1)}(\Omega)$ with $\bar\partial\alpha=0$, suppose
+\[
+ M=\int_\Omega|\alpha|_{H_\varphi^{-1}}^2\mathrm e^{-\varphi}\,\mathrm dV<\infty,
+ \qquad H_\varphi=(\varphi_{j\bar k}).
+\]
+There is $u\in L^2(\Omega,\mathrm e^{-\varphi})$ satisfying $\bar\partial u=\alpha$ and $\int|u|^2\mathrm e^{-\varphi}\le M$.
+\end{theorem}
+\begin{proof}
+Choose a nonnegative smooth strictly plurisubharmonic exhaustion $s$. Fix $t\ge1$ and take smooth cutoffs $\chi_\nu$ of $s$, supported on successive compact sublevels, with their gradients supported beyond $\{s\le t+2\}$. Choose a smooth nonnegative $\psi$, zero on $\{s\le t+1\}$, with $\mathrm e^\psi\ge|\bar\partial\chi_\nu|^2$ for every $\nu$. For example the cutoffs can have uniformly bounded one-variable derivatives, and a smooth function equal outside that initial sublevel to $\log(1+C|\bar\partial s|^2)$ supplies this bound.
+
+Choose a smooth convex increasing $\gamma$ which vanishes on $(-\infty,t]$ and grows so that
+\[
+ \gamma(s)\ge2\psi,\qquad
+ H_{\gamma(s)}\ge(1+t)|\bar\partial\psi|^2 I,
+ \qquad\int|\alpha|^2\mathrm e^{-\varphi-\gamma(s)+\psi}<\infty.
+\]
+Here is why these simultaneous choices are possible. On every compact level strip, the minimum eigenvalue of $H_s$ is positive and $\psi$, its first derivatives and the indicated local integral of $|\alpha|^2\mathrm e^{-\varphi}$ are finite. Choose the derivative of $\gamma$ successively larger than these strip bounds divided by that eigenvalue, and choose its preceding values large enough for $\gamma\ge2\psi$ and for the integrals on successive strips to be at most $2^{-j}$. A smooth nondecreasing majorant of these derivative bounds is obtained from a sum of nonnegative smooth increasing step functions, locally finite to the right; integrating it gives a convex $\gamma$. Its first increase can lie between $t$ and $t+1$, where $\psi=0$, so all requirements coexist with $\gamma=0$ below $t$. The Hessian chain rule $H_{\gamma(s)}\ge\gamma'(s)H_s$ proves the matrix requirement.
+
+Set $\varphi_0=\varphi+\gamma(s)$ and $\varphi_k=\varphi_0+(k-3)\psi$. The last integral puts $\alpha$ in $H_1$, where it belongs to $\ker S$. Apply \eqref{eq:three-weight-basic-estimate} with $\varphi_0$ in place of $\varphi$. Its additional Hessian absorbs the last term, leaving
+\[
+ \int H_\varphi[f]\mathrm e^{-\varphi_0}
+       \le(1+t^{-1})\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2.
+\]
+Since $\varphi-2\varphi_2=-\varphi_0-\gamma(s)+2\psi\le-\varphi_0$, the same upper bound holds for the integral with weight $\mathrm e^{\varphi-2\varphi_2}$. Pointwise duality and Cauchy--Schwarz therefore give
+\[
+ |\langle\alpha,f\rangle_{H_1}|^2
+ \le M\int H_\varphi[f]\mathrm e^{\varphi-2\varphi_2}
+ \le M(1+t^{-1})\bigl(\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2\bigr).
+\]
+Density passes this inequality from compactly supported smooth forms to both domains. \Cref{thm:hilbert-complex-solvability} gives $\bar\partial u_t=\alpha$ with $\|u_t\|_{H_0}^2\le M(1+t^{-1})$. On $\{s<t\}$ both auxiliary functions vanish, so
+\[
+ \int_{\{s<t\}}|u_t|^2\mathrm e^{-\varphi}\le M(1+t^{-1}).
+\]
+Apply \cref{prop:hilbert-weak-sequences} on each fixed compact sublevel and select a diagonal subsequence as $t\to\infty$. Its limits agree as distributions on overlaps, giving $u$ with $\bar\partial u=\alpha$. Weak lower semicontinuity gives a bound $M$ on every sublevel; monotone convergence proves the global bound.
+\end{proof}
+\index{H\"ormander estimate!smooth weight}
+
+\begin{theorem}\label{thm:hormander-singular-lower-bound}
+Let $p\in\PSH(\Omega)$ on a pseudoconvex open set, and let $q$ be smooth with semipositive complex Hessian $A$. If $\bar\partial\alpha=0$, $\alpha\in L^2_{\loc,(0,1)}$ and
+\[
+ M=\int_\Omega|\alpha|_{A^{-1}}^2\mathrm e^{-p-q}\,\mathrm dV<\infty,
+\]
+then $\bar\partial u=\alpha$ has a solution with $\int|u|^2\mathrm e^{-p-q}\le M$. In particular, if $A\ge\lambda I$ with positive continuous $\lambda$, the right side can be replaced by $\int\lambda^{-1}|\alpha|^2\mathrm e^{-p-q}$.
+\end{theorem}
+\begin{proof}
+Choose increasing pseudoconvex sublevels $\Omega_j\Subset\Omega$. Radial regularizations $p_j\downarrow p$ are smooth on neighborhoods of their closures when the radii decrease sufficiently rapidly. Choose $\eta_j\downarrow0$ and put $\varphi_j=p_j+q+\eta_j|z|^2$. Its Hessian is at least $A+\eta_jI$, and $\varphi_j\ge p+q$. Thus
+\[
+ \int_{\Omega_j}|\alpha|_{H_{\varphi_j}^{-1}}^2\mathrm e^{-\varphi_j}
+ \le\int_{\Omega_j}|\alpha|_{A^{-1}}^2\mathrm e^{-p-q}\le M.
+\]
+The smooth theorem supplies $u_j$ on $\Omega_j$. On each compact subset the $\varphi_j$ have a uniform upper bound, so these solutions are bounded in unweighted local $L^2$. Diagonal weak subselection gives $u$ with the required distributional derivative. For fixed $k$ and a fixed compact subset, sufficiently late $\varphi_j\le\varphi_k$ there. Weak lower semicontinuity in the equivalent smooth weighted norm gives $\int|u|^2\mathrm e^{-\varphi_k}\le M$ on that compact. Let $k\to\infty$ and then exhaust $\Omega$; monotone convergence gives the claimed bound. The last assertion follows from the pointwise dual-energy inequality $|\alpha|_{A^{-1}}^2\le\lambda^{-1}|\alpha|^2$.
+\end{proof}
+\index{H\"ormander estimate!singular weight}
+
+A weight $p+q$ here is locally bounded above and finite almost everywhere. Its weighted $L^2$ space is a Hilbert space, even if the weight is not locally integrable: the measure is sigma-finite, by restricting to compact sets where the weight is bounded. Weighted convergence implies local unweighted convergence. Consequently a nonempty weighted solution class is a closed affine subspace and has the minimal solution characterized by orthogonality to its holomorphic kernel. A distribution with $\bar\partial h=0$ is holomorphic: $\Delta h=4\sum_j\partial_{z_j}\partial_{\bar z_j}h=0$, so Weyl's lemma makes it smooth, and its Cauchy--Riemann equations give holomorphicity. These observations justify minimal solutions for the singular weights as well.
+
+\section{Interpolation and extension across a hyperplane}
+\label{sec:weighted-interpolation-extension}
+
+\begin{proposition}\label{prop:logarithmic-point-interpolation}
+Let $\Omega$ be a bounded pseudoconvex domain of diameter at most $L$, let $B(a,2r)\Subset\Omega$, and let $p\in\PSH(\Omega)$. If $h$ is holomorphic on that ball and $\int_{B(a,2r)}|h|^2\mathrm e^{-p}<\infty$, there is $F\in\mathcal O(\Omega)$ such that
+\[
+ F(a)=h(a),\qquad
+ \int_\Omega|F|^2\mathrm e^{-p}\le C(n,r,L)
+                         \int_{B(a,2r)}|h|^2\mathrm e^{-p}.
+\]
+The constant is independent of $p$, $h$ and $a$ subject to these geometric bounds.
+\end{proposition}
+\begin{proof}
+Choose a smooth cutoff $\chi$, equal to one on $B(a,r)$, supported in $B(a,2r)$, with $|\bar\partial\chi|\le C_n/r$. Extend $\chi h$ by zero. Its derivative $\alpha=h\bar\partial\chi$ is closed and supported in the intervening annulus. Apply \cref{thm:hormander-singular-lower-bound} with singular part $p+n\log|z-a|^2$ and smooth part $|z-a|^2$. The Hessian lower bound is the identity, so
+\[
+ \int_\Omega |u|^2|z-a|^{-2n}\mathrm e^{-p-|z-a|^2}
+    \le C_n r^{-2n-2}\int_{B(a,2r)}|h|^2\mathrm e^{-p},
+ \qquad\bar\partial u=\alpha.
+\]
+Near $a$, $u$ is holomorphic. The local upper bound of $p$ bounds $\mathrm e^{-p-|z-a|^2}$ below by a positive constant. A nonzero value of $u$ at $a$ would make the displayed integral diverge, since $\int_0^r t^{-2n}t^{2n-1}\,\mathrm dt=\infty$. Thus $u(a)=0$. The function $F=\chi h-u$ is holomorphic and has the desired value. Multiplication by $|z-a|^{2n}\mathrm e^{|z-a|^2}\le L^{2n}\mathrm e^{L^2}$ bounds its correction in the $p$-weighted norm. Finally $|A-B|^2\le2|A|^2+2|B|^2$ proves the assertion with the stated constant dependencies.
+\end{proof}
+\index{interpolation!logarithmic pole}
+
+\begin{lemma}\label{lem:bounded-weight-twist}
+Let $\Omega$ be bounded and pseudoconvex, $p\in\PSH(\Omega)$, and let $\psi$ be a smooth bounded plurisubharmonic function. Put $A=H_\psi$ and $h=|\bar\partial\psi|_{A^{-1}}^2$. Suppose $h<1$ everywhere. For a closed $\alpha\in L^2_{\loc,(0,1)}\cap L^2_{(0,1)}(\mathrm e^{-p})$, assume $h\le a<1$ on its essential support and
+$E=\int|\alpha|_{A^{-1}}^2\mathrm e^{\psi-p}<\infty$.
+Then there is a solution with
+\[
+ \int_\Omega(1-h)|u|^2\mathrm e^{\psi-p}
+      \le\frac{1+\sqrt a}{1-\sqrt a}\,E.
+\]
+\end{lemma}
+\begin{proof}
+The singular-weight estimate with the smooth part $|z|^2$ gives a solution in $L^2(\mathrm e^{-p})$, since $\Omega$ is bounded. Take its minimal solution $u$. The weighted holomorphic spaces for $p$ and $p+\psi$ have the same elements, because $\psi$ is bounded. Thus $v=u\mathrm e^\psi$ is the minimal solution of
+\[
+ \bar\partial v=\beta=(\alpha+u\bar\partial\psi)\mathrm e^\psi
+\]
+in $L^2(\mathrm e^{-p-\psi})$: its inner product with any holomorphic function there equals the $p$-weighted inner product of $u$ with that function. The form $\beta$ is closed and its dual energy is finite, since $h<1$, $\psi$ is bounded, $u\in L^2(\mathrm e^{-p})$ and $E<\infty$. Apply \cref{thm:hormander-singular-lower-bound} with smooth part $\psi$. Minimality then gives
+\[
+ \int|u|^2\mathrm e^{\psi-p}
+ \le\int|\alpha+u\bar\partial\psi|_{A^{-1}}^2\mathrm e^{\psi-p}.
+\]
+Expand the square and move its $h|u|^2$ term left. Write $J$ for the remaining left side. For $t>1$, Cauchy--Schwarz and $2AB\le tA^2+t^{-1}B^2$ give
+\[
+ J\le\left(1+\frac{ta}{1-a}\right)E+t^{-1}J.
+\]
+The cross term is supported where $\alpha$ is nonzero, so only there is the bound $h\le a$ used. If $a>0$, choose $t=1+a^{-1/2}$, yielding the claimed coefficient. If $a=0$, the cross term vanishes and $J\le E$ directly.
+\end{proof}
+
+\begin{lemma}\label{lem:extension-log-log-weight}
+For $|\zeta|<1/4$ and $0<\varepsilon<1/4$, set
+\[
+ s=-\log(|\zeta|^2+\varepsilon^2),\qquad
+ \eta=s+\log s,\qquad\psi_\varepsilon=-\log\eta.
+\]
+This is smooth, bounded for each fixed $\varepsilon$, and strictly subharmonic. With $h=|\partial_{\bar\zeta}\psi_\varepsilon|^2/(\psi_\varepsilon)_{\zeta\bar\zeta}$,
+\[
+ \begin{split}
+ (1-h)\mathrm e^{\psi_\varepsilon}&\ge(6s^2)^{-1},\\
+ h&\le\frac{2}{-\log(2\varepsilon^2)}\quad(|\zeta|\le\varepsilon),\\
+ \frac{\mathrm e^{\psi_\varepsilon}}
+ {|\zeta|^2(\psi_\varepsilon)_{\zeta\bar\zeta}}
+     &\le25/4\quad(\varepsilon/2\le|\zeta|\le\varepsilon).
+ \end{split}
+\]
+In particular $h<1$ everywhere and its bound on the smaller disc tends to zero.
+\end{lemma}
+\begin{proof}
+For $x=|\zeta|^2>0$, $t=\log x$ and $b=x/(x+\varepsilon^2)$, we have $s'=-b$ and $s''=-b(1-b)$, where primes are $t$ derivatives. Put $D=1+1/s$. Differentiation gives
+\[
+ \psi'=\frac{bD}{\eta},\qquad
+ \psi''=A+B,\quad
+ A=\frac{b^2D^2}{\eta^2},\quad
+ B=\frac{b(1-b)D}{\eta}+\frac{b^2}{\eta s^2}>0.
+\]
+Thus $h=A/(A+B)$ and $\psi_{\zeta\bar\zeta}=\psi''/x>0$. Since $B\ge b^2/(\eta s^2)$,
+\[
+ (1-h)\mathrm e^\psi=\frac{B}{\eta(A+B)}
+      \ge\frac1{\eta+(s+1)^2}\ge\frac1{6s^2},
+\]
+using $s>1$ and $\eta\le2s$. If $x\le\varepsilon^2$, then $b\le1/2$ and
+$A/B\le bD/(\eta(1-b))\le2/s$, proving the second estimate. In the stated annulus, $1/5\le b\le1/2$, so $\eta\psi''\ge b(1-b)D\ge4/25$, proving the third. At zero the smooth formula has gradient zero and positive Hessian, obtained by its limit in $x$; the estimates extend there. These calculations also prove strict subharmonicity and $h<1$.
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}[Ohsawa--Takegoshi]\label{thm:local-ot-extension}
+Let $\Omega\subset\mathbb C^{n-1}\times\Delta_R$ be pseudoconvex, put $\Omega_0=\Omega\cap\{z_n=0\}$, and let $p\in\PSH(\Omega)$. Every holomorphic $f$ on $\Omega_0$ with
+\[
+ I=\int_{\Omega_0}|f|^2\mathrm e^{-p}\,\mathrm dV_{2n-2}<\infty
+\]
+has an extension $F\in\mathcal O(\Omega)$ such that
+\[
+ F|_{\Omega_0}=f,\qquad
+ \int_\Omega|F|^2\mathrm e^{-p}\,\mathrm dV_{2n}\le C R^2 I,
+\]
+where $C$ is an absolute constant. For $n=1$, the zero-dimensional integral is the weighted value at the point, with counting measure. Empty intersections use $F=0$. If $p$ is identically $-\infty$ on a component of the slice, finite $I$ requires $f=0$ there, and its contribution is zero.
+\end{theorem}
+\begin{proof}
+Scale the normal variable to $|\zeta|<1/4$; its area scales by a fixed multiple of $R^2$. We prove a uniform estimate on any bounded pseudoconvex $D\Subset\Omega$. First use a smooth plurisubharmonic weight defined near $\overline D$. The projection of $\overline D\cap\{\zeta=0\}$ onto the slice is a compact subset of $\Omega_0$ where the smooth weight is defined. For sufficiently small $\varepsilon$, every projection of a point of $D$ with $|\zeta|\le\varepsilon$ lies in one fixed relatively compact slice neighborhood $P\Subset\Omega_0$ contained in that weight neighborhood. Hence $g_\varepsilon(z',\zeta)=f(z')\chi(|\zeta|^2/\varepsilon^2)$ is smooth on $D$ and extends by zero wherever the slice projection is unavailable. Here $\chi$ is smooth, equals one below $1/4$ and zero above one. Its derivative
+\[
+ \alpha_\varepsilon=f(z')\chi'(|\zeta|^2/\varepsilon^2)
+                    \frac{\zeta}{\varepsilon^2}\,\mathrm d\bar\zeta
+\]
+is closed, supported in the annulus $\varepsilon/2\le|\zeta|\le\varepsilon$. Use the twist lemma with singular weight $\widetilde p=p+\log|\zeta|^2$ and $\psi=\psi_\varepsilon$. For each fixed $\varepsilon$, its weighted $L^2$ condition on $\alpha_\varepsilon$ holds because the support avoids the pole and the remaining data are smooth on a compact set. For small $\varepsilon$ the support bound $a_\varepsilon$ tends to zero, so the twist coefficient is bounded by an absolute constant.
+
+The annulus estimate and $|\zeta|^2\le\varepsilon^2$ give
+\[
+ \int_D|\alpha_\varepsilon|_{H_\psi^{-1}}^2
+             \mathrm e^{\psi-\widetilde p}
+ \le C\varepsilon^{-2}
+        \int_{D\cap\{|\zeta|\le\varepsilon\}}
+                            |f(z')|^2\mathrm e^{-p(z',\zeta)}\,\mathrm dV.
+\]
+By uniform continuity of the smooth weight on the relevant compact set, choose $\varepsilon$ still smaller so that
+$\mathrm e^{-p(z',\zeta)}\le2\mathrm e^{-p(z',0)}$ there. Fubini bounds the last expression by $C\int_P|f|^2\mathrm e^{-p(z',0)}$. The solution consequently satisfies
+\begin{equation}\label{eq:normal-extension-correction}
+ \int_D\frac{|u_\varepsilon|^2\mathrm e^{-p}}
+ { |\zeta|^2\log^2(|\zeta|^2+\varepsilon^2)}
+       \le C\int_P|f|^2\mathrm e^{-p(z',0)}.
+\end{equation}
+Near the hyperplane its derivative is zero, so $u_\varepsilon$ is holomorphic. For fixed $\varepsilon$ the normal factor in this integral behaves as a positive constant times $|\zeta|^{-2}$. A nonzero value on the hyperplane would, by continuity on a small product neighborhood and the local upper bound of $p$, make the integral infinite. Thus $u_\varepsilon$ vanishes there, and $F_\varepsilon=g_\varepsilon-u_\varepsilon$ is a holomorphic extension on $D$.
+
+For $x=|\zeta|^2<1/16$ the factor $x\log^2(x+\varepsilon^2)$ is bounded by $x\log^2x\le1$, so \eqref{eq:normal-extension-correction} bounds the ordinary $p$-weighted norm of $u_\varepsilon$. The same continuity and Fubini estimate bounds the norm of $g_\varepsilon$ by $C\varepsilon^2\int_P|f|^2\mathrm e^{-p(z',0)}$. Hence
+$\int_D|F_\varepsilon|^2\mathrm e^{-p}\le C\int_P|f|^2\mathrm e^{-p(z',0)}$
+with an absolute $C$, after restricting to small $\varepsilon$.
+
+For the original weight and domain choose bounded increasing pseudoconvex $D_j\Subset\Omega$ and radial smoothings $p_j\downarrow p$ defined near $\overline D_j$. In the preceding construction choose $P_j\Subset\Omega_0$ inside the smoothing neighborhood, containing the slice projection of its small normal neighborhood. Since $p_j(z',0)\ge p(z',0)$, each extension has norm at most $CI$ in $L^2(D_j,\mathrm e^{-p_j})$. On every compact set these norms bound the unweighted norms uniformly. Submean inequalities for $|F_j|^2$, followed by the one-variable Cauchy estimates on interior polydiscs, give uniform bounds and equicontinuity on smaller compact sets. \Cref{prop:arzela-ascoli} and diagonal selection give a locally uniform holomorphic limit $F$. Its restriction is $f$. For fixed $k$, late $p_j\le p_k$ on any fixed compact; the weighted norm bound passes to $F$. Monotone convergence as $k\to\infty$ and compact exhaustion give $\int_\Omega|F|^2\mathrm e^{-p}\le CI$. Undoing the normal scaling gives the theorem. If $I=0$, these estimates give the zero extension; the specified slice conventions follow as well.
+\end{proof}
+\index{Ohsawa--Takegoshi theorem!local extension}
+
+\begin{corollary}\label{cor:ot-point-value-bound}
+For a bounded pseudoconvex domain $\Omega\subset\mathbb C^n$ of diameter at most $L$, $p\in\PSH(\Omega)$, and $p(a)>-\infty$, there is $F\in\mathcal O(\Omega)$ such that
+\[
+ F(a)=1,\qquad\int_\Omega|F|^2\mathrm e^{-p}
+                       \le C^n L^{2n}\mathrm e^{-p(a)}.
+\]
+Extension from any affine complex subspace of codimension $r$ has the corresponding bound $C^rL^{2r}$ times its slice norm.
+\end{corollary}
+\begin{proof}
+Choose a unitary affine flag through the given subspace, and apply the theorem one normal coordinate at a time. Each slice is pseudoconvex: restrict a finite continuous exhaustion of $\Omega$, whose sublevels remain compact on the closed slice. Every normal coordinate has range within a disc of radius $L$ centered at a point of the smallest slice. Restriction of $p$ is plurisubharmonic or identically $-\infty$ on each component. The latter components have zero data whenever the weighted norm is finite and use the zero extension. Iteration multiplies the estimates. Starting with the value one on the singleton $\{a\}$ proves the first assertion. In dimension zero the initial norm is exactly $\mathrm e^{-p(a)}$ and there is no extension step.
+\end{proof}
+\index{interpolation!weighted point-value bound}
+
+\Needspace{12\baselineskip}
+\begin{corollary}\label{cor:integrable-germ-restriction}
+Let $Y$ be a complex submanifold of $X$, let $p$ be plurisubharmonic near $a\in Y$, and let $f$ be a holomorphic germ on $Y$ with $|f|^2\mathrm e^{-p|_Y}$ locally integrable. There is a holomorphic germ $F$ on $X$ restricting to $f$ and with $|F|^2\mathrm e^{-p}$ locally integrable. Smooth positive volume forms give the same notion of local integrability.
+\end{corollary}
+\begin{proof}
+Straighten $Y$ in a holomorphic coordinate neighborhood: the local defining submersion together with complementary coordinates is invertible by the holomorphic inverse function theorem. Choose a sufficiently small ball in these coordinates, where $f$ is defined and its slice norm is finite. The pulled-back $p$ is plurisubharmonic by \cref{prop:psh-holomorphic-pullback}. Iterate \cref{thm:local-ot-extension} through its normal coordinates to obtain $F$ with finite ambient norm. Holomorphic coordinate Jacobians and smooth positive densities are bounded above and below on a smaller compact neighborhood, so these comparisons preserve local integrability. The zero-dimensional and zero-germ cases use the same conventions as the extension theorem.
+\end{proof}
+\index{holomorphic extension!integrable germs}
