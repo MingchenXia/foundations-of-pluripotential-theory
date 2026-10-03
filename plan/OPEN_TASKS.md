@@ -36,9 +36,9 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 ## Q10 — Envelopes and model potentials
 
-- `Q10-01` [planned] Rooftop, obstacle, P and I envelopes and nonempty competitor conditions
-- `Q10-02` [planned] Contact-set measure, regularity and orthogonality in the stated regimes
-- `Q10-03` [planned] Model potentials, prescribed singularities and mass inequalities
+- `Q10-01` [second-read] Rooftop, obstacle, P and I envelopes and nonempty competitor conditions
+- `Q10-02` [drafting] Contact-set measure, regularity and orthogonality in the stated regimes
+- `Q10-03` [drafting] Model potentials, prescribed singularities and mass inequalities
 - `Q10-04` [planned] Relative capacities, bigness criteria and the quantitative rooftop theorem used by Nakamaye
 
 ## Q11 — Energy, geodesics and metric spaces

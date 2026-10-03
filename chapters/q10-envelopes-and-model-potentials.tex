@@ -1,2 +1,313 @@
 \chapter{Envelopes and model potentials}
 \label{chap:q10}
+
+Let $X$ be a connected compact K\"ahler manifold of dimension $n\geq1$, and let $\theta$ be a closed smooth real $(1,1)$-form. An obstacle need not itself be $\theta$-psh. Its envelope is the largest admissible potential below it; a rooftop imposes two obstacles at once. Local homogeneous replacement makes the envelope maximal wherever the obstacle leaves room. The resulting contact property controls its Monge--Amp\`ere measure. Imposing singularity bounds or multiplier-ideal constraints instead gives two further envelopes. Their definitions have different closure properties, so we keep the two constructions distinct. Historical comparisons are in \cref{sec:history-envelopes}.
+
+\section{Obstacles and rooftops}
+\label{sec:global-obstacle-envelopes}
+Quasi-everywhere means outside a pluripolar set. Local outer capacities from \cref{def:monge-ampere-capacity} give an intrinsic notion of quasi-continuity on $X$: on each compact coordinate neighborhood, remove an open set of arbitrarily small capacity to make the function continuous. For extended real functions, continuity uses the compact topology of $[-\infty,+\infty]$. A finite chart cover and capacity comparison make the definition independent of the charts. Pluripolar changes do not affect an envelope defined by quasi-everywhere inequalities.
+
+\begin{definition}\label{def:global-obstacle-envelope}
+For a Borel $f:X\to[-\infty,+\infty]$, put
+\[
+ \mathcal A_\theta(f)=\{v\in\PSH(X,\theta):v\leq f
+                                     \text{ quasi-everywhere}\}.
+\]
+If this family is nonempty and uniformly bounded above, define
+$P_\theta(f)=(\sup\mathcal A_\theta(f))^*$. For an empty family set $P_\theta(f)=-\infty$. We use the operator with an unbounded family only when a finite upper envelope has first been established. If $f$ is bounded above quasi-everywhere, nonemptiness already supplies the upper-bound condition.
+\end{definition}
+\index{envelope!obstacle}
+
+\begin{proposition}\label{prop:obstacle-envelope-maximal-member}
+For a nonempty uniformly upper bounded family, $P_\theta(f)\in\mathcal A_\theta(f)$ and is its largest member. It is monotone in $f$, unchanged by pluripolar changes, and satisfies $P_\theta(f+c)=P_\theta(f)+c$ for $c\in\mathbb R$. If $f$ is upper semicontinuous, its obstacle inequality holds everywhere. If $f_j\downarrow f$ and the first family is upper bounded, then
+\[
+ P_\theta(f_j)\downarrow P_\theta(f),
+\]
+where collapse to $-\infty$ is allowed. For two nonempty envelopes with $f-c\leq g\leq f+c$ quasi-everywhere, $c\geq0$, their difference is bounded by $c$ on their common finite locus.
+\end{proposition}
+\begin{proof}
+Add smooth local potentials for $\theta$ and apply \cref{thm:psh-upper-envelopes}. Its countable selection may be made global on a finite chart cover. The increasing finite maxima of those selected members still lie below $f$ outside a countable union of pluripolar sets. Their regularized supremum differs from their pointwise supremum only on a pluripolar set, by \cref{cor:psh-pluripolar-discrepancy}. It is therefore admissible and dominates every member of the family. A finite upper bound prevents $+\infty$, and any member prevents collapse. If $f\leq M$ quasi-everywhere, every competitor is at most $M$ everywhere: canonical representatives turn the almost-everywhere bound into the pointwise bound.
+
+Monotonicity, translation and invariance under pluripolar changes follow from the competitor sets. If $f$ is upper semicontinuous and $v\leq f$ quasi-everywhere, a local psh representative $v+h$ has ball averages at most the supremum of $f+h$ on the ball, since pluripolar sets have volume zero. Shrinking the ball gives $v\leq f$ at every point.
+
+For decreasing obstacles, the envelopes decrease. If their limit $v$ is not identically $-\infty$, it is $\theta$-psh by the decreasing-limit theorem. Outside a countable union of exceptional sets it is at most every $f_j$, hence at most $f$. It is a competitor for $f$ and therefore at most $P_\theta(f)$. The reverse inequality is monotonicity. If the envelopes collapse, a competitor for $f$ would bound all of them below and prevent collapse. Finally $f-c\leq g\leq f+c$ gives the asserted two envelope bounds by monotonicity and translation.
+\end{proof}
+
+\begin{definition}\label{def:rooftop-envelope}
+For $u,v\in\PSH(X,\theta)$ the \emph{rooftop envelope} is
+\[
+ P_\theta(u,v)=P_\theta(\min\{u,v\}).
+\]
+It is $-\infty$ exactly when there is no common $\theta$-psh minorant. We extend the operator by $P_\theta(u,-\infty)=-\infty$. Otherwise it is the largest pointwise common minorant, since the obstacle is upper semicontinuous.
+\end{definition}
+\index{rooftop envelope}
+
+\begin{proposition}\label{prop:rooftop-algebra}
+The rooftop is commutative, associative, monotone in both arguments and idempotent. It commutes with common constant shifts and with decreasing limits, including empty-limit cases. For $u\in\PSH(X,\theta)$ and $C\geq0$, the envelope $P_\theta(u+C,V_\theta)$ is nonempty and has the singularity type of $u$.
+\end{proposition}
+\begin{proof}
+Commutativity and monotonicity follow from the common-minorant description. A potential lies below $P_\theta(u,v)$ and $w$ exactly when it lies below all three potentials: either it is an admissible common minorant or the admissible set is empty. This proves associativity, including $-\infty$. The potential $u$ is its own largest minorant, proving idempotence. Translation and decreasing limits are \cref{prop:obstacle-envelope-maximal-member}. Subtract a constant from $u$ so that $u\leq0$. Then $u\leq V_\theta$ and
+\[
+ u\leq P_\theta(u+C,V_\theta)\leq u+C.
+\]
+For an unnormalized $u$, use $u-B$ with $B\geq\max\{0,\sup_Xu\}$ as the lower competitor. The resulting bounds still differ from $u$ by constants.
+\end{proof}
+
+\begin{example}\label{ex:empty-rooftop-projective-line}
+On $\mathbb P^1$ take $\theta=\omega_{\mathrm{FS}}$ with integral one, and let $\theta+\ddc u_0=[0]$ and $\theta+\ddc u_\infty=[\infty]$. A common minorant would have Lelong number at least one at both points by \cref{prop:lelong-logarithmic-growth}. Its positive current would have two atoms of mass at least one, whereas its total distributional mass is $\int_{\mathbb P^1}\theta=1$ by Stokes. Thus $P_\theta(u_0,u_\infty)=-\infty$. Nonemptiness of the separate potential classes does not guarantee a nonempty rooftop.
+\end{example}
+
+\section{Measures on contact sets}
+\label{sec:envelope-contact-measures}
+Write $\mu_u=\langle(\theta+\ddc u)^n\rangle$. A contact set is a Borel set of equality of the specified functions; it need not be closed. Saying that a measure is carried by it means that its complement has measure zero.
+
+\begin{lemma}\label{lem:ordered-potential-contact-measure}
+If $u,v\in\PSH(X,\theta)$ and $u\leq v$, then
+\[
+ \mathbf1_{\{u=v\}}\mu_u\leq\mathbf1_{\{u=v\}}\mu_v.
+\]
+Equal values of $-\infty$ make no contribution to either restriction.
+\end{lemma}
+\begin{proof}
+Put $w_\varepsilon=\max\{u,v-\varepsilon\}$. It increases to $v$ as $\varepsilon\downarrow0$, and \cref{cor:nonpluripolar-increasing-continuity} gives $\mu_{w_\varepsilon}\to\mu_v$. On the plurifine open set $\{u>v-\varepsilon\}$ its measure is $\mu_u$. This set contains every finite contact point, so positivity gives
+$\mu_{w_\varepsilon}\geq\mathbf1_{\{u=v\}}\mu_u$.
+The right side is a fixed finite Borel measure. Pass to the weak limit against nonnegative continuous tests, then restrict the resulting measure inequality to the contact set. The products give all pole sets zero mass.
+\end{proof}
+
+\begin{lemma}\label{lem:bounded-lsc-obstacle-contact}
+Suppose $\{\theta\}$ is big and $f$ is bounded and lower semicontinuous. Then $u=P_\theta(f)$ has minimal singularities and $\mu_u$ is carried by $\{u=f\}$.
+\end{lemma}
+\begin{proof}
+Translate so that $-C\leq f\leq0$. The competitor $V_\theta-C$ gives
+$V_\theta-C\leq u\leq V_\theta$, proving the singularity assertion. A strict rational analytic current exists in the class by \cref{lem:logarithmic-cutoff-sum}. Let $A$ be its proper analytic pole set. Its potential is bounded below locally outside $A$, and minimality bounds $V_\theta$ below there. Thus $u$ is locally bounded on $X\setminus A$. The measure $\mu_u$ gives $A$ zero mass.
+
+At a point $x\in X\setminus A$ with $u(x)<f(x)$, lower semicontinuity of $f$ and upper semicontinuity of $u$ give a small coordinate ball on which $\sup u<\inf f$ by a fixed margin. Shrink it so that a smooth local potential $h$ for $\theta$ oscillates by less than half that margin. On a slightly larger ball $u+h$ is bounded. Its homogeneous replacement on the smaller ball, given by \cref{cor:global-psh-balayage}, is at most $\sup(u+h)$ there by the maximum principle. After subtracting $h$, the replacement is still below $f$ on the ball, and equals $u$ outside. It is a competitor for the global envelope, so maximality makes it equal to $u$. Its Monge--Amp\`ere measure is zero on the smaller ball. The set $\{u<f\}\setminus A$ is open and has a countable cover by such balls; its measure is zero. The envelope inequality $u\leq f$ holds quasi-everywhere by \cref{prop:obstacle-envelope-maximal-member}. Its exceptional set and $A$ have zero measure, completing the proof.
+\end{proof}
+
+\begin{theorem}\label{thm:quasicontinuous-obstacle-contact}
+Suppose $\{\theta\}$ is big and $f$ is quasi-continuous and bounded above quasi-everywhere. If $P_\theta(f)\ne-\infty$, then
+\[
+ \mu_{P_\theta(f)}(\{P_\theta(f)\ne f\})=0.
+\]
+\end{theorem}
+\begin{proof}
+First suppose $-C\leq f\leq0$ everywhere, after a pluripolar change if necessary. On a finite chart cover choose decreasing open sets $G_j$ whose local capacities tend to zero, with $f$ continuous on $X\setminus G_j$. Continuous extensions $f_j:X\to[-C,0]$ exist by the bounded extension construction used in \cref{thm:psh-capacity-quasicontinuity}. Put $h_j=\sup_{k\geq j}f_k$. It is lower semicontinuous, decreases, and agrees with $f$ outside $G_j$. The intersection of the $G_j$ has zero local capacity and is pluripolar by \cref{thm:zero-capacity-pluripolar}. Thus its limit $h$ equals $f$ quasi-everywhere.
+
+The envelopes $u_j=P_\theta(h_j)$ decrease to $u=P_\theta(f)$ and satisfy $V_\theta-C\leq u_j,u\leq V_\theta$. Use the analytic pole set $A$ in the preceding proof. On a compact coordinate neighborhood $K\Subset X\setminus A$, these are uniformly bounded. Their bounded products are uniformly dominated by local capacity, by \cref{lem:bounded-product-capacity-domination}. The preceding lemma gives
+\[
+ \int_X\bigl(1-\mathrm e^{u_j-h_j}\bigr)\,\mu_{u_j}=0.
+\]
+Replacing $h_j$ by $f$ in a compactly supported test integral changes it by at most a fixed constant times the capacity of $K\cap G_j$. This tends to zero. The bounded quasi-continuous weights $1-\mathrm e^{u_j-f}$ converge in capacity to $1-\mathrm e^{u-f}$ on $K$. Weighted capacity continuity therefore gives
+\[
+ \int_X\chi\bigl(1-\mathrm e^{u-f}\bigr)\,\mu_u=0
+ \quad(0\leq\chi\in C_c^\infty(X\setminus A)).
+\]
+The integrand is nonnegative quasi-everywhere and positive exactly at finite points with $u<f$. Exhaustion of $X\setminus A$ and zero mass on $A$ prove the bounded case.
+
+For the general case translate so that $f\leq0$ quasi-everywhere, put $f_j=\max\{f,-j\}$ and $u_j=P_\theta(f_j)$. Then $u_j\downarrow u$, by the decreasing obstacle assertion, and the bounded case makes $\mu_{u_j}$ carried by $\{u_j=f_j\}$. Outside the same analytic set $A$, fix a compact chart neighborhood and set, for $C,\varepsilon>0$,
+\[
+ v_j^C=\max\{u_j,V_\theta-C\},\qquad
+ a_j=\frac{v_j^C-V_\theta+C}{v_j^C-V_\theta+C+\varepsilon}.
+\]
+These truncated potentials are uniformly bounded there and decrease to $v^C=\max\{u,V_\theta-C\}$. The weights $a_j$ converge in capacity to the corresponding $a$, and vanish where $u_j\leq V_\theta-C$.
+
+Define $b_j=\mathrm e^{u_j-f_j}$ wherever both values are finite, assigning any value in $[0,1]$ on the exceptional polar set. They converge in capacity to $b=\mathrm e^{u-f}$ on their common finite locus, with an arbitrary bounded value at its poles. Here is the justification for this assertion with infinite values. Since $u\leq f$ quasi-everywhere, the set $\{f=-\infty\}$ is pluripolar up to the existing exceptional set. Remove an open set of arbitrarily small capacity containing these poles and those of $u$, and make $u,f$ continuous on the remaining compact set by quasi-continuity. Both are finite there and have finite lower bounds. Consequently $f_j=f$ there for large $j$, and extended-capacity convergence of $u_j$ implies ordinary capacity convergence there through a fixed finite truncation. The exponential is uniformly Lipschitz on the relevant nonpositive differences. This proves capacity convergence after letting the removed capacity decrease to zero. It also proves quasi-continuity of the bounded limiting weights.
+
+Contact and locality give $a_j(1-b_j)\mu_{v_j^C}=a_j(1-b_j)\mu_{u_j}=0$. Weighted bounded capacity continuity passes this equality to
+$a(1-b)\mu_{v^C}=0$ on the compact chart neighborhood. Again locality replaces this by $a(1-b)\mu_u=0$. Let $\varepsilon\downarrow0$ and then $C\to\infty$. At every finite point of $u,V_\theta$ the weights tend to one. All omitted poles have zero mass, so dominated convergence gives $(1-b)\mu_u=0$ on $X\setminus A$. This says $u=f$ almost everywhere for $\mu_u$; its zero mass on $A$ proves the theorem.
+\end{proof}
+\index{envelope!contact-set concentration}
+
+\begin{corollary}\label{cor:rooftop-contact-inequality}
+Suppose $\{\theta\}$ is big and $w=P_\theta(u,v)\ne-\infty$. Then
+\[
+ \mu_w\leq\mathbf1_{\{w=u\}}\mu_u
+                       +\mathbf1_{\{w=v\}}\mu_v.
+\]
+The same argument gives concentration on the union of the contact sets for any finite nonempty rooftop.
+\end{corollary}
+\begin{proof}
+Psh potentials are quasi-continuous by \cref{thm:psh-capacity-quasicontinuity}, also in the extended topology after truncation. Their finite minimum has the same property and is bounded above. The theorem makes $\mu_w$ carried by $\{w=u\}\cup\{w=v\}$. On either set the ordered-potential contact inequality bounds its restriction by the corresponding obstacle measure. Adding the bounds proves the displayed inequality; counting their intersection twice is harmless for an upper bound. A finite minimum proves the last assertion in the same way.
+\end{proof}
+
+\Needspace{18\baselineskip}
+\section{Singularity envelopes}
+\label{sec:singularity-envelopes}
+Write $v\preceq u$ when $v\leq u+O(1)$, as in the comparison defining minimal singularities in \cref{def:global-minimal-potential}. The additive constant may depend on the competitor. Taking a supremum over those constants can change the bounded singularity type.
+
+\begin{definition}\label{def:singularity-p-envelope}
+For $u\in\PSH(X,\theta)$ define
+\[
+ P_\theta[u]=\bigl(\sup\{v\in\PSH(X,\theta):v\leq0,
+                                                   \ v\preceq u\}\bigr)^*.
+\]
+A \emph{model potential} is a fixed point $\phi=P_\theta[\phi]$ of this operator with positive non-pluripolar mass $\int_X\mu_\phi>0$. The reference $u-\sup_Xu$ is a competitor, so the envelope is always defined and satisfies $u-\sup_Xu\leq P_\theta[u]\leq V_\theta$ and $\sup_XP_\theta[u]=0$.
+\end{definition}
+\index{envelope!singularity $P$-envelope}\index{model potential}
+
+\begin{proposition}\label{prop:p-envelope-calculus}
+The envelope depends only on the bounded singularity type and is monotone for $\preceq$. After normalizing $u\leq0$,
+\[
+ P_\theta[u]=\left(\lim_{k\to\infty}
+                         P_\theta(u+k,V_\theta)\right)^*.
+\]
+It preserves all mixed non-pluripolar masses: for $u_j\in\PSH(X,\theta_j)$, $1\leq j\leq p\leq n$,
+\[
+ \int_X\left\langle\bigwedge_j(\theta_j+\ddc P_{\theta_j}[u_j])\right\rangle
+                                      \wedge\omega^{n-p}
+ =\int_X\left\langle\bigwedge_j(\theta_j+\ddc u_j)\right\rangle
+                                      \wedge\omega^{n-p}.
+\]
+For a minimal potential $u$ it equals $V_\theta$.
+\end{proposition}
+\begin{proof}
+Bounded-type invariance and monotonicity of the competitor sets prove the first assertions. Every normalized competitor $v\preceq u$ lies below $u+k$ for some integer $k$ and below $V_\theta$, hence below the corresponding rooftop. Conversely each rooftop is a normalized competitor of bounded type $u$. This proves the limit formula. Each tuple of rooftops has the mixed mass of the original tuple by \cref{cor:nonpluripolar-bounded-type-mixed-mass}. Their increasing canonical limits preserve those masses by \cref{cor:nonpluripolar-increasing-continuity}. For minimal $u$, $V_\theta$ is itself a competitor and bounds all the others.
+\end{proof}
+
+\begin{proposition}\label{prop:p-envelope-contact-concentration}
+In a big class, $\mu_{P_\theta[u]}$ is carried by $\{P_\theta[u]=0\}$. More precisely,
+\[
+ \mu_{P_\theta[u]}
+       \leq\mathbf1_{\{P_\theta[u]=V_\theta\}}\mu_{V_\theta}.
+\]
+\end{proposition}
+\begin{proof}
+Normalize $u\leq0$ and put $w_k=P_\theta(u+k,V_\theta)$. The rooftop inequality gives
+\[
+ \mu_{w_k}\leq\mathbf1_{\{u+k\leq V_\theta\}}\mu_u
+        +\mathbf1_{\{P_\theta[u]=V_\theta\}}\mu_{V_\theta}.
+\]
+For the second term use $w_k\leq P_\theta[u]\leq V_\theta$. The first term tends to zero in variation by dominated convergence: $u,V_\theta$ are finite almost everywhere for $\mu_u$. Increasing continuity passes the left side to the envelope measure. Finally the obstacle theorem with $f=0$ makes $\mu_{V_\theta}$ carried by $\{V_\theta=0\}$. On that set the additional equality with $P_\theta[u]$ gives its value zero.
+\end{proof}
+
+\Needspace{18\baselineskip}
+\section{Multiplier-ideal envelopes}
+\label{sec:multiplier-ideal-envelopes}
+The multiplier ideal of a quasi-psh potential is defined by adding a smooth local function to make it psh; bounded changes do not affect integrability. A prime divisor over $X$ is as in \cref{def:divisorial-order-discrepancy}, and its generic Lelong number is $\nu(u,E)$. For local ideal tests we also allow proper smooth models of coordinate neighborhoods, as in the valuative criterion.
+
+\begin{proposition}\label{prop:multiplier-singularity-order}
+For quasi-psh $u,v$ the following are equivalent:
+\begin{enumerate}
+ \item $\mathcal I(tv)\subseteq\mathcal I(tu)$ for every $t>0$;
+ \item the same inclusions hold for every positive integer $t$;
+ \item $\nu(v,E)\geq\nu(u,E)$ for every prime divisor $E$ over $X$.
+\end{enumerate}
+We write $v\preceq_{\mathcal I}u$ for this order, and $v\sim_{\mathcal I}u$ when both orders hold. In particular equality of all positive integer multiplier ideals is equivalent to equality for every positive real weight, and to equality of all divisorial Lelong numbers.
+\end{proposition}
+\begin{proof}
+The real-weight inclusions imply the integer ones. Orders of nested ideals have the reverse inequality, so \cref{cor:divisorial-lelong-ideal-recovery} and its integer limit give the Lelong-number inequality. Conversely, if a germ belongs to $\mathcal I(tv)$, the uniform valuative criterion in \cref{thm:general-valuative-multiplier-criterion} gives a positive parameter $\varepsilon$ with
+\[
+ \operatorname{ord}_E f+A_X(E)
+       \geq(1+\varepsilon)t\nu(v,E)
+       \geq(1+\varepsilon)t\nu(u,E)
+\]
+for every relevant divisor. The same criterion gives membership in $\mathcal I(tu)$. Applying the proved equivalence in both directions proves the equality assertions.
+\end{proof}
+\index{singularity order!multiplier ideals}\index{multiplier ideal!equivalence of potentials}
+
+\begin{lemma}\label{lem:divisorial-envelope-closure}
+Let $v_j$ be a nonempty uniformly upper bounded family in $\PSH(X,\theta)$, and let $v=(\sup_jv_j)^*$. For every prime divisor $E$ over $X$,
+\[
+ \nu(v,E)=\inf_j\nu(v_j,E).
+\]
+Thus maxima, sums and positive scaling preserve multiplier-ideal equivalence. Uniformly upper bounded envelopes of termwise equivalent families are equivalent as well.
+\end{lemma}
+\begin{proof}
+Fix a smooth model on which $E$ is a divisor. Countable envelope selection and increasing finite maxima give an $L^1$-convergent sequence downstairs. For a compact model, pullback is $L^1$-continuous by \cref{prop:smooth-target-psh-modification}. The same assertion is local for a proper smooth model of a coordinate neighborhood: on relatively compact upstairs charts the pulled-back local psh potentials have a common upper bound. Each chart meets the isomorphism locus, where change of variables gives the prescribed $L^1$ limit. Local psh compactness prevents collapse there and identifies every cluster limit; canonical representatives identify it on the whole chart. Thus pullback converges in $L^1$ locally also in this case. Its limit is the canonical envelope of the pulled-back sequence. Since every original family member is below $v$, the same is true upstairs. The sequence envelope is consequently the full family envelope upstairs too. Apply \cref{prop:lelong-calculus} at each point of $E$. Taking infima over those points, as in \cref{prop:generic-divisorial-lelong}, commutes with taking the family infimum and gives the formula. The pointwise Lelong formulas for sums, maxima and scaling give the remaining assertions through \cref{prop:multiplier-singularity-order}.
+\end{proof}
+
+\begin{definition}\label{def:multiplier-ideal-envelope}
+Define
+\[
+ P_\theta[u]_{\mathcal I}
+ =\bigl(\sup\{v\in\PSH(X,\theta):v\leq0,
+                                      \ v\sim_{\mathcal I}u\}\bigr)^*.
+\]
+Its fixed points are called \emph{$\mathcal I$-model potentials}. The envelope is nonempty because $u-\sup_Xu$ is a competitor. It is at most $V_\theta$.
+\end{definition}
+\index{envelope!multiplier-ideal envelope}\index{model potential!multiplier-ideal model}
+
+\begin{proposition}\label{prop:multiplier-envelope-projection}
+The envelope $P_\theta[u]_{\mathcal I}$ is multiplier-ideal equivalent to $u$, is itself a competitor, and is the largest competitor. Therefore
+\[
+ P_\theta[P_\theta[u]_{\mathcal I}]_{\mathcal I}
+                =P_\theta[u]_{\mathcal I}.
+\]
+The same envelope results if equivalence in its definition is replaced by $v\preceq_{\mathcal I}u$. Furthermore
+\[
+ P_\theta[u]\sim_{\mathcal I}u,\qquad
+ P_\theta[u]\leq P_\theta[u]_{\mathcal I}.
+\]
+Every $\mathcal I$-model potential of positive non-pluripolar mass is a model potential.
+\end{proposition}
+\begin{proof}
+All equivalent competitors have the same divisorial Lelong numbers; the envelope-closure lemma gives these same numbers to their envelope. The valuative equivalence therefore makes it a competitor. Its competitor family now agrees with that for $u$, proving idempotence. For the ordered family, the same lemma gives every envelope number at least $\nu(u,E)$, while the competitor $u-\sup_Xu$ gives the reverse inequality. Thus its envelope is equivalent to $u$ and belongs to the original family.
+
+Every ordinary singularity competitor has divisorial numbers at least those of $u$, and the same reference competitor attains them. The closure lemma gives $P_\theta[u]\sim_{\mathcal I}u$, so it is admissible for the multiplier-ideal envelope. If $w$ is an $\mathcal I$-model potential, it is nonpositive and
+$w\leq P_\theta[w]\leq P_\theta[w]_{\mathcal I}=w$.
+Hence it is a fixed point of $P_\theta$ and, when its mass is positive, a model potential.
+\end{proof}
+
+\begin{proposition}\label{prop:envelopes-change-background-modification}
+If $\theta'=\theta+\ddc g$ for smooth real $g$ and $u'=u-g$, then $P_\theta[u]$ and $P_{\theta'}[u']$ differ by a bounded function; the same is true of their multiplier-ideal envelopes. More precisely, for either construction $E$,
+\[
+ E_\theta[u]-g+\inf_Xg
+       \leq E_{\theta'}[u']
+       \leq E_\theta[u]-g+\sup_Xg.
+\]
+For a proper bimeromorphic morphism $\pi:Y\to X$ between connected compact K\"ahler manifolds, both envelopes commute with pullback:
+\[
+ P_{\pi^*\theta}[\pi^*u]=\pi^*P_\theta[u],\qquad
+ P_{\pi^*\theta}[\pi^*u]_{\mathcal I}
+                       =\pi^*P_\theta[u]_{\mathcal I}.
+\]
+\end{proposition}
+\begin{proof}
+If $v\leq0$ is a $\theta$-competitor, then $v-g+\inf_Xg\leq0$ is a $\theta'$-competitor, with the corresponding singularity or ideal constraint. Taking envelopes and then reversing the change gives the displayed bounds. Smooth functions do not change multiplier ideals or bounded singularity order.
+
+Pullback is a bijection of the potential classes by \cref{prop:smooth-target-psh-modification}. Surjectivity of $\pi$ preserves nonpositivity and the ordinary order. Multiplier-ideal order is also preserved in both directions: all its divisorial tests are unchanged on a common resolution of a model over $X$ and $Y$. Such a common model is obtained by resolving the irreducible component of their fibre product dominating $X$, using \cref{thm:analytic-resolution-input}; the strict transforms of the tested divisors preserve their generic Lelong numbers. Blowups preserve the K\"ahler property by \cref{prop:kahler-smooth-center-blowup}. Thus the competitor sets correspond. Countable selection and $L^1$-continuous pullback identify the envelopes, as in \cref{lem:divisorial-envelope-closure}.
+\end{proof}
+
+\begin{proposition}\label{prop:analytic-singularity-envelope-equality}
+If $u$ has rational analytic singularities, then
+\[
+ P_\theta[u]=P_\theta[u]_{\mathcal I},
+\]
+and this common envelope has the bounded singularity type of $u$. It is a fixed point of $P_\theta$, and is a model potential when its mass is positive.
+\end{proposition}
+\begin{proof}
+Choose a finite coordinate cover with smaller compact neighborhoods covering $X$. On each larger neighborhood choose an analytic presentation of $u$ and principalize its ideal, using \cref{thm:marked-order-one-input,prop:rational-analytic-operations}. Its proper smooth model gives, locally upstairs,
+\[
+ \pi^*u=\sum_i a_i\log|s_i|^2+b,
+ \qquad a_i\in\mathbb Q_{>0},\quad b\text{ bounded}.
+\]
+The empty sum covers a bounded presentation. For a normalized multiplier-ideal competitor $v$, the local divisorial tests give coefficients of its pulled-back current at least $a_i$. Subtract these finitely many divisor currents. The local divisor-subtraction argument in \cref{thm:siu-divisorial-decomposition} makes the residual positive: subtract one coefficient using the bounded-above extension of the residual psh potential, then repeat, since the earlier divisors are absent at a generic point of the next divisor. Hence
+$q_v=\pi^*v-\sum_i a_i\log|s_i|^2$ has a canonical quasi-psh representative with a fixed smooth local background.
+
+There is a uniform upper bound for these residuals near the inverse image of each smaller compact neighborhood. Indeed $v\leq0$ gives $q_v\leq-\sum_i a_i\log|s_i|^2$ off the divisors. The right side is integrable on every relatively compact upstairs chart: logarithms of nonzero holomorphic functions are locally integrable by \cref{prop:holomorphic-tuple-logarithm}. Add the fixed smooth local background to make $q_v$ psh and apply the ball submean inequality. Its integrable upper bound gives a uniform upper bound on a smaller ball. Properness and a finite ball cover of the compact inverse image make this bound uniform there. The bounded residual $b$ consequently gives $v\leq u+C$ on the smaller downstairs neighborhood with a constant independent of the normalized competitor. The inequality on their finite locus extends to all points by canonical representatives. A finite cover makes $C$ global.
+
+Thus every multiplier-ideal competitor is an ordinary singularity competitor, and their envelopes are equal. The uniform upper bound and the lower reference $u-\sup_Xu$ prove equality of bounded types. Finally the common envelope is an $\mathcal I$-model potential by the projection proposition, hence a fixed point of $P_\theta$, with the asserted model property at positive mass.
+\end{proof}
+\index{analytic singularities!equality of envelopes}
+
+\begin{definition}\label{def:multiplier-envelope-volume}
+For a current $T=\theta+\ddc u\geq0$, define its multiplier-ideal volume by
+\[
+ \operatorname{vol}_{\mathcal I}(T)
+      =\int_X\langle(\theta+\ddc P_\theta[u]_{\mathcal I})^n\rangle.
+\]
+\end{definition}
+\index{volume!multiplier-ideal envelope}
+
+\begin{corollary}\label{cor:multiplier-envelope-volume-bounds}
+This volume is independent of the smooth potential decomposition of $T$, is invariant under modifications, and satisfies
+\[
+ \int_X\langle T^n\rangle
+       \leq\operatorname{vol}_{\mathcal I}(T)
+       \leq\operatorname{vol}(\{T\}).
+\]
+It is the maximum of the masses of the currents in the same class whose potentials are multiplier-ideal equivalent to $u$. For rational analytic singularities it equals the original non-pluripolar mass.
+\end{corollary}
+\begin{proof}
+The background-change bounds make the two envelope currents have bounded potential difference in the same class, so their masses agree. Pullback compatibility and \cref{prop:nonpluripolar-modification-pushforward} prove modification invariance. The lower reference bound and mass monotonicity give the first inequality; \cref{prop:positive-mixed-mass-bound} gives the second. Every equivalent potential can be shifted below zero and then lies below the multiplier-ideal envelope. Its mass is consequently at most the envelope mass. The envelope is itself equivalent, so attains the maximum. For analytic singularities use the equality of envelopes and mass preservation of the ordinary envelope.
+\end{proof}

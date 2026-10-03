@@ -121,3 +121,11 @@ Completed the internal general self/mixed mass monotonicity arguments, bounded-t
 Q09-03 reaches second-read. Q09-02/04 remain drafting for the cohomology-valued/sample interface and positive-mass bigness proof. No long external input or FN approval is assumed; earlier gates and 48/110 verified count remain. Both CI runs at 53a6849 passed (37158700189, 37158696537). Continue independent envelope foundations using the actually proved interfaces while researching the remaining bigness route, with regular private pushes and draft PR #5 updates. Whole-book writing and polishing are unfinished.
 
 The 294-page mass checkpoint source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-03-q09-mass-release.log.
+
+## 3 October 2026 — Q10 envelope core
+
+Activated Q10 and completed two direct reads of obstacles/rooftops, quasi-continuous contact concentration, ordinary envelope mixed mass preservation and multiplier-ideal envelope calculus. Analytic equality handles bounded remainders through local principalization and uniform residual estimates. Added Q09 increasing continuity and focused envelope history. First/final builds and affected-page visual evidence are in research/reviews/2026-10-03-q10-envelope.json; the draft has 304 pages. Q10-01 is second-read, Q10-02/03 remain drafting, Q10-04 planned and the chapter drafting; 48/110 verified and earlier gates persist.
+
+Retrieved Boucksom's published 2002 volume source from his actual publication page and read complete Section 4.3. It remains research evidence because the bigness proof imports Calabi–Yau and approximation ingredients. The DDNL Section 3B contact proofs and the complete sample non-pluripolar chapter have their actual scopes recorded. Both GitHub builds at 0fad612 passed (37160332152, 37160327783). Continue general model/extrapolation and relative domination, then remaining regularity and later chapters; keep regular private pushes and draft PR #5 current. No whole-book completion or mathematical-interface approval is assumed.
+
+The Q10 envelope source archive rebuilt in an empty directory; its 304-page PDF has matching extracted page text. Release evidence: research/reviews/logs/2026-10-03-q10-envelope-release.log.
