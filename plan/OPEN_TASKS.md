@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **P06**.
-
-## P06 — Fourier energy and incidence of complex lines
-
-- `P06-01` [planned] Fourier transform, Plancherel and the Riesz energy identity for finite measures
-- `P06-02` [planned] U(n)-invariant measures on projective space and complex Grassmannians
-- `P06-03` [planned] Borel selection for the compact circle sections needed in PSHD, with a proof or an approved input
-- `P06-04` [planned] Uniform high-value star energy, L2 projection densities and the incidence lemma
+Next coherent writing unit: **Q01**.
 
 ## Q01 — Complex differential forms and positive currents
 
