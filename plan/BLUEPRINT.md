@@ -1,29 +1,35 @@
-# 写作蓝图
+# Writing blueprint
 
-## 目标与边界
+## Aim and scope
 
-从经典 potential theory 建立 pluripotential theory，把样本书实际依赖的基础定义、定理、技术、极限与几何背景放在自然位置，并给出完整证明。预设读者具备本科实分析（积分与收敛定理）、线性代数、点集拓扑和单复变基础；测度正则性、分布、泛函分析中实际使用的工具、复微分几何及相关 SCV 工具都需要补足。不能把“读者懂复几何”当作跳过证明的理由。
+Develop pluripotential theory from classical potential theory. Place the sample book's foundational definitions, results, techniques, limiting arguments and geometric prerequisites where readers first need them, and supply complete proofs. Assume undergraduate real analysis, including integration and convergence theorems, linear algebra, point-set topology and elementary one-variable complex analysis. Establish the measure regularity, distributions, functional analysis, complex differential geometry and several-variable tools actually used. Familiarity with complex geometry must not become an unstated prerequisite.
 
-两部分：I. Potential theory；II. Pluripotential theory。附录处理复空间与明确的外部几何接口，末尾历史与书目说明。章节 ID 保持稳定，数字编号随正文自然生成。先写 P01–P06，再沿依赖图写复理论；不是照抄样本章节顺序。
+The two main parts are I. Potential theory and II. Pluripotential theory. An appendix treats complex spaces and precise external geometric interfaces; the final chapter provides historical and bibliographic notes. Chapter IDs remain stable while printed numbers follow the manuscript. Write P01–P06 first, then proceed through the complex theory along the dependency graph. The sample's chapter order does not dictate the new book's order. The full chapter sequence and its prerequisites are in [CHAPTER_MAP.md](CHAPTER_MAP.md) and `chapters.json`.
 
-## self-contained 的具体承诺
+Use English for the entire manuscript and all project documentation, plans, progress records and handoff prompts. Retain the source language of original reference documents and original bibliographic titles.
 
-每个实际使用的结果都有完整证明、此前已证明的准确内部接口，或列在 `external-inputs.json` 的允许输入。resolution/principalization 是当前明确允许不展开长证明的输入，但需要精确陈述和核对来源。其他同类长结果逐项评估，不能把任意困难结果列入“标准事实”。Hörmander、OT、乘子理想 coherent/subadditive/strong openness、Siu、Bedford–Taylor、Demailly、Monge–Ampère mass monotonicity、能量/metric completeness、trace 等首先按证明义务规划。
+## The self-containedness contract
 
-若某个证明依赖章内稍后尚未完成的内容，记录 DAG 和缺口；不以“standard”封口。PSHD 的分布刻画不能循环依赖其自动上半连续性；先独立证明局部有界情形的分布刻画。其 Borel 选择工具也必须给出足够的自包含证明，或单独作为待决定输入，不能隐形假定。
+Every result used must have a complete proof, an exact earlier internal interface, or an accepted external interface in `external-inputs.json`. Resolution of singularities and principalization are the currently permitted long external inputs, with precise statements and checked source locators still required. Assess other long, established results individually; difficulty alone does not make a result a standard input. Initially plan proofs of Hörmander estimates, Ohsawa–Takegoshi extension, multiplier-ideal coherence and subadditivity, strong openness, Siu's theorem, Bedford–Taylor theory, Demailly approximation, Monge–Ampère mass monotonicity, energy and metric completeness, and trace results.
 
-## 样本的覆盖方式
+Record any reliance on unfinished later material as a dependency and an open obligation. Do not close a proof gap with “standard arguments.” PSHD's distributional characterization must not depend circularly on its automatic upper semicontinuity theorem: first establish the locally bounded distributional case independently. Its Borel selection tools likewise need sufficient proofs, or a separately assessed external-input proposal.
 
-基础从全部样本正文和附录抽取，不能只读 Part I。`sample-inventory.json` 保存每个 theorem-like statement、label、位置、citation 和嵌套输入；`SAMPLE_COVERAGE.md` 为每章分配自然归属。自动提取是建立待审队列，不证明每条 claim 正确。后续逐条标记 foundational / application / duplicate / external candidate，并对应新书 result label 与任务 ID。样本自有研究结果以基础接口或进阶篇章承接，不默认必须重写整部原书的全部研究结论。
+## Coverage of the sample
 
-## 新来源
+Extract foundations from every sample chapter and appendix. `research/sample-inventory.json` records result environments, labels, locations, citations and nested inputs; `research/SAMPLE_COVERAGE.md` assigns chapter material to its natural home. Automated extraction creates a review queue and does not verify the extracted claims. Subsequently classify each item as foundational, application, duplicate or external-input candidate, and connect it to a new result label and task ID. The sample's original research results enter through foundational interfaces or advanced chapters; reproducing every research conclusion of the original book is a separate scope decision.
 
-PSHD：保留通常的 psh 定义，紧随其后证明 USC 冗余；不改动样本其它 conventions。前置证明 Borel 可测、uniform star energy、复超平面 L2 投影、incidence 和点态代表识别。Nakamaye：将 `lem:patching`、`lem:regularization` 放在 Q06，证明常数只依赖固定 (Z,omega_Z)；与样本 gentle/quasi-equisingular approximation 分开陈述。其 trace、rooftop、restricted volumes 和 relative principalization 给出对应基础；完整 Nakamaye 主定理作为可选应用，不扩大这次初始化的写作单位。
+## Additional sources
 
-## 严谨性与发布
+For PSHD, retain the usual psh definition and prove the redundancy of upper semicontinuity immediately beside it. Preserve the sample's other conventions. Establish Borel measurability, uniform star energy, L2 projection onto complex hyperplanes, the incidence argument and pointwise representative identification before the final theorem.
 
-一个 coherent unit 的交付包括全部 recursive inputs、定义/结果/证明/例子、过渡、索引、参考来源，以及 first read、build/visual、second complete read、最终 affected build/visual。只有这些证据齐全才能设为 verified。最后通读检查 circular references、符号首次出现、dimension-zero、共同极点、empty envelopes、limit topology、uniform constants、background scope 和真实 open problems。
+For the Nakamaye source, place `lem:patching` and `lem:regularization` in Q06. Prove that the positivity-loss constant depends only on the fixed geometry `(Z, omega_Z)`. State quantitative regularization separately from gentle and quasi-equisingular approximation. Develop the foundations for trace, rooftop envelopes, restricted volumes and relative principalization in their corresponding chapters. The complete Nakamaye theorem is an optional application beyond this initialization's writing unit.
 
-排版沿用样本。书目使用一个 `ComplexGeometry.bib`，保留原键；新增元数据只在核对后追加。数学正文给确切依赖，历史章给精确归属，不写工作进度或 AI 审计语言。源码与 PDF 仅留在私有仓库/私有 Actions artifacts，公开发布另需作者指令。
+The remaining supplied references support the chapter tasks listed in `references/catalog.json` and the reference guide. Check each relevant Guedj–Zeriahi assertion against its exact retained version and the unofficial errata candidates before importing it.
 
-当前范围：初始化工程、来源保全、结构/依赖蓝图和首个写作任务。任何“verified=0”是诚实的书稿进度，不是工程未配置。
+## Rigor and delivery
+
+A coherent unit includes all recursive inputs, definitions, statements, proofs, examples, transitions, index entries and source obligations. Review it through a first complete read, build and visual inspection, then a second complete direct read and final affected build and inspection. Set a unit to verified only when these records and its prerequisite evidence are complete. Review circular references, first use of symbols, dimension-zero cases, common poles, empty envelopes, limit topologies, uniform constants, changes of background and the actual status of open problems.
+
+Preserve the sample's typesetting. Use one `ComplexGeometry.bib`, retain its existing keys, and add metadata only after checking it. Give exact dependencies in the mathematical text and precise attribution in the historical chapter. Keep progress and audit records in project documentation. Source files and PDFs stay in the private repository or private Actions artifacts; public publication requires a separate author instruction.
+
+The current setup covers infrastructure, preserved sources, a structural and dependency blueprint, and the first writing prompt. Zero verified mathematical units records the actual manuscript state.

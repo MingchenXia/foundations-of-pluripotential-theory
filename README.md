@@ -1,29 +1,29 @@
 # Foundations of pluripotential theory
 
-Mingchen Xia 的新书，私有写作仓库。书名采用标准拼写 **Foundations of pluripotential theory**。正文为英文，编辑记录可用中文。当前交付是可接续的写作工程和蓝图，不是已完成的书稿。
+A private writing repository for Mingchen Xia's book, **Foundations of pluripotential theory**. All manuscript text, project documentation, plans, editorial records and task prompts use English. Original reference documents and bibliographic titles retain their source language. The current deliverable is the writing infrastructure and blueprint; the book remains in progress.
 
-- [写作蓝图](plan/BLUEPRINT.md)：读者、范围、两部分结构、self-contained 边界。
-- [章节与依赖](plan/CHAPTER_MAP.md)、[当前进度](plan/PROGRESS.md)、[未完成任务](plan/OPEN_TASKS.md)：JSON 是任务状态的唯一数据源，Markdown 由脚本生成。
-- [样本覆盖矩阵](research/SAMPLE_COVERAGE.md)：从全部样本章节、附录及嵌套输入提取基础与应用依赖。
-- [来源库](references/README.md)：原始书稿、zip、PDF、校验哈希、书目和审读范围。
-- [新增结果](research/dossiers/PSHD.md)、[加强 Demailly 正则化](research/dossiers/DEMAILLY.md)：确切结论、证明链、规范换算及尚未核实之处。
-- [云端接续说明](codex/CLOUD.md)、[首个写作任务](codex/FIRST_TASK.md)。云端所需两个写作 skills 已原样存入 `.agents/skills/`。
+- [Writing blueprint](plan/BLUEPRINT.md): audience, scope, two-part structure and the self-containedness contract.
+- [Chapters and dependencies](plan/CHAPTER_MAP.md), [progress](plan/PROGRESS.md) and [open tasks](plan/OPEN_TASKS.md): JSON is the authoritative task state; the script generates the Markdown views.
+- [Sample coverage matrix](research/SAMPLE_COVERAGE.md): foundations and application dependencies extracted from all sample chapters, appendices and nested inputs.
+- [Source library](references/README.md): original manuscript, zip, PDFs, checksums, bibliographic identities and the actual reading scope.
+- [PSHD results](research/dossiers/PSHD.md) and [quantitative Demailly regularization](research/dossiers/DEMAILLY.md): exact conclusions, proof dependencies, convention conversions and unresolved checks.
+- [Cloud continuation](codex/CLOUD.md) and [first writing task](codex/FIRST_TASK.md). Both writing skills and the audit script are included in `.agents/skills/`; the skill memory's Chinese feedback has been translated into English.
 
-作者指定本次只配置仓库，之后更换账号继续。新账号连接有访问权限的 GitHub 后即可创建环境；本次不创建实际云端环境。
+The author requested repository setup only and will continue with another account. Connect that account to a GitHub identity with access to this private repository, then create the cloud environment using the supplied instructions.
 
-## 本地命令
+## Local commands
 
 ```sh
-make check      # 检查依赖图、状态证据、标签/引用、来源完整性
-make audit      # 使用真实 mingchen-writing 审计脚本
-make build      # pdfLaTeX + BibTeX + 索引，生成 build/book.pdf
-make progress   # 从任务 JSON 更新进度与未完成清单
-make verify     # check + audit + build
-make release    # 验证后生成源码包与 PDF 到 build/release/
+make check      # Validate dependencies, status evidence, labels/citations and source integrity
+make audit      # Run the actual mingchen-writing audit script
+make build      # Run pdfLaTeX, BibTeX and makeindex; produce build/book.pdf
+make progress   # Regenerate progress and open-task views from JSON
+make verify     # Run check, audit and build
+make release    # Verify and create source/PDF packages in build/release/
 ```
 
-需要 Python 3、GNU Make、latexmk、pdfLaTeX、BibTeX、makeindex，以及包含 newtx、tikz-cd、dsfont 等的 TeX Live。Ubuntu 云端安装命令在 `scripts/setup-cloud.sh`。构建不需要读取本机 Downloads 或安装路径，保留的来源也无需在线才能读取。
+Requirements: Python 3, GNU Make, latexmk, pdfLaTeX, BibTeX, makeindex and TeX Live with newtx, tikz-cd, dsfont and the other template packages. `scripts/setup-cloud.sh` installs the Ubuntu dependencies. Builds do not depend on the author's local Downloads or skill installation paths; the retained references are available offline.
 
-当前正文仅激活绪言、全局 conventions 和 P01 的起始草稿；其余章节骨架不会作为空白章节打印。章节完整写出并审读后再加入 `book.tex`。模板保留样本的 `svmono[envcountsect]`、字体、宏、定理计数、索引和单一 BibTeX bibliography。
+The active manuscript contains the preface, the sample's global conventions and the beginning of P01. Other chapter skeletons are excluded from the printed draft. Activate each coherent chapter in `book.tex` after writing and review. The sample's `svmono[envcountsect]`, fonts, macros, theorem counters, index and single BibTeX bibliography are preserved.
 
-数学完成状态以证明及两次审读记录为准。`make verify` 验证工程和排版，不能验证数学正确性。
+Mathematical completion requires complete proofs and two recorded reads. `make verify` checks repository integrity and compilation; it does not certify mathematical correctness.

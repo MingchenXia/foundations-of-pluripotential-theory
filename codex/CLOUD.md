@@ -1,18 +1,18 @@
-# Codex 云端接续
+# Codex Cloud continuation
 
-官方说明核对于 2026-10-03：[当前 cloud environments](https://learn.chatgpt.com/docs/environments/cloud-environments)。当前流程使用 Work in → Cloud → Create environment（也可 Settings → Codex Cloud → Environments），选择仓库，准备/测试后 Publish。旧 `/codex/settings/environments` 是 legacy 入口，不能等同于当前环境已发布。
+The [official cloud-environment documentation](https://learn.chatgpt.com/docs/environments/cloud-environments) was checked on 2026-10-03. The current flow uses Work in → Cloud → Create environment, also accessible through Settings → Codex Cloud → Environments. Select the repository, prepare and test the environment, then publish it. The former `/codex/settings/environments` route is a legacy entry point.
 
-## 准备配置
+## Prepared configuration
 
-- Repository: `MingchenXia/foundations-of-pluripotential-theory`, branch `main`，私有；环境访问设 Only me。
-- 给环境配置任务：读取 `AGENTS.md` 和本文件，执行 `bash scripts/setup-cloud.sh`，然后 `make verify`；无需额外 secrets。
-- Install script: `bash scripts/setup-cloud.sh`。
-- Start check/skill: `make check`，读取 `plan/PROGRESS.md`、`plan/OPEN_TASKS.md` 和本地 `.agents/skills/`；写书使用 `make verify`。
-- Package-manager access is sufficient for Debian/Ubuntu TeX packages. 日常写作所需原始来源已在 repo 中，离线可读；新文献检索按需要允许对应官方出版者、arxiv.org、export.arxiv.org、mingchenxia.github.io 等，不默认扩大全部联网权限。
-- Skills stored in the repo are usable by cloud tasks; local personal skills are not automatically synchronized, so本项目已携带实际文件和审计脚本。
+- Repository: `MingchenXia/foundations-of-pluripotential-theory`; branch: `main`; private visibility; environment access: Only me.
+- Setup task: read `AGENTS.md` and this file, run `bash scripts/setup-cloud.sh`, then `make verify`. No additional secrets are required. A ready-to-copy setup prompt is in `ENVIRONMENT_PROMPT.md`.
+- Setup script: `bash scripts/setup-cloud.sh`.
+- Task start: run `make check` and read `plan/PROGRESS.md`, `plan/OPEN_TASKS.md` and the repository-local writing skills in `.agents/skills/`. Use `make verify` for manuscript work.
+- Package-manager access supplies the Debian/Ubuntu TeX dependencies. Retained original references are available offline. Allow new reference searches as needed through official publisher sites, `arxiv.org`, `export.arxiv.org` and `mingchenxia.github.io`, according to the actual task.
+- Both writing skills and their audit script are included in the repository. Local personal skills do not automatically synchronize to cloud tasks. The skill memory's earlier Chinese feedback is translated into English; its other files preserve the captured content.
 
-完成安装和测试、保存并看到 **Environment published** 后，才是云端环境配置完成。推送 GitHub、CI 通过、或打开设置页面均不能替代这一确认。随后在新云端任务中粘贴 `FIRST_TASK.md` 的提示。各任务有自己的工作状态，重要修改需要提交回私有 repo。
+Environment setup is complete only after installation and testing succeed, the configuration is saved, and the UI confirms **Environment published**. Then paste the prompt from `FIRST_TASK.md` into a new cloud task. Each task has its own working state; commit important changes back to the private repository. Use English throughout the project.
 
-## 实际部署状态
+## Deployment status
 
-仓库配置与验证状态见 `research/reviews/2026-10-03-setup.md`。作者于 2026-10-03 指定本次只配置仓库，之后换另一个账号继续；因此本次不创建或发布实际云端环境。新 ChatGPT 账号需要连接有权访问这个私有仓库的 GitHub 账号，再按以上配置创建环境。请在确实发布并通过新任务检查后更新本段和 review 记录。
+Repository validation is recorded in `research/reviews/2026-10-03-setup.md`. On 2026-10-03 the author limited this session to repository configuration and will continue with another account. No actual cloud environment has been created or published in this session. The new ChatGPT account must connect a GitHub identity authorized to access this private repository, then create the environment using the configuration above. Update this status and its review record after publication and a successful check in a new task.

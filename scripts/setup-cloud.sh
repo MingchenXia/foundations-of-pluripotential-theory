@@ -11,7 +11,8 @@ if [ "$(id -u)" -ne 0 ]; then priv=(sudo); fi
 "${priv[@]}" apt-get update -qq
 "${priv[@]}" env DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   make python3 latexmk texlive-latex-extra texlive-fonts-recommended \
-  texlive-fonts-extra texlive-science texlive-pictures texlive-plain-generic poppler-utils
-# Recent newtx loads binhex.tex, which Debian places in texlive-plain-generic.
+  texlive-fonts-extra texlive-science texlive-pictures texlive-plain-generic tex-gyre poppler-utils
+# Recent newtx needs these files even with apt's recommended packages disabled.
 kpsewhich binhex.tex >/dev/null
+kpsewhich ts1-qtmr.tfm >/dev/null
 make verify
