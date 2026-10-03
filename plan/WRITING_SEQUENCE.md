@@ -8,21 +8,23 @@ This is the operational plan for the complete 27-unit book. The chapter architec
 |---|---|---|
 | Classical analysis | P01–P03 | Radon measures, distributions, harmonic boundary theory, canonical subharmonic representatives, limits and envelopes |
 | Classical singular sets | P04–P06 | Kernel energy, capacity, quasi-continuity, polar exceptional sets, fine topology/balayage, Fourier energy and complex-line incidence |
-| Local complex theory | Q01–Q04 | Forms and positive currents, the usual psh definition and adjacent USC redundancy proof, pluripolarity, weighted L2 and extension |
+| Local complex theory | Q01, Q02, Q08, Q03, Q04 | Forms and positive currents, psh and adjacent USC proof, local bounded products/capacity, pluripolarity and plurifine topology, weighted L2 and extension |
 | Geometric interface | A01, before Q05 | Complex spaces, modifications and precise resolution/principalization interfaces; prove every additional local analytic tool used |
 | Singularities and global classes | Q05–Q07 | Lelong normalization, coherent multiplier ideals, strong openness and subadditivity, approximation and quantitative regularization, global positivity |
-| Nonlinear products and envelopes | Q08–Q10 | Bedford–Taylor and non-pluripolar products, capacity convergence, comparison and monotonicity, model envelopes |
+| Global nonlinear products and envelopes | Q09–Q10 | Non-pluripolar products, global mass/comparison/monotonicity and model envelopes, using the earlier local Q08 foundations |
 | Energy and singularity geometry | Q11–Q16 | Energy/metric completeness, geodesics, singularity preorders, I-good volume, traces, rays, convex/toric foundations |
 | Algebraic and asymptotic interfaces | Q17–Q19 | Graded series, valuations, Okounkov bodies, b-divisors, non-Archimedean potentials, Bergman/equilibrium limits |
 | Final integration | H01 and all active inputs | Exact attribution, checked metadata, global notation/index/citation audit, adjoining transitions and whole-book rereads |
 
-Within a stage, take the earliest unfinished chapter whose prerequisites are verified. Q01 is independent of the remaining classical fine/incidence chapters after P03, but P04–P06 are written first to keep Part I coherent. A01 is physically an appendix; its proofs must be completed and available before Q05 uses them. No theorem is accepted merely because it appears in a supplied book or paper.
+Within a stage, take the earliest unfinished chapter whose prerequisites are verified in the current chapter-map order. Q01 is independent of the remaining classical fine/incidence chapters after P03, but P04–P06 are written first to keep Part I coherent. A01 is physically an appendix; its proofs must be completed and available before Q05 uses them. No theorem is accepted merely because it appears in a supplied book or paper.
 
 ## Interfaces settled in the first writing pass
 
 P01 supplies positive-functional representation and compactness without silently importing functional analysis. P02 constructs Perron solutions using continuous subsolutions, so it does not depend on P03. Its Green interface is bounded regular domains, without a symmetry claim. P03 supplies pointwise representatives and almost-everywhere envelope equality; the stronger polar discrepancy theorem belongs to P04's finite-energy/capacity argument. P04 then proves explicit ball Green symmetry, kernel energy, compact and outer relative capacity, capacitability, polar discrepancy sets and quasi-continuity. These boundaries keep the first chapters acyclic.
 
 Q02 proves Kiselman minimum under an explicit invariant exhaustion and for product tubes. Q04 supplies the pseudoconvex boundary-distance foundation before deriving the general pseudoconvex-tube formulation. Q02 also proves extension across Hausdorff-null sets; A01 supplies the analytic dimension estimate before this is advertised as codimension-two extension. These are internal proof interfaces, not accepted external inputs.
+
+Q08’s local bounded-product, monotone-continuity, comparison and capacity foundations now precede Q03. Q03’s Josefson and pluripolar envelope proofs require these nonlinear inputs; leaving them after Q03 would create a circular or unproved dependency. Q08 uses Q02 and local positive-current calculus only. Global positivity and non-pluripolar products remain Q07/Q09, and Q09 explicitly depends on both Q03 and Q07. Stable chapter/task IDs and all source obligations are preserved.
 
 Maintain the sample's dd^c, Lelong, multiplier-weight, quadratic-metric and rational analytic-singularity conventions throughout. The Nakamaye regularization interface has exactly its two recorded conclusions; approximation properties not present in that statement require separate results. Resolution/principalization is the only initially permitted long geometric input; its exact source statements still need registration. All other listed major results require proofs unless the author grants an exact external interface.
 

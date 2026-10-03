@@ -41,13 +41,6 @@ Next coherent writing unit: **Q03**.
 - `Q07-04` [planned] Non-Kahler and non-nef loci including the non-big boundary case
 - `Q07-05` [planned] Hermitian metrics as quadratic forms, curvature, FS and generalized FS metrics
 
-## Q08 — Bedford--Taylor products
-
-- `Q08-01` [planned] Local wedge products for locally bounded psh functions with complete construction
-- `Q08-02` [planned] Chern--Levine--Nirenberg estimates, positivity, symmetry and locality
-- `Q08-03` [planned] Decreasing continuity, quasi-continuity and capacity convergence
-- `Q08-04` [planned] Comparison and integration by parts with precise boundary hypotheses
-
 ## Q09 — Non-pluripolar products
 
 - `Q09-01` [planned] Truncation construction, plurifine locality and extension by zero
