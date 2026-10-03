@@ -170,10 +170,12 @@ def progress():
           '| ID | Part | Title | Prerequisites | Source |', '|---|---|---|---|---|']
     chapter_states = {c['id']: c['status'] for c in chapters}
     ready = [c for c in chapters if c['status'] != 'verified'
+             and any(t['chapter'] == c['id'] and t['status'] in {'planned', 'drafting', 'proof-review'}
+                     for t in tasks)
              and all(chapter_states.get(dep) == 'verified' for dep in c['depends_on'])]
     next_unit = (f'Next coherent writing unit: **{ready[0]["id"]}**.' if ready else
                  'All chapter units are verified.' if all(c['status'] == 'verified' for c in chapters) else
-                 'No unfinished unit has verified chapter prerequisites; inspect the dependency records.')
+                 'No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.')
     queue = ['# Unfinished proof and writing obligations', '',
              'These are missing work in this book; they are not claims that the results are open in the literature.', '',
              next_unit, '']

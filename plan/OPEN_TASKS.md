@@ -2,7 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **A01**.
+No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.
 
 ## Q05 — Lelong numbers and multiplier ideals
 

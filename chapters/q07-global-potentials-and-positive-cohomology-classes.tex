@@ -348,3 +348,164 @@ For two presentations of degrees $m,l$, raise their sections to powers to obtain
 \end{proof}
 
 For a point, the cohomology and all four positivity cones are $\{0\}$, positivity is vacuous, both loci are empty, and normalized potentials are zero. Metrics are quadratic norms. On a disconnected compact manifold apply the constructions separately to its finitely many components, imposing normalization and noncollapse on each.
+
+\section{Compact interpolation and global Bergman kernels}
+\label{sec:compact-point-bergman}
+The local extension estimate extends from a point on a compact manifold once the curvature dominates the cost of a global logarithmic pole. We first establish the bundle estimate used to correct the cutoff. All norms in this section use the volume $\mathrm dV=\omega^n/n!$. The canonical bundle $K_X=\Lambda^{n,0}T^*X$ is the holomorphic line bundle of top holomorphic covectors; its metric and the dual metric on $K_X^{-1}$ are induced by $\omega$. We write $H^0(X,L)$ for the vector space of global holomorphic sections of $L$.
+
+\begin{lemma}\label{lem:analytic-complement-cutoffs}
+Let $A$ be the closed proper pole set of a quasi-plurisubharmonic function $\psi$ on $X$, smooth on $X\setminus A$, with $\psi\to-\infty$ at every point of $A$. There is a K\"ahler form $\sigma\geq\omega/2$ on $X\setminus A$ with smooth compactly supported cutoffs $\chi_R\to1$, $0\leq\chi_R\leq1$, and $|\mathrm d\chi_R|_\sigma\leq C/R$. In particular this applies to finite unions of gentle analytic pole sets and point poles.
+\end{lemma}
+\begin{proof}
+Choose $b$ with $\ddc\psi\geq-b\omega$ and subtract a constant so that $\psi<-2b-2$. For $\rho=-\log(-\psi)$ the chain rule gives
+\[
+ \ddc\rho=-\frac1\psi\ddc\psi+
+       \frac{\mathrm i}{2\pi\psi^2}\partial\psi\wedge\bar\partial\psi.
+\]
+Thus $\sigma=\omega+\ddc\rho\geq\omega/2+
+(\mathrm i/2\pi)\partial\rho\wedge\bar\partial\rho$. The last term bounds $|\mathrm d\rho|_\sigma$ by a numerical constant: in a unitary coframe it is a rank-one Hermitian form whose sole eigenvalue is the squared norm of $\partial\rho$, with the indicated factor. The function $-\rho$ tends to $+\infty$ at $A$ and has compact sublevels in $X\setminus A$. Take a smooth function $\chi$ equal to one on $(-\infty,1]$ and zero on $[2,\infty)$, and put $\chi_R=\chi(-\rho/R)$. These are the required cutoffs. The same gradient bound shows that a path approaching $A$ has infinite $\sigma$-length, since $-\rho$ is unbounded along it. The form is therefore complete as well. For the last assertion add the finitely many gentle potentials and logarithmic point potentials; their sum has precisely the union as its pole set, the stated lower bound, and the required divergence.
+\end{proof}
+
+\begin{lemma}\label{lem:kahler-bundle-l2-estimate}
+Let $M$ be an open subset of $X$, let $F\to M$ be a holomorphic line bundle with a smooth quadratic metric $h$, and suppose $c_1(F,h)\geq a\omega$ for $a>0$. Suppose also that $M$ has a K\"ahler metric $\sigma\geq\omega/2$ and cutoffs as in \cref{lem:analytic-complement-cutoffs}. For a distributionally closed $F$-valued $(n,1)$-form $g$ whose squared norm is integrable with respect to $\omega,h$, there is an $F$-valued $(n,0)$-form $u$ with $\bar\partial u=g$ and
+\begin{equation}\label{eq:compact-bundle-l2-estimate}
+ \int_M|u|_{\omega,h}^2\,\mathrm dV
+       \leq\frac1{2\pi a}\int_M|g|_{\omega,h}^2\,\mathrm dV.
+\end{equation}
+\end{lemma}
+\Needspace{10\baselineskip}
+\begin{proof}
+We give the differential and domain arguments. In a holomorphic frame of squared norm $\mathrm e^{-p}$ the Chern operators are $D'=\partial-\partial p\wedge$ and $D''=\bar\partial$. They act on bundle-valued forms, and $D'D''+D''D'=\partial\bar\partial p\wedge$. Write $\Lambda_\sigma$ for contraction by $\sigma$. In holomorphic normal coordinates and a frame with $\partial p=0$ at the chosen point, exterior multiplication by the unitary covectors and their contractions satisfy
+\[
+ \iota_j\epsilon_k+\epsilon_k\iota_j=\delta_{jk},\qquad
+ D''{}^*=-\mathrm i[\Lambda_\sigma,D'],\qquad
+ D'{}^*=\mathrm i[\Lambda_\sigma,D''].
+\]
+The barred covectors have the same anticommutation rule. To check the two operator identities, expand $D'$ and $D''$ as covector multiplication followed by the corresponding coefficient derivative; moving a contraction past that covector leaves its Kronecker term, which is the negative coefficient derivative in the formal adjoint. First metric derivatives vanish in these coordinates. The identities hold at every point, hence globally. Substitution, cancellation of the two mixed compositions and the curvature identity give
+\[
+ \begin{gathered}
+ \Delta''=\Delta'+[2\pi c_1(F,h),\Lambda_\sigma],
+ \\
+ \Delta''=D''D''{}^*+D''{}^*D'',\qquad
+ \Delta'=D'D'{}^*+D'{}^*D'.
+ \end{gathered}
+\]
+Here the commutator with a two-form means wedge multiplication followed by contraction minus the reverse composition. Set $B_\sigma=[2\pi c_1(F,h),\Lambda_\sigma]$. For a compactly supported $(n,1)$-form $v$, integration yields
+\begin{equation}\label{eq:kahler-bundle-bochner}
+ \|D''{}^*v\|_\sigma^2+\|D''v\|_\sigma^2
+ =\|D'{}^*v\|_\sigma^2+
+       \int_M\langle B_\sigma v,v\rangle_\sigma\,\mathrm dV_\sigma.
+\end{equation}
+The term $D'v$ is zero by its holomorphic degree. Diagonalizing the curvature in a $\sigma$-unitary coframe shows that $B_\sigma$ acts on the coefficient of its $j$th barred covector by the $j$th curvature eigenvalue. It is positive.
+
+Use the maximal distributional domains for $T=D'':L^2_{(n,0)}\to L^2_{(n,1)}$ and $S=D'':L^2_{(n,1)}\to L^2_{(n,2)}$, with the $\sigma,h$ norms. They are closed and densely defined, and $ST=0$. Compactly supported smooth forms are dense in $\operatorname{Dom}T^*\cap\operatorname{Dom}S$ in graph norm. The cutoff product rules are proved from the adjoint identity exactly as in \cref{lem:three-weight-density}; their error norms are at most $C\|v\|_\sigma/R$, so the cutoffs give compact supports. Local smoothing also works for the variable coefficients here. Indeed, for $P=\sum a_l(x)\partial_l+b(x)$ its commutator with convolution has first-order part
+\[
+ \sum_l\int(a_l(x)-a_l(y))\partial_l\rho_t(x-y)v(y)\,\mathrm dy
+   +\sum_l\int(\partial_l a_l)(y)\rho_t(x-y)v(y)\,\mathrm dy.
+\]
+On a fixed compact set the mean-value bound for $a_l$ and scaling of $\rho_t$ make these operators uniformly bounded on $L^2$. For smooth $v$ their sum tends to zero; density of smooth coefficients in $L^2$ proves the same for every $v$. The zeroth-order commutator tends to zero by ordinary local $L^2$ convergence. Apply this simultaneously to $T^*$ and $S$, then a finite partition of unity. This proves graph density without imposing an unstated boundary condition.
+
+Pointwise duality bounds $|\langle g,v\rangle_\sigma|^2$ by the product of
+$\int\langle B_\sigma^{-1}g,g\rangle_\sigma\,\mathrm dV_\sigma$ and the last integral in \eqref{eq:kahler-bundle-bochner}. The first integral is independent of the auxiliary metric $\sigma$. To see this, write the $(n,1)$-form as a fixed top covector times a barred one-form. Its top-degree squared norm times volume is metric independent, while inversion of $B_\sigma$ cancels the inverse-metric factor on the barred coefficient. The resulting dual form is the inverse of the curvature form $2\pi c_1(F,h)$ itself. Since that form is at least $2\pi a\omega$, this integral is at most the right side of \eqref{eq:compact-bundle-l2-estimate}. Also $g$ belongs to $L^2_{(n,1)}(\sigma,h)$: the top-degree density is unchanged and the barred covector norm is at most twice its $\omega$ norm. Graph approximation passes the Bochner inequality to the operator domains: local convergence and Fatou's lemma control its nonnegative curvature integral. The inequality and \cref{thm:hilbert-complex-solvability} now give $Tu=g$ with this bound. The $(n,0)$ norm times volume is likewise independent of the K\"ahler metric, giving exactly \eqref{eq:compact-bundle-l2-estimate}.
+\end{proof}
+\index{Bochner--Kodaira identity!K\"ahler line bundle}
+
+\begin{lemma}\label{lem:l2-holomorphic-analytic-removal}
+A holomorphic function on $U\setminus A$, where $A$ is a proper analytic subset of a complex manifold $U$, extends holomorphically to $U$ if it belongs to $L^2_{\mathrm{loc}}(U)$ after arbitrary definition on $A$. The same holds for sections of a holomorphic line bundle.
+\end{lemma}
+\begin{proof}
+Near a point of $A$ choose a nonzero holomorphic function $b$ vanishing on $A$. Choose a coordinate basis on which the first nonzero homogeneous term of $b$ is nonzero in each basis direction. Weierstrass preparation then makes the zero set of $b$ finite on each coordinate-line fiber of a sufficiently small polydisc; exceptional parameter fibers form a null set. By Fubini the given function is $L^2$ on almost every such line. Its Laurent expansion at each puncture has no negative coefficient: circle orthogonality would otherwise give a divergent radial integral $\int_0^r t^{1-2j}\,\mathrm dt$ for some $j\geq1$. Thus the slice extends holomorphically and has zero distributional barred derivative on that line. Fubini against compactly supported tests shows that every barred coordinate derivative of the original $L^2$ function is zero distributionally on the polydisc. The distributional holomorphicity consequence of Weyl's lemma in \cref{sec:weighted-dbar-estimate} gives the extension. It agrees with the original on $U\setminus A$ and glues by uniqueness. Local holomorphic frames prove the bundle assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:compact-point-extension}
+There are constants $N,C>0$, depending only on $(X,\omega)$, with the following property. Let $L$ be any holomorphic line bundle, $h_0$ any smooth quadratic metric and $h=h_0\mathrm e^{-\varphi}$ a psh metric with $c_1(L,h)\geq N\omega$. For $x\in X$ with $\varphi(x)>-\infty$ and $v\in L_x$ there is $s\in H^0(X,L)$ such that
+\begin{equation}\label{eq:compact-point-extension}
+ s(x)=v,\qquad
+ \int_X|s|_h^2\,\mathrm dV\leq C|v|_h^2.
+\end{equation}
+The constants are independent of $L,h_0,\varphi,x,v$.
+\end{theorem}
+\begin{proof}
+Fix finitely many coordinate balls with nested smaller balls covering $X$. Translated balls around $x$ inside these charts can have a common positive radius. A cutoff equal to one on such an inner ball and zero outside a larger one, multiplied by $n\log|z-z(x)|^2$, gives a global function $\psi_x\leq0$. Choose the scale in the logarithm so it is negative on the chart. Its curvature is positive on the inner ball; on the cutoff annulus the logarithm and its first two derivatives are uniformly bounded. Thus
+\[
+ \ddc\psi_x\geq-b_0\omega,
+ \qquad \psi_x=n\log|z-z(x)|^2+O(1)\text{ near }x,
+\]
+with $b_0\geq0$ independent of $x$. Choose $b_1\geq0$ with $c_1(K_X^{-1},h_{K^{-1},\omega})\geq-b_1\omega$, where the canonical metric is induced by $\omega$, and take $N=b_0+b_1+2$.
+
+In a frame of $L$ on the selected ball, the local weight of $h$ is plurisubharmonic. \Cref{cor:ot-point-value-bound} supplies a holomorphic local section $f$ with $f(x)=v$ and
+\[
+ \int_{B}|f|_h^2\,\mathrm dV\leq C_0|v|_h^2.
+\]
+The volume comparison is uniform on the finite chart cover. Choose another cutoff $\chi$ supported in $B$ and equal to one on a smaller ball around $x$. Put $G=\chi f$ and $g=\bar\partial G=f\bar\partial\chi$. The support of $g$ stays in a fixed annulus, where $\psi_x$ and the cutoff derivatives have uniform bounds.
+
+Apply \cref{thm:gentle-quasi-equisingular-approximation} with background $c_1(L,h_0)-N\omega$. It gives gentle potentials $\varphi_j\downarrow\varphi$, with analytic pole sets $A_j$ and $c_1(L,h_0)+\ddc\varphi_j\geq(N-\varepsilon_j)\omega$, $\varepsilon_j\to0$. Since $\varphi_j(x)\geq\varphi(x)>-\infty$, none of the $A_j$ contains $x$. Set
+\[
+ F=L\otimes K_X^{-1},\qquad
+ h_{F,j}=h_0\mathrm e^{-\varphi_j-\psi_x}\otimes h_{K^{-1},\omega}.
+\]
+For late $j$ this metric is smooth on $M_j=X\setminus(A_j\cup\{x\})$ and has curvature at least $\omega$. The cutoffs of \cref{lem:analytic-complement-cutoffs} are available there. The canonical identification of $L$-valued $(0,q)$-forms with $F$-valued $(n,q)$-forms is an isometry for $\omega$, because the top covector and its dual cancel. Apply \cref{lem:kahler-bundle-l2-estimate} to $g$ under this identification. Its weighted norm is bounded uniformly:
+\[
+ \int_{M_j}|g|_{h_0}^2\mathrm e^{-\varphi_j-\psi_x}\,\mathrm dV
+ \leq C_1\int_B|f|_h^2\,\mathrm dV
+ \leq C_1C_0|v|_h^2.
+\]
+Here $\varphi_j\geq\varphi$ is essential. We obtain a correction $u_j$ with $\bar\partial u_j=g$ on $M_j$ and the same uniform bound for
+$\int|u_j|_{h_0}^2\mathrm e^{-\varphi_j-\psi_x}$.
+
+On $M_j$, $s_j=G-u_j$ is holomorphic. The weights are bounded below relative to $h_0$, since $\varphi_j$ is bounded above and $\psi_x\leq0$. Thus $s_j$ is locally unweighted $L^2$ across $A_j\cup\{x\}$, and \cref{lem:l2-holomorphic-analytic-removal} extends it to a global section. Near $x$, $g=0$ and $A_j$ is absent; hence $u_j$ is holomorphic there after removal. Its integrability with the factor $|z-z(x)|^{-2n}$ forces $u_j(x)=0$, exactly as in \cref{prop:logarithmic-point-interpolation}. Consequently $s_j(x)=v$. Since $\psi_x\leq0$, the correction estimate also bounds its norm without that pole, and
+\[
+ \int_X|s_j|_{h_0}^2\mathrm e^{-\varphi_j}\,\mathrm dV
+ \leq C_2|v|_h^2.
+\]
+The constant uses only the fixed geometric cutoffs and the local point estimate.
+
+The uniform upper bound $\varphi_j\leq\varphi_1$ makes the sections bounded in unweighted $L^2(h_0)$. Local submean inequalities and Cauchy estimates, followed by Arzel\`a--Ascoli on the finite cover, give a subsequence converging uniformly to a global holomorphic section $s$. It has $s(x)=v$. Fatou's lemma and $\varphi_j\downarrow\varphi$ give \eqref{eq:compact-point-extension}. The case $v=0$ uses the zero section.
+\end{proof}
+\index{Ohsawa--Takegoshi theorem!compact point extension}
+
+\Needspace{22\baselineskip}
+\begin{proposition}\label{prop:compact-analytic-bergman-approximation}
+Let $L,T$ be holomorphic line bundles with smooth quadratic metrics $h_0,h_T$, and put $\theta=c_1(L,h_0)$ and $\theta_T=c_1(T,h_T)$. Suppose $\varphi$ has rational analytic singularities and $\theta+\ddc\varphi\geq\delta\omega$ for $\delta>0$. Define
+\[
+ \mathcal H_k=H^0\bigl(X,L^k\otimes T\otimes\mathcal I(k\varphi)\bigr),
+ \qquad \|s\|_k^2=\int_X|s|_{h_0^k\otimes h_T}^2\mathrm e^{-k\varphi}\,\mathrm dV.
+\]
+For all sufficiently large $k$, this is a nonzero finite-dimensional Hilbert space, and its Bergman potential is
+\begin{equation}\label{eq:compact-bergman-potential}
+ \varphi_k=\frac1k\log\sup_{\|s\|_k\leq1}|s|_{h_0^k\otimes h_T}^2.
+\end{equation}
+It has gentle rational analytic singularities and belongs to $\PSH(X,\theta+k^{-1}\theta_T)$. There are $C>0$ and an increasing sequence $\alpha_k\in(0,1)$ tending to one such that
+\begin{equation}\label{eq:compact-bergman-type-bounds}
+ \varphi_k\geq\varphi-\frac{\log C}{k},\qquad
+ \varphi\preceq\varphi_k\preceq\alpha_k\varphi.
+\end{equation}
+Here $u\preceq v$ means $u\leq v+O(1)$, as in \cref{sec:analytic-approximation-comparison}.
+\end{proposition}
+\begin{proof}
+Choose $b_T$ with $\theta_T\geq-b_T\omega$. For $k\delta-b_T\geq N$, \cref{thm:compact-point-extension} applies to $L^k\otimes T$ with metric $(h_0^k\otimes h_T)\mathrm e^{-k\varphi}$. It supplies, at each finite point of $\varphi$, a section taking any chosen unit reference-metric value and with squared norm at most $C\mathrm e^{-k\varphi(x)}$. Rescaling proves the first bound in \eqref{eq:compact-bergman-type-bounds}; at poles the bound is automatic. At least one finite point exists, so $\mathcal H_k\ne0$.
+
+The space of all holomorphic sections of a fixed line bundle on $X$ is finite dimensional. Its unweighted $L^2$ unit ball is compact by the same finite-chart submean, Cauchy and Arzel\`a--Ascoli argument just used; an infinite orthonormal sequence would contradict this compactness. Thus $\mathcal H_k$ is finite dimensional. Weighted integrability is exactly the displayed multiplier-ideal condition, and its norm is a positive definite inner product. For an orthonormal basis $s_1,\ldots,s_{d_k}$, Hilbert projection gives the supremum in \eqref{eq:compact-bergman-potential} as $\sum_i|s_i|^2$. In a frame the holomorphic logarithmic tuple therefore gives positivity with background $\theta+k^{-1}\theta_T$, and analytic coefficient $1/k$. Its exponential $\mathrm e^{k\varphi_k}$ is smooth globally. On a log resolution of the coherent base ideal, divide by its common divisor monomial. The resulting holomorphic tuple has no common zero, so its sum of squared norms is smooth and strictly positive. This proves gentleness with the same quadratic-metric convention.
+
+For the upper type bound choose a finite cover by local analytic presentations of $\varphi$ and log resolutions over smaller neighborhoods, as in \cref{lem:analytic-weighted-integrability-growth}. Let $a_E>0$ be their finitely many positive logarithmic coefficients and $A_E$ the corresponding discrepancies. Choose $B>\max_E A_E/a_E$; if there are no such components choose any $B>0$. The proof of \cref{lem:analytic-weighted-integrability-growth} only requires $k\eta a_E\geq A_E$ on this finite list. For $\eta=B/k$ that holds for every component. Its factoring and properness argument therefore gives, for $k>B$ and every local coefficient of every $s_i$,
+\[
+ \log|s_i|_{h_0^k\otimes h_T}^2
+       \leq(k-B)\varphi+C_{i,k}.
+\]
+Smooth frame factors only change the constants. A finite chart cover and the finite basis give $\varphi_k\leq(1-B/k)\varphi+C_k$. Choose $\alpha_k=1-B/k$ for the stated large integers. It is positive, increases to one, and proves the remaining comparisons. If $\varphi$ is bounded the same conclusion holds because the local ideal is the unit ideal and the right side is bounded. No bounded-growth ideal or division theorem is required.
+\end{proof}
+\index{Bergman kernel!compact analytic approximation}
+
+\begin{example}\label{ex:projective-line-bergman-kernel}
+On $\mathbb P^1$ take $L=\mathcal O(1)$ with its Fubini--Study metric, the trivial twist, $\varphi=0$ and volume $\omega_{\mathrm{FS}}$. A section of $L^k$ is a polynomial of degree at most $k$ on the chart $[1:z]$: holomorphicity of $\zeta^k f(1/\zeta)$ at infinity and Cauchy's estimates exclude all higher coefficients. Rotational integration makes the monomials orthogonal, and
+\[
+ \|z^j\|_k^2=\int_0^\infty\frac{t^j}{(1+t)^{k+2}}\,\mathrm dt
+       =\frac{j!(k-j)!}{(k+1)!},\qquad 0\leq j\leq k.
+\]
+The substitution $u=t/(1+t)$ followed by integration by parts gives the last equality. Thus the orthonormal homogeneous sections are
+$\sqrt{(k+1)\binom{k}{j}}X_0^{k-j}X_1^j$. Their squared norms sum to
+\[
+ \frac{k+1}{(1+|z|^2)^k}\sum_{j=0}^k\binom{k}{j}|z|^{2j}=k+1.
+\]
+Consequently $\varphi_k=k^{-1}\log(k+1)$ converges uniformly to zero. The calculation checks both the quadratic metric normalization and the volume $\int_{\mathbb P^1}\omega_{\mathrm{FS}}=1$.
+\end{example}
