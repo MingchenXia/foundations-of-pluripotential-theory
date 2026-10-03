@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **P05**.
-
-## P05 — Fine topology and balayage
-
-- `P05-01` [planned] Fine neighborhoods and thinness with pointwise representatives
-- `P05-02` [planned] Reduction, balayage and harmonic measure
-- `P05-03` [planned] Fine continuity, quasi-Lindelof statements and exceptional sets
-- `P05-04` [planned] Separate the classical fine topology from the later plurifine topology
+Next coherent writing unit: **P06**.
 
 ## P06 — Fourier energy and incidence of complex lines
 

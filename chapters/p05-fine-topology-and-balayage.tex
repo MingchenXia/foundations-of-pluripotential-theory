@@ -1,2 +1,247 @@
 \chapter{Fine topology and balayage}
 \label{chap:p05}
+
+Let $\Omega\subset\mathbb R^d$ be open, with $d\geq2$. Subharmonic functions can fail to be continuous in the Euclidean topology, but their discontinuities are controlled by capacity. Making these functions continuous gives a finer topology in which thinness becomes an ordinary neighborhood condition. Reduction supplies the corresponding operation on potentials: it retains prescribed values on a set and removes as much of the potential as harmonicity permits. The polar discrepancy between a reduction and its regularization is essential to both constructions.
+
+\section{Fine neighborhoods and thinness}
+\label{sec:fine-neighborhoods}
+\begin{definition}\label{def:classical-fine-topology}
+The classical fine topology\index{fine topology!classical} on $\Omega$ is the smallest topology containing the Euclidean topology and making every subharmonic function on every Euclidean open subset $V\subset\Omega$ continuous, with values in $[-\infty,\infty)$. Continuity on $V$ uses the topology induced there. A set is finely open if it is open in this topology.
+\end{definition}
+Upper semicontinuity makes $\{u<a\}$ Euclidean open. Consequently, finite intersections of Euclidean open sets and sets $\{u>a\}$, with the functions defined on a common Euclidean neighborhood, form a basis. The functions here are their canonical pointwise representatives from \cref{thm:subharmonic-distribution}. Changing values on a Lebesgue null set need not preserve this topology. Superharmonic functions, being negatives of subharmonic functions, are also finely continuous. In dimension one the convex characterization in \cref{ex:subharmonic-convex-log} makes every nontrivial subharmonic function continuous; the fine topology there is the Euclidean topology.
+
+\begin{definition}\label{def:thinness}
+A set $A\subset\Omega$ is thin\index{thinness} at $x\in\Omega$ if either $x\notin\overline{A\setminus\{x\}}$ in the Euclidean topology, or there is a subharmonic function $u$ near $x$ such that
+\[
+ u(x)>\limsup_{\substack{y\to x\\y\in A\setminus\{x\}}}u(y).
+\]
+\end{definition}
+\begin{proposition}\label{prop:thin-fine-neighborhood}
+The set $A$ is thin at $x$ if and only if some fine neighborhood of $x$ misses $A\setminus\{x\}$. Every fine neighborhood of $x$ contains, locally, a neighborhood of the form $\{u>a\}$ for one subharmonic function with $u(x)>a$.
+\end{proposition}
+\begin{proof}
+A witness for thinness gives such a neighborhood after choosing a number strictly between the two values and shrinking its Euclidean domain. The case of no Euclidean accumulation is immediate. Conversely, take a basic neighborhood
+\[
+ V\cap\bigcap_{i=1}^m\{u_i>a_i\},\qquad u_i(x)>a_i.
+\]
+All the $u_i(x)$ are finite. Set $b_i=u_i(x)-a_i>0$ and
+\[
+ v=\sum_{i=1}^m\frac{u_i-u_i(x)}{b_i}.
+\]
+Then $v(x)=0$. Along points tending to $x$ outside that basic neighborhood, at least one summand is at most $-1$; the upper limits of the other summands are at most zero. Passing to a subsequence with a fixed failing index shows that the upper limit of $v$ there is at most $-1$. Thus $v$ witnesses thinness. On a sufficiently small Euclidean neighborhood, $\{v>-1/2\}$ lies in the original basic neighborhood, which proves the last assertion. A purely Euclidean neighborhood can use the constant function zero.
+\end{proof}
+
+\begin{proposition}\label{prop:fine-positive-measure}
+Every fine neighborhood contains a Borel subset of positive Lebesgue measure locally at its center. In particular, the fine topology has no isolated points.
+\end{proposition}
+\begin{proof}
+Near a point $x$ in the set use $\{u>a\}$ as in \cref{prop:thin-fine-neighborhood}. On a small ball centered at $x$, let $M$ be a finite upper bound for $u$. If $\{u>a\}$ had measure zero there, the ball submean inequality would give $u(x)\leq a$. More precisely, its relative measure is at least $(u(x)-a)/(M-a)$ when $M>a$. This is positive. A singleton has Lebesgue measure zero.
+\end{proof}
+
+\begin{proposition}\label{prop:polar-fine-discrete}
+Every polar subset of $\Omega$ is finely closed and is discrete in its induced fine topology. In fact, for a polar set $A$ and any $x\in\Omega$, there is a fine neighborhood of $x$ meeting $A$ in at most $\{x\}$.
+\end{proposition}
+\begin{proof}
+Work in a small ball about $x$. Split its punctured part into countably many closed annuli, and intersect $A$ with them. The proof of \cref{prop:polar-globalization} applied to each piece permits all the corresponding Riesz supports to lie in a fixed larger compact ball and to avoid a neighborhood of $x$: choose the local Riesz balls away from $x$. It gives measures $\nu_j$ whose potentials $p_j=E_d*\nu_j$ are $-\infty$ on those pieces and are finite at $x$. Choose positive $c_j$ with
+\[
+ \sum_jc_j\bigl(\nu_j(\mathbb R^d)+|p_j(x)|\bigr)<\infty.
+\]
+The potential $p=E_d*(\sum_jc_j\nu_j)$ is finite at $x$ and is $-\infty$ on the punctured part of $A$ in the smaller ball. The equality with the weighted sum follows by subtracting a common upper bound for the kernel, as in the globalization proof. Hence $\{p>p(x)-1\}$ is the required fine neighborhood. For $x\notin A$ it proves that the complement of $A$ is finely open; for $x\in A$ it proves relative discreteness.
+\end{proof}
+A countable dense set is polar, since singletons are polar and countable unions are polar. Its fine closedness already shows that this topology is strictly finer than the Euclidean topology. The next example explains why the countability result proved below must allow an exceptional set.
+
+\begin{example}\label{ex:uncountable-polar-cantor}
+There is an uncountable compact polar set in every Euclidean ball. Therefore the fine topology is neither Lindel\"of nor second countable.
+\end{example}
+\begin{proof}
+Fix a compact ball $L$ inside a larger ball $B$. The image correction in \cref{lem:ball-green-symmetry} is bounded in absolute value by a constant $M$ on a slightly larger compact neighborhood of $L$. For a small closed ball $K=\overline{B(z,r)}$ there, its extremal measure satisfies
+\[
+ 1\geq\int G_B(z,y)\,\mathrm d\lambda_K(y)
+ \geq\bigl(\Gamma_d(r)-M\bigr)C_B(K).
+\]
+Here $\Gamma_d=-E_d$, with $\Gamma_2(r)=\log(1/r)/(2\pi)$; take $r$ so small that the last factor is positive. Thus the capacities of these balls tend uniformly to zero with their radii. Inside $L$ choose two disjoint smaller closed balls, then two inside each of those, and continue. At level $m$ make the diameters less than $2^{-m}$ and the sum of their relative capacities less than $2^{-m}$. The intersection of the nested finite unions is compact and contains one distinct point for each infinite binary sequence. Its capacity is zero by monotonicity and subadditivity, hence it is polar by \cref{cor:polar-zero-capacity}. By \cref{prop:polar-fine-discrete} it is an uncountable fine closed discrete subspace. A closed subspace of a Lindel\"of space is Lindel\"of, whereas the singleton cover of an uncountable discrete space has no countable subcover. A second countable space is Lindel\"of, by choosing one cover member for each basis element contained in a cover member. Both assertions follow.
+\end{proof}
+
+\section{Green energy and compact reduction}
+\label{sec:green-reduction}
+Fix a ball $B$, and consider measures with compact support in $B$. Write $G\mu(x)=\int G_B(x,y)\,\mathrm d\mu(y)$ and
+\[
+ I_B(\mu,\nu)=\iint G_B(x,y)\,\mathrm d\mu(x)\,\mathrm d\nu(y),\qquad I_B(\mu)=I_B(\mu,\mu).
+\]
+For positive measures the integrals are defined by Tonelli. Finite Green energy is equivalent to finite kernel energy on a common compact support, since the harmonic correction is bounded there. For logarithmic energy take a fixed scale exceeding the diameter of that support.
+
+\begin{proposition}\label{prop:finite-green-energy}
+If $\mu$ has finite Green energy, then $\nabla G\mu\in L^2(B)$ and
+\[
+ I_B(\mu,\nu)=\int_B\nabla G\mu\mathbin{\cdot}\nabla G\nu\,\mathrm d x
+\]
+for any two positive finite-energy measures. Their mutual energy is finite. The same identity holds for signed measures whose positive and negative parts have finite energy. This quadratic form is strictly positive definite and satisfies Cauchy--Schwarz.
+\end{proposition}
+\begin{proof}
+By \cref{thm:potential-continuity-principle}, write $\mu$ as a sum of compact restrictions with continuous fundamental potentials, and let $\mu_n$ be the finite partial sums. Their Green potentials are bounded, continuous on $\overline B$, zero on $\partial B$, and harmonic in a fixed boundary collar. The identity in \cref{prop:bounded-green-energy} applies. Since $G_B$ is nonnegative and integrable for $\mu\otimes\mu$,
+\[
+ I_B(\mu-\mu_n)\longrightarrow0.
+\]
+The gradients of $G\mu_n$ are therefore Cauchy in $L^2$. Also $G\mu_n\uparrow G\mu$ in $L^1(B)$: the fundamental kernel is integrable uniformly over a compact set of poles, and the harmonic correction is bounded there. Distributional testing identifies the gradient limit with $\nabla G\mu$. Passing to the norms gives its squared norm $I_B(\mu)$. For partial sums of two measures, the bounded-potential identity and integral Cauchy--Schwarz bound the cross energies by $I_B(\mu)^{1/2}I_B(\nu)^{1/2}$. Tonelli and passage to the two gradient limits give the bilinear identity. Subtraction gives the signed version.
+
+If the energy of a signed measure $\sigma$ is zero, $G\sigma$ has zero distributional gradient. Mollification shows it is constant on the connected ball. Its harmonic extension in the boundary collar has zero boundary values, so that constant is zero. Taking $-\Delta G\sigma=\sigma$ proves $\sigma=0$. Cauchy--Schwarz follows either from the gradient identity or from positivity of the quadratic polynomial in $I_B(\sigma+t\tau)$.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-capacity-variational}
+For compact $K\Subset B$,
+\[
+ C_B(K)=\left(\inf_{\substack{\tau\geq0,\ \Supp\tau\subset K\\\tau(K)=1}} I_B(\tau)\right)^{-1},
+\]
+where the reciprocal of infinity is zero. If $C_B(K)>0$, the unique minimizing probability measure is $\lambda_K/C_B(K)$. If $D\subset B$ are balls and $\overline A\Subset D$, then $C_B^*(A)\leq C_D^*(A)$.
+\end{proposition}
+\begin{proof}
+Put $w_K=-u_K=G\lambda_K$. The polar envelope discrepancy theorem gives $w_K=1$ quasi-everywhere on $K$, and $0\leq w_K\leq1$ everywhere. Its bounded potential has finite energy. Finite-energy measures charge no polar sets, so, with $m=C_B(K)$,
+\[
+ I_B(\lambda_K)=m,\qquad I_B(\lambda_K,\tau)=1
+\]
+for every finite-energy probability measure $\tau$ on $K$. When $m>0$, Cauchy--Schwarz gives $I_B(\tau)\geq1/m$, with equality for $\lambda_K/m$. If two minimizers were distinct, the energy of their midpoint would be the minimum minus one quarter of the strictly positive energy of their difference, a contradiction. When $m=0$, \cref{thm:compact-polar-energy} excludes a finite-energy probability measure. The empty set has no probability measure and uses the same convention.
+
+Green domain monotonicity in \cref{thm:dirichlet-green} gives $G_B\geq G_D$ on $D\times D$. The variational formula therefore gives $C_B(K)\leq C_D(K)$ for compact $K\Subset D$. Take compact suprema for relatively compact open sets in $D$, and then the infimum over open neighborhoods of $A$ in $D$. Such neighborhoods are also allowed in the outer capacity for $B$, proving the last assertion.
+\end{proof}
+
+For a nonnegative superharmonic function $s$ on an open set and an arbitrary subset $A$, define its reduction\index{reduction} and regularized reduction by
+\[
+ R_s^A=\inf\{h:h\geq0\text{ is superharmonic},\ h\geq s\text{ on }A\},
+ \qquad \widehat R_s^A=(R_s^A)_*.
+\]
+The subscript $*$ denotes lower semicontinuous regularization. The function $s$ is an admissible majorant, so $0\leq R_s^A\leq s$. Applying the subharmonic envelope theorem to the negatives of the majorants shows that $\widehat R_s^A$ is superharmonic and that $R_s^A=\widehat R_s^A$ except on a polar set. In particular $R_s^A=s$ on $A$, whereas the regularized reduction has that equality only quasi-everywhere there. The majorants and their infimum are pointwise objects.
+
+\begin{proposition}\label{prop:reduction-order}
+Reduction and regularized reduction are increasing in $A$ and in $s$, are positively homogeneous, and are subadditive in $s$:
+\[
+ \widehat R_{s+t}^A\leq\widehat R_s^A+\widehat R_t^A.
+\]
+For a relatively compact polar set $A$ in a ball, the regularized reduction is zero for every nonnegative superharmonic $s$ on that ball.
+\end{proposition}
+\begin{proof}
+The order and homogeneity assertions follow from the majorant classes; multiplying by zero gives zero separately. Sums of two majorants majorize $s+t$, so $R_{s+t}^A\leq R_s^A+R_t^A$. The same inequality holds almost everywhere for their regularizations and therefore everywhere for canonical superharmonic representatives, by ball averaging. For a relatively compact polar $A$ in a ball, the globalization construction gives a superharmonic pole function. Adding a constant makes it nonnegative on the ball, since the fundamental kernel is bounded above on the bounded set of differences involved. Every $\varepsilon p$ majorizes $s$ on $A$, even at infinite values. Letting $\varepsilon\downarrow0$ makes the regularized reduction zero.
+\end{proof}
+
+\begin{theorem}\label{thm:compact-reduction}
+Let $A\Subset B$ be compact, and let $s\geq0$ be superharmonic on $B$ and bounded on a neighborhood of $A$. Then $r=\widehat R_s^A$ is bounded, harmonic on $B\setminus A$, and tends to zero at $\partial B$. There is a finite positive measure $\nu$ supported on $A$ such that
+\[
+ r=G\nu,\qquad r=s\quad\text{quasi-everywhere on }A.
+\]
+Its Green energy is finite.
+\end{theorem}
+\begin{proof}
+Choose a compact ball $L\Subset B$ with $A\subset\operatorname{int}L$, and $M$ bounding $s$ near $A$. Then $h_0=M(-u_L)$ is a bounded nonnegative superharmonic majorant of $s$ on $A$, with zero boundary limits. Replacing any majorant $h$ by $\min\{h,h_0\}$ preserves the constraint. Hence the infimum can be taken over functions between zero and $h_0$.
+
+We spell out harmonic lifting for these possibly discontinuous majorants. On a closed ball $D\Subset B\setminus A$, the bounded lower semicontinuous boundary function $h$ is an increasing limit of continuous minorants, by the negative of \cref{lem:usc-majorants}. Their Poisson extensions increase to a bounded harmonic function $H$ by Harnack convergence. Each is at most $h$ in $D$ by superharmonic comparison, so $H\leq h$. At a boundary point $\zeta$, lower semicontinuity and concentration of the Poisson kernel give $\liminf_{y\to\zeta}H(y)\geq h(\zeta)$. Replace $h$ by $H$ inside $D$, retaining $h$ on its boundary and outside. This is lower semicontinuous. To check superharmonic comparison on a crossing ball, first compare a harmonic test with $h$, and then with $H$ on the part inside $D$; the joining boundary inequalities just proved allow the second comparison. Thus the replacement is superharmonic and remains a majorant on $A$.
+
+Choquet selection applied to the negatives of the capped majorants gives a decreasing sequence of finite minima $h_j$ with limit $r$ almost everywhere. Lift each on $D$. The lifts decrease, remain between zero and $M$, and converge to a harmonic function there. Since every lift is still a majorant, it is at least $R_s^A$; since it is at most $h_j$, its limit is $r$ almost everywhere. Uniqueness of canonical representatives identifies the harmonic limit with $r$. Such balls cover $B\setminus A$.
+
+The measure $\nu=-\Delta r$ is positive and supported on $A$, and hence is finite. The bound $r\leq h_0$ gives zero boundary limits. The Green representation argument in \cref{prop:compact-extremal} now gives $r=G\nu$. The reduction equals $s$ on $A$ before regularization, and the discrepancy is polar, proving the stated equality. Finally $I_B(\nu)=\int r\,\mathrm d\nu\leq M\nu(A)<\infty$.
+\end{proof}
+
+\section{Sweeping measures and harmonic measure}
+\label{sec:balayage-measures}
+\begin{theorem}\label{thm:compact-balayage}
+Let $A\Subset B$ be compact and $\mu$ a finite positive measure with compact support in $B$. Suppose $G\mu$ is bounded near $A$. There is a unique positive finite-energy measure $\mu^A$ supported on $A$ whose potential is $\widehat R_{G\mu}^A$. It satisfies
+\[
+ G\mu^A\leq G\mu,\qquad G\mu^A=G\mu\text{ quasi-everywhere on }A,
+ \qquad \mu^A(A)\leq\mu(B).
+\]
+For every positive finite-energy measure $\tau$ supported on $A$,
+\begin{equation}\label{eq:balayage-orthogonality}
+ I_B(\mu,\tau)=I_B(\mu^A,\tau).
+\end{equation}
+This identity characterizes $\mu^A$ among positive finite-energy measures on $A$. Sweeping is additive and positively homogeneous for sources satisfying the stated boundedness condition.
+\end{theorem}
+\begin{proof}
+Existence and the potential statements follow from \cref{thm:compact-reduction}. The Riesz equation identifies the measure uniquely. Both source and swept potentials are smooth on a common collar of $\partial B$ and vanish there. The inequality $G\mu^A\leq G\mu$ orders their boundary fluxes, as in \cref{prop:compact-extremal}, giving the mass bound. Integrate the quasi-everywhere equality on $A$ against $\tau$, which charges no polar sets. The source potential is bounded there, so both integrals are finite; symmetry and Tonelli give \eqref{eq:balayage-orthogonality}.
+
+If $\nu_1,\nu_2$ both satisfy that identity, test separately against $\nu_1$ and $\nu_2$ and subtract. Their difference has zero energy and is zero by \cref{prop:finite-green-energy}. For two sources the sum of their swept measures satisfies the identity for the sum source, proving additivity by this characterization. The same argument gives homogeneity.
+\end{proof}
+The measure $\mu^A$ is the balayage\index{balayage} or swept measure of $\mu$ onto $A$, relative to $B$. The next extension expresses the construction entirely through finite energy, without requiring bounded potentials.
+
+\begin{theorem}\label{thm:finite-energy-balayage}
+For every positive finite-Green-energy measure $\mu$ of compact support in $B$ and every compact $A\Subset B$, the regularized reduction $\widehat R_{G\mu}^A$ is the Green potential of a positive finite-energy measure $\mu^A$ supported on $A$. All the conclusions of \cref{thm:compact-balayage} remain valid. Moreover,
+\[
+ I_B(\mu,\mu^A)=I_B(\mu^A),\qquad
+ I_B(\mu-\mu^A)=I_B(\mu)-I_B(\mu^A)\geq0.
+\]
+If $\mu$ is supported on $A$, then $\mu^A=\mu$.
+\end{theorem}
+\begin{proof}
+Decompose $\mu$ into continuous-potential restrictions as in the proof of \cref{prop:finite-green-energy}, with partial sums $\mu_n\uparrow\mu$. Additivity of bounded-potential sweeping implies $\mu_n^A\uparrow\nu$ as measures. Their masses are at most $\mu(B)$, so $\nu$ is finite and supported on $A$. For bounded-potential sources the orthogonality identity tested against the swept measure gives
+\[
+ I_B(\mu_n^A)=I_B(\mu_n,\mu_n^A)\leq I_B(\mu_n)^{1/2}I_B(\mu_n^A)^{1/2}.
+\]
+Thus $I_B(\mu_n^A)\leq I_B(\mu_n)\leq I_B(\mu)$. Tonelli gives $I_B(\nu)<\infty$. Applying the same estimate to positive tails proves energy convergence of the swept partial sums. Passing to the orthogonality identities proves \eqref{eq:balayage-orthogonality} for $\nu$ and every finite-energy $\tau$ on $A$.
+
+Monotone convergence gives $G\nu\leq G\mu$ everywhere and equality on $A$ outside a countable union $E$ of polar discrepancy sets. The globalization construction gives a nonnegative superharmonic $p$ on $B$, finite almost everywhere and infinite on $E$. For every $\varepsilon>0$, the function $G\nu+\varepsilon p$ is a pointwise majorant of $G\mu$ on $A$, including its infinite values. Hence $\widehat R_{G\mu}^A\leq G\nu$ almost everywhere on letting $\varepsilon\downarrow0$, and then everywhere by canonical representatives. Conversely, monotonicity gives $\widehat R_{G\mu}^A\geq G\mu_n^A$ for every $n$, so it is at least $G\nu$. This identifies the reduction. The mass inequality passes to the limit, and the energy characterization again gives uniqueness, additivity and homogeneity. Testing against $\mu^A$ gives the displayed energy identities. If $\mu$ is supported on $A$, it itself satisfies the characterization, so it is unchanged by sweeping.
+\end{proof}
+
+\begin{example}\label{ex:balayage-harmonic-measure}
+Let $D\Subset B$ be a bounded regular domain, put $A=\overline D$, and suppose $W=B\setminus A$ is also a bounded regular domain. For $x\in W$, the Dirac measure at $x$ satisfies the bounded-near-$A$ hypothesis. Its swept potential is
+\[
+ r_x(y)=
+ \begin{cases}
+ G_B(x,y),&y\in A,\\
+ G_B(x,y)-G_W(x,y),&y\in W.
+ \end{cases}
+\]
+Equivalently, on $W$,
+\[
+ r_x(y)=\int_{\partial W}f_x(\zeta)\,\mathrm d\omega_y^W(\zeta),\qquad
+ f_x=G_B(x,\cdot)\text{ on }\partial A,\quad f_x=0\text{ on }\partial B.
+\]
+At $y=x$ the difference of Green kernels means its harmonic extension after cancellation of the common pole. The swept measure is supported on $\partial A$ and has mass at most one.
+\end{example}
+\begin{proof}
+The boundary function $f_x$ is continuous. Its harmonic extension $H$ on $W$ is nonnegative and is at most the superharmonic function $G_B(x,\cdot)$ by comparison. Paste $H$ on $W$ to that Green function on $A$. The result $r$ is continuous, bounded, and superharmonic. Indeed, a harmonic test below $r$ on the boundary of a ball is first below $G_B(x,\cdot)$ throughout the ball. On the part in $W$, compare the test with $H$; the inner joining boundary has the same Green values, and the ball boundary has the original inequality. This proves the superharmonic comparison property across $\partial A$.
+
+The function $r$ is an admissible majorant for reduction. Every other nonnegative superharmonic majorant $h$ is at least $r$ on $A$. Lower semicontinuity gives the required lower boundary limits on $\partial A$, and nonnegativity gives them on $\partial B$. Comparison on $W$ yields $h\geq H$. Thus $R_{G_B(x,\cdot)}^A=r$ pointwise. On $W$, the difference $G_B(x,\cdot)-G_W(x,\cdot)$ is distributionally harmonic, extends harmonically across $x$ by Weyl's lemma, and has the boundary values $f_x$. Dirichlet uniqueness identifies it with $H$; the harmonic-measure formula is \cref{prop:harmonic-measure}. The Riesz measure of $r$ vanishes inside $D$ and inside $W$, so it is supported on $\partial A$. The mass bound is the preceding theorem. Concentric balls give an explicit instance of all the regularity hypotheses.
+\end{proof}
+
+\section{Countable covers and quasi-open sets}
+\label{sec:fine-quasi-lindelof}
+The countability failure in \cref{ex:uncountable-polar-cantor} occurs on a polar set. Away from such a set, Choquet selection recovers the countable operations needed for measures and capacity.
+
+\Needspace{11\baselineskip}
+\begin{theorem}\label{thm:fine-quasi-lindelof}
+For every family $(U_i)_{i\in I}$ of finely open subsets of $\Omega$, there is a countable subfamily such that
+\[
+ \bigcup_{i\in I}U_i\setminus\bigcup_{j=1}^{\infty}U_{i_j}
+\]
+is polar. Every finely open set differs from a Borel set by a subset of a polar set. It is therefore measurable for completed Lebesgue measure, and for the completion of every finite-energy measure of compact support.
+\end{theorem}
+\begin{proof}
+By \cref{prop:thin-fine-neighborhood}, refine the union into sets of the form $B\cap\{u>a\}$, each contained in some $U_i$, where $B$ ranges over a countable basis of rational balls whose closures lie in the domain of $u$. For a fixed $B$, replace $u-a$ by
+\[
+ v=\frac{u-a}{1+\max\{0,\sup_B(u-a)\}}.
+\]
+The positive level set is unchanged, and all such $v$ are bounded above by one on $B$. Choquet selection gives a countable subfamily with the same regularized supremum. Both the full supremum and the selected supremum differ from that regularization only on polar sets, by \cref{thm:polar-limit-discrepancy}. Outside their union, if some $v$ is positive, one of the selected functions is positive. Thus a countable selection of these basic sets covers the original union except for a polar set in $B$. Repeat over the countable rational balls; countable unions of the exceptional sets are polar. Choose for every selected basic set one original $U_i$ containing it. This proves the subfamily statement.
+
+Apply the construction to the basic cover of one finely open set $U$. The selected basic sets are Borel and their countable union $V$ lies in $U$. The difference $U\setminus V$ is contained in a polar set. A countable local cover puts polar sets inside a countable union of Borel pole sets, which has zero Lebesgue measure by local integrability and zero finite-energy measure by \cref{thm:compact-polar-energy}. Completion proves the measurability assertions, including arbitrary subsets of those pole sets.
+\end{proof}
+
+\begin{proposition}\label{prop:fine-quasi-open}
+Every finely open set $U$ is locally quasi-open\index{quasi-open set}: given a compact $L\subset B\Subset\Omega$ and $\eta>0$, there is a Euclidean open $O\Subset B$ with $C_B(O)<\eta$ such that $(U\cup O)\cap L$ is relatively Euclidean open in $L$. Equivalently, $U\cap(L\setminus O)$ is relatively open in $L\setminus O$.
+\end{proposition}
+\begin{proof}
+Use the Borel countable basic union $V\subset U$ from \cref{thm:fine-quasi-lindelof}, and put the polar difference in an open set of capacity less than $\eta/2$ near $L$, by \cref{cor:polar-zero-capacity}. Cover each of the countably many basic pieces near $L$ by smaller rational balls $D'\Subset D\Subset B$ on which its defining subharmonic function is defined. On $\overline{D'}\cap L$, quasi-continuity makes that function finite and continuous outside a Euclidean open set of $D$ with arbitrarily small $C_D$-capacity. By \cref{prop:relative-capacity-variational}, its $C_B$-capacity is no larger. Enumerate all these restrictions and allocate exceptional capacities less than $\eta2^{-j-1}$.
+
+Intersect the exceptional sets with a fixed relatively compact open neighborhood of $L$ in $B$. Their union together with the polar-set neighborhood is an open set $O\Subset B$ of capacity less than $\eta$, by countable subadditivity. On $F=L\setminus O$ all the defining functions are continuous on their respective local pieces. Thus $V\cap F$, and hence $U\cap F$, is relatively open in $F$. Write $U\cap F=T\cap F$ for a relatively open set $T\subset L$. Then $(U\cup O)\cap L=T\cup(O\cap L)$ is relatively open in $L$, proving the assertion and its equivalent formulation.
+\end{proof}
+
+Fine continuity and quasi-continuity make different assertions. The former uses a fixed finer topology; the latter permits a Euclidean exceptional neighborhood of arbitrarily small capacity. The two results above explain how a topology with no countable basis can nevertheless support countable measure-theoretic arguments. They do not turn a countable subcover modulo a polar set into a literal subcover.
+
+\section{Complex lines and the choice of topology}
+\label{sec:classical-versus-plurifine}
+On $\mathbb C^n$, identified with $\mathbb R^{2n}$, the classical fine topology uses all real subharmonic functions. The later plurifine construction uses upper semicontinuous functions whose restrictions to affine complex lines are subharmonic or identically $-\infty$. The line condition changes the generating class. In complex dimension one it is exactly the ordinary planar subharmonic condition. In higher dimension the following example distinguishes the resulting topologies without assuming a comparison theorem between the classes.
+
+\begin{proposition}\label{prop:classical-plurifine-distinction}
+For $n\geq2$, let $H=\{z_1=0\}$ in $\mathbb C^n$. Its induced classical fine topology is discrete. In the topology generated by Euclidean open sets and the functions satisfying the upper semicontinuity and complex-line conditions just stated, no point of $H$ is isolated in $H$.
+\end{proposition}
+\begin{proof}
+The function $\log|z_1|$ is real subharmonic on $\mathbb R^{2n}$. Indeed it is locally integrable by Fubini, and its distributional Laplacian is the positive planar measure $2\pi\delta_0$ in the first two real coordinates times Lebesgue measure in the others. The distributional criterion in \cref{thm:subharmonic-distribution} identifies its canonical representative off $H$ by continuity. At a point of $H$, radial mollification at scale $r$ has value $\log r+c$, with a finite constant $c$ by local integrability of the planar logarithm; its limit is $-\infty$. The same criterion therefore gives the stated values on $H$. Hence $H$ is polar, and \cref{prop:polar-fine-discrete} makes its induced classical fine topology discrete.
+
+For the other topology, consider a basic neighborhood of $x\in H$. Upper semicontinuity again absorbs constraints of the form $u_i<b_i$ into a Euclidean neighborhood, leaving finitely many conditions $u_i>a_i$ with $u_i(x)>a_i$. Choose an affine complex line through $x$ contained in $H$. None of these restrictions is identically $-\infty$, because its value at $x$ is finite. Their normalized sum, as in \cref{prop:thin-fine-neighborhood}, is planar subharmonic and gives a planar fine neighborhood of $x$ lying in all the constraints. By \cref{prop:fine-positive-measure}, it contains points other than $x$. Thus the original neighborhood does not isolate $x$ in $H$.
+\end{proof}
