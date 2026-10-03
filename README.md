@@ -9,6 +9,8 @@ Mingchen Xia 的新书，私有写作仓库。书名采用标准拼写 **Foundat
 - [新增结果](research/dossiers/PSHD.md)、[加强 Demailly 正则化](research/dossiers/DEMAILLY.md)：确切结论、证明链、规范换算及尚未核实之处。
 - [云端接续说明](codex/CLOUD.md)、[首个写作任务](codex/FIRST_TASK.md)。云端所需两个写作 skills 已原样存入 `.agents/skills/`。
 
+作者指定本次只配置仓库，之后更换账号继续。新账号连接有访问权限的 GitHub 后即可创建环境；本次不创建实际云端环境。
+
 ## 本地命令
 
 ```sh
