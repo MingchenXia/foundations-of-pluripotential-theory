@@ -106,10 +106,8 @@ Next coherent writing unit: **A01**.
 
 ## A01 — Complex spaces and modifications
 
-- `A01-01` [planned] Local analytic dimension and codimension-two psh extension; reduced spaces, normalization, unibranch loci and psh descent
-- `A01-02` [planned] Resolution and principalization as explicit external interfaces
-- `A01-03` [planned] Relative principalization and behavior on strict transforms needed in Nakamaye
-- `A01-04` [planned] Zariski main, connected fibers and extension on singular spaces
+- `A01-04` [blocked] Connected fibers, common models, singular-space psh removal and descent
+  Concrete blocker: The exact Fornæss–Narasimhan disc criterion EI-FN is a checked external-input proposal awaiting author approval or a complete internal Stein-theoretic proof. Independent connected-fiber, model and codimension-two upper-bound proofs are drafted. Stronger domination of arbitrary proper models by smooth-center sequences remains a separate sample-coverage question; it is not inferred from resolution.
 
 ## H01 — Historical and bibliographical notes
 

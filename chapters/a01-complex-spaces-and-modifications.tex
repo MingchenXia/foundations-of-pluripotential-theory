@@ -1,2 +1,645 @@
 \chapter{Complex spaces and modifications}
 \label{chap:a01}
+
+An analytic zero set can have several local branches even when it is globally irreducible. Separating those branches and resolving each one serve different purposes: normalization controls holomorphic functions, while resolution makes geometric calculations possible on a manifold. Plurisubharmonic descent additionally requires connected fibers. We develop the local analytic foundations before making those distinctions precise.
+
+\section{Division and finite analytic modules}
+\label{sec:analytic-division}
+
+Write $\mathcal O_n=\mathbb C\{z_1,\ldots,z_n\}$ for the ring of holomorphic germs at the origin; equality means equality on some neighborhood. The power-series identification follows from the iterated Cauchy formula in \cref{chap:complex-currents}. Its maximal ideal consists of germs vanishing at the origin, since a germ with nonzero value has a holomorphic reciprocal. We put $\mathcal O_0=\mathbb C$.
+
+\begin{proposition}[Weierstrass division]\label{prop:weierstrass-division}
+Let $P(z',w)=w^m+a_1(z')w^{m-1}+\cdots+a_m(z')$ be a Weierstrass polynomial, so $a_j(0)=0$. Every germ $f\in\mathcal O_n$ has a unique expression
+\[
+ f=Pq+R,\qquad q\in\mathcal O_n,\quad
+ R\in\mathcal O_{n-1}[w],\quad\deg_w R<m.
+\]
+On a sufficiently small product polydisc where the roots of $P$ lie strictly inside its last coordinate disc, division is a bounded linear operation on bounded holomorphic functions: $\|q\|_\infty+\|R\|_\infty\le C\|f\|_\infty$.
+\end{proposition}
+\begin{proof}
+Choose a fiber radius $r$ with $P$ nonzero on $|w|=r$, uniformly over a smaller closed base polydisc, and first take $f$ holomorphic near that closed product. Define
+\[
+ q(z',w)=\frac1{2\pi\mathrm i}\int_{|\zeta|=r}
+       \frac{f(z',\zeta)}{P(z',\zeta)(\zeta-w)}\,\mathrm d\zeta.
+\]
+Cauchy's formula gives
+\[
+ R(z',w)=\frac1{2\pi\mathrm i}\int_{|\zeta|=r}
+ \frac{f(z',\zeta)}{P(z',\zeta)}
+       \frac{P(z',\zeta)-P(z',w)}{\zeta-w}\,\mathrm d\zeta.
+\]
+The last quotient is polynomial in $w$ of degree at most $m-1$, and its coefficients are holomorphic in $z'$. Thus $f=Pq+R$ has the stated form. On each fiber a difference of two remainders is divisible by $P$ as a holomorphic function, hence vanishes at all its roots with their multiplicities. Its degree is smaller than $m$, so it is zero; the quotient is then zero too. This proves uniqueness. For bounded $f$ on the open product, use circles $r-\delta$ outside all roots and let $\delta\downarrow0$; the integrals are independent of the circle once it surrounds the roots and $w$. The lower bound for $|P|$ on these circles bounds $R$ uniformly. The fiber maximum principle applied to $(f-R)/P$ bounds $q$, proving the estimate. Every germ is covered by a sufficiently small such product.
+\end{proof}
+\index{Weierstrass division}
+
+\begin{lemma}\label{lem:bounded-holomorphic-removal}
+If $A$ is a proper analytic subset of a connected complex manifold $M$, a holomorphic function on $M\setminus A$ which is locally bounded near $A$ extends uniquely holomorphically to $M$. Also $M\setminus A$ is connected. The ring $\mathcal O_n$ is integrally closed in its fraction field.
+\end{lemma}
+\begin{proof}
+Near a point of $A$ choose a nonzero holomorphic equation $g$ vanishing on $A$. Choose a direction in which its first nonzero homogeneous term does not vanish. By \cref{thm:local-weierstrass-preparation}, on a small product $g$ is a unit times a Weierstrass polynomial whose zeros stay inside a fixed smaller fiber disc. On every fiber, the given bounded function restricted outside $\{g=0\}$ has only finitely many punctures; the one-variable removable-singularity theorem fills them. Its Cauchy integral on a circle outside all these punctures defines a jointly holomorphic extension on the product. It agrees with the given function on the complement of $\{g=0\}$ and hence on $M\setminus A$ by continuity and density. Local extensions agree and glue. Uniqueness follows from density, which follows already from the identity theorem for a nonzero equation.
+
+If $M\setminus A$ were disconnected, a function equal to zero on one nonempty union of its components and one on the rest would be bounded and holomorphic there. Its extension has values in $\{0,1\}$ by density, so continuity and connectedness of $M$ make it constant, a contradiction.
+
+Suppose a meromorphic germ $b/c$, $c\ne0$, satisfies a monic equation with holomorphic coefficients. On a sufficiently small neighborhood those coefficients are bounded. A root $t$ of $t^m+d_1t^{m-1}+\cdots+d_m=0$ obeys $|t|\le2\max_j|d_j|^{1/j}$: otherwise division by $t^m$ gives $1\le\sum_{j=1}^m|d_j/t^j|<\sum_{j=1}^m2^{-j}<1$. Thus $b/c$ is locally bounded off $\{c=0\}$. The extension just proved is holomorphic, so the germ belongs to $\mathcal O_n$. This is integral closedness.
+\end{proof}
+\index{holomorphic function!bounded removal}\index{integrally closed ring}
+
+\Needspace{9\baselineskip}
+\begin{proposition}\label{prop:analytic-noetherian}
+Every ideal of $\mathcal O_n$ is finitely generated. Every submodule of $\mathcal O_n^r$ is finitely generated. Consequently increasing sequences of ideals or of submodules of a finite module are stationary.
+\end{proposition}
+\begin{proof}
+For a ring whose ideals are finitely generated, finite generation of submodules of its free modules follows by induction on $r$: project onto the last coordinate, choose lifts of generators of that image ideal, and add generators of the kernel in the first $r-1$ coordinates. A finite module is a quotient of a finite free module, so its submodules inherit finite generation by taking inverse images. The union of an increasing sequence is a submodule; its finitely many generators occur at one stage, proving stationarity.
+
+We prove the ideal assertion by induction on $n$, starting with the field $\mathcal O_0$. If $I\subset\mathcal O_n$ is nonzero, choose a nonzero germ in it and a direction making it distinguished. Preparation gives a monic Weierstrass polynomial $P\in I$ of degree $m$. Divide every $f\in I$ by $P$. Its remainder also belongs to $I$, and the vectors of remainder coefficients form a submodule of $\mathcal O_{n-1}^m$. By induction and the preceding module argument this submodule has finitely many generators. The corresponding remainder polynomials, together with $P$, generate $I$. The zero ideal needs no generators.
+\end{proof}
+\index{Noetherian ring!analytic germs}
+
+A sheaf assigns local sections to open sets, with restriction maps and unique gluing of compatible sections. Its stalk at $x$ consists of germs of sections there. Kernels, images and exactness for sheaf morphisms are defined on stalks; an image section can consequently be lifted after shrinking its neighborhood. For a sheaf of rings $\mathcal A$, a sheaf of $\mathcal A$-modules $\mathcal F$ is \emph{coherent} if it is locally generated by finitely many sections and the relations among every finite collection of its local sections are locally finitely generated. This requires one collection of generators on a neighborhood, rather than a separate finite collection at each stalk.
+\index{sheaf}\index{coherent sheaf}
+
+\begin{lemma}\label{lem:coherent-sheaf-algebra}
+Kernels, images and cokernels of morphisms between coherent sheaves are coherent. In an exact sequence $0\to\mathcal F\to\mathcal S\to\mathcal G\to0$, coherence of two terms implies coherence of the third. Finite direct sums of coherent sheaves are coherent. If $\mathcal A$ is coherent as a module over itself, every locally finitely generated submodule of $\mathcal A^r$ is coherent.
+\end{lemma}
+\begin{proof}
+A locally finitely generated subsheaf of a coherent sheaf is coherent: its sections have exactly the same relations when viewed in the larger sheaf. The image of a morphism is such a subsheaf. For a kernel, choose local generators $F_i$ of its source and generators $R_j=(R_{ji})$ of the relations between their images. The sections $\sum_iR_{ji}F_i$ generate the kernel, so it too is coherent.
+
+For a quotient of a coherent $\mathcal S$ by a coherent $\mathcal F$, lift a finite family $G_i$ of quotient sections and adjoin local generators of $\mathcal F$. The projection onto the lifted-section coordinates of the relations among this enlarged family generates the relations among the $G_i$. This proves quotient coherence. If instead $\mathcal F$ and $\mathcal G$ are coherent, lifts of generators of $\mathcal G$ together with generators of $\mathcal F$ generate $\mathcal S$. For arbitrary sections $S_i$ of $\mathcal S$, generate the relations $R_j$ among their images in $\mathcal G$. Their combinations $H_j=\sum_iR_{ji}S_i$ lie in $\mathcal F$. Generators $Q_k$ of the relations among the $H_j$ give generators $\sum_jQ_{kj}R_j$ of the relations among the $S_i$: any relation first is a combination of the $R_j$, and its coefficients must then be a relation among the $H_j$. This proves extension coherence. Direct sums are extensions; the last assertion follows from the first sentence and coherence of the finite free sheaf.
+\end{proof}
+
+\begin{theorem}[Oka]\label{thm:oka-coherence}
+The sheaf $\mathcal O_M$ of holomorphic functions on a complex manifold is coherent. In particular, the kernel of any finite matrix of holomorphic functions is locally finitely generated.
+\end{theorem}
+\begin{proof}
+We induct on the complex dimension. Dimension zero is finite-dimensional linear algebra. In a polydisc near the origin consider the relations between $F_1,\ldots,F_q$. A zero germ is identically zero after shrinking and contributes a free relation coordinate. If all are zero, the assertion follows. For the nonzero germs choose one direction simultaneously distinguished for all of them, excluding the zero sets of finitely many nonzero homogeneous polynomials. Preparation and multiplication by units reduce the $F_j$ to Weierstrass polynomials in $w$, with coefficients on a base polydisc of dimension $n-1$. Choose $F_q$ of maximum degree $\mu$.
+
+We claim that, at every sufficiently nearby $x=(x',w_0)$, the relations are generated by polynomial relations whose coordinate degrees in $w$ are at most $\mu$. If $F_q(x)\ne0$, the relations are generated by $F_q e_j-F_j e_q$ after dividing by the unit $F_q$. Otherwise separate the roots of $F_q$ near $w_0$ by a small contour. The preparation construction factors
+\[
+ F_q=P_xQ_x,
+\]
+where $P_x$ is monic of degree $\mu'$ in $w-w_0$ and $Q_x$ is polynomial of degree $\mu-\mu'$ and is a unit at $x$. The coefficients are holomorphic near $x'$. Divide each relation coordinate $g_j$, $j<q$, by $P_x$, absorbing $Q_x^{-1}$ in the quotient to write $g_j=F_qt_j+r_j$, $\deg_w r_j<\mu'$. Subtract $\sum_{j<q}t_j(F_qe_j-F_je_q)$. The residual $(r_1,\ldots,r_q)$ is a relation, with
+\[
+ P_xQ_xr_q=-\sum_{j<q}F_jr_j.
+\]
+Polynomial division of the right side by $P_x$ and uniqueness of holomorphic division show that $Q_xr_q$ is polynomial of degree less than $\mu$. Each $Q_xr_j$, $j<q$, also has degree less than $\mu$. Dividing that polynomial relation by the unit $Q_x$ proves the claim, together with the displayed elementary relations of degree at most $\mu$.
+
+A polynomial tuple $g_j=\sum_{k=0}^{\mu}c_{jk}(z')w^k$ is a relation precisely when the $2\mu+1$ coefficients of $\sum_jF_jg_j$ vanish. These conditions form a finite holomorphic matrix on the base. By induction and \cref{lem:coherent-sheaf-algebra}, its kernel has finitely many local generators on a smaller base neighborhood. Substitute $w$ into those coefficient vectors to obtain finitely many polynomial relations. They generate all polynomial relations over the base stalk, hence, by the claim, all holomorphic relations at every point of the smaller product. This is the required neighborhood assertion. The final statement follows from the same sheaf algebra.
+\end{proof}
+\index{Oka coherence theorem}
+
+\Needspace{10\baselineskip}
+\section{Analytic sets and their local branches}
+\label{sec:analytic-local-branches}
+
+An \emph{analytic subset} of a complex manifold is a closed subset locally defined by finitely many holomorphic equations. The ideal $I_{A,x}\subset\mathcal O_{M,x}$ consists of germs vanishing on the germ $(A,x)$. Conversely $V(I)$ denotes the zero-set germ of an ideal, using finite generators from \cref{prop:analytic-noetherian}. These operations reverse inclusions, and $V(I_{A,x})=(A,x)$: the original defining equations are among the vanishing germs. Finite unions and intersections are analytic, using products and unions of their equations respectively.
+\index{analytic subset}
+
+\begin{proposition}\label{prop:analytic-irreducible-germs}
+Every analytic germ is the union of finitely many irreducible analytic germs, uniquely after removing inclusions and disregarding their order. A germ is irreducible if and only if its vanishing ideal is prime.
+\end{proposition}
+\begin{proof}
+A decreasing sequence of analytic germs stabilizes, because its vanishing ideals increase and stabilize by \cref{prop:analytic-noetherian}. Repeatedly split a reducible germ into two proper analytic germs. If this binary splitting process did not terminate, its finitely branching tree would have an infinite branch: at each level choose a child having infinitely many descendants. That branch would be a strictly decreasing sequence, a contradiction. Hence a finite irreducible decomposition exists. If two such decompositions are given, intersect one irreducible member with all members of the other. It must be contained in one of them, and that member must in turn be contained in a member of the first decomposition. Removing inclusions forces equality, proving uniqueness.
+
+If $fg$ vanishes on an irreducible germ, that germ is the union of its intersections with $\{f=0\}$ and $\{g=0\}$. One intersection is the whole germ, so its ideal is prime. Conversely, if a germ is the union of two proper analytic subgerms, choose an equation vanishing on each subgerm but not on the whole germ. Their product vanishes on the whole germ whereas neither factor does, so the ideal is not prime.
+\end{proof}
+\index{analytic subset!irreducible germ}\index{analytic subset!local branches}
+
+\begin{lemma}\label{lem:finite-integral-algebra}
+Let $B$ be a domain, finite as a module over an integrally closed domain $A$, with $A\hookrightarrow B$. Then $\operatorname{Frac}(B)$ is a finite extension of $K=\operatorname{Frac}(A)$. Suppose in addition that $A$ contains $\mathbb C$ and $B$ is generated as an $A$-algebra by $b_1,\ldots,b_r$. A linear combination $u=\sum_jc_jb_j$ with $c_j\in\mathbb C$ generates that field over $K$ for all choices outside finitely many proper complex linear subspaces. Its minimal polynomial $W\in A[T]$ is monic. If $q=\deg W$ and $\delta\in A\setminus\{0\}$ is its discriminant, every element $g$ of this field integral over $A$ satisfies
+\[
+ \delta g=\sum_{j=0}^{q-1}d_ju^j,\qquad d_j\in A.
+\]
+\end{lemma}
+\begin{proof}
+We recall the finite-module criterion for integrality. If multiplication by $b$ preserves a module generated by $v_1,\ldots,v_N$, write $bv_i=\sum_j a_{ij}v_j$. The adjugate identity for $bI-(a_{ij})$ shows that its monic determinant annihilates each $v_i$. If this is a submodule of a domain containing a nonzero element, that determinant is zero. In particular every element of a finite algebra is integral. Conversely, finitely many integral elements generate a finite module by reducing their powers with their monic equations. This also proves that sums and products of integral elements are integral, and that integrality is transitive, by adjoining the finitely many coefficients of the relevant equations.
+
+The localization $KB$ is a finite-dimensional domain over $K$. Multiplication by a nonzero element is an injective linear map and hence surjective, so $KB$ is a field and equals $\operatorname{Frac}(B)$. In characteristic zero an irreducible polynomial has no repeated root: its derivative has smaller degree, and the Euclidean algorithm makes them relatively prime. Adjoining roots one generator at a time therefore shows that this extension of degree $q$ has $q$ distinct embeddings $\sigma_1,\ldots,\sigma_q$ into a splitting field. The values $\sigma_i(u)$ are pairwise different except when $\sum_jc_j(\sigma_i(b_j)-\sigma_k(b_j))=0$. Each such equation cuts out a proper complex linear subspace, since some generator distinguishes the two embeddings. When the values are different the minimal polynomial of $u$ has at least $q$ roots and at most degree $q$, so $K(u)=KB$. Its coefficients are elementary symmetric functions of integral conjugates, hence integral over $A$; they also belong to $K$, and thus to $A$.
+
+Write $g=\sum_{j<q}e_ju^j$, $e_j\in K$, and apply all $q$ embeddings. The resulting Vandermonde system has determinant $D$ with $D^2=\delta$ up to an irrelevant sign. Cramer's rule expresses $\delta e_j$ as a polynomial in the integral values $\sigma_i(g)$ and $\sigma_i(u)$. It belongs to $K$ and is integral over $A$, so $\delta e_j\in A$. This proves the formula.
+\end{proof}
+\index{integral extension!finite module}
+
+\begin{theorem}[Local parametrization]\label{thm:analytic-local-parametrization}
+For an irreducible analytic germ $(A,0)\subset(\mathbb C^n,0)$ there are coordinates $z=(z',z'')\in\mathbb C^d\times\mathbb C^{n-d}$ and arbitrarily small product polydiscs $\Delta'\times\Delta''$ such that
+\[
+ \pi:A\cap(\Delta'\times\Delta'')\longrightarrow\Delta',\qquad
+ \pi(z',z'')=z'
+\]
+is proper with finite fibers. There is a nonzero holomorphic $\delta$ on $\Delta'$ such that over $\Delta'\setminus\{\delta=0\}$ it is a connected $q$-sheeted holomorphic covering. This covering locus is a smooth $d$-dimensional manifold, open and dense in $A\cap(\Delta'\times\Delta'')$. The fiber over zero is the singleton zero; every fiber has at most $q$ points. The coordinate basis can be chosen arbitrarily close to a prescribed basis.
+\end{theorem}
+\begin{proof}
+We give the construction for any prime ideal $J\subset\mathcal O_n$, and also prove $I_{V(J),0}=J$. If $J=0$, take $d=n$ and the identity projection. Otherwise choose a nonzero element of $J$ of order $s_n$ and a direction where its degree-$s_n$ homogeneous term is nonzero. Preparation gives a monic polynomial $P_n\in J$ in the last coordinate. Its coefficient of degree $s_n-j$ has order at least $j$ in the preceding coordinates: the prepared polynomial itself has total vanishing order $s_n$, since its unit factor does. Repeat for the prime ideal $J\cap\mathcal O_{n-1}$ until reaching $J\cap\mathcal O_d=0$. This gives triangular polynomials
+\[
+ P_k=z_k^{s_k}+\sum_{j=1}^{s_k}a_{jk}(z_1,\ldots,z_{k-1})z_k^{s_k-j}\in J,
+ \qquad a_{jk}=O(|(z_1,\ldots,z_{k-1})|^j).
+\]
+Only zero sets of nonzero homogeneous polynomials are excluded in choosing each direction, so the basis can stay arbitrarily close to the prescribed one. The root bound in \cref{lem:bounded-holomorphic-removal}, successively applied to these polynomials, gives $|z''|\le C|z'|$ on $V(J)$ near zero. Thus the projection is proper on small products with the base radius sufficiently smaller than the fiber radius.
+
+\Needspace{5\baselineskip}
+Successive division by $P_n,\ldots,P_{d+1}$ shows that
+\[
+ B=\mathcal O_n/J
+\]
+is a finite module over its injected subring $\mathcal O_d$, generated by the monomials $\prod_{k>d}z_k^{\alpha_k}$, $0\le\alpha_k<s_k$.
+
+Apply \cref{lem:finite-integral-algebra}. Choose a primitive linear form $u(z'')$ and its monic polynomial $W(z',T)$ of degree $q$, and put $\delta=\operatorname{disc}W$. Every coordinate class has a minimal monic polynomial $W_k\in\mathcal O_d[T]$ of degree at most $q$. These polynomials, and $W$, are Weierstrass polynomials. Indeed, preparation in $T$ splits off the factor whose roots tend to zero, and polynomial division makes the other factor polynomial and a unit at $(0,0)$. Substitution of $z_k$ or $u$ into that factorization forces the zero-root factor to vanish in the domain $B$. Minimality excludes any other factor. There are polynomials $B_k(z',T)$ of degree less than $q$ with
+\[
+ \delta z_k=B_k(z',u)\pmod J.
+\]
+Let $G$ be the ideal generated by $W(z',u)$ and all $\delta z_k-B_k(z',u)$. It is contained in $J$. Moreover, for
+$m=\max\{q,(n-d)(q-1)\}$, every germ $f$ has a unique polynomial $R_f(z',T)$ of degree less than $q$ such that
+\begin{equation}\label{eq:analytic-discriminant-division}
+ \delta^m f=R_f(z',u)\pmod G,
+ \qquad f\in J\Longrightarrow R_f=0.
+\end{equation}
+To verify this, divide $f$ successively by the $W_k(z',z_k)$, whose coefficients depend only on the base, leaving a polynomial of coordinate degrees less than $q$. Substitution of $\delta z_k=B_k(z',u)$ clears its denominators with the exponent $m$. The discarded multiples of $W_k$ disappear modulo $G$, since $\delta^qW_k(z',z_k)\in G$: substitution gives a polynomial divisible by $W(z',T)$. Finally divide the remaining polynomial in $u$ by $W$. Uniqueness and the last assertion follow from the degree $q$ of the primitive element in $B$.
+
+Off $\{\delta=0\}$ the equations of $V(G)$ have exactly the form
+\[
+ W(z',T)=0,\qquad z_k=B_k(z',T)/\delta(z').
+\]
+The $q$ roots are distinct, so their graphs are smooth by the holomorphic inverse function theorem. The identities $W_k(z',B_k/\delta)=0$ keep these coordinates in an arbitrarily small fiber polydisc when $z'$ is sufficiently small, by the root bound and the vanishing of their coefficients at zero. Formula \eqref{eq:analytic-discriminant-division}, applied to finite generators of $J$, shows that these graphs equal $V(J)$ off the discriminant. Thus this locus, denoted by $A_\delta$, is a $q$-sheeted covering of the connected base complement. If $f$ vanishes on $V(J)$, its remainder $R_f$ vanishes at all $q$ distinct roots on that complement. Hence $R_f=0$, so $\delta^mf\in J$ and primeness gives $f\in J$. This proves $I_{V(J),0}=J$ without assuming a Nullstellensatz.
+
+\Needspace{7\baselineskip}
+We check density and connectedness, including at the exceptional fibers. For any complex linear form $\lambda$ on the fiber space, the polynomial
+\[
+ P_\lambda(z',T)=\prod_{z\in\pi^{-1}(z')\cap A_\delta}
+                     (T-\lambda(z''))
+\]
+has bounded holomorphic coefficients off the discriminant. They extend holomorphically across it by \cref{lem:bounded-holomorphic-removal}. The germ $\delta P_\lambda(z',\lambda(z''))$ vanishes on all of $V(J)$, so primeness implies $P_\lambda(z',\lambda(z''))\in J$. For an exceptional base point, let $F$ be the fiber of $\overline{A_\delta}$. Properness and continuity of polynomial roots show that the roots of $P_\lambda$ there are exactly $\lambda(F)$. It follows that $F$ has at most $q$ points: a linear form separating any $q+1$ points would contradict its degree. An additional point of $V(J)$ outside this closure would be separated from $F$ by a linear form and would violate the polynomial identity just proved. These conclusions hold after shrinking the product once. More explicitly, failure arbitrarily near zero would give a sequence of offending finite sets. One linear form can separate all those sets at once, outside countably many proper linear subspaces; choose its coefficients $(1,t,\ldots,t^{n-d-1})$ with $t$ outside the countably many roots of the corresponding nonzero polynomials. The identity for that one form contradicts all sufficiently late terms of the sequence. This proves density and the fiber bound.
+
+The covering $A_\delta$ has finitely many connected components, each covering the base complement, since it is a covering with $q$ sheets. If there were several components, factor $P_\lambda$ by taking products separately on them. Each factor again has bounded holomorphic coefficients and extends across the discriminant. Their product vanishes on $V(J)$, so one factor vanishes as a germ there by primeness. Choose $\lambda$ separating the full fibers over a sequence of regular base points tending to zero, using the preceding countable-choice argument. No proper component factor vanishes on the other sheets in those fibers, a contradiction. Thus the covering is connected. Its closure is the whole zero set, the cone estimate gives the singleton fiber over zero, and all assertions follow. Taking $J=I_{A,0}$ yields the theorem for the given irreducible germ.
+\end{proof}
+\index{analytic subset!local parametrization}\index{branched covering!analytic parametrization}
+
+\begin{corollary}[Analytic Nullstellensatz]\label{cor:analytic-nullstellensatz}
+For every ideal $I\subset\mathcal O_n$, the ideal of germs vanishing on $V(I)$ is $\sqrt I=\{f:f^k\in I\text{ for some }k\ge1\}$.
+\end{corollary}
+\begin{proof}
+Every element of $\sqrt I$ vanishes on $V(I)$. Conversely, the radical is the intersection of the prime ideals containing $I$. To see this algebraic assertion directly, if no power of $f$ lies in $I$, take an ideal maximal among ideals containing $I$ and disjoint from $\{1,f,f^2,\ldots\}$; existence follows by the union-of-chains argument. It is prime: if neither $a$ nor $b$ belongs to it, each enlarged ideal meets that multiplicative set, and multiplication of the two resulting equations shows that $ab$ cannot belong to it. Hence some prime containing $I$ excludes $f$. For every prime $J\supset I$, a germ vanishing on $V(I)$ also vanishes on $V(J)$ and belongs to $J$ by the prime-ideal assertion proved in \cref{thm:analytic-local-parametrization}. It therefore belongs to their intersection $\sqrt I$.
+\end{proof}
+\index{Nullstellensatz!analytic}
+
+\Needspace{10\baselineskip}
+\begin{proposition}\label{prop:analytic-dimension-drop}
+The regular locus of an irreducible analytic germ has a well-defined complex dimension $d$, equal to the base dimension in \cref{thm:analytic-local-parametrization}. Every sufficiently small representative is pure-dimensional: all its local irreducible branches have dimension $d$. A proper analytic subgerm of an irreducible germ has strictly smaller dimension. For a reducible germ define dimension as the maximum of its branch dimensions.
+\end{proposition}
+\begin{proof}
+Two local parametrizations have open dense smooth covering loci. Their intersection is nonempty and open in both, so their manifold dimensions agree. A regular point lies in a neighborhood which is itself a manifold; its intersection with the dense covering locus similarly has dimension $d$. At any nearby point split the germ into its finitely many branches. Each branch has points outside the other branches, by irreducibility and removal of inclusions, and its parametrization locus is dense. The original covering locus is also dense and cannot miss that relatively open branch part. There the two manifold dimensions agree. Thus every such branch has dimension $d$.
+
+For germs $B\subset A$, with both irreducible, choose the triangular coordinates in the parametrization proof simultaneously: at each step use a direction which works for a nonzero germ from each ideal that has not yet become zero. If one ideal contains the other, the smaller germ cannot have a larger base dimension. Suppose their dimensions are equal. Their finite projections then have the same base. Off the union of their discriminants, $B$ is a nonempty smooth submanifold of $A$ of the same dimension, hence an open subset of its covering manifold. That manifold is connected: delete the second discriminant preimage from the connected first covering locus and apply \cref{lem:bounded-holomorphic-removal}. The set $B$ is also analytic there. The identity theorem gives the entire covering locus, and closedness and density give $B=A$ as germs, a contradiction. Treat the finitely many branches of a general $B$ separately. This proves strict decrease for every proper subgerm.
+\end{proof}
+\index{analytic subset!dimension}
+
+\begin{theorem}[Cartan]\label{thm:analytic-ideal-coherence}
+For an analytic subset $A$ of a complex manifold $M$, the sheaf $\mathcal I_A$ of holomorphic functions vanishing on $A$ is coherent.
+\end{theorem}
+\begin{proof}
+The assertion is local. Finite branch decomposition and the kernel description of intersections of coherent submodules reduce it to an irreducible germ at zero. Use its parametrization and retain the notation of \eqref{eq:analytic-discriminant-division}. Allow the coefficients $c=(c_{d+1},\ldots,c_n)$ of the primitive linear form $u_c=\sum c_kz_k$ to vary. The coefficients of $W_c$, of $\delta_c$ and of the numerators $B_{kc}$ are polynomials in $c$ with holomorphic base coefficients. Indeed, on the covering locus they are elementary symmetric polynomials and Vandermonde determinants in the coordinate values of its $q$ sheets. These expressions are invariant under sheet permutations; their coefficients in $c$ are bounded holomorphic functions on the base complement and extend across its discriminant. The resulting identities hold by holomorphic continuation.
+
+Let $G_1,\ldots,G_N$ be all coefficients in $c$ of $W_c(z',u_c)$ and $\delta_c z_k-B_{kc}(z',u_c)$. They vanish on $A$. Expand $\delta_c^m=\sum_\alpha h_\alpha(z')c^\alpha$ with the fixed exponent $m$ of the parametrization proof, and choose one coefficient $h=h_\alpha\not\equiv0$. We claim on a small fixed product that
+\begin{equation}\label{eq:analytic-coherence-colon}
+ \mathcal I_{A,x}=\{f\in\mathcal O_{M,x}:h f\in(G_{1,x},\ldots,G_{N,x})\}.
+\end{equation}
+The inclusion from right to left follows from density of $A\setminus\{h=0\}$ in every branch. To check that density, the open covering locus is dense in every branch and projects locally onto an open base set; a nonzero base holomorphic function cannot vanish throughout such a set.
+
+For the other inclusion fix $x\in A$. Choose $c$ primitive and separating the finite fiber over $x'$. The polynomial $W_c$ factors near that base point into a monic factor whose roots tend to $u_c(x'')$ and a factor nonzero there. The first factor precisely describes the sheets near $x$. Each coordinate polynomial $W_k$ has the analogous factor for the roots near $x_k$. Repeating the successive division and denominator clearing of \eqref{eq:analytic-discriminant-division} with these local factors gives, for $f\in\mathcal I_{A,x}$,
+\[
+ \delta_c^m f\in
+       (W_c(z',u_c),\ \delta_c z_k-B_{kc}(z',u_c))_x
+       \subset (G_{1,x},\ldots,G_{N,x}).
+\]
+Here the remainder has degree smaller than the number of local sheets and vanishes on all of them off the discriminant, so it is zero. The local monic factor differs from $W_c$ by a unit at $x$; all coordinate degrees are at most $q$, so the same fixed exponent $m$ suffices. The admissible choices of $c$ form a dense open set. Evaluation at finitely many such choices recovers each coefficient $h_\alpha$ of the polynomial $\delta_c^m$: evaluation functionals span the dual of its finite-dimensional polynomial space, since a polynomial vanishing on that dense open set is zero. Thus $h_\alpha f\in(G_{1,x},\ldots,G_{N,x})$ for every $\alpha$, proving the claim. Outside $A$, choose $c$ separating $x''$ from every point of the finite fiber of $A$ over $x'$. The polynomial $W_c(x',u_c(x''))$ is then nonzero. One of its coefficient equations $G_\ell$ is consequently nonzero at $x$, so both sides of \eqref{eq:analytic-coherence-colon} are the unit ideal there.
+
+The right side of \eqref{eq:analytic-coherence-colon} is the first-coordinate projection of the kernel of the holomorphic row matrix $(h,-G_1,\ldots,-G_N)$. It is coherent by \cref{thm:oka-coherence,lem:coherent-sheaf-algebra}. Hence $\mathcal I_A$ is coherent. For several branches their ideals intersect, and this intersection is a kernel inside their finite direct sum, giving the general case.
+\end{proof}
+\index{Cartan coherence theorem}
+
+\begin{corollary}\label{cor:analytic-strata-hausdorff}
+The singular locus of an analytic set is analytic and has smaller dimension on each irreducible component. An analytic set of complex dimension at most $d$ is locally a countable union of smooth real submanifolds of dimensions at most $2d$. In particular its Hausdorff $s$-measure is zero for every $s>2d$.
+\end{corollary}
+\begin{proof}
+For a small irreducible representative of dimension $d$, choose generators $g_1,\ldots,g_N$ of its vanishing ideal sheaf by \cref{thm:analytic-ideal-coherence}. At a regular point, its ideal in straightened coordinates is generated by the $n-d$ normal coordinates: a holomorphic function vanishing on their zero plane is a sum of those coordinates times holomorphic functions, by its Taylor series or by integrating its normal derivatives. Thus the gradients of the $g_j$ have rank $n-d$. Every larger minor vanishes on the dense covering locus and hence on the whole set, so the rank is at most $n-d$ everywhere. Conversely rank $n-d$ places the set in a smooth $d$-dimensional zero manifold by the inverse function theorem. An analytic subset of that manifold of full local dimension is the whole manifold by \cref{prop:analytic-dimension-drop}. Purity therefore makes this a regular point. Consequently the singular locus is defined on the set by the $(n-d)$-minors of the Jacobian of the $g_j$. It is proper, since the covering locus is regular, and dimension decreases. For several branches also include their pairwise intersections, which have smaller dimension on each branch; a point shared by two branches is singular, and the remaining points use the preceding criterion.
+
+Take the regular part, then the regular part of the singular locus, and continue. The dimension decreases at every nonempty singular step, so locally this stops in finitely many steps. A countable chart cover handles nonpure sets and gives the asserted countable union. Each smooth chart is the countable union of images of compact coordinate cubes on which its parametrization is Lipschitz. A Lipschitz image of a bounded cube in $\mathbb R^r$ has zero Hausdorff $s$-measure for $s>r$: cover the cube by $O(\delta^{-r})$ cubes of side $\delta$, whose images have diameter $O(\delta)$, and let $\delta\downarrow0$. Countable subadditivity proves the conclusion.
+\end{proof}
+\index{analytic subset!singular locus}\index{Hausdorff measure!analytic sets}
+
+\begin{corollary}\label{cor:analytic-global-components}
+An analytic set has a locally finite decomposition into global irreducible analytic components. In a space with a countable basis there are at most countably many components. The regular locus of an irreducible component is connected, and a holomorphic function vanishing on a nonempty relatively open subset of it vanishes on that entire component.
+\end{corollary}
+\begin{proof}
+Remove the singular locus and the intersections of the local branches. Choose simultaneous triangular parametrization coordinates for the finitely many branches, as in the dimension proof, and a small product representative on which each branch has its connected dense covering locus. That locus remains connected after deleting those proper analytic subsets, by bounded holomorphic removal. It is dense in the remaining regular branch part, which is therefore connected too. Take the connected components of the resulting regular set. Near any point, each local branch's regular part belongs to just one such component, and the closure of that component contains the entire branch by density. Conversely every limit point comes from one of the finitely many local branch parts. Thus each closure is locally a union of local branches; it is analytic, and these closures form a locally finite decomposition. A connected regular component cannot be split between two proper analytic subsets: on its manifold part a proper analytic subset has empty interior, and the identity theorem, or local dimension drop, prevents a finite union of such subsets from covering an open neighborhood. Density then proves that its closure is irreducible. Uniqueness follows from the local irreducible decomposition. There are countably many regular components, since each contains a basis element and disjoint components require different elements. On a connected regular locus the holomorphic identity theorem propagates a zero function, and density extends the zero to the whole component.
+\end{proof}
+\index{analytic subset!global components}
+
+\begin{corollary}\label{cor:analytic-codimension-two-psh-removal}
+If an analytic subset $A$ of a complex manifold has codimension at least two everywhere, every plurisubharmonic function on $M\setminus A$ extends uniquely plurisubharmonically to $M$, with its canonical upper-limit values on $A$. No separate local upper bound is required.
+\end{corollary}
+\begin{proof}
+In an $n$-dimensional chart, $\dim A\le n-2$, so \cref{cor:analytic-strata-hausdorff} gives $\mathcal H^{2n-3}(A)=0$. Apply \cref{thm:psh-small-set-extension}; its local upper-bound conclusion is part of that theorem. Uniqueness makes the chart extensions agree. In dimensions zero and one the codimension hypothesis makes $A$ empty locally.
+\end{proof}
+\index{plurisubharmonic function!codimension-two removal}
+
+\section{Reduced spaces and normalization}
+\label{sec:reduced-spaces-normalization}
+
+A \emph{reduced complex space} is a Hausdorff space locally identified with an analytic subset $A$ of a domain in $\mathbb C^N$, equipped with the sheaf
+$\mathcal O_A=(\mathcal O/\mathcal I_A)|_A$; the local identifications preserve this sheaf. Thus its holomorphic functions locally extend to the ambient domain. We use a countable basis; compact spaces with such local models automatically have one, by a finite chart cover. A holomorphic map is locally a map into ambient coordinates whose components belong to the source structure sheaf. Its coordinate functions consequently extend near each source point, and composition is holomorphic. The regular and singular loci, branches and dimensions are intrinsic, since local holomorphic isomorphisms identify the regular manifold parts and their dense parametrization loci. All complex spaces below are reduced.
+\index{complex space!reduced}
+
+The structure sheaf is coherent: in a chart it is the quotient by the coherent ideal of \cref{thm:analytic-ideal-coherence}. The sheaf algebra of \cref{lem:coherent-sheaf-algebra} applies in these charts also to $\mathcal O_X$-modules. A local ring $\mathcal O_{X,x}$ is a quotient of $\mathcal O_N$, so it is Noetherian. Coherent ideal sheaves define analytic subspaces by their zero sets; for a reduced analytic subset use its vanishing ideal. A \emph{finite} holomorphic map means a proper map with finite fibers, and \emph{bimeromorphic} means that the map is an isomorphism off nowhere dense analytic subsets of both spaces. Properness means compact inverse images of compact sets. Such maps between these locally compact spaces are closed: for a convergent sequence in the image of a closed set, lift it into the compact inverse image of a compact neighborhood and pass to a convergent subsequence.
+\index{holomorphic map!finite}\index{bimeromorphic map}
+
+A \emph{weakly holomorphic} function on $X$ is holomorphic on $X_{\mathrm{reg}}$ and locally bounded near the singular locus. Denote its sheaf by $\widetilde{\mathcal O}_X$. On a reducible germ it is the direct sum of the corresponding sheaves on the local branches: their regular parts are disjoint outside pairwise intersections, and bounded holomorphic removal on each regular branch fills those intersections. The total ring of fractions of a reduced local ring inverts germs which are not identically zero on any branch. These are exactly the nonzero divisors. Indeed, such a germ times $g$ equal to zero forces $g=0$ by density on every branch; if it vanishes identically on a branch, multiply it by a product of equations vanishing on the other branches but not on that one to obtain a nonzero annihilated germ.
+\index{holomorphic function!weakly holomorphic}
+
+\Needspace{12\baselineskip}
+\begin{proposition}\label{prop:weak-holomorphic-denominator}
+Every point of $X$ has a neighborhood $U$ and a holomorphic function $h$, nonzero on every local branch, such that
+\[
+ h_y\widetilde{\mathcal O}_{X,y}\subset\mathcal O_{X,y}
+ \quad(y\in U).
+\]
+Weakly holomorphic germs are precisely the integral elements in the total ring of fractions of $\mathcal O_{X,x}$, and form a finite $\mathcal O_{X,x}$-module. On an irreducible germ every weakly holomorphic function has one finite limit at its base point.
+\end{proposition}
+\begin{proof}
+First use a local parametrization of an irreducible germ, with primitive coordinate $u$, degree $q$ and discriminant $\delta$. For a bounded weakly holomorphic germ $f$ near a point $y$, separate the finitely many fibers over $y'$. On the sheets near $y$ use the values of $f$, and on the other sheets use zero. Interpolate those $q$ values by $\sum_{j<q}b_j(z')u^j$. The coefficients are holomorphic off the discriminant, invariant under permutations within each sheet group. Cramer's rule shows that $\delta b_j$ is bounded there: its expression is a product of Vandermonde determinants with bounded sheet coordinates and bounded values of $f$. It therefore extends holomorphically on the base. The expression $\sum_{j<q}(\delta b_j)u^j$ is a holomorphic germ on $X$ and equals $\delta f$ on its dense regular covering part near $y$. Thus the same $\delta$ is a denominator at every nearby point.
+
+For finitely many branches $X_j$, choose a denominator $\delta_j$ on each and lift it to the ambient domain. Add to it a generic linear combination of equations vanishing on $X_j$ so that it is nonzero on every other branch too; finitely many proper conditions are excluded. Then $\delta=\prod_j\delta_j$ is nonzero on all branches and works separately on each. Choose $v_j$ vanishing on every other branch and not identically on $X_j$, by products of separating equations. Set $h=\delta\sum_jv_j$. On $X_j$, $h=\delta v_j$, so it is a nonzero divisor. If $\delta f=g_j$ on the $j$th branch, with $g_j$ lifted holomorphically, then $hf=\sum_jv_jg_j$ on all branches. This gives the uniform denominator. It embeds the weak germs in $h^{-1}\mathcal O_{X,x}$; multiplication by $h$ identifies them with a submodule of the Noetherian ring $\mathcal O_{X,x}$, proving finite generation.
+
+On one branch, the elementary symmetric functions of the $q$ values of $f$ on the regular fibers are bounded holomorphic base functions. Removal extends them, giving a monic equation for $f$ over $\mathcal O_d\subset\mathcal O_{X,x}$. For several branches take the product of their equations after lifting their coefficients. Hence every weak germ is integral. Conversely an integral meromorphic germ is bounded near $x$ by the monic root bound. On the regular locus its bounded meromorphic singularities are removable by \cref{lem:bounded-holomorphic-removal}, so it is weakly holomorphic. Finally, on an irreducible germ the regular locus has a basis of connected neighborhoods by local parametrization and density. The cluster set of a bounded holomorphic function there is a nonempty connected compact set, the intersection of its decreasing connected compact image closures. Its integral equation restricts that cluster set to finitely many roots at $x$. Thus it is a singleton, proving the finite limit.
+\end{proof}
+\index{holomorphic function!universal denominator}\index{integral closure!analytic local ring}
+
+A point $x$ is \emph{normal} if its germ is irreducible and $\mathcal O_{X,x}$ is integrally closed in its fraction field. By the preceding proposition this means $\widetilde{\mathcal O}_{X,x}=\mathcal O_{X,x}$. Conversely that equality forces irreducibility: the weak function equal to one on one local branch and zero on the others could not be a continuous holomorphic function at their common point. A space is normal if every point is normal. Regular points are normal by \cref{lem:bounded-holomorphic-removal}.
+\index{complex space!normal}
+
+\Needspace{7\baselineskip}
+\begin{lemma}\label{lem:normal-locus-open}
+The nonnormal locus is analytic. Bounded holomorphic functions off a nowhere dense analytic subset of a normal space extend holomorphically across it.
+\end{lemma}
+\begin{proof}
+We first record two finite-sheaf facts. The sheaf $\operatorname{Hom}(\mathcal F,\mathcal G)$ is coherent for coherent modules: using a finite presentation of $\mathcal F$, it is the kernel of a morphism between finite sums of $\mathcal G$. The support of a coherent module is analytic. In a presentation $\mathcal O^a\to\mathcal O^b\to\mathcal F\to0$, its zero stalks are exactly the points where the matrix has rank $b$ after evaluation. This uses the following elementary local-ring argument: if a finite module $M$ satisfies $M=\mathfrak m M$, write each generator as a combination with coefficients in the maximal ideal. The determinant of the resulting $I-C$ is a unit and annihilates the generators by the adjugate identity, so $M=0$. Applied to the cokernel, this proves the assertion; the rank failure is defined by minors.
+
+Choose the uniform denominator $h$ of \cref{prop:weak-holomorphic-denominator}, and let $\mathcal I$ be the coherent vanishing ideal of $\{h=0\}$ in $X$. Put $\mathcal F=\operatorname{Hom}(\mathcal I,\mathcal I)$. Multiplication embeds $\mathcal O_X$ in $\mathcal F$. Any endomorphism is multiplication by a meromorphic germ: if its value on $h$ is $a$, linearity gives $h\Phi(g)=ag$ for $g\in\mathcal I$. The finite-module determinant argument, applied to $\mathcal I$ which contains the nonzero divisor $h$, makes that multiplier integral. Thus
+\[
+ \mathcal O_X\subset\mathcal F\subset\widetilde{\mathcal O}_X.
+\]
+We claim the quotient $\mathcal F/\mathcal O_X$ has exactly the nonnormal support. Only the reverse containment requires proof. At a nonnormal stalk let $k$ be the least integer with $\mathcal I_x^k\widetilde{\mathcal O}_{X,x}\subset\mathcal O_{X,x}$. It exists: the analytic Nullstellensatz and finite generation give $\mathcal I_x^\ell\subset(h)$ for some $\ell$, and $h\widetilde{\mathcal O}_{X,x}\subset\mathcal O_{X,x}$. Since $k>0$, choose $w\in\mathcal I_x^{k-1}\widetilde{\mathcal O}_{X,x}$ not holomorphic. Then $w\mathcal I_x\subset\mathcal O_{X,x}$, and every such product vanishes on $\{h=0\}$: $w$ is locally bounded on the regular locus, while its holomorphic factor tends to zero at each point of that set. Density and continuity of the holomorphic product give zero at the singular points as well. Thus $w\mathcal I_x\subset\mathcal I_x$, so $w\in\mathcal F_x\setminus\mathcal O_{X,x}$. This proves the claim and analyticity of the nonnormal locus.
+
+For the last assertion, first extend the function across the analytic subset in $X_{\mathrm{reg}}$ using \cref{lem:bounded-holomorphic-removal}. It becomes weakly holomorphic and therefore holomorphic by normality.
+\end{proof}
+\index{complex space!nonnormal locus}
+
+\begin{theorem}[Normalization]\label{thm:analytic-normalization}
+Every reduced complex space $X$ has a normal complex space $\widetilde X$ and a finite bimeromorphic map $\nu:\widetilde X\to X$, an isomorphism over $X_{\mathrm{reg}}$. This normalization is unique up to a unique holomorphic isomorphism over $X$. Its fiber at $x$ has one point for each irreducible branch of $(X,x)$, and
+\[
+ \nu_*\mathcal O_{\widetilde X}=\widetilde{\mathcal O}_X.
+\]
+\end{theorem}
+\begin{proof}
+First suppose $(X,x)$ irreducible. Choose finite module generators $f_1,\ldots,f_m$ of $\widetilde{\mathcal O}_{X,x}$ over $\mathcal O_{X,x}$, and a denominator $h$ such that $hf_j=g_j$ with $g_j$ holomorphic. On a small representative each $f_j$ satisfies a monic equation with holomorphic coefficients. In a local embedding $X\subset\Omega\subset\mathbb C^N$ form the graph of $(f_1,\ldots,f_m)$ off $\{h=0\}$ and take its closure $Y$ in $\Omega\times\mathbb C^m$. This closure is analytic. Indeed it is the closure of the complement of $\{h=0\}$ in the analytic set
+\[
+ z\in X,\qquad h(z)w_j=g_j(z).
+\]
+In a finite local irreducible decomposition of this set, keep exactly the branches on which $h$ is not identically zero. Their complements of $\{h=0\}$ are dense by parametrization and the identity theorem, so their finite union gives precisely that closure locally.
+
+The monic equations of the $f_j$ hold on $Y$. They bound $w$ uniformly over compact base sets and allow only finitely many possibilities in each fiber. Therefore the projection $\nu:Y\to X$ is proper and finite. Over $X_{\mathrm{reg}}$ the graph map is holomorphic and its closure has just that graph, because each $f_j$ is bounded and holomorphic there. It is an isomorphism there, with dense image in $Y$. At $x$ the limits in \cref{prop:weak-holomorphic-denominator} show that the fiber is the singleton $y=(x,f_1(x),\ldots,f_m(x))$.
+
+The germ $Y$ is normal at $y$. For a weakly holomorphic germ $a$ there, its pullback to the graph over $X_{\mathrm{reg}}$ is weakly holomorphic near $x$; properness and the singleton fiber give the required local bound. Write it $\sum_j a_jf_j$ with $a_j\in\mathcal O_{X,x}$. Lift the $a_j$ to ambient holomorphic functions. Then $\sum_j a_j(z)w_j$ is holomorphic near $y$ and equals $a$ on the dense graph, hence on the regular locus. Thus every weak germ there is holomorphic. By \cref{lem:normal-locus-open}, shrink around $y$ to normal points, and by properness shrink around $x$ so that its entire inverse image lies there. This gives a local normalization. For a reducible germ take the disjoint union of the local normalizations of its branches; its fiber at $x$ has the asserted number of points.
+
+To prove uniqueness, an isomorphism between two normalizations is already prescribed over $X_{\mathrm{reg}}$. Near a point of the first normalization, take disjoint bounded coordinate neighborhoods of the finitely many points in the other fiber. Properness confines the image to their union after shrinking the base. The complement of the exceptional analytic set in a sufficiently small irreducible source neighborhood is connected: its connected dense covering locus remains connected after removing a proper analytic subset, by \cref{lem:bounded-holomorphic-removal}. Thus the image lies in one of those coordinate neighborhoods. Its bounded coordinate functions extend by \cref{lem:normal-locus-open}, and the target equations still hold by density. This extends the map holomorphically. Extend its inverse in the same way; their compositions are identities by density. These unique local maps glue, both giving global existence from the local constructions and uniqueness. Finally holomorphic functions on the normalization are weakly holomorphic downstairs by finite properness and the regular-locus identification; conversely a weak function pulls back to a bounded holomorphic function off the exceptional set and extends by normality. This proves the sheaf identity.
+\end{proof}
+\index{normalization!complex space}
+
+\Needspace{9\baselineskip}
+\begin{definition}\label{def:analytic-unibranch}
+A reduced complex space is \emph{unibranch} if each of its local analytic germs is irreducible. Equivalently its local ring is a domain whose integral closure in its fraction field is local: \cref{prop:weak-holomorphic-denominator} identifies that closure, and on an irreducible germ its limit at the base point is the residue map, with units exactly the elements having nonzero limit. Thus this definition agrees with the local-ring definition of unibranchness in the analytic category.
+\end{definition}
+\index{complex space!unibranch}
+
+\Needspace{11\baselineskip}
+\begin{corollary}\label{cor:unibranch-normalization-topology}
+On a unibranch space the normalization is a homeomorphism. Every point has arbitrarily small neighborhoods $U$ such that $U\setminus A$ is connected for every nowhere dense analytic subset $A$ of $U$.
+\end{corollary}
+\begin{proof}
+The normalization has singleton fibers and is a proper continuous bijection, hence a homeomorphism since it is closed. For the second assertion choose an irreducible parametrization neighborhood. Its connected dense smooth covering locus remains connected after deleting $A$ by bounded holomorphic removal on that manifold. It is dense in $U\setminus A$, so that complement is connected too.
+\end{proof}
+
+\begin{example}\label{ex:cusp-node-normalization}
+The curve $\{zw=0\}\subset\mathbb C^2$ has two branches at the origin; its normalization is the disjoint union of its two coordinate lines, with a two-point fiber there. It is not unibranch. The cusp $\{w^2=z^3\}$ is normalized by $t\mapsto(t^2,t^3)$. Indeed on its punctured curve $t=w/z$, and $t^2=z$, so this is an integral weakly holomorphic coordinate; the image is the whole cusp and its inverse is continuous at zero. The map is a homeomorphism but its inverse is not holomorphic as an ambient restriction: a power series in $t^2,t^3$ has no linear term. Thus the cusp is unibranch and nonnormal, distinguishing the two conditions.
+\end{example}
+\index{normalization!cusp}\index{normalization!crossing branches}
+
+\section{Analytic curves and finite maps}\label{sec:analytic-curves-finite-maps}
+
+An analytic curve detects a holomorphic function that varies on a singular germ. Finite parametrization supplies such curves without requiring the ambient space to be smooth.
+
+\begin{proposition}\label{prop:analytic-curve-parametrization}
+An irreducible one-dimensional reduced analytic germ $(C,x)$ has a parametrization $\gamma:(\Delta,0)\to(C,x)$ that is one-to-one and biholomorphic away from the origin. Its projection in suitable finite-parametrization coordinates is $t\mapsto t^q$ for some positive integer $q$. A normal one-dimensional complex space is a complex manifold.
+\end{proposition}
+\begin{proof}
+Apply \cref{thm:analytic-local-parametrization} with one base coordinate $z$. Shrink its disc so that the discriminant has no zero except possibly zero. The covering of the punctured disc is connected, since the covering locus in that theorem is connected, and has $q$ sheets. A loop once around zero permutes these sheets in a single cycle. To justify this description directly, subdivide a path into finitely many intervals lying in evenly covered discs and lift it successively. Subdivision of a homotopy into small rectangles shows that homotopic paths with fixed endpoints give the same endpoint. Every loop in the punctured disc has an integer winding number: a continuously lifted argument along the loop changes by an integer multiple of $2\pi$, and subtracting that change contracts the loop in the logarithmic half-plane. Consequently every sheet reachable from a given one is obtained by powers of its one-loop permutation. Connectedness makes this permutation a single $q$-cycle.
+
+On the half-plane $\{\operatorname{Re}\zeta<\log r\}$ lift $z=\exp\zeta$ holomorphically, starting on one sheet. The lift is independent of its path by the homotopy argument. It is periodic with period $2\pi q\mathrm i$; translation by $2\pi\mathrm i$ moves to the next sheet. Thus evaluating this lift at $q\log t$ defines a single-valued holomorphic map for $0<|t|<r^{1/q}$. Its ambient coordinates are bounded by the finite-parametrization neighborhood. One-variable removability extends them across zero. The defining equations extend there too, and the singleton fiber over $z=0$ makes $\gamma(0)=x$. The cyclic description proves injectivity and surjectivity on the punctured representatives. Rescale the parameter disc.
+
+If $C$ is normal, the inverse parameter on its regular punctured neighborhood is bounded and therefore weakly holomorphic. Normality extends it holomorphically to $x$. The two compositions are identities on dense punctured neighborhoods and hence everywhere, proving that $x$ has a smooth disc coordinate.
+\end{proof}
+\index{analytic curve!parametrization}
+
+\begin{proposition}\label{prop:analytic-curve-selection}
+Let $(X,x)$ be a positive-dimensional irreducible reduced analytic germ, and let $(B,x)$ be a proper analytic subgerm. There is a nonconstant holomorphic map $\gamma:(\Delta,0)\to(X,x)$ whose punctured image avoids $B$ and lies in $X_{\mathrm{reg}}$.
+\end{proposition}
+\begin{proof}
+Enlarge $B$ by the singular locus, and choose a holomorphic germ $f$ that vanishes on this enlarged set but not identically on $X$. In a finite parametrization over $\mathbb C^d$, the product of the values of $f$ on the generic sheets is a nonzero holomorphic base germ. Indeed it is bounded off the discriminant and extends by \cref{lem:bounded-holomorphic-removal}; it is nonzero because $f$ is a nonzero element of the finite field extension, so multiplication by $f$ is invertible over the base fraction field. Choose a complex line through zero on which neither this product nor the discriminant vanishes identically. Such lines exist by taking a direction where the lowest nonzero homogeneous term of their product is nonzero.
+
+The inverse image of this line is analytic and finite over it. It has no positive-dimensional component contained in the fiber over zero, since that fiber is a singleton. Its components through $x$ that meet the punctured line are one-dimensional: on their regular loci a map with finite fibers has injective differential wherever its rank is locally maximal, by the constant-rank theorem, and its target has dimension one. At least one such component exists, since the line outside the two zero sets has nonempty fibers approaching $x$. Parametrize that component by \cref{prop:analytic-curve-parametrization}. After shrinking, its punctured points project outside both zero sets, and thus avoid $B$ and the singular locus.
+\end{proof}
+\index{analytic curve!selection}
+
+\Needspace{7\baselineskip}
+\begin{corollary}\label{cor:analytic-holomorphic-maximum}
+If a holomorphic function on a reduced analytic germ attains a local maximum of its modulus at its base point, it is constant on each local irreducible branch. A compact analytic subset of an open subset of $\mathbb C^N$ is finite.
+\end{corollary}
+\begin{proof}
+If $f-f(x)$ were nonzero on a branch, select a curve avoiding its zero set by \cref{prop:analytic-curve-selection}. The function $f\circ\gamma$ contradicts the one-variable maximum principle.
+
+For the second assertion, suppose the analytic set has positive-dimensional points. Their set is closed and analytic locally: in the finite local decomposition retain the positive-dimensional branches; a zero-dimensional branch is an isolated point and cannot be a limit of the others without lying on them. This gives a nonempty compact analytic subset all of whose points have a positive-dimensional branch. At a maximum of $|z|^2$ on it, select a nonconstant analytic curve. The function $|\gamma(t)|^2$ is subharmonic, with Laplacian $4\sum_j|\gamma_j'(t)|^2$, and has a local maximum at zero. It must be constant, forcing every $\gamma_j'$ to vanish, a contradiction. The original set is therefore discrete and compact, hence finite.
+\end{proof}
+
+\begin{lemma}\label{lem:thin-set-path-connectivity}
+If $E$ is relatively closed in a real ball $B\subset\mathbb R^N$, $N\geq2$, and $\mathcal H^{N-1}(E)=0$, then $B\setminus E$ is path connected.
+\end{lemma}
+\begin{proof}
+Fix $a,b\in B\setminus E$. Intermediate points $c$ for which the segment $[a,c]$ meets $E$ belong to
+\[
+ \{a+t(e-a):e\in E,\ t\geq1\}.
+\]
+This set has $N$-dimensional Lebesgue measure zero. Exhaust $E$ by its intersections with compact subballs and restrict $t$ to bounded intervals. On each resulting product the displayed map is Lipschitz. A cover of the compact portion of $E$ by balls of radii $r_j$ with arbitrarily small $\sum_j r_j^{N-1}$ gives a cover of its product with a fixed interval by at most $C/r_j$ balls of comparable radius for each $j$, so its $N$-dimensional measure is zero. The countable exhaustion proves the claim. The same holds for $b$. Choose $c$ in the ball outside both null sets. Convexity keeps $[a,c]\cup[c,b]$ in $B$, and the choice keeps it disjoint from $E$.
+\end{proof}
+
+\begin{lemma}\label{lem:finite-analytic-open-map}
+Let $(X,x)$ be a reduced pure $d$-dimensional analytic germ, and let $F:(X,x)\to(\mathbb C^d,0)$ be holomorphic with isolated fiber $F^{-1}(0)=\{x\}$ as a germ. It has a representative proper and finite over a ball about zero, and its image contains that ball.
+\end{lemma}
+\begin{proof}
+For $d=0$ the assertion concerns a singleton. Otherwise embed the germ in a Euclidean neighborhood and take a small closed ball whose intersection with the zero fiber is just $x$. The compact boundary has positive minimum of $|F|$. Choose a target ball smaller than this minimum and restrict the source to its inverse image inside the open source ball. The map is proper there. Its fibers are compact analytic subsets of the source Euclidean neighborhood and hence finite by \cref{cor:analytic-holomorphic-maximum}.
+
+On the regular locus the maximal rank is $d$: a smaller maximal rank would, on its open constant-rank locus, give positive-dimensional fibers. The union $C$ of the singular locus and the critical locus is a proper analytic subset of the pure $d$-dimensional source. Its analyticity can be expressed in an embedding by adjoining the rows of $\mathrm d F$ to the rows of differentials of local equations for $X$ and using minors, together with the equations of the singular locus. Its dimension is at most $d-1$ by \cref{prop:analytic-dimension-drop}. The image $E=F(C)$ is closed by properness, and $\mathcal H^{2d-1}(E)=0$: stratify $C$ by \cref{cor:analytic-strata-hausdorff}, cover the smooth strata by compact coordinate pieces, and use that $F$ is Lipschitz on each such piece.
+
+Over the target ball minus $E$, the map is a local biholomorphism at every point of its source and proper. Its image is consequently both open and closed there. This image is nonempty: a regular full-rank point gives an open target image, which cannot be contained in $E$. The target complement is connected by \cref{lem:thin-set-path-connectivity}. The image therefore contains the entire complement and, being closed in the ball, contains the ball itself.
+\end{proof}
+
+\Needspace{9\baselineskip}
+\begin{proposition}\label{prop:analytic-hypersurface-dimension}
+On a reduced pure $d$-dimensional complex space, the zero set of a holomorphic function that is not identically zero on any local branch is either empty or pure of dimension $d-1$.
+\end{proposition}
+\begin{proof}
+Dimension zero is immediate. At a zero $x$ on a branch $X_0$, dimension drop bounds the dimension of $V(f)$ by $d-1$. Choose $d-1$ ambient linear forms $\ell_j$, all zero at $x$, cutting its positive-dimensional branches successively until the common zero set of $(f,\ell_1,\ldots,\ell_{d-1})$ is isolated at $x$. At each step avoid the finitely many proper linear subspaces of forms that vanish identically on a remaining branch; dimension drop suffices, and any unused forms may be chosen generically. Apply \cref{lem:finite-analytic-open-map} to this $d$-tuple on $X_0$. Its image contains a target ball, so its zero set $f=0$ maps onto the target hyperplane in that ball. If its dimension were less than $d-1$, its image would have zero $(2d-2)$-dimensional measure, by the stratification and Lipschitz argument just used. This is impossible.
+
+Apply this argument at a regular point of any branch of $V(f)$, away from the other branches of that zero set. A sufficiently small neighborhood has only this branch of the zero set, while every source branch remains $d$-dimensional. Thus this branch has dimension $d-1$. Every branch of $V(f)$ has the asserted dimension.
+\end{proof}
+\index{analytic set!hypersurface dimension}
+
+\section{Blowups and resolution}\label{sec:analytic-blowups-resolution}
+
+Blowing up replaces a common zero set by the projective directions of its generators. The local construction proves the identities of ideals needed later on strict transforms.
+
+\begin{definition}\label{def:analytic-blowup}
+Let $X$ be reduced and let $\mathfrak a\subset\mathcal O_X$ be a coherent ideal nonzero on every local irreducible branch. On a neighborhood with generators $f_0,\ldots,f_r$, the \emph{blowup} $\operatorname{Bl}_{\mathfrak a}X$ is the reduced closure of the graph
+\[
+ x\longmapsto[f_0(x):\cdots:f_r(x)]
+ \quad\hbox{in }X\times\mathbb P^r,
+ \qquad x\notin V(\mathfrak a).
+\]
+Here $\mathbb P^r$ is the space of nonzero vectors in $\mathbb C^{r+1}$ modulo scalar multiplication, with its charts $\xi_i\ne0$ and coordinates $\xi_j/\xi_i$. It is compact: every projective point has a representative on the compact unit sphere, and the quotient map is continuous. The projection to $X$ is denoted $\pi$.
+\end{definition}
+\index{blowup!analytic ideal}
+
+\Needspace{11\baselineskip}
+\begin{proposition}\label{prop:analytic-blowup-universal}
+The blowup is an analytic space, independent of the chosen generators. Its projection is proper and bimeromorphic, and $\mathfrak a\mathcal O_{\operatorname{Bl}_{\mathfrak a}X}$ is an invertible ideal. If a holomorphic map $g:Y\to X$ from a reduced space makes $\mathfrak a\mathcal O_Y$ an invertible ideal locally generated by a nonzerodivisor, then $g$ has a unique holomorphic lift to the blowup.
+\end{proposition}
+\begin{proof}
+In each projective chart take the analytic set given by the equations of $X$ and $f_i\xi_j=f_j\xi_i$. The graph closure is obtained by retaining its local irreducible branches whose complement of $V(\mathfrak a)$ is nonempty. Finite local decomposition and density of the complement on those branches prove analyticity, as in the graph construction in \cref{thm:analytic-normalization}. It is closed in $X\times\mathbb P^r$, so compactness of projective space proves properness. Over the complement of $V(\mathfrak a)$ it is the graph and hence an isomorphism; that graph is dense in the blowup.
+
+On $\xi_i\ne0$, the relations read $f_j=f_i(\xi_j/\xi_i)$, so the pulled-back ideal is generated by $f_i$. This generator is nonzero on every local branch of this chart: its nonzero graph points are dense there. It is thus a nonzerodivisor in the reduced local ring. This proves invertibility.
+
+Locally on $Y$ write $f_i\circ g=d b_i$, where $d$ is a nonzerodivisor generator of the pulled-back ideal. The $b_i$ generate the unit ideal, and hence do not vanish simultaneously. They define the holomorphic projective map $[b_0:\cdots:b_r]$. Off $d=0$ this is the prescribed graph lift; density shows that its whole image lies in the graph closure. Different choices of $d$ give the same projective point. The lifts glue, and uniqueness follows from equality on the dense complement of $d=0$.
+
+For two sets of generators, their blowups both make the original ideal invertible. The universal property gives maps between them, and their two compositions are identities by uniqueness. These canonical identifications also glue the local constructions on overlaps.
+\end{proof}
+
+An \emph{effective Cartier divisor} on a reduced space is a locally principal ideal generated by a nonzerodivisor, together with its local equations modulo multiplication by units. Its ideal is written $\mathcal O_X(-D)$, and the inverse invertible sheaf is $\mathcal O_X(D)$. Products of the ideals correspond to addition of effective Cartier divisors. Pullback or restriction composes the local equations with the map, provided the resulting equations remain nonzerodivisors. On a manifold a \emph{simple normal crossings divisor} has, in local coordinates, support $\{z_1\cdots z_k=0\}$ with its individual components smooth. Its multiplicities may be positive integers; simplicity refers to the reduced components and their intersections.
+\index{divisor!effective Cartier}\index{divisor!simple normal crossings}
+
+For a proper bimeromorphic map between manifolds, an effective divisor is called \emph{exceptional} if each of its components has image of codimension at least two. Proper images of analytic sets will be proved analytic in \cref{thm:proper-analytic-image}.
+
+\Needspace{16\baselineskip}
+\begin{proposition}\label{prop:smooth-center-blowup}
+For a closed smooth center $C$ of positive codimension in a complex manifold $M$, the blowup $\pi:M'\to M$ is smooth. Its inverse-image divisor $E$ satisfies $\mathcal I_C\mathcal O_{M'}=\mathcal O_{M'}(-E)$, and its fiber over a point of $C$ is $\mathbb P^{r-1}$, where $r$ is the codimension of $C$. If $C$ is a divisor, the blowup is the identity and $E=C$.
+
+Suppose that $W\subset M$ is a closed smooth submanifold and $C\subsetneq W$ is smooth. The strict transform $W'$, the closure of $\pi^{-1}(W\setminus C)$, is $\operatorname{Bl}_C W$, and
+\begin{equation}\label{eq:strict-transform-ideal}
+ \mathcal I_W\mathcal O_{M'}=\mathcal O_{M'}(-E)\mathcal I_{W'}.
+\end{equation}
+If the center is disjoint from $W$, its strict transform maps isomorphically to $W$ and the pulled-back ideal is $\mathcal I_{W'}$.
+\end{proposition}
+\begin{proof}
+Choose coordinates $(z,w)$ with $C=\{w_1=\cdots=w_r=0\}$. The chart with $\xi_i\ne0$ has coordinates $t=w_i$, $v_j=w_j/w_i$ for $j\ne i$, and the unchanged $z$ coordinates. Its map is $w_i=t$, $w_j=tv_j$. These charts are smooth and fill the graph closure. They give $E=\{t=0\}$ and the stated projective fiber. For $r=1$ the coordinates and map are unchanged.
+
+For the strict-transform identity take coordinates with $W=\{w_1=\cdots=w_r=0\}$ and $C=\{w_1=\cdots=w_r=z_1=\cdots=z_k=0\}$, $k\geq1$. Only charts whose pivot is one of $z_1,\ldots,z_k$ meet $W'$; there $w_j=t v_j$ and $W'$ is given by all $v_j=0$. Thus the left side of \eqref{eq:strict-transform-ideal} is $(t)(v_1,\ldots,v_r)$. In a chart whose pivot is a normal coordinate $w_i$, the strict transform is absent and the pulled-back ideal is $(t)$, since one of its generators is $t$. This proves the identity in all charts and identifies the restricted blowup with the charts of $\operatorname{Bl}_C W$. A center disjoint from $W$ has no effect in a neighborhood of $W$.
+\end{proof}
+\index{blowup!smooth center}\index{strict transform!ideal identity}
+
+The following existence statements are the resolution and principalization input permitted in this book. Their source is \cite[Theorems 1.1 and 1.3, pp.~611 and 614; Definitions 2.1--2.2, pp.~618--619]{BM08}. The sentence extending those results to analytic spaces is on p.~611. The algorithms proving them are not reproduced here.
+
+\begin{theorem}[Resolution of singularities]\label{thm:analytic-resolution-input}
+A reduced complex space $X$ has a proper bimeromorphic map $\pi:M\to X$ with $M$ smooth, obtained by blowups with smooth centers and an isomorphism over $X_{\mathrm{reg}}$. The divisor formed by the inverse images of its blowup centers has simple normal crossings. The sequence is finite when $X$ is compact, and finite over each relatively compact open subset in general.
+\end{theorem}
+
+\begin{theorem}[Principalization]\label{thm:marked-order-one-input}
+Let $M$ be a complex manifold, let $\mathfrak a\subset\mathcal O_M$ be a coherent ideal nonzero on each component, and let $D$ be a simple normal crossings divisor, possibly empty. There is a sequence of blowups $\sigma_i:M_i\to M_{i-1}$ with smooth centers, finite over relatively compact subsets, with the following properties. Set $M_0=M$ and $\mathfrak a_0=\mathfrak a$. Each center is contained in $V(\mathfrak a_{i-1})$ and has normal crossings with the accumulated divisor. If $E_i$ is its inverse-image divisor, then
+\begin{equation}\label{eq:marked-order-one-transform}
+ \mathfrak a_i=\mathcal O_{M_i}(E_i)\,
+                   \mathfrak a_{i-1}\mathcal O_{M_i}
+\end{equation}
+is a holomorphic ideal, and the final ideal is the unit ideal. The accumulated divisor consists of the strict transforms of $D$ and all the $E_i$, and has simple normal crossings. The composite is an isomorphism off $V(\mathfrak a)$.
+\end{theorem}
+
+The second statement is the marked-ideal theorem with mark $1$ and $N=M$. Its cosupport is precisely $V(\mathfrak a_i)$, and its transformation divides by one exceptional factor, even when the ideal has larger vanishing order. On a compact input, or over a relatively compact base neighborhood where the sequence is finite, iterating \eqref{eq:marked-order-one-transform} gives
+\[
+ \mathfrak a\mathcal O_{M_t}=\mathcal O_{M_t}(-H),
+ \qquad H=\sum_{i=1}^t(\sigma_{i+1}\circ\cdots\circ\sigma_t)^*E_i.
+\]
+Here the empty pullback at $i=t$ is $E_t$. The divisor $H$ is effective and has normal crossings support. For a coherent ideal on a reduced space nonzero on every local branch, apply resolution and then principalize its pullback, retaining the resolution boundary. This gives a \emph{log resolution}: on the smooth model the ideal is the ideal of an effective divisor, whose support together with the boundary divisor has simple normal crossings.
+\index{resolution of singularities}\index{principalization!mark one}\index{log resolution}
+
+\section{Proper images and relative principalization}\label{sec:proper-images-relative-principalization}
+
+Properness prevents analytic branches from escaping at the boundary. The extension and mapping theorems below make the images of exceptional sets analytic; this property is needed when several blowups are composed.
+
+\begin{theorem}[Remmert--Stein]\label{thm:remmert-stein-extension}
+Let $A$ be an analytic subset of a reduced complex space $X$, of dimension at most $p$, and let $Z$ be an analytic subset of $X\setminus A$, all of whose local branches have dimension greater than $p$. Then its closure in $X$ is analytic.
+\end{theorem}
+
+\begin{theorem}[Remmert]\label{thm:proper-analytic-image}
+The image of a proper holomorphic map of reduced complex spaces is analytic.
+\end{theorem}
+\begin{proof}
+We prove the two statements together by induction. Write $R_m$ for the extension assertion with $\dim Z\leq m$, and $P_m$ for the proper-image assertion with source dimension at most $m$. Both assertions are local on the target, and a proper map has compact inverse image over a compact target neighborhood. Thus source dimensions and the number of source components meeting that inverse image are bounded there. The assertion $P_0$ follows since the image of a proper discrete space is closed and locally finite. The assertion $R_0$ has no nonempty case.
+
+\emph{The extension step: $P_{m-1}$ implies $R_m$.} Embed a target neighborhood in $\mathbb C^N$. Induction on $p$ reduces to a smooth $p$-dimensional exceptional set: first extend across its regular locus, then across its singular locus, whose dimension is smaller by \cref{cor:analytic-strata-hausdorff}. For a nonpure $A$, use the union of its lower-dimensional branches and the singular loci and intersections of its top-dimensional branches as the smaller exceptional set. In suitable coordinates the smooth set is a linear $p$-plane $L$ through zero. Separating the finitely many possible dimensions of $Z$ reduces to pure dimension $s$, where $p<s\leq m$.
+
+Choose linear forms $\xi_1,\ldots,\xi_s$ so that the successive intersections with $Z$ have pure dimensions $s-j$, and the first $p$ forms restrict independently to $L$. This is possible by \cref{prop:analytic-hypersurface-dimension}: at each stage avoid the forms identically zero on a branch of the preceding intersection. There are only countably many such branches, since the space has a countable basis and finite local decompositions. A countable union of proper linear subspaces has Lebesgue measure zero. We may at the same time arrange that $(\xi_1,\ldots,\xi_s)$ has full differential rank at a selected regular point of each component of $Z$: at each choice require independence of the restrictions of the forms at these countably many points. Subtract combinations of the first $p$ forms from the remaining forms to make them vanish on $L$. The joint zero intersections and the full-rank condition are unchanged by this triangular change. Complete them to ambient coordinates. Write $z=(z',z'')$, with $z'\in\mathbb C^s$, so that $L=\mathbb C^p\times\{0\}$, and let $\pi(z)=z'$.
+
+The fiber over zero of $Z$ is discrete outside zero. Choose a small fiber ball $B''$ whose boundary misses this discrete set. The closed set $Z\cup A$ is disjoint from $\{0\}\times\partial B''$. Compactness of that boundary gives a base ball $B'$ with $(Z\cup A)\cap(B'\times\partial B'')=\varnothing$. Its projection to $B'$ is proper. Set $A'=B'\cap(\mathbb C^p\times\{0\})$. The restriction of $\pi$ from $Z$ over $B'\setminus A'$ is proper and finite, since its fibers are compact analytic subsets of $B''$.
+
+Let $S_1$ be its singular source locus. Its proper image $S_1'$ is analytic in $B'\setminus A'$ by $P_{m-1}$. On the source over the complement of $S_1'$ let $S_2$ be the critical locus; its image $S_2'$ is analytic in $B'\setminus(A'\cup S_1')$ by the same induction. These images have dimensions at most $s-1$: their sources have those dimensions, and the stratification into smooth pieces with a Lipschitz map excludes a larger-dimensional analytic image. The complements are nonempty. The full-rank choice on every source component also ensures that $Z\setminus\pi^{-1}(A')$ is dense in $Z$.
+
+Repeated bounded holomorphic removal shows that
+\[
+ G=B'\setminus(A'\cup S_1'\cup S_2')
+\]
+is connected and that every bounded holomorphic function on $G$ extends to $B'$. For connectedness, on a connected complex manifold the characteristic function of a disconnected complement of a proper analytic set would be a bounded holomorphic function; its extension would still take only the values zero and one and would be constant. Apply this first to $A'$, then to $S_1'$, and then to $S_2'$. Removal in the opposite order extends bounded functions. The finite projection over $G$ is an unramified covering onto $G$: its image is open and closed there by properness, and is nonempty by the full-rank condition and the dimension bounds for the exceptional images. Its sheet number is a fixed positive integer $q$.
+
+For a linear form $\lambda$ in $z''$, define
+\[
+ P_\lambda(z',T)=\prod_{z\in Z\cap\pi^{-1}(z')}
+                         (T-\lambda(z'')),\qquad z'\in G.
+\]
+The coefficients are bounded holomorphic functions and extend to $B'$. Each coefficient is a polynomial in the coefficients of $\lambda$ of its indicated degree; interpolation at finitely many fixed choices of $\lambda$ shows that its polynomial coefficients extend holomorphically as well. Thus the equations $P_\lambda(z',\lambda(z''))=0$ for all $\lambda$ are equivalent to finitely many coefficient equations. They define an analytic set $W$ in $B'\times B''$. On $G$, this set is precisely $Z$: a point outside a finite fiber can be separated from all its points by a linear form. Every fiber of $W$ is finite, even over the exceptional base. Indeed the coordinate forms bound each coordinate to finitely many roots, and any $q+1$ distinct points in one fiber could be separated by a linear form, contradicting the degree $q$ of its polynomial.
+
+Near zero shrink to a proper representative of this finite projection, using a fiber ball whose boundary misses its finite zero fiber. Every local component of $W$ has dimension at most $s$, by the constant-rank theorem on its regular locus. A component of dimension $s$ maps onto a base neighborhood by \cref{lem:finite-analytic-open-map}; the same applies at each of its points. Its points over $G$ are consequently dense, since $G$ is dense in the base. A component of smaller dimension cannot meet $G$, where $W$ is a union of smooth $s$-dimensional covering graphs. Hence the closure of $W$ over $G$ is exactly the union of its $s$-dimensional components, and is analytic. Finally $Z$ over $G$ is dense in $Z$: the preimage of $A'$ is proper on each component by the full-rank choice, and over its complement the preimages of $S_1'$ and $S_2'$ are proper analytic subsets, since each component has a full-rank open image. Therefore this analytic union is precisely $\overline Z$. This proves $R_m$.
+
+\emph{The mapping step: $R_m$ and $P_{m-1}$ imply $P_m$.} We may replace the source by its resolution from \cref{thm:analytic-resolution-input}; properness and surjectivity preserve its image and its dimension. This use is exactly the permitted resolution input. Work on each of the finitely many connected smooth components relevant over a compact target neighborhood, and embed that target in a Euclidean open set. Let $r$ be the maximal differential rank of the resulting map $F$ on one component. If $r=0$, its coordinate functions have zero differential and are constant on the connected component, so its image is a point. Otherwise the critical locus $C=\{\operatorname{rank}\mathrm d F<r\}$ is a proper analytic subset of source dimension at most $m-1$. Its image $F(C)$ is analytic by $P_{m-1}$ and has dimension at most $r-1$. For the latter assertion, stratify $C$ smoothly and then successively stratify the rank-drop loci of the restrictions of $F$. The constant-rank theorem covers the images of the resulting countably many pieces by submanifolds of dimension at most $r-1$, since the ambient differential has rank at most $r-1$ on $C$. An analytic image of larger dimension has a regular open part of positive $2r$-dimensional measure and cannot be such a union.
+
+If $F(C)=F(X)$ the image is already analytic. Otherwise $F^{-1}(F(C))$ is a proper analytic subset of the connected manifold. Off it the rank is constantly $r$. A proper constant-rank map has locally analytic image: cover a compact fiber by finitely many constant-rank neighborhoods; their image germs are submanifolds, and properness confines the whole inverse image of a smaller target neighborhood to that finite cover. The image there is their finite union. Thus $F(X)\setminus F(C)$ is analytic and pure $r$-dimensional in the complement of $F(C)$. The theorem $R_m$ applies, since $\dim F(C)<r\leq m$. Its closure is the whole image: the source complement is dense, and the map is closed by properness. This proves $P_m$ and completes both inductions.
+\end{proof}
+\index{analytic set!Remmert--Stein extension}\index{proper map!analytic image}
+
+\Needspace{7\baselineskip}
+\begin{definition}\label{def:adapted-blowup-modification}
+A composition of blowups of smooth centers on a complex manifold is \emph{adapted} to a closed smooth submanifold $W$ if at each step the center is either contained properly in the current strict transform of $W$ or disjoint from it. The identity composition is allowed.
+\end{definition}
+\index{modification!adapted to a submanifold}
+
+\Needspace{21\baselineskip}
+\begin{theorem}\label{thm:relative-principalization}
+Let $M$ be a compact connected complex manifold, $W\subsetneq M$ a closed connected smooth submanifold, and $\mathfrak a\subset\mathcal O_M$ a coherent ideal whose restriction $\mathfrak a\mathcal O_W$ is nonzero. There is an adapted composition $f:M'\to M$, with strict transform $W'$, and effective divisors $H,H'$ on $M'$ such that $H$ is exceptional for $f$, $H'$ is disjoint from $W'$, and
+\begin{align}
+ \mathcal I_W\mathcal O_{M'}&=\mathcal O_{M'}(-H)\mathcal I_{W'},
+ \label{eq:relative-center-ideal}\\
+ \mathfrak a\mathcal O_{M'}&=\mathcal O_{M'}(-H-H'),
+ \label{eq:relative-ideal-principalization}\\
+ (\mathfrak a\mathcal O_W)\mathcal O_{W'}
+     &=\mathcal O_{W'}(-H|_{W'}).
+ \label{eq:relative-restricted-ideal}
+\end{align}
+The restriction $f|_{W'}:W'\to W$ is a composition of smooth-center blowups and an isomorphism outside a proper analytic subset of $W$.
+\end{theorem}
+\begin{proof}
+Resolve the marked ideal $(\mathfrak b,1)$ on $W$, where $\mathfrak b=\mathfrak a\mathcal O_W$, by \cref{thm:marked-order-one-input}. Denote its successive smooth centers by $C_i$, its spaces by $W_i$, and its controlled ideals by $\mathfrak b_i$. Perform the same center blowups on the ambient spaces $M_i$. These centers are closed in $M_i$, since $W_i$ is closed; their ambient codimension is at least two, since they are proper in $W_i\subsetneq M_i$. The restricted maps and strict transforms are exactly the prescribed $W_i$ by \cref{prop:smooth-center-blowup}.
+
+Start with $H_0=0$ and $\mathfrak a_0=\mathfrak a$, and set
+\[
+ H_i=\sigma_i^*H_{i-1}+E_i,\qquad
+ \mathfrak a_i=\mathcal O_{M_i}(E_i)
+                         \mathfrak a_{i-1}\mathcal O_{M_i}.
+\]
+These are holomorphic ideals and $\mathfrak a_i\mathcal O_{W_i}=\mathfrak b_i$. To check both assertions inductively, every generator of $\mathfrak a_{i-1}$ vanishes on $C_i$, because its restriction to $W_{i-1}$ belongs to $\mathfrak b_{i-1}$ and the center lies in the latter's zero set. Thus it belongs to $\mathcal I_{C_i}$ and its pullback is divisible by the single exceptional equation. The quotient remains holomorphic. In the tangential pivot charts meeting $W_i$, restriction of this quotient is exactly division by the exceptional equation for the blowup of $W_{i-1}$, including when the center is a divisor in $W_{i-1}$. This gives the controlled ideal with mark one, not division by its maximal order.
+
+Iterating \eqref{eq:strict-transform-ideal} now gives
+\[
+ \mathcal I_W\mathcal O_{M_t}=\mathcal O_{M_t}(-H_t)\mathcal I_{W_t},
+ \qquad
+ \mathfrak a\mathcal O_{M_t}=\mathcal O_{M_t}(-H_t)\mathfrak a_t.
+\]
+At the last step $\mathfrak b_t=\mathcal O_{W_t}$. Hence $\mathfrak a_t$ is the unit ideal at each point of $W_t$: a generator nonzero after restriction is a unit in the ambient local ring. Its zero set is disjoint from $W_t$.
+
+Principalize $\mathfrak a_t$ on $M_t$ using \cref{thm:marked-order-one-input} again, starting with empty boundary if necessary. All its centers lie over its zero set and are disjoint from the successive copies of $W_t$. Write this second composite as $g:M'\to M_t$, its total ideal divisor as $H'$, and set $H=g^*H_t$. Pulling back the last two identities proves \eqref{eq:relative-center-ideal} and \eqref{eq:relative-ideal-principalization}, and $H'$ is disjoint from $W'$. Restriction proves \eqref{eq:relative-restricted-ideal}. Every component of $H_t$ is exceptional in the ambient first sequence, whose centers have codimension at least two; its pullback remains supported on exceptional divisors of the whole map. Thus $H$ is exceptional. No such divisor contains $W'$, since the tangential charts show that the strict transform is not contained in $E_i$.
+
+Finally the images in $W$ of all nontrivial centers of its restricted sequence are analytic by \cref{thm:proper-analytic-image} and have dimension smaller than $\dim W$. Their finite union is proper and contains the set outside which the sequence changes $W$. If $\dim W=0$, its nonzero ideal is the unit ideal and this first sequence is empty; the same reasoning applies with $H=0$.
+\end{proof}
+\index{principalization!relative}
+
+\section{Connected fibers and resolution models}\label{sec:connected-fibers-models}
+
+A proper bimeromorphic map can have positive-dimensional fibers. Unibranchness controls their connectedness, independently of smoothness or normality of the target.
+
+\begin{theorem}\label{thm:unibranch-connected-fibers}
+Let $f:Y\to X$ be proper and bimeromorphic between reduced complex spaces. If $X$ is unibranch, every fiber of $f$ is connected.
+\end{theorem}
+\begin{proof}
+Choose a nowhere dense analytic subset $A\subset X$ outside which $f$ is an isomorphism. Its inverse image is nowhere dense in $Y$, by bimeromorphicity. Suppose the compact fiber over $x$ is disconnected, and partition it into two nonempty disjoint compact sets. Choose disjoint open neighborhoods $V_1,V_2$ of those sets in $Y$. Such neighborhoods exist by local compactness and the Hausdorff property, using finite coordinate covers of the two compact sets. Properness gives a neighborhood $U$ of $x$ whose whole inverse image lies in $V_1\cup V_2$: otherwise a sequence outside this union over base points tending to $x$ would have a convergent subsequence in the fiber.
+
+Shrink $U$ to one of the neighborhoods in \cref{cor:unibranch-normalization-topology}, so that $U\setminus A$ is connected. Each $V_i\cap f^{-1}(U)$ is nonempty and open, and meets the dense set $Y\setminus f^{-1}(A)$. Therefore $f^{-1}(U\setminus A)$ is partitioned into two nonempty disjoint open sets by $V_1,V_2$. Its isomorphism with $U\setminus A$ contradicts connectedness.
+\end{proof}
+\index{proper map!connected fibers}
+
+\begin{corollary}\label{cor:finite-bimeromorphic-normal-target}
+A finite bimeromorphic map to a normal reduced complex space is an isomorphism. A holomorphic map from a normal space to a reduced space, whose inverse image of the target singular locus is nowhere dense, factors uniquely through the target normalization.
+\end{corollary}
+\begin{proof}
+For the first assertion the target is unibranch. Its fibers are finite and connected, hence singletons. The proper map is a homeomorphism. Near its unique inverse point, choose bounded coordinate functions for the source. Composing with the inverse gives bounded holomorphic functions off a proper analytic subset of the target. They extend holomorphically by \cref{lem:normal-locus-open}, and their defining equations hold by density. Thus the inverse is holomorphic.
+
+For the second assertion, lift the map uniquely over the inverse image of the target regular locus, using the normalization isomorphism there. Near a source point, properness of the finite normalization confines this lift to a union of disjoint bounded coordinate neighborhoods of its finitely many points over the image point. A sufficiently small irreducible source neighborhood minus its exceptional analytic set is connected by \cref{cor:unibranch-normalization-topology}; thus its lift lies in one of those coordinate neighborhoods. Its bounded coordinate functions extend on the normal source, and the target equations extend by density. These extensions give local lifts everywhere. Uniqueness on the dense original domain makes them glue and proves the asserted uniqueness.
+\end{proof}
+\index{normalization!factorization}\index{proper map!finite bimeromorphic}
+
+\Needspace{10\baselineskip}
+\begin{proposition}\label{prop:smooth-bimeromorphic-divisor-locus}
+A proper bimeromorphic map $f:M'\to M$ between complex manifolds is an isomorphism outside an analytic subset of $M$ of codimension at least two. In particular every irreducible hypersurface in $M$ has a unique strict transform in $M'$ that maps isomorphically over its generic points.
+\end{proposition}
+\begin{proof}
+Work on connected components of common dimension $n$. The critical locus of $f$ is analytic, given in coordinates by its Jacobian determinant; its image $S$ is analytic by \cref{thm:proper-analytic-image}. Outside $S$ the map is proper and a local biholomorphism, so its fibers are discrete and finite. They are singletons by \cref{thm:unibranch-connected-fibers}. The local inverses agree, giving an isomorphism there.
+
+Suppose that $S$ has a hypersurface component $D$. Work near a regular point of $D$, away from the other components. Its inverse image $E$ is a pure hypersurface by \cref{prop:analytic-hypersurface-dimension}, since a local equation for $D$ is nonzero on the bimeromorphic source. Decompose $E$ locally over a compact target neighborhood into its finitely many relevant components. Remove from $D$ the images of components not dominating $D$, and, for each dominating component, the images of its singular locus and of the critical locus of its restriction to $D$. These are proper analytic subsets of $D$. Indeed the maximal rank on a dominating component is $n-1$, by the constant-rank stratification and the proper-image theorem; its singular and rank-drop loci have images of dimension at most $n-2$. The rank-drop locus together with the singular locus is closed analytic, as expressed by the defining-ideal and map Jacobian minors. Thus at a remaining point $a\in D$ the fiber is discrete in $E$ and hence finite.
+
+Finite fibers persist over a small target neighborhood. To see this, put disjoint small Euclidean source balls around their finitely many points, with boundaries avoiding the fiber. Properness confines the inverse image of a small base neighborhood to these balls. On each boundary $|f-a|$ has a positive minimum; choose the base smaller than all those minima. The restricted maps are proper inside the balls, and all their fibers are compact analytic subsets of Euclidean neighborhoods, hence finite. The original map is consequently finite over this base neighborhood. It is an isomorphism there by \cref{cor:finite-bimeromorphic-normal-target}. This contradicts $a\in S$. Therefore $S$ has codimension at least two. Its complement meets every hypersurface densely; the closure of the inverse image of that dense part defines its unique strict transform. This closure is analytic by retaining the branches of the analytic inverse-image hypersurface that are not contained over $S$.
+\end{proof}
+
+A \emph{smooth model} of $X$ is a proper bimeromorphic map $M\to X$ with $M$ smooth. Resolution gives such models. Two models have a common smooth model: in $M_1\times_X M_2$ take the closure of their common graph over an open set where both maps are isomorphisms, and resolve that closure. The fiber product is analytic, since equality of the two images is expressed by coordinate equations in local embeddings of $X$. The graph closure is analytic by retaining the local components not contained over the exceptional analytic set, as in \cref{prop:analytic-blowup-universal}. Its projections are proper: over a compact subset of $M_1$, the second coordinates lie in the compact inverse image under $M_2\to X$ of its image in $X$, and the fiber product is closed in that compact product. Their images are dense over the common open set and closed, hence surjective. The resolved projections are bimeromorphic.
+
+When $X$ is compact, there is also a common refinement by smooth-center blowups when the specified models themselves are finite smooth-center blowup sequences over $X$. Begin with a resolution of $X$. To lift the current smooth model through the next blowup in either specified sequence, principalize the pulled-back center ideal using \cref{thm:marked-order-one-input}, and use \cref{prop:analytic-blowup-universal}. Repeat for the finitely many centers, and then for the second sequence. Each pulled-back center ideal is nonzero on each relevant component, since it is the unit ideal over the common isomorphism locus. The result is still a finite smooth-center sequence over $X$ and dominates both specified models. This refinement statement concerns the specified blowup sequences; it uses no assertion that every proper bimeromorphic map is itself such a sequence.
+\index{resolution!common refinement}
+
+\begin{definition}\label{def:prime-divisor-model}
+A \emph{prime divisor over $X$} is a pair consisting of a smooth model $M\to X$ and an irreducible hypersurface $F\subset M$, where pairs are identified if their strict transforms agree on a common smooth model. By \cref{prop:smooth-bimeromorphic-divisor-locus} strict transforms preserve the generic hypersurface, and common refinements make this an equivalence relation. The divisor is \emph{exceptional} if its image in $X$ has codimension at least two. One may choose a model on which its representative is smooth: principalize its ideal and retain its strict transform, a component of the resulting simple normal crossings support.
+\end{definition}
+\index{prime divisor!over a complex space}
+
+\section{Plurisubharmonic functions on reduced spaces}\label{sec:psh-reduced-spaces}
+
+At a singular point there are fewer ambient directions inside the space. The definition retains ambient plurisubharmonicity; disc pullbacks are a consequence of that definition.
+
+\begin{definition}\label{def:psh-reduced-space}
+A function $u:X\to[-\infty,+\infty)$ on a reduced complex space is \emph{locally plurisubharmonic} if in a local embedding $X\cap U\subset\Omega\subset\mathbb C^N$ it is the restriction of a plurisubharmonic function on an ambient neighborhood, allowing the constant function $-\infty$. Write $u\in\operatorname{PSH}(X)$ when in addition it is not identically $-\infty$ on any irreducible component. Local restriction properties will also be used when a component is identically $-\infty$.
+\end{definition}
+\index{plurisubharmonic function!on a reduced space}
+
+This definition is independent of the embedding. If two embeddings have coordinates $z$ and $w$, the functions $w_j$ on the space extend holomorphically to the $z$-ambient neighborhood by the definition of $\mathcal O_X$. Their joint extension maps a smaller neighborhood into the $w$-ambient domain. Pulling back an ambient psh extension by this holomorphic map gives the required extension for the $z$ embedding, by \cref{prop:psh-holomorphic-pullback}. The converse follows by interchanging the embeddings. The same argument proves holomorphic pullback on reduced spaces. In particular $u\circ\gamma$ is subharmonic or identically $-\infty$ for every holomorphic disc $\gamma$ in $X$.
+
+\Needspace{9\baselineskip}
+\begin{proposition}\label{prop:psh-compact-connected-constant}
+A locally plurisubharmonic function on a compact connected reduced complex space is constant, possibly $-\infty$.
+\end{proposition}
+\begin{proof}
+The function is upper semicontinuous and attains its maximum $M$. If $M=-\infty$, the assertion is immediate. At a point attaining a finite maximum, restrict to a small irreducible parametrization neighborhood on each local branch. A curve from \cref{prop:analytic-curve-selection} through this point and meeting the smooth covering locus gives a subharmonic disc function with a maximum at zero. It is constant, so a covering-locus point also attains $M$. The usual psh maximum principle then makes $u$ equal to $M$ on the connected covering locus. This principle follows from the subharmonic maximum principle on a manifold, or successively from its coordinate-disc submean inequalities. For any other point of the branch, choose a curve through it whose punctured image avoids the discriminant preimage and the singular locus. Its punctured values are $M$, so the subharmonic mean inequality and upper semicontinuity give its value $M$ at the center. On a zero-dimensional branch the sole value already is $M$. Thus the maximum set is open. It is closed, since $\{u<M\}$ is open for an upper semicontinuous function bounded by $M$. Connectedness gives the conclusion.
+\end{proof}
+
+\begin{proposition}\label{prop:singular-codimension-two-upper-bound}
+Let $A$ be an analytic subset of a reduced complex space $X$ with codimension at least two on every local branch. Every locally plurisubharmonic function on $X\setminus A$ is locally bounded above near $A$.
+\end{proposition}
+\begin{proof}
+It suffices to work on one irreducible parametrization neighborhood at a point of $A$. Its dimension $d$ is at least two. Let $\pi:X\to B\subset\mathbb C^d$ be its finite proper projection with singleton central fiber. The image $\pi(A)$ is analytic by \cref{thm:proper-analytic-image} and has dimension at most $d-2$ by the stratification and Lipschitz estimate. Choose a base line through zero whose intersection with this image is isolated at zero; avoid the nonzero lowest homogeneous term of an equation of the image, and then shrink the line disc. Write base coordinates $(\zeta,z')$ in its direction. For some $r>0$ and $\varepsilon>0$, the cylinder
+\[
+ \{|\zeta|=r,\ |z'|\leq\varepsilon\}
+\]
+is compactly contained in $B$ and disjoint from $\pi(A)$. Its inverse image is compact and disjoint from $A$, so the given function has an upper bound $M$ there.
+
+Projection of $\pi(A)$ from $\{|\zeta|<r,\ |z'|<\varepsilon\}$ to the $z'$ ball is proper: its closure misses the fiber-circle boundary. Its image $S$ is analytic and has dimension at most $d-2$. For $z'\notin S$, the curve $C_{z'}=\pi^{-1}(\{|\zeta|<r\}\times\{z'\})$ avoids $A$. It is pure one-dimensional. Indeed, cut successively by the fixed $d-1$ base coordinates. At each stage a local branch maps finitely and openly to the remaining base coordinates, by \cref{lem:finite-analytic-open-map}; the next coordinate equation is therefore nonzero on that branch. The dimension drops by one at each cut by \cref{prop:analytic-hypersurface-dimension}. Its normalization is a smooth curve by \cref{prop:analytic-curve-parametrization}, finite and proper over the base disc. Pullback of $u$ to that normalization is subharmonic, allowing $-\infty$. It is at most $M$ by the maximum principle: its boundary over $|\zeta|=r$ is bounded by $M$, and a larger interior maximum would make it constant on a component. Each such component reaches the boundary, since a finite proper map of a curve to a disc is open by \cref{lem:finite-analytic-open-map}. To apply this argument literally on a compact set, take the normalization over a slightly larger line disc; the compact inverse image of $|\zeta|\leq r$ then lies inside its domain. This inverse image is disjoint from $A$, so the pulled-back function is defined on a neighborhood of it.
+
+This bounds $u$ on the complement of $\pi^{-1}(S)$ in the cylinder. At any point $y\notin A$ over $S$, choose on each local branch a curve through $y$ avoiding $A\cup\pi^{-1}(S)$ off its center. The set $\pi^{-1}(S)$ is proper on every local branch: finite projections on a pure $d$-dimensional branch are open by \cref{lem:finite-analytic-open-map}. The curve selection theorem therefore applies. On its punctured disc $u\leq M$, and the submean inequality gives $u(y)\leq M$ too. The finitely many original branches give a local upper bound on $X\setminus A$ near the chosen point.
+\end{proof}
+\index{plurisubharmonic function!codimension-two upper bound}
