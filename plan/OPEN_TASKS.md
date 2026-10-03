@@ -31,8 +31,8 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 - `Q09-01` [second-read] Truncation construction, plurifine locality and extension by zero
 - `Q09-02` [drafting] Global finiteness, mixed products and cohomological mass bounds
-- `Q09-03` [planned] Monotonicity with singularity type and bounded-perturbation invariance
-- `Q09-04` [planned] Full mass, convergence and bigness from positive mass with exact hypotheses
+- `Q09-03` [second-read] Monotonicity with singularity type and bounded-perturbation invariance
+- `Q09-04` [drafting] Full mass, convergence and bigness from positive mass with exact hypotheses
 
 ## Q10 — Envelopes and model potentials
 

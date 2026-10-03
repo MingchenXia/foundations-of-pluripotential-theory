@@ -113,3 +113,11 @@ Completed and twice directly reviewed the integrated local interfaces: strong co
 Retained independently retrieved DDNL published, El Kadiri arXiv v3 and Witt Nyström arXiv v1 originals with exact versions/hashes. DDNL §2 is fully read; its bounded-type invariance uses Witt Nyström and must not be imported circularly from mixed monotonicity. The latter proof and BEGZ's small-locus argument are next. Both CI runs at pushed 3275dc9 passed (37156865669 and 37156863580). Keep regular private pushes and draft PR #5 current. Whole-book writing, semantic sample coverage and polishing remain unfinished.
 
 The 280-page source archive rebuilt in an empty directory with matching extracted page text. Evidence: research/reviews/logs/2026-10-03-q09-local-release.log.
+
+## 3 October 2026 — General non-pluripolar mass and convergence
+
+Completed the internal general self/mixed mass monotonicity arguments, bounded-type polarization, extended-capacity lower semicontinuity, scalar mixed-intersection mass bounds, relative full-mass convergence, comparison with defect and domination transfer. The projective fibre proof explicitly reconstructs its simplex projection and measurable Hessian computation. Read the exact Witt Nyström v1 in full, recorded its missing normalization factors, restored them and limited the finding to that checked version. Read the indicated complete BEGZ mass passages and retained the exact DDNL proof scope. Two full integration reads and affected-page build/image evidence are recorded in research/reviews/2026-10-03-q09-mass.json.
+
+Q09-03 reaches second-read. Q09-02/04 remain drafting for the cohomology-valued/sample interface and positive-mass bigness proof. No long external input or FN approval is assumed; earlier gates and 48/110 verified count remain. Both CI runs at 53a6849 passed (37158700189, 37158696537). Continue independent envelope foundations using the actually proved interfaces while researching the remaining bigness route, with regular private pushes and draft PR #5 updates. Whole-book writing and polishing are unfinished.
+
+The 294-page mass checkpoint source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-03-q09-mass-release.log.
