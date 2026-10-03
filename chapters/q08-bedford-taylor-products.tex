@@ -478,3 +478,97 @@ Any point where $\sup_jv_j<u$ has $u>-m$ for some integer $m$, and hence lies in
 \end{proof}
 
 \index{plurisubharmonic function!capacity-zero envelope discrepancy}
+
+\section{The homogeneous Dirichlet problem and balayage}
+\label{sec:bt-homogeneous-dirichlet}
+
+An extremal function is maximal where its obstacle is absent. To translate that comparison property into vanishing Monge--Amp\`ere measure, we need a local replacement solving the homogeneous equation. Ball automorphisms give the second-difference bound which makes the smooth-boundary envelope twice differentiable almost everywhere.
+
+\begin{lemma}\label{lem:ball-centered-automorphisms}
+For $a$ in the unit ball $B\subset\mathbb C^n$ there are automorphisms $S_{a,h}$ of $B$, defined for small $h$, with $S_{a,0}$ the identity and $S_{a,h}(a)=a+h$. They extend smoothly to $\overline B$. On each compact set of centers $a$, their first two derivatives in the real parameter $h$ are uniformly bounded on $\overline B$.
+\end{lemma}
+\begin{proof}
+Use the Hermitian product $\langle z,a\rangle=\sum z_j\bar a_j$, put $s_a=\sqrt{1-|a|^2}$, and define
+\[
+ T_a(z)=\frac{s_a z+\langle z,a\rangle a/(1+s_a)-a}
+                       {1-\langle z,a\rangle}.
+\]
+This formula is smooth at $a=0$, where $T_0$ is the identity. In unitary coordinates with $a=(t,0,\ldots,0)$, $t\ge0$, it reads
+\[
+ T_a(z)=\left(\frac{z_1-t}{1-tz_1},
+           \frac{\sqrt{1-t^2}\,z_2}{1-tz_1},\ldots,
+           \frac{\sqrt{1-t^2}\,z_n}{1-tz_1}\right).
+\]
+Direct substitution gives $T_a(a)=0$, $T_{-a}\circ T_a=\mathrm{id}$, and
+\[
+ 1-|T_a(z)|^2=\frac{(1-|a|^2)(1-|z|^2)}{|1-\langle z,a\rangle|^2}.
+\]
+Thus $T_a$ bijects $B$ and preserves its sphere. Set $S_{a,h}=T_{-(a+h)}\circ T_a$. It sends $a$ to $a+h$ and equals the identity for $h=0$. If $a$ ranges in a compact subset and $h$ is sufficiently small, the denominators in both maps stay uniformly away from zero on $\overline B$. The smooth formula gives the stated derivative bounds.
+\end{proof}
+
+\begin{theorem}\label{thm:homogeneous-ball-dirichlet}
+For a ball $B$ and a real continuous $\varphi$ on $\partial B$, there is a unique $H\in\PSH(B)\cap C(\overline B)$ with
+\[
+ (\ddc H)^n=0\quad\hbox{on }B,\qquad H|_{\partial B}=\varphi.
+\]
+It is the envelope of all plurisubharmonic $v$ with upper boundary limits at most $\varphi$. If $\varphi$ is the restriction of a $C^2$ function on a neighborhood of the sphere, then $H\in C^{1,1}_{\loc}(B)$.
+\end{theorem}
+\begin{proof}
+Scale to the unit ball. First suppose $\varphi$ is smooth. Extend it smoothly to $\overline B$, for instance radially on an annular collar and then with a smooth cutoff. For sufficiently large $A$, the extension plus $A(|z|^2-1)$ is plurisubharmonic; call it $s$. It has boundary value $\varphi$. The ordinary harmonic solution $P\varphi$ from \cref{thm:ball-dirichlet} bounds every competitor above, by the subharmonic comparison principle. Thus the envelope $H$ satisfies $s\le H\le P\varphi$. Its upper regularization is plurisubharmonic by \cref{thm:psh-upper-envelopes}. The same barriers show that this regularization has boundary value $\varphi$, so it is a competitor itself. It therefore equals $H$ pointwise. In particular $H$ approaches $\varphi$ continuously at the sphere and is bounded.
+
+For $a$ in a fixed compact subset, apply \cref{lem:ball-centered-automorphisms}. On the sphere, Taylor's formula in $h$ gives
+\[
+ \tfrac12\bigl(\varphi\circ S_{a,h}+\varphi\circ S_{a,-h}\bigr)
+                 \le\varphi+C_K|h|^2.
+\]
+The constant is uniform in $a$ and in the boundary point. The average of $H\circ S_{a,h}$ and $H\circ S_{a,-h}$, minus $C_K|h|^2$, belongs to the envelope class. Evaluating its inequality with $H$ at $a$ yields
+\[
+ H(a+h)+H(a-h)-2H(a)\le2C_K|h|^2.
+\]
+Convolve on a slightly larger compact neighborhood. The same inequality holds for $H_\varepsilon$, and division by the squared step followed by its limit gives $D^2H_\varepsilon[h,h]\le2C_K|h|^2$. Plurisubharmonicity gives
+\[
+ D^2H_\varepsilon[h,h]+D^2H_\varepsilon[\mathrm ih,\mathrm ih]\ge0,
+\]
+so the real Hessians are also bounded below by $-2C_K$. The proof of \cref{prop:bounded-hessian-taylor} applies even before continuity of $H$ has been shown: the radial smoothings converge in $L^1$ and decrease pointwise to $H$, their bounded gradients give a continuous subsequential limit, and uniqueness of the canonical representative identifies it with $H$. Consequently $H$ is locally $C^{1,1}$ and has the second-order expansion of that proposition almost everywhere.
+
+Its complex Hessian has bounded measurable coefficients. At their common Lebesgue points the smoothed Hessians tend to those coefficients, by \cref{thm:lebesgue-differentiation}; they remain bounded on compact sets. Determinant expansion, bounded convergence and \cref{prop:bt-uniform-continuity} therefore give
+\[
+ (\ddc H)^n=\frac{n!}{\pi^n}\det(H_{j\bar k})\,\mathrm dV_{2n}.
+\]
+If that determinant were positive at a point $a$ having the second-order expansion, the real quadratic Taylor polynomial $Q$ would have positive definite complex Hessian. Choose $\eta>0$ so small that $Q-\eta|z-a|^2$ is still plurisubharmonic. For a sufficiently small radius $r$, Taylor's remainder on $|z-a|=r$ has absolute value below $\eta r^2/2$. The polynomial
+$Q-\eta|z-a|^2+\eta r^2/4$ is then strictly below $H$ on that sphere and strictly above it at $a$. Paste its maximum with $H$ in the smaller ball. \Cref{prop:psh-max-gluing} produces a competitor with the same boundary values which exceeds the envelope at $a$, a contradiction. Hence the determinant vanishes almost everywhere, proving the equation.
+
+For continuous $\varphi$, extend it continuously to an annular neighborhood by radial projection and smooth there. This gives smooth boundary functions $\varphi_j\to\varphi$ uniformly. Adding a constant to the boundary data adds that constant to its envelope. Order of the classes consequently gives
+$\|H_j-H_k\|_{L^\infty(B)}\le\|\varphi_j-\varphi_k\|_{L^\infty(\partial B)}$.
+The envelopes converge uniformly on $\overline B$ to a continuous plurisubharmonic $H$ with boundary value $\varphi$. Uniform continuity of the bounded products gives $(\ddc H)^n=0$. The same constant-shift bounds identify it with the envelope for $\varphi$. The argument for smooth data used only two derivatives, so it also gives the stated $C^2$-boundary regularity. Finally \cref{thm:bt-comparison}, applied in both directions to any two solutions, proves uniqueness.
+\end{proof}
+\index{Dirichlet problem!homogeneous Monge--Amp\`ere}
+
+\begin{corollary}\label{cor:homogeneous-psh-balayage}
+Let $u$ be locally bounded and plurisubharmonic on $\Omega$, and let $B\Subset\Omega$ be a ball. There is a locally bounded plurisubharmonic $\widehat u$ on $\Omega$ which equals $u$ outside $B$, is at least $u$ inside $B$, and satisfies $(\ddc\widehat u)^n=0$ in $B$. The construction is increasing in $u$, and its restriction to $B$ is the largest plurisubharmonic function with upper boundary limits at most $u|_{\partial B}$.
+\end{corollary}
+\begin{proof}
+Take smooth radial regularizations $u_j\downarrow u$ on a neighborhood of $\overline B$ and solve the homogeneous problem with their continuous boundary values. Write its solutions as $H_j$. Comparison gives $u\le u_j\le H_j$ in $B$, and order of the boundary envelopes gives $H_j\downarrow H$. A common bound for $u$ and $u_j$ near $\overline B$ bounds this sequence above and below, so $H$ is bounded and plurisubharmonic; decreasing continuity gives $(\ddc H)^n=0$. For $x\in\partial B$,
+\[
+ \limsup_{B\ni z\to x}H(z)\le u_j(x)\quad\hbox{for every }j,
+ \qquad\limsup_{B\ni z\to x}H(z)\le u(x).
+\]
+Paste $H$ inside $B$ to $u$ outside using \cref{prop:psh-max-gluing}; this is $\widehat u$.
+
+Every competitor $v$ with upper boundary limits at most $u|_{\partial B}$ is dominated by each $H_j$. To apply bounded comparison, first truncate $v$ below a constant smaller than the minimum of $H_j$ on $\overline B$; its upper bound follows from the subharmonic maximum principle. The boundary upper limits of this truncation are still at most $u_j$. Comparison with the continuous zero-measure $H_j$ gives the required domination. Thus $v\le H$. Conversely $H$ belongs to this class by the displayed upper boundary estimate, so it is its largest member. Inclusion of boundary classes gives monotonicity in $u$. This proves the asserted properties of the canonical replacement.
+\end{proof}
+\index{balayage!plurisubharmonic homogeneous replacement}
+
+\begin{definition}\label{def:maximal-plurisubharmonic}
+A plurisubharmonic $u$ on $\Omega$ is maximal if every plurisubharmonic $v$ with $v\le u$ outside a compact subset of $\Omega$ satisfies $v\le u$ everywhere.
+\end{definition}
+\index{plurisubharmonic function!maximal}
+
+\begin{theorem}\label{thm:bounded-psh-maximality}
+A locally bounded plurisubharmonic function is maximal if and only if its Monge--Amp\`ere measure vanishes. In particular maximality is local within this class.
+\end{theorem}
+\begin{proof}
+If the measure vanishes and $v\le u$ outside a compact $K$, choose $K\Subset D\Subset\Omega$. A finite upper bound for $v$ on $\overline D$ follows from upper semicontinuity. Choose $-M$ below the lower bound of $u$ there. The bounded plurisubharmonic $\max\{v,-M\}$ is at most $u$ near $\partial D$. \Cref{thm:bt-comparison} gives the inequality on $D$, and hence $v\le u$ everywhere.
+
+Conversely apply \cref{cor:homogeneous-psh-balayage} on any ball $B\Subset\Omega$. Its replacement dominates $u$ and equals it off the compact $\overline B$. Maximality makes the two functions equal. The measure of $u$ consequently vanishes on $B$, and hence throughout $\Omega$. Vanishing of a measure is a local property, which proves the last assertion.
+\end{proof}

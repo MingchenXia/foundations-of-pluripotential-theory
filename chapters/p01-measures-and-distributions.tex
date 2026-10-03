@@ -318,3 +318,72 @@ Let $K$ be a compact metric space. Every equicontinuous uniformly bounded family
 \end{proposition}
 \begin{proof} For each $\varepsilon>0$, equicontinuity gives a finite cover of $K$ on which each function oscillates by less than $\varepsilon$. Uniform boundedness allows the values at the finitely many centers to be rounded to a finite grid. Two functions with the same rounded data differ by at most $4\varepsilon$ everywhere. Choosing one function from each nonempty data class gives a finite uniform net, so the family is totally bounded. The space $C(K)$ is complete: uniform limits of continuous functions are continuous and pointwise completeness gives the limit of a uniform Cauchy sequence. A complete totally bounded metric space is compact, since successive finite nets produce a Cauchy subsequence of every sequence; if an open cover had no finite subcover, total boundedness would permit nested subsets of diameter tending to zero with the same property. Choosing a point in each nested subset gives a Cauchy sequence. Completeness gives a limit, and the diameter bounds imply that an entire sufficiently late subset lies in one cover member containing that limit, a contradiction. The closure of the family in $C(K)$ is therefore compact.
 \end{proof}
+
+\section{Densities and differentiation of integrals}
+\label{sec:densities-differentiation}
+
+An estimate by Lebesgue measure supplies a bounded density. Differentiating its integrals then identifies the density at almost every point. These facts will also distinguish a distributional Hessian from a pointwise second-order expansion.
+
+\begin{lemma}\label{lem:dominated-measure-density}
+If a positive Radon measure $\mu$ on an open subset of $\mathbb R^d$ satisfies $\mu(E)\le C|E|$ for every Borel $E$, then $\mu=g\,\mathrm dx$ for a measurable $0\le g\le C$ almost everywhere. The analogous local assertion holds with locally bounded constants.
+\end{lemma}
+\begin{proof}
+Work on a half-open cube $Q$ with closure in the domain and subdivide it into dyadic cubes. On each cube of generation $k$ put $g_k=\mu(Q')/|Q'|$. Thus $0\le g_k\le C$. For $l\ge k$, the average of $g_l$ on each generation-$k$ cube is $g_k$. Expansion gives
+\[
+ \|g_l-g_k\|_2^2=\|g_l\|_2^2-\|g_k\|_2^2.
+\]
+The squared norms increase and are bounded by $C^2|Q|$, so $(g_k)$ is Cauchy in $L^2(Q)$. Choose a subsequence whose successive $L^2$ differences are at most $2^{-j}$. Their $L^1$ norms are summable by Cauchy--Schwarz, and Tonelli gives convergence of the subsequence almost everywhere. Its limit $g$ lies in $[0,C]$. Bounded convergence gives $L^2$ convergence of that subsequence, and the Cauchy property gives $L^2$ convergence of the full sequence. The integrals on every fixed dyadic cube therefore equal its $\mu$-mass. Cube boundaries are $\mu$-null by domination. The class argument from \cref{prop:tonelli-fubini} identifies the two finite measures on all Borel subsets of $Q$, since dyadic cubes generate those sets. A countable cover by such cubes, with uniqueness on their overlaps, gives the local and global assertions.
+\end{proof}
+\index{measure!bounded density}
+
+\begin{theorem}[Lebesgue differentiation]\label{thm:lebesgue-differentiation}
+For $f\in L^1_{\loc}(\Omega)$, almost every $x\in\Omega$ satisfies
+\[
+ \lim_{r\downarrow0}\frac1{|Q(x,r)|}
+        \int_{Q(x,r)}|f(y)-f(x)|\,\mathrm dy=0,
+ \qquad Q(x,r)=x+(-r,r)^d.
+\]
+\end{theorem}
+\begin{proof}
+For $f\in L^1(\mathbb R^d)$ define $Mf(x)$ as the supremum of the averages of $|f|$ over the cubes $Q(x,r)$. Translation continuity in $L^1$ makes each fixed-radius average continuous, so $\{Mf>t\}$ is open. We claim
+\[
+ |\{Mf>t\}|\le\frac{3^d}{t}\|f\|_1,\qquad t>0.
+\]
+Cover a compact subset of this open set by finitely many cubes centered at its points, each with average above $t$. Among that finite family choose a cube of largest side length, discard those meeting it, and repeat. The chosen cubes are disjoint; every discarded cube lies in the threefold concentric enlargement of the chosen cube which discarded it. Their enlargements cover the compact set. Its volume is at most $3^d$ times the sum of the chosen volumes, bounded by $3^dt^{-1}\|f\|_1$. Inner regularity proves the claim.
+
+For a continuous compactly supported $c$, the upper limit of the displayed oscillation is at most $M(f-c)(x)+|f(x)-c(x)|$. The continuous part has zero limit by continuity. The maximal estimate and Chebyshev's inequality show that the set where this upper limit exceeds $2t$ has volume at most $(3^d+1)t^{-1}\|f-c\|_1$. Approximate $f$ in $L^1$ by \cref{prop:continuous-density}; the volume is zero. Taking positive rational $t$ proves the assertion. For local integrability, cut off $f$ on a neighborhood of a fixed compact set and then use a countable exhaustion.
+\end{proof}
+Points satisfying this limit are called Lebesgue points of $f$.
+\index{Lebesgue differentiation theorem}
+
+\begin{lemma}\label{lem:weak-poincare-cube}
+If $F$ is continuous on a neighborhood of a closed cube $Q$ of side length $l$ and its distributional first derivatives belong to $L^1$ there, then, with $F_Q=|Q|^{-1}\int_QF$,
+\[
+ \int_Q|F-F_Q|\le l\sum_{k=1}^d\int_Q|\partial_kF|.
+\]
+The same assertion holds componentwise for vector-valued $F$.
+\end{lemma}
+\begin{proof}
+For smooth $F$, change the coordinates of $x$ into those of $y$ one at a time and integrate the corresponding one-variable derivative. Integrate over $Q\times Q$. For the $k$th term, integration over the two endpoint coordinates gives a bound $l^2$ times the integral of that derivative on the coordinate interval; the unused coordinates give the factor $l^{d-1}$. Dividing by $|Q|=l^d$, and using
+$|F(x)-F_Q|\le |Q|^{-1}\int_Q|F(x)-F(y)|\,\mathrm dy$, proves the bound. For the stated $F$, smooth it on a slightly larger cube. Uniform convergence of $F_\varepsilon$ and $L^1$ convergence of its derivatives, proved in \cref{lem:mollifier-density,prop:distribution-smoothing}, pass the inequality to the limit.
+\end{proof}
+
+\begin{proposition}\label{prop:bounded-hessian-taylor}
+Let $f$ be continuous on $\Omega$. If its real distributional Hessian has locally bounded measurable coefficients, then $f\in C^{1,1}_{\loc}(\Omega)$: its first derivatives exist and are locally Lipschitz. At almost every $x$, with $A(x)$ the density of that Hessian,
+\[
+ f(x+h)=f(x)+\nabla f(x)\cdot h+\tfrac12h^tA(x)h+o(|h|^2).
+\]
+Conversely, locally uniform Hessian bounds for smooth regularizations of $f$ suffice for the hypothesis.
+\end{proposition}
+\begin{proof}
+On a smaller ball the smooth regularizations have a uniform Hessian bound. Taylor's formula along a fixed short segment bounds their gradients by their common value bound and the Hessian bound. Their gradients are equibounded and equi-Lipschitz. \Cref{prop:arzela-ascoli} gives locally uniform subsequential limits; the distributional derivative identifies each limit uniquely. Passing the segment integral to the limit proves that $f$ is $C^1$ and its gradient is locally Lipschitz.
+
+For the converse, each real Hessian entry $H$ satisfies $-C\,\mathrm dx\le H\le C\,\mathrm dx$ distributionally on a smaller ball. The positive distribution theorem makes $C\,\mathrm dx\pm H$ measures; their sum is $2C\,\mathrm dx$. \Cref{lem:dominated-measure-density} gives $H$ a bounded density. This argument also justifies the measurable Hessian coefficients used below without invoking a general Radon--Nikodym theorem.
+
+Let $x$ be a common Lebesgue point of the finitely many coefficients of $A$, and fix the unit cube $Q=(-1,1)^d$. For small $r$ put
+\[
+ G_r(y)=\frac{\nabla f(x+ry)-\nabla f(x)}r-A(x)y.
+\]
+These vector functions are equi-Lipschitz, vanish at zero, and their derivative matrices are $A(x+ry)-A(x)$. \Cref{thm:lebesgue-differentiation} makes the $L^1(Q)$ norms of those matrices tend to zero. \Cref{lem:weak-poincare-cube} gives $\int_Q|G_r-(G_r)_Q|\to0$. Equi-Lipschitz functions with this property converge uniformly to their means on $\overline Q$: a discrepancy of fixed size at any point persists on a fixed-radius portion of $Q$, contradicting the integral bound. Since $G_r(0)=0$, the means also tend to zero. Thus $\|G_r\|_\infty\to0$. Integrating the gradient along a segment from $x$ to $x+h$ gives the stated expansion. Almost every point is such a common Lebesgue point.
+\end{proof}
+\index{Hessian!bounded distributional coefficients}\index{Taylor expansion!almost everywhere}

@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **Q03**.
-
-## Q03 — Pluripolar sets and the plurifine topology
-
-- `Q03-01` [planned] Pluripolarity, local/global distinctions and Josefson theorem in its required setting
-- `Q03-02` [planned] Plurifine base theorem, thinness, continuity and quasi-Lindelof property
-- `Q03-03` [planned] Quasi-suprema and quasi-infima for differences undefined at common poles
-- `Q03-04` [planned] Restriction, finite loci and exceptional-set arguments used by non-pluripolar products
+Next coherent writing unit: **Q04**.
 
 ## Q04 — Weighted L2 estimates and holomorphic extension
 
