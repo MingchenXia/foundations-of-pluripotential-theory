@@ -180,10 +180,324 @@ Normalize $u\leq0$ and put $w_k=P_\theta(u+k,V_\theta)$. The rooftop inequality 
 For the second term use $w_k\leq P_\theta[u]\leq V_\theta$. The first term tends to zero in variation by dominated convergence: $u,V_\theta$ are finite almost everywhere for $\mu_u$. Increasing continuity passes the left side to the envelope measure. Finally the obstacle theorem with $f=0$ makes $\mu_{V_\theta}$ carried by $\{V_\theta=0\}$. On that set the additional equality with $P_\theta[u]$ gives its value zero.
 \end{proof}
 
+\section{Extrapolation and model singularities}
+\label{sec:extrapolation-model-singularities}
+Throughout this section assume that $\{\theta\}$ is big, write
+$M(u)=\int_X\mu_u$, and keep all potentials in $\PSH(X,\theta)$.
+An equality of masses can control singularities even when their difference is unbounded. The first step is to reverse a convex combination: a sufficiently small mass loss permits a potential below $a u+(1-a)v$ for some $a>1$. Contact concentration prevents these envelopes from collapsing. The resulting extrapolation gives a pointwise domination principle and identifies the positive-mass image of $P_\theta$.
+
+\begin{lemma}\label{lem:mass-preserving-model-majorant}
+For every $\psi\leq0$ with $M(\psi)>0$ there is a model potential $\phi\geq\psi$ with $M(\phi)=M(\psi)$.
+\end{lemma}
+\begin{proof}
+Fix a smooth probability volume measure $\mathrm dV$ and put $m=M(\psi)$. Consider
+\[
+ \mathcal S=\{v\in\PSH(X,\theta):\psi\leq v\leq0,
+                                             \ M(v)=m\},
+ \qquad H(v)=\int_Xv\,\mathrm dV.
+\]
+It contains $\psi$, and its heights lie in the finite interval $[H(\psi),0]$. Choose $v_0=\psi$. Given $v_k\in\mathcal S$, put
+\[
+ s_k=\sup\{H(w):w\in\mathcal S,\ w\geq v_k\}
+\]
+and choose $v_{k+1}$ in this set with $H(v_{k+1})\geq s_k-2^{-k}$. The canonical increasing envelope $\phi=(\sup_kv_k)^*$ is a potential between $\psi$ and zero. Increasing continuity, \cref{cor:nonpluripolar-increasing-continuity}, gives $M(\phi)=m$. Dominated convergence between the integrable bounds $\psi$ and zero gives $H(v_k)\to H(\phi)$; regularization changes the supremum only on a pluripolar set.
+
+If $w\in\mathcal S$ and $w\geq\phi$, then for every $k$,
+\[
+ H(w)\leq s_k\leq H(v_{k+1})+2^{-k}.
+\]
+Thus $H(w)\leq H(\phi)$. Since $w\geq\phi$, equality forces equality almost everywhere, hence everywhere by canonical representatives. The potential $P_\theta[\phi]$ is between $\phi$ and zero and has mass $m$ by \cref{prop:p-envelope-calculus}. It belongs to $\mathcal S$, so equals $\phi$. The positive mass makes $\phi$ a model potential.
+\end{proof}
+
+\begin{lemma}\label{lem:model-normalized-supremum}
+If $\phi=P_\theta[\phi]$ and $\tau\preceq\phi$, then
+\[
+ \sup_{\{\phi> -\infty\}}(\tau-\phi)=\sup_X\tau.
+\]
+In particular a nonpositive $\tau\preceq\phi$ satisfies $\tau\leq\phi$.
+\end{lemma}
+\begin{proof}
+The normalized potential $\tau-\sup_X\tau$ is a competitor for $P_\theta[\phi]$, hence is at most $\phi$. This proves one inequality. For the other use $\phi\leq0$: on its finite locus, $\tau-\phi\geq\tau$. Removing a pluripolar set does not change the supremum of a quasi-psh potential. Indeed it has volume zero, and a putative smaller upper bound there would hold everywhere by local ball averages. This proves the reverse inequality.
+\end{proof}
+
+\begin{theorem}\label{thm:positive-mass-extrapolation}
+Suppose $u\preceq v$ and $M(u)>0$. If $a>1$ satisfies
+\begin{equation}\label{eq:extrapolation-mass-margin}
+ a^n\bigl(M(v)-M(u)\bigr)<M(v),
+\end{equation}
+there exists $\eta\in\PSH(X,\theta)$ of positive mass such that
+\begin{equation}\label{eq:extrapolation-convex-inequality}
+ a^{-1}\eta+(1-a^{-1})v\leq u.
+\end{equation}
+The largest such $\eta$ is the obstacle envelope
+$E_a(u,v)=P_\theta(a u+(1-a)v)$, with the obstacle evaluated on the common finite locus and assigned $-\infty$ at the poles of $u$. If $M(u)=M(v)$, this envelope exists for every $a>1$ and has their common mass.
+\end{theorem}
+\begin{proof}
+Choose constants $A,B$ so that $u-A\leq v-B\leq0$. A potential for these shifted data gives one for the original data by adding $aA+(1-a)B$. We may therefore assume $u\leq v\leq0$. By \cref{lem:mass-preserving-model-majorant} choose $\phi\geq v$ with $P_\theta[\phi]=\phi$ and $M(\phi)=M(v)=m$. It suffices first to construct a potential below $a u+(1-a)\phi$, since $1-a<0$.
+
+Put $u_j=\max\{u,\phi-j\}$ and
+\[
+ f_j=a u_j+(1-a)\phi,\qquad \eta_j=P_\theta(f_j).
+\]
+The obstacles satisfy $\phi-a j\leq f_j\leq\phi$ off the poles and extend with value $-\infty$ on the poles. They are quasi-continuous: away from small-capacity neighborhoods of the poles this follows from quasi-continuity of the two potentials, and at a remaining pole the upper bound by $\phi$ gives continuity in the extended topology. The reference $\phi-a j$ is a competitor. Thus
+\[
+ \phi-a j\leq\eta_j\leq\phi,\qquad M(\eta_j)=M(u_j)=m.
+\]
+These envelopes decrease with $j$. Define $\gamma_j=a^{-1}\eta_j+(1-a^{-1})\phi\leq u_j$ and put $D_j=\{\gamma_j=u_j>-\infty\}$. The obstacle theorem concentrates $\mu_{\eta_j}$ on $D_j$. Positivity and the ordered-contact inequality give
+\begin{equation}\label{eq:extrapolation-contact-bound}
+ \mu_{\eta_j}\leq a^n\mathbf1_{D_j}\mu_{u_j}.
+\end{equation}
+Indeed $a^{-n}\mu_{\eta_j}\leq\mu_{\gamma_j}$ by multilinearity, and on $D_j$ the latter is bounded by $\mu_{u_j}$.
+
+Fix $k>0$ and $j>k$. On $D_j$ the inequality $\eta_j\leq\phi-a k$ is equivalent to $u_j\leq\phi-k$, hence to $u\leq\phi-k$, on the finite locus. Locality on the complementary strict level set and equality of the total masses give
+\begin{equation}\label{eq:extrapolation-tail-bound}
+ \mu_{\eta_j}(\{\eta_j\leq\phi-a k\})
+ \leq a^n\left(m-\mu_u(\{u>\phi-k\})\right).
+\end{equation}
+All pole sets have zero mass, so finite-locus restrictions may be omitted in this measure formula.
+
+If $\eta_j$ collapsed to $-\infty$, its supremum would tend to $-\infty$ by compactness and Hartogs' lemma. Since $\eta_j\preceq\phi$, \cref{lem:model-normalized-supremum} would imply $\eta_j\leq\phi-a k$ everywhere for all large $j$. The left side of \eqref{eq:extrapolation-tail-bound} would then be $m$. Letting $k\to\infty$ would give
+$m\leq a^n(m-M(u))$, contrary to \eqref{eq:extrapolation-mass-margin}. Consequently $\eta_j$ decreases to a potential. Passing to the decreasing convex combinations gives \eqref{eq:extrapolation-convex-inequality} with $\phi$ and then with $v$.
+
+The obstacle $a u+(1-a)v$ is bounded above by $u\leq0$. It is quasi-continuous: at finite points use quasi-continuity of $u,v$, and at a pole of $u$ use this upper bound to obtain continuity with value $-\infty$ in the extended topology. The constructed potential is a competitor. Its envelope $E_a$ is therefore well defined and itself admissible by \cref{prop:obstacle-envelope-maximal-member}. The convex inequality holds everywhere, because both its sides are canonical quasi-psh potentials. Moreover $E_a\leq u$.
+
+Choose $b>a$ still satisfying \eqref{eq:extrapolation-mass-margin}. The construction also gives $E_b$. The potential
+\[
+ q=\frac ab E_b+\left(1-\frac ab\right)u
+\]
+is below the $a$-obstacle: substitution of the $b$-obstacle bound leaves the extra term $(1-a/b)(u-v)\leq0$. Hence $q\leq E_a$. Positivity and mass monotonicity yield
+\[
+ M(E_a)\geq M(q)\geq\left(1-\frac ab\right)^nM(u)>0.
+\]
+If $M(u)=M(v)$, $b$ can be arbitrarily large, giving $M(E_a)\geq M(u)$; the inequality $E_a\leq u$ gives the reverse bound. This proves the last assertion.
+\end{proof}
+\index{envelope!extrapolation}\index{Monge--Ampere mass!extrapolation}
+
+\begin{theorem}[Domination principle]\label{thm:relative-full-mass-domination}
+Let $\chi\in\PSH(X,\theta)$ have positive mass, and suppose
+$u,v\in\mathcal E(X,\theta,\chi)$. If
+$\mu_u(\{u<v\})=0$, then $u\geq v$ everywhere.
+\end{theorem}
+\begin{proof}
+Mass monotonicity shows that $\max\{u,v\}$ has the mass of $\chi$ and still has singularity order at most $\chi$. Replacing $v$ by this maximum preserves the measure hypothesis. Shift both potentials by the same constant to arrange $u\leq v\leq0$, and write their common positive mass as $m$.
+
+For $a>1$ let $\eta_a=E_a(u,v)$. The preceding theorem gives $M(\eta_a)=m$ and $\eta_a\leq u$. Define
+$\gamma_a=a^{-1}\eta_a+(1-a^{-1})v\leq u$ and $D_a=\{\gamma_a=u>-\infty\}$. Quasi-continuity and contact concentration apply to the extrapolation obstacle, which is at most $u$. As in \eqref{eq:extrapolation-contact-bound},
+\[
+ \mu_{\eta_a}\leq a^n\mathbf1_{D_a}\mu_u.
+\]
+The measure hypothesis makes its right side carried by $D_a\cap\{u=v\}$. On this set $\eta_a=u$. The ordered-contact inequality, now applied to $\eta_a\leq u$, consequently gives $\mu_{\eta_a}\leq\mu_u$. Their masses agree, so the measures agree and are carried by $\{\eta_a=u\}$. In particular
+\[
+ \int_X\mathrm e^{\eta_a}\,\mu_u
+        =\int_X\mathrm e^u\,\mu_u>0.
+\]
+The last integral is positive because $m>0$ and $\mu_u$ gives no mass to the poles of $u$.
+
+As $a$ increases, its obstacle $v+a(u-v)$ decreases, so $\eta_a$ decreases. If its limit were identically $-\infty$, dominated convergence in the last display would give a contradiction. Thus the limit along the integers is a potential $\eta$. At every finite point with $u<v$, the obstacle tends to $-\infty$, so $\eta=-\infty$ there. The strict inequality set outside the poles is therefore pluripolar. The omitted poles are pluripolar too. Hence $u\geq v$ almost everywhere in volume, and ball averages with the common local smooth background give the inequality everywhere.
+\end{proof}
+\index{domination principle!relative full mass}
+
+\begin{theorem}\label{thm:positive-mass-model-characterization}
+For $u\leq0$ with $M(u)>0$,
+\[
+ P_\theta[u]=\max\{v\in\PSH(X,\theta):v\leq0,
+                         \ u\preceq v,\ M(v)=M(u)\}.
+\]
+In particular $P_\theta[P_\theta[u]]=P_\theta[u]$, so $P_\theta[u]$ is a model potential of mass $M(u)$.
+\end{theorem}
+\begin{proof}
+Let $v$ belong to the displayed family. Monotonicity gives
+$P_\theta[u]\leq P_\theta[v]$, while $v\leq P_\theta[v]$. Mass preservation makes both potentials members of
+$\mathcal E(X,\theta,P_\theta[v])$. The contact measure of $P_\theta[u]$ is carried by its zero set, by \cref{prop:p-envelope-contact-concentration}. Since $v\leq0$, it gives no mass to $\{P_\theta[u]<v\}$. Relative domination yields $P_\theta[u]\geq v$. On the other hand $P_\theta[u]$ itself belongs to the family, which proves the maximum formula.
+
+Mass preservation and $u\preceq P_\theta[u]$ show that $P_\theta[P_\theta[u]]$ also belongs to the family. The maximum formula bounds it by $P_\theta[u]$, and the reference competitor gives the opposite inequality. Positive mass proves the model assertion.
+\end{proof}
+\index{model potential!characterization}
+
+\begin{example}\label{ex:loglog-full-mass-envelope}
+On $\mathbb P^1$ let $\omega=\ddc\log(1+|z|^2)$ on its affine chart, so $\int_{\mathbb P^1}\omega=1$. Define
+\[
+ F(r)=\begin{cases}
+       \max\{-\log(-r),r+2\},&r\leq-1,\\
+       r+2,&r\geq-1,
+      \end{cases}
+ \qquad
+ u(z)=F(\log|z|^2)-\log(1+|z|^2).
+\]
+The maximum equals $r+2$ near $-1$, so $F$ is convex and increasing, with slopes tending to zero at $-\infty$ and equal to one near $+\infty$. Thus $F(\log|z|^2)$ is subharmonic. The potential extends with $u(0)=-\infty$ and $u(\infty)=2$, and is $\omega$-psh by the bounded-above removal theorem at zero and the smooth expression near infinity. Its only pole is zero. Its Lelong number there is zero, since
+\[
+ \lim_{r\to-\infty}\frac{F(r)}r=0.
+\]
+By \cref{thm:euclidean-jensen-lelong}, in one variable the atom of $\ddc F(\log|z|^2)$ at zero is this Lelong number. Hence the ordinary current has no mass at the pole. The first-degree restriction theorem, \cref{prop:nonpluripolar-degree-one-restriction}, gives $M(u)=1$. Since $V_\omega=0$, the zero potential has the same mass and is less singular than $u$. Applying the maximum characterization to $u-\sup_Xu$ gives $P_\omega[u]=0$. Near zero, however, $u=-\log(-\log|z|^2)+O(1)$ is unbounded below. Thus taking the singularity envelope can change the bounded singularity type while preserving full mass.
+\end{example}
+\index{singularity!log-log}
+
+\begin{definition}\label{def:relative-singularity-envelope}
+If $u\preceq\phi$, define the envelope with upper reference $\phi$ by
+\[
+ P_\theta[u](\phi)
+       =\left(\lim_{C\to\infty}P_\theta(u+C,\phi)\right)^*.
+\]
+For sufficiently large $C$ the rooftop is nonempty and of bounded singularity type $u$: a fixed shifted $u$ is a common minorant. The increasing limit is bounded above by $\phi$ and below by that minorant.
+\end{definition}
+
+\begin{proposition}\label{prop:relative-envelope-full-mass-characterization}
+Suppose $u\preceq\phi$ and $M(\phi)>0$. Then the following are equivalent:
+\begin{enumerate}
+ \item $u\in\mathcal E(X,\theta,\phi)$;
+ \item $P_\theta[u](\phi)=\phi$;
+ \item $P_\theta[u]=P_\theta[\phi]$.
+\end{enumerate}
+Furthermore the relative envelope has mass $M(u)$ and satisfies
+\[
+ \mu_{P_\theta[u](\phi)}
+       \leq\mathbf1_{\{P_\theta[u](\phi)=\phi\}}\mu_\phi.
+\]
+\end{proposition}
+\begin{proof}
+Write $w_C=P_\theta(u+C,\phi)$ and $w=P_\theta[u](\phi)$. Bounded-type invariance and increasing continuity give $M(w)=M(u)$. The rooftop inequality bounds
+\[
+ \mu_{w_C}\leq\mathbf1_{\{u+C\leq\phi\}}\mu_u
+                  +\mathbf1_{\{w=\phi\}}\mu_\phi.
+\]
+The first term tends to zero in variation by dominated convergence on the common finite locus. Increasing continuity then gives the asserted measure bound.
+
+If (1) holds, $w$ and $\phi$ have the same positive mass and both belong to $\mathcal E(X,\theta,\phi)$. Their contact bound and relative domination give $w\geq\phi$, so (2) holds. Conversely (2) and mass preservation give (1).
+
+For (2) to imply (3), normalize $\phi\leq0$. Every $w_C$ is then a normalized singularity competitor for $P_\theta[u]$, so $\phi=w\leq P_\theta[u]$. Monotonicity, positive-mass idempotence and $u\preceq\phi$ give
+\[
+ P_\theta[\phi]\leq P_\theta[P_\theta[u]]=P_\theta[u]
+                              \leq P_\theta[\phi].
+\]
+Normalization changes none of these singularity envelopes. Finally (3) implies equality of the two masses by \cref{prop:p-envelope-calculus}, hence (1).
+\end{proof}
+\index{envelope!relative singularity envelope}\index{full mass!envelope characterization}
+
+\section{Rooftops and mass inequalities}
+\label{sec:rooftop-mass-inequalities}
+A common minorant may fail to exist, as the point-pole example showed. A strict mass inequality supplies one. Model contact concentration then compares the masses of a maximum and a rooftop, while extrapolation transfers the comparison to arbitrary representatives of the same relative full-mass classes. Keep the big-class assumption and the notation $M$ from the preceding section.
+
+\begin{proposition}\label{prop:positive-mass-rooftop-existence}
+If
+\[
+ M(u)+M(v)>M(\max\{u,v\}),
+\]
+then $P_\theta(u,v)\ne-\infty$.
+\end{proposition}
+\begin{proof}
+Normalize $u,v\leq0$, put $m=M(\max\{u,v\})$, and let $\phi=P_\theta[\max\{u,v\}]$. Monotonicity makes both $M(u)$ and $M(v)$ positive under the strict inequality, and the model theorem gives $M(\phi)=m>0$. Moreover $u,v\leq\phi$.
+
+Choose $k>0$ so large that
+\[
+ \mu_u(\{u>\phi-k\})+\mu_v(\{v>\phi-k\})>m.
+\]
+Such a $k$ exists because the omitted poles have zero mass. For $C>k$ put
+\[
+ u_C=\max\{u,\phi-C\},\quad
+ v_C=\max\{v,\phi-C\},\quad
+ w_C=P_\theta(u_C,v_C).
+\]
+All three potentials have bounded type $\phi$ and mass $m$, and $w_C$ decreases to $P_\theta(u,v)$, allowing collapse. If it collapsed, the normalized-supremum lemma would give $w_C\leq\phi-k$ for all large $C$. The rooftop contact bound would then imply
+\[
+ \begin{split}
+ m&\leq\mu_{u_C}(\{u_C\leq\phi-k\})
+                +\mu_{v_C}(\{v_C\leq\phi-k\})\\
+  &=2m-\mu_u(\{u>\phi-k\})-\mu_v(\{v>\phi-k\})<m.
+ \end{split}
+\]
+For the equality use locality on the complementary strict sets and $C>k$. This contradiction excludes collapse.
+\end{proof}
+
+\begin{proposition}\label{prop:model-rooftop-fixed-point}
+If $\phi=P_\theta[\phi]$, $\psi=P_\theta[\psi]$ and $w=P_\theta(\phi,\psi)\ne-\infty$, then $P_\theta[w]=w$. Thus their rooftop is a model potential whenever its mass is positive.
+\end{proposition}
+\begin{proof}
+Monotonicity gives $P_\theta[w]\leq\phi,\psi$, so it is a common minorant and is at most $w$. Since $w\leq0$, its reference competitor gives the opposite inequality.
+\end{proof}
+
+\begin{proposition}\label{prop:rooftop-full-mass-substitution}
+Let $\phi,\psi$ be model potentials whose rooftop $w=P_\theta(\phi,\psi)$ has positive mass. If $u\in\mathcal E(X,\theta,\phi)$ and $v\in\mathcal E(X,\theta,\psi)$, then $P_\theta(u,v)$ is nonempty and has mass $M(w)$.
+\end{proposition}
+\begin{proof}
+Shift $u,v$ to arrange $u\leq\phi$ and $v\leq\psi$. A fixed constant shift of any common minorant for either pair is a common minorant for the other. Once nonemptiness is proved, \cref{prop:obstacle-envelope-maximal-member} bounds the difference of the two rooftops, because their obstacle minima have bounded difference. Mass invariance then transfers the result back.
+
+For $a>1$ let $u_a=E_a(u,\phi)$. It satisfies $u_a\leq\phi$ and $M(u_a)=M(\phi)$. Since $w\leq\phi$,
+\[
+ M(u_a)+M(w)>M(\phi)\geq M(\max\{u_a,w\}).
+\]
+The existence criterion makes $P_\theta(u_a,w)=P_\theta(u_a,\psi)$ nonempty, using associativity and $u_a\leq\phi$. The convex combination
+\[
+ a^{-1}P_\theta(u_a,\psi)+(1-a^{-1})w
+\]
+is below $u$ by extrapolation and below $\psi$, so it is a competitor for $P_\theta(u,\psi)$. Positivity and monotonicity give this rooftop mass at least $(1-a^{-1})^nM(w)$. Its upper bound by $w$ gives the reverse mass bound as $a\to\infty$. Thus $z=P_\theta(u,\psi)$ exists and $M(z)=M(w)>0$.
+
+Now let $v_a=E_a(v,\psi)$. The same criterion applied to $v_a$ and $z\leq\psi$ gives the nonempty rooftop $P_\theta(u,v_a)=P_\theta(z,v_a)$. The convex combination
+\[
+ a^{-1}P_\theta(u,v_a)+(1-a^{-1})z
+\]
+is below $u$ and $v$, and its mass is at least $(1-a^{-1})^nM(z)$. Let $a\to\infty$ and use $P_\theta(u,v)\leq w$ to finish.
+\end{proof}
+
+\begin{lemma}\label{lem:decreasing-zero-contact-mass}
+If $q_j\leq0$ decrease to a potential $q$ in $\PSH(X,\theta)$, then
+\[
+ \limsup_j\mu_{q_j}(\{q_j=0\})\leq\mu_q(\{q=0\}).
+\]
+\end{lemma}
+\begin{proof}
+Put $\lambda_j=\mathbf1_{\{q_j=0\}}\mu_{q_j}$. Since $q_j\leq V_\theta\leq0$, the ordered-contact inequality gives $\lambda_j\leq\mu_{V_\theta}$. Fix the analytic reference pole set $A$ used in the obstacle proof. Minimal potentials are bounded locally outside $A$, and $\mu_{V_\theta}(A)=0$.
+
+For $t>0$ let $b_j=\max\{1+tq_j,0\}$ and $b=\max\{1+tq,0\}$, assigning zero at poles. On a compact chart neighborhood outside $A$ choose $L$ so large that $V_\theta-L<-1/t$. Replace $q_j$ there by $\widetilde q_j=\max\{q_j,V_\theta-L\}$. These are uniformly locally bounded and decrease to the corresponding truncation of $q$. The weights vanish on the truncated locus; locality and weighted bounded capacity continuity, \cref{thm:bt-capacity-continuity}, consequently give
+\[
+ b_j\mu_{q_j}=b_j\mu_{\widetilde q_j}
+                 \longrightarrow b\mu_q
+\]
+locally outside $A$. The weights are bounded and quasi-continuous and converge in capacity, as required by the weighted continuity theorem.
+
+For $\delta>0$ choose a compact $K\subset X\setminus A$ with $\mu_{V_\theta}(X\setminus K)<\delta$, and a smooth cutoff $0\leq\zeta\leq1$ supported outside $A$ and equal to one on $K$. Since $b_j=1$ on the zero set,
+\[
+ \lambda_j(X)\leq\int_X\zeta b_j\,\mu_{q_j}+\delta.
+\]
+Pass to the limit using a finite chart partition, then let $\delta\downarrow0$ to get
+$\limsup_j\lambda_j(X)\leq\int_Xb\,\mu_q$. Finally let $t\to\infty$: the bounded weights decrease to $\mathbf1_{\{q=0\}}$, proving the assertion.
+\end{proof}
+
+\begin{theorem}\label{thm:rooftop-mass-diamond}
+Whenever $w=P_\theta(u,v)\ne-\infty$,
+\[
+ M(u)+M(v)\leq M(\max\{u,v\})+M(w).
+\]
+\end{theorem}
+\begin{proof}
+If either $M(u)$ or $M(v)$ is zero, monotonicity proves the inequality. Otherwise normalize both potentials below zero and put $\phi=P_\theta[u]$, $\psi=P_\theta[v]$. Their masses are those of $u,v$. Their maximum has the mass of $\max\{u,v\}$: the maxima of $P_\theta(u+C,V_\theta)$ and $P_\theta(v+C,V_\theta)$ increase to $\max\{\phi,\psi\}$, and each maximum has bounded type $\max\{u,v\}$. Increasing continuity proves the claim. Their rooftop is nonempty. If its mass is zero, monotonicity makes $M(w)=0$; if it is positive, the substitution proposition gives the same mass as $w$. It therefore suffices to prove the inequality for the models $\phi,\psi$.
+
+Put $\gamma=\max\{\phi,\psi\}$, $m=M(\gamma)$, and for $C>0$ let
+\[
+ \phi_C=\max\{\phi,\gamma-C\},\quad
+ \psi_C=\max\{\psi,\gamma-C\},\quad
+ r_C=P_\theta(\phi_C,\psi_C).
+\]
+Their masses are $m$, and $r_C$ decreases to $P_\theta(\phi,\psi)$. The model measure $\mu_\phi$ is carried by $\{\phi=0\}$, which lies in $\{\phi>\gamma-C\}$. Locality thus gives the measure decomposition
+\[
+ \mu_{\phi_C}=\mu_\phi+
+                  \mathbf1_{\{\phi\leq\gamma-C\}}\mu_{\phi_C},
+\]
+and the last summand has mass $m-M(\phi)$. The corresponding assertion holds for $\psi_C$. On $\{r_C<0\}$, the rooftop contact inequality has no contribution from either original model measure: contact with its zero set would force $r_C=0$. Consequently
+\[
+ \mu_{r_C}(\{r_C<0\})\leq2m-M(\phi)-M(\psi).
+\]
+Subtract from $M(r_C)=m$ to obtain
+\[
+ \mu_{r_C}(\{r_C=0\})\geq M(\phi)+M(\psi)-m.
+\]
+Apply the decreasing-zero-contact lemma along integer $C\to\infty$. The limiting rooftop mass is at least this lower bound, proving the theorem.
+\end{proof}
+\index{Monge--Ampere mass!rooftop inequality}\index{rooftop envelope!mass inequality}
+
 \Needspace{18\baselineskip}
 \section{Multiplier-ideal envelopes}
 \label{sec:multiplier-ideal-envelopes}
-The multiplier ideal of a quasi-psh potential is defined by adding a smooth local function to make it psh; bounded changes do not affect integrability. A prime divisor over $X$ is as in \cref{def:divisorial-order-discrepancy}, and its generic Lelong number is $\nu(u,E)$. For local ideal tests we also allow proper smooth models of coordinate neighborhoods, as in the valuative criterion.
+Here $\{\theta\}$ may again be any pseudo-effective class. The multiplier ideal of a quasi-psh potential is defined by adding a smooth local function to make it psh; bounded changes do not affect integrability. A prime divisor over $X$ is as in \cref{def:divisorial-order-discrepancy}, and its generic Lelong number is $\nu(u,E)$. For local ideal tests we also allow proper smooth models of coordinate neighborhoods, as in the valuative criterion.
 
 \begin{proposition}\label{prop:multiplier-singularity-order}
 For quasi-psh $u,v$ the following are equivalent:
@@ -205,6 +519,7 @@ for every relevant divisor. The same criterion gives membership in $\mathcal I(t
 \end{proof}
 \index{singularity order!multiplier ideals}\index{multiplier ideal!equivalence of potentials}
 
+\Needspace{12\baselineskip}
 \begin{lemma}\label{lem:divisorial-envelope-closure}
 Let $v_j$ be a nonempty uniformly upper bounded family in $\PSH(X,\theta)$, and let $v=(\sup_jv_j)^*$. For every prime divisor $E$ over $X$,
 \[
@@ -309,5 +624,5 @@ This volume is independent of the smooth potential decomposition of $T$, is inva
 It is the maximum of the masses of the currents in the same class whose potentials are multiplier-ideal equivalent to $u$. For rational analytic singularities it equals the original non-pluripolar mass.
 \end{corollary}
 \begin{proof}
-The background-change bounds make the two envelope currents have bounded potential difference in the same class, so their masses agree. Pullback compatibility and \cref{prop:nonpluripolar-modification-pushforward} prove modification invariance. The lower reference bound and mass monotonicity give the first inequality; \cref{prop:positive-mixed-mass-bound} gives the second. Every equivalent potential can be shifted below zero and then lies below the multiplier-ideal envelope. Its mass is consequently at most the envelope mass. The envelope is itself equivalent, so attains the maximum. For analytic singularities use the equality of envelopes and mass preservation of the ordinary envelope.
+Background-change bounds and bounded-type mass invariance prove independence of the decomposition. Pullback compatibility and \cref{prop:nonpluripolar-modification-pushforward} prove modification invariance. Every equivalent potential, shifted below zero, lies below the multiplier-ideal envelope; monotonicity bounds its mass by the envelope mass. The envelope is itself equivalent, so attains the maximum. Taking the original potential gives the lower bound; \cref{prop:positive-mixed-mass-bound} gives the upper bound. For analytic singularities use envelope equality and ordinary envelope mass preservation.
 \end{proof}

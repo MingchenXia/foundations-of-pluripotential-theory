@@ -1,6 +1,6 @@
 # Sample coverage and dependency audit queue
 
-The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. Mapping below is a structural coverage plan; statement-level mathematical classification and proof reconstruction remain pending.
+The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 20 envelope/non-pluripolar claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
 
 | Sample input | Results inventoried | Natural homes | Review status |
 |---|---:|---|---|
@@ -14,9 +14,9 @@ The complete retained active root is `references/originals/sample-book/book.tex`
 | `chapter_bdiv.tex` | 32 | Q18 | inventory-only; proof obligations pending |
 | `chapter_bdiv_sec_11_3.tex` | 3 | Q18 | inventory-only; proof obligations pending |
 | `chapter_comp.tex` | 55 | Q12 | inventory-only; proof obligations pending |
-| `chapter_envelopes.tex` | 77 | Q10 | inventory-only; proof obligations pending |
+| `chapter_envelopes.tex` | 77 | Q10 | partial statement map; remaining claims and broader scopes pending |
 | `chapter_history.tex` | 1 | H01 | inventory-only; proof obligations pending |
-| `chapter_npp.tex` | 47 | Q08, Q09 | inventory-only; proof obligations pending |
+| `chapter_npp.tex` | 47 | Q08, Q09, Q10 | partial extrapolation/domination map; remaining claims and broader scopes pending |
 | `chapter_pshfunctions.tex` | 123 | P03, Q01, Q02, Q03, Q04, Q05, Q06, Q07 | inventory-only; proof obligations pending |
 | `chapter_rays.tex` | 48 | Q11 | inventory-only; proof obligations pending |
 | `chapter_testcurve.tex` | 64 | Q15 | inventory-only; proof obligations pending |
