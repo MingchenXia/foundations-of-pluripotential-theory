@@ -2,14 +2,7 @@
 
 These are missing work in this book; they are not claims that the results are open in the literature.
 
-Next coherent writing unit: **P04**.
-
-## P04 — Riesz potentials, energy and capacity
-
-- `P04-01` [planned] Logarithmic and Newtonian potentials, positive energy and equilibrium measures
-- `P04-02` [planned] Capacity, outer regularity and polar sets; zero-capacity and envelope discrepancy sets
-- `P04-03` [planned] Energy estimates and Cauchy--Schwarz under the correct kernel assumptions
-- `P04-04` [planned] Quasi-continuity and approximation of sets, including compact exhaustion
+Next coherent writing unit: **P05**.
 
 ## P05 — Fine topology and balayage
 

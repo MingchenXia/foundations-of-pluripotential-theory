@@ -1,2 +1,330 @@
 \chapter{Riesz potentials, energy and capacity}
 \label{chap:p04}
+A Lebesgue null set can still carry a measure with a finite potential. Capacity measures this possibility and distinguishes polar sets from other null sets. We first keep the logarithmic and Newtonian energies separate, then construct a relative capacity from subharmonic envelopes. Its outer regularity permits us to pass from compact sets to exceptional sets of limits. In this chapter $d\geq2$; the one-dimensional convex case has no nonempty polar sets.
+
+\section{Kernel energies and equilibrium measures}
+\label{sec:kernel-energy}
+Write $\Gamma_d=-E_d$, with the normalization in \eqref{eq:laplacian-fundamental-solution}. For $d\geq3$ put
+\[
+ k(x,y)=\frac{|x-y|^{2-d}}{(d-2)s_{d-1}}.
+\]
+In dimension two, on a fixed compact set $K$, choose $D>\operatorname{diam}K$ and put
+\[
+ k_D(x,y)=\frac{1}{2\pi}\log\frac{D}{|x-y|}.
+\]
+Both kernels have value $+\infty$ on the diagonal and are nonnegative on $K\times K$. For a positive measure supported on $K$, its potential and energy\index{energy!kernel} are
+\[
+ U^\mu(x)=\int k(x,y)\,\mathrm d\mu(y),\qquad I(\mu)=\iint k(x,y)\,\mathrm d\mu(x)\,\mathrm d\mu(y),
+\]
+with $k_D$ replacing $k$ in dimension two. The potential is lower semicontinuous, by Fatou on each compact set of differences after subtraction of a common lower bound, and is the negative of a fundamental potential up to a constant in dimension two. Changing $D$ adds $\mu(K)^2\log(D'/D)/(2\pi)$ to the energy.
+
+\begin{lemma}\label{lem:gaussian-energy}
+For a finite real signed measure $\sigma$ of compact support and $t>0$, the number
+\[
+ Q_t(\sigma)=\iint\mathrm e^{-t|x-y|^2}\,\mathrm d\sigma(x)\,\mathrm d\sigma(y)
+\]
+is nonnegative. If $Q_t(\sigma)=0$ for arbitrarily large $t$, then $\sigma=0$.
+\end{lemma}
+\begin{proof}
+Completing the square and integrating the Gaussian give
+\[
+ Q_t(\sigma)=\left(\frac{4t}{\pi}\right)^{d/2}\int_{\mathbb R^d}\left(\int\mathrm e^{-2t|z-x|^2}\,\mathrm d\sigma(x)\right)^2\mathrm d z.
+\]
+Fubini is justified by finite total variation and the Gaussian integral; the inner square has an integrable absolute majorant obtained with $|\sigma|$. This proves positivity. A zero value makes the continuous inner convolution identically zero. The normalized Gaussians $g_t(z)=(2t/\pi)^{d/2}\mathrm e^{-2t|z|^2}$ form an approximate identity as $t\to\infty$: split the integral into $|z|<\delta$ and its complement, use uniform continuity on the first part and the Gaussian tail on the second. Thus $g_t*f\to f$ uniformly for every compactly supported continuous $f$. If $g_t*\sigma=0$ along an unbounded sequence, then $\int(g_t*f)\,\mathrm d\sigma=0$ and hence $\int f\,\mathrm d\sigma=0$. Measure uniqueness in \cref{thm:positive-functional-measure}, applied to the positive and negative parts, gives $\sigma=0$.
+\end{proof}
+
+\begin{proposition}\label{prop:kernel-energy-positivity}
+For $d\geq3$, mutual energy of positive finite-energy measures is finite and satisfies
+\[
+ I(\mu,\nu)^2\leq I(\mu)I(\nu).
+\]
+Energy on their real linear span is a positive definite quadratic form. In dimension two it is positive definite on signed measures of total mass zero whose positive and negative parts have finite logarithmic energy. Cauchy--Schwarz holds on that subspace.
+\end{proposition}
+\begin{proof}
+Let $a=(d-2)/2$. Substitution $s=t r^2$ gives
+\[
+ r^{2-d}=\frac{1}{\int_0^\infty s^{a-1}\mathrm e^{-s}\,\mathrm d s}\int_0^\infty t^{a-1}\mathrm e^{-t r^2}\,\mathrm d t.
+\]
+The denominator is finite and positive. Tonelli expresses positive Newtonian energy as a positive constant times $\int_0^\infty t^{a-1}Q_t(\mu)\,\mathrm d t$. The Gaussian square formula and Cauchy--Schwarz, first in $z$ and then in $t$, bound mutual energy as asserted. Thus signed combinations have absolutely integrable kernels against their total variations, and the same identity proves nonnegativity. Zero energy implies $Q_t(\sigma)=0$ for almost every $t$, hence for arbitrarily large $t$; \cref{lem:gaussian-energy} proves definiteness.
+
+For $0<r\leq D$, integration of the difference of two exponentials gives
+\[
+ \log\frac D r=\frac12\int_0^\infty\frac{\mathrm e^{-t r^2}-\mathrm e^{-tD^2}}{t}\,\mathrm d t.
+\]
+For example, differentiating with respect to $r$ on a compact positive interval gives $-1/r$, and the expression vanishes at $r=D$. The integrand is nonnegative, so Tonelli applies to positive measures. Its part for $0<t<1$ is uniformly bounded for $r\leq D$, because $|\mathrm e^{-t r^2}-\mathrm e^{-tD^2}|\leq tD^2$. Finite self-energy therefore implies finiteness of $\int_1^\infty Q_t(\mu)\,\mathrm d t/t$. Gaussian Cauchy--Schwarz proves the same assertion for the mutual term of two such measures. Consequently their mutual logarithmic energy is finite.
+
+For a signed measure $\sigma$ of mass zero, the constant exponential term cancels. Absolute kernel integrability, established by the mutual bound, justifies integration against the signed product measure, and yields
+\[
+ I_D(\sigma)=\frac1{4\pi}\int_0^\infty Q_t(\sigma)\,\frac{\mathrm d t}{t}\geq0.
+\]
+The preceding definiteness argument applies. Polarizing either positive quadratic form and applying it to $\sigma+s\tau$ for every real $s$ proves Cauchy--Schwarz by the discriminant inequality.
+\end{proof}
+The mass-zero hypothesis in the logarithmic statement matters. On a circle of radius $r$, normalized arc measure has logarithmic energy $\log(D/r)/(2\pi)$: the potential is constant there, since the mean-value identity for $\log|1-z|$ gives mean zero, first for $|z|<1$ and then at the boundary. The last passage follows by dominated convergence: for $1/2\leq a<1$ and $|\theta|\leq\pi$, $|1-a\mathrm e^{\mathrm i\theta}|\geq c|\theta|$, and the upper bound is two, giving an integrable logarithmic majorant. For a reference scale fixed independently of the support, this energy becomes negative if $r>D$. There is no unrestricted positive quadratic form for the unshifted logarithmic kernel.
+
+\begin{theorem}\label{thm:equilibrium-measure}
+Let $K$ be nonempty and compact. If some probability measure on $K$ has finite energy, there is a unique probability measure $\mu_K$ minimizing it. Write $V(K)=I(\mu_K)$. For every finite-energy probability measure $\nu$ on $K$,
+\[
+ I(\mu_K,\nu)\geq V(K).
+\]
+For $d\geq3$ define the Newtonian capacity\index{capacity!Newtonian} of $K$ to be $1/V(K)$, with value zero when no finite-energy probability measure exists. In dimension two define its logarithmic capacity\index{capacity!logarithmic} to be $D\mathrm e^{-2\pi V_D(K)}$, again with value zero in the infinite-energy case. The latter number is independent of $D$. Both capacities are zero for the empty set.
+\end{theorem}
+\begin{proof}
+Probabilities on $K$ are sequentially compact by \cref{thm:local-measure-selection}: a cutoff equal to one on $K$ preserves total mass in the limit, and tests off $K$ preserve support. For $k_m=\min\{k,m\}$, the kernel is continuous on $K\times K$, including the diagonal, and increases to $k$. If $\mu_j\to\mu$ weakly, its product measures converge against continuous functions on $K\times K$. To see this directly, use a finite partition of unity subordinate to balls of radius $\delta$ on each factor, replace a continuous function by its values at the corresponding centers, and use uniform continuity. This approximates it uniformly by finite sums of products of one-variable continuous functions; the integrals of those products converge. Monotone convergence now gives
+\[
+ I(\mu)=\sup_m\iint k_m\,\mathrm d\mu\,\mathrm d\mu\leq\liminf_j I(\mu_j).
+\]
+A minimizing sequence has a limit attaining the finite infimum. Strict positivity in \cref{prop:kernel-energy-positivity}, on all signed measures for Newtonian energy and on mass-zero differences for logarithmic energy, makes two distinct minimizers impossible. Expanding the energy of $(1-t)\mu_K+t\nu$ and taking its right derivative at $t=0$ proves the inequality. For Newtonian energy, $V(K)>0$ because the kernel has a positive lower bound on a bounded set of differences; a singleton has infinite energy. The change-of-$D$ formula proves logarithmic independence.
+\end{proof}
+We next construct a relative capacity. Its values depend on the surrounding ball; its zero sets will agree locally with those of the kernel capacities just defined.
+
+\section{Continuous potentials and polar sets}
+\label{sec:continuous-potentials}
+\begin{lemma}\label{lem:lusin-finite-measure}
+If $\mu$ is a finite Radon measure of compact support and a Borel function $f$ is finite $\mu$-almost everywhere, then for every $\varepsilon>0$ there is a compact set $L$ with $\mu(\mathbb R^d\setminus L)<\varepsilon$ on which $f$ is finite and continuous.
+\end{lemma}
+\begin{proof}
+Choose $N$ so that $\mu(\{|f|>N\})<\varepsilon/3$, including the infinite values. The bounded truncation $f_N$ belongs to $L^1(\mu)$. By \cref{prop:continuous-density}, choose continuous $g_j$ with $\int|g_j-f_N|\,\mathrm d\mu<\varepsilon 2^{-2j}/3$. The set where $|g_j-f_N|>2^{-j}$ has measure less than $\varepsilon2^{-j}/3$. Outside their union and $\{|f|>N\}$, the $g_j$ converge uniformly to $f$. Inner regularity supplies a compact subset losing less than $\varepsilon/3$ additional mass. The uniform limit is continuous there.
+\end{proof}
+
+\begin{theorem}\label{thm:potential-continuity-principle}
+Let $\mu$ be a finite positive measure of compact support $K$, and set $p=E_d*\mu$. If $p|_K$ is continuous at $x\in K$, then $p$ is continuous at $x$ as an extended-real function on $\mathbb R^d$. If $p$ is finite $\mu$-almost everywhere, one can write $\mu=\sum_j\mu_j$ with disjoint compact supports such that every $E_d*\mu_j$ is finite and continuous everywhere.
+\end{theorem}
+\begin{proof}
+Upper semicontinuity already gives the required upper bound; if $p(x)=-\infty$ it proves continuity in the extended sense. Assume $p(x)$ finite. For $z\to x$ choose a closest point $z'\in K$, so $z'\to x$ and $|z'-y|\leq2|z-y|$ for $y\in K$. For $d\geq3$ this gives $E_d(z-y)\geq2^{d-2}E_d(z'-y)$; for $d=2$ it gives $E_2(z-y)\geq E_2(z'-y)-\log2/(2\pi)$. Split the integral into $|y-x|<\delta$ and its complement. The far integral is continuous at $x$. The near integral at $z'$ has a limit as $z'\to x$ in $K$, because it equals the continuous total potential minus the far integral. These inequalities bound $\liminf_{z\to x}p(z)$ from below by the far integral at $x$ plus $2^{d-2}$ times the near integral for $d\geq3$, or the near integral minus $\mu(B(x,\delta))\log2/(2\pi)$ for $d=2$. Choose $\delta$ with $\mu(\partial B(x,\delta))=0$ to avoid a splitting boundary. As $\delta\downarrow0$ the near integral tends to zero; finiteness of $p(x)$ also implies $\mu(\{x\})=0$. The lower bound tends to $p(x)$.
+
+Apply \cref{lem:lusin-finite-measure} to $p$ on $K$ and restrict $\mu$ to the resulting compact set $K_1$. On $K_1$ the two potentials of $\mu|_{K_1}$ and $\mu-\mu|_{K_1}$ are finite and upper semicontinuous, and their sum is continuous. Each is therefore continuous there: the upper limit bound for one and convergence of the sum give the lower limit bound for the other. The first part makes $E_d*(\mu|_{K_1})$ continuous everywhere. Repeat for the residual measure. Inner regularity permits its compact restriction set to lie outside the finite union of the previous compact sets, which carry no residual mass. Choose it to leave residual mass less than $2^{-j}$ after stage $j$. Its potential is finite almost everywhere for that residual measure, since removing positive mass can only increase $E_d*\mu$ up to a bounded constant on the common compact set of differences. The residual mass tends to zero and gives the asserted decomposition.
+\end{proof}
+
+\begin{proposition}\label{prop:polar-globalization}
+If $A$ is polar and has compact closure, there is a finite positive measure $\nu$ of compact support whose fundamental potential is $-\infty$ on $A$. Countable unions of polar sets are polar.
+\end{proposition}
+\begin{proof}
+On each relatively compact ball in a local polar neighborhood, \cref{thm:riesz-decomposition} writes the defining function as a compact-support fundamental potential plus a finite harmonic function. That potential is $-\infty$ on the part of $A$ in the ball. A countable collection of smaller such balls covers $A$, with all corresponding measure supports in a common compact set, by choosing the neighborhoods inside a fixed bounded neighborhood of $\overline A$. Denote these finite measures by $\nu_j$. Choose $a_j>0$ with $\sum_j a_j\nu_j(\mathbb R^d)<\infty$. The measure $\nu=\sum_j a_j\nu_j$ has compact support. On each compact set of $x$ the kernel $E_d(x-y)$ has a common finite upper bound for those supports. Tonelli after subtracting this bound shows that $E_d*\nu$ is the sum of the weighted potentials; if one term is $-\infty$, so is the sum. It is locally integrable by \cref{prop:fundamental-potential}, hence is not identically $-\infty$.
+
+For a countable union, work in a ball with compact closure and apply the preceding construction to each polar set intersected with that ball, keeping the measure supports in one larger compact ball. Weight the measures to make their total mass summable. The same argument gives a local polar function for the union. Such balls cover the ambient open set.
+\end{proof}
+
+\section{Relative extremal functions and capacity}
+\label{sec:relative-capacity}
+Fix $B=B(0,R)$, and consider sets $A$ with $\overline A\Subset B$. Put
+\[
+ f_A=\sup\{v\in\SH(B):v\leq0\text{ on }B,\ v\leq-1\text{ on }A\},\qquad u_A=f_A^*.
+\]
+The constant $-1$ is admissible, so $-1\leq f_A\leq u_A\leq0$. The regularized envelope is subharmonic by \cref{thm:subharmonic-envelope}. We use the pointwise constraints in $f_A$, not in its regularization.
+
+\Needspace{17\baselineskip}
+\begin{lemma}\label{lem:ball-green-symmetry}
+The positive Green kernel on $B$ is symmetric. If $y\neq0$, put $y^*=R^2y/|y|^2$. Then for $d\geq3$,
+\[
+ G_B(x,y)=\Gamma_d(x-y)-\left(\frac R{|y|}\right)^{d-2}\Gamma_d(x-y^*),
+\]
+and for $d=2$,
+\[
+ G_B(x,y)=\frac1{2\pi}\log\frac{|y|\,|x-y^*|}{R|x-y|}.
+\]
+At $y=0$ these formulas mean $\Gamma_d(x)-\Gamma_d(R)$ for $d\geq3$ and $\log(R/|x|)/(2\pi)$ for $d=2$.
+\end{lemma}
+\begin{proof}
+The image point lies outside $B$, so the correction is harmonic in $x$. On $|x|=R$, the identity $|x-y^*|=R|x-y|/|y|$ makes the boundary value zero. The pole and distributional equation are those of \cref{thm:dirichlet-green}, whose uniqueness identifies the formulas. Symmetry follows from
+\[
+ |y|^2|x-y^*|^2=R^4-2R^2x\mathbin{\cdot}y+|x|^2|y|^2,
+\]
+which is symmetric in $x,y$, and from the stated limits at zero. For $y$ in a fixed compact subset of $B$, the correction is smooth jointly in $x,y$ up to and across $\partial B$.
+\end{proof}
+
+\begin{proposition}\label{prop:compact-extremal}
+For compact $K\Subset B$, the function $f_K$ is lower semicontinuous, equals $-1$ on $K$, and equals $u_K$ off $K$. The function $u_K$ is harmonic off $K$, tends to zero at $\partial B$, and has a finite positive Riesz measure $\lambda_K=\Delta u_K$ supported on $K$. Moreover,
+\[
+ u_K(x)=-\int G_B(x,y)\,\mathrm d\lambda_K(y),\qquad
+ \lambda_K(K)=\int_{\partial B}\frac{\partial u_K}{\partial n}\,\mathrm d S.
+\]
+The compact relative capacity\index{capacity!relative} is $C_B(K)=\lambda_K(K)$.
+\end{proposition}
+\begin{proof}
+Choose $q(x)=c(|x|^2-R^2)$ with $q\leq-1$ on $K$. This gives $q\leq f_K\leq0$ and therefore zero boundary limits. Given an admissible $v$, replace it by $\max\{v,q\}$ on $B$ and by $q$ outside. The joining upper limits are zero, so this function is upper semicontinuous. To prove harmonic comparison on a ball meeting $\partial B$, let $h$ dominate its boundary values. Since it dominates $q$ there, it dominates $q$ on the whole ball. On the part inside $B$, the boundary upper limits of $v-h$ are nonpositive, both at the joining sphere and at the ball boundary. Comparison gives $v\leq h$ there as well. Thus the pasted function is subharmonic by \cref{thm:subharmonic-comparison}. Its radial mollifications decrease to it. For every $\delta>0$, a sufficiently small mollification minus $\delta$ is nonpositive on $B$ and at most $-1$ on $K$. The first assertion uses the bound $q\leq c((R+\varepsilon)^2-R^2)$ on the outside collar of width $\varepsilon$; the second uses upper semicontinuity and compactness of $K$, or \cref{thm:hartogs-subharmonic}. These continuous admissible functions have values at least $v-\delta$. Thus $f_K$ is the supremum of continuous admissible functions and is lower semicontinuous. Its value on $K$ is $-1$.
+
+On a ball disjoint from $K$, Poisson lifting of a continuous admissible function preserves admissibility and increases it, by comparison. Apply \cref{lem:choquet-selection} to the continuous admissible family, take increasing finite maxima together with the constant $-1$, and lift them on this ball. Their harmonic lifts lie between $-1$ and zero and converge smoothly on smaller balls by \cref{cor:harmonic-normal-limits}. The limit is at least the original envelope almost everywhere and at most $u_K$ everywhere. Their almost-everywhere limits agree, so uniqueness of canonical representatives identifies the harmonic limit with $u_K$. Each lifted function is admissible, hence $f_K\geq u_K$ there. This proves harmonicity and pointwise equality off $K$.
+
+The Riesz measure is supported on the compact $K$, hence is finite. Riesz decomposition and the zero boundary limits give the displayed Green representation: the harmonic correction is the Poisson extension of the smooth boundary values of $E_d*\lambda_K$, and Fubini subtracts it from the fundamental potential. The image formula shows smoothness in a collar of $\partial B$. Apply distributional integration by parts with a cutoff equal to one on the support of the measure, and then the divergence formula on that collar; this gives the flux identity. In particular, if two such zero-boundary functions satisfy $u\leq v$, their outer normal derivatives satisfy $\partial_nu\geq\partial_nv$, by taking the one-sided derivative of $u-v\leq0$ at its zero boundary value. Their total Riesz masses have the same order.
+\end{proof}
+
+\begin{theorem}\label{thm:compact-polar-energy}
+For compact $K$, the following conditions are equivalent: $K$ is nonpolar; it carries a nonzero positive measure with finite energy; it carries a nonzero positive measure whose fundamental potential is finite and continuous everywhere. If $K\Subset B$, they are also equivalent to $C_B(K)>0$. Every positive finite-energy measure gives zero mass to polar sets.
+\end{theorem}
+\begin{proof}
+If $u_K=0$, then $f_K=0$ almost everywhere. Choose such a point $x$ and admissible $v_j$ with $v_j(x)>-2^{-j}$. Their partial sums decrease, remain finite at $x$, and are subharmonic; their limit is nontrivial by \cref{thm:subharmonic-decreasing} and equals $-\infty$ on $K$. Thus $K$ is polar. Conversely, if $K$ is polar, \cref{prop:polar-globalization} gives a nontrivial fundamental potential equal to $-\infty$ there; subtract a constant to make it negative on $B$. All its positive multiples are admissible, so $u_K=0$ almost everywhere and hence everywhere. The zero-boundary harmonic uniqueness theorem shows that $u_K=0$ is equivalent to $\lambda_K=0$.
+
+If $K$ is nonpolar, $\lambda_K\neq0$. Since $u_K$ is bounded and the harmonic correction is smooth near $K$, $E_d*\lambda_K$ is finite on $K$. The decomposition in \cref{thm:potential-continuity-principle} supplies a nonzero restriction with continuous potential. Such a measure has finite energy, since its potential is bounded on its compact support. Conversely, suppose $K$ is polar and $\mu$ is a nonzero measure on $K$ with continuous potential. Choose $\nu$ as in \cref{prop:polar-globalization}. Kernel symmetry and Fubini, first for $\max\{E_d,-m\}$ and then by monotone convergence after subtraction from a common upper bound, give
+\[
+ \int(E_d*\nu)\,\mathrm d\mu=\int(E_d*\mu)\,\mathrm d\nu.
+\]
+The left side is $-\infty$ and the right side is finite, a contradiction.
+
+Finally, a finite-energy measure has finite fundamental potential almost everywhere for itself. Decompose it into continuous-potential restrictions. The same Fubini argument shows that each restriction gives zero mass to any bounded polar set. A countable cover by bounded sets proves the last assertion; arbitrary polar subsets are contained in measurable pole sets of zero mass. If any finite-energy measure on a polar compact set were nonzero this assertion would contradict its support, completing the equivalences.
+\end{proof}
+
+\begin{proposition}\label{prop:compact-capacity-properties}
+Compact relative capacity is increasing, continuous on decreasing compact sequences, and strongly subadditive:
+\[
+ C_B(K\cup L)+C_B(K\cap L)\leq C_B(K)+C_B(L).
+\]
+\end{proposition}
+\begin{proof}
+Inclusion reverses the order of the envelopes, so the flux order in \cref{prop:compact-extremal} proves monotonicity. If $K_j\downarrow K$, their envelopes increase and are bounded above by $f_K$. For any admissible $v$ for $K$ and $\varepsilon>0$, the function $v+\varepsilon(|x|^2-R^2)$ is strictly below $-1$ in a neighborhood of $K$, and hence is admissible for $K_j$ for all sufficiently large $j$. It follows that $f_{K_j}\to f_K$ pointwise. The regularized envelopes converge in $L^1$ to $u_K$, by bounded convergence and almost-everywhere envelope equality. All Riesz supports lie in the fixed compact $K_1$, so their total masses converge by distributional convergence tested against a cutoff equal to one there.
+
+For subadditivity, first prove
+\[
+ f_{K\cup L}+f_{K\cap L}\geq f_K+f_L.
+\]
+On $K\cup L$ this follows from the value $-1$ and monotonicity. Off this union the left side is harmonic and has boundary lower limits at least its pointwise boundary values, by lower semicontinuity. Compare it with $v+w$ for continuous admissible functions for $K$ and $L$. Their boundary values satisfy the inequality just proved, and all terms have zero or nonpositive upper limits at $\partial B$. Harmonic comparison gives the inequality inside the complement. Taking the two suprema proves it everywhere. Ball averaging and passage to the canonical values give the same inequality for the four $u$'s. The boundary flux order then gives the asserted mass inequality.
+\end{proof}
+
+For open $O$ with $\overline O\Subset B$, and arbitrary $A$ with compact closure in $B$, define outer relative capacity by
+\[
+ C_B(O)=\sup_{K\Subset O}C_B(K),\qquad
+ C_B^*(A)=\inf_{\substack{O\supset A\text{ open}\\\overline O\Subset B}}C_B(O).
+\]
+All suprema here are over compact sets. For an open $O$, the infimum definition also gives $C_B^*(O)=C_B(O)$: every open neighborhood has at least the displayed compact supremum, and $O$ itself is allowed. The empty set has capacity zero.
+
+\Needspace{8\baselineskip}
+\begin{theorem}\label{thm:outer-capacity}
+The outer capacity agrees with compact capacity on compact sets. It is increasing, countably subadditive, and continuous under increasing unions whose union has compact closure in $B$. If $C_B^*(A)=0$, then $A$ is polar.
+\end{theorem}
+\begin{proof}
+For compact $K$, take decreasing compact neighborhoods $K_j$ with interiors $O_j$ and intersection $K$. Monotonicity and \cref{prop:compact-capacity-properties} give $C_B(K)\leq C_B^*(K)\leq C_B(O_j)\leq C_B(K_j)\to C_B(K)$. Compact exhaustion of open sets extends strong subadditivity to open sets; taking open neighborhoods extends it to arbitrary sets with compact closure.
+
+Strong subadditivity and monotonicity imply, whenever $A_j\subset B_j$,
+\[
+ C_B^*\left(\bigcup_{j=1}^N B_j\right)-C_B^*\left(\bigcup_{j=1}^N A_j\right)
+ \leq\sum_{j=1}^N\bigl(C_B^*(B_j)-C_B^*(A_j)\bigr).
+\]
+For two pairs, apply strong subadditivity to $B_1,A_1\cup B_2$ and to $A_1\cup A_2,B_2$, add, and bound the intersection terms below by $C_B^*(A_1)$ and $C_B^*(A_2)$. Induction proves the displayed version.
+
+For increasing open unions, every compact subset is contained in a finite subunion, so capacity is continuous from below. For arbitrary $A_j$, choose open $B_j\supset A_j$ with capacity excess less than $\varepsilon2^{-j}$, all inside a fixed relatively compact neighborhood of the union. The displayed inequality and the open-set result give
+\[
+ C_B^*\left(\bigcup_j A_j\right)\leq C_B\left(\bigcup_j B_j\right)
+ \leq\lim_N C_B^*\left(\bigcup_{j=1}^N A_j\right)+\varepsilon.
+\]
+Let $\varepsilon\downarrow0$. Finite subadditivity now extends to countable subadditivity.
+
+If $C_B^*(A)=0$, choose open $O_j\supset A$ in one fixed compact neighborhood, with $C_B(O_j)<2^{-j}$. Exhaust $O_j$ by compact sets whose interiors cover it. Their extremal functions decrease to a subharmonic $v_j$, equal to $-1$ on $O_j$. Distributional convergence and the common compact support show that its Riesz measure has mass $C_B(O_j)$ and that $v_j$ is its negative Green potential. The sum of these measures is finite with compact support. Its Green potential is locally integrable: the fundamental part is so by \cref{prop:fundamental-potential}, and the harmonic correction is smooth on compact subsets. Tonelli for the nonnegative Green kernel shows that $\sum_jv_j$ is this negative potential. It is nontrivial and equals $-\infty$ on $A$, proving polarity.
+\end{proof}
+
+\begin{example}\label{ex:capacity-balls}
+For $0<r<R$, the extremal function of $\overline{B(0,r)}$ is $-1$ inside that ball and $-G_B(x,0)/G_B(r,0)$ on the annulus. The pieces are continuous; the outward derivative jumps positively at $r$, so the function is subharmonic. Harmonic comparison on the annulus bounds every admissible function by it. Its flux gives
+\[
+ C_B(\overline{B(0,r)})=
+ \begin{cases}
+  2\pi/\log(R/r),&d=2,\\
+  (d-2)s_{d-1}/(r^{2-d}-R^{2-d}),&d\geq3.
+ \end{cases}
+\]
+These are relative capacities. For the kernel capacities of the same ball, normalized surface measure on its sphere has potential constant inside and radial harmonic outside. The Newtonian potential is $\Gamma_d(r)$ inside and $\Gamma_d(|x|)$ outside: radial harmonicity, unit total mass and decay at infinity determine the outer expression, and regularity at the center determines the inner one. In dimension two the corresponding values are $\log(D/r)/(2\pi)$ and $\log(D/|x|)/(2\pi)$. To justify continuity across the sphere, its finite graph charts with bounded surface densities give $\mu(B(x,\delta))\leq C\delta^{d-1}$ uniformly in $x$. Summing dyadic shells bounds the near Newtonian integral by $C\delta$, and the near logarithmic integral by $C\delta(1+|\log\delta|)$. Both tend uniformly to zero; the far kernel is continuous. This proves continuity and identifies the inner constants with the outer boundary values. Their constant value on the closed ball and the positive quadratic form on probability differences show that they minimize energy. Thus the Newtonian capacity is $(d-2)s_{d-1}r^{d-2}$ and the logarithmic capacity is $r$. Letting $r\downarrow0$ also recovers the zero capacity of a singleton.
+\end{example}
+
+\section{Capacitability and exceptional sets}
+\label{sec:capacitable-exceptions}
+A set is capacitable if its outer capacity is the supremum of the capacities of its compact subsets. We give the set-theoretic argument because a Borel exceptional set need not be a countable union of closed sets.
+
+\begin{theorem}\label{thm:choquet-capacitability}
+Every Borel subset of a compact set in $B$ is capacitable. More generally, this holds for the continuous image in that compact set of a countable intersection of countable unions of compact sets in a compact Hausdorff space.
+\end{theorem}
+\begin{proof}
+Suppose $A=f(\widetilde A)$, where $f:X\to L\Subset B$ is continuous, $X$ is compact Hausdorff, and $\widetilde A=\bigcap_{i\geq1}\bigcup_{k\geq1}K_{ik}$ with compact $K_{ik}$ increasing in $k$. Every point of $\widetilde A$ belongs to $\bigcap_iK_{i,k_i}$ for some sequence $(k_i)$. Restrict successively the first index to $k_1\leq h_1$, the second to $k_2\leq h_2$, and so on. At each step the unrestricted union is the increasing union of these restrictions. By \cref{thm:outer-capacity}, choose $h_i$ so that after $p$ steps the capacity of its image has lost less than $\sum_{i=1}^p\varepsilon2^{-i}$. That restricted set is contained in the compact $L_p=\bigcap_{i=1}^pK_{i,h_i}$. Thus $C_B(f(L_p))>C_B^*(A)-\varepsilon$. The $L_p$ decrease, and compactness of each fiber gives $\bigcap_pf(L_p)=f(\bigcap_pL_p)\subset A$. Compact continuity proves that this compact subset has capacity at least $C_B^*(A)-\varepsilon$.
+
+For completeness, call sets with the displayed image representation analytic in this set-theoretic sense. They are closed under countable intersections and unions. Write each as the projection of a countable intersection of countable unions of compact sets in $X_j\times L$, using the graph of its defining map. In $X=\prod_jX_j$, which is compact by \cref{lem:compact-product}, inverse images of these sets under coordinate projections have the same form, and their intersection projects to the intersection of the original sets. For unions, add the compact space $\mathbb N\cup\{\infty\}$, with neighborhoods of infinity the complements of finite sets. If the $j$th inverse-image set is $\bigcap_n\bigcup_kH_{jnk}$, the set projecting to the union is
+\[
+ \bigcap_n\bigcup_{j,k}\bigl(H_{jnk}\times\{j\}\bigr).
+\]
+Each inner set is a countable union of compact sets and excludes the infinity slice. Hence the union is analytic as well. Closed subsets of the compact metric space $L$ are compact, and open subsets are countable unions of compact sets (use distance at least $1/n$ from the complement). The class of sets whose set and complement are analytic is therefore a sigma algebra containing all open sets: complements interchange the two properties, and countable unions use intersections for the complements. Every Borel subset of $L$ is analytic, proving the first assertion.
+\end{proof}
+
+\Needspace{6\baselineskip}
+\begin{corollary}\label{cor:polar-zero-capacity}
+For $\overline A\Subset B$, the set $A$ is polar if and only if $C_B^*(A)=0$. The compact logarithmic or Newtonian capacity vanishes exactly on polar compact sets.
+\end{corollary}
+\begin{proof}
+Only polar implies outer zero remains. By \cref{prop:polar-globalization}, place $A$ inside the pole set of a nontrivial fundamental potential with compact support. Its intersection with a compact neighborhood of $\overline A$ in $B$ is Borel, since it is the intersection of the open sets where the potential is less than $-n$. Every compact subset is polar and has capacity zero by \cref{thm:compact-polar-energy}. Capacitability gives outer capacity zero for that containing set, and monotonicity gives it for $A$. The kernel statement follows from the finite-energy equivalence and \cref{thm:equilibrium-measure}.
+\end{proof}
+
+\begin{lemma}\label{lem:continuous-potential-testing}
+Let $\Omega\subset\mathbb R^d$ be open. Suppose $v_j\to v$ in $L^1_{\loc}(\Omega)$, where the functions are locally integrable subharmonic functions. If $\sigma$ is a finite positive measure with compact support in $\Omega$ and $E_d*\sigma$ is finite and continuous, then
+\[
+ \int v_j\,\mathrm d\sigma\longrightarrow\int v\,\mathrm d\sigma> -\infty,
+ \qquad \limsup_jv_j=v\quad\sigma\text{-almost everywhere}.
+\]
+\end{lemma}
+\begin{proof}
+Choose a smooth cutoff $\chi=1$ on a neighborhood of $\Supp\sigma$, with compact support in $\Omega$, and put $\nu_j=\chi\Delta v_j$, $\nu=\chi\Delta v$. Positivity and distributional convergence give vague convergence and uniformly bounded total masses by \cref{prop:positive-distribution-convergence}. The Riesz decompositions give $v_j=E_d*\nu_j+h_j$ near $\Supp\sigma$. The potentials converge distributionally: for a smooth compact test, its convolution with $E_d$ is continuous on the common compact measure support, by local integrability and translation continuity. Thus $h_j\to h$ distributionally. They have uniform local $L^1$ bounds: the same holds for $v_j$, and the kernel integrability estimate in \cref{prop:fundamental-potential} bounds the potentials by the common measure mass. The fixed-radius radial-kernel identity for harmonic functions therefore bounds all derivatives locally and makes them equicontinuous. Distributional convergence identifies their pointwise derivative limits, and a finite cover makes the convergence smooth on compact subsets. Symmetric Fubini gives
+\[
+ \int(E_d*\nu_j)\,\mathrm d\sigma=\int(E_d*\sigma)\,\mathrm d\nu_j
+ \longrightarrow\int(E_d*\sigma)\,\mathrm d\nu.
+\]
+The limit is finite. Adding the harmonic integrals proves the integral assertion. Hartogs' lemma bounds the sequence above on the compact support and gives $\limsup v_j\leq v$. Reverse Fatou for this upper-bounded sequence gives $\int\limsup v_j\,\mathrm d\sigma\geq\lim_j\int v_j\,\mathrm d\sigma=\int v\,\mathrm d\sigma$. Equality forces the asserted almost-everywhere identity.
+\end{proof}
+
+\Needspace{8\baselineskip}
+\begin{theorem}\label{thm:polar-limit-discrepancy}
+If $v_j\to v$ in $L^1_{\loc}$ for locally integrable subharmonic functions, then $\{\limsup_jv_j<v\}$ is polar. For every locally uniformly bounded-above family of subharmonic functions, the set where its supremum differs from its upper semicontinuous regularization is polar.
+\end{theorem}
+\begin{proof}
+On a compact neighborhood in the domain, the first discrepancy set is Borel and is the union over rational $a<b$ and integers $J$ of
+\[
+ \{v\geq b\}\cap\bigcap_{j\geq J}\{v_j\leq a\}.
+\]
+If one of its compact subsets were nonpolar, \cref{thm:compact-polar-energy} would supply a nonzero continuous-potential measure on that subset, contradicting \cref{lem:continuous-potential-testing}. Every compact subset therefore has capacity zero. \Cref{thm:choquet-capacitability,cor:polar-zero-capacity} make the Borel discrepancy set polar. Countably many compact neighborhoods cover the domain, and \cref{prop:polar-globalization} handles their union.
+
+For a family, use \cref{lem:choquet-selection} and increasing finite maxima, adjoining one nontrivial member on each component if there is one. As in \cref{thm:subharmonic-envelope}, these maxima converge in $L^1_{\loc}$ to the regularized envelope and lie below the full pointwise supremum. Its discrepancy set is contained in the preceding polar discrepancy set. Components with only identically $-\infty$ members, and the empty family, have no discrepancy.
+\end{proof}
+
+\begin{proposition}\label{prop:equilibrium-frostman}
+For the equilibrium measure in \cref{thm:equilibrium-measure}, $U^{\mu_K}\geq V(K)$ on $K$ except on a polar set, $U^{\mu_K}=V(K)$ almost everywhere for $\mu_K$, and $U^{\mu_K}\leq V(K)$ on all of $\mathbb R^d$.
+\end{proposition}
+\begin{proof}
+If the Borel set $\{x\in K:U^{\mu_K}(x)<V(K)-\varepsilon\}$ had positive relative outer capacity, capacitability would give a nonpolar compact subset. A continuous-potential probability measure $\nu$ supported there has finite energy and contradicts $I(\mu_K,\nu)\geq V(K)$. Countable subadditivity makes the full lower-discrepancy set polar. A finite-energy measure gives it zero mass; integration of the lower inequality, whose mean is exactly $V(K)$, proves equality almost everywhere for $\mu_K$.
+
+Lower semicontinuity then gives $U^{\mu_K}\leq V(K)$ on its support: every neighborhood of a support point contains points of the full-measure equality set. Decompose $\mu_K$ into compact restrictions with continuous potentials by \cref{thm:potential-continuity-principle}. Each finite partial sum has continuous potential, is harmonic off its compact support, and is at most $V(K)$ on that support, since it is dominated there by the total potential in the Newtonian case. In the logarithmic case use the kernel with $D$ larger than the diameter of the common support, so the same domination holds on that support. The harmonic maximum principle outside it gives the bound globally: the Newtonian potential tends to zero at infinity and $V(K)>0$, while a nonzero logarithmic potential tends to $-\infty$. Passing to the sum gives the bound at each point. For logarithmic potentials this passage is justified by subtracting a common upper bound from $E_2$ on each fixed compact set of differences, so positive terms at distant points do not alter the limit.
+\end{proof}
+
+\Needspace{18\baselineskip}
+\section{Dirichlet energy and quasi-continuity}
+\label{sec:dirichlet-quasicontinuity}
+\begin{proposition}\label{prop:bounded-green-energy}
+Suppose $u,v$ are bounded subharmonic functions on $B$, vanish at $\partial B$, and have Riesz measures $\mu,\nu$ supported in compact subsets of $B$. Their distributional gradients belong to $L^2(B)$ and
+\[
+ \begin{aligned}
+ \int_B|\nabla u|^2\,\mathrm d x&=-\int_Bu\,\mathrm d\mu,\\
+ \int_B\nabla u\mathbin{\cdot}\nabla v\,\mathrm d x&=-\int_Bu\,\mathrm d\nu
+ =\iint G_B(x,y)\,\mathrm d\mu(x)\,\mathrm d\nu(y).
+ \end{aligned}
+\]
+In particular this Green energy satisfies Cauchy--Schwarz, and $\|\nabla u_K\|_2^2\leq C_B(K)$.
+\end{proposition}
+\begin{proof}
+The Green representation follows as in \cref{prop:compact-extremal}; it gives smooth harmonic extensions across a boundary collar. Radial mollifications $u_\varepsilon$ therefore equal $u$ on a smaller fixed collar, are smooth on $\overline B$, vanish at the boundary, and have Laplacian $\mu*\rho_\varepsilon$ for small $\varepsilon$. Integration by parts gives
+\[
+ \int_B\nabla u_\varepsilon\mathbin{\cdot}\nabla u_\delta\,\mathrm d x
+ =-\int_B(u*\rho_\varepsilon*\rho_\delta)\,\mathrm d\mu.
+\]
+The kernels are symmetric; only their compact supports near $\Supp\mu$ occur in the last integral. The convolutions are bounded, at least $u$, and decrease to $u$ as either radius decreases, by the monotone sphere means. The two-radius limit is $u$: it is bounded above by convolution at a radius dominating both, followed by a second convolution at that radius. Dominated convergence gives the common limit $-\int u\,\mathrm d\mu$ for the squared norms and cross terms. Hence the gradients are Cauchy in $L^2$. Completeness gives a limit, identified with the distributional gradient by integration against smooth tests and $u_\varepsilon\to u$ in $L^1$. Completeness of $L^2$ can also be seen directly by choosing a subsequence with summable norm differences, summing their absolute values almost everywhere, and using the triangle inequality for the tails.
+
+Apply the first identity to $u+v$ and subtract the separate identities. Kernel symmetry from \cref{lem:ball-green-symmetry} and Tonelli make the two cross integrals equal, proving the displayed bilinear identity. The integrals are finite because both functions are bounded. Integral Cauchy--Schwarz now proves the energy bound. For $u_K$, use $-1\leq u_K\leq0$ and total mass $C_B(K)$.
+\end{proof}
+
+\Needspace{10\baselineskip}
+\begin{theorem}\label{thm:subharmonic-quasicontinuity}
+A locally integrable subharmonic function is quasi-continuous\index{quasi-continuity}: for every compact $L\subset B\Subset\Omega$ and every $\eta>0$, there is an open set $O\Subset B$ with $C_B(O)<\eta$ such that its restriction to $L\setminus O$ is finite and continuous. Increasing compact subsets exhaust every Borel set in $L$ in capacity, in the sense that their capacities increase to its outer capacity.
+\end{theorem}
+\begin{proof}
+First let $u$ satisfy the bounded Green hypotheses of \cref{prop:bounded-green-energy}. Its radial regularizations $u_\varepsilon\downarrow u$ equal it off a fixed compact subset of $B$, and their gradients converge in $L^2$. The open set $O_{\delta,\varepsilon}=\{u_\varepsilon-u>\delta\}$ has compact closure there. For compact $K\subset O_{\delta,\varepsilon}$, the extremal measure is supported on $K$, so the bilinear energy identity gives
+\[
+ \delta C_B(K)\leq\int(u_\varepsilon-u)\,\mathrm d\lambda_K
+ \leq\|\nabla(u_\varepsilon-u)\|_2\|\nabla u_K\|_2
+ \leq\|\nabla(u_\varepsilon-u)\|_2 C_B(K)^{1/2}.
+\]
+Taking compact suprema yields $C_B(O_{\delta,\varepsilon})\leq\delta^{-2}\|\nabla(u_\varepsilon-u)\|_2^2$. Choose $\delta_j\downarrow0$ and radii $\varepsilon_j\downarrow0$ making these capacities less than $\eta2^{-j}$. Outside their union, $u_{\varepsilon_j}\to u$ uniformly. Countable subadditivity and uniform convergence of continuous functions prove the assertion in this case.
+
+For a bounded subharmonic function near $\overline B$, subtract a constant so that it is at most $-1$. On a smaller concentric ball containing $L$, choose a radial function $q$ equal to a sufficiently negative constant; on the remaining annulus make $q$ harmonic with boundary value zero at $\partial B$. It is subharmonic: the outward radial derivative jumps from zero to a positive value at the inner sphere, giving a positive surface Riesz measure by the divergence formula. The function $\max\{u,q\}$ equals $u$ near $L$ and equals $q$ near $\partial B$; it is bounded and its Riesz measure has compact support. The first case applies. For a general $u$, apply this argument to $u_N=\max\{u,-N\}$, with exceptional capacities summing to less than $\eta/2$. Intersect all these open sets with one fixed relatively compact neighborhood of $L$, so their union still has compact closure in $B$. Off their union every $u_N$ is continuous. On $L$, the functions $\mathrm e^{u_N}$ converge uniformly to $\mathrm e^u$, since their difference is at most $\mathrm e^{-N}$. Thus $u$ is continuous there with values in $[-\infty,\infty)$. Its pole set is polar by definition and local integrability; \cref{cor:polar-zero-capacity} puts it inside an additional open set of capacity less than $\eta/2$. Removing that set makes the restriction finite and continuous.
+
+For the final assertion, capacitability supplies compact $K_j$ inside the Borel set with capacities approaching its outer capacity. Replace them by the finite unions $\bigcup_{i\leq j}K_i$ to make them increasing. This asserts exhaustion in capacity values, not literal set equality for an arbitrary Borel set.
+\end{proof}

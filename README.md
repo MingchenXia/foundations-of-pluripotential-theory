@@ -1,6 +1,6 @@
 # Foundations of pluripotential theory
 
-A private writing repository for Mingchen Xia's book, **Foundations of pluripotential theory**. All manuscript text, project documentation, plans, editorial records and task prompts use English. Original reference documents and bibliographic titles retain their source language. The book is in progress; the active draft now contains the first three mathematical chapters.
+A private writing repository for Mingchen Xia's book, **Foundations of pluripotential theory**. All manuscript text, project documentation, plans, editorial records and task prompts use English. Original reference documents and bibliographic titles retain their source language. The book is in progress; the active draft now contains the first four mathematical chapters.
 
 - [Writing blueprint](plan/BLUEPRINT.md): audience, scope, two-part structure and the self-containedness contract.
 - [Writing sequence](plan/WRITING_SEQUENCE.md): chapter interfaces, dependency order, source research and final completion gates.
@@ -25,6 +25,6 @@ make release    # Verify and create source/PDF packages in build/release/
 
 Requirements: Python 3, GNU Make, latexmk, pdfLaTeX, BibTeX, makeindex and TeX Live with newtx, tikz-cd, dsfont and the other template packages. `scripts/setup-cloud.sh` installs the Ubuntu dependencies. Builds do not depend on the author's local Downloads or skill installation paths; the retained references are available offline.
 
-The active manuscript contains the preface, global conventions, P01 (measures and distributions), P02 (harmonic functions and boundary values), P03 (subharmonic functions), and their historical notes. Later chapter skeletons are excluded from the printed draft. Activate each coherent chapter in `book.tex` after writing and review. The sample's `svmono[envcountsect]`, fonts, macros, index and single BibTeX bibliography are preserved; the result environments share one counter per section while retaining their individual reference types.
+The active manuscript contains the preface, global conventions, P01 (measures and distributions), P02 (harmonic functions and boundary values), P03 (subharmonic functions), P04 (energy and capacity), and their historical notes. Later chapter skeletons are excluded from the printed draft. Activate each coherent chapter in `book.tex` after writing and review. The sample's `svmono[envcountsect]`, fonts, macros, index and single BibTeX bibliography are preserved; the result environments share one counter per section while retaining their individual reference types.
 
 Mathematical completion requires complete proofs and two recorded reads. `make verify` checks repository integrity and compilation; it does not certify mathematical correctness.

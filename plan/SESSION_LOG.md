@@ -1,5 +1,11 @@
 # Session log
 
+## 2026-10-03 — Energy and capacity completed
+
+Completed and activated P04, with separate Newtonian/conditional logarithmic energy, equilibrium measures, explicit ball Green symmetry, continuous potentials, compact/outer capacity, capacitability, polar discrepancy sets and quasi-continuity. Two complete direct mathematical/editorial reads, builds and visual reviews are recorded in `research/reviews/2026-10-03-p04.md` and its JSON companion. The current draft has 67 PDF pages and 17 verified obligations. Whole-book work remains unfinished; next unit is P05.
+
+The P03-to-P04 polar-envelope obligation is now proved. The index is allowed to span two pages; its remaining 2.62pt diagnostic is a rejected multicol balancing trial, confirmed by tracing and final visual inspection, not a clipped final column. Font size and the supplied class/index style remain unchanged. The 67-page source archive rebuilt successfully in an empty directory using the same TeX/font installation; extracted page text matches the checked draft. Release diagnostics are retained in research/reviews/logs/2026-10-03-p04-release.log. The private draft PR is https://github.com/MingchenXia/foundations-of-pluripotential-theory/pull/5.
+
 ## 2026-10-03 — First three complete chapters
 
 Completed and activated P01 (measures/distributions), P02 (harmonic boundary theory) and P03 (subharmonic representatives/limits/envelopes). Each has two complete direct proof/editorial reads with intervening build and PDF review; scoped records are in `research/reviews/2026-10-03-p01-p03.md` and the three chapter JSON records. Thirteen obligations are now verified under the project procedure. The current PDF has 51 pages. This is a partial draft of the 27-unit book; the remaining advanced chapters, sample-coverage audit and whole-book polishing are unfinished.
