@@ -1,2 +1,365 @@
 \chapter{Analytic singularities and Demailly approximation}
 \label{chap:q06}
+
+A multiplier ideal replaces a weight by finitely many holomorphic equations. The weighted Bergman kernel retains their growth while approaching the original potential. To make this construction global, local smooth potentials must cancel on overlaps. Interpolation gives a comparison of the kernels independent of the weight; cutoff patching then controls the loss of positivity. A second comparison, obtained by extension from a diagonal, produces a decreasing sequence.
+
+\section{Smooth backgrounds and analytic singularities}
+\label{sec:analytic-singularity-definitions}
+
+Let $X$ be a complex manifold. A smooth real $(1,1)$-form $\omega$ is a \emph{Hermitian form} if its coefficient matrix is positive definite in every coordinate chart. It defines a Riemannian metric and the positive volume form $\omega^n/n!$. It is a \emph{K\"ahler form} if it is also closed. A manifold carrying such a form is K\"ahler. A locally finite partition of unity gives a Hermitian form on every complex manifold; closedness is an additional condition.
+\index{K\"ahler form}\index{Hermitian form}
+
+\begin{lemma}\label{lem:smooth-potential-on-ball}
+A smooth closed real $(1,1)$-form $\theta$ defined on a neighborhood of the closure of a coordinate ball $B$ has a smooth real potential $h$ on $B$: $\ddc h=\theta$. A pluriharmonic function on a ball is the real part of a holomorphic function there, up to a constant.
+\end{lemma}
+\begin{proof}
+The radial homotopy in \cref{lem:smooth-dbar-poincare} gives a real one-form $\alpha$ with $\mathrm d\alpha=\theta$ on a slightly larger ball. Its $(0,1)$-part is $\bar\partial$-closed. Apply \cref{thm:hormander-singular-lower-bound} on that ball with $p=0$ and $q=|z|^2$ to obtain $\bar\partial f=\alpha^{0,1}$. The right side has finite norm on this bounded ball. Distributionally $\Delta f=4\sum_j\partial_{z_j}\alpha_{\bar j}$ is smooth. Locally subtract the convolution of the fundamental solution with a smooth compactly supported right side; that convolution is smooth, since its derivatives can be placed on the right side. The remainder is smooth by \cref{thm:weyl}. Thus $f$ is smooth. The calculation in \cref{lem:smooth-dbar-poincare} gives $h=4\pi\operatorname{Im}f$. For the last assertion, the radial primitive of the holomorphic closed form $2\partial h$ in \cref{chap:complex-currents} is defined on the entire ball.
+\end{proof}
+
+\begin{definition}\label{def:quasi-psh-and-theta-psh}
+A \emph{quasi-plurisubharmonic} function is locally a plurisubharmonic function plus a smooth real function, with the pointwise representative so obtained. For a smooth closed real $(1,1)$-form $\theta$, write
+\[
+ \PSH(X,\theta)=\{\varphi\text{ quasi-plurisubharmonic}:\theta+\ddc\varphi\geq0\}.
+\]
+Functions in this class are finite almost everywhere on every component. Locally, if $\ddc h=\theta$, the condition means that $\varphi+h$ is plurisubharmonic, by \cref{thm:psh-distribution-representative}. On a compact manifold quasi-plurisubharmonic functions satisfy $\ddc\varphi\geq-C\omega$ for some $C$ and any fixed Hermitian form $\omega$. Conversely, this lower bound, together with the canonical local representative, makes a function quasi-plurisubharmonic: on a smaller coordinate ball add a sufficiently large multiple of $|z|^2$.
+\end{definition}
+\index{quasi-plurisubharmonic function}\index{theta-plurisubharmonic function}
+
+Multiplier ideals of a quasi-plurisubharmonic weight have the same definition as in \cref{def:multiplier-ideal}. Adding a smooth function multiplies its integrand by a locally bounded positive factor, so coherence and the local results of \cref{chap:q05} apply. The same observation defines its Lelong numbers. Finite maxima preserve any common lower bound by a smooth closed form: add that form's local potential and use \cref{prop:psh-max-gluing}.
+
+\begin{definition}\label{def:rational-analytic-singularities}
+A quasi-plurisubharmonic function has \emph{analytic singularities} if locally
+\begin{equation}\label{eq:rational-analytic-singularities}
+ \varphi=c\log\sum_{i=1}^r|g_i|^2+b,
+ \qquad c\in\mathbb Q_{>0},\quad b\text{ bounded},
+\end{equation}
+where the holomorphic tuple is not identically zero. It has \emph{neat analytic singularities} if such a presentation exists with $b$ smooth. It has \emph{type} $(c,\mathfrak a)$ if one coefficient $c$ and one coherent ideal $\mathfrak a$ give these local presentations, using local generators of $\mathfrak a$. Changing generators changes the logarithm by a bounded function: each tuple is a holomorphic matrix times the other, and both matrices are bounded on a smaller neighborhood. A type is additional specified data and need not be unique.
+\end{definition}
+\index{analytic singularities}\index{analytic singularities!neat}\index{analytic singularities!type}
+
+\begin{proposition}\label{prop:rational-analytic-operations}
+Analytic singularities are preserved by positive rational multiplication, addition, finite maximum and holomorphic pullback whose restriction is not identically minus infinity. If the type is $(c,\mathfrak a)$, a principalization of $\mathfrak a$ writes its pullback as $c\log|s_D|^2+O(1)$, with $D$ an integral effective divisor. If the chosen presentation is neat, this remainder is smooth.
+\end{proposition}
+\begin{proof}
+For two local coefficients choose $c_0\in\mathbb Q_{>0}$ with $c/c_0$ and $d/c_0$ positive integers. The multinomial formula writes each integer power of a sum of squared moduli as another such sum, with the multinomial square roots absorbed into its holomorphic monomials. We may therefore use coefficient $c_0$ for both tuples. Products of the two sums give addition. For the maximum use
+\[
+ \max(\log A,\log B)\leq\log(A+B)
+              \leq\max(\log A,\log B)+\log2.
+\]
+Bounded remainders remain bounded. Holomorphic pullback composes the tuples and the bounded remainder. On a principalization write $g_i\circ\pi=s_Dh_i$ with the $h_i$ generating the unit ideal. The function $\log\sum|h_i|^2$ is smooth, which proves both remainder assertions. Existence of the principalization is \cref{thm:marked-order-one-input}.
+\end{proof}
+
+A log resolution of a potential of specified analytic type is a principalization whose divisor has simple normal crossings. For a compact $X$, the accepted resolution interface gives one finite sequence of smooth-center blowups. To use the K\"ahler condition in the next definition, we record its preservation.
+
+\begin{definition}\label{def:quadratic-line-bundle-metric}
+A holomorphic line bundle is specified by local frames $e_i$ with transition functions $e_i=g_{ij}e_j$, where $g_{ij}$ is holomorphic and nowhere zero and $g_{ij}g_{jk}=g_{ik}$ on triple overlaps. A smooth quadratic Hermitian metric assigns positive smooth squared norms to those frames, with $|e_i|^2=|g_{ij}|^2|e_j|^2$. Such metrics exist by a partition of unity, summing the local squared norms of a vector. Its curvature is the globally defined closed form $-\ddc\log|e_i|^2$; changing frames adds the logarithm of a holomorphic unit, whose Hessian is zero.
+\end{definition}
+\index{Hermitian metric!quadratic}\index{curvature!of a line bundle}
+
+\begin{proposition}\label{prop:kahler-smooth-center-blowup}
+A blowup of a compact K\"ahler manifold along a smooth closed center is K\"ahler. Consequently the log resolutions just described can be taken K\"ahler.
+\end{proposition}
+\begin{proof}
+
+Let $\pi:Y\to X$ be the blowup and $E$ its exceptional divisor. The normal bundle is $N_{W/X}=TX|_W/TW$. The ideal line bundle $\mathcal O_Y(-E)$ restricts on $E=\mathbb P(N_{W/X})$ to $\mathcal O_{\mathbb P(N)}(1)$, as the transition ratios of the exceptional equations in \cref{prop:smooth-center-blowup} show. Choose a Hermitian metric on the normal bundle. Its dual tautological metric gives curvature positive on every projective fiber: in an affine fiber chart it is $\ddc\log(1+|w|^2)$ after a linear choice of norm. Extend this metric from $E$ to a neighborhood and then to all of $Y$, by extending its logarithmic ratio to any fixed metric and multiplying with a smooth cutoff. Call its curvature $\eta$.
+
+The form $\pi^*\omega$ is semipositive, and at $E$ its kernel is exactly the vertical tangent space of the projective fiber. On that space $\eta$ is positive. Split the tangent space there into this kernel and its orthogonal complement. On a finite chart cover of compact $E$, the horizontal block of $\pi^*\omega$ and the vertical block of $\eta$ have positive uniform lower bounds. The off-diagonal block of $\varepsilon\eta$ is $O(\varepsilon)$, so its Schur-complement error is $O(\varepsilon^2)$; the vertical lower bound is of order $\varepsilon$. Hence $\pi^*\omega+\varepsilon\eta$ is positive at $E$ for sufficiently small $\varepsilon>0$. The same block bounds hold near $E$, with the additional semipositive contribution of $\pi^*\omega$ in the vertical directions. Equivalently, eliminate its horizontal block first; its own Schur complement is semipositive, and the remaining perturbation has the positive vertical block just established. This proves positivity on a fixed smaller neighborhood. Away from that neighborhood $\pi^*\omega$ is uniformly positive and $\eta$ is bounded, so a further decrease of $\varepsilon$ proves positivity everywhere. Both forms are closed. A codimension-one center gives an isomorphism and needs no construction; iterate for the finite sequence.
+\end{proof}
+\index{blowup!K\"ahler form}
+
+\Needspace{12\baselineskip}
+\begin{definition}\label{def:gentle-analytic-singularities}
+On a compact K\"ahler manifold a potential has \emph{gentle analytic singularities of type $(c,\mathfrak a)$} if it has that type, $\exp(\varphi/c)$ is smooth on $X$ including its zeros, and on a K\"ahler log resolution of $\mathfrak a$ one has locally
+\[
+ \varphi\circ\pi=c\log|s_D|^2+h,\qquad h\text{ smooth}.
+\]
+The smooth remainder after resolution and the smooth exponential on the original manifold are separate requirements.
+\end{definition}
+\index{analytic singularities!gentle}
+
+\section{Local Bergman kernels and ideal generators}
+\label{sec:local-bergman-approximation}
+
+Let $\Omega\subset\mathbb C^n$ be bounded and pseudoconvex, let $u$ be plurisubharmonic, and use Lebesgue measure. For an integer $m\geq1$ set
+\[
+ H_m=\{F\in\mathcal O(\Omega):\|F\|_m^2
+                 =\int_\Omega|F|^2\mathrm e^{-mu}<\infty\},\qquad
+ K_m(z)=\sup_{\|F\|_m\leq1}|F(z)|^2.
+\]
+An orthonormal basis $(e_\ell)$ gives $K_m=\sum_\ell|e_\ell|^2$, by the Hilbert projection and evaluation argument in \cref{thm:multiplier-ideal-coherence}.
+
+\begin{lemma}\label{lem:bergman-smoothness-and-resolution}
+The function $K_m$ is smooth and real analytic. Locally it is comparable above and below to the sum of squared moduli of finitely many generators of $\mathcal I(mu)$. On a principalization $\pi^*\mathcal I(mu)=\mathcal O(-D)$, one has
+\[
+ K_m\circ\pi=|s_D|^2b_m,\qquad b_m\text{ smooth and strictly positive}.
+\]
+The same conclusions hold with any smooth positive volume form uniformly comparable with Lebesgue measure on the domain.
+\end{lemma}
+\begin{proof}
+Evaluation is uniformly bounded on each compact subset: the unweighted submean estimate and the local upper bound of $u$ give $|F(z)|\leq C\|F\|_m$. Thus $z\mapsto(e_\ell(z))_\ell$ is a locally bounded holomorphic map into $\ell^2$. To justify this statement directly, apply Cauchy's formula to each component on a polydisc. The same evaluation bound, tested on finite linear combinations of the basis, bounds the $\ell^2$ norm of their values. Cauchy's coefficient estimates then bound the $\ell^2$ norm of each Taylor coefficient by $Cr^{-\alpha}$ on a smaller polydisc. The resulting power series converges in $\ell^2$, with all derivatives there. Its squared norm is real analytic in $z$ and $\bar z$ and equals $K_m$.
+
+Choose Hilbert-space members $g_1,\ldots,g_s$ generating the ideal near the point. The evaluation bound for this finite tuple gives $\sum|g_i|^2\leq C K_m$. Conversely \cref{lem:bounded-hilbert-ideal-generation} gives bounded coefficients for every $F$ in the Hilbert unit ball on a common smaller neighborhood. Hence $K_m\leq C'\sum|g_i|^2$ there. No constant here is asserted uniform in $m$ or $u$.
+
+After principalization each $F\circ\pi$ is divisible by $s_D$. The bounded coefficients just obtained show that evaluation of $(F\circ\pi)/s_D$ is a bounded functional of $F$, locally uniformly on the resolved space. Indeed the finite quotients $(g_i\circ\pi)/s_D$ are bounded on each smaller chart. The preceding $\ell^2$ power-series argument applies to $(e_\ell\circ\pi)/s_D$, so $b_m=\sum|(e_\ell\circ\pi)/s_D|^2$ is smooth. It is positive because the divided finite generators generate the unit ideal. Volume comparison changes only the evaluation and coefficient constants; the proofs of coherence and bounded generation use the equivalent weighted Hilbert norms without change.
+\end{proof}
+\index{Bergman kernel!local weighted}\index{analytic singularities!resolved Bergman kernel}
+
+\Needspace{15\baselineskip}
+\begin{theorem}\label{thm:local-bergman-approximation}
+The potential $u_m=m^{-1}\log K_m$ is plurisubharmonic and has analytic type $(m^{-1},\mathcal I(mu))$. There are constants $C_1,C_2>0$, depending only on the dimension and a diameter bound for $\Omega$, such that
+\begin{equation}\label{eq:local-bergman-bounds}
+ u(z)-\frac{\log C_1}{m}\leq u_m(z)
+ \leq\sup_{B(z,r)}u+\frac1m\log\frac{C_2}{r^{2n}},
+ \qquad B(z,r)\Subset\Omega.
+\end{equation}
+It converges to $u$ pointwise and in $L^1_{\loc}$, and
+\begin{equation}\label{eq:local-bergman-lelong}
+ \nu(u,z)-\frac nm\leq\nu(u_m,z)\leq\nu(u,z).
+\end{equation}
+For each fixed $m$, $\exp(m(u_m-u))$ is locally integrable.
+\end{theorem}
+\begin{proof}
+The finite partial sums have plurisubharmonic logarithms by \cref{prop:holomorphic-tuple-logarithm}. Their increasing limit is $\log K_m$, already upper semicontinuous by smoothness of $K_m$ and its logarithm at its zeros. Apply \cref{thm:psh-upper-envelopes}. The ideal type follows from the preceding comparison.
+
+For $u(z)>-\infty$, \cref{cor:ot-point-value-bound} supplies $F(z)=1$ with $\|F\|_m^2\leq C_1\mathrm e^{-mu(z)}$. This proves the lower estimate; at a pole it is automatic. For $\|F\|_m\leq1$, the ordinary submean estimate gives
+\[
+ |F(z)|^2\leq C_2r^{-2n}\int_{B(z,r)}|F|^2
+       \leq C_2r^{-2n}\exp\bigl(m\sup_{B(z,r)}u\bigr).
+\]
+Taking the supremum proves the upper estimate. First let $m\to\infty$ with $r$ fixed, then $r\downarrow0$. Upper semicontinuity and the lower bound prove pointwise convergence, also at poles. On a compact set a fixed $r$ gives a uniform upper bound, while $u_m\geq u-C$; dominated convergence gives $L^1$ convergence. The Lelong inequalities follow either by dividing the upper bound on $B(z,r)$ by $\log r^2$, or from \cref{lem:multiplier-order-lelong-bounds} and the finite-generator type. Finally $K_m\leq C\sum|g_i|^2$ locally with $g_i\in H_m$, so $K_m\mathrm e^{-mu}$ is locally integrable.
+\end{proof}
+
+\begin{lemma}\label{lem:bergman-diagonal-comparison}
+For the fixed domain and a fixed comparable smooth volume form, there is $C_\Omega>0$, independent of $m$ and $u$, such that
+\[
+ K_{2m}\leq C_\Omega K_m^2.
+\]
+\end{lemma}
+\begin{proof}
+On $\Omega\times\Omega$ use the plurisubharmonic weight $mu(z)+mu(w)$. A function of $H_{2m}$ is data on its diagonal. The affine-subspace extension in \cref{cor:ot-point-value-bound} extends it with product weighted norm at most $C_\Omega^{1/2}$ times its original norm. The induced Euclidean diagonal volume differs by the fixed factor $2^n$, and all other density comparisons are fixed. The product Hilbert space has the orthonormal basis $e_j(z)e_k(w)$, by the Fubini--Parseval proof in \cref{thm:multiplier-restriction-subadditivity}. Expansion and Cauchy--Schwarz therefore give
+\[
+ |F(z)|^2\leq C_\Omega\|F\|_{2m}^2
+              \Bigl(\sum_j|e_j(z)|^2\Bigr)^2.
+\]
+Take the supremum over the unit ball. The extension constant depends on the fixed diameter, dimension and volume comparisons only.
+\end{proof}
+
+\section{Overlap interpolation and quantitative patching}
+\label{sec:quantitative-regularization}
+
+Fix a compact K\"ahler manifold $(X,\omega)$ of dimension $n\geq1$. Choose, once and for all, finitely many coordinate balls
+\[
+ U_j\Subset U'_j\Subset B_j\Subset B_j^+,
+ \qquad X=\bigcup_jU_j,
+\]
+and smooth $0\leq\chi_j\leq1$ supported in $U'_j$, equal to one on $U_j$. The balls may be chosen sufficiently small that each pair $B_j^+,B_l^+$ whose inner closures meet is contained in a larger coordinate ball $\mathcal B_{jl}$. Indeed begin with a finite coordinate cover and a Lebesgue number for it in the metric of $\omega$; balls of uniformly small metric diameter have this property. Shrink coordinate radii inside those charts and take a finite subcover. Volume comparisons, coordinate changes, diameters, inner separations and cutoff derivatives are then fixed geometric data.
+
+\begin{lemma}\label{lem:maximum-cutoff-patching}
+Let $\theta$ be smooth and closed, let $v_j\in\PSH(B_j,\theta)$, and suppose $v_j\leq v_l+a$ on $\overline U'_j\cap\overline U'_l$ for all $j,l$, where $a\geq0$. If $\ddc\chi_j\geq-C_\chi\omega$, the function
+\[
+ v(x)=\max_{j:\,x\in\overline U'_j}(v_j(x)+a\chi_j(x))
+\]
+satisfies $\theta+\ddc v\geq-aC_\chi\omega$ and
+$v_j\leq v\leq v_j+2a$ on $U_j$.
+\end{lemma}
+\begin{proof}
+Fix $x_0\in U_i$. Near $x_0$ each index whose outer closure does not contain $x_0$ is absent. Each index with $x_0\in\partial U'_j$ has $\chi_j=0$ on a neighborhood of $x_0$, since its support is compact in $U'_j$. Whenever this boundary competitor occurs it is bounded by $v_i+a$, while $\chi_i=1$. It can therefore be omitted, including in the non-strict equality case. On a smaller neighborhood $v$ is the maximum over the fixed set of indices with $x_0\in U'_j$. Add a local potential of the closed form $\theta+aC_\chi\omega$ and use the plurisubharmonic maximum property. On $U_j$ its own term is at least $v_j$, and every other term is at most $v_j+2a$. This proves both bounds, including at common poles.
+\end{proof}
+\index{patching!maximum with cutoffs}
+
+Choose $h_j$ on $B_j^+$ with $\ddc h_j=\theta$. For $\varphi\in\PSH(X,\theta)$, let $K_{j,m}$ be the kernel of the holomorphic space on $B_j$ with weight $m(\varphi+h_j)$ and volume $\omega^n/n!$. Put
+\[
+ a_{j,m}=\mathrm e^{-mh_j}K_{j,m},\qquad
+ v_{j,m}=m^{-1}\log a_{j,m}.
+\]
+Then $\theta+\ddc v_{j,m}\geq0$.
+
+\begin{lemma}\label{lem:geometry-uniform-kernel-overlap}
+There is $C_B\geq0$, depending only on the fixed geometric data, such that
+\[
+ a_{j,m}\leq\mathrm e^{C_B}a_{l,m}
+ \quad\text{on }\overline U'_j\cap\overline U'_l,
+ \qquad |v_{j,m}-v_{l,m}|\leq C_B/m
+\]
+where the second inequality is understood away from their common zeros. The first inequality and its reverse hold everywhere. The constant is independent of $\theta$, $\varphi$ and $m$.
+\end{lemma}
+\begin{proof}
+On $\mathcal B_{jl}$ choose $g$ with $\ddc g=\theta$. By \cref{lem:smooth-potential-on-ball}, $h_j-g=\operatorname{Re}b_j$ and $h_l-g=\operatorname{Re}b_l$ for holomorphic functions on the respective balls. Multiplication by $\exp(-mb_j/2)$ is an isometry from the original space on $B_j$ to the space with common weight $m\Psi$, where $\Psi=\varphi+g$ is plurisubharmonic. Its kernel is $\mathrm e^{-m\operatorname{Re}b_j}K_{j,m}$, and hence $v_{j,m}=m^{-1}\log K_{B_j}^{m\Psi}-g$. This cancels every dependence on the size of the smooth potentials.
+
+Choose a fixed cutoff $\rho$ supported in $B_j\cap B_l$, equal to one near $\overline U'_j\cap\overline U'_l$. The compact overlap is a positive distance $r$ from the support of $\bar\partial\rho$. For a unit-norm holomorphic $f$ on $B_j$ and $x$ on that overlap, extend $\rho f$ by zero to $B_l$. In the common coordinates solve
+\[
+ \bar\partial u=f\bar\partial\rho
+\]
+with weight $m\Psi+n\log|z-x|^2+|z|^2$, by \cref{thm:hormander-singular-lower-bound}. The domain $B_l$ is pseudoconvex in these coordinates as well, since its coordinate biholomorphism transports a plurisubharmonic exhaustion. The dual-energy estimate, cutoff bound, separation $r$ and fixed volume comparisons give
+\[
+ \int_{B_l}|u|^2|z-x|^{-2n}\mathrm e^{-m\Psi-|z|^2}\leq C.
+\]
+Removing the pole and the bounded quadratic factor gives $\|u\|_{m\Psi,B_l}\leq C'$. Near $x$, $u$ is holomorphic and $\Psi$ is bounded above; the divergent radial integral forces $u(x)=0$, exactly as in \cref{prop:logarithmic-point-interpolation}. Thus $F=\rho f-u$ is holomorphic on $B_l$, agrees with $f$ at $x$ and has weighted norm at most a fixed $C_0\geq1$. It follows that $K_{B_l}^{m\Psi}(x)\geq C_0^{-2}K_{B_j}^{m\Psi}(x)$. Reverse the indices and take the maximum of $2\log C_0$ over the finite list of pairs. No estimate of $\Psi$ enters these constants.
+\end{proof}
+
+\Needspace{13\baselineskip}
+\begin{theorem}\label{thm:quantitative-lower-bound-regularization}
+There is $c>0$, depending only on $(X,\omega)$, such that for every smooth closed real $(1,1)$-form $\theta$, every $\varphi\in\PSH(X,\theta)$ and every integer $m\geq1$ there is a global quasi-plurisubharmonic $\varphi_m$ satisfying
+\[
+ \theta+\ddc\varphi_m\geq-\frac cm\omega,
+ \qquad
+ \varphi_m\geq\frac1m\log\sum_i|g_i|^2+O(1)\quad\text{locally},
+\]
+where the $g_i$ generate $\mathcal I(m\varphi)$. The local bounded term has no asserted uniformity in $m$, $\theta$ or $\varphi$.
+\end{theorem}
+\begin{proof}
+The preceding overlap lemma and \cref{lem:maximum-cutoff-patching}, with $a=C_B/m$, give the first conclusion with $c=C_BC_\chi$ (increase it if necessary to make it positive). On $U_j$ the patched function dominates $v_{j,m}$. The finite-generator comparison of \cref{lem:bergman-smoothness-and-resolution} gives $v_{j,m}\geq m^{-1}\log\sum|g_i|^2+O(1)$. Its ideal is $\mathcal I(m\varphi)$ because $h_j$ is smooth. This proves exactly the two stated conclusions.
+\end{proof}
+\index{Demailly regularization!quantitative lower bound}
+
+\section{Smooth cutoff sums and decreasing approximation}
+\label{sec:gentle-decreasing-approximation}
+
+To obtain the extra smoothness in gentle singularities, use a sum of smooth kernels. A curvature calculation supplies its lower bound.
+
+\begin{lemma}\label{lem:logarithmic-cutoff-sum}
+For the kernels just constructed, put
+\[
+ R_m=\sum_j\chi_j^2a_{j,m},\qquad G_m=m^{-1}\log R_m.
+\]
+There is $c'>0$, depending only on the fixed geometry, such that
+$\theta+\ddc G_m\geq-(c'/m)\omega$. The function $R_m$ is smooth, and $G_m$ has gentle analytic type $(m^{-1},\mathcal I(m\varphi))$.
+\end{lemma}
+\begin{proof}
+For smooth real $w_j$, nonnegative smooth cutoffs $\chi_j$ and $S=\sum\chi_j^2\mathrm e^{w_j}>0$, set $\alpha_j=\chi_j\partial w_j+2\partial\chi_j$. Differentiating twice gives
+\begin{align*}
+ \ddc\log S={}&\frac{\mathrm i}{2\pi S^2}
+ \sum_{j<l}\mathrm e^{w_j+w_l}
+ (\chi_j\alpha_l-\chi_l\alpha_j)
+       \wedge\overline{(\chi_j\alpha_l-\chi_l\alpha_j)}\\
+ &+\frac{\sum_j\chi_j^2\mathrm e^{w_j}\ddc w_j}{S}
+ +2\frac{\sum_j\mathrm e^{w_j}
+  (\chi_j\ddc\chi_j-\frac{\mathrm i}{2\pi}
+                         \partial\chi_j\wedge\bar\partial\chi_j)}{S}.
+\end{align*}
+The first term is semipositive; the identity follows by expanding its pairwise squares, which subtract exactly $S^{-2}\partial S\wedge\bar\partial S$ from the first derivative terms. Choose a geometric $A>0$ bounding each parenthesis in the last line below by $-A\omega$. With $w_j=mv_{j,m}$, the middle term is at least $-m\theta$. At a point in the support of a cutoff derivative choose $i$ with $x\in U_i$, so $\chi_i=1$. The overlap lemma gives $\mathrm e^{w_j}/S\leq\mathrm e^{C_B}$. Summing the last terms therefore loses at most $2JA\mathrm e^{C_B}\omega$, where $J$ is the number of charts.
+
+The calculation remains valid across zeros of the kernels as follows. Near a fixed point choose one potential $g$ of $\theta$ and express each contributing kernel in the common gauge. It is a sum of squared moduli of holomorphic functions. Replace every such common-gauge kernel by its sum with $\delta>0$. Their logarithms are smooth and plurisubharmonic, and the overlap ratio remains at most $\mathrm e^{C_B}$, since this number is at least one. Apply the calculation after subtracting $mg$ from each logarithm. Let $\delta\downarrow0$. The resulting potentials decrease to $G_m$; the lower bound passes by \cref{thm:psh-decreasing-nets} after adding a local potential of $\theta+(2JA\mathrm e^{C_B}/m)\omega$. Their pointwise limit is not identically minus infinity. It follows that $c'=2JA\mathrm e^{C_B}$ is admissible.
+
+Each summand of $R_m$ is smooth by \cref{lem:bergman-smoothness-and-resolution}. Near any point a chart with $\chi_i=1$, the overlap comparisons and the finite-generator comparisons show $R_m\asymp\sum|g_k|^2$ for generators of $\mathcal I(m\varphi)$. This proves the type. Resolve this ideal. Every pulled-back local kernel factors as $|s_D|^2$ times a smooth strictly positive factor. The additional factors $\mathrm e^{-mh_j}$ and $\chi_j^2$ are smooth; their sum after division by $|s_D|^2$ is strictly positive because an inner chart occurs everywhere. Thus $G_m\circ\pi=m^{-1}\log|s_D|^2+$ a smooth function. The resolution is K\"ahler by \cref{prop:kahler-smooth-center-blowup}, and $\mathrm e^{mG_m}=R_m$ is smooth on $X$. These are precisely the gentle requirements.
+\end{proof}
+\index{patching!logarithmic cutoff sum}
+
+\begin{lemma}\label{lem:global-bergman-limit-and-doubling}
+The $G_m$ converge to $\varphi$ pointwise and in $L^1(X)$. They satisfy
+\[
+ \nu(\varphi,x)-n/m\leq\nu(G_m,x)\leq\nu(\varphi,x),
+ \qquad \mathrm e^{m(G_m-\varphi)}\in L^1(X).
+\]
+There is $D\geq0$, depending only on the fixed geometry, such that
+$G_{2m}\leq G_m+D/m$ for every $m$.
+\end{lemma}
+\begin{proof}
+The point-extension bound in an inner chart gives $G_m\geq\varphi-C/m$, with $C$ geometric. The local upper estimate in \eqref{eq:local-bergman-bounds} and the finite sum give, for small fixed $r$,
+\[
+ G_m(x)\leq\sup_{d_\omega(x,y)<C_0r}\varphi(y)
+       +C_h r+\frac1m\log(C_2r^{-2n}).
+\]
+Here coordinate and volume constants are geometric; $C_h$ may depend on the finitely many $h_j$, and hence on $\theta$. Only charts whose cutoffs are supported at $x$ occur, and their supports have a uniform separation from the boundaries of $B_j$, so a common small $r$ works. Let $m\to\infty$ and then $r\downarrow0$. This proves pointwise convergence, including poles. A fixed $r$ gives a uniform upper bound, and the lower bound gives an integrable dominator; hence $L^1$ convergence. The type and \cref{lem:multiplier-order-lelong-bounds} give the Lelong bounds. On each compact cutoff support the bound $K_{j,m}\leq C_m\sum|g_i|^2$ uses Hilbert members $g_i$ with finite weighted norm. Thus every summand of $R_m\mathrm e^{-m\varphi}$ is integrable, proving the exponential assertion.
+
+The diagonal lemma gives $a_{j,2m}\leq C_*a_{j,m}^2$ with a geometric $C_*$. At $x\in U_i$, every active summand has $a_{j,m}\leq\mathrm e^{C_B}a_{i,m}$ and $R_m\geq a_{i,m}$. Consequently
+\[
+ R_{2m}\leq C_*\sum_j\chi_j^2a_{j,m}^2
+        \leq C_*J\mathrm e^{2C_B}R_m^2.
+\]
+This holds also at the common zeros. Taking logarithms gives the claimed inequality with $D=\frac12\log\max(1,C_*J\mathrm e^{2C_B})$.
+\end{proof}
+
+\begin{lemma}\label{lem:integrable-gap-ideal-transfer}
+Let $u,v$ be quasi-plurisubharmonic near $x$, and suppose
+$\mathrm e^{m(v-u)}$ is locally integrable for some $m>0$. For
+$0<\lambda<\lambda'$ and $m\geq\lambda\lambda'/(\lambda'-\lambda)$,
+\[
+ \mathcal I(\lambda'v)_x\subseteq\mathcal I(\lambda u)_x.
+\]
+\end{lemma}
+\begin{proof}
+Shrink and subtract a constant from $v$ so that $v\leq0$; this changes neither the ideals nor finiteness of the gap integral. Put $p=\lambda'/\lambda$. On $u\geq pv$, $|f|^2\mathrm e^{-\lambda u}\leq|f|^2\mathrm e^{-\lambda'v}$. On the complement, $m>\lambda$ and
+\[
+ (m-\lambda)u-mv
+       \leq((m-\lambda)p-m)v\leq0,
+\]
+by the hypothesis on $m$. Thus there $|f|^2\mathrm e^{-\lambda u}\leq C\mathrm e^{m(v-u)}$, since a holomorphic germ is bounded on a smaller neighborhood. The two bounds prove integrability. All exponent calculations are made off the null pole sets; integrability is an almost-everywhere condition.
+\end{proof}
+
+\begin{definition}\label{def:quasi-equisingular-approximation}
+For $\varphi\in\PSH(X,\theta)$ on compact K\"ahler $X$, a \emph{quasi-equisingular approximation} is a sequence $\Phi_j$ with analytic singularities, decreasing pointwise to $\varphi$, such that $\theta+\ddc\Phi_j\geq-\varepsilon_j\omega$ for some $\varepsilon_j\downarrow0$, and for every $\lambda'>\lambda>0$ one has
+\[
+ \mathcal I(\lambda'\Phi_j)\subseteq\mathcal I(\lambda\varphi)
+ \quad\text{for every sufficiently large }j.
+\]
+\end{definition}
+\index{quasi-equisingular approximation}
+
+\Needspace{13\baselineskip}
+\begin{theorem}\label{thm:gentle-quasi-equisingular-approximation}
+Every $\varphi\in\PSH(X,\theta)$ admits a quasi-equisingular approximation $\Phi_j$ with gentle analytic type
+$(2^{-j},\mathcal I(2^j\varphi))$. It can be chosen with
+$\varepsilon_j=c'2^{-j}$. Moreover $\Phi_j\to\varphi$ in $L^1(X)$ and its Lelong numbers obey the bounds in \cref{lem:global-bergman-limit-and-doubling} with $m=2^j$.
+\end{theorem}
+\begin{proof}
+Take $\Phi_j=G_{2^j}+2D/2^j$. The doubling inequality gives
+\[
+ \Phi_{j+1}\leq G_{2^j}+D/2^j+D/2^j=\Phi_j.
+\]
+The preceding limit lemma shows that its pointwise and $L^1$ limit is $\varphi$. Constants do not change curvature, ideal type or Lelong numbers. They multiply $\exp(2^jG_{2^j})$ by the fixed positive number $\mathrm e^{2D}$, so gentleness is preserved. The curvature bound gives the stated $\varepsilon_j$. Finally $\exp(2^j(\Phi_j-\varphi))$ is integrable, and \cref{lem:integrable-gap-ideal-transfer} gives the ideal inclusions for all sufficiently large $j$, uniformly as sheaves on $X$. Indeed the gap integral is global and the required bound on $2^j$ depends only on $\lambda,\lambda'$.
+\end{proof}
+\index{Demailly regularization!decreasing gentle approximation}
+
+\Needspace{10\baselineskip}
+\section{Comparison of analytic singularities}
+\label{sec:analytic-approximation-comparison}
+
+Write $u\preceq v$ on compact $X$ if $u\leq v+C$ for some constant $C$. Local bounds on a finite cover give the same global relation. Positive rational coefficients are needed for the finite-maximum operation in \cref{prop:rational-analytic-operations}; a bounded remainder alone does not imply a smooth remainder on a resolution.
+
+\begin{lemma}\label{lem:analytic-weighted-integrability-growth}
+Let $v$ have analytic singularities on compact $X$. For every $0<\eta<1$ there is $t_0$ such that for all $t\geq t_0$ and all germs $f\in\mathcal I(tv)$,
+\[
+ \log|f|^2\leq t(1-\eta)v+O(1)
+\]
+locally. The bounded term may depend on the germ. Also, for every quasi-plurisubharmonic $u$ and every $t>0$, local generators $g_i$ of $\mathcal I(tu)$ satisfy
+\[
+ u\leq t^{-1}\log\sum|g_i|^2+O(1).
+\]
+\end{lemma}
+\begin{proof}
+Take a finite cover by analytic presentations and log resolutions over slightly smaller neighborhoods. Their fibers over compact smaller sets are compact. Write the resolved singularities as $\sum_E a_E\log|s_E|^2+O(1)$ with finitely many $a_E>0$, and let $A_E$ be the corresponding discrepancies. By \cref{thm:analytic-log-resolution-integrability}, $f\in\mathcal I(tv)$ implies
+\[
+ \operatorname{ord}_Ef>ta_E-A_E.
+\]
+Choose $t_0$ with $t_0\eta a_E\geq A_E$ for every component on this finite list. The order is then at least $t(1-\eta)a_E$. Factor the corresponding integral vanishing orders in each normal-crossing chart. The remaining holomorphic function is bounded on smaller charts, so $|f\circ\pi|^2\leq C\exp(t(1-\eta)v\circ\pi)$. A finite cover of the compact fiber and properness give this inequality downstairs on a smaller neighborhood. If a presentation has no divisor, its weight is bounded and the assertion is immediate. The last inequality is \cref{lem:bounded-hilbert-ideal-generation} with a local smooth potential added to $u$; that potential only changes the bounded term.
+\end{proof}
+
+\begin{proposition}\label{prop:quasi-equisingular-comparison}
+If $(\Phi_j)$ and $(\Psi_k)$ are quasi-equisingular approximations of the same $\varphi$, then for each $j$ and $0<\epsilon<1$,
+\[
+ \Psi_k\preceq(1-\epsilon)\Phi_j
+ \quad\text{for every sufficiently large }k.
+\]
+\end{proposition}
+\begin{proof}
+Choose $0<\eta<\epsilon$ and $\delta>0$ so small that
+$(1-\eta)/(1+\delta)\geq1-\epsilon$. Subtract one common constant from $\varphi$ and both approximation sequences so that $\Phi_j\leq0$; ideal inclusions and the decreasing limits are preserved. Fix a large $t$ for which \cref{lem:analytic-weighted-integrability-growth} applies to $\Phi_j$. For sufficiently large $k$, quasi-equisingularity gives
+\[
+ \mathcal I(t(1+\delta)\Psi_k)
+       \subseteq\mathcal I(t\varphi)\subseteq\mathcal I(t\Phi_j),
+\]
+the last inclusion using $\varphi\leq\Phi_j$. Locally choose finite generators $g_i$ of the left ideal. Each is bounded in logarithmic modulus by $t(1-\eta)\Phi_j+O(1)$ by the preceding lemma. Its final assertion consequently gives
+\[
+ \Psi_k\leq\frac1{t(1+\delta)}\log\sum|g_i|^2+O(1)
+       \leq\frac{1-\eta}{1+\delta}\Phi_j+O(1)
+       \leq(1-\epsilon)\Phi_j+O(1).
+\]
+A finite cover makes the bounded term global. It may depend on $k$ and $j$, as allowed in the relation $\preceq$.
+\end{proof}
+
+\begin{example}\label{ex:analytic-regularization-endpoints}
+On a disc, $u=c\log|z|^2$ has $\mathcal I(mu)=(z^{\lfloor mc\rfloor})$. A Bergman potential of type $(m^{-1},\mathcal I(mu))$ therefore has coefficient $\lfloor mc\rfloor/m$, which need not equal $c$ at any finite stage. Quasi-equisingularity compares two different scales $\lambda'>\lambda$; it does not assert equality of every multiplier ideal at each stage. The maximum-patching construction of \cref{thm:quantitative-lower-bound-regularization} provides its two conclusions directly. The smooth exponential, convergence and decreasing sequence in \cref{thm:gentle-quasi-equisingular-approximation} use the additional cutoff-sum and diagonal arguments.
+\end{example}
+
+In dimension zero a compact complex manifold is a finite set. Every finite weight is smooth, every multiplier ideal is the unit ideal, and the constant sequence $\Phi_j=\varphi$ supplies all the preceding approximation conclusions. There is no curvature loss and no logarithmic divisor.

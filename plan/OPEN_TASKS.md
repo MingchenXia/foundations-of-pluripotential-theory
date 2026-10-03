@@ -13,19 +13,19 @@ Next coherent writing unit: **A01**.
 
 ## Q06 — Analytic singularities and Demailly approximation
 
-- `Q06-01` [planned] Rational coefficients, bounded remainders, neat and gentle analytic singularities
-- `Q06-02` [planned] Qualitative Bergman approximation, Lelong estimates and quasi-equisingular approximation
-- `Q06-03` [planned] Nakamaye lem:patching and lem:regularization: c depends only on fixed (Z,omega_Z)
-- `Q06-04` [planned] Local weighted Bergman kernels, generator lower bounds, overlap comparison and patching
-- `Q06-05` [planned] Keep quantitative lower-bound regularization separate from analytic-singularity and monotone-sequence claims
+- `Q06-01` [second-read] Rational coefficients, bounded remainders, neat and gentle analytic singularities
+- `Q06-02` [second-read] Qualitative Bergman approximation, Lelong estimates and quasi-equisingular approximation
+- `Q06-03` [second-read] Nakamaye lem:patching and lem:regularization: c depends only on fixed (Z,omega_Z)
+- `Q06-04` [second-read] Local weighted Bergman kernels, generator lower bounds, overlap comparison and patching
+- `Q06-05` [second-read] Keep quantitative lower-bound regularization separate from analytic-singularity and monotone-sequence claims
 
 ## Q07 — Global potentials and positive cohomology classes
 
-- `Q07-01` [planned] Compact Kahler geometry and the dd^c lemma in the form actually used
-- `Q07-02` [planned] theta-psh and quasi-psh functions, normalized compactness and minimal singularities
+- `Q07-01` [planned] Global compact Kähler geometry and the dd^c lemma in the form actually used; local background and blowup definitions are in Q06
+- `Q07-02` [planned] Global theta-psh theory, normalized compactness and minimal singularities; definitions are in Q06
 - `Q07-03` [planned] Pseudo-effective, nef, big and modified nef cones; Siu decomposition
 - `Q07-04` [planned] Non-Kahler and non-nef loci including the non-big boundary case
-- `Q07-05` [planned] Quadratic Hermitian metrics, curvature, FS/generalized FS, compact positive-metric extension with uniform constants and compact Bergman approximation
+- `Q07-05` [planned] FS/generalized FS, global curvature and metric theory, compact positive-metric extension with uniform constants and compact Bergman approximation; quadratic metric convention is in Q06
 
 ## Q09 — Non-pluripolar products
 
@@ -50,7 +50,7 @@ Next coherent writing unit: **A01**.
 
 ## Q12 — Singularity preorders and the dS pseudometric
 
-- `Q12-01` [planned] Ordinary, P and I preorders and equivalence relations
+- `Q12-01` [planned] Ordinary, P and I preorders and equivalence relations; prove bounded-growth ideal coherence required by the sample
 - `Q12-02` [planned] dS construction, zero-distance criterion and completeness after the appropriate quotient
 - `Q12-03` [planned] Mixed mass, Lelong and background-independent convergence of nets
 - `Q12-04` [planned] Almost-metric and projection estimates, with all constants and references
