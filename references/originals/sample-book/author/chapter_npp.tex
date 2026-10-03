@@ -1,0 +1,1506 @@
+\motto{Pour exprimer d'une manière frappante que le monument que j'élève sera placé sous l'invocation de la Science, j'ai décidé d'inscrire en lettres d'or sur la grande frise du premier étage et à la place d'honneur, les noms des plus grands savants\footnote{Gaspard Monge, Comte de Péluse (1746--1818), known oddly by his family name instead of \emph{de Péluse}, is one of the 72 names scribed on the Eiffel tower. Apart from being a mathematician, he was also a politician, active mainly after the French Revolution.} qui ont honoré la France depuis 1789 jusqu'à nos jours.
+
+---  Gustave Eiffel, 1889}
+\chapter{Non-pluripolar products}
+\label{chap:npp}
+
+Let $X$ be a complex manifold and let $\varphi_1,\ldots,\varphi_p\in\PSH(X)$. When the functions $\varphi_i$ are smooth, the differential form
+\begin{equation}\label{eq:mixedMAtype}
+    \ddc\varphi_1\wedge\cdots\wedge\ddc\varphi_p
+\end{equation}
+is defined by the usual calculus. A central problem in pluripotential theory is to extend this product to singular plurisubharmonic functions in a reasonable way.
+
+In this book we use the non-pluripolar product. This construction, originating in the work of Bedford--Taylor and developed in the global setting by Guedj--Zeriahi and Boucksom--Eyssidieux--Guedj--Zeriahi, has two features that are essential for us: it is defined for arbitrary quasi-plurisubharmonic singularities, and it satisfies the monotonicity theorem for non-pluripolar masses. These two properties make it possible to compare singularity types through Monge--Amp\`ere mass.
+
+The chapter is organized as follows. We first recall the Bedford--Taylor product for locally bounded plurisubharmonic functions. We then introduce the non-pluripolar product and record its basic functorial and locality properties. After a short discussion of quasi-continuous functions and capacity, we prove the convergence and concentration results used later in the theory of envelopes. The key tools extracted from this chapter are the monotonicity theorem, semicontinuity theorem, the concentration theorem for envelopes and the domination principle.
+
+The reader may consult \cite{BEGZ10} and \cite{DDNLsurv} for broader background. Our presentation is adapted to the later use of envelopes and singularity types, so some estimates are stated in a form slightly more specific than in the standard references.
+
+
+\section{Bedford--Taylor theory}\label{sec:BTtheory}
+Let $X$ be a complex manifold and $\varphi_1,\ldots,\varphi_p\in \PSH(X)$ ($p\in \mathbb{N}$) be locally bounded plurisubharmonic functions on $X$\footnote{In the literature, some people use $\PSH(X)\cap L^{\infty}_{\loc}(X)$ to denote the set of such functions, which is an abuse of notation. However, this is legitimate thanks to the rigidity \cref{thm:psh_rigid_gen}.}. In this case, there is a canonical definition of the Monge--Amp\`ere type product \eqref{eq:mixedMAtype}.
+\begin{definition}\label{def:npp:L22}
+    We define the closed positive $(p,p)$-current \eqref{eq:mixedMAtype} on $X$ as follows: We proceed by induction on $p\geq 0$. When $p=0$, we define \eqref{eq:mixedMAtype} as the $(0,0)$-current $[X]$. When $p>0$, we let
+    \[
+    \ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p\coloneqq \ddc \left( \varphi_1\,\ddc \varphi_2 \wedge \cdots \wedge \ddc\varphi_p \right).
+    \]
+    \index{$\ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p$}
+    We call this product the \emph{Bedford--Taylor product} \index{product!Bedford--Taylor product}.
+\end{definition}
+
+\begin{remark}\label{rmk:extensionBT}
+There is also a slightly more general version of this construction. Given a closed positive current $T$, one can also define the product
+\[
+\ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p \wedge T
+\]
+in a very similar way.
+\end{remark}
+
+
+\begin{proposition}\label{prop:npp:L40}
+    The product $\ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p$ is a closed positive $(p,p)$-current on $X$. Moreover, the product is symmetric in the $\varphi_i$'s.
+\end{proposition}
+See \cite[Proposition~3.3, Corollary~3.12]{GZ17}.\footnote{In \cite[Proposition~3.3]{GZ17}, the authors claim that $\mathrm{d}u\wedge \mathrm{d}^{\mathrm{c}}u\wedge T$ is closed, which is wrong already in the smooth case.} The proof relies crucially on an important estimate, known as the \emph{Chern--Levine--Nirenberg inequality}. See \cite{CLN69} or \cite[Theorem~3.9]{GZ17}.
+
+The Bedford--Taylor theory has many satisfactory properties.
+
+\begin{theorem}\label{thm:contMA}
+    Let $(\varphi_i^j)_{j\in \mathbb{Z}_{>0}}$ be decreasing sequences (resp.\ increasing sequences) of locally bounded psh functions on $X$ converging (resp.\ converging a.e.) to locally bounded psh functions $\varphi_i$'s, where $i=0,\ldots,p$. Then
+    \[
+    \varphi_0^j\, \ddc \varphi_1^j\wedge \cdots \wedge \ddc\varphi_p^j\rightharpoonup \varphi_0\, \ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p
+    \]
+    as $j\to\infty$. In particular, if $(\varphi_0^j)_j$ is the constant sequence $1$, we have
+    \[
+    \ddc \varphi_1^j\wedge \cdots \wedge \ddc\varphi_p^j\rightharpoonup \ddc \varphi_1\wedge \cdots \wedge \ddc\varphi_p.
+    \]
+\end{theorem}
+Here the notation $\rightharpoonup$ denotes the weak-* convergence of currents.
+
+We refer to \cite[Theorem~3.18, Theorem~3.23]{GZ17} for the proofs.
+
+By contrast, we emphasize that the Bedford--Taylor product is not continuous with respect to the $L^1_{\loc}$-convergence in general. A simple example can be found in \cite[Example~3.25]{GZ17}.
+
+\begin{lemma}\label{lma:boundedfibrefubini}
+    Let $Q\subseteq\mathbb{C}^n$ and $D\subseteq\mathbb{C}^m$ be domains, let $p_2\colon Q\times D\to D$ be the second projection, and let $\eta$ be a smooth real $(m,m)$-form on $D$. Let $u_1,\ldots,u_n$ be locally bounded psh functions on $Q\times D$, and put
+    \[
+        M=\ddc u_1\wedge\cdots\wedge\ddc u_n,\qquad
+        M_z=\ddc_x(u_1)_z\wedge\cdots\wedge\ddc_x(u_n)_z.
+    \]
+    Here $(u_r)_z(x)=u_r(x,z)$.
+    For every bounded Borel function $h$ with compact support in $Q\times D$,
+    \begin{equation}\label{eq:boundedfibrefubini}
+        \int_{Q\times D}h\,p_2^*\eta\wedge M
+        =\int_D\left(\int_Q h_z\,M_z\right)\eta(z),
+        \qquad h_z(x)=h(x,z).
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    By linearity, it suffices to consider $\eta\geq0$.
+    We first prove \eqref{eq:boundedfibrefubini} when $h$ is continuous.
+    On a product neighborhood of $\Supp h$, choose smooth psh functions $u_r^{(l)}\searrow u_r$, $1\leq r\leq n$. For the smooth approximants, decompose each $\ddc u_r^{(l)}$ according to the $x$- and $z$-directions. After wedging with $p_2^*\eta$, every term containing a factor $\mathrm{d}z_\alpha$ or $\mathrm{d}\bar z_\beta$ vanishes; hence only the factors $\ddc_x(u_r^{(l)})_z$ remain, and \eqref{eq:boundedfibrefubini} follows from the usual Fubini theorem. As $l\to\infty$, the Bedford--Taylor monotone continuity theorem \cref{thm:contMA} gives convergence on $Q\times D$ and on every fibre. Fix $K\Subset Q$ and $L\Subset D$ containing the projections of $\Supp h$. The Chern--Levine--Nirenberg estimate \cite[Theorem~3.9]{GZ17}, together with the local uniform bounds for $u_r^{(l)}$, bounds the masses of the fibre products on $K$ uniformly for $z\in L$ and $l$. Since $h_z=0$ for $z\notin L$, dominated convergence proves \eqref{eq:boundedfibrefubini}.
+
+    It remains to pass from continuous to bounded Borel functions. Fix relatively compact open sets $U\Subset Q$ and $V\Subset D$. If $\chi\in C_c(U)$, then
+    \[
+        F_\chi(z)\coloneqq\int_U\chi\,M_z,
+        \qquad z\in V,
+    \]
+    is Borel measurable. Indeed, choose the smooth decreasing approximations on a neighborhood of $\overline U\times\overline V$ and set
+    \[
+        M_z^{(l)}\coloneqq
+        \ddc_x(u_1^{(l)})_z\wedge\cdots\wedge\ddc_x(u_n^{(l)})_z.
+    \]
+    The functions $z\mapsto\int_U\chi\,M_z^{(l)}$ are continuous on $V$ and converge pointwise to $F_\chi$ by \cref{thm:contMA}.
+
+    Let $\mathcal{A}_{U,V}$ be the vector space of bounded Borel functions $\chi$ on $U$ for which $F_\chi$ is Borel measurable on $V$. It is closed under bounded increasing pointwise limits of non-negative functions by the monotone convergence theorem. Taking compactly supported continuous cut-off functions increasing to $1$ on $U$ shows that $1\in\mathcal{A}_{U,V}$. Thus $\mathcal{A}_{U,V}$ contains the algebra $\mathbb{R}+C_c(U)$, which generates the Borel $\sigma$-algebra of $U$. The functional monotone class theorem therefore shows that $\mathcal{A}_{U,V}$ contains every bounded Borel function on $U$.
+
+    Next, let $\mathcal{B}_{U,V}$ be the vector space of bounded Borel functions $g$ on $U\times V$ such that
+    \[
+        z\longmapsto\int_U g_z\,M_z,
+        \qquad g_z(x)=g(x,z),
+    \]
+    is Borel measurable on $V$. This space is again closed under bounded increasing pointwise limits of non-negative functions. It contains every product $g(x,z)=\chi(x)\psi(z)$ of bounded Borel functions, by the preceding paragraph. Finite sums of such products form an algebra containing the indicators of all Borel rectangles $A\times B\subseteq U\times V$; hence this algebra generates the Borel $\sigma$-algebra of $U\times V$. A second application of the functional monotone class theorem shows that $\mathcal{B}_{U,V}$ contains every bounded Borel function on $U\times V$.
+
+    To pass from $U\times V$ to $Q\times D$, choose exhaustions $U_j\Subset Q$ and $V_j\Subset D$ by relatively compact open sets. For a Borel set $E\subseteq Q\times D$, the preceding paragraph, applied to the restriction of $\mathds{1}_E$ to $U_j\times V_j$, shows that
+    \[
+        G_j(z)\coloneqq
+        \mathds{1}_{V_j}(z)\int_{U_j}\mathds{1}_E(x,z)\,M_z
+    \]
+    is Borel measurable on $D$. We may take both exhaustions increasing, so $G_j\nearrow M_z(E_z)$ pointwise, where
+    \[
+        E_z\coloneqq\{x\in Q:(x,z)\in E\}.
+    \]
+    Thus $z\mapsto M_z(E_z)$ is Borel measurable on $D$.
+    We may therefore define
+    \[
+        \lambda(E)\coloneqq\int_D M_z(E_z)\,\eta(z).
+    \]
+    The monotone convergence theorem, first on each fibre and then on $D$, shows that $\lambda$ is a Borel measure on $Q\times D$. The local uniform mass bound above shows that $\lambda$ is locally finite and hence Radon. Approximation by non-negative simple functions gives
+    \[
+        \int_{Q\times D}h\,\mathrm{d}\lambda
+        =\int_D\left(\int_Qh_z\,M_z\right)\eta(z)
+    \]
+    for every non-negative Borel function $h$. For continuous compactly supported $h$, the first part of the proof shows that $\lambda$ agrees with $p_2^*\eta\wedge M$. The uniqueness of Radon measures then gives the same equality for every bounded Borel function $h$ with compact support.
+\end{proof}
+
+\section{The non-pluripolar products}\label{sec:npp}
+The proofs of the standard results recalled in this section can be found in \cite{BEGZ10}.
+
+Let $X$ be a complex manifold.
+
+\begin{definition}\label{def:npp:L69}
+Let $\varphi_1,\ldots,\varphi_p\in \PSH(X)$. We set
+\[
+O_k \coloneqq \bigcap_{j=1}^p \{\varphi_j>-k\},\quad k\in \mathbb{N}.
+\]
+We say that $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is \emph{well-defined} if for each connected open subset $U\subseteq X$, any smooth positive $(1,1)$-form $\omega$ on $U$, and each compact subset $K\subseteq U$, we have
+\begin{equation}\label{eq:welldefinepluri}
+\sup_{k\geq 0} \int_{K\cap O_k}\left.\left(\bigwedge_{j=1}^p \ddc (\varphi_j\lor (-k))\right)\right|_U\wedge \omega^{\dim U-p}<\infty.
+\end{equation}
+
+In this case, we define the \emph{non-pluripolar product} \index{product!non-pluripolar product} $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ by
+\begin{equation}\label{eq:npp}
+\mathds{1}_{O_k}\,\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p=\mathds{1}_{O_k}\bigwedge_{j=1}^p \ddc  \left( \varphi_j\lor (-k)\right)
+\end{equation}
+on $\bigcup_{k\geq 0} O_k$ and extend it by zero to $X$.
+\end{definition}
+
+As recalled in \cref{sec:plurifine}, an $\mathcal{F}$-open subset means an open subset with respect to the plurifine topology.
+\begin{proposition} \label{prop:npp1}
+Let $\varphi_1,\ldots,\varphi_p\in \PSH(X)$.
+\begin{enumerate}
+\item\label{itm:prop:npp1:1} The product $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is local with respect to the plurifine topology in the following sense: Let $O\subseteq X$ be an $\mathcal{F}$-open subset and $\psi_1,\ldots,\psi_p\in \PSH(X)$. Assume that
+\[
+\varphi_j|_{O}=\psi_j|_{O},\quad j=1,\ldots,p,
+\]
+and that
+\[
+\bigwedge_{j=1}^p \ddc \varphi_j\textup{ and } \bigwedge_{j=1}^p \ddc \psi_j
+\]
+are both well-defined, then
+    \begin{equation}\label{eq:ppp1}
+    \left.\left(\bigwedge_{j=1}^p \ddc \varphi_j\right)\right|_{O}=\left.\left(\bigwedge_{j=1}^p \ddc \psi_j\right)\right|_{O}.
+    \end{equation}
+If furthermore $O$ is open in the usual topology, then the product
+\[
+\bigwedge_{j=1}^p \ddc \varphi_j|_{O}
+\]
+on $O$ is well-defined and
+\begin{equation}\label{eq:ppp2}
+\left. \left(\bigwedge_{j=1}^p \ddc \varphi_j\right)\right|_{O}=\bigwedge_{j=1}^p \ddc \varphi_j|_{O}.
+\end{equation}
+Let $\mathcal{U}$ be an open covering of $X$. Then $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$
+is well-defined if and only if each product
+\[
+\bigwedge_{j=1}^p \ddc \varphi_j|_{U},\quad U\in \mathcal{U}.
+\]
+    \item\label{itm:prop:npp1:2} The current $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ and the fact that it is well-defined depend only on the currents $\ddc \varphi_j$, not on the choice of the $\varphi_j$'s nor on the ordering of the $\varphi_j$'s.
+    \item\label{itm:prop:npp1:3} When $\varphi_1,\ldots,\varphi_p\in L^{\infty}_{\loc}(X)$, the non-pluripolar product $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is well-defined and is equal to the Bedford--Taylor product. More generally, if $q\leq p$, and we only assume that $\varphi_1,\ldots,\varphi_q\in L^{\infty}_{\loc}(X)$, and that the non-pluripolar product $T\coloneqq \ddc \varphi_{q+1}\wedge \cdots \wedge \ddc \varphi_p$ is well-defined, then the non-pluripolar product $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is also well-defined, and is equal to the Bedford--Taylor product $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_q\wedge T$ as in \cref{rmk:extensionBT}.
+    \item\label{itm:prop:npp1:4} Assume that $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is well-defined. Then $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ puts no mass on pluripolar sets.
+    \item\label{itm:prop:npp1:5} Assume that $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is well-defined. Then $\bigwedge_{j=1}^p \ddc \varphi_j$ is a closed positive $(p,p)$-current on $X$.\footnote{This current is in fact strongly positive, as shown in \cite{Xiabdiv2}.}
+    \item\label{itm:prop:npp1:6} The product is multilinear: Let $\psi_1\in \PSH(X)$, $a,b>0$ then
+\begin{equation}\label{eq:ppp6}
+\ddc (a\varphi_1+b\psi_1)\wedge \bigwedge_{j=2}^p \ddc \varphi_j =a\,\ddc \varphi_1\wedge \bigwedge_{j=2}^p \ddc \varphi_j + b\,\ddc \psi_1\wedge \bigwedge_{j=2}^p \ddc \varphi_j
+\end{equation}
+in the sense that the left-hand side is well-defined if and only if both terms on the right-hand side are well-defined, and the equality holds in that case.
+\end{enumerate}
+\end{proposition}
+In view of \ref{itm:prop:npp1:3}, we do not need to specify whether our product $\ddc \varphi_1\wedge\cdots\wedge \ddc \varphi_p$ is the Bedford--Taylor product or the non-pluripolar product when the $\varphi_i$'s are all locally bounded.
+
+\begin{example}\label{ex:1Dnpp}
+    Let $\varphi\in \PSH(X)$, then
+    \begin{equation}\label{eq:1dimnpp}
+        (\ddc \varphi)^1=\mathds{1}_{\{\varphi>-\infty\}}\,\ddc\varphi.
+    \end{equation}
+    Here $(\ddc \varphi)^1$ on the left-hand side denotes the non-pluripolar product, while $\ddc\varphi$ on the right-hand side denotes the usual derivative in the sense of current.
+
+    The problem is local, so we may assume that $X=\Delta^n$, the unit polydisk in $\mathbb{C}^n$. Take $f\in C^{\infty}_c(\Delta^n)$ with $f\geq 0$. We need to show that
+    \[
+        \lim_{k\to\infty} \int_{\Delta^n} \mathds{1}_{\{\varphi>-k\}}f\, \ddc \bigl(\varphi\lor (-k)\bigr)\wedge \omega^{n-1}=\int_{\Delta^n} \mathds{1}_{\{\varphi>-\infty\}}f\,\ddc\varphi\wedge \omega^{n-1},
+    \]
+    where $\omega$ is the standard Kähler form on $\mathbb{C}^n$. By the dominated convergence theorem, this reduces immediately to the $1$-dimensional case:
+    \[
+        \lim_{k\to\infty} \int_{\Delta^1} \mathds{1}_{\{\varphi>-k\}}f\, \Delta \bigl(\varphi\lor (-k)\bigr)=\int_{\Delta^1} \mathds{1}_{\{\varphi>-\infty\}}f\,\Delta\varphi,
+    \]
+    for any subharmonic function $\varphi$ on the unit disk $\Delta^1$, which is a special case of \cite[Proposition~3.3]{EK24}.
+\end{example}
+
+\begin{definition}\label{def:npp:L146}
+Let $T_1,\ldots,T_p$ be closed positive $(1,1)$-currents on $X$. We say that $T_1\wedge\cdots\wedge T_p$ is \emph{well-defined} if there exists an open covering $\mathcal{U}$ of $X$ such that on each $U\in \mathcal{U}$, we can find $\varphi_j^U\in \PSH(U)$ ($j=1,\ldots,p$) such that
+\[
+\ddc \varphi_j^U=T_j,\quad j=1,\ldots,p
+\]
+and $\ddc \varphi_1^U\wedge \cdots\wedge \ddc \varphi_p^U$ is well-defined.
+In this case, we define the \emph{non-pluripolar product} \index{product!non-pluripolar product} $T_1\wedge\cdots\wedge T_p$ as the closed positive $(p,p)$-current on $X$ defined by
+\begin{equation}\label{eq:ppp5}
+ \left(T_1\wedge\cdots\wedge T_p\right)|_U=\ddc \varphi_1^U\wedge \cdots\wedge \ddc \varphi_p^U,\quad U\in \mathcal{U}.
+\end{equation}
+\end{definition}
+The product $T_1\wedge\cdots\wedge T_p$ is independent of the choices we made thanks to \itemref{itm:prop:npp1:1} and \ref{itm:prop:npp1:2}.
+
+\cref{prop:npp1} can be formulated in terms of currents without any difficulty.
+
+\begin{remark}\label{rmk:npp:L161}
+    Similar to \cref{rmk:extensionBT}, there is also an extension of the non-pluripolar theory allowing us to define
+    \[
+    T_1\wedge \cdots \wedge T_p\cap T
+    \]
+    for any closed positive current $T$. This is the \emph{relative non-pluripolar product} introduced by Vu \cite{Vu20}. Unlike the relative Bedford--Taylor products, the relative non-pluripolar products present some pathological behaviors. For example, they are not linear in general.
+\end{remark}
+
+\begin{remark}\label{rmk:npp:L169}
+    Another possible generalization of the non-pluripolar products is motivated by \itemref{itm:prop:npp1:1}. One could begin by defining a generalized notion of plurisubharmonic functions on $\mathcal{F}$-open sets, called \emph{$\mathcal{F}$-plurisubharmonic functions} and define their non-pluripolar products. See \cite{EKFW11, EKW14}.
+\end{remark}
+
+\begin{proposition}\label{prop:nppwelldef}
+    Let $X$ be a compact Kähler manifold and let $T_1,\ldots,T_p$ be closed positive $(1,1)$-currents on $X$. Then $T_1\wedge \cdots\wedge T_p$ is well-defined.
+\end{proposition}
+This proposition explains why we usually work in the setting of compact Kähler manifolds.
+
+\begin{corollary}\label{cor:compactfibreslicing}
+    Let $X$ and $Z$ be connected compact Kähler manifolds of dimensions $n$ and $m$, respectively, and let $p_1\colon X\times Z\to X$ and $p_2\colon X\times Z\to Z$ be the projections. Let $\theta$ be a closed real smooth $(1,1)$-form on $X$, let $\phi\in\PSH(X,\theta)$, and let $\gamma$ be a closed smooth positive $(1,1)$-form on $Z$. Put
+    \[
+        Y=X\times Z,\qquad
+        \Theta=p_1^*\theta+p_2^*\gamma,\qquad
+        \Phi=p_1^*\phi.
+    \]
+    Suppose that $W\in\PSH(Y,\Theta)$ and $\Phi-C\leq W\leq\Phi+C$ for some $C>0$. Set
+    \[
+        T=\Theta+\ddc W,\qquad S=\Theta+\ddc\Phi,
+    \]
+    and write $W_z(x)=W(x,z)$. Then $W_z\in\PSH(X,\theta)$ for every $z\in Z$. For $0\leq j\leq n$ and every smooth real $(m,m)$-form $\eta$ on $Z$,
+    \begin{equation}\label{eq:compactrelativeenergyslicing}
+        \begin{aligned}
+        &\int_Y(W-\Phi)p_2^*\eta\wedge T^j\wedge S^{n-j}\\
+        &\qquad=\int_Z\left(\int_X(W_z-\phi)\,
+        \theta_{W_z}^j\wedge\theta_\phi^{n-j}\right)\eta(z),
+        \end{aligned}
+    \end{equation}
+    and
+    \begin{equation}\label{eq:compactfibreslicingconstant}
+        \int_Y p_2^*\eta\wedge T^n
+        =\int_Z\left(\int_X\theta_{W_z}^n\right)\eta(z).
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    By linearity, it suffices to consider $\eta\geq0$.
+    All the non-pluripolar products that occur below are well-defined by \cref{prop:nppwelldef}.
+    We work on a relatively compact product chart $Q\times D\subseteq X\times Z$ and let $a$ and $b$ be smooth local potentials of $p_1^*\theta$ and $p_2^*\gamma$. After subtracting constants, put $w=W+a+b\leq0$ and $f=\Phi+a+b\leq0$. For $k\geq1$, set
+    \[
+        \begin{aligned}
+        w_k&=w\lor(-k),& f_k&=f\lor(-k),\\
+        O_k&=\{w>-k\}\cap\{f>-k\},&
+        \mu_{j,k}&=\mathds{1}_{O_k}(\ddc w_k)^j\wedge(\ddc f_k)^{n-j}.
+        \end{aligned}
+    \]
+    For $z\in D$, write $w_z(x)=w(x,z)$ and $f_z(x)=f(x,z)$, and set
+    \[
+        \mu_{j,k,z}
+        =\mathds{1}_{\{w_z>-k\}\cap\{f_z>-k\}}
+        \bigl(\ddc_x(w_z\lor(-k))\bigr)^j\wedge
+        \bigl(\ddc_x(f_z\lor(-k))\bigr)^{n-j}.
+    \]
+    Apply \cref{lma:boundedfibrefubini} with $u_1=\cdots=u_j=w_k$, $u_{j+1}=\cdots=u_n=f_k$, and
+    \[
+        h=\rho G\mathds{1}_{O_k},\qquad
+        \rho\in\mathcal{C}^{\infty}_c(Q\times D),\quad \rho\geq0,
+    \]
+    where $G$ is any bounded non-negative Borel function. This gives
+    \begin{equation}\label{eq:finitelevelfubini}
+        \int_{Q\times D}\rho G\,p_2^*\eta\wedge\mu_{j,k}
+        =\int_D\left(\int_Q\rho_zG_z\,\mu_{j,k,z}\right)\eta(z).
+    \end{equation}
+    By plurifine locality, $\mu_{j,k}$ increases to the local expression of $T^j\wedge S^{n-j}$, while, for every $z\in D$, $\mu_{j,k,z}$ increases to the local expression of $\theta_{W_z}^j\wedge\theta_\phi^{n-j}$. Taking $G=\delta+C\geq0$ in \eqref{eq:finitelevelfubini}, applying monotone convergence, subtracting the corresponding constant-weight identity, and summing over a non-negative partition of unity proves \eqref{eq:compactrelativeenergyslicing}. The same argument with constant weight and degree $n$ proves \eqref{eq:compactfibreslicingconstant}.
+\end{proof}
+
+\section{Quasi-continuous functions}\label{sec:qc}
+
+Let $X$ be a compact Kähler manifold of dimension $n$ and $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class.
+
+\begin{definition}\label{def:cap}
+    Let $A\subseteq X$ be a Borel subset. The \emph{$\theta$-capacity}\index{capacity!theta-capacity@$\theta$-capacity} $\Capa_{\theta}(A)$\index{$\Capa_{\theta}$} of $A$ is defined as
+    \[
+    \Capa_{\theta}(A)\coloneqq \sup\left\{ \int_A\theta_{\varphi}^n : \varphi\in \PSH(X,\theta),V_{\theta}-1\leq \varphi\leq V_{\theta} \right\}.
+    \]
+\end{definition}
+Here $V_{\theta}$ is defined in \eqref{eq:Vtheta} below. As we will recall below, the non-pluripolar product $\theta_{\varphi}^n$ is well-defined.
+
+The capacity is not very sensitive to the choice of $\theta$:
+\begin{theorem}\label{thm:comp_capa}
+    Let $\theta'$ be another closed real smooth $(1,1)$-form on $X$ representing a big cohomology class. Then there are continuous functions $f,g\colon [0,\infty)\rightarrow [0,\infty)$, with $f(0)=g(0)=0$, such that for any Borel subset $E\subseteq X$, we have
+    \[
+    \Capa_{\theta}(E)\leq f\left( \Capa_{\theta'}(E)\right),\quad \Capa_{\theta'}(E)\leq g\left( \Capa_{\theta}(E)\right).
+    \]
+\end{theorem}
+A more general result is proved in \cite{Lu21}. Similar comparison results hold between $\theta$-capacity and the classical Bedford--Taylor capacity, see \cite[Section~9.2]{GZ17} for the proof. As a consequence, we can freely apply the results in \cite[Section~4.2]{GZ17}, even though capacity has a different meaning there.
+
+\begin{definition}\label{def:qc_fun}
+Let $U$ be an open subset of $X$.
+    A function $f\colon U\rightarrow [-\infty,\infty]$ is \emph{quasi-continuous}\index{quasi-continuous function} if it is Borel measurable and for any $\epsilon>0$, there is an open subset $G\subseteq U$ such that
+    \begin{enumerate}
+        \item\label{itm:def:qc_fun:1} $\Capa_{\theta}(G)\leq \epsilon$;
+        \item\label{itm:def:qc_fun:2} $f|_{U\setminus G}$ is real-valued and continuous.
+    \end{enumerate}
+\end{definition}
+Thanks to \cref{thm:comp_capa}, the notion of quasi-continuous functions is independent of the choice of $\theta$. Note that if $f,g\colon U\rightarrow [-\infty,\infty]$ are two Borel measurable functions equal quasi-everywhere (see \cref{def:pluripolarsets}), then $f$ is quasi-continuous if and only if $g$ is.
+
+\begin{theorem}\label{thm:pp_cap}
+    Let $A\subseteq X$ be a Borel set. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:thm:pp_cap:1} $A$ is pluripolar;
+        \item\label{itm:thm:pp_cap:2} $\Capa_{\theta}(A)=0$.
+    \end{enumerate}
+\end{theorem}
+See \cite[Theorem~4.40]{GZ17} for the proof.
+
+
+\begin{example}\label{ex:psh_qc}
+    A quasi-plurisubharmonic function on an open subset $U\subseteq X$ is always quasi-continuous. See \cite[Theorem~4.20]{GZ17} for the proof.
+
+    More generally, if $\varphi,\psi$ are two quasi-plurisubharmonic functions on $U$, then the following function
+    \[
+    f(x)\coloneqq \begin{cases}
+        \varphi(x)-\psi(x),&\textup{if }(\varphi\lor \psi)(x)\neq -\infty;\\
+        \infty,&\textup{otherwise}
+    \end{cases}
+    \]
+    is quasi-continuous.\footnote{In the literature, people usually say carelessly that $\varphi-\psi$ is quasi-continuous.}
+\end{example}
+
+\begin{definition}\label{def:conv_cap}
+Let $U$ be an open subset of $X$.
+    Let $(f_i)_{i\in I}$ be a net of Borel measurable functions $f_i\colon U\rightarrow [-\infty,\infty]$, and $f\colon U\rightarrow [-\infty,\infty]$ be a Borel measurable function. We say $(f_i)_{i\in I}$ converges to $f$ \emph{in capacity}\index{convergence in capacity} if for any $\delta>0$, we have
+    \[
+        \lim_{i\in I} \Capa_{\theta}\Bigl( \{f_i>f+\delta\} \Bigr)=0,\quad \lim_{i\in I} \Capa_{\theta}\Bigl( \{f_i<f-\delta\} \Bigr)=0\footnotemark.
+    \]
+    \footnotetext{It is very tempting to write $\lim_{i\in I} \Capa_{\theta}\left( \{|f_i-f|>\delta\} \right)=0$, as in \cite[Definition~4.23]{GZ17} for example. But the set where $f_i-f$ is not defined is not a pluripolar set in general. Hence this abuse of notation is not acceptable.}
+    We sometimes write $f_i\xrightarrow{\mathrm{C}} f$\index{$\xrightarrow{\mathrm{C}}$}.
+\end{definition}
+Note that $f$ is not uniquely determined by the net $(f_i)_{i\in I}$. Thanks to \cref{thm:comp_capa}, the notion of convergence in capacity is independent of the choice of $\theta$.
+
+\begin{proposition}\label{prop:mono_psh_cap}
+Let $U$ be an open subset of $X$.
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(U,\theta)$ and $\varphi\in \PSH(U,\theta)$. Assume one of the following conditions holds:
+    \begin{enumerate}
+        \item\label{itm:prop:mono_psh_cap:1} $(\varphi_i)_{i\in I}$ is decreasing and $\varphi$ is the limit of the net;
+        \item\label{itm:prop:mono_psh_cap:2} $(\varphi_i)_{i\in I}$ is increasing and converges almost everywhere to $\varphi$.
+    \end{enumerate}
+    Then $(\varphi_i)_{i\in I}$ converges to $\varphi$ in capacity.
+\end{proposition}
+See \cite[Proposition~4.25]{GZ17} for the proof. The reference concerns only the sequence case, but the proof works for nets as well.
+
+
+\begin{theorem}\label{thm:loc_conv_cap}
+    Let $U$ be an open subset of $X$. Let $(\chi_i\colon U\rightarrow [0,\infty))_i$ be a sequence of quasi-continuous functions. Assume that the sequence is uniformly bounded and converges in capacity to $\chi\colon U\rightarrow [0,\infty)$. For each $j=1,\ldots,p$, let $(\varphi_j^i)_i$ be uniformly bounded sequences in $\PSH(U,\theta_j)$ converging in capacity to bounded $\varphi_j\in \PSH(U,\theta_j)$. Then
+    \[
+        \chi_i\,\bigwedge_{j=1}^p \theta_{j,\varphi_j^i}\rightharpoonup  \chi\,\bigwedge_{j=1}^p \theta_{j,\varphi_j}
+    \]
+    weakly as currents on $U$.
+\end{theorem}
+See \cite[Theorem~4.26]{GZ17}\footnote{In the displayed formula in the statement of \cite[Theorem~4.26]{GZ17}, $1\leq j\leq p$ should be $1\leq i\leq p$ on both sides.}.
+
+\section{Properties of non-pluripolar products}\label{sec:nppprop}
+Let $X$ be a connected compact Kähler manifold of dimension $n$ and $\theta,\theta_1,\ldots,\theta_n$ be closed real smooth $(1,1)$-forms on $X$.
+
+We write
+\begin{equation}\label{eq:PSHpos}
+\PSH(X,\theta)_{>0}=\left\{ \varphi\in \PSH(X,\theta): \int_X\theta_{\varphi}^n>0 \right\}.
+\end{equation}
+The non-pluripolar product $\theta_{\varphi}^n$ is well-defined thanks to \cref{prop:nppwelldef}.
+
+\begin{remark}\label{rmk:npp:L275}
+    Suppose that $X$ is a connected complex manifold of dimension $0$, namely, $X$ is a single point. In this case, by definition, the non-pluripolar product $\theta_{\varphi}^n$ is given by the current of integration at the unique point. So $\PSH(X,\theta)_{>0}=\PSH(X,\theta)\cong \mathbb{R}$ in this case and $\int_X \theta_{\varphi}^n=1$ for all $\varphi\in \PSH(X,\theta)$.
+\end{remark}
+
+Recall the following basic result:
+\begin{proposition}\label{prop:nppposimpbig}
+    Assume that $\PSH(X,\theta)_{>0}$ is non-empty. Then the cohomology class $\{\theta\}$ is big.
+\end{proposition}
+See \cite[Proposition~1.22]{BEGZ10}.
+
+We recall a few basic facts about the non-pluripolar masses.
+\begin{proposition}\label{prop:nppmassinv}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a K\"ahler manifold $Y$ and $T_1,\ldots,T_n$ be closed positive $(1,1)$-currents on $X$. Then
+    \[
+        \int_Y (\pi^*T_1)\wedge \cdots \wedge (\pi^*T_n)=\int_X T_1\wedge \cdots \wedge T_n.
+    \]
+    Similarly, if $S_1,\ldots,S_n$ are closed positive $(1,1)$-currents on $Y$, then
+    \[
+        \int_Y S_1\wedge \cdots \wedge S_n=\int_X \left(\pi_*S_1\right)\wedge \cdots \wedge \left(\pi_*S_n\right).
+    \]
+\end{proposition}
+Here $\pi^*T_i$ is defined as follows: Write $T_i=\theta_i+\ddc \varphi_i$ for some closed smooth real $(1,1)$-form $\theta_i$ on $X$ and $\varphi_i\in \PSH(X,\theta_i)$, then $\pi^*T_i=\pi^*\theta_i+\ddc \pi^*\varphi_i$. The pull-back $\pi^*T_i$ is clearly independent of the choices of $\theta_i$ and $\varphi_i$.
+\begin{proof}
+    The assertions follow from \itemref{itm:prop:npp1:1} on the Zariski open set where $\pi$ is an isomorphism. The exceptional locus is pluripolar, and the relevant non-pluripolar products put no mass on pluripolar sets by \itemref{itm:prop:npp1:4}.
+\end{proof}
+
+\begin{theorem}\label{thm:logconc}
+    Let $\varphi_0,\varphi_1\in \PSH(X,\theta)$. Then the map
+    \[
+    [0,1] \ni t\mapsto \log\int_X \theta_{t\varphi_1+(1-t)\varphi_0}^n
+    \]
+    is concave. 
+    
+    More generally, given closed positive $(1,1)$-currents $T_1,\ldots,T_n$ on $X$, we have
+    \[
+        \int_X T_1\wedge \cdots \wedge T_n\geq \prod_{i=1}^n \left( \int_X T_i^n \right)^{1/n}.
+    \]
+\end{theorem}
+See \cite{DDNL19log} for the proof.
+\begin{remark}\label{rmk:linearcompsh}
+    Here and in the sequel, when we write expressions like $t\varphi+(1-t)\psi$ for $\varphi,\psi\in \QPSH(X)$, we will follow the convention that when $t=0$, the value is $\psi$ and when $t=1$, the value is $\varphi$.
+\end{remark}
+
+We shall write
+\begin{equation}\label{eq:Vtheta}
+    V_{\theta}=\sup\left\{ \varphi\in \PSH(X,\theta):\varphi\leq 0 \right\}.
+\end{equation}
+Note that the upper semicontinuous regularization $V_{\theta}^*$ of $V_{\theta}$ is itself a candidate of \eqref{eq:Vtheta} if $\PSH(X,\theta)\neq \varnothing$ as follows from \cref{prop:pshfunction_closedseq}, therefore, $V_{\theta}=V_{\theta}^*\in \PSH(X,\theta)$ if $\PSH(X,\theta)\neq \varnothing$.
+\index{$V_{\theta}$}
+
+
+
+The function $V_{\theta}$ should be regarded as a canonical representative of the least singular potentials in $\PSH(X,\theta)$. We recall the following result:
+
+\begin{lemma}\label{lma:Vthetalocbdd}
+    Suppose that $\{\theta\}$ is big.
+    The potential $V_{\theta}$ is locally bounded on $X\setminus \nK(\{\theta\})$.
+\end{lemma}
+Recall that $\nK(\{\theta\})$ is the non-Kähler locus introduced in \cref{def:nKlocus}.
+\begin{proof}
+    By definition of $\nK(\{\theta\})$, it suffices to show that if $\varphi\in \PSH(X,\theta)$ has analytic singularities and $\theta_{\varphi}$ is a Kähler current, then $V_{\theta}$ is locally bounded outside $\{\varphi=-\infty\}$. After replacing $\varphi$ by $\varphi-\sup_X\varphi$, the function $\varphi$ is a candidate in \eqref{eq:Vtheta}; hence $V_{\theta}\geq \varphi$ and $V_{\theta}\leq 0$. Since $\varphi$ is locally bounded outside its pole set, so is $V_{\theta}$.
+\end{proof}
+
+
+The non-pluripolar product has a lower semicontinuity property.
+\begin{theorem}[Semicontinuity theorem]\label{thm:semicon}\index{theorem!semicontinuity theorem (non-pluripolar product)}
+    Let $\varphi_j, \varphi_j^k\in \PSH(X,\theta_j)$ ($k\in \mathbb{N}$, $j=1,\ldots,n$).
+    Let $\chi_k,\chi$ ($k\in \mathbb{N}$) be non-negative uniformly bounded quasi-continuous functions on $X$ such that $(\chi_k)_k$ converges to $\chi$ in capacity.
+    Assume that for any $j=1,\ldots,n$, as $k\to\infty$, either $\varphi_j^k$ decreases to $\varphi_j\in \PSH(X,\theta_j)$ or increases to $\varphi_j\in \PSH(X,\theta_j)$ almost everywhere.
+    Then
+    \begin{equation}\label{eq:semicon1}
+    \varliminf_{k\to\infty}\int_X\chi_k \,\theta_{1,\varphi_1^k}\wedge \cdots \wedge \theta_{n,\varphi_n^k} \geq \int_X \chi \,\theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n}.
+\end{equation}
+
+If in addition,
+\[
+\lim_{k\to\infty}\int_X\theta_{1,\varphi_1^k}\wedge \cdots \wedge \theta_{n,\varphi_n^k} =\int_X \theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n},
+\]
+then
+\[
+\chi_k \,\theta_{1,\varphi_1^k}\wedge \cdots \wedge \theta_{n,\varphi_n^k}\rightharpoonup \chi \,\theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n}
+\]
+weakly as measures\footnote{Recall that the weak convergence of Radon measures is stronger than the weak convergence as currents in general. When the Radon measures have uniformly bounded total variation, they are equivalent.}. In particular, the limit in \eqref{eq:semicon1} exists and equality holds in \eqref{eq:semicon1}.
+\end{theorem}
+See \cite[Theorem~2.6]{DDNLsurv} for the proof.
+
+The non-pluripolar mass is a monotone quantity with respect to the singularity type.
+\begin{theorem}[Monotonicity theorem]\label{thm:mono}\index{theorem!monotonicity theorem (non-pluripolar product)}
+ Let $\varphi_j,\psi_j\in \PSH(X,\theta_j)$ for $j=1,\ldots,n$. Assume that $\varphi_j \succeq \psi_j$\footnote{See \cref{def:parorder} for the notation.} for every $j$, then
+ \[
+ \int_{X} \theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n} \geq \int_{X}  \theta_{1,\psi_1}\wedge \cdots \wedge  \theta_{n,\psi_n}.
+ \]
+ In particular, if $\varphi,\psi\in \PSH(X,\theta)$ with $\varphi\succeq \psi$, then
+ \[
+ \int_X \theta_{\varphi}^n\geq  \int_X \theta_{\psi}^n.
+ \]
+ In other words, the non-pluripolar mass increases as the potentials become less singular.
+\end{theorem}
+See \cite[Theorem~1.1]{DDNL18mono}. We will prove a vast extension of this theorem in \cref{prop:mono2}.
+
+By this theorem, the non-pluripolar mass $\int_X \theta_{\varphi}^n$ can be used as a rough measure of the singularities of $\varphi\in \PSH(X,\theta)$. In \cref{sec:Penv}, we shall refine this measure by defining the notion of $P$-envelope.
+
+As a corollary, we obtain that
+\begin{corollary}\label{cor:incseqnppcont}
+Fix a directed set $I$.
+    For each $j=1,\ldots,n$, take an increasing net $(\varphi_j^i)_{i\in I}$ in $\PSH(X,\theta_j)$, uniformly bounded from above. Set
+    \[
+    \varphi_j\coloneqq \uscsup[i\in I] \varphi_j^i,\quad j=1,\ldots,n.
+    \]
+    Then
+    \begin{equation}\label{eq:increseqnppcont}
+    \lim_{i\in I}\int_X \theta_{1,\varphi_1^i}\wedge \cdots \wedge \theta_{n,\varphi_n^i} = \int_X \theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n}.
+\end{equation}
+In particular, if the nets are indeed sequences, we have
+\[
+\theta_{1,\varphi_1^i}\wedge \cdots \wedge \theta_{n,\varphi_n^i} \rightharpoonup \theta_{1,\varphi_1}\wedge \cdots \wedge \theta_{n,\varphi_n}.
+\]
+\end{corollary}
+\begin{proof}
+The final assertion follows from \eqref{eq:increseqnppcont} together with \cref{thm:semicon}. It remains to establish \eqref{eq:increseqnppcont}.
+
+We may assume that $I$ is infinite as there is nothing to prove otherwise. Thanks to \cref{thm:mono}, we already know the $\leq$ inequality in \eqref{eq:increseqnppcont}. We prove the reverse inequality.
+When $I\cong\mathbb{Z}_{>0}$ as directed sets, the reverse inequality follows from \cref{thm:semicon}. In general, by Choquet's lemma \cref{prop:Choquet}, we can find a countable infinite subset $R\subseteq I$ such that
+\[
+\uscsup[r\in R]\varphi^r_j=\uscsup[i\in I]\varphi^i_j
+\]
+for all $j=1,\ldots,n$.
+We fix a bijection $R\cong \mathbb{Z}_{>0}$. For any $j=1,\ldots,n$, we will then denote elements $\varphi_j^r$ ($r\in R$) by $\varphi_j^1,\varphi_j^2,\dots$. We shall write
+\[
+\psi_j^a=\varphi_j^1\lor \cdots \lor \varphi_j^a
+\]
+for each $a\in \mathbb{Z}_{>0}$.
+
+For every $a$ we may choose $i_a\in I$ dominating the finitely many indices corresponding to $\varphi_j^1,\ldots,\varphi_j^a$ for all $j$. It then follows from the monotonicity theorem that
+\[
+\lim_{i\in I}\int_X \theta_{1,\varphi_1^i}\wedge \cdots \wedge \theta_{n,\varphi_n^i}\geq \lim_{a\to \infty}\int_X \theta_{1,\psi_1^a}\wedge \cdots \wedge \theta_{n,\psi_n^a}.
+\]
+From the special case mentioned above, we know that the right-hand side is exactly the right-hand side of \eqref{eq:increseqnppcont}, so we conclude.
+\end{proof}
+
+
+We prove an interesting inequality about the Monge--Ampère measure of the maximum of two potentials.
+\begin{lemma}\label{lma:lorMAineqe}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Then
+    \begin{equation}\label{eq:thetavarphilorpsi1}
+    \theta_{\varphi\lor \psi}^n\geq \mathds{1}_{\{\varphi\geq \psi\}}\,\theta_{\varphi}^n+\mathds{1}_{\{\varphi<\psi\}}\,\theta_{\psi}^n.
+    \end{equation}
+    In particular, if $\varphi\leq \psi$, then
+    \[
+    \mathds{1}_{\{\varphi=\psi\}}\,\theta_{\varphi}^n\leq \mathds{1}_{\{\varphi=\psi\}}\,\theta_{\psi}^n.
+    \]
+\end{lemma}
+At a first sight, \eqref{eq:thetavarphilorpsi1} might seem trivial, and it is if we replace $\{\varphi\geq \psi\}$ by $\{\varphi>\psi\}$. The difficulty really lies on understanding the contact set $\{\varphi=\psi\}$.
+
+\begin{proof}
+    For each $k\in \mathbb{N}$, we set
+    \[
+    \psi_k=\psi\lor (V_{\theta}-k),\quad \varphi_k=\varphi\lor (V_{\theta}-k).
+    \]
+    For each $t>0$ and each $k\in \mathbb{N}$, we have
+    \[
+    \begin{split}
+    \theta_{\psi_k\lor (\varphi_k+t)}^n\geq & \mathds{1}_{\{\psi_k>\varphi_k+t\}}\,\theta_{\psi_k\lor (\varphi_k+t)}^n+\mathds{1}_{\{\psi_k<\varphi_k+t\}}\,\theta_{\psi_k\lor (\varphi _k+t)}^n\\
+    =&\mathds{1}_{\{\psi_k>\varphi_k+t\}}\,\theta_{\psi_k}^n+\mathds{1}_{\{\psi_k<\varphi_k+t\}}\,\theta_{\varphi_k}^n,
+    \end{split}
+    \]
+    where the equality follows from the plurifine locality of non-pluripolar products \itemref{itm:prop:npp1:1}. We observe that for any $t>0$, $\psi_k\lor (\varphi_k+t)\sim \psi_k\lor \varphi_k$. Therefore, the monotonicity theorem \cref{thm:mono} guarantees that
+    \[
+        \int_X \theta_{\psi_k\lor (\varphi_k+t)}^n=\int_X\theta_{\psi_k\lor \varphi_k}^n.
+    \]
+    As $t\to 0+$,
+    \[
+    \theta_{\psi_k\lor (\varphi_k+t)}^n\rightharpoonup \theta_{\psi_k\lor \varphi_k}^n
+    \]
+    by \cref{thm:semicon}.
+
+    Letting $t\to 0+$, we conclude that
+    \[
+    \theta_{\psi_k\lor \varphi_k}^n\geq \mathds{1}_{\{\psi_k>\varphi_k\}}\,\theta_{\psi_k}^n+\mathds{1}_{\{\psi_k\leq \varphi_k\}}\,\theta_{\varphi_k}^n.
+    \]
+    In particular, multiplying both sides by $\mathds{1}_{\{\min\{\varphi,\psi\}>V_{\theta}-k\}}$ and applying \itemref{itm:prop:npp1:1} again, we find that
+    \[
+    \begin{split}
+    \mathds{1}_{\{\min\{\varphi,\psi\}>V_{\theta}-k\}}\,\theta_{\psi\lor \varphi}^n\geq &\mathds{1}_{\{\min\{\varphi,\psi\}>V_{\theta}-k\}\cap \{\psi\leq \varphi\}}\,\theta_{\varphi}^n \\
+    &+\mathds{1}_{\{\min\{\varphi,\psi\}>V_{\theta}-k\}\cap \{\psi>\varphi\}}\,\theta_{\psi}^n.
+    \end{split}
+    \]
+    Letting $k\to\infty$, we conclude \eqref{eq:thetavarphilorpsi1}.
+\end{proof}
+\begin{corollary}\label{cor:intcontlimsup}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$, and $\varphi\in \PSH(X,\theta)$ so that $\varphi_i\to \varphi$ in $L^1$. Assume that $\varphi_i\leq 0$ for all $i\in I$.
+    Then
+    \begin{equation}\label{eq:contact_int_usc}
+    \varlimsup_{i\in I} \int_{\{\varphi_i=0\}}\theta_{\varphi_i}^n\leq \int_{\{\varphi=0\}} \theta_{\varphi}^n.
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    Observe that $\varphi\leq 0$ by \cref{prop:L1compa}.
+
+    \textbf{Step~1}. We first assume that $I\cong \mathbb{Z}_{>0}$ as directed sets. Namely, $(\varphi_i)_{i>0}$ is a sequence.
+
+    For each $k>0$, let
+    \[
+    \psi_k=\uscsup[j\geq k] \varphi_j.
+    \]
+    Then $(\psi_k)_{k}$ is a decreasing sequence in $\PSH(X,\theta)$ with limit $\varphi$, see \cref{cor:L1limipp} for example.
+
+    Thanks to \cref{lma:lorMAineqe}, for each $k>0$, we have
+    \[
+    \mathds{1}_{\{\varphi_k=\psi_k\}}\,\theta_{\varphi_k}^n\leq \mathds{1}_{\{\varphi_k=\psi_k\}}\,\theta_{\psi_k}^n.
+    \]
+    Multiplying both sides with $\mathds{1}_{\{\varphi_k=0\}}$, we find that
+    \[
+    \mathds{1}_{\{\varphi_k=0\}}\,\theta_{\varphi_k}^n\leq \mathds{1}_{\{\varphi_k=0\}}\,\theta_{\psi_k}^n.
+    \]
+    Take $b,C>0$. For each $k>0$, we have
+    \[
+    \begin{split}
+    \int_{\{\varphi_k=0\}} \theta_{\varphi_k}^n\leq \int_{\{\varphi_k=0\}} \theta_{\psi_k}^n\leq \int_{\{\psi_k=0\}} \theta_{\psi_k}^n\\=\int_{\{\psi_k=0\}} \theta_{\psi_k\lor (V_{\theta}-C)}^n\leq \int_X \mathrm{e}^{b\psi_k}\,\theta_{\psi_k\lor (V_{\theta}-C)}^n,
+    \end{split}
+    \]
+    where the equality part follows from \itemref{itm:prop:npp1:1}.
+
+    Letting $k\to\infty$ with the help of \cref{thm:semicon}, we conclude that
+    \[
+    \varlimsup_{k\to\infty}\int_{\{\varphi_k=0\}} \theta_{\varphi_k}^n\leq \int_X \mathrm{e}^{b\varphi}\,\theta_{\varphi\lor (V_{\theta}-C)}^n.
+    \]
+    Letting $b\to\infty$ and then $C\to\infty$, we conclude \eqref{eq:contact_int_usc}.
+
+    \textbf{Step~2}. We now handle the general net case.
+
+    Fix a volume form on $X$, so that we can talk about the $L^1$-norm on $X$ in the sequel.
+
+    Suppose that \eqref{eq:contact_int_usc} fails. Then there is $\delta>0$ such that, for every $i_0\in I$, one can find $i\geq i_0$ satisfying
+    \[
+        \int_{\{\varphi_i=0\}}\theta_{\varphi_i}^n>\int_{\{\varphi=0\}}\theta_{\varphi}^n+\delta.
+    \]
+    Since $\varphi_i\to\varphi$ in $L^1$, for every $k>0$ there is $a_k\in I$ such that
+    \[
+        \|\varphi_i-\varphi\|_{L^1}<k^{-1},\quad i\geq a_k.
+    \]
+    We can then recursively choose an increasing sequence $(i_k)_{k>0}$ in $I$ with $i_k\geq a_k$ and
+    \[
+        \int_{\{\varphi_{i_k}=0\}}\theta_{\varphi_{i_k}}^n>\int_{\{\varphi=0\}}\theta_{\varphi}^n+\delta.
+    \]
+    This sequence converges to $\varphi$ in $L^1$, contradicting Step~1.
+\end{proof}
+
+Next we introduce an envelope construction, which will be repeatedly used in the sequel.
+\begin{definition}\label{def:Pthetaf}
+    Given a function $f\colon X\rightarrow [-\infty,\infty]$, we define $P_{\theta}(f)$ as follows:
+    \begin{equation}\label{eq:Pthetafdef}
+    P_{\theta}(f)\coloneqq \uscsup \left\{ \varphi\in \PSH(X,\theta): \varphi\leq f\textup{ quasi-everywhere} \right\}\footnotemark.
+    \end{equation}
+    \index{$P_{\theta}(f)$}
+    \footnotetext{In the original article \cite{DDNLsurv}, the authors required that $\varphi\leq f$ everywhere. But in the proof of their Theorem~2.7 (\cref{thm:concentration} below), they actually relied on the current definition. In the most relevant case, if $f$ is $\mathcal{F}$-upper semicontinuous (for example, if $f$ is upper semicontinuous), then these two definitions coincide. This is due to \cref{lma:pshfunfinitelocuspfdense} and \cref{prop:pshfunFcont}.}
+\end{definition}
+The function $P_{\theta}(f)$ is either constantly $\pm\infty$ or lies in $\PSH(X,\theta)$. Moreover, given another function $g\colon X\rightarrow [-\infty,\infty]$, equal to $f$ quasi-everywhere, we have $P_{\theta}(f)=P_{\theta}(g)$. In particular, it makes sense to talk about $P_{\theta}(f)$ even if $f$ is only defined outside a pluripolar set.
+
+We also observe that
+\begin{equation}\label{eq:Pthetafleqfqe}
+P_{\theta}(f)\leq f\quad\textup{quasi-everywhere}.
+\end{equation}
+This is a consequence of \cref{prop:Choquet} and \cref{prop:supsupstardiff}.
+
+
+
+
+\begin{lemma}\label{lma:BT_freeenvelope}
+    Fix a closed smooth real $(1,1)$-form $\theta$ on $X$ representing a big cohomology class.
+    Let $f\colon X\rightarrow \mathbb{R}$ be a lower semicontinuous function.
+    Assume that $P_{\theta}(f)\not\equiv \infty$. Then $P_{\theta}(f)$ is locally bounded outside $\nK(\{\theta\})$. Set $U\coloneqq \{P_{\theta}(f)<f\}\setminus \nK(\{\theta\})$, then
+    \begin{equation}\label{eq:bal_ddcn0}
+        \Bigl(\theta|_U+\ddc P_{\theta}(f)|_U\Bigr)^n=0.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    First observe that $V_{\theta}+\inf_X f$ is a candidate in the definition \eqref{eq:Pthetafdef}. So
+    \[
+    P_{\theta}(f)\geq V_{\theta}+\inf_X f,
+    \]
+    and in particular $P_{\theta}(f)\not\equiv -\infty$.
+
+    In particular, $P_{\theta}(f)\in \PSH(X,\theta)$. It is therefore bounded from above. By \cref{lma:Vthetalocbdd}, it is locally bounded away from $\nK(\{\theta\})$.
+
+    Now fix $x\in U$, and $\epsilon>0$ so that
+    \[
+        P_{\theta}(f)(x)<f(x)-\epsilon.
+    \]
+    Take holomorphic balls $B\Subset B'\Subset U$ containing $x$. After shrinking $B$, we can guarantee that
+    \begin{equation}\label{eq:PthetafBp_temp1}
+        \left.P_{\theta}(f)\right|_{B}<f(x)-\epsilon,\quad f|_B> f(x)-\epsilon.
+    \end{equation}
+    Let $\varphi\in \PSH(X,\theta)$ be the balayage of $P_{\theta}(f)$ on $B$, as constructed in \cref{prop:bal_general}.
+    By the domination principle \cref{prop:dom_prin_loc}, we find that
+    \[
+        \varphi|_{B}\leq f(x)-\epsilon<f|_{B}.
+    \]
+    Since $\varphi=P_{\theta}(f)$ outside $B$, we conclude that
+    \[
+        \varphi\leq f\quad \textup{quasi-everywhere}.
+    \]
+    From this it follows that $\varphi\leq P_{\theta}(f)$, and hence equality holds. But then \eqref{eq:bal_ddcn0} holds automatically on $B$ since $\varphi$ is constructed by balayage. Since $x$ and $B$ are arbitrary, we conclude \eqref{eq:bal_ddcn0}.
+\end{proof}
+
+\begin{theorem}\label{thm:concentration}
+    Let $f\colon X\rightarrow [-\infty,\infty]$ be a quasi-continuous function.
+
+    Assume that $P_{\theta}(f)\not\equiv \pm\infty$. Then $P_{\theta}(f)\in \PSH(X,\theta)$ and
+    \begin{equation}\label{eq:Pthetafconc}
+    \int_{\{P_{\theta}(f)<f\}} \theta_{P_{\theta}(f)}^n=0.
+    \end{equation}
+\end{theorem}
+
+Thanks to \eqref{eq:Pthetafleqfqe}, we can rewrite \eqref{eq:Pthetafconc} as
+\[
+\int_{\{P_{\theta}(f)\neq f\}} \theta_{P_{\theta}(f)}^n=0.
+\]
+We shall say that $\theta_{P_{\theta}(f)}^n$ is carried by the contact set $\{P_{\theta}(f)=f\}$.
+\footnote{It is tempting to say that $\theta_{P_{\theta}(f)}^n$ is supported on the contact set $\{P_{\theta}(f)=f\}$, as people are already doing in the literature. It should be mentioned that this is an abuse of the language, since the support of $\theta_{P_{\theta}(f)}^n$ (as a closed subset of $X$) could be much larger in general. One could probably introduce a notion of plurifine support, similar to what Fuglede did in the classical potential theory \cite{Fug72}.}
+
+
+\begin{proof}
+    \textbf{Step~1}. We first reduce to the case where $f$ is bounded.
+
+    \textbf{Step~1.1}. Reduce to the case where $f\leq 0$.
+
+    Take $C\in \mathbb{R}$ so that $P_{\theta}(f)\leq C$. Then
+    \[
+    P_{\theta}(f)=P_{\theta}\Bigl( \min\{f,C\} \Bigr).
+    \]
+    Thus we can replace $f$ by $\min \{f,C\}$. Replacing $f$ by $f-\sup_X f$, we reduce easily to the case where $f\leq 0$.
+
+    \textbf{Step~1.2}. Reduce to the case where $f$ is bounded. Assume that in this case, the theorem is known. We prove \eqref{eq:Pthetafconc} for $f\leq 0$.
+
+    For each $j>0$, we have
+    \begin{equation}\label{eq:Pthetafjint0_temp1}
+    \int_{\{P_{\theta}(f_j)<f_j\}} \theta_{P_{\theta}(f_j)}^n=0,
+    \end{equation}
+    where $f_j=f\lor (-j)$.
+
+    Now fix $C>0$ and two open sets $G'\Subset G\Subset X\setminus \nK(\{\theta\})$. Fix a smooth function $\chi\colon X\rightarrow [0,1]$ so that $\chi|_{G'}\equiv 1$ and $\chi$ is supported in $G$.
+
+    Define
+    \[
+    U_C\coloneqq G \cap \left\{P_{\theta}(f)>V_{\theta}-C \right\},\quad U'_C\coloneqq G' \cap \left\{P_{\theta}(f)>V_{\theta}-C \right\}.
+    \]
+    Then $U_C$ is $\mathcal{F}$-open. It follows from \itemref{itm:prop:npp1:1} that for any $j>0$,
+    \[
+    \mathds{1}_{U_C}\, \theta_{P_{\theta}(f_j)\lor (V_{\theta}-C)}^n=\mathds{1}_{U_C}\, \theta_{P_{\theta}(f_j)}^n.
+    \]
+    In particular, thanks to \eqref{eq:Pthetafjint0_temp1},
+    \begin{equation}\label{eq:intU1mexpPthetaf_temp1}
+    \int_{U_C} \left( 1-\mathrm{e}^{P_{\theta}(f_j)-f_j} \right)\,\theta_{P_{\theta}(f_j)\lor (V_{\theta}-C)}^n=0.
+    \end{equation}
+    Note that the $P_{\theta}(f_j)\lor (V_{\theta}-C)$'s for various $j$ are uniformly bounded from below on $U_C$, thanks to \cref{lma:Vthetalocbdd}.
+
+    Next we claim that $(P_{\theta}(f_j))_j$ is decreasing and converges to $P_{\theta}(f)$.
+
+    The sequence is decreasing; let us compute its limit.
+    In fact, $P_{\theta}(f_j)\leq f_j$ quasi-everywhere. It follows that $\inf_j P_{\theta}(f_j)\leq f$ quasi-everywhere and hence
+    \[
+    \inf_{j>0} P_{\theta}(f_j)\leq P_{\theta}(f).
+    \]
+    The reverse inequality is trivial, and our assertion follows.
+
+    Since $P_{\theta}(f)\not\equiv -\infty$, we know that the set $\{f=-\infty\}$ is pluripolar. It follows that $P_{\theta}(f_j)-f_j$ converges to the following function $g\colon X\rightarrow [-\infty,\infty)$ in capacity:
+    \[
+    g(x)=\begin{cases}
+        P_{\theta}(f)(x)-f(x),&\textup{if } f(x)\neq -\infty;\\
+        -\infty,& \textup{otherwise}.
+    \end{cases}
+    \]
+    Therefore,
+    \[
+    1-\mathrm{e}^{P_{\theta}(f_j)-f_j}\xlongrightarrow{\mathrm{C}} 1-\mathrm{e}^{g}.
+    \]
+    Next we claim that
+     \begin{equation}\label{eq:intU1mexpPthetaf_temp2}
+    \int_{U'_C} \left( 1-\mathrm{e}^{g} \right)\,\theta_{P_{\theta}(f)}^n=0.
+    \end{equation}
+    Since $g\leq 0$ quasi-everywhere, the left-hand side of \eqref{eq:intU1mexpPthetaf_temp2} is non-negative. It suffices to prove the $\leq$ direction.
+
+    We wish to let $j\to\infty$ directly in \eqref{eq:intU1mexpPthetaf_temp1}, but since $U_C$ is not open in general, this cannot be done directly. In the sequel, we shall slightly enlarge $U_C$ to get an open set and then take the limit.
+
+    Fix $\epsilon>0$. We can find an open subset $W\Subset X\setminus \nK(\{\theta\})$ so that
+    \begin{equation}\label{eq:CapCinvthetaWmusmall_temp1}
+    \Capa_{C^{-1}\theta}(W\setminus U_C)<\epsilon.
+    \end{equation}
+    For example, we can construct $W$ as follows. By \cref{ex:psh_qc}, we can find an open set $A\subseteq G$ so that $\Capa_{C^{-1}\theta}(A)<\epsilon$ and $P_{\theta}(f)-V_{\theta}$ is continuous on $G\setminus A$. Then $U_C\cap (G\setminus A)$ is relatively open in $G\setminus A$, so we may choose an open set $W_0\subseteq G$ such that
+    \[
+        W_0\cap (G\setminus A)=U_C\cap (G\setminus A).
+    \]
+    Taking $W=W_0\cup A$, we get $U_C\subseteq W$ and $W\setminus U_C\subseteq A$, hence \eqref{eq:CapCinvthetaWmusmall_temp1}.
+
+    Thanks to \eqref{eq:CapCinvthetaWmusmall_temp1} and \eqref{eq:intU1mexpPthetaf_temp1}, we have
+    \[
+    \int_W \chi\left( 1-\mathrm{e}^{P_{\theta}(f_j)-f_j} \right)\,\theta_{P_{\theta}(f_j)\lor (V_{\theta}-C)}^n\leq C^n\epsilon.
+    \]
+    Letting $j\to\infty$ and applying \cref{thm:loc_conv_cap}, we find that
+    \[
+    \int_{U'_C} \left( 1-\mathrm{e}^{g} \right)\,\theta_{P_{\theta}(f)\lor (V_{\theta}-C)}^n\leq \int_W \chi\left( 1-\mathrm{e}^{g} \right)\,\theta_{P_{\theta}(f)\lor (V_{\theta}-C)}^n\leq C^n\epsilon.
+    \]
+    Since $\epsilon>0$ is arbitrary, \eqref{eq:intU1mexpPthetaf_temp2} follows.
+
+    Now letting $C\to\infty$ in \eqref{eq:intU1mexpPthetaf_temp2}, we find
+    \[
+    \int_{G'}\left( 1-\mathrm{e}^{g} \right)\,\theta_{P_{\theta}(f)}^n=0.
+    \]
+    Since $G'\Subset X\setminus \nK(\{\theta\})$ is arbitrary, and $\nK(\{\theta\})\subseteq X$ is a proper analytic subset, we finally conclude
+    \[
+    \int_X \left( 1-\mathrm{e}^{g} \right)\,\theta_{P_{\theta}(f)}^n=0.
+    \]
+    In other words, $P_{\theta}(f)=f$ almost everywhere with respect to $\theta_{P_{\theta}(f)}^n$. This proves \eqref{eq:Pthetafconc}.
+
+    \textbf{Step~2}. We now assume that $-C'\leq f\leq 0$ for some $C'>0$.
+
+    For each $j>0$, take an open subset $V_j\subseteq X$ so that
+    \begin{enumerate}
+        \item\label{itm:chapter-npp:L662:1} $\Capa_{C'^{-1}\theta}(V_j)\leq 2^{-j-1}$, and
+        \item\label{itm:chapter-npp:L662:2} $f|_{X\setminus V_j}$ is continuous.
+    \end{enumerate}
+    Without loss of generality, we may assume that the $V_j$'s are decreasing. Take a continuous function $f_j\colon X\rightarrow [-C',0]$ extending $f|_{X\setminus V_j}$. This is always possible thanks to Tietze's extension theorem. For each $j>0$, we let
+    \[
+    h_j\coloneqq \sup_{k\geq j} f_k.
+    \]
+    Then $h_j$ is lower semicontinuous and $h_j$ agrees with $f$ outside $V_j$.
+    Set
+    \[
+    h=\inf_{j>0} h_j.
+    \]
+    Then the set $\{h\neq f\}$ is contained in the intersection of the $V_j$'s and hence is a pluripolar set, thanks to \cref{thm:pp_cap}. In particular, $P_{\theta}(f)=P_{\theta}(h)$.
+
+    Now we can apply \cref{lma:BT_freeenvelope} to conclude that
+    \[
+    \int_{X\setminus \nK(\{\theta\})} \left(1-\mathrm{e}^{P_{\theta}(h_j)-h_j} \right) \theta_{P_{\theta}(h_j)}^n=0
+    \]
+    for each $j>0$.
+
+    Fix two open subsets $G'\Subset G\Subset X\setminus \nK(\{\theta\})$. Note that $-C'\leq h_j\leq 0$. In particular,
+    \[
+    V_{\theta}-C'\leq P_{\theta}(h_j)\leq V_{\theta}.
+    \]
+    Hence,
+    \[
+    \begin{aligned}
+        &\int_G \left| 1-\mathrm{e}^{P_{\theta}(h_j)-f}\right|\,\theta_{P_{\theta}(h_j)}^n\\
+        =&\int_{G\cap V_j} \left|1-\mathrm{e}^{P_{\theta}(h_j)-f}\right|\,\theta_{P_{\theta}(h_j)}^n+\int_{G\setminus V_j} \left|1-\mathrm{e}^{P_{\theta}(h_j)-h_j}\right|\,\theta_{P_{\theta}(h_j)}^n\\
+        =& \int_{G\cap V_j} \left|1-\mathrm{e}^{P_{\theta}(h_j)-f}\right|\,\theta_{P_{\theta}(h_j)}^n\\
+        \leq & \int_{G\cap V_j} \left( 1+\mathrm{e}^{C'}\right)\,\theta_{P_{\theta}(h_j)}^n\\
+        \leq & \left( 1+\mathrm{e}^{C'}\right) \cdot 2^{-j-1} C'^n.
+    \end{aligned}
+    \]
+    Now we can apply the same arguments as in Step~1.2 to conclude that
+    \[
+    \int_{G'}\left(1-\mathrm{e}^{P_{\theta}(f)-f}\right)\,\theta_{P_{\theta}(f)}^n=0.
+    \]
+    Since $G'\Subset X\setminus \nK(\{\theta\})$, \eqref{eq:Pthetafconc} follows.
+\end{proof}
+
+
+
+The following lemma is striking in that we begin only with an upper bound of $\varphi$, but at the end of the day, we get a lower bound almost for free. This powerful method will be employed again and again in the whole book. A more general version will be proved in \cref{thm:pathoenvelope}, after introducing the terminology of $P$-preorder in \cref{chap:comp}.
+\begin{lemma}\label{lma:pathoenvelope}
+    Let $\varphi,\psi\in \PSH(X,\theta)$, $\varphi\preceq \psi$ and $\int_X \theta_{\varphi}^n>0$. Then for any
+    \begin{equation}\label{eq:arangetemp}
+    a\in \left( 1, \left(\frac{\int_X \theta_{\psi}^n}{\int_X \theta_{\psi}^n-\int_X \theta_{\varphi}^n}\right)^{1/n} \right)\footnotemark,
+    \end{equation}
+    there is $\eta\in \PSH(X,\theta)_{>0}$ such that
+    \begin{equation}\label{eq:path_env}
+        a^{-1}\eta+\left(1-a^{-1}\right)\psi\leq \varphi.
+    \end{equation}
+\end{lemma}
+\footnotetext{The fraction in \eqref{eq:arangetemp} is understood as $\infty$ if either $\int_X \theta_{\psi}^n=\int_X \theta_{\varphi}^n$ or $n=0$. Thanks to the monotonicity theorem \cref{thm:mono}, the interval \eqref{eq:arangetemp} is non-empty.}
+
+We write
+\begin{equation}\label{eq:perversePtheta}
+    \begin{aligned}
+    P_{\theta}\Bigl(a\varphi+(1-a)\psi\Bigr)\coloneqq  &\uscsup\left\{\eta\in \PSH(X,\theta): a^{-1}\eta+\left(1-a^{-1}\right)\psi  \leq  \varphi \right\}\\
+    \in & \PSH(X,\theta).
+    \end{aligned}
+\end{equation}
+Note that if we regard $a\varphi+(1-a)\psi$ as a function defined outside the pluripolar set $\{\varphi=\psi=-\infty\}$ on $X$, then \eqref{eq:perversePtheta} coincides with the envelope in the sense of \eqref{eq:Pthetafdef}.
+
+Observe that
+\begin{equation}\label{eq:P_path_everywhere_ineq}
+a^{-1}P_{\theta}\Bigl(a\varphi+(1-a)\psi \Bigr)+(1-a^{-1})\psi\leq \varphi.
+\end{equation}
+In fact, this equation holds outside a pluripolar set by \cref{prop:supsupstardiff}, hence it holds everywhere by \cref{prop:pshfuncdetdense}.
+
+Finally, observe that
+\[
+P_{\theta}\Bigl(a\varphi+(1-a)\psi\Bigr)\preceq P_{\theta}\Bigl(a\varphi+(1-a)\varphi\Bigr)=\varphi.
+\]
+If $\varphi\leq \psi$, the same argument gives
+\[
+P_{\theta}\Bigl(a\varphi+(1-a)\psi\Bigr)\leq\varphi.
+\]
+
+
+\begin{proof}
+    Without loss of generality, we may assume that $\varphi\leq \psi\leq 0$.
+
+    \textbf{Step~1}. We show the existence of $\eta\in \PSH(X,\theta)$ satisfying \eqref{eq:path_env}.
+
+    \textbf{Step~1.1}. We first consider the case where $\psi\sim \varphi$. In this case, we can take $\eta=\varphi-C$ enough $C>0$. But since by \eqref{eq:P_path_everywhere_ineq}, we also have $P_{\theta}(a\varphi+(1-a)\psi)\leq \psi$, we find that
+    \[
+        P_{\theta}\Bigl(a\varphi+(1-a)\psi\Bigr)\sim \varphi\sim \psi
+    \]
+    in this case.
+
+    \textbf{Step~1.2}. We make a first reduction of the problem.
+
+    Now for each $\gamma\in \PSH(X,\theta)$, we let
+    \[
+    P_{\theta}[\gamma]\coloneqq \uscsup\Bigl\{\eta\in \PSH(X,\theta): \eta\leq \min\{\gamma+C,0\}\textup{ for some }C>0 \Bigr\}\footnotemark.
+    \]
+    \footnotetext{This is precisely the $P$-envelope to be introduced later in \cref{def:Penv}.}
+
+    Observe that due to \cref{cor:incseqnppcont} and \cref{thm:mono}, we have
+    \begin{equation}\label{eq:intthetaP_pr_mass_temp1}
+    \int_X \theta_{P_{\theta}[\gamma]}^n=\int_X \theta_{\gamma}^n.
+    \end{equation}
+    Further, $0\geq P_{\theta}[\gamma]\geq \gamma$ if $\gamma\leq 0$.
+
+    We now define an increasing transfinite sequence $(\psi_{\alpha})_{\alpha}$ consisting of non-positive functions in $\PSH(X,\theta)$ as follows:
+    \begin{enumerate}
+        \item\label{itm:chapter-npp:L766:1} $\psi_0=\psi$;
+        \item\label{itm:chapter-npp:L766:2} $\psi_{\alpha+1}=P_{\theta}[\psi_{\alpha}]$;
+        \item\label{itm:chapter-npp:L766:3} if $\alpha$ is a limit ordinal, we define
+        \[
+        \psi_{\alpha}=\uscsup[\beta<\alpha] \psi_{\beta}.
+        \]
+    \end{enumerate}
+    Observe that
+    \[
+    \int_X \theta_{\psi_{\alpha}}^n=\int_X \theta_{\psi}^n
+    \]
+    by \cref{cor:incseqnppcont} and \eqref{eq:intthetaP_pr_mass_temp1}. Since $\PSH(X,\theta)$ is indeed a set, the transfinite sequence must stabilize, say at some $\phi\in \PSH(X,\theta)$.
+    Note that $0 \geq \phi\geq \psi$, and $P_{\theta}[\phi]=\phi$.
+
+    Note that the interval \eqref{eq:arangetemp} remains the same if we replace $\psi$ by $\phi$. Take $a$ in this interval, it suffices to prove the existence of $\eta\in \PSH(X,\theta)$ so that
+    \begin{equation}\label{eq:path_env_temp1}
+    a^{-1}\eta+\left(1-a^{-1}\right)\phi\leq \varphi.
+    \end{equation}
+
+    Let us record the following observation for later use. Suppose that $\tau\in \PSH(X,\theta)$ and $\tau\preceq \phi$. Then
+    \begin{equation}\label{eq:modelpot_sup_temp1}
+        \sup_{\{\phi\neq -\infty\}} (\tau-\phi)=\sup_X \tau.
+    \end{equation}
+    Observe that $\phi\leq 0$, so on the set $\{\phi\neq -\infty\}$, we have
+    \[
+    \tau-\phi\geq \tau.
+    \]
+    So the $\geq$ direction in \eqref{eq:modelpot_sup_temp1} follows from \cref{cor:diffsupinfindeppluripolar}.
+    Conversely, by assumption, we can find a constant $C>0$ so that
+    \[
+    \tau-\sup_X \tau\leq \min\{\phi+C,0 \}.
+    \]
+    It follows that $\tau-\sup_X \tau\leq P_{\theta}[\phi]=\phi$. Therefore, the reverse inequality follows, and \eqref{eq:modelpot_sup_temp1} follows.
+
+    For each $k>0$, we introduce
+    \[
+    \varphi_k=\varphi\lor \left(\phi-k\right),\quad \eta_k\coloneqq P_{\theta}\Bigl( a \varphi_k+(1-a)\phi \Bigr).
+    \]
+    Since $\varphi_k\sim \phi$, using Step~1.1, we have $\eta_k\in \PSH(X,\theta)$ and $\eta_k\sim \phi$ as well.
+
+    Note that $(\eta_k)_k$ is decreasing in $k$. Let
+    \[
+    \eta\coloneqq \inf_{k\in \mathbb{N}} \eta_k.
+    \]
+    Note that $\eta$ automatically satisfies \eqref{eq:path_env_temp1}.
+    It remains to show that $\eta\not\equiv -\infty$.
+
+    \textbf{Step~1.3}. We prove that $\eta\not\equiv -\infty$.
+
+    Suppose, for contradiction, that $\sup_X \eta_k\to -\infty$. For each $k>0$, let
+    \[
+    \gamma_k\coloneqq a^{-1}\eta_k+\left(1-a^{-1}\right)\phi,\quad D_k\coloneqq \left\{\gamma_k=\varphi_k\right\}.
+    \]
+    We claim that
+    \begin{equation}\label{eq:1Dkan_temp1}
+        \theta_{\eta_k}^n\leq a^n\mathds{1}_{D_k}\, \theta_{\varphi_k}^n.
+    \end{equation}
+
+    Since $\gamma_k\leq \varphi_k$ with equality on $D_k$, \cref{lma:lorMAineqe} gives
+    \[
+    \mathds{1}_{D_k}\, \theta_{\gamma_k}^n\leq \mathds{1}_{D_k}\, \theta_{\varphi_k}^n.
+    \]
+    On the other hand,
+    \[
+    \theta_{\gamma_k}=a^{-1}\theta_{\eta_k}+\left(1-a^{-1}\right)\theta_{\phi},
+    \]
+    so positivity and multilinearity of the non-pluripolar product imply
+    \[
+        a^{-n}\theta_{\eta_k}^n\leq \theta_{\gamma_k}^n.
+    \]
+    Finally, it follows from \cref{thm:concentration} that
+    \[
+    \mathds{1}_{D_k}\,\theta_{\eta_k}^n=\theta_{\eta_k}^n.
+    \]
+    Putting these results together, we conclude \eqref{eq:1Dkan_temp1}.
+
+
+
+
+    Fix $j>k>0$. Note that
+    \begin{equation}\label{eq:intthetavarphijn_temp1}
+    \int_{\{\varphi\leq \phi-k \}} \theta_{\varphi_j}^n=\int_X \theta_{\varphi_j}^n-\int_{\{\varphi>\phi-k \}} \theta_{\varphi_j}^n=\int_X \theta_{\phi}^n-\int_{\{\varphi>\phi-k \}} \theta_{\varphi}^n,
+    \end{equation}
+    where we applied \cref{thm:mono} and \itemref{itm:prop:npp1:1} in the second equality.
+
+    Next, we compute
+    \[
+    \begin{aligned}
+        \int_{\left\{ \eta_j\leq \phi-ak \right\}} \theta_{\eta_j}^n\leq & a^n  \int_{\left\{ \eta_j\leq \phi-ak \right\}} \mathds{1}_{D_j}\, \theta_{\varphi_j}^n & \textup{by \eqref{eq:1Dkan_temp1}}\\
+        \leq & a^n \int_{\left\{ a\varphi_j+(1-a)\phi\leq \phi-ak \right\}\cap \left\{\phi\neq -\infty\right\} } \theta_{\varphi_j}^n\\
+        = & a^n \int_{\left\{ \varphi_j\leq \phi-k \right\}} \theta_{\varphi_j}^n\\
+        = & a^n \int_{\left\{ \varphi\leq \phi-k \right\}} \theta_{\varphi_j}^n\\
+        \leq & a^n\left( \int_X \theta_{\phi}^n- \int_{\left\{\varphi>\phi-k \right\}} \theta_{\varphi}^n \right)&\textup{ by \eqref{eq:intthetavarphijn_temp1}}.
+    \end{aligned}
+    \]
+    Next thanks to \eqref{eq:modelpot_sup_temp1},
+    \[
+    \sup_{ \left\{\phi\neq -\infty \right\} } \left(\eta_j-\phi \right)=\sup_X \eta_j\to -\infty.
+    \]
+    In particular, for a fixed $k$, if $j$ is large enough, we have
+    \[
+    \left\{\eta_j\leq \phi-ak \right\}=X.
+    \]
+    Therefore, for a fixed $k$, for any large enough $j$,
+    \[
+    \int_X \theta_{\phi}^n=\int_X \theta_{\eta_j}^n\leq a^n\left( \int_X \theta_{\phi}^n- \int_{\{\varphi>\phi-k\}} \theta_{\varphi}^n\right).
+    \]
+    Letting $k\to\infty$, we find
+    \[
+    \int_X \theta_{\phi}^n\leq a^n \left(\int_X \theta_{\phi}^n-\int_X \theta_{\varphi}^n \right).
+    \]
+    This is a contradiction with our choice of $a$.
+
+
+    \textbf{Step~2}.
+    Next we argue that $P_{\theta}(a\varphi+(1-a)\psi)\in \PSH(X,\theta)_{>0}$. Choose
+    \[
+        a'\in \left( a, \left(\frac{\int_X \theta_{\psi}^n}{\int_X \theta_{\psi}^n-\int_X \theta_{\varphi}^n}\right)^{1/n} \right).
+    \]
+    It follows from \eqref{eq:perversePtheta} that
+    \begin{equation}\label{eq:Pthetalowerbdtemp1}
+        P_{\theta}\Bigl(a\varphi+(1-a)\psi \Bigr)\geq \frac{a}{a'} P_{\theta}\Bigl(a'\varphi+(1-a')\psi \Bigr)+\frac{a'-a}{a'}\varphi.
+    \end{equation}
+    Therefore, by \cref{thm:mono}, we have
+    \begin{equation}\label{eq:Pthetalowerbdtemp2}
+        \int_X \theta_{P_{\theta}\left(a\varphi+(1-a)\psi\right)}^n\geq \frac{(a'-a)^n}{a'^n}\int_X \theta_{\varphi}^n>0.
+    \end{equation}
+    We conclude the proof.
+\end{proof}
+
+
+When $\varphi$ and $\psi$ have the same mass, we can say more:
+\begin{corollary}\label{cor:pathoenvelopeeqmass}
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$, $\varphi\preceq \psi$. Assume that $\int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n$. Then for any $\epsilon\in (0,1)$, there is $\eta\in \PSH(X,\theta)$ such that
+    \begin{enumerate}
+        \item\label{itm:cor:pathoenvelopeeqmass:1} $\int_X \theta_{\eta}^n=\int_X \theta_{\varphi}^n$;
+        \item\label{itm:cor:pathoenvelopeeqmass:2} $\epsilon\eta+(1-\epsilon)\psi\leq \varphi$.
+    \end{enumerate}
+    In fact, we can take
+    \[
+        \eta=P_{\theta}\left(\epsilon^{-1}\varphi+(1-\epsilon^{-1})\psi\right).
+    \]
+\end{corollary}
+
+\begin{proof}
+    Fix $\epsilon \in (0,1)$. We define $\eta$ as in the statement of the corollary. By \cref{lma:pathoenvelope}, $\eta\in \PSH(X,\theta)_{>0}$. Observe that \ref{itm:cor:pathoenvelopeeqmass:2} is satisfied by \eqref{eq:P_path_everywhere_ineq}.
+
+    Thanks to \eqref{eq:Pthetalowerbdtemp2}, for each $a'>\epsilon^{-1}$, we have
+    \[
+    \int_X \theta_{\eta}^n>\left(\frac{a'-\epsilon^{-1}}{a'}\right)^n\int_X \theta_{\varphi}^n.
+    \]
+    Letting $a'\to\infty$, we conclude that
+    \[
+    \int_X \theta_{\eta}^n\geq \int_X \theta_{\varphi}^n.
+    \]
+    On the other hand, since $\eta\preceq \psi$, using the monotonicity theorem \cref{thm:mono} we find that
+    \[
+    \int_X \theta_{\eta}^n\leq \int_X \theta_{\psi}^n= \int_X \theta_{\varphi}^n.
+    \]
+    Hence,
+    \[
+    \int_X \theta_{\eta}^n= \int_X \theta_{\varphi}^n.
+    \]
+    Therefore, \ref{itm:cor:pathoenvelopeeqmass:1} holds as well.
+\end{proof}
+
+
+
+Next we prove a domination principle.
+\begin{theorem}[Domination principle]\label{thm:dom_prin_1}\index{theorem!domination principle}
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Assume that
+    \begin{equation}\label{eq:varphipsiPequiv}
+    \exists\phi\in \PSH(X,\theta)\quad \textup{s.t.} \quad \varphi\preceq \phi, \quad \psi\preceq \phi,\quad \int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n=\int_X \theta_{\phi}^n,
+    \end{equation}
+    and
+    \begin{equation}\label{eq:intvarphilpsitheta0}
+    \int_{\{\varphi<\psi\}} \theta_{\varphi}^n=0.
+    \end{equation}
+    Then $\varphi\geq \psi$.
+\end{theorem}
+\begin{remark}\label{rmk:npp:L982}
+    Using the terminologies to be introduced in \cref{chap:envelopes}, we can reformulate a special case of \cref{thm:dom_prin_1} as follows: Suppose that $\phi\in \PSH(X,\theta)_{>0}$ is a model potential and $\varphi,\psi\in \mathcal{E}(X,\theta;\phi)$. Assume that \eqref{eq:intvarphilpsitheta0} holds then $\varphi\geq \psi$.
+
+    Equivalently, using the terminologies of \cref{chap:comp}, the assumption \eqref{eq:varphipsiPequiv} can be reformulated as $\varphi\sim_P \psi$.
+\end{remark}
+
+\begin{proof}
+    Thanks to the monotonicity theorem \cref{thm:mono},
+    \[
+    \int_X \theta_{\varphi\lor\psi}^n=\int_X \theta_{\phi}^n.
+    \]
+    We may replace $\psi$ by $\varphi\lor\psi$ and assume that $\varphi\leq \psi$. Without loss of generality, we may also assume that $\psi\leq 0$.
+
+    Now fix $a>1$. We define
+    \[
+    \eta_a\coloneqq P_{\theta}\Bigl( a\varphi+(1-a)\psi\Bigr).
+    \]
+    Note that $\eta_a\in \PSH(X,\theta)$ by \cref{cor:pathoenvelopeeqmass} and
+    \[
+    \int_X \theta_{\eta_a}^n=\int_X \theta_{\phi}^n.
+    \]
+    Furthermore, $\eta_a\leq P_{\theta}(a\varphi+(1-a)\varphi)=\varphi$.
+
+    Define
+    \[
+    \gamma_a\coloneqq a^{-1}\eta_a+(1-a^{-1})\psi,\quad D_a\coloneqq \{\gamma_a=\varphi\}.
+    \]
+    Then $\gamma_a\leq \varphi$ with equality on $D_a$. Therefore,
+    \[
+    \begin{aligned}
+    a^{-n}\,\theta_{\eta_a}^n\leq & a^{-n}\,\theta_{\eta_a}^n+\mathds{1}_{D_a} (1-a^{-1})^n \,\theta_{\psi}^n&\\
+    =& \mathds{1}_{D_a} a^{-n}\,\theta_{\eta_a}^n+\mathds{1}_{D_a} (1-a^{-1})^n \,\theta_{\psi}^n & \textup{ by \cref{thm:concentration}}\\
+    \leq & \mathds{1}_{D_a} \theta_{\gamma_a}^n &\\
+    \leq & \mathds{1}_{D_a} \theta_{\varphi}^n & \textup{ by \cref{lma:lorMAineqe}}\\
+    =& \mathds{1}_{D_a\cap \{\varphi=\psi\}}\, \theta_{\varphi}^n & \textup{ by \eqref{eq:intvarphilpsitheta0}}.
+    \end{aligned}
+    \]
+    Note that on $D_a\cap \{\varphi=\psi\}$, we have $\eta_a=\varphi$.
+    We deduce that
+    \[
+    \theta_{\eta_a}^n=\mathds{1}_{\{\eta_a=\varphi\}}\, \theta_{\eta_a}^n \leq \theta_{\varphi}^n,
+    \]
+    where the inequality follows from \cref{lma:lorMAineqe}.
+
+    But the two ends have the same mass, and hence
+    \[
+    \theta_{\eta_a}^n=\theta_{\varphi}^n=\mathds{1}_{\{\eta_a=\varphi\}}\,\theta_{\varphi}^n.
+    \]
+    Therefore,
+    \[
+    \int_X \mathrm{e}^{\eta_a}\,\theta_{\varphi}^n=\int_X \mathrm{e}^{\varphi}\,\theta_{\varphi}^n>0.
+    \]
+    Note that $\eta_a$ is decreasing in $a$. The above equation shows that
+    \[
+    \eta\coloneqq\inf_{a>1} \eta_a\not\equiv -\infty.
+    \]
+    On the other hand, if $x\in X$ is such that $\varphi(x)<\psi(x)$, we then have
+    \[
+    \eta_a(x)\leq a\varphi(x)-(a-1)\psi(x)= \psi(x)+a\Bigl( \varphi(x)-\psi(x) \Bigr).
+    \]
+    Letting $a\to \infty$, we find that $\eta(x)=-\infty$. Therefore, $\{\varphi\neq \psi\}$ is pluripolar, and hence empty by \cref{prop:pshfuncdetdense}. Our assertion follows.
+\end{proof}
+
+
+
+\begin{lemma}\label{lma:kahcurrentposmass}
+    For any $\varphi\in \PSH(X,\theta)_{>0}$, there is $\psi\in \PSH(X,\theta)$ such that
+    \begin{enumerate}
+        \item\label{itm:lma:kahcurrentposmass:1} $\theta_{\psi}$ is a Kähler current, and
+        \item\label{itm:lma:kahcurrentposmass:2} $\psi\leq \varphi$.
+    \end{enumerate}
+    In particular, there is an increasing sequence $(\varphi_i)_{i>0}$ in $\PSH(X,\theta)$ converging almost everywhere to $\varphi$ such that $\theta_{\varphi_i}$ is a K\"ahler current for all $i\geq 1$.
+\end{lemma}
+\begin{proof}
+    Using \cref{lma:pathoenvelope}, we can find $\epsilon\in (0,1)$ and $\gamma\in \PSH(X,\theta)$ such that
+    \[
+    \epsilon V_{\theta}+(1-\epsilon)\gamma\leq \varphi.
+    \]
+    We observe that the cohomology class $\{\theta\}$ is big as a consequence of \cref{prop:nppposimpbig}. Therefore, we can take $\eta\in \PSH(X,\theta)$ such that $\theta_{\eta}$ is a Kähler current and $\eta\leq 0$. Since $\eta\leq V_{\theta}$, we may take
+    \[
+    \psi\coloneqq \epsilon\eta+(1-\epsilon)\gamma.
+    \]
+    Then $\psi$ clearly satisfies \ref{itm:lma:kahcurrentposmass:1} and \ref{itm:lma:kahcurrentposmass:2}.
+
+    For the latter claim, it suffices to take
+    \[
+    \varphi_i=\left(1-(i+1)^{-1}\right)\varphi +(i+1)^{-1}\psi
+    \]
+    for each $i>0$.
+\end{proof}
+
+\begin{lemma}\label{lma:existsecposmass}
+    Let $L$ be a holomorphic line bundle on $X$ with $\theta\in c_1(L)$. Assume that $\varphi\in \PSH(X,\theta)_{>0}$. Then there exists $k_0>0$ such that for each $k\geq k_0$, we have
+    \[
+        \mathrm{H}^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)\neq 0.
+    \]
+\end{lemma}
+
+\begin{proof}
+    By \cref{lma:kahcurrentposmass}, there is $\psi\in \PSH(X,\theta)$ with $\theta_{\psi}$ a Kähler current and $\psi\leq\varphi$. Since $\mathcal{I}(k\psi)\subseteq \mathcal{I}(k\varphi)$, it suffices to prove the assertion with $\psi$ in place of $\varphi$. In this case, the result follows from Hörmander's $L^2$-estimate (\cite{Hor66}), see \cite[Theorem~13.21]{Dem12}.
+\end{proof}
+
+
+In the remainder of this section, we sharpen \cref{thm:concentration} for $C^{1,\overline{1}}$ barrier functions.
+
+This part relies on various techniques not covered in this book.
+
+
+
+
+\begin{theorem}[Tosatti, Chu--Zhou]\label{thm:Tos_C11}
+Let $X$ be a compact Kähler manifold with a Kähler form $\omega$ and let $f\in C^{1,1}(X)$. Then
+\[
+P_\omega(f)\in C^{1,1}(X),
+\]
+and there is a constant $C=C(X,\omega,\|f\|_{C^{1,1}})$ such that
+\[
+    \|P_\omega(f)\|_{C^{1,1}}\leq C.
+\]
+\end{theorem}
+\index{theorem!Tosatti--Chu--Zhou regularity}
+This is the main result of \cite{Tos18,CZ19}. The proof of this theorem relies on some PDE techniques far beyond the scope of the current book. Weaker results were due to \cite{Ber09, Ber19}.
+
+
+\begin{proposition}[Darvas--Rubinstein]\label{prop:DR16_C11bar}
+Let $\omega$ be a K\"ahler form on $X$, and let $f_1,f_2\in C^{1,\overline{1}}(X)$. Then $P_\omega(\min\{f_1,f_2\})\in C^{1,\overline{1}}(X)$.
+\end{proposition}
+\index{theorem!Darvas--Rubinstein regularity}
+This is \cite[Theorem~2.5]{DR16}. The original proof relies unfortunately on \cite{BD12}, which can be replaced by \cref{thm:Tos_C11}.
+
+
+
+\begin{lemma}\label{lma:DNTroof}
+Assume that $\omega$ is a K\"ahler form on $X$ and let $f_1,f_2\in C^{1,\overline{1}}(X)$. Then the functions $f_1$, $f_2$ and $P_\omega(\min\{f_1,f_2\})$ coincide up to second order at almost every point of the contact set $\{P_\omega(\min\{f_1,f_2\})=f_1=f_2\}$. In particular,
+\[
+    \mathds{1}_{\left\{P_\omega\left(\min\{f_1,f_2\}\right)=f_1=f_2\right\}}\,\omega_{f_1}^n=\mathds{1}_{\left\{P_\omega\left(\min\{f_1,f_2\}\right)=f_1=f_2\right\}}\,\omega_{f_2}^n.
+\]
+We also have for $j\in \{1,2\}$,
+\begin{equation}\label{eq:DNTroof_Pomega}
+    \begin{aligned}
+    \omega^n_{P_\omega\left(\min\{f_1,f_2\}\right)} = & \mathds{1}_{\left\{P_\omega\left(\min\{f_1,f_2\}\right)=f_1\right\}}\,\omega^n_{f_1} + \mathds{1}_{\left\{P_\omega\left(\min\{f_1,f_2\}\right)=f_2\right\}}\,\omega^n_{f_2} \\
+    &- \mathds{1}_{\left\{P_\omega(\min\{f_1,f_2\})=f_1=f_2\right\}}\,\omega^n_{f_j}\\
+    \geq & \mathds{1}_{\left\{P_\omega\left(\min\{f_1,f_2\}\right)=f_j\right\}}\,\omega^n_{f_j}.
+    \end{aligned}
+\end{equation}
+\end{lemma}
+
+Here $\omega_{f_i}\coloneqq \omega+\ddc f_i\in L^n(X)$, since $f_i\in C^{1,\overline{1}}(X)$. Therefore, $\omega_{f_i}^n$ makes sense as an absolutely continuous Radon measure.
+
+\begin{proof}
+Set $\varphi\coloneqq P_\omega(\min\{f_1,f_2\})$. Since $\min\{f_1,f_2\}\in C^0(X)$, we have $\varphi\leq \min\{f_1,f_2\}$. By \cref{prop:DR16_C11bar}, $\varphi\in C^{1,\overline{1}}(X)$. As $f_1,f_2,\varphi\in C^{1,\overline{1}}(X)$, the measures $\omega^n_{f_1}$, $\omega^n_{f_2}$ and $\omega^n_\varphi$ are all absolutely continuous.
+
+\textbf{Step~1}: We show that at almost every contact point, $\varphi$ and $f_i$ agree to order two.
+
+For $i\in\{1,2,3\}$ set
+\[
+\Psi_1\coloneqq \varphi-f_1,\quad \Psi_2\coloneqq \varphi-f_2,\quad \Psi_3\coloneqq f_1-f_2.
+\]
+Each $\Psi_i$ lies in $C^{1,\overline{1}}(X)$.
+
+We claim that for $i=1,2,3$, we have
+\begin{equation}\label{eq:DNTroof_step1claim}
+\Psi_i\textup{ vanishes to second order at almost every point of }\{\Psi_i=0\}.
+\end{equation}
+To prove this, write $\{\Psi_i=0\}$ as the disjoint union $A_i\sqcup B_i\sqcup C_i\sqcup D_i$ of the following four sets:
+\begin{itemize}
+\item $A_i\coloneqq \{\Psi_i=0\}\cap\{\mathrm{d}\Psi_i\neq 0\}$;
+\item $B_i\coloneqq \{\Psi_i=0\}\cap \{\textup{the classical real Hessian of }\Psi_i\textup{ does not exist}\}$;
+\item $C_i\coloneqq \{\Psi_i=0\}\cap\{\mathrm{d}\Psi_i=0\}\cap\{\textup{the classical real Hessian exists and is non-zero}\}$;
+\item $D_i\coloneqq \{\Psi_i=0\}\cap\{\mathrm{d}\Psi_i=0\}\cap\{\textup{the classical real Hessian exists and equals zero}\}$.
+\end{itemize}
+It suffices to prove $A_i$, $B_i$, $C_i$ are Lebesgue null sets.
+
+The set $A_i$ is a $C^1$ real hypersurface in $X$, hence has Lebesgue measure zero.
+
+Since $\Psi_i\in W^{2,1}_{\loc}$, the classical pointwise real Hessian of $\Psi_i$ exists almost everywhere, so $B_i$ is Lebesgue null.
+
+Finally $C_i$ is Lebesgue null by Stampacchia's lemma. This proves \eqref{eq:DNTroof_step1claim}.
+
+Specialising \eqref{eq:DNTroof_step1claim} to $\Psi_1,\Psi_2$, the functions $\varphi$ and $f_i$ agree to order two at almost every point of the contact set $\{\varphi=f_i\}$. Consequently $\omega+\ddc \varphi$ and $\omega+\ddc f_i$ have the same matrix of coefficients almost everywhere on $\{\varphi=f_i\}$, and therefore so do their $n$-fold wedge powers:
+\begin{equation}\label{eq:DNTroof_step1eq}
+\mathds{1}_{\{\varphi=f_i\}}\,\omega^n_\varphi = \mathds{1}_{\{\varphi=f_i\}}\,\omega^n_{f_i},\qquad i\in\{1,2\}.
+\end{equation}
+The analogous statement applied to $\Psi_3$ gives
+\begin{equation}\label{eq:DNTroof_step1eqf12}
+\mathds{1}_{\{f_1=f_2\}}\,\omega^n_{f_1} = \mathds{1}_{\{f_1=f_2\}}\,\omega^n_{f_2}.
+\end{equation}
+
+\textbf{Step~2}. The barrier $\min\{f_1,f_2\}$ is continuous, hence quasi-continuous, so \cref{thm:concentration} yields
+\begin{equation}\label{eq:DNTroof_step2conc}
+\int_{X\setminus \left(\{\varphi=f_1\}\cup\{\varphi=f_2\}\right)}\omega^n_\varphi
+=
+\int_{\left\{\varphi<\min\{f_1,f_2\}\right\}}\omega^n_\varphi
+=0.
+\end{equation}
+
+Set $V_1\coloneqq \{f_1<f_2\}$ and $V_2\coloneqq \{f_1>f_2\}$, both open. We may decompose
+\[
+\{\varphi=f_1\}\cup\{\varphi=f_2\}
+=
+\bigl(V_1\cap\{\varphi=f_1\}\bigr)
+\sqcup
+\bigl(V_2\cap\{\varphi=f_2\}\bigr)
+\sqcup
+\{\varphi=f_1=f_2\}.
+\]
+This combined with \eqref{eq:DNTroof_step2conc} and \eqref{eq:DNTroof_step1eq} yields
+\[
+\begin{aligned}
+\omega^n_\varphi
+={}&
+\mathds{1}_{V_1\cap\{\varphi=f_1\}}\,\omega^n_\varphi
++
+\mathds{1}_{V_2\cap\{\varphi=f_2\}}\,\omega^n_\varphi
++
+\mathds{1}_{\{\varphi=f_1=f_2\}}\,\omega^n_\varphi
+\\
+={}&
+\mathds{1}_{V_1\cap\{\varphi=f_1\}}\,\omega^n_{f_1}
++
+\mathds{1}_{V_2\cap\{\varphi=f_2\}}\,\omega^n_{f_2}
++
+\mathds{1}_{\{\varphi=f_1=f_2\}}\,\omega^n_{f_j}.
+\end{aligned}
+\]
+On the other hand,
+\[
+\mathds{1}_{V_j\cap\{\varphi=f_j\}}\,\omega^n_{f_j}
+=
+\mathds{1}_{\{\varphi=f_j\}}\,\omega^n_{f_j}
+-
+\mathds{1}_{\{\varphi=f_1=f_2\}}\,\omega^n_{f_j}.
+\]
+Therefore,
+\[
+\omega^n_\varphi
+=
+\mathds{1}_{\{\varphi=f_1\}}\,\omega^n_{f_1}
++
+\mathds{1}_{\{\varphi=f_2\}}\,\omega^n_{f_2}
++
+\mathds{1}_{\{\varphi=f_1=f_2\}}
+\,\bigl(\omega^n_{f_j}-\omega^n_{f_1}-\omega^n_{f_2}\bigr).
+\]
+Together with \eqref{eq:DNTroof_step1eqf12} we obtain \eqref{eq:DNTroof_Pomega}.
+\end{proof}
+
+\begin{theorem}[Di Nezza--Trapani]\label{thm:DNTcontact}
+Let $\theta_1,\dots,\theta_n$ be closed real smooth $(1,1)$-forms on $X$ representing pseudo-effective cohomology classes. For each $i=1,\dots,n$, let $\varphi_i\in\PSH(X,\theta_i)$ and $f_i\in C^{1,\overline{1}}(X)$ be functions with $\varphi_i\leq f_i$. Then
+\begin{equation}\label{eq:DNTcontact}
+\mathds{1}_{\bigcap_i\{\varphi_i=f_i\}}\, \theta_{1,\varphi_1}\wedge\cdots\wedge\theta_{n,\varphi_n} = \mathds{1}_{\bigcap_i\{\varphi_i=f_i\}}\, \theta_{1,f_1}\wedge\cdots\wedge\theta_{n,f_n}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+    \textbf{Step~1}. We first reduce to the case where $\theta_1=\cdots=\theta_n$, $\varphi_1=\cdots=\varphi_n$ and $f_1=\cdots=f_n$.
+
+    Assume for the moment that this special case is known. Let us handle the general case.
+
+    For $\lambda=(\lambda_1,\dots,\lambda_n)\in(\mathbb{R}_{>0})^n$, we set
+    \[
+    \theta_\lambda\coloneqq \sum_{j=1}^n\lambda_j\theta_j,\quad \varphi_\lambda\coloneqq \sum_{j=1}^n\lambda_j\varphi_j,\quad f_\lambda\coloneqq \sum_{j=1}^n\lambda_j f_j.
+    \]
+    Then $\varphi_\lambda\in\PSH(X,\theta_\lambda)$, $f_\lambda\in C^{1,\overline{1}}(X)$, $\varphi_\lambda\leq f_\lambda$, and
+    \[
+        \bigcap_{j=1}^n\{\varphi_j=f_j\}\subseteq\{\varphi_\lambda=f_\lambda\}.
+    \]
+    So
+    \[
+        \mathds{1}_{\bigcap_j\{\varphi_j=f_j\}}(\theta_\lambda)^n_{\varphi_\lambda} = \mathds{1}_{\bigcap_j\{\varphi_j=f_j\}}(\theta_\lambda)^n_{f_\lambda}.
+    \]
+Both sides are polynomials in $\lambda_1,\dots,\lambda_n$; comparing the coefficient of $\lambda_1\cdots\lambda_n$ gives \eqref{eq:DNTcontact}.
+
+From now on, we assume
+\[
+\theta=\theta_1=\dots=\theta_n,\quad
+\varphi=\varphi_1=\cdots=\varphi_n\in \PSH(X,\theta),
+\]
+and
+\[
+f=f_1=\cdots=f_n\in C^{1,\overline{1}}(X)
+\]
+with
+\[
+\varphi\leq f.
+\]
+We wish to prove that
+\begin{equation}\label{eq:DNT_temp1}
+    \mathds{1}_{\left\{\varphi=f\right\}}\,\theta_{\varphi}^n=\mathds{1}_{\left\{\varphi=f\right\}}\,\theta_{f}^n.
+\end{equation}
+
+\textbf{Step~2}. We first handle the special case where $f\in \PSH(X,\theta)$.
+
+\textbf{Step~2.1}. We assume that $\theta$ is a Kähler form, denoted by $\omega$ for clarity.
+
+Pick a decreasing sequence $(\phi_j)_j$ in $C^{\infty}(X)$\footnote{The functions $\phi_j$ are not required to be $\omega$-psh.} with pointwise limit $\varphi$ and set
+\[
+\psi_j\coloneqq P_{\omega}\left(\min\{\phi_j,f\}\right).
+\]
+Then $\psi_j\in\PSH(X,\omega)$, and
+\[
+\varphi\leq\psi_j\leq\min\{\phi_j,f\} \leq f,
+\]
+and hence $\psi_j\searrow\varphi$.
+Applying \cref{lma:DNTroof} with $f_1=\phi_j$ and $f_2=f$ gives
+\begin{equation}\label{eq:omegapsij_temp1}
+\omega^n_{\psi_j}\geq \mathds{1}_{\{\psi_j=f\}}\,\omega^n_f \geq \mathds{1}_{\{\varphi=f\}}\,\omega^n_f.
+\end{equation}
+
+
+Fix $C>0$ with $\min_X f>-C$ and $\epsilon>0$.
+Let
+\[
+h_j^{C,\epsilon}\coloneqq \frac{(\psi_j+C)\lor 0}{\left((\psi_j+C)\lor 0 \right)+\epsilon},\qquad h^{C,\epsilon}\coloneqq \frac{(\varphi+C)\lor 0}{\left((\varphi+C)\lor 0\right)+\epsilon}.
+\]
+These functions are both quasi-continuous with values in $[0,1]$.
+Observe that $h_j^{C,\epsilon}$ converges in capacity to $h^{C,\epsilon}$ as $j\to\infty$.
+
+
+Now fix $g\in C^0(X)$, $g\geq 0$. Note that $h_j^{C,\epsilon}=0$ on the set $\{\psi_j\leq -C\}$ and $h^{C,\epsilon}=0$ on the set $\{\varphi\leq -C\}$.
+Using locality of the non-pluripolar product \itemref{itm:prop:npp1:1}, we have
+\[
+h_j^{C,\epsilon}g \,\omega_{\psi_j}^n=h_j^{C,\epsilon}g \,\omega_{\psi_j\lor (-C)}^n,\quad h^{C,\epsilon}g \,\omega_{\varphi}^n=h^{C,\epsilon}g \,\omega_{\varphi\lor (-C)}^n.
+\]
+Therefore,
+\[
+\begin{aligned}
+\int_X g\,\omega_{\varphi}^n\geq & \int_X h^{C,\epsilon}g \,\omega_{\varphi}^n & \\
+=& \int_X h^{C,\epsilon}g \,\omega_{\varphi\lor (-C)}^n &\\
+=& \lim_{j\to\infty} \int_X h_j^{C,\epsilon}g \,\omega_{\psi_j\lor (-C)}^n & \textup{by \cref{thm:loc_conv_cap}}\\
+=&\lim_{j\to\infty} \int_X h_j^{C,\epsilon}g \,\omega_{\psi_j}^n &\\
+\geq & \lim_{j\to\infty} \int_{\{\varphi=f\}} h_j^{C,\epsilon}g \,\omega_{f}^n & \textup{by }\eqref{eq:omegapsij_temp1}\\
+=& \int_{\{\varphi=f\}}h^{C,\epsilon}g \,\omega_{f}^n,
+\end{aligned}
+\]
+where the last equality follows from the dominated convergence theorem.
+By our choice of $C$, we have $h^{C,\epsilon}>0$ on $\{\varphi=f\}$, and hence when $\epsilon\to 0+$, $h^{C,\epsilon}\to 1$ everywhere on this set. Letting $\epsilon\to 0+$, we find
+\[
+\int_X g\,\omega_{\varphi}^n\geq \int_{\{\varphi=f\}}g \,\omega_{f}^n
+\]
+by the dominated convergence theorem.
+
+By the Riesz representation theorem, we conclude that
+\[
+\omega_{\varphi}^n\geq \mathds{1}_{\{\varphi=f\}}\,\omega_{f}^n.
+\]
+Then by \cref{lma:lorMAineqe}, the reverse inequality also holds, and \eqref{eq:DNT_temp1} follows in this case.
+
+\textbf{Step~2.2}. We no longer assume that $\theta$ is a Kähler form.
+
+Choose a Kähler form $\omega$ on $X$ so that $\theta+\omega$ is a Kähler form and $f\in \PSH(X,\theta+\omega)$.
+Fix $g\in C^0(X)$ and consider, for $t\geq 0$,
+\[
+Q(t)\coloneqq \int_{\{\varphi=f\}}g\,(\theta+t\omega+\ddc\varphi)^n - \int_{\{\varphi=f\}}g\,(\theta+t\omega+\ddc f)^n.
+\]
+By multilinearity of the non-pluripolar product, $Q$ is a polynomial in $t$. Step~2.1 applied to $\theta+t\omega$ for $t>1$ gives $Q(t)\equiv 0$ for $t>1$, hence $Q\equiv 0$, and in particular $Q(0)=0$. Since $g$ is arbitrary, \eqref{eq:DNT_temp1} holds.
+
+\textbf{Step~3}. We handle the general case. We no longer assume that $f\in \PSH(X,\theta)$.
+
+Choose a Kähler form $\omega$ on $X$ so that $\theta+\omega$ is a Kähler form. Then
+\[
+\varphi\leq P_{\theta+\omega}(f)\leq f.
+\]
+By \cref{lma:DNTroof} applied to $f_1=f_2=f$, we find that $f$ and $P_{\theta+\omega}(f)$ agree to the second order on the contact set $\{ P_{\theta+\omega}(f)=f \}$, so
+\[
+\mathds{1}_{\left\{ P_{\theta+\omega}(f)=f \right\}}\,\theta_{P_{\theta+\omega}(f)}^n=\mathds{1}_{\left\{ P_{\theta+\omega}(f)=f \right\}}\,\theta_{f}^n.\footnotemark
+\]
+\footnotetext{This expression looks slightly unusual, as $P_{\theta+\omega}(f)$ is not $\theta$-psh in general, but it does make sense.}
+However, Step~2 implies that
+\[
+\mathds{1}_{\left\{ P_{\theta+\omega}(f)=\varphi \right\}}\,\theta_{\varphi}^n=\mathds{1}_{\left\{ P_{\theta+\omega}(f)=\varphi \right\}}\,\theta_{P_{\theta+\omega}(f)}^n.
+\]
+Combining these results, we conclude \eqref{eq:DNT_temp1}.
+\end{proof}
+
+\begin{corollary}\label{cor:DNTenvelope1}
+    Assume that $\PSH(X,\theta)\neq \varnothing$. For any $f\in C^{1,\overline{1}}(X)$, we have
+    \[
+    \theta^n_{P_\theta(f)} = \mathds{1}_{\{P_\theta(f)=f\}}\,\theta^n_f.
+    \]
+    In particular,
+    \[
+        \theta_{V_{\theta}}^n=\mathds{1}_{\{V_{\theta}=0\}}\,\theta^n.
+    \]
+\end{corollary}
+\begin{proof}
+    From \cref{thm:DNTcontact}, we find
+    \[
+    \mathds{1}_{\{P_\theta(f)=f\}}\,\theta^n_{P_\theta(f)}=\mathds{1}_{\{P_\theta(f)=f\}}\,\theta^n_f.
+    \]
+    By the concentration property \cref{thm:concentration}, our assertion follows.
+\end{proof}
+
+
+
+
+\begin{theorem}[Di Nezza--Trapani]\label{thm:DNT23_C11bar}
+Let $\theta$ be a smooth closed real $(1,1)$-form on $X$ representing a big cohomology class. Let $f\in C^{1,\overline{1}}(X)$. Then
+\[
+P_\theta(f)\in C^{1,\overline{1}}\bigl(X\setminus\nK(\{\theta\})\bigr).
+\]
+In particular, $V_{\theta}\in C^{1,\overline{1}}\bigl(X\setminus\nK(\{\theta\})\bigr)$.
+\end{theorem}
+\index{theorem!Di Nezza--Trapani regularity}
+
+We refer to \cite{DNT23} for the proof.
+
+
+
+%\input{author/references}

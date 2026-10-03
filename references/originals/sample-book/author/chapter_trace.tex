@@ -1,0 +1,1193 @@
+\makeatletter
+\providecommand{\russianmotto}[1]{{%
+        \font\russianmottofont="[Tempora-Italic.otf]" at \f@size pt\relax
+        \russianmottofont #1%
+}}
+\makeatother
+
+\motto{Some of our philosophers made a serious mistake: without having grasped the substance
+of the matter, they began to deny the significance of a new direction in science.
+
+--- S.~L.~Sobolev\footnote{Sergei Lvovich Sobolev (1908--1989) was a Soviet mathematician whose work on weak
+derivatives, generalized functions, and embedding theorems became foundational for modern
+analysis and partial differential equations. He also contributed to mathematical physics,
+numerical analysis, cubature formulas, and cybernetics, and was later central to the
+mathematical life of Akademgorodok in Novosibirsk.}, A.~I.~Kitov and A.~A.~Lyapunov in \russianmotto{Вопросы философии}
+}
+
+\chapter{The trace operator}
+\label{chap:trace}
+
+The goal of this chapter is to give a meaning to the restriction of a quasi-psh singularity to a subvariety. If $\varphi\in\QPSH(X)$ and $Y\subseteq X$ is a subvariety, the naive restriction $\varphi|_Y$ is often unsatisfactory: it may be identically $-\infty$, or it may fail to preserve quasi-equisingular approximations.
+
+There is a useful analogy with the trace operator in real analysis. A Sobolev function on a domain cannot, in general, be restricted pointwise to the boundary; instead, it admits a trace obtained by approximation using smooth functions, and the trace is well-defined modulo almost everywhere equality.
+\cref{tab:trace_analogy} summarizes the corresponding dictionary.
+\begin{center}
+\refstepcounter{table}\label{tab:trace_analogy}
+\begin{tabular}{|c|c|}
+    \hline
+    Real analysis & Pluripotential theory \\
+    \hline
+    smooth functions & potentials with analytic singularities \\
+    \hline
+    Sobolev functions & potentials with $\mathcal I$-good singularities \\
+    \hline
+    Sobolev convergence & $d_S$-convergence \\
+    \hline
+    equality almost everywhere & $P$-equivalence \\
+    \hline
+\end{tabular}
+
+\smallskip
+\textbf{Table~\thetable} A dictionary for the trace operator.
+\end{center}
+The situation here is similar. A singular quasi-psh function need not have a meaningful pointwise restriction to $Y$, but after replacing it by quasi-equisingular approximants and passing to the appropriate $d_S$-limit of the pointwise restriction of these approximants to $Y$, one obtains a well-defined $P$-singularity type. This is the trace $\Tr_Y(\varphi)$.
+
+The trace operator is designed to be compatible with the two comparison theories developed earlier. It depends only on the $\mathcal{I}$-singularity type of $\varphi$, and itself is well-defined modulo $P$-equivalence.
+
+The first part of the chapter defines the trace and proves its basic properties: independence of the quasi-equisingular approximation, monotonicity, linearity, compatibility with bimeromorphic pullback, and continuity under decreasing $d_S$-limits. These results provide the analytic foundation for later applications.
+
+The second part relates the trace operator to restricted volumes. For a big class $\alpha$ and a subvariety $Y$ not contained in the non-K\"ahler locus, the classical restricted volume $\vol_{X|Y}(\alpha)$ can be expressed as the non-pluripolar volume of the trace of a potential with minimal singularities. We also prove an asymptotic Riemann--Roch formula for the restricted multiplier ideal sheaves.
+
+The final part develops analytic Bertini-type statements. These results describe when multiplier ideals restrict correctly to a general hypersurface and when $\mathcal I$-goodness is preserved under restriction.
+
+
+\section{The definition of the trace operator}\label{sec:trace_def}
+
+Let $X$ be a connected compact Kähler manifold and $Y\subseteq X$ be an irreducible analytic subset.
+
+The trace operator gives a way to restrict a quasi-plurisubharmonic function on $X$ to $\widetilde{Y}$, the normalization of $Y$.
+It follows from \cite[Proposition~3.6]{GK20} that $\widetilde{Y}$ is a normal Kähler space.
+We refer to \cref{chap:unibranch} for the pluripotential theory on unibranch Kähler spaces.
+
+For later applications, we need this generality even if initially we are only interested in the smooth case.
+
+
+Before diving into the trace operator, let us try to understand what goes wrong with the naive restriction procedure: simply take $\varphi|_{\widetilde{Y}}$. Both examples below are local, but can easily be globalized since the singularities are isolated.
+\begin{example}\label{ex:naive_res1}
+    Consider the case where $\varphi$ has log-log singularities as in \cref{ex:loglogsing}. Locally we can take $\varphi(z)=-\log (-\log |z|^2)$. We have $\nu(\varphi,0)=0$ but $\varphi|_0=-\infty$. So the naive restriction is not defined in this case.
+\end{example}
+
+Even if the naive restriction is defined, it does not behave well.
+\begin{example}\label{ex:naive_res2}
+    Consider a psh function $\varphi$ in two variables, say
+    \[
+    \varphi(z,w)=\left( -\log (-\log |z|^2)\right) \lor \left(\log |w|^2\right).
+    \]
+    Take an arbitrary quasi-equisingular approximation $(\varphi_j)_j$. Then each $\varphi_j$ is locally bounded since $\nu(\varphi,(0,0))=0$. Let us consider the restrictions to $H=\{z=0\}$. Then $\varphi_j|_H$ is still bounded, while
+    \[
+    \varphi|_H(w)=\log |w|^2.
+    \]
+    In other words, the restrictions $\varphi_j|_H$ fail to be a quasi-equisingular approximation of $\varphi|_H$.
+\end{example}
+Our trace operator gives an elegant way to solve both problems.
+
+We first observe that if $\varphi\in \QPSH(X)$ has analytic singularities and $\nu(\varphi,Y)=0$, then $\varphi|_Y\not\equiv -\infty$.
+Indeed, if $\varphi|_Y\equiv-\infty$, then in a local presentation
+\[
+    \varphi=c\log(|f_1|^2+\cdots+|f_N|^2)+\mathcal{O}(1)
+\]
+all generators $f_1,\ldots,f_N$ vanish along $Y$, which gives $\nu(\varphi,Y)>0$, a contradiction.
+
+This observation will be crucial in the sequel.
+
+\begin{proposition}\label{prop:traceindquasiequisingapp}
+    Let $\varphi\in \QPSH(X)$ be a function such that $\nu(\varphi,Y)=0$. Let $(\varphi_i)_i$, $(\psi_i)_i$ be quasi-equisingular approximations of $\varphi$. Then
+    \begin{equation}\label{eq:dsequivtemp1}
+        \lim_{i\to\infty} d_S\left(\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}\right)=0.
+    \end{equation}
+\end{proposition}
+Here in \eqref{eq:dsequivtemp1}, $d_S$ refers to any $d_{S,\theta}$, where $\theta$ is any closed smooth real $(1,1)$-form on $\widetilde{Y}$ representing a big cohomology class and satisfying $\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}\in \PSH(\widetilde{Y},\theta)$. For different choices of $\theta$, \eqref{eq:dsequivtemp1} remains equivalent, as explained in \cref{cor:dSconv_changetheta}.
+\begin{proof}
+After subtracting a common constant from $\varphi$, $\varphi_i$ and $\psi_i$, we may assume that $\varphi_i\leq 0$ for all $i\geq 1$.
+
+Take a K\"ahler form $\omega$ on $X$ such that $\varphi_i,\psi_i\in \PSH(X,\omega/2)$ for all $i\geq 1$. By \cref{cor:dSconv_changetheta}, we need to show that
+\[
+\lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}}\left(\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}\right)=0.
+\]
+Assume that this fails. Then, up to replacing the sequences by subsequences, we may assume that the following limit exists and
+\[
+\lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}}\left(\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}\right)>0.
+\]
+Take a K\"ahler form $\tilde{\omega}$ on $\widetilde{Y}$. Then
+\[
+\lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}\right)>0
+\]
+by \cref{cor:dSconv_changetheta}.
+
+By \cref{cor:quasi-equichar}, after changing the background class from $\omega/2$ to $\omega$ if necessary, we have
+\[
+    \varphi_i\xrightarrow{d_S}P_{\omega}[\varphi]_{\mathcal I},\quad \psi_i\xrightarrow{d_S}P_{\omega}[\varphi]_{\mathcal I}.
+\]
+Let
+\[
+    \chi_i\coloneqq \varphi_i\lor\psi_i.
+\]
+By \cref{prop:lor_dS_conv}, we have $\chi_i\xrightarrow{d_S} P_{\omega}[\varphi]_{\mathcal{I}}$. Moreover, $(\chi_i)_i$ is again a quasi-equisingular approximation of the original potential $\varphi$ as follows from \cref{cor:quasi-equichar}.
+
+The triangle inequality gives
+\[
+d_S(\varphi_i|_{\widetilde{Y}},\psi_i|_{\widetilde{Y}}) \leq  d_S(\varphi_i|_{\widetilde{Y}},\chi_i|_{\widetilde{Y}})+ d_S(\psi_i|_{\widetilde{Y}},\chi_i|_{\widetilde{Y}}).
+\]
+Thus, after passing to a subsequence and interchanging the two quasi-equisingular approximations if necessary, we may assume that
+\[
+    \varliminf_{i\to\infty}d_S(\varphi_i|_{\widetilde{Y}},\chi_i|_{\widetilde{Y}})>0.
+\]
+Replacing $(\psi_i)_i$ by $(\chi_i)_i$, we may therefore assume that
+\[
+    \varphi_i\leq \psi_i
+\]
+for all $i$, while preserving the contradiction assumption.
+
+
+
+Take a decreasing sequence $(\epsilon_j)_j$ in $\mathbb{R}_{>0}$ with limit $0$ such that $(1-\epsilon_j)\varphi_j\in \PSH(X,\omega)$. We first observe that
+    \[
+        \lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}}\left(\varphi_i|_{\widetilde{Y}},(1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\right)=0.
+    \]
+This is a consequence of \cref{lma:dSsmallmult}. Hence, by \cref{cor:dSconv_changetheta}, we find
+\[
+    \lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\varphi_i|_{\widetilde{Y}},(1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\right)=0.
+\]
+Since $(\varphi_i)_i$ and $(\epsilon_i)_i$ are decreasing and $\varphi_i\leq 0$, the sequence $\bigl((1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\bigr)_i$ is decreasing. It has uniformly positive mass in the class $\omega|_{\widetilde{Y}}+\tilde{\omega}$. Hence \cref{cor:completenessdS}, together with the preceding estimate, gives a potential $\psi\in \PSH(\widetilde{Y},\omega|_{\widetilde{Y}}+\tilde{\omega})$ such that
+\[
+\varphi_i|_{\widetilde{Y}}\xrightarrow{d_S}\psi.
+\]
+Hence,
+\[
+\lim_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\psi,(1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\right)=0.
+\]
+
+By \cref{prop:compqequi}, after choosing $j_i$ inductively with $j_i\geq i$ and $j_i>j_{i-1}$, we may assume that
+\[
+    \psi_{j_i}\preceq (1-\epsilon_i)\varphi_i.
+\]
+Since we have arranged $\varphi_j\leq\psi_j$ for all $j$, it follows that
+\[
+    \varphi_{j_i}\leq\psi_{j_i}\preceq (1-\epsilon_i)\varphi_i.
+\]
+Hence,
+\[
+    \varphi_{j_i}|_{\widetilde{Y}}\leq \psi_{j_i}|_{\widetilde{Y}}\preceq (1-\epsilon_i)\varphi_i|_{\widetilde{Y}}.
+\]
+Therefore, by \cref{cor:dsthreeterm},
+\[
+    \begin{aligned}
+       \varlimsup_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\varphi_{j_i}|_{\widetilde{Y}},\psi_{j_i}|_{\widetilde{Y}}\right)
+     \leq & \varlimsup_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\varphi_{j_i}|_{\widetilde{Y}},(1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\right)\\
+     =& \varlimsup_{i\to\infty} d_{S,\omega|_{\widetilde{Y}}+\tilde{\omega}}\left(\psi,(1-\epsilon_i)\varphi_i|_{\widetilde{Y}}\right)\\
+     = & 0,
+     \end{aligned}
+\]
+which is a contradiction.
+\end{proof}
+
+\begin{definition}\label{def:traceop}
+    Let $\varphi\in \QPSH(X)$ be a function such that $\nu(\varphi,Y)=0$. We say a potential $\psi\in \QPSH(\widetilde{Y})$ is a\footnote{Let us resume our analogy in the introduction of this chapter.
+In real analysis, the trace of a Sobolev function $f$ is only defined up to almost-everywhere equality; we say a particular function on $\partial\Omega$ is \emph{a} trace of $f$. Likewise here, we say $\psi$ is \emph{a} trace operator of $\varphi$ rather than that the $P$-equivalence class of $\psi$ is \emph{the} trace operator of $\varphi$.} \emph{trace operator}\index{trace operator} of $\varphi$ along $Y$ if there is a quasi-equisingular approximation $(\varphi_j)_{j>0}$ of $\varphi$ such that
+    \begin{equation}\label{eq:deftrace}
+        \varphi_j|_{\widetilde{Y}}\xrightarrow{d_S}\psi\footnotemark.
+    \end{equation}
+    \footnotetext{To be more precise, what we mean is the following: We can find a closed smooth real $(1,1)$-form on $X$ such that $\varphi\in \PSH(X,\theta)$. Then there is a K\"ahler form such that $\omega+\theta+\ddc\varphi_j\geq 0$ for all $j\geq 1$. Take a K\"ahler form $\tilde{\omega}$ on $\widetilde{Y}$ so that $\tilde{\omega}\geq (\theta+\omega)|_{\widetilde{Y}}$ and $\psi\in \PSH(\widetilde{Y},\tilde{\omega})$. Then our condition means that $\varphi_j|_{\widetilde{Y}}\xrightarrow{d_{S,\tilde{\omega}}}\psi$. This condition is independent of the choices of $\theta$, $\omega$ and $\tilde{\omega}$ by \cref{cor:dSconv_changetheta}.}
+\end{definition}
+Indeed, choosing the background Kähler form on $\widetilde{Y}$ sufficiently positive, the restricted quasi-equisingular approximation is a decreasing sequence with masses bounded below by a positive constant; hence it converges by \cref{cor:completenessdS}.
+Observe that by \cref{prop:traceindquasiequisingapp}, the condition \eqref{eq:deftrace} is independent of the choice of $(\varphi_j)_j$.
+
+Later on in \cref{thm:tracetor}, we shall prove that the trace operator corresponds to the natural way of restricting convex bodies in the toric setting.
+
+\begin{proposition}\label{prop:traceunique}
+    Let $\varphi\in \QPSH(X)$ such that $\nu(\varphi,Y)=0$. Suppose that $\psi$ and $\psi'$ are trace operators of $\varphi$ along $Y$. Then $\psi$ and $\psi'$ are $\mathcal{I}$-good and $\psi\sim_P\psi'$.
+\end{proposition}
+\begin{proof}
+    The restrictions of the analytic approximants have analytic singularities on $\widetilde{Y}$, so the claim follows from \cref{thm:charIgoodasclosure}. The fact that $\psi\sim_P\psi'$ follows from \cref{prop:traceindquasiequisingapp} and \cref{prop:ds0char}.
+\end{proof}
+
+\begin{example}
+    As a trivial example, when $Y$ is just a single point, then $\QPSH(Y)$ is canonically identified with $\mathbb{R}$. Any constant $c\in \mathbb{R}$ is a trace operator of a function $\varphi\in \QPSH(X)$ satisfying $\nu(\varphi,Y)=0$.
+\end{example}
+
+\begin{definition}\label{def:traceop2}
+    Let $\varphi\in \QPSH(X)$ such that $\nu(\varphi,Y)=0$. We write $\Tr_{Y}(\varphi)$\index{$\Tr_{Y}(\varphi)$} for any trace operator of $\varphi$ along $Y$.
+
+    Given a closed smooth real $(1,1)$-form $\theta$ on $X$. When $\Tr_Y(\varphi)$ can be chosen to lie in $\PSH(\widetilde{Y},\theta|_{\widetilde{Y}})_{>0}$, we write
+    \[
+        \Tr_Y^{\theta}(\varphi)\coloneqq P_{\theta|_{\widetilde{Y}}}\bigl[ \Tr_Y(\varphi) \bigr]=P_{\theta|_{\widetilde{Y}}}\bigl[ \Tr_Y(\varphi) \bigr]_{\mathcal{I}}.
+    \]
+\end{definition}
+The trace operator $\Tr_Y(\varphi)$ is therefore well-defined only up to $P$-equivalence by \cref{prop:traceunique}. Also observe that if $\varphi\in \PSH(X,\theta)$ for some smooth closed real $(1,1)$-form $\theta$ on $X$, then for any K\"ahler form $\omega$ on $X$, the trace operator $\Tr_Y^{\theta+\omega}(\varphi)$ is always defined. In particular, if $\theta_{\varphi}$ is a Kähler current, $\Tr^{\theta}_Y(\varphi)$ is always defined.
+
+
+\begin{remark}\label{rmk:tracecurrent}
+    As in \cref{rmk:qpshtocurrents}, the trace operator could also be applied to closed positive $(1,1)$-currents on $X$. If $T\in \mathcal{Z}_+(X,\alpha)$ for some pseudo-effective class $\alpha$ on $X$ (see \cref{def:spaceofcurrents}) and $\beta\in \mathrm{H}^{1,1}(\widetilde{Y},\mathbb{R})$, then we write
+    \[
+    \Tr^{\beta}_Y(T)
+    \]
+    for any (if exists) closed positive $(1,1)$-current in $\beta$ representing $\Tr_Y(T)$\index{$\Tr_{Y}(T)$} when $\nu(T,Y)=0$.
+\end{remark}
+
+
+
+
+\begin{proposition}\label{prop:Trdominarest}
+    Let $\varphi\in \QPSH(X)$ such that $\nu(\varphi,Y)=0$.
+    Assume that $\varphi|_Y\not\equiv -\infty$.
+    Then
+    \[
+    \varphi|_{\widetilde{Y}}\preceq_P \Tr_Y(\varphi).
+    \]
+\end{proposition}
+\begin{proof}
+    Take a Kähler form $\omega$ such that $\omega_{\varphi}$ is a Kähler current.
+    Let $(\varphi_j)_{j>0}$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\omega)_{>0}$.
+    We may assume that $\varphi_j\leq 0$ for all $j\geq 1$.
+
+
+    Then
+    \begin{equation}\label{eq:varphijrestrleqPtemp}
+    \varphi_j|_{\widetilde{Y}}\leq P_{\omega|_{\widetilde{Y}}}\left[\varphi_j|_{\widetilde{Y}}\right]
+    \end{equation}
+    for all $j\geq 1$. In particular,
+    \[
+    \varphi|_{\widetilde{Y}}\leq \inf_{j\geq 1}P_{\omega|_{\widetilde{Y}}}\left[\varphi_j|_{\widetilde{Y}}\right].
+    \]
+    Thanks to \cref{cor:decnetdS},
+\begin{equation}\label{eq:TrYnewexpression}
+\Tr_Y(\varphi)\sim_P \inf_{j\geq 1} P_{\omega|_{\widetilde{Y}}}[\varphi_j|_{\widetilde{Y}}].
+\end{equation}
+  We conclude our assertion.
+\end{proof}
+
+\begin{example}\label{ex:resanalyt}
+    Let $\varphi\in \QPSH(X)$ such that $\nu(\varphi,Y)=0$. Assume that $\varphi$ has analytic singularities. Then
+    \[
+        \Tr_Y(\varphi)\sim_P \varphi|_{\widetilde{Y}}.
+    \]
+\end{example}
+
+\begin{example}\label{ex:trace:L236}
+    Let $\varphi\in \QPSH(X)$. Take a closed real smooth $(1,1)$-form $\theta$ on $X$ such that $\varphi\in \PSH(X,\theta)_{>0}$, then
+    \[
+        \Tr_X(\varphi)\sim_P P_{\theta}[\varphi]_{\mathcal{I}},\quad   \Tr^{\theta}_X(\varphi) = P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    In particular, the trace operator can be regarded as a generalization of the $\mathcal{I}$-envelope.
+\end{example}
+
+\begin{example}\label{ex:tracedefinedposmass}
+    Assume that $\varphi\in \PSH(X,\theta)$ for some closed smooth real $(1,1)$-form $\theta$ on $X$, $\nu(\varphi,Y)=0$ and
+    \begin{equation}\label{eq:traceposmasscond}
+    \lim_{\epsilon\searrow 0} \int_{\widetilde{Y}} \left( \theta|_{\widetilde{Y}} +\epsilon\omega|_{\widetilde{Y}}+\ddc\Tr_Y^{\theta+\epsilon\omega}(\varphi)\right)^{\dim Y} >0
+    \end{equation}
+    for any arbitrary choice of a Kähler form $\omega$ on $X$.
+    Then it follows from \cref{prop:vol_limit_model} that $\Tr_Y^{\theta}(\varphi)$ is defined, and its mass is exactly the above limit.
+
+    As a consequence, we have the following formula:
+    \begin{equation}
+        \int_{\widetilde{Y}} \left(\theta|_{\widetilde{Y}}+\ddc\Tr_Y^{\theta}(\varphi)\right)^{\dim Y}=\lim_{\epsilon\searrow 0} \int_{\widetilde{Y}} \left( \theta|_{\widetilde{Y}} +\epsilon\omega|_{\widetilde{Y}}+\ddc\Tr_Y^{\theta+\epsilon\omega}(\varphi)\right)^{\dim Y},
+    \end{equation}
+    where the left-hand side is understood as $0$ if $\Tr_Y^{\theta}(\varphi)$ is not defined.
+\end{example}
+
+\begin{remark}\label{rmk:movingSes}
+    The trace operator allows us to introduce the following extension of the moving Seshadri constant. For $T\in \mathcal{Z}_+(X,\alpha)$ and $x\in X$, define
+    \[
+    \epsilon(T,x)\coloneqq \inf_{V\ni x}\left(\frac{\vol \Tr_V^{\alpha|_{\widetilde{V}}} T}{\mult_x V} \right)^{\frac{1}{\dim V}},
+    \]
+    where $\vol \Tr_V^{\alpha|_{\widetilde{V}}} T=0$ if $\Tr_V^{\alpha|_{\widetilde{V}}} T$ is not defined. Here $V$ runs over all positive-dimensional closed irreducible analytic subsets of $X$ containing $x$.
+
+    These moving Seshadri constants seem to be new. But since I do not have particularly good applications in mind, I will not study these objects in this book.
+\end{remark}
+
+\section{Properties of the trace operator}\label{sec:proptrace}
+Let $X$ be a connected compact Kähler manifold and $Y\subseteq X$ be an irreducible analytic subset.
+
+We prove a few elementary properties of the trace operator.
+\begin{proposition}\label{prop:tracelinear}
+    Let $\varphi,\psi\in \QPSH(X)$, $\lambda>0$. Assume that $\nu(\varphi,Y)=\nu(\psi,Y)=0$.
+    Then we have the following:
+    \begin{enumerate}
+        \item\label{itm:prop:tracelinear:1} Suppose that $\varphi\preceq_{\mathcal{I}}\psi$. Then $\Tr_Y(\varphi)\preceq_P \Tr_Y(\psi)$.
+        \item\label{itm:prop:tracelinear:2} We have
+            \[
+                \Tr_Y(\varphi+\psi)\sim_P \Tr_Y(\varphi)+\Tr_Y(\psi).
+            \]
+        \item\label{itm:prop:tracelinear:3} We have
+            \[
+                \Tr_Y(\lambda\varphi)\sim_P \lambda\Tr_Y(\varphi).
+            \]
+        \item\label{itm:prop:tracelinear:4} We have
+            \[
+                \Tr_Y(\varphi\lor \psi)\sim_P \Tr_Y(\varphi)\lor \Tr_Y(\psi).
+            \]
+    \end{enumerate}
+\end{proposition}
+As a consequence of \ref{itm:prop:tracelinear:1}, the $P$-equivalence class of $\Tr_Y(\varphi)$ depends only on the $\mathcal{I}$-equivalence class of $\varphi$.
+\begin{proof}
+    Take a closed smooth real $(1,1)$-form $\theta$ on $X$ such that $\theta_{\varphi}$, $\theta_{\psi}$ are both Kähler currents.
+    Let $(\varphi_j)_j$ and $(\psi_j)_j$ be quasi-equisingular approximations of $\varphi$ and $\psi$ in $\PSH(X,\theta)$ respectively. We may assume that $\varphi_j\leq 0$ and $\psi_j\leq 0$ for all $j\geq 1$.
+
+    \ref{itm:prop:tracelinear:1} We choose the quasi-equisingular approximations compatibly. By \cref{thm:qequi}, we may take $\varphi_j$ and $\psi_j$ with analytic singularities of types
+    \[
+    \left(2^{-j},\mathcal I(2^j\varphi)\right), \quad \left(2^{-j},\mathcal I(2^j\psi)\right),
+    \]
+    respectively. Since $\varphi\preceq_{\mathcal I}\psi$, we have
+    \[
+        \mathcal I(2^j\varphi)\subseteq \mathcal I(2^j\psi)
+    \]
+    for every $j$. Hence $\varphi_j\preceq\psi_j$ for every $j$. Restricting to $\widetilde{Y}$, we get $\varphi_j|_{\widetilde{Y}}\preceq\psi_j|_{\widetilde{Y}}$. Passing to the $d_S$-limits by \cref{prop:dsconvpresorder}, we obtain
+    \[
+        \Tr_Y(\varphi)\preceq_P\Tr_Y(\psi).
+    \]
+    Restricting to $\widetilde{Y}$ and passing to the $d_S$-limits by \cref{prop:dsconvpresorder}, we obtain
+    \[
+        \Tr_Y(\varphi)\preceq_P \Tr_Y(\psi).
+    \]
+
+    \ref{itm:prop:tracelinear:2} It follows from \cref{thm:dSadditivity} that $\varphi_j+\psi_j\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}+P_{\theta}[\psi]_{\mathcal{I}}$. However, by \cref{prop:PIconc} and \cref{prop:Igoodlinear}, we have
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}+P_{\theta}[\psi]_{\mathcal{I}}\sim_P P_{2\theta}[\varphi+\psi]_{\mathcal{I}}.
+    \]
+    Therefore, by \cref{prop:ds0char}, \cref{cor:quasi-equichar} and \cref{prop:analysingclosed}, $(\varphi_j+\psi_j)_j$ is a quasi-equisingular approximation of $\varphi+\psi$. We conclude using \cref{thm:dSadditivity}.
+
+    \ref{itm:prop:tracelinear:3} Let $(\lambda_j)_j$ be an increasing sequence of positive rational numbers with limit $\lambda$. Then $(\lambda_j\varphi_j)_j$ is a quasi-equisingular approximation of $\lambda\varphi$.
+    Since $\lambda_j/\lambda\to 1$, \cref{lma:dSsmallmult} gives
+    \[
+        d_S\left((\lambda_j/\lambda)\varphi_j|_{\widetilde{Y}},\varphi_j|_{\widetilde{Y}}\right)\to 0.
+    \]
+    After scaling the background class, \cref{lma:dS_res} shows that $\lambda_j\varphi_j|_{\widetilde{Y}}$ and $\lambda\varphi_j|_{\widetilde{Y}}$ have the same $d_S$-limit. The assertion follows.
+
+    \ref{itm:prop:tracelinear:4} By \cref{prop:lor_dS_conv}, we have
+    \[
+        \varphi_j\lor \psi_j\xrightarrow{d_S} P_{\theta}[\varphi]_{\mathcal{I}}\lor P_{\theta}[\psi]_{\mathcal{I}}.
+    \]
+    By \cref{prop:PIconc} and \cref{prop:Igoodlinear}, we have
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}\lor P_{\theta}[\psi]_{\mathcal{I}}\sim_P P_{\theta}[\varphi\lor \psi]_{\mathcal{I}}.
+    \]
+    Therefore, our assertion follows exactly as in the proof of \ref{itm:prop:tracelinear:2}.
+\end{proof}
+
+The trace operator is continuous along $d_S$-convergent decreasing sequences.
+\begin{proposition}\label{prop:tracedeclimit}
+    Let $(\varphi_j)_{j\in I}$ be a decreasing net in $\QPSH(X)$. Assume that there exists a closed real smooth $(1,1)$-form $\theta$ such that $\varphi_j\in \PSH(X,\theta)$ for each $j\in I$. Assume that $\varphi_j\xrightarrow{d_S}\varphi\in \QPSH(X)$ and $\nu(\varphi,Y)=0$. Then
+    \[
+        \Tr_Y(\varphi_j)\xrightarrow{d_S}\Tr_Y(\varphi).
+    \]
+\end{proposition}
+In view of \cref{cor:quasi-equichar}, the trace operator preserves the property of being a quasi-equisingular approximation, thereby solving the problem in \cref{ex:naive_res1}.
+\begin{proof}
+    It is enough to prove the sequential assertion. Indeed, suppose that the net statement fails. Then there is $\delta>0$ such that for every $i_0\in I$ one can find $i\geq i_0$ with
+    \[
+        d_S(\Tr_Y(\varphi_i),\Tr_Y(\varphi))\geq\delta.
+    \]
+    Using also $\varphi_i\xrightarrow{d_S}\varphi$, we may choose an increasing sequence $i_j\in I$ such that
+    \[
+        d_S(\varphi_{i_j},\varphi)<j^{-1},\quad d_S(\Tr_Y(\varphi_{i_j}),\Tr_Y(\varphi))\geq\delta.
+    \]
+    The sequence $(\varphi_{i_j})_j$ is decreasing and converges to $\varphi$ in $d_S$, contradicting the sequential assertion.
+
+    Thus we assume that $(\varphi_j)_{j\geq 1}$ is a decreasing sequence and that $\varphi_j\xrightarrow{d_S}\varphi$.
+
+    Take a Kähler form $\omega$ on $X$ so that $\varphi_j,\varphi\in \PSH(X,\omega)_{>0}$.  Replacing $\varphi_j$ by $P_{\omega}[\varphi_j]$, we may then assume that $(\varphi_j)_j$ is a decreasing sequence of model potentials. By \cref{prop:decPorderPenvconve}, we have
+    \[
+        P_{\omega}[\varphi]=\inf_{j\geq 1}\varphi_j.
+    \]
+    By \cref{prop:ds0char}, we may assume from now on that
+    \[
+        \varphi=\inf_{j\geq 1}\varphi_j.
+    \]
+    After adding a Kähler form to $\omega$, we may assume that $\omega_{\varphi}$ is a Kähler current.
+
+
+    For each $j\geq 1$, choose a quasi-equisingular approximation $(\varphi_j^k)_{k\geq 1}$ of $\varphi_j$ in $\PSH(X,\omega)$. Using the standard construction in \cref{thm:qequi}, we may choose these approximations compatibly in $j$, so that for each fixed $k$,
+    \[
+        \varphi_{j+1}^k\preceq \varphi_j^k
+    \]
+    We shall choose an increasing sequence of integers $k_j$ and put
+    \[
+        \eta_j\coloneqq \varphi_j^{k_j}.
+    \]
+    The sequence $(k_j)_j$ is chosen inductively: Choose $k_1>1$, for $j>1$, we choose $k_j$ large enough so that
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L389:1} $k_{j}\geq k_{j-1}$;
+        \item\label{itm:chapter-trace:L389:2} $d_{S,\omega}(\eta_j,P_{\omega}[\varphi_j]_{\mathcal{I}})\leq 1/(j-1)$;
+        \item\label{itm:chapter-trace:L389:3} $d_{S,\omega|_{\widetilde{Y}}}(\eta_j|_{\widetilde{Y}},\Tr_Y^{\omega}(\varphi_j))<1/(j-1)$.
+    \end{enumerate}
+    It follows from the compatibility in $j$ and from $k_j\geq k_{j-1}$ that $(\eta_j)_j$ is decreasing in singularity types. Indeed,
+    \[
+        \eta_{j+1}=\varphi_{j+1}^{k_{j+1}}\preceq \varphi_{j+1}^{k_j}\preceq \varphi_j^{k_j}=\eta_j.
+    \]
+    By \cref{thm:contPI}, we have
+    \[
+        P_{\omega}[\varphi_j]_{\mathcal{I}}\xlongrightarrow{d_S} P_{\omega}[\varphi]_{\mathcal{I}}.
+    \]
+    By \ref{itm:chapter-trace:L389:2} and \cref{cor:quasi-equichar}, we have $\eta_j\xrightarrow{d_S} P_{\omega}[\varphi]_{\mathcal{I}}$. Observe that by \cref{prop:decPorderPenvconve},
+    \[
+        P_{\omega}[\varphi]_{\mathcal{I}}=\inf_{j>0} P_{\omega}\left[\eta_j\right].
+    \]
+    By \cref{prop:analysingcompPandPI}, for each $j>0$, $P_{\omega}[\eta_j]$ has analytic singularities. By \cref{thm:equising_cond_general}, $(P_{\omega}[\eta_j])_j$ is a quasi-equisingular approximation of $P_{\omega}[\varphi]_{\mathcal{I}}$. Therefore, by definition of the trace operator and \itemref{itm:prop:tracelinear:1},
+    \[
+        \eta_j|_{\widetilde{Y}}\xrightarrow{d_S} \Tr_Y(\varphi).
+    \]
+    It follows from \ref{itm:chapter-trace:L389:3} that
+    \[
+        \Tr_Y(\varphi_j)\xrightarrow{d_S}\Tr_Y(\varphi).
+    \]
+    We conclude the proof.
+\end{proof}
+
+\begin{example}\label{ex:trace:L407}
+    The trace operator is not continuous along increasing sequences. Let us consider the case $X=\mathbb{P}^2$ with coordinates $(z_1,z_2)$ on $\mathbb{C}^2\subseteq X$. Let $\omega_{\mathrm{{FS}}}$ denote the Fubini--Study metric.
+    The subvariety $Y\cong \mathbb{P}^1$ is defined by $z_2=0$. Consider an increasing sequence $(\varphi_j)_j$ in $\PSH(X,\omega_{\mathrm{FS}})$, whose potentials near $(0,0)$ are given by
+    \[
+    \log |z_1|^2\lor \left( j^{-1}\log |z_2|^2\right)+\mathcal{O}(1).
+    \]
+    The pointwise restriction of these potentials to $Y$ are given locally by
+    \[
+    \log |z_1|^2+\mathcal{O}(1).
+    \]
+    On the other hand, locally
+    \[
+    \log |z_1|^2\lor \left( j^{-1}\log |z_2|^2\right)\to 0
+    \]
+    almost everywhere as $j\to\infty$. So the trace operator is not continuous along the sequence $(\varphi_j)_j$.
+\end{example}
+
+
+
+\begin{lemma}\label{lma:rescommpullback}
+    Let $\pi\colon Z\rightarrow X$ be a proper bimeromorphic morphism, where $Z$ is a connected Kähler manifold. Assume that $W$ (resp. $Y$) is an irreducible analytic subset of $Z$ (resp. $X$) such that the restriction $\Pi \colon W\rightarrow Y$ of $\pi$ is defined and is bimeromorphic, so that we have the following commutative diagram
+    \[
+    \begin{tikzcd}
+        \widetilde{W}\arrow[r]\arrow[d,"\widetilde{\Pi}"] & W \arrow[d, "\Pi"] \arrow[r, hook] & Z \arrow[d, "\pi"] \\
+        \widetilde{Y}\arrow[r] & Y \arrow[r, hook]                  & X.
+\end{tikzcd}
+    \]
+    Then for any $\varphi\in \QPSH(X)$ with $\nu(\varphi,Y)=0$, we have
+\begin{equation}\label{eq:rescommpullback}
+    \widetilde{\Pi}^*\Tr_{Y}(\varphi)\sim_P\Tr_W(\pi^*\varphi).
+    \end{equation}
+\end{lemma}
+\begin{proof}
+We first observe that by Zariski's main theorem, $\nu(\pi^*\varphi,W)=0$. So the right-hand side of \eqref{eq:rescommpullback} makes sense.
+
+\textbf{Step~1}.
+    Assume that $\varphi$ has analytic singularities.
+    It suffices to apply \cref{ex:resanalyt} to reformulate \eqref{eq:rescommpullback} as
+    \[
+    \widetilde{\Pi}^*(\varphi|_{\widetilde{Y}})\sim_P(\pi^*\varphi)|_{\widetilde{W}}.
+    \]
+    In fact, the strict equality holds, which is nothing but the functoriality of pullbacks.
+
+\textbf{Step~2}.
+    Next we handle the general case. Choose a smooth closed real $(1,1)$-form $\theta$ such that $\theta_{\varphi}$ is a Kähler current. Take a quasi-equisingular approximation $(\varphi_j)_j$ of $\varphi$ in $\PSH(X,\theta)$. By \cref{cor:quasi_equising_bimero}, $(\pi^*\varphi_j)_j$ is a quasi-equisingular approximation of $\pi^*\varphi$.
+    From Step~1, we know that for each $j$,
+    \[
+    \widetilde{\Pi}^*\Tr_{Y}(\varphi_j)\sim_P\Tr_W(\pi^*\varphi_j).
+    \]
+    Letting $j\to\infty$, the right-hand side converges to $\Tr_W(\pi^*\varphi)$ by the definition of the trace operator. On the left-hand side, the $d_S$-convergence of $\Tr_Y(\varphi_j)$ to $\Tr_Y(\varphi)$, together with \cref{lma:Ipartorderinv} and \cref{cor:dSconv_bimero}, implies \eqref{eq:rescommpullback}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:OT2}
+    Let $\varphi\in \QPSH(X)$ with $\nu(\varphi,Y)=0$. Assume that $Y$ is smooth.
+    Then for any $\lambda>0$, we have
+    \begin{equation}\label{eq:OT}
+        \mathcal{I}(\lambda \Tr_Y(\varphi))\subseteq \Rest_Y\mathcal{I}(\lambda \varphi).
+    \end{equation}
+\end{proposition}
+See \cref{def:restidealsheaf} for the definition of $\Rest_Y$.
+
+\begin{proof}
+Take a Kähler form $\omega$ on $X$ such that $\omega_{\varphi}$ is a Kähler current.
+
+Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\omega)$.
+
+For each $j\geq 1$, we have
+\[
+\Tr_Y(\varphi) \preceq_P \varphi_j|_Y.
+\]
+Indeed, $\Tr_Y(\varphi)$ is $P$-equivalent to the decreasing $d_S$-limit of
+the restrictions $\varphi_j|_Y$, hence it is more singular than each
+$\varphi_j|_Y$.
+
+For any $\lambda'>\lambda>0$, we can find $j>0$ so that
+\[
+    \mathcal{I}(\lambda' \varphi_j)\subseteq \mathcal{I}(\lambda \varphi).
+\]
+By \cref{cor:PimpliesI} and \cref{thm:OT}, we have
+\[
+    \mathcal{I}(\lambda' \Tr_Y(\varphi))\subseteq \mathcal{I}(\lambda' \varphi_j|_Y)\subseteq \Rest_Y\mathcal{I}(\lambda'\varphi_j)\subseteq \Rest_Y\mathcal{I}(\lambda \varphi).
+\]
+Thanks to the strong openness theorem \cref{thm:strongopen}, we conclude \eqref{eq:OT}.
+\end{proof}
+
+
+Lastly, we turn our attention to global sections. For this we will need the following global Ohsawa--Takegoshi extension theorem for the trace operator:
+
+\begin{theorem}\label{thm:OT_ext_global}
+    Let $L$ be a big line bundle on $X$ and let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing $c_1(L)$.
+Suppose that $\varphi\in \PSH(X,\theta)$ and $\theta_{\varphi}$ is a Kähler current. Assume that $Y$ is smooth and $\nu(\varphi,Y)=0$.
+Let $T$ be a holomorphic line bundle on $X$.
+Then there exists $k_0$ such that for all $k \geq k_0$ and $s \in \mathrm{H}^0(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}(k \Tr_Y^{\theta}(\varphi)))$, there exists an extension $\tilde s \in \mathrm{H}^0(X, T\otimes L^k \otimes \mathcal{I}(k\varphi))$.
+\end{theorem}
+It is of interest to know whether one can control the $L^2$-norm of $\tilde{s}$ in the above result.
+
+\begin{proof}
+Fix a Kähler form $\omega$ on $X$ and a Hermitian metric $h_T$ on $T$.
+We may assume that $Y\neq X$ and that $\theta_{\varphi} \geq 3\delta \omega$ for some $\delta>0$. Let $(\varphi_j)_j$ be the decreasing quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$. We can assume that $\theta_{\varphi_j} \geq 2\delta \omega$ for all $j\geq 1$. Also, there exists $\epsilon_0 >0$ such that $\theta_{(1+\epsilon)\varphi_j} \geq \delta \omega$ for any $\epsilon \in (0,\epsilon_0)$. Take $k_0=k_0(\delta,h_T)$ as in \cref{thm:OT_ext}.
+
+
+We fix $k \geq k_0$ and $s \in \mathrm{H}^0(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}(k\Tr_Y^{\theta}(\varphi)))$. By \cref{thm:strongopen}, there exists $\epsilon \in (0,\epsilon_0)$ such that $s \in \mathrm{H}^0(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}(k(1+\epsilon)\Tr_Y^{\theta}(\varphi)))$.
+
+Since $\Tr_Y^{\theta}(\varphi) \preceq_P \varphi_j|_Y$, \cref{cor:PimpliesI} implies that $s \in \mathrm{H}^0(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}(k(1+\epsilon)\varphi_j|_Y))$. By \cref{thm:OT_ext}, there exists $\tilde s_j \in \mathrm{H}^0(X, T\otimes L^k \otimes \mathcal{I}(k(1+\epsilon)\varphi_j))$ such that $\tilde s_j|_Y =s$, for all $j$.
+
+But by definition of quasi-equisingular approximation, we obtain that for high enough $j$ the inclusion $\mathcal{I}(k(1+\epsilon)\varphi_j) \subseteq \mathcal{I}(k\varphi)$ holds. As a result, $\tilde s_j \in \mathrm{H}^0(X, T\otimes L^k \otimes \mathcal{I}(k\varphi))$ for high enough $j$, finishing the argument.
+\end{proof}
+
+
+\section{Relation to the classical restricted volumes}\label{sec:rv}
+Let $X$ be a connected compact Kähler manifold of dimension $n$ and $Y$ be a connected submanifold of dimension $m$. Fix a big class $\alpha\in \mathrm{H}^{1,1}(X,\mathbb{R})$. Take a closed smooth real $(1,1)$-form $\theta\in \alpha$. Fix a Kähler form $\omega$ on $X$.
+
+Recall that the notions of non-Kähler locus and non-nef locus were defined in \cref{def:nKlocus} and \cref{def:nnlocus}.
+
+When $Y\not\subseteq \nK(\alpha)$, Matsumura (\cite[Definition~1.4]{Mat13}) defines the restricted volume of $\{\theta\}$ to $Y$ in the following manner:
+\begin{equation}\label{eq:rest_vol_Mat_def}
+        \vol_{X|Y}(\alpha)\coloneqq \sup_{\varphi} \int_Y \left(\theta|_Y+\ddc \varphi|_Y\right)^{m},
+\end{equation}
+where $\varphi$ runs over elements in $\PSH(X,\theta)$ with analytic singularities such that $\varphi|_Y\not\equiv -\infty$. This definition is independent of the choice of $\theta$.
+
+In case $Y\not\subseteq \nn(\alpha)$, Collins--Tosatti \cite{CT22} extend the above definition of restricted volume:
+\begin{equation}\label{eq:rest_vol_CT_def}
+        \vol_{X|Y}(\alpha)\coloneqq \lim_{\epsilon \searrow 0}\sup_{\varphi} \int_Y \left(\theta|_Y + \epsilon \omega|_Y +\ddc \varphi|_Y\right)^m.
+\end{equation}
+where $\varphi$ runs over elements in $\PSH(X,\theta+\epsilon\omega)$ with analytic singularities such that $\varphi|_Y\not\equiv -\infty$. This definition is independent of the choice of $\theta$.
+
+These definitions extend the more classical definition in the algebraic setting due to \cite{ELMNP09}.
+
+\begin{proposition}\label{prop:restvol_voltrace}
+Assume that $Y\not\subseteq \nK(\alpha)$. Then
+    \begin{equation}\label{eq:volrest}
+        \vol_{X|Y}(\alpha)= \int_Y \left( \theta|_Y+\ddc \Tr_Y^{\theta}(V_{\theta}) \right)^m =\int_Y (\theta|_Y + \ddc V_\theta|_Y)^m.
+    \end{equation}
+\end{proposition}
+
+\begin{proof}
+We start with the first equality of \eqref{eq:volrest}. Since $Y\not\subseteq \nK(\alpha)$, $V_{\theta}|_Y \not \equiv -\infty$ as a consequence of \cref{lma:Vthetalocbdd}, hence also $\nu(V_{\theta},Y)=0$.
+
+Take a quasi-equisingular approximation $(\varphi_j)_{j>0}$ of $V_{\theta}$ with $\varphi_j\in \PSH(X,\theta+\epsilon_j\omega)$ for a decreasing sequence $(\epsilon_j)_{j>0}$ converging to $0$. By the monotonicity theorem \cref{thm:mono}, we have for each $j>0$,
+\[
+    \int_Y \left(\theta|_Y+\epsilon_j\omega|_Y+\ddc \varphi_j|_Y\right)^m\geq \int_Y \left(\theta|_Y+\ddc\chi|_Y\right)^m
+\]
+for every $\chi\in \PSH(X,\theta)$ with $\chi|_Y\not\equiv -\infty$. Since $\chi$ is arbitrary, we conclude that
+\[
+    \lim_{j\to\infty}\int_Y \left(\theta|_Y+\epsilon_j\omega|_Y+\ddc \varphi_j|_Y\right)^m\geq \vol_{X|Y}(\alpha).
+\]
+For any fixed $\epsilon>0$, we have
+\[
+\begin{split}
+\lim_{j\to\infty} \int_Y \left(\theta|_Y+\epsilon_j\omega|_Y+\ddc \varphi_j|_Y\right)^m\leq & \lim_{j\to\infty} \int_Y \left(\theta|_Y+\epsilon\omega|_Y+\ddc \varphi_j|_Y\right)^m\\
+=& \int_Y \left(\theta|_Y+\epsilon\omega|_Y+\ddc \Tr_Y^{\theta+\epsilon\omega}(V_{\theta})\right)^m.
+\end{split}
+\]
+Letting $\epsilon\to 0+$ and applying \cref{ex:tracedefinedposmass}, we conclude that the $\leq$ direction in the first equality of \eqref{eq:volrest} holds.
+Moreover, $Y\not\subseteq \nK(\alpha)$ implies $\vol_{X|Y}(\alpha)>0$ by \eqref{eq:rest_vol_Mat_def}. Hence the limiting mass in \cref{ex:tracedefinedposmass} is positive, and $\Tr_Y^\theta(V_\theta)$ is indeed defined in the present situation.
+
+   For the reverse direction, by definition, for any fixed $\epsilon>0$, we have
+    \[
+    \begin{aligned}
+    \int_Y \left(\theta|_Y+\epsilon_j\omega|_Y+\ddc\varphi_j|_Y\right)^m
+    &\leq \int_Y \left(\theta|_Y+\epsilon\omega|_Y+\ddc\varphi_j|_Y\right)^m\\
+    &\leq \vol_{X|Y}(\{\theta\}+\epsilon\{\omega\})
+    \end{aligned}
+    \]
+    for all large enough $j$. Therefore, for large $j$, by the monotonicity theorem \cref{thm:mono}, we have
+    \[
+        \int_Y \left(\theta|_Y+\epsilon_j\omega|_Y+\ddc \Tr_Y^{\theta}(V_{\theta})\right)^m\leq \vol_{X|Y}(\{\theta\}+\epsilon\{\omega\}).
+    \]
+    Letting $j\to\infty$ and $\epsilon \searrow 0$, using the continuity of $\vol_{X|Y}$ (\cite[Corollary~4.11]{Mat13}) together with \cref{ex:tracedefinedposmass}, we conclude the first equality of \eqref{eq:volrest}.
+
+Now we address the second equality. Due to \cref{thm:mono}, the defining formula \eqref{eq:rest_vol_Mat_def}, and the definition of $V_\theta$, we obtain that
+\[
+\vol_{X|Y}(\{\theta\}) \leq \int_Y (\theta|_Y + \ddc V_\theta|_Y)^m.
+\]
+The reverse inequality now follows from the first equality of \eqref{eq:volrest}, \cref{thm:mono} and the fact that $V_\theta|_Y \preceq_P \Tr_Y^\theta(V_\theta)$ as proved in \cref{prop:Trdominarest}.
+\end{proof}
+
+
+
+
+
+\begin{theorem}\label{thm:rest_volume_tr_volume} If $Y\not\subseteq \nn(\alpha)$, then
+\begin{equation}\label{eq:non-nef_rest_vol}
+\begin{aligned}
+\vol_{X|Y}(\alpha) &= \lim_{\epsilon \to 0+}\int_Y \Bigl(\theta|_Y + \epsilon \omega|_Y +  \ddc V_{\theta+ \epsilon \omega}|_Y\Bigr)^m\\
+=&\lim_{\epsilon \to 0+}\int_Y \left(\theta|_Y + \epsilon \omega|_Y +  \ddc \Tr_Y^{\theta+ \epsilon \omega}(V_{\theta+ \epsilon \omega}) \right)^m \\
+&=\int_Y \left( \theta|_Y+\ddc \Tr_Y^{\theta}(V_{\theta}) \right)^m,
+\end{aligned}
+\end{equation}
+where the last term is understood as $0$ if $\Tr_Y^{\theta}(V_{\theta})$ is not defined.
+\end{theorem}
+
+\begin{proof} Since $\nu(V_\theta, Y)=0$, we have $Y\not\subseteq \nK(\alpha+\epsilon\{\omega\})$ for all $\epsilon>0$. Therefore, by \eqref{eq:rest_vol_CT_def} and \eqref{eq:volrest}, only the last equality of \eqref{eq:non-nef_rest_vol} needs to be argued.
+
+Thanks to \cref{lma:Vthetaepsconv}, we have
+\[
+    V_{\theta+\epsilon\omega}\xrightarrow{d_S}V_{\theta}
+\]
+as $\epsilon\to 0+$.
+
+Therefore, using \cref{prop:tracedeclimit}, we find
+\[
+\Tr_Y\left( V_{\theta+\epsilon\omega} \right) \xrightarrow{d_S} \Tr_Y\left(V_{\theta}\right).
+\]
+Set
+\[
+M\coloneqq \lim_{\epsilon_0\to 0+}\int_Y \left(\theta|_Y+\epsilon_0\omega|_Y\right)^m_{\Tr_Y^{\theta+\epsilon_0\omega}(V_{\theta})}.
+\]
+By \cref{ex:tracedefinedposmass}, if $\Tr_Y^{\theta}(V_{\theta})$ is defined, then
+\[
+    M=\int_Y (\theta|_Y)^m_{\Tr_Y^{\theta}(V_{\theta})},
+\]
+whereas if $\Tr_Y^{\theta}(V_{\theta})$ is not defined, then $M=0$. Thus $M$ is the last term of \eqref{eq:non-nef_rest_vol}, with the convention made in the statement.
+
+Thanks to \cref{thm:convdS}, for any $\epsilon_0>0$, we have
+\[
+\begin{aligned}
+\lim_{\epsilon\to 0+}\int_Y \left(\theta|_Y + \epsilon_0 \omega|_Y\right)^m_{\Tr_Y^{\theta + \epsilon_0 \omega}(V_{\theta + \epsilon \omega})}
+&= \int_Y (\theta|_Y + \epsilon_0 \omega|_Y)^m_{\Tr_Y^{\theta + \epsilon_0 \omega}(V_{\theta})}.
+\end{aligned}
+\]
+By the definition of $M$, this implies the existence of $(\epsilon_j)_{j>0}$ such that $0<\epsilon_j<1/j$ and
+\begin{equation}\label{eq:limit_1}
+\lim_{j\to\infty}\int_Y \left(\theta|_Y + j^{-1}\omega|_Y\right)^m_{\Tr_Y^{\theta + j^{-1} \omega}(V_{\theta + \epsilon_j \omega}) } = M.
+\end{equation}
+Moreover, for each $j>0$,
+\begin{equation}\label{eq:limit_2}
+\begin{aligned}
+\int_Y \left(\theta|_Y + j^{-1} \omega|_Y\right)^m_{\Tr_Y^{\theta + j^{-1} \omega}(V_{\theta + \epsilon_j \omega}) } \geq & \int_Y \left(\theta|_Y + \epsilon_j \omega|_Y\right)^m_{\Tr_Y^{\theta + \epsilon_j\omega}(V_{\theta + \epsilon_j \omega}) } \\
+\geq & M.
+\end{aligned}
+\end{equation}
+Indeed, the first inequality follows from the multi-linearity of the non-pluripolar products \itemref{itm:prop:npp1:6}. For the second one, if $M=0$ there is nothing to prove; if $M>0$, then \cref{ex:tracedefinedposmass} shows that $\Tr_Y^\theta(V_\theta)$ is defined, and the inequality follows from the multi-linearity of the non-pluripolar products \itemref{itm:prop:npp1:6} and the monotonicity theorem \cref{prop:mono2}.
+Putting \eqref{eq:limit_1} and \eqref{eq:limit_2} together, it follows that
+\[
+\lim_{j\to\infty}\int_Y \left(\theta|_Y + \epsilon_j \omega|_Y\right)^m_{\Tr_Y^{\theta + \epsilon_j \omega}(V_{\theta + \epsilon_j \omega}) } = M.
+\]
+Finally, since $\int_Y \left(\theta|_Y + \epsilon \omega|_Y +  \ddc \Tr_Y^{\theta+ \epsilon \omega}(V_{\theta+ \epsilon \omega}) \right)^m$ depends monotonically on $\epsilon>0$, we conclude that
+\[
+\lim_{\epsilon\to 0+}\int_Y \left(\theta|_Y + \epsilon \omega|_Y +  \ddc \Tr_Y^{\theta+ \epsilon \omega}(V_{\theta+ \epsilon \omega}) \right)^m=M.
+\]
+This completes the proof.
+\end{proof}
+
+
+
+\section{Restricted volumes of line bundles}\label{sec:resvol}
+Let $X$ be a connected projective manifold of dimension $n$ and $Y\subseteq X$ be a connected submanifold of dimension $m$. Consider a big line bundle $L$ on $X$, a Hermitian metric $h_0$ on $L$ with $\theta=c_1(L,h_0)$.
+Let $A$ be a very ample line bundle on $X$. Take a Hermitian metric $h_A$ on $A$ such that $\omega=\ddc h_A$ is a Kähler form.
+
+
+Using the trace operator, one could prove the following generalization of \cref{thm:DXmain1}:
+\begin{theorem}\label{thm:rest_volume}
+Let $h$ be a (singular) plurisubharmonic metric on $L$ with $\nu(\ddc h,Y)=0$. Assume that
+\begin{equation}\label{eq:traceposmasscond2}
+    \lim_{\epsilon\to 0+} \int_Y\left(\Tr_Y^{c_1(L|_Y)+\epsilon\omega|_Y}\bigl(c_1(L,h)\bigr) \right)^m>0.
+\end{equation}
+Then for any holomorphic line bundle $T$ on $X$ we have
+\begin{equation}\label{eq:DXmainrelative}
+    \int_Y \left(\Tr_Y^{c_1(L|_Y)}\bigl(c_1(L,h)\bigr)\right)^m = \lim_{k \to \infty} \frac{m!}{k^m} h^0\left(Y,T|_Y\otimes L|_Y^k \otimes \Rest_Y\left(\mathcal{I}(h^{k})\right) \right).
+\end{equation}
+\end{theorem}
+Recall that $\Rest_Y$ is defined in \cref{def:restidealsheaf}. Observe that by \cref{ex:tracedefinedposmass}, \eqref{eq:traceposmasscond2} implies that $\Tr_Y^{c_1(L|_Y)}(c_1(L,h))$ is defined. So \eqref{eq:DXmainrelative} is defined.
+
+We will identify $h$ with $\varphi\in \PSH(X,\theta)$ as in \eqref{eq:htwist}.
+
+For the proof, recall that the ideal sheaf $\mathcal{I}_{\infty}$ is introduced in \cref{def:Iinfty}.
+\begin{proof}
+\textbf{Step~1}. We first assume that $\ddc h$ is a Kähler current.
+Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$.
+After possibly replacing $(\varphi_j)_j$ by a subsequence, there exists $\epsilon_0 \in (0,1)\cap \mathbb{Q}$ such that the $\theta_{(1-\epsilon) \varphi_j}$'s are also Kähler currents for any $\epsilon \in (0,\epsilon_0)$.
+
+For any rational $\epsilon\in (0,\epsilon_0)$, and sufficiently large $k$, we have
+\[
+\begin{aligned}
+&\frac{1}{m!}\int_Y \left(\theta|_Y+\ddc\Tr_Y^{\theta}(\varphi)\right)^m \\
+=& \lim_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}\left(k\Tr_Y^{\theta}(\varphi)\right)\right) \quad \textup{by \cref{thm:DXmain1}}\\
+\leq & \varliminf_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\left(\mathcal{I}(k\varphi)\right)\right) \quad \textup{ by \cref{prop:OT2}}\\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\left(\mathcal{I}(k\varphi)\right)\right)\\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\mathcal{I}\left(k\varphi_j\right)\right) \\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\mathcal{I}_{\infty}\left((1-\epsilon )k\varphi_j\right)\right)  \quad \textup{by \cref{lma:IandIinf}}\\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}_{\infty}\left((1-\epsilon )k\varphi_j|_Y\right)\right)\\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \mathcal{I}\left((1-\epsilon) k\varphi_j|_Y\right) \right)\\
+= & \frac{1}{m!} \int_Y \left(\theta|_Y+(1-\epsilon)\ddc\varphi_j|_Y\right)^m\quad \textup{by \cref{thm:DXmain1}}.
+\end{aligned}
+\]
+Here we used the observation that for any $\psi\in \QPSH(X)$ with analytic singularities with $\psi|_Y\not\equiv -\infty$, we have
+\[
+\Rest_Y \mathcal{I}_{\infty}(\psi)\subseteq \mathcal{I}_{\infty}\left(\psi|_Y\right).
+\]
+
+Letting $\epsilon\to0+$, \cref{lma:dSsmallmult} gives
+\[
+    (1-\epsilon)\varphi_j|_Y\xrightarrow{d_S}\varphi_j|_Y.
+\]
+Hence, by \cref{thm:convdS}, the last term converges to
+\[
+    \frac{1}{m!}\int_Y \left(\theta|_Y+\ddc\varphi_j|_Y\right)^m.
+\]
+We conclude that
+\[
+\begin{aligned}
+\frac{1}{m!}\int_Y \left(\theta|_Y+\ddc\Tr_Y^{\theta}(\varphi)\right)^m\leq & \varliminf_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\left(\mathcal{I}(k\varphi)\right)\right) \\
+\leq & \varlimsup_{k \to \infty} \frac{1}{k^m} h^0\left(Y, T|_Y\otimes L|_Y^k\otimes \Rest_Y\left(\mathcal{I}(k\varphi)\right)\right)\\
+\leq & \frac{1}{m!} \int_Y \left(\theta|_Y+\ddc\varphi_j|_Y\right)^m.
+\end{aligned}
+\]
+Letting $j\to \infty$, we conclude \eqref{eq:DXmainrelative}.
+
+\textbf{Step~2}. We handle the general case. After adding a constant to $\varphi$, we may assume that $\varphi\leq 0$.
+
+Using \cref{prop:OT2} and \cref{thm:DXmain1} we obtain that
+\[
+\begin{aligned}
+    \int_Y \left(\theta|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m &= \lim_{k \to \infty} \frac{m!}{k^m} h^0\left(Y,T|_Y \otimes L|_Y^k \otimes \mathcal{I}\left(k\Tr_Y^{\theta}(\varphi)\right)\right)\\
+    & \leq \varliminf_{k \to \infty} \frac{m!}{k^m} h^0\left(Y,T|_Y \otimes L|_Y^k \otimes \Rest_Y\left(\mathcal{I}(k\varphi)\right)\right).
+\end{aligned}
+\]
+Now we address the other direction in \eqref{eq:DXmainrelative}. Let $\phi \in \mathrm{H}^0(X,A)$ be a section that does not vanish identically on $Y$. Such $\phi$ exists since $A$ is very ample.
+
+We fix $k_0 \in \mathbb{N}$. For any $k \geq 0$, we have $k = q k_0 + r$ with $q,r \in \mathbb{N}$ and $r \in \{0,\ldots, k_0-1\}$. Also, we have an injective linear map
+\[
+\mathrm{H}^0\left(Y,T|_Y \otimes L|_Y^k \otimes \Rest_Y\mathcal{I}\left(k \varphi\right)\right)\xrightarrow{\cdot \phi^{\otimes q}} \mathrm{H}^0\left(Y,T|_Y\otimes L|_Y^k \otimes A|_Y^q \otimes \Rest_Y\mathcal{I}\left(k \varphi\right)\right).
+\]
+Therefore,
+\[
+\begin{aligned}
+ &\varlimsup_{k\to\infty} \frac{m!}{k^m} h^0\left(Y,T|_Y \otimes L|_Y^k \otimes \Rest_Y\mathcal{I}\left(k\varphi\right)\right)  \\
+ \leq & \varlimsup_{k\to\infty} \frac{m!}{k^m} h^0\left(Y,T|_Y \otimes L|_Y^k \otimes A|_Y^q\otimes \Rest_Y\mathcal{I}\left(k\varphi\right)\right) \\
+ \leq & \max_{r=0,\ldots,k_0-1}\frac{1}{k_0^m} \varlimsup_{q\to\infty} \frac{m!}{q^m} h^0\left(Y,T|_Y\otimes L|_Y^{q k_0} \otimes A|_Y^q\otimes L|_Y^{r}\otimes \Rest_Y\mathcal{I}\left((qk_0+r)\varphi\right)\right)\\
+ \leq & \max_{r=0,\ldots,k_0-1}\frac{1}{k_0^m} \varlimsup_{q\to\infty} \frac{m!}{q^m} h^0\left(Y,T|_Y\otimes L|_Y^{q k_0} \otimes A|_Y^q\otimes L|_Y^{r}\otimes \Rest_Y\mathcal{I}\left(k_0q \varphi\right)\right)\\
+ = & \int_Y \left(\theta|_Y+k_0^{-1}\omega|_Y+\ddc \Tr_Y^{\theta+k_0^{-1}\omega}(\varphi)\right)^m\\
+ =& \int_Y \left(\theta|_Y+k_0^{-1}\omega|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m,
+ \end{aligned}
+\]
+where the maximum is taken over the finitely many residue classes $k=qk_0+r$, the following inequality uses $k_0q\leq k$, the first equality follows by applying Step~1 for each $r$ to the big line bundle $L^{k_0} \otimes A$, the Kähler current $k_0 \theta_{\varphi} + \omega$, and twisting bundle $T \otimes L^r$, and the second equality follows from \cref{prop:Ppresmass}. Letting $k_0\to\infty$ and using the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6}, we conclude that
+\[
+\varlimsup_{k\to\infty} \frac{m!}{k^m}  h^0\left(Y,T|_Y \otimes L|_Y^k \otimes \Rest_Y\mathcal{I}\left(k \varphi\right)\right)\leq \int_Y \left(\theta|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m.
+\]
+This completes the proof.
+\end{proof}
+
+
+
+\begin{theorem}\label{thm:rest_volume_2} Let $\varphi\in \PSH(X,\theta)$ such that $\nu(\varphi,Y) =0$. Assume that $\theta_{\varphi}$ is a Kähler current.
+Then for any holomorphic line bundle $T$ on $X$ we have
+\[
+    \int_Y \left(\theta|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m  = \lim_{k \to \infty} \frac{m!}{k^m} \dim_{\mathbb C}\left\{ s|_Y:  s\in \mathrm{H}^0\left(X,T\otimes L^k \otimes \mathcal{I}(k\varphi)\right)\right\}.
+\]
+\end{theorem}
+
+\begin{proof}
+This is a consequence of \cref{thm:DXmain1}, \cref{thm:OT_ext_global} and \cref{thm:rest_volume}:
+\[
+\begin{aligned}
+    \int_Y \left(\theta|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m  & = \lim_{k \to \infty} \frac{m!}{k^m} h^0\left(Y,T|_Y\otimes L|_Y^k\otimes \mathcal{I}\left(k \Tr_Y^{\theta}(\varphi)\right)\right)\\
+    & \leq  \varliminf_{k \to \infty} \frac{m!}{k^m} \dim_{\mathbb C}\left\{ s|_Y:  s\in \mathrm{H}^0\left(X,T\otimes L^k \otimes \mathcal{I}(k\varphi)\right)\right\}\\
+    & \leq  \varlimsup_{k \to \infty} \frac{m!}{k^m} \dim_{\mathbb C}\left\{ s|_Y:  s\in \mathrm{H}^0\left(X,T\otimes L^k \otimes \mathcal{I}(k\varphi)\right)\right\}\\
+  & \leq  \lim_{k \to \infty} \frac{m!}{k^m} h^0\left(Y ,T|_Y\otimes L|_Y^k\otimes \Rest_Y\mathcal{I}(k\varphi)\right)\\
+  & =  \int_Y \left(\theta|_Y+\ddc \Tr_Y^{\theta}(\varphi)\right)^m.
+  \end{aligned}
+\]
+This completes the proof.
+\end{proof}
+
+\begin{remark}
+    One could also show that when \eqref{eq:traceposmasscond2} fails, the right-hand side of \eqref{eq:DXmainrelative} is $0$. See \cite{DX24}.
+\end{remark}
+
+
+\section{Analytic Bertini theorems}\label{sec:ABT}
+Let $X$ be a connected projective manifold of dimension $n\geq 1$.
+
+The analytic Bertini theorem handles the restriction along a generic subvariety.
+
+\begin{theorem}\label{thm:Bert}
+Let $\varphi\in \QPSH(X)$. Let $p\colon X\rightarrow \mathbb{P}^N$ be a morphism ($N\geq 1$). Define
+\[
+\mathcal{G}\coloneqq \Bigl\{H\in |\mathcal{O}_{\mathbb{P}^N}(1)|: H'\coloneqq H\cap X \textup{ is smooth and } \mathcal{I}(\varphi|_{H'})=\Rest_{H'}\bigl(\mathcal{I}(\varphi)\bigr)\Bigr\}.
+\]
+Then $\mathcal{G}\subseteq |\mathcal{O}_{\mathbb{P}^N}(1)|$ is co-pluripolar.
+\end{theorem}
+Recall that co-pluripolar sets are defined in \cref{def:pluripolarsets}. We adopt the convention that $\mathcal{I}(-\infty)=0$.
+\begin{remark}\label{rmk:trace:L787}
+Here and in the sequel, we slightly abuse the notation by writing $H\cap X$ for $p^{-1}H$, the scheme-theoretic inverse image of $H$. In other words, $H\cap X\coloneqq H\times_{\mathbb{P}^N} X$.
+
+By definition, any $H\in |\mathcal{O}_{\mathbb{P}^N}(1)|$ such that $p^{-1}H=\emptyset$ lies in $\mathcal{G}$.
+\end{remark}
+\begin{proof}
+
+Take an ample line bundle $L$ with a smooth Hermitian metric $h$ such that $c_1(L,h)+\ddc\varphi\geq 0$, where $c_1(L,h)$ is the first Chern form of $(L,h)$, namely the curvature form of $h$.
+We introduce $\Lambda\coloneqq |\mathcal{O}_{\mathbb{P}^N}(1)|$ to simplify our notations.
+
+\textbf{Step~1}.
+We prove that the following set is co-pluripolar:
+\[
+\begin{split}
+\mathcal{G}_{L}\coloneqq \left\{H\in \Lambda: H\cap X \text{ is smooth and } \mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}(\varphi|_{H\cap X})\Bigr)= \right.\\
+\left. \mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \Rest_{H\cap X}\left(\mathcal{I}(\varphi)\right)\Bigr)\right\}.
+\end{split}
+\]
+Here $\omega_{H\cap X}$ denotes the dualizing sheaf of $H\cap X$.
+
+Let $U\subseteq \Lambda\times X$ be the closed subvariety whose $\mathbb{C}$-points correspond to pairs $(H,x)\in \Lambda\times X$ with $p(x)\in H$.
+Let $\pi_1\colon U\rightarrow \Lambda$ be the natural projection. We may assume that $\pi_1$ is surjective, as otherwise there is nothing to prove.
+
+Observe that $U$ is a local complete intersection scheme by \emph{Krull's Hauptidealsatz} and \emph{a fortiori} a Cohen--Macaulay scheme. It follows from miracle flatness \cite[Theorem~23.1]{Mat89} that the natural projection $\pi_2\colon U\rightarrow X$ is flat. As the fibers of $\pi_2$ over closed points of $X$ are isomorphic to $\mathbb{P}^{N-1}$, it follows that $\pi_2$ is smooth. Thus, $U$ is smooth as well. Moreover, observe that
+\begin{equation}\label{eq:pi2pullvarphiItemp1}
+    \mathcal{I}(\pi_2^*\varphi)=\pi_2^*\mathcal{I}(\varphi)
+\end{equation}
+by \cref{prop:pull-backmis}.
+
+In the following, we will construct pluripolar sets $\Sigma_1\subseteq \Sigma_2 \subseteq \Sigma_3\subseteq \Sigma_4\subseteq \Lambda$ such that the behavior of $\pi_1$ is improved successively on the complement of $\Sigma_i$.
+
+
+\textbf{Step~1.1}.
+The usual Bertini theorem shows that there is a proper Zariski closed set $\Sigma_1\subseteq \Lambda$ such that $\pi_1$ has smooth fibers outside $\Sigma_1$. Enlarging $\Sigma_1$, we may guarantee that $\pi_1$ and $\mathcal{I}(\pi_2^*\varphi)$ are both flat outside $\Sigma_1$. See \cite[Théorème~6.9.1]{EGAIV2}.
+Then after further enlarging $\Sigma_1$ we may assume that $p^{-1}(H)$ avoids all associated points of $\mathcal{O}_X/\mathcal{I}(\varphi)$, for all $H\in \Lambda\setminus \Sigma_1$. Let $\pi_{1,H}$ denote the fiber of $\pi_1$ at $H$ and write $i_H\colon \pi_{1,H}\rightarrow U$ for the inclusion morphism.
+We arrive at
+\[
+\Rest_{\pi_{1,H}}(\mathcal{I}(\pi_2^*\varphi))=i_H^*\mathcal{I}(\pi_2^*\varphi)
+\]
+for all $H\in \Lambda\setminus \Sigma_1$.\footnote{This subtle point was overlooked in the proof of \cite{XiaBer}.}
+
+\textbf{Step~1.2}.
+By Grauert's coherence theorem,
+\[
+\mathcal{F}^i\coloneqq R^i\pi_{1*}\left(\omega_{U/\Lambda}\otimes \pi_2^*L\otimes \mathcal{I}(\pi_2^*\varphi) \right)
+\]
+is coherent for all $i$. Here $\omega_{U/\Lambda}$ denotes the relative dualizing sheaf of the morphism $U\rightarrow \Lambda$.
+Thus, there is a proper Zariski closed set $\Sigma_2\subseteq \Lambda$ such that
+\begin{enumerate}
+    \item\label{itm:chapter-trace:L815:1} $\Sigma_2\supseteq \Sigma_1$.
+    \item\label{itm:chapter-trace:L815:2} The $\mathcal{F}^i$'s are locally free outside $\Sigma_2$.
+\end{enumerate}
+We write $\mathcal{F}=\mathcal{F}^0$.
+ By cohomology and base change \cite[Theorem~III.12.11]{Har}, for any $H\in \Lambda\setminus \Sigma_2$,
+ the fiber $\mathcal{F}|_H$ of $\mathcal{F}$ is given by
+ \[
+\mathcal{F}|_H= \mathrm{H}^0\left(\pi_{1,H},\omega_{U/\Lambda}|_{\pi_{1,H}}\otimes \pi_2^*L|_{\pi_{1,H}}\otimes \Rest_{\pi_{1,H}}(\mathcal{I}(\pi_2^*\varphi)) \right).
+\]
+
+
+\textbf{Step~1.3}.
+In order to proceed, we need to make use of the Hodge metric $h_{\mathcal{H}}$ on $\mathcal{F}$ defined in \cite{HPS18}. We briefly recall its definition in our setting.
+By \cite[Section~22]{HPS18}, we can find a proper Zariski closed set $\Sigma_3\subseteq \Lambda$ such that
+\begin{enumerate}
+    \item\label{itm:chapter-trace:L830:1} $\Sigma_3\supseteq \Sigma_2$,
+    \item\label{itm:chapter-trace:L830:2} $\pi_1$ is smooth outside $\Sigma_3$,
+    \item\label{itm:chapter-trace:L830:3} both $\mathcal{F}$ and $\pi_{1*}\left(\omega_{U/\Lambda}\otimes \pi_2^*L \right)/\mathcal{F}$ are locally free outside $\Sigma_3$, and
+    \item\label{itm:chapter-trace:L830:4} for each $i$,
+    \[
+    R^i\pi_{1*}\left(\omega_{U/\Lambda}\otimes \pi_2^*L \right)
+    \]
+    is locally free outside $\Sigma_3$.
+\end{enumerate}
+Then for any $H\in \Lambda\setminus \Sigma_3$,
+\[
+\begin{gathered}
+\mathrm{H}^0\left(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}(\varphi|_{H\cap X})\right)\\
+\subseteq \mathcal{F}|_H\subseteq \mathrm{H}^0\left(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\right).
+\end{gathered}
+\]
+See \cite[Lemma~22.1]{HPS18}.
+
+Now we can give the definition of the Hodge metric on $\Lambda\setminus \Sigma_3$.
+Given any $H\in \Lambda\setminus \Sigma_3$, any $\alpha\in \mathcal{F}|_H$, the Hodge metric is defined as
+\[
+h_{\mathcal{H}}(\alpha,\alpha):=\int_{X\cap H} |\alpha|^2_{h}\mathrm{e}^{-\varphi}\in [0,\infty].
+\]
+Observe that $h_{\mathcal{H}}(\alpha,\alpha)<\infty$ if and only if $\alpha\in \mathrm{H}^0(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}(\varphi|_{H\cap X}))$. Moreover, $h_{\mathcal{H}}(\alpha,\alpha)>0$ if $\alpha\neq 0$.
+It is shown in \cite{HPS18} (cf. \cite[Theorem~3.3.5]{PT18}) that $h_{\mathcal{H}}$ is indeed a singular Hermitian metric, and it extends to a positive metric on $\mathcal{F}$.
+
+\textbf{Step~1.4}.
+The determinant $\det h_{\mathcal{H}}$ is singular at all $H\in \Lambda\setminus \Sigma_3$ such that
+\[
+\mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}(\varphi|_{H\cap X})\Bigr)\neq \mathcal{F}|_H.
+\]
+As the map $\pi_2$ is smooth, we have $\pi_2^*\mathcal{I}(\varphi)= \mathcal{I}(\pi_2^*\varphi)$ by \cref{prop:pull-backmis}.
+Under the identification $\pi_{1,H}\cong H\cap X$, we have
+\[
+\Rest_{\pi_{1,H}}\Bigl(\pi_2^*\mathcal{I}(\varphi)\Bigr)\cong \Rest_{H\cap X}\Bigl(\mathcal{I}(\varphi)\Bigr).
+\]
+Thus, we have the following inclusions:
+\[
+\begin{split}
+&\mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}\left(\varphi|_{H\cap X}\right)\Bigr)\\
+\subseteq & \mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \Rest_{H\cap X}\bigl(\mathcal{I}(\varphi)\bigr)\Bigr),
+\end{split}
+\]
+the right-hand side being $\mathcal{F}|_H$.
+
+Recall that the first inclusion follows from \cref{thm:OT}.
+Hence, $\det h_{\mathcal{H}}$ is singular at all $H\in |\mathcal{O}_{\mathbb{P}^N}(1)|\setminus \Sigma_3$ such that
+\[
+\begin{split}
+&\mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \mathcal{I}\left(\varphi|_{H\cap X}\right)\Bigr)\\
+\neq & \mathrm{H}^0\Bigl(H\cap X,\omega_{H\cap X}\otimes L|_{H\cap X}\otimes \Rest_{H\cap X}\bigl(\mathcal{I}(\varphi)\bigr)\Bigr).
+\end{split}
+\]
+Let $\Sigma_4$ be the union of $\Sigma_3$ and the set of all such $H$.
+Since the Hodge metric $h_{\mathcal{H}}$ is positive (\cite[Theorem~3.3.5]{PT18} and \cite[Theorem~21.1]{HPS18}),
+its determinant $\det h_{\mathcal{H}}$ is also positive (\cite[Proposition~1.3]{Rau15} and \cite[Proposition~25.1]{HPS18}), it follows that $\Sigma_4$ is pluripolar. As a consequence, $\mathcal{G}_{L}$ is co-pluripolar.
+
+\textbf{Step~2}.
+
+Fix an ample invertible sheaf $S$ on $X$. The same result holds with $L\otimes S^{\otimes a}$ in place of $L$. Thus, the set
+\[
+A\coloneqq \bigcap_{a=0}^{\infty}\mathcal{G}_{L\otimes S^{\otimes a}}
+\]
+is co-pluripolar.
+For each $H\in \Lambda$ such that $X\cap H$ is smooth and $\mathcal{I}(\varphi|_{X\cap H})\neq \Rest_{H\cap X}(\mathcal{I}(\varphi))$, let $\mathcal{K}$ be the following cokernel:
+\[
+0\rightarrow \mathcal{I}\left(\varphi|_{X\cap H}\right)\rightarrow \Rest_{H\cap X}\bigl(\mathcal{I}(\varphi)\bigr)\rightarrow \mathcal{K}\rightarrow 0.
+\]
+By Serre vanishing theorem, taking $a$ large enough, we may guarantee that
+\[
+\mathrm{H}^1\Bigl(X\cap H,\omega_{X\cap H}\otimes (L\otimes S^{\otimes a})|_{X\cap H}\otimes \mathcal{I}(\varphi|_{X\cap H})\Bigr)=0
+\]
+and
+\[
+\mathrm{H}^0\Bigl(X\cap H,\omega_{X\cap H}\otimes (L\otimes S^{\otimes a})|_{X\cap H}\otimes \mathcal{K}\Bigr)\neq 0.
+\]
+Then
+\[
+\begin{split}
+\mathrm{H}^0\Bigl(X\cap H,\omega_{X\cap H}\otimes(L\otimes S^{\otimes a})|_{X\cap H}\otimes\mathcal{I}\left(\varphi|_{X\cap H}\right)\Bigr)\neq \\
+\mathrm{H}^0\Bigl(X\cap H,\omega_{X\cap H}\otimes(L\otimes S^{\otimes a})|_{X\cap H}\otimes \Rest_{H\cap X}\left(\mathcal{I}(\varphi)\right)\Bigr).
+\end{split}
+\]
+Thus, $H\not\in A$. We conclude that $\mathcal{G}$ is co-pluripolar.
+\end{proof}
+
+
+\begin{remark}\label{rmk:generalABT}
+    More generally, the same technique implies the following general result: Let $f\colon X\rightarrow Y$ be a projective morphism between complex manifolds and $(L,h)$ be a Hermitian pseudo-effective line bundle on $X$. Then for quasi-every\footnote{That is, for all $y$ outside a pluripolar subset of $Y$.} $y\in Y$, the fiber $X_y$ is smooth and
+    \[
+    \mathcal{I}(\lambda h|_{X_y})=\Rest_{X_y}\left( \mathcal{I}(\lambda h) \right).
+    \]
+\end{remark}
+
+In the sequel of this section, we fix a base-point free linear system $\Lambda$ on $X$. For the results below that assert connectedness, we assume in addition that the set of connected smooth members of $\Lambda$ is co-pluripolar in $\Lambda$.
+\begin{corollary}\label{cor:qpshgeneralres}
+    Let $\varphi\in \QPSH(X)$. Then for quasi-every $H\in \Lambda$, we have $\varphi|_H\not\equiv -\infty$.
+\end{corollary}
+\begin{proof}
+    For quasi-every $H$, \cref{thm:Bert} gives
+    \[
+        \mathcal I(\varphi|_H)=\Rest_H\mathcal I(\varphi).
+    \]
+    After removing the hyperplanes meeting the associated points of $\mathcal O_X/\mathcal I(\varphi)$ improperly, the right-hand side is non-zero. Since $\mathcal I(-\infty)=0$, this implies $\varphi|_H\not\equiv-\infty$.
+\end{proof}
+
+\begin{corollary}\label{cor:ABTfortrace}
+    Assume that $n\geq 2$.
+    Let $\varphi\in \QPSH(X)$. Then quasi-every $H\in \Lambda$ is connected and smooth, satisfies $\nu(\varphi,H)=0$ and we have
+    \[
+    \Tr_H(\varphi)\sim_{\mathcal{I}} \varphi|_H.
+    \]
+\end{corollary}
+The connectedness assumption on $H$ is used here because we developed most of the trace theory above for connected submanifolds.
+\begin{proof}
+    First observe that the set $\{x\in X:\nu(\varphi,x)>0\}$ is a countable union of proper analytic subsets by Siu's semicontinuity theorem \cref{thm:Siusemi}. It follows that a very general element in $\Lambda$ is not contained in this set.
+
+    Fix an ample line bundle $L$ so that there is a smooth Hermitian metric $h_L$ such that $c_1(L,h_L)+\ddc \varphi$ is a Kähler current. Thanks to \cref{thm:Bert} and the connectedness assumption on $\Lambda$, we can find a co-pluripolar set $\Lambda'\subseteq \Lambda$ such that each $H\in \Lambda'$ satisfies the following:
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L946:1} $H$ is smooth and connected;
+        \item\label{itm:chapter-trace:L946:2} $\nu(\varphi,H)=0$;
+        \item\label{itm:chapter-trace:L946:3} $\mathcal{I}(k\varphi|_H)=\Rest_{H}(\mathcal{I}(k\varphi))$ for all $k\in \mathbb{Z}_{>0}$.
+    \end{enumerate}
+    Put $\alpha_H\coloneqq c_1(L,h_L)|_H$. It follows from \cref{thm:rest_volume} and \cref{thm:DXmain1} that
+    \[
+    \int_H \left( \alpha_H+\ddc \Tr_H^{c_1(L,h_L)}(\varphi)\right)^{n-1}
+    =
+    \int_H \left( \alpha_H+\ddc P_{c_1(L,h_L)|_H}\left[\varphi|_H\right]_{\mathcal{I}}  \right)^{n-1}.
+    \]
+    Since $\varphi|_H\preceq_P \Tr_H(\varphi)$ by \cref{prop:Trdominarest}, we also have $\varphi|_H\preceq_{\mathcal I}\Tr_H(\varphi)$. Hence
+    \[
+        P_{c_1(L,h_L)|_H}[\varphi|_H]_{\mathcal I}\leq P_{c_1(L,h_L)|_H}[\Tr_H(\varphi)]_{\mathcal I}.
+    \]
+    The trace is $\mathcal I$-good, so the right-hand side agrees with its $P$-envelope. The equality of the masses above and \cref{thm:Pvarphidiffdef} then imply that the two sides have the same $P$-singularity type, hence
+    \[
+        \Tr_H(\varphi)\sim_{\mathcal I}\varphi|_H.
+    \]
+\end{proof}
+
+
+
+
+\begin{lemma}\label{lma:posmasscurrres}
+    Assume that $n\geq 2$.
+    Let $T$ be a closed positive $(1,1)$-current on $X$ with $\int_X T^n>0$. Then quasi-every $H\in \Lambda$ is connected and smooth, $T|_H$ is well-defined and satisfies
+    \[
+    \int_H T|_H^{n-1}>0.
+    \]
+\end{lemma}
+\begin{proof}
+    Write $T=\theta_{\varphi}$ for some smooth closed real $(1,1)$-form $\theta$ on $X$ and $\varphi\in \PSH(X,\theta)_{>0}$. Thanks to \cref{lma:kahcurrentposmass}, we can find $\psi\in \PSH(X,\theta)$ such that $\theta_{\psi}$ is a K\"ahler current and $\psi\leq \varphi$. By \cref{cor:qpshgeneralres} and the connectedness assumption on $\Lambda$, we can find a co-pluripolar set $\Lambda'\subseteq \Lambda$ such that each $H\in \Lambda'$ satisfies:
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L977:1} $H$ is smooth and connected;
+        \item\label{itm:chapter-trace:L977:2} the restriction $\psi|_H$ is not identically $-\infty$.
+    \end{enumerate}
+    Since $\theta_\psi$ is a Kähler current, its restriction to such an $H$ has positive non-pluripolar mass. As $\psi|_H\leq\varphi|_H$, \cref{thm:mono} gives
+    \[
+        \int_H(\theta|_H+\ddc\varphi|_H)^{n-1} \geq \int_H(\theta|_H+\ddc\psi|_H)^{n-1}>0.
+    \]
+    We conclude the proof.
+\end{proof}
+
+\begin{corollary}\label{cor:tracegeneralwelldef}
+    Assume that $n\geq 2$. Let $T$ be a closed positive $(1,1)$-current on $X$ with $\vol T>0$. Then quasi-every $H\in \Lambda$ is connected and smooth, and $\Tr_H^{\{T\}|_H}(T)$ is well-defined and has positive volume.
+\end{corollary}
+\begin{proof}
+    Write $T=\theta+\ddc\varphi$ and set $\psi=P_{\theta}[\varphi]_{\mathcal{I}}$. Then $\psi\sim_{\mathcal{I}}\varphi$ and
+    \[
+        \int_X \theta_{\psi}^{n}=\vol T>0.
+    \]
+    By \cref{lma:posmasscurrres}, for quasi-every $H\in \Lambda$, the hypersurface $H$ is connected and smooth, $\psi|_H$ is well-defined, and
+    \[
+        \int_H \left(\theta|_H+\ddc\psi|_H\right)^{n-1}>0.
+    \]
+    For such $H$, \cref{cor:ABTfortrace} gives $\Tr_H(\psi)\sim_{\mathcal{I}}\psi|_H$. Since $\varphi\sim_{\mathcal{I}}\psi$, \cref{prop:tracelinear} also gives $\Tr_H(\varphi)\sim_P\Tr_H(\psi)$. The assertion now follows from \cref{ex:tracedefinedposmass}.
+\end{proof}
+
+\begin{proposition}\label{prop:varphiP_rest_gen}
+    Assume that $n\geq 2$. Let $\varphi,\psi\in \QPSH(X)$. Assume that $\varphi\preceq_P \psi$. Then quasi-every $H\in \Lambda$ is connected and smooth, and $\varphi|_H\preceq_P \psi|_H$.
+\end{proposition}
+\begin{proof}
+    Thanks to \cref{lma:reform_preceqP}, we may replace $\varphi$ by $\varphi\lor \psi$ and assume that $\varphi\sim_P \psi$.
+    It suffices to show that $\varphi|_H\sim_P \psi|_H$ for quasi-every $H\in \Lambda$.
+
+    Take a smooth closed real $(1,1)$-form $\theta$ on $X$ so that $\varphi,\psi\in \PSH(X,\theta)_{>0}$. It suffices to compare $\varphi$ and $\psi$ with $P_{\theta}[\varphi]$, so without loss of generality, we may assume that $\psi$ is a model potential in $\PSH(X,\theta)_{>0}$. Up to adding a constant to $\varphi$, we may then assume that $\varphi\leq \psi$. It follows from \cref{lma:pathoenvelope} that we can find a sequence $(\eta_j)_j$ in $\PSH(X,\theta)_{>0}$ such that
+    \[
+    j^{-1}\eta_j+\left(1-j^{-1}\right)\psi\leq \varphi
+    \]
+    for all $j\geq 2$. By \cref{cor:qpshgeneralres}, \cref{lma:posmasscurrres}, we can find a co-pluripolar set $\Lambda'\subseteq \Lambda$ such that any $H\in \Lambda'$ satisfies:
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L1015:1} $H$ is smooth and connected;
+        \item\label{itm:chapter-trace:L1015:2} $\eta_j|_H\in \PSH(H,\theta|_H)_{>0}$ for all $j\geq 2$ and $\psi|_H\in \PSH(H,\theta|_H)_{>0}$.
+    \end{enumerate}
+    Therefore, taking \cref{prop:Pconc} into account, we arrive at
+    \[
+    j^{-1} P_{\theta|_H}\bigl[\eta_j|_H\bigr]+\left(1-j^{-1}\right)P_{\theta|_H}\bigl[\psi|_H\bigr]\leq P_{\theta|_H}\bigl[\varphi|_H\bigr]
+    \]
+    for all $j\geq 2$. The normalized envelopes $P_{\theta|_H}[\eta_j|_H]$ are uniformly bounded in $L^1$, hence
+    \[
+        j^{-1}P_{\theta|_H}[\eta_j|_H]\xrightarrow{L^1} 0.
+    \]
+    We conclude that
+    \[
+    P_{\theta|_H}[\psi|_H]\leq P_{\theta|_H}[\varphi|_H]
+    \]
+    and hence $\psi|_H\preceq_P \varphi|_H$.
+\end{proof}
+
+\begin{lemma}\label{lma:Igoodrest}
+Assume that $n\geq 2$.
+    Let $\theta$ be a closed smooth $(1,1)$-form on $X$ representing a big cohomology class and $(\varphi_j)_j$ be a decreasing sequence in $\PSH(X,\theta)$. Assume that $\varphi\in \PSH(X,\theta)$ and $\varphi_j\xrightarrow{d_S}\varphi$. Furthermore, assume that $\varphi\leq \varphi_j$ for each $j>0$.
+    Then quasi-every $H\in \Lambda$ is connected and smooth, $\varphi_j|_H\not\equiv-\infty$ for all $j\geq 1$, $\varphi|_H\not\equiv -\infty$, and
+    \[
+    \varphi_j|_H\xrightarrow{d_S}\varphi|_H.
+    \]
+\end{lemma}
+\begin{proof}
+    By \cref{cor:dSconv_changetheta}, we may assume that $\varphi\in \PSH(X,\theta)_{>0}$.
+
+    Using \cref{lma:pathoenvelope}, we can find a decreasing sequence $(\epsilon_j)_j$ in $(0,1)$ with limit $0$ and $\eta_j\in \PSH(X,\theta)_{>0}$ such that $\eta_j\leq \varphi_j$ and
+    \[
+    \epsilon_j\eta_j+(1-\epsilon_j)\varphi_j\leq \varphi.
+    \]
+    By \cref{cor:qpshgeneralres}, \cref{lma:posmasscurrres}, we can find a co-pluripolar set $\Lambda'\subseteq \Lambda$ such that any $H\in \Lambda'$ satisfies:
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L1048:1} $H$ is smooth and connected;
+        \item\label{itm:chapter-trace:L1048:2} $\eta_j|_H\in \PSH(H,\theta|_H)_{>0}$ for all $j\geq 1$ and $\varphi|_H\in \PSH(H,\theta|_H)_{>0}$.
+    \end{enumerate}
+    Therefore, taking \cref{prop:Pconc} into account, we arrive at
+    \[
+    \epsilon_j P_{\theta|_H}\bigl[\eta_j|_H\bigr]+\left(1-\epsilon_j\right)P_{\theta|_H}\bigl[\varphi_j|_H\bigr]\leq P_{\theta|_H}\bigl[\varphi|_H\bigr].
+    \]
+    Since the normalized envelopes $P_{\theta|_H}[\eta_j|_H]$ are relatively compact in $L^1$, we have $\epsilon_jP_{\theta|_H}[\eta_j|_H]\to 0$ in $L^1$. Letting $j\to\infty$, we get
+    \[
+    \lim_{j\to\infty} P_{\theta|_H}\bigl[\varphi_j|_H\bigr]\leq P_{\theta|_H}\bigl[\varphi|_H\bigr].
+    \]
+    The reverse inequality is trivial, so we get an equality here.
+    By \cref{thm:mono} and \cref{prop:vol_limit_model}, we conclude that
+    \[
+    \lim_{j\to\infty}\int_H \Bigl(\theta|_H+\ddc \varphi_j|_H\Bigr)^{n-1}=\int_H \Bigl(\theta|_H+\ddc \varphi|_H\Bigr)^{n-1}.
+    \]
+    Therefore, using \cref{cor:decnetdS}, we conclude that $\varphi_j|_H\xrightarrow{d_S}\varphi|_H$.
+\end{proof}
+
+\begin{corollary}\label{cor:rest_gen_very_good}
+Assume that $n\geq 2$.
+    Let $\varphi\in \QPSH(X)$ be an $\mathcal{I}$-good potential. Then quasi-every $H\in \Lambda$ satisfies:
+    \begin{enumerate}
+        \item\label{itm:chapter-trace:L1071:1} $H$ is connected and smooth;
+        \item\label{itm:chapter-trace:L1071:2} $\varphi|_H$ is $\mathcal{I}$-good;
+        \item\label{itm:chapter-trace:L1071:3} $\nu(\varphi,H)=0$;
+        \item\label{itm:chapter-trace:L1071:4} $\Tr_H \varphi\sim_P \varphi|_H$.
+    \end{enumerate}
+    Furthermore, if $\theta$ is a closed smooth real $(1,1)$-form on $X$ such that $\varphi\in \PSH(X,\theta)_{>0}$, then we can further guarantee, on the same co-pluripolar set of $H\in \Lambda$, that $\Tr_H(\varphi)$ has a representative $\Tr_H(\varphi)\in \PSH(H,\theta|_H)_{>0}$.
+\end{corollary}
+\begin{proof}
+    Choose a closed smooth real $(1,1)$-form $\theta_0$ representing a big class such that $\varphi\in \PSH(X,\theta_0)$ and $\theta_0+\ddc \varphi$ is a Kähler current. Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta_0)_{>0}$. Since $\varphi$ is $\mathcal I$-good, \cref{cor:quasi-equichar,thm:charIgoodasclosure,prop:ds0char} gives
+    \[
+        \varphi_j\xrightarrow{d_S}\varphi.
+    \]
+    Applying \cref{lma:Igoodrest}, we find a co-pluripolar set of $H\in\Lambda$ such that $H$ is connected and smooth, the restrictions $\varphi_j|_H$ and $\varphi|_H$ are not identically $-\infty$, and
+    \[
+        \varphi_j|_H\xrightarrow{d_S}\varphi|_H.
+    \]
+    For such an $H$, the potentials $\varphi_j|_H$ have analytic singularities, hence are $\mathcal I$-good by \cref{ex:analyIgood}. It follows from \cref{cor:Igoodclosed} that $\varphi|_H$ is $\mathcal I$-good.
+
+    On the other hand, \cref{cor:ABTfortrace} gives, after intersecting with another co-pluripolar set of parameters $H$, that $\nu(\varphi,H)=0$ and
+    \[
+        \Tr_H(\varphi)\sim_{\mathcal I}\varphi|_H.
+    \]
+    The trace $\Tr_H(\varphi)$ is $\mathcal I$-good by \cref{prop:traceunique}. Since both $\Tr_H(\varphi)$ and $\varphi|_H$ are $\mathcal I$-good, their $\mathcal I$-equivalence identifies their $\mathcal I$-envelopes, which agree with their $P$-envelopes. Hence
+    \[
+        \Tr_H(\varphi)\sim_P\varphi|_H.
+    \]
+
+    Finally \cref{cor:tracegeneralwelldef} shows, after intersecting with one more co-pluripolar set of $H\in\Lambda$, that $\Tr_H(\varphi)$ has a representative in $\PSH(H,\theta|_H)_{>0}$.
+\end{proof}
+
+
+For later use, let us also prove a reverse Bertini theorem here.
+\begin{lemma}[Reverse Bertini theorem]\label{lma:fibIeq}\index{theorem!reverse Bertini theorem}
+Let $X$ be a complex manifold, $f\colon X\rightarrow \Delta^*$ be a projective surjective morphism to the punctured unit disk $\Delta^*$. Let $(L,h)$, $(L,h')$ be Hermitian pseudo-effective line bundles on $X$ with the same underlying line bundle. Assume that there is a biholomorphic $S^1$-action on $(X,L)$ making $f$ equivariant and such that $h$ and $h'$ are invariant under this action.
+Assume that for quasi-every $z\in \Delta^*$, $X_z$ is smooth and $h|_{X_z}\sim_{\mathcal{I}}h'|_{X_z}$. Then $h\sim_{\mathcal{I}}h'$.
+\end{lemma}
+\begin{proof}
+We need to show that $\mathcal{I}(kh)=\mathcal{I}(kh')$ for every positive integer $k$. It suffices to prove the case $k=1$, since our assumptions are invariant after replacing $h$ and $h'$ by $h^k$ and $h'^k$. We will therefore prove $\mathcal{I}(h)=\mathcal{I}(h')$. First observe that it suffices to prove that
+\begin{equation}\label{eq:fstarcoin}
+f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h)\Bigr)=f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h')\Bigr)
+\end{equation}
+as subsheaves of $f_*(K_{X}\otimes L)$. In fact, suppose that \eqref{eq:fstarcoin} holds. Let $H$ be a $f$-ample invertible sheaf on $X$. Then \eqref{eq:fstarcoin} also holds with $L\otimes H^m$ in place of $L$. It follows from Grauert--Remmert's version of Serre vanishing theorem \cite[Theorem~2.1(A)]{BS76} that $\mathcal{I}(h)=\mathcal{I}(h')$.
+
+It remains to prove \eqref{eq:fstarcoin}. Observe that both sides of \eqref{eq:fstarcoin} are locally free by \cite[Corollary~1.5]{Mat16}. We claim that it suffices to show that
+\begin{equation}\label{eq:fstarcoin2}
+f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h)\Bigr) \otimes \mathbb{C}(z)=f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h')\Bigr) \otimes \mathbb{C}(z)
+\end{equation}
+for quasi-every $z\in \Delta^*$.
+In fact, this implies that the same holds outside a countable subset of $\Delta^*$. But the set where \eqref{eq:fstarcoin2} fails has to be $S^1$-invariant, it has to be empty.
+
+
+By cohomology and base change together with the analytic Bertini theorem \cref{rmk:generalABT}, for quasi-every $z\in \Delta^*$, we have
+\[
+\begin{split}
+f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h)\Bigr) \otimes \mathbb{C}(z)=\mathrm{H}^0\Bigl(X_z,K_{X}|_{X_z}\otimes L|_{X_z}\otimes \mathcal{I}(h|_{X_z})\Bigr),\\
+f_*\Bigl(K_{X}\otimes L\otimes \mathcal{I}(h')\Bigr) \otimes \mathbb{C}(z)=\mathrm{H}^0\Bigl(X_z,K_{X}|_{X_z}\otimes L|_{X_z}\otimes \mathcal{I}(h'|_{X_z})\Bigr).
+\end{split}
+\]
+But we assumed that for quasi-every $z$, $h|_{X_z}\sim_{\mathcal{I}}h'|_{X_z}$, it follows that for quasi-every $z\in \Delta^*$, \eqref{eq:fstarcoin2} holds. The proof is complete.
+\end{proof}

@@ -1,0 +1,2346 @@
+\motto{It is very fortunate that, unlike people who dig for gold, mathematicians can freely share their precious treasures with everybody. Once you understand something really well, it feels great to explain it to all.
+
+--- Andrei Okounkov\footnote{Andrei Yuryevich Okounkov (1969--) is a Russian-American mathematician renowned for his contributions to representation theory. He was one of the key organizers of the ICM 2022 in St. Petersburg, which was unfortunately canceled under the indiscriminate discrimination against Russian citizens by the virtue signalers all over the western world after the war waged by the ruling class.}}
+\chapter{The theory of Okounkov bodies}
+\label{chap:Okounkov}
+
+In this chapter, we apply our theory of singularities to the study of Okounkov bodies. We construct convex bodies $\Delta(L,\phi)$, the \emph{partial Okounkov bodies}, attached to a big line bundle $L$ on a smooth projective variety $X$ together with a plurisubharmonic metric $\phi$ on $L$. These convex bodies provide a universal numerical invariant of the $\mathcal{I}$-equivalence class of $\phi$, and reduce many problems in pluripotential theory to problems in convex geometry, which are often more tractable.
+
+We develop two parallel constructions: an algebraic one in \cref{sec:PoB}, where $\phi$ is encoded by the multiplier ideals $\mathcal{I}(k\phi)$, and a transcendental one in \cref{sec:tpob}, where $\phi$ is treated directly as an analytic object via valuations on closed positive currents. The two constructions agree when both apply, but each has its own natural domain of definition and its own range of applications.
+
+We assume some familiarity with the classical Okounkov bodies. Excellent references are the original papers of Lazarsfeld--Musta\c{t}\u{a} \cite{LM09} and Kaveh--Khovanskii \cite{KK12}; we give a rapid review here.
+
+Let $X$ be an irreducible smooth projective variety of dimension $n$ and $L$ a big holomorphic line bundle on $X$. Given an admissible flag $X=Y_0\supseteq Y_1\supseteq \cdots\supseteq Y_n$ on $X$ (\cref{def:admfl}), one attaches to $L$ a natural $n$-dimensional convex body $\Delta(L)\subseteq \mathbb{R}^n$, generalizing the Newton polytope construction in toric geometry (\cref{def:Newtonbody1}). This construction was first considered by Okounkov \cite{Oko96, Oko03} and extended by Lazarsfeld--Musta\c{t}\u{a} \cite{LM09} and Kaveh--Khovanskii \cite{KK12}. The convex body $\Delta(L)$ is the \emph{Okounkov body} of $L$ with respect to the chosen flag. Concretely, the successive vanishing order along the flag defines a valuation $\nu\colon \mathbb{C}(X)^{\times}\to \mathbb{Z}^n$, and
+\[
+\Gamma(L)\coloneqq \left\{(\nu(s),k)\in \mathbb{Z}^{n+1}:k\in \mathbb{N},\, s\in \mathrm{H}^0(X,L^k)^{\times} \right\}
+\]
+is a semigroup whose closed convex cone, intersected with the slice $\{(x,1)\}$, is $\Delta(L)$. Lazarsfeld--Musta\c{t}\u{a} \cite{LM09} showed that $\Delta(L)$ depends only on the numerical class of $L$, and Jow \cite{Jow10} showed that the Okounkov bodies for all flags determine this class, so $\Delta(L)$ may be regarded as a universal numerical invariant of $L$.
+
+The aim of this chapter is to perform the analogous construction at the level of singularity types of psh metrics. Setting
+\[
+\Gamma(L,\phi)\coloneqq \left\{(\nu(s),k)\in \mathbb{Z}^{n+1}:k\in \mathbb{N},\, s\in \mathrm{H}^0(X,L^k\otimes \mathcal{I}(k\phi))^{\times} \right\},
+\]
+one immediately encounters the obstruction that $\Gamma(L,\phi)$ is in general \emph{not} a semigroup, so the Lazarsfeld--Musta\c{t}\u{a} and Kaveh--Khovanskii constructions break down. The remedy is the notion of an \emph{almost semigroup}: $\Gamma(L,\phi)$ does satisfy a near-semigroup property (\cref{thm:Gammaasg}), and the convex-body construction $\Gamma\mapsto \Delta(\Gamma)$ extends continuously from semigroups to almost semigroups (\cref{thm:Okocont}). The partial Okounkov body of $(L,\phi)$ is then
+\[
+\Delta(L,\phi)\coloneqq \Delta\bigl(\Gamma(L,\phi)\bigr),
+\]
+and is a convex sub-body of $\Delta(L)$ --- explaining the name \emph{partial}.
+The universality of partial Okounkov bodies is captured by \cref{cor:Deltacontimplyvarphi}: the $\mathcal{I}$-equivalence class of $\phi$ is determined by the Okounkov bodies of $(L,\phi)$ for sufficiently many flags.
+
+The results in this chapter will be applied in \cref{chap:toric_big} to develop toric pluripotential theory on big line bundles.
+
+
+\section{Almost semigroups}\label{sec:clo1}
+We give a brief presentation of the theory of almost semigroups. The arguments are provided in \cref{chap:almostsg}.
+
+Fix an integer $n\geq 0$. Fix a closed convex cone $C\subseteq \mathbb{R}^{n}\times \mathbb{R}_{\geq 0}$ such that $C\cap \{x_{n+1}=0\}=\{0\}$. Here $x_{n+1}$ is the last coordinate of $\mathbb{R}^{n+1}$.
+
+Write $\hat{\mathcal{S}}(C)$ for the set of subsets of $C\cap \mathbb{Z}^{n+1}$ and $\mathcal{S}(C)$ for the set of subsemigroups $S\subseteq C\cap \mathbb{Z}^{n+1}$. For $S\in \hat{\mathcal{S}}(C)$ and each $k\in \mathbb{N}$ such that $S_k\neq\varnothing$, we write
+\[
+S_k\coloneqq \left\{x\in \mathbb{Z}^n: (x,k)\in S \right\}.
+\]
+Note that $S_k$ is a finite set by our assumption on $C$.
+
+We introduce a pseudometric on $\hat{\mathcal{S}}(C)$ as follows:
+\begin{equation}\label{eq:dsgdef}
+d_{\sg}(S,S')\coloneqq \varlimsup_{k\to\infty} k^{-n} \left(|S_k|+|S'_k|-2|(S\cap S')_k|\right).
+\end{equation}
+Here $|\bullet|$ denotes the cardinality of a finite set. The quantity $d_{\sg}$ defined above is a pseudometric on $\hat{\mathcal{S}}(C)$.
+Given $S,S'\in \hat{\mathcal{S}}(C)$, we say $S$ is equivalent to $S'$ and write $S\sim S'$ if $d_{\sg}(S,S')=0$. This is an equivalence relation.
+
+The volume of $S\in \mathcal{S}(C)$ is defined as
+\[
+\vol S\coloneqq \lim_{k\to\infty} (ka)^{-n}|S_{ka}|=\varlimsup_{k\to\infty} k^{-n}|S_k|,
+\]
+where $a$ is a sufficiently divisible positive integer.
+The existence of the limit and its independence from $a$ both follow from \cref{thm:KK12growth}.
+
+We define $\overline{\mathcal{S}}(C)$ as the closure of $\mathcal{S}(C)$ in $\hat{\mathcal{S}}(C)$ with respect to the topology defined by the pseudometric $d_{\sg}$.
+The function $\vol\colon \mathcal{S}(C)\rightarrow \mathbb{R}$ admits a unique $1$-Lipschitz extension to
+\begin{equation}\label{eq:volex}
+\vol\colon \overline{\mathcal{S}}(C)\rightarrow \mathbb{R}.
+\end{equation}
+
+Given $S\in \hat{\mathcal{S}}(C)$, we will write $C(S)\subseteq C$ for the closed convex cone generated by $S\cup \{0\}$. Moreover, for each $k\in \mathbb{Z}_{>0}$ such that $S_k\neq\varnothing$, we define
+\[
+\Delta_k(S)\coloneqq \Conv \left\{k^{-1}x\in \mathbb{R}^n:x\in S_k \right\}\subseteq \mathbb{R}^n.
+\]
+Here $\Conv$ denotes the convex hull.
+\begin{definition}\label{def:Okounkov:L69}
+    Let $\mathcal{S}'(C)$ be the subset of $\mathcal{S}(C)$ consisting of semigroups $S$ such that $S$ generates $\mathbb{Z}^{n+1}$ (as an Abelian group).
+    \index{semigroup!$\mathcal{S}'(C)$}
+    \index{$\mathcal{S}'(C)$}
+\end{definition}
+Note that for any $S\in \mathcal{S}'(C)$, the cone $C(S)$ has full dimension (i.e., the topological interior is non-empty). Given a full-dimensional subcone $C'\subseteq C$, we have $C'\cap \mathbb{Z}^{n+1}\in \mathcal{S}'(C)$.
+
+
+We recall the following definition from \cite{KK12}.
+\begin{definition}\label{def:Okokk}
+ Given $S\in \mathcal{S}'(C)$, its \emph{Okounkov body} is defined by
+\index{Okounkov body!Okounkov body of a semigroup}
+\[
+\Delta(S)\coloneqq \left\{x\in \mathbb{R}^n:(x,1)\in C(S) \right\}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:HausOkoun}
+	For each $S\in \mathcal{S}'(C)$, we have
+	\begin{equation}\label{eq:volWvolDelta}
+		\vol S=\lim_{k\to\infty} k^{-n}|S_k|=\vol \Delta(S)>0.
+	\end{equation}
+    Moreover, as $k\to\infty$,
+	\begin{equation}\label{eq:HausconvDeltaGLS}
+		\Delta_{k}(S)\xrightarrow{d_{\Haus}}\Delta(S).
+	\end{equation}
+\end{theorem}
+\begin{corollary}\label{cor:dist}
+    Let $S,S'\in \mathcal{S}'(C)$. Assume that $\vol (S\cap S')>0$. Then we have
+    \[
+    d_{\sg}(S,S')=\vol(S)+\vol(S')-2\vol(S\cap S').
+    \]
+\end{corollary}
+
+\begin{definition}\label{def:SpCbar}
+    We define $\overline{\mathcal{S}'(C)}_{>0}$ as the set of elements in the closure of $\mathcal{S}'(C)$ in $\hat{\mathcal{S}}(C)$ with positive volume. An element in $\overline{\mathcal{S}'(C)}_{>0}$ is called an \emph{almost semigroup} in $C$.
+    \index{$\overline{\mathcal{S}'(C)}_{>0}$}
+\end{definition}
+Recall that the volume here is defined in \eqref{eq:volex}.
+
+
+\begin{theorem}\label{thm:Okocont}
+	The Okounkov body map $\Delta\colon \mathcal{S}'(C) \rightarrow \mathcal{K}_n$
+    as defined in \cref{def:Okokk} admits a unique continuous extension
+	\begin{equation}\label{eq:Deltagensg}
+		\Delta \colon \overline{\mathcal{S}'(C)}_{>0}\rightarrow \mathcal{K}_n.
+	\end{equation}
+     Moreover, for any $S\in \overline{\mathcal{S}'(C)}_{>0}$, we have
+	\begin{equation}\label{eq:volWfinal}
+		\vol S=\vol \Delta(S).
+	\end{equation}
+\end{theorem}
+
+
+
+
+\begin{corollary}\label{cor:Okocomp}
+    Suppose that $S,S'\in \overline{\mathcal{S}'(C)}_{>0}$ with $S\subseteq S'$. Then
+    \begin{equation}\label{eq:Deltacontain}
+    \Delta(S)\subseteq \Delta(S').
+    \end{equation}
+\end{corollary}
+
+\section{Flags and valuations}\label{sec:flag}
+
+\subsection{The algebraic setting}\label{subsec:flagvalalgebraic}
+Let $X$ be an irreducible normal projective variety of dimension $n$.
+\begin{definition}\label{def:admfl}
+	An \emph{admissible flag}\index{admissible flag} $Y_{\bullet}$\index{$Y_{\bullet}$} on $X$ is a flag of subvarieties
+	\[
+		X=Y_0\supseteq Y_1\supseteq \cdots\supseteq Y_n
+	\]
+	such that $Y_i$ is irreducible of codimension $i$ and is smooth at the point $Y_n$.
+\end{definition}
+
+
+Given any admissible flag $Y_{\bullet}$, we can define a rank $n$ valuation $\nu_{Y_{\bullet}}\colon \mathbb{C}(X)^{\times}\rightarrow \mathbb{Z}^n$\index{$\nu_{Y_{\bullet}}$}. Here we consider $\mathbb{Z}^n$ as a totally ordered Abelian group with the lexicographic order.
+We sometimes write $\mathbb{Z}^n_{\lex}$ to emphasize this point.
+
+If we identify the elements in $\mathbb{Z}^n$ with a row vector, the automorphism group $\Aut(\mathbb{Z}^n_{\lex})$ of $\mathbb{Z}^n_{\lex}$ is then identified with the subgroup of $\GL(n,\mathbb{Z})$ consisting of matrices of the form $\mathrm{I}+U$, where $\mathrm{I}$ is the identity matrix and $U$ is a strictly upper triangular matrix with elements in $\mathbb{Z}$.
+
+We recall the definition of $\nu_{Y_\bullet}$. Let $s^{(0)}=s\in\mathbb C(X)^\times$. For $i=1,\ldots,n$, after localizing around $Y_n$, choose a local defining equation $t_i$ of $Y_i$ in $Y_{i-1}$, and set
+\[
+    \nu_i=\ord_{Y_i}\left(s^{(i-1)}\right),\qquad s^{(i)}=\left(s^{(i-1)}t_i^{-\nu_i}\right)|_{Y_i} \in \mathbb C(Y_i)^\times.
+\]
+Then
+\[
+    \nu_{Y_\bullet}(s)=(\nu_1,\ldots,\nu_n)\in\mathbb Z^n.
+\]
+It is easy to verify that $\nu_{Y_{\bullet}}$ is indeed a rank $n$ valuation.
+
+The same construction applies to a non-zero section $s\in \mathrm H^0(X,L)$ after choosing a local trivialization of $L$ near $Y_n$; the result is independent of this choice, since units have valuation $0$. We also write $\nu_{Y_\bullet}(D)$ for a non-zero effective Cartier divisor $D$, and extend the notation $\mathbb Q$-linearly to non-zero effective $\mathbb Q$-Cartier divisors. We also set $\nu_{Y_{\bullet}}(0)=0$.
+
+\begin{remark}\label{rmk:Abhyankar}
+Conversely, maximal-rank valuations of $\mathbb C(X)$ are closely related to flag valuations. More precisely, if a valuation has value group identified with $\mathbb Z^n_{\lex}$ and maximal rational rank $n$, then \cite[Theorem~2.9]{CFKLRS17} shows that it is equivalent\footnote{Two valuations $\nu,\nu'$ with values in $\mathbb Z^n$ are equivalent if one can find a matrix $G$ of the form $\mathrm I+N$, where $N$ is strictly upper triangular with integral entries, such that $\nu'=\nu G$.} to, but not necessarily equal to, a valuation induced by an admissible flag on a modification of $X$.
+\end{remark}
+
+\subsection{The transcendental setting}
+\label{subsec:flagval_trans}
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+\begin{definition}\label{def:Okounkov:L170}
+    A \emph{smooth flag}\index{smooth flag} $Y_{\bullet}$ on $X$ consists of a flag of connected closed submanifolds of $X$:
+    \[
+      X=Y_0\supseteq Y_1 \supseteq \cdots \supseteq Y_n,
+    \]
+    where $Y_i$ has dimension $n-i$.
+\end{definition}
+In this section, we will fix a smooth flag $Y_{\bullet}$ on $X$.
+
+
+
+\begin{definition}\label{def:valcurr}
+    Let $T$ be a closed positive $(1,1)$-current on $X$. We define the \emph{valuation}\index{valuation} of $T$ along $Y_{\bullet}$ as
+    \[
+        \nu_{Y_{\bullet}}(T)=\left(\nu_{Y_{\bullet}}(T)_1,\ldots,\nu_{Y_{\bullet}}(T)_n\right)\in \mathbb{R}_{\geq 0}^n
+    \]
+    \index{$\nu_{Y_{\bullet}}(T)$}
+    by induction on $n$. When $n=0$, we define $\nu_{Y_{\bullet}}(T)$ as the unique point in $\mathbb{R}^0$. When $n\geq 1$, we define
+    \[
+        \nu_{Y_{\bullet}}(T)_1=\nu(T,Y_1);
+    \]
+    Then for $i=2,\ldots,n$, we define
+    \[
+        \nu_{Y_{\bullet}}(T)_i=\nu_{Y_1\supseteq \cdots \supseteq Y_n}\left(\Tr_{Y_1}(T-\nu(T,Y_1)[Y_1])\right)_{i-1}.
+    \]
+\end{definition}
+
+\begin{proposition}\label{prop:valcurr_Iind}
+    Let $T$ be a closed positive $(1,1)$-current on $X$. Then $\nu_{Y_{\bullet}}(T)\in \mathbb{R}_{\geq 0}^n$ defined in \cref{def:valcurr} is independent of the choices of the trace operators in the definition. Moreover, $\nu_{Y_{\bullet}}(T)$ depends only on the $\mathcal{I}$-equivalence class of $T$.
+\end{proposition}
+\begin{proof}
+    We will prove both statements at the same time by induction on $n\geq 0$. The cases $n=0,1$ are trivial.
+
+    Let us consider the case $n>1$ and assume that the result is known in dimension $n-1$.
+    We first observe that $\nu_{Y_{\bullet}}(T)$ is independent of the choice of the trace operator: Different choices of $\Tr_{Y_1}(T-\nu(T,Y_1)[Y_1])$ are $\mathcal{I}$-equivalent by \cref{prop:traceunique}. Therefore, by induction, its valuation is well-defined.
+
+    Next, let $T'$ be another closed positive $(1,1)$-current such that $T\sim_{\mathcal{I}}T'$.
+    Using \cref{prop:Iequivchar}, we know that $\nu(T,Y_1)=\nu(T',Y_1)$. Therefore,
+    \[
+        T- \nu(T,Y_1)[Y_1]\sim_{\mathcal{I}} T'-\nu(T',Y_1)[Y_1].
+    \]
+    It follows by induction that
+    \[
+        \nu_{Y_1\supseteq \cdots \supseteq Y_n}\left(\Tr_{Y_1}(T-\nu(T,Y_1)[Y_1])\right)=\nu_{Y_1\supseteq \cdots \supseteq Y_n}\left(\Tr_{Y_1}(T'-\nu(T',Y_1)[Y_1])\right).
+    \]
+    This completes the proof.
+\end{proof}
+
+\begin{example}\label{ex:valuationdivcompatible}
+    When $X$ is projective, and $D$ is a non-zero effective Cartier divisor, we have
+    \[
+    \nu_{Y_{\bullet}}([D])=\nu_{Y_{\bullet}}(D),
+    \]
+    where the right-hand side is defined in \cref{subsec:flagvalalgebraic}.
+\end{example}
+
+\begin{proposition}\label{prop:nuvaluationlinear}
+    Let $T$, $S$ be closed positive $(1,1)$-currents on $X$, $\lambda\in \mathbb{R}_{\geq 0}$. Then
+    \begin{enumerate}
+     \item\label{itm:prop:nuvaluationlinear:1} if $T\preceq_{\mathcal{I}} S$, we have
+        \begin{equation}\label{eq:nuTS}
+            \nu_{Y_{\bullet}}(T)\geq_{\lex}\nu_{Y_{\bullet}}(S).
+        \end{equation}
+        \item\label{itm:prop:nuvaluationlinear:2} We have the following additivity property:
+        \begin{equation}\label{eq:nuvaluationlinear}
+            \nu_{Y_{\bullet}}(T+S)=\nu_{Y_{\bullet}}(T)+\nu_{Y_{\bullet}}(S),\quad \nu_{Y_{\bullet}}(\lambda T)=\lambda \nu_{Y_{\bullet}}(T).
+        \end{equation}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+\ref{itm:prop:nuvaluationlinear:1} We make an induction on $n\geq 0$. The case $n=0,1$ is trivial. Assume that $n\geq 2$ and the case $n-1$ is known. Observe that $\nu(T,Y_1)\geq \nu(S,Y_1)$, if the inequality is strict, we are done. So let us assume that $\nu(T,Y_1)=\nu(S,Y_1)$. By \cref{prop:tracelinear}, we find that
+    \[
+    \Tr_{Y_1}\Bigl(T-\nu(T,Y_1)[Y_1]\Bigr)\preceq_P\Tr_{Y_1}\Bigl(S-\nu(T,Y_1)[Y_1]\Bigr).
+    \]
+    Hence the same comparison holds for $\preceq_{\mathcal{I}}$ by \cref{cor:PimpliesI}.
+    By the inductive hypothesis, we conclude \eqref{eq:nuTS}.
+
+\ref{itm:prop:nuvaluationlinear:2} We make an induction on $n\geq 0$. The cases $n=0,1$ are trivial. Assume that $n\geq 2$ and the case $n-1$ is known. By \cref{prop:Lelongmax}, we have
+    \[
+    \nu(T+S,Y_1)=\nu(T,Y_1)+\nu(S,Y_1),\quad \nu(\lambda T,Y_1)=\lambda\nu(T,Y_1).
+    \]
+    By \cref{prop:tracelinear}, we have
+    \[
+    \begin{split}
+    \Tr_{Y_1}\Bigl(T+S-\nu(T+S,Y_1)[Y_1]\Bigr)\sim_P&\Tr_{Y_1}\Bigl(T-\nu(T,Y_1)[Y_1]\Bigr)\\
+    &+\Tr_{Y_1}\Bigl(S-\nu(S,Y_1)[Y_1]\Bigr),\\
+    \Tr_{Y_1}\Bigl(\lambda T-\nu(\lambda T,Y_1)[Y_1]\Bigr)\sim_P& \lambda \Tr_{Y_1}\Bigl(T-\nu(T,Y_1)[Y_1]\Bigr).
+    \end{split}
+    \]
+    Since $\sim_P$ implies $\sim_{\mathcal{I}}$ by \cref{cor:PimpliesI}, the inductive hypothesis and the independence of the valuation from the trace representative conclude \eqref{eq:nuvaluationlinear}.
+
+\end{proof}
+
+Assume that $n>0$ for the remainder of this section.
+\begin{definition}\label{def:lifting}
+    Let $\pi\colon Z\rightarrow X$ be a proper bimeromorphic morphism where $Z$ is a Kähler manifold. We say that a smooth flag $W_{\bullet}$ on $Z$ is a \emph{lifting} of $Y_{\bullet}$ to $Z$ if $\pi(W_i)\subseteq Y_i$ and the induced map $W_i\to Y_i$ is bimeromorphic for each $i=0,\ldots,n$.
+
+    In this case, we define $\cor(Y_{\bullet},\pi)\in \Aut(\mathbb{Z}^n_{\lex})$ inductively as follows: When $n=1$, we define $\cor(Y_{\bullet},\pi)=[1]$; when $n>1$, we set
+    \begin{equation}\label{eq:correcur}
+    \cor(Y_{\bullet},\pi)\coloneqq
+    \begin{bmatrix}
+    1 & \nu_{W_1\supseteq \cdots \supseteq W_n}\Bigl((\pi^*[Y_1]-[W_1])|_{W_1}\Bigr)\\
+    0 & \cor\Bigl(Y_1\supseteq \cdots \supseteq Y_n,\pi|_{W_1}\colon W_1\rightarrow Y_1\Bigr)
+    \end{bmatrix}.
+    \end{equation}
+    \index{$\cor(Y_{\bullet},\pi)$}
+\end{definition}
+We observe that a lifting $W_{\bullet}$ of $Y_{\bullet}$ on $Z$ is unique if it exists: For each $i=0,\ldots,n-1$, the component $W_{i+1}$ is necessarily the strict transform of $Y_{i+1}$ with respect to the bimeromorphic morphism $W_i\rightarrow Y_i$. We shall also say that
+$(W_{\bullet},\cor(Y_{\bullet},\pi))$ is \emph{the lifting} of $Y_{\bullet}$ to $Z$.
+
+Note that in \eqref{eq:correcur}, $(\pi^*[Y_1]-[W_1])|_{W_1}$ can also be replaced by $\Tr_{W_1}((\pi^*[Y_1]-[W_1])|_{W_1})$, since $\pi^*[Y_1]-[W_1]$ has analytic singularities.
+
+
+\begin{proposition}\label{prop:cormatrix}
+    Let $\pi\colon Z\rightarrow X$ be a proper bimeromorphic morphism, where $Z$ is a Kähler manifold. Let $W_{\bullet}$ be a lifting of $Y_{\bullet}$. Then for any closed positive $(1,1)$-current $T$ on $X$, we have
+    \begin{equation}
+    \nu_{W_{\bullet}}(\pi^*T)= \nu_{Y_{\bullet}}(T)\cor(Y_{\bullet},\pi).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We argue by induction on $n\geq 0$. The case $n=0$ is trivial. In general, assume that $n\geq 1$ and the result is proved in dimension $n-1$.
+
+    For simplicity, we write $\nu=\nu_{Y_{\bullet}}$ and $\nu'=\nu_{W_{\bullet}}$.
+    Let $\mu$ (resp. $\mu'$) be the valuation of currents defined by the truncated flag $Y_1\supseteq\cdots \supseteq Y_n$ (resp. $W_1\supseteq\cdots \supseteq W_n$). Then we need to show that
+    \begin{equation}\label{eq:mubiration}
+    \begin{split}
+    &\begin{bmatrix}
+     \nu'(\pi^*T)_1 &
+     \mu'\Bigl( \Tr_{W_1}\bigl(\pi^*T-\nu'(\pi^*T)_1[W_1]\bigr)\Bigr)
+    \end{bmatrix}\\
+    =&
+    \begin{bmatrix}
+        \nu(T)_1 &
+        \mu\Bigl(\Tr_{Y_1}\bigl(T-\nu(T)_1[Y_1]\bigr)\Bigr)
+    \end{bmatrix}\cor(Y_{\bullet},\pi).
+    \end{split}
+    \end{equation}
+    By Zariski's main theorem \cref{thm:Zariskimain}, $W_1\to Y_1$ is bimeromorphic and hence
+    \[
+        \nu'(\pi^*T)_1=\nu(T,Y_1)\eqqcolon c.
+    \]
+    By the inductive hypothesis, we have
+    \begin{equation}\label{eq:ind_hypos}
+        \mu'\Bigl(\Pi^{*} \Tr_{Y_1}(T-c[Y_1])\Bigr)=\mu\Bigl(\Tr_{Y_1}(T-c[Y_1])\Bigr)\cor\left(Y_1\supseteq \cdots \supseteq Y_n,\Pi\right),
+    \end{equation}
+    where $\Pi\colon W_1\rightarrow Y_1$ is the restriction of $\pi$. Since $\pi^*[Y_1]=[W_1]+(\pi^*[Y_1]-[W_1])$, \cref{lma:rescommpullback} and \cref{prop:tracelinear} give
+    \[
+    \begin{split}
+        \Tr_{W_1}\bigl(\pi^*T-c[W_1]\bigr)\sim_P&\Tr_{W_1}\bigl(\pi^*(T-c[Y_1])\bigr)\\
+        &+c \Tr_{W_1}\bigl(\pi^*[Y_1]-[W_1]\bigr)\\
+        \sim_P&\Pi^{*}\Tr_{Y_1}\bigl(T-c[Y_1]\bigr)+c \Tr_{W_1}\bigl(\pi^*[Y_1]-[W_1]\bigr).
+    \end{split}
+    \]
+    So
+    \[
+    \mu'\Bigl(\Tr_{W_1}\bigl(\pi^*T-c[W_1]\bigr)\Bigr)=\mu'\Bigl(\Pi^{*}\Tr_{Y_1}\bigl(T-c[Y_1]\bigr)\Bigr)+c\mu'\Bigl(\Tr_{W_1}\bigl(\pi^*[Y_1]-[W_1]\bigr)\Bigr).
+    \]
+Combining the above with \eqref{eq:ind_hypos}, we see that \eqref{eq:mubiration} follows.
+\end{proof}
+
+\begin{proposition}\label{prop:cormult}
+    Let $\pi\colon Z\rightarrow X$, $p\colon Z'\rightarrow Z$ be proper bimeromorphic morphisms with $Z$ and $Z'$ being Kähler manifolds.
+    Assume that $Y_{\bullet}$ admits a lifting $W_{\bullet}$ (resp. $W_{\bullet}'$) to $Z$ (resp. $Z'$). Then
+    \begin{equation}\label{eq:cormul}
+    \cor(Y_{\bullet},\pi\circ p)=\cor(Y_{\bullet},\pi)\cor(W_{\bullet},p).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We let $\pi'=\pi\circ p$.
+    Then $W'_{\bullet}$ is also the lifting of $W_{\bullet}$ with respect to $p$.
+    \[
+    \begin{tikzcd}
+Z' \arrow[rr, "p"] \arrow[rd, "\pi'"] &   & Z \arrow[ld, "\pi"'] \\
+                                      & X. &
+\end{tikzcd}
+    \]
+    We argue by induction on $n\geq 1$. The case $n=1$ is trivial. Assume that $n\geq 2$ and the case $n-1$ has been solved. Then by \eqref{eq:correcur}, the desired formula \eqref{eq:cormul} can be reformulated as
+    \[
+    \begin{aligned}
+    &\begin{bmatrix}
+    1 & \nu_{W_1'\supseteq \cdots \supseteq W_n'}((\pi'^*[Y_1]-[W_1'])|_{W_1'})\\
+    0 & \cor(Y_1\supseteq \cdots \supseteq Y_n,\pi'|_{W_1'}:W_1'\rightarrow Y_1)
+    \end{bmatrix}=\\
+    &\begin{bmatrix}
+    1 & \nu_{W_1\supseteq \cdots \supseteq W_n}((\pi^*[Y_1]-[W_1])|_{W_1})\\
+    0 & \cor(Y_1\supseteq \cdots \supseteq Y_n,\pi|_{W_1}:W_1\rightarrow Y_1)
+    \end{bmatrix}\cdot\\
+    &\begin{bmatrix}
+    1 & \nu_{W_1'\supseteq \cdots \supseteq W_n'}((p^*[W_1]-[W_1'])|_{W_1'})\\
+    0 & \cor(W_1\supseteq \cdots \supseteq W_n,p|_{W_1'}:W_1'\rightarrow W_1)
+    \end{bmatrix}
+    \end{aligned}.
+    \]
+    By the inductive hypothesis, this is equivalent to
+    \[
+    \begin{split}
+    \nu_{W_1'\supseteq \cdots \supseteq W_n'}\left((\pi'^*[Y_1]-[W_1'])|_{W_1'}\right)=
+        \nu_{W_1'\supseteq \cdots \supseteq W_n'}\left((p^*[W_1]-[W_1'])|_{W_1'}\right)+\\
+        \nu_{W_1\supseteq \cdots \supseteq W_n}\left((\pi^*[Y_1]-[W_1])|_{W_1}\right)\cor\left(W_1\supseteq \cdots \supseteq W_n,p|_{W_1'}:W_1'\rightarrow W_1\right),
+    \end{split}
+    \]
+    which, thanks to \cref{prop:cormatrix}, can be further rewritten as
+    \[
+    \begin{split}
+    \nu_{W_1'\supseteq \cdots \supseteq W_n'}\left((\pi'^*[Y_1]-[W_1'])|_{W_1'}\right)=
+        \nu_{W_1'\supseteq \cdots \supseteq W_n'}\left((p^*[W_1]-[W_1'])|_{W_1'}\right)+\\
+        \nu_{W_1'\supseteq \cdots \supseteq W_n'}\left(p|_{W_1'}^*\left((\pi^*[Y_1]-[W_1])|_{W_1} \right)\right).
+    \end{split}
+    \]
+    Indeed, as divisors on $W_1'$,
+    \[
+        (\pi'^*[Y_1]-[W_1'])|_{W_1'}=(p^*[W_1]-[W_1'])|_{W_1'}+p|_{W_1'}^*((\pi^*[Y_1]-[W_1])|_{W_1}).
+    \]
+    The desired equality is therefore exactly the additivity of the valuation, \cref{prop:nuvaluationlinear}.
+\end{proof}
+
+\begin{theorem}\label{thm:liftableflag}
+    Let $\pi\colon Z\rightarrow X$ be a proper bimeromorphic morphism from a reduced complex space $Z$. Then there is a modification $W\rightarrow X$ dominating $Z\rightarrow X$ such that $Y_{\bullet}$ admits a lifting to $W$.
+\end{theorem}
+Recall that in this book, a modification means a finite composition of blowing-ups with smooth centers.
+\begin{proof}
+    By Hironaka's Chow lemma \cref{thm:HironakaChow}, we may assume that $\pi$ is a modification.
+
+    We begin by setting $W_0=Z$. We will construct $W_i$ inductively for each $i$. Assume that for $0\leq i<n$ a smooth partial flag $W_0\supseteq\cdots \supseteq W_i$ has been constructed on a modification $\pi_i:Z_i\rightarrow Z$ so that $\pi\circ \pi_i$ restricts to bimeromorphic morphisms $W_j\rightarrow Y_j$ for each $j=0,\ldots,i$.
+
+By Zariski's main theorem, $W_i\rightarrow Y_i$ is an isomorphism outside a codimension $2$ subset of $Y_i$.
+We let $W_{i+1}$ be the strict transform of $Y_{i+1}$ in $W_i$.
+The problem is that $W_{i+1}$ is not necessarily smooth.
+
+We will further modify $Z_i$ and lift $W_1,\ldots, W_{i+1}$ in order to make the flag smooth. Take the embedded resolution of $(W_{j},W_{i+1})$, say $W_j'\rightarrow W_j$ for each $j=0,\ldots,i$.
+
+We have canonical embeddings $W_{i}'\hookrightarrow W_{i-1}'\hookrightarrow\cdots \hookrightarrow W_0'$ making the following diagram commutative:
+\[
+\begin{tikzcd}
+W_i' \arrow[d] \arrow[r, hook] & W_{i-1}' \arrow[d] \arrow[r, hook] & \cdots \arrow[r, hook] \arrow[d, "\vdots", phantom] & W_0' \arrow[d] \\
+W_i \arrow[r, hook]            & W_{i-1} \arrow[r, hook]            & \cdots \arrow[r, hook]                              & W_0
+\end{tikzcd}
+\]
+Let $W_{i+1}'$ be the strict transform of $W_{i+1}$ in $W_i'$. It suffices to define $\pi_{i+1}$ as the morphism $W_0'\rightarrow Z_i\rightarrow Z$ and
+replace $W_0\supseteq \cdots\supseteq W_{i+1}$ by $W_0'\supseteq \cdots\supseteq W_{i+1}'$.
+\end{proof}
+
+We also include a more general version of \cref{def:valcurr} for currents on bimeromorphic models.
+\begin{definition}\label{def:modelvalcurr}
+    Let $\pi\colon Z\rightarrow X$ be a proper bimeromorphic morphism from a normal compact Kähler space, and let $S$ be a closed positive $(1,1)$-current on $Z$. Choose a proper bimeromorphic morphism
+    \index{valuation!valuation of a current on a model}
+    $h\colon \widehat Z\rightarrow Z$ from a compact Kähler manifold such that
+    $Y_{\bullet}$ admits a lifting $(W_{\bullet},g)$ to $\widehat Z$ with
+    respect to $\pi\circ h$, where
+    \[
+        g=\cor(Y_{\bullet},\pi\circ h).
+    \]
+    We define
+    \begin{equation}\label{eq:nuYbulletS}
+        \nu_{Y_{\bullet}}(S)\coloneqq \nu_{W_{\bullet}}(h^*S)g^{-1}\in \mathbb{R}^n.
+    \end{equation}
+\end{definition}
+Note that it could happen that $\nu_{Y_{\bullet}}(S)\notin \mathbb{R}_{\geq 0}^n$.
+
+\begin{lemma}\label{lma:modelvalcurrbir}
+    The definition in \cref{def:modelvalcurr} is independent of the choice of $h$. Moreover, if $p\colon Z'\rightarrow Z$ is a proper bimeromorphic morphism from a normal compact Kähler space, then, with respect to the model $\pi\circ p\colon Z'\rightarrow X$,
+    \[
+        \nu_{Y_{\bullet}}(p^*S)=\nu_{Y_{\bullet}}(S).
+    \]
+\end{lemma}
+\begin{proof}
+    We first prove independence of the choice of $h$. Let $h_i\colon \widehat Z_i\rightarrow Z$, $i=1,2$, be two choices, and let $(W^i_{\bullet},g_i)$ be the corresponding liftings, with $g_i=\cor(Y_{\bullet},\pi\circ h_i)$. Choose a common modification over $Z$, $q_i\colon U\rightarrow \widehat Z_i$ such that $Y_{\bullet}$ admits a lifting $W_{\bullet}$ to $U$. Then $W_{\bullet}$ is also the lifting of $W^i_{\bullet}$ with respect to $q_i$. Put
+    \[
+        G_i=\cor(W^i_{\bullet},q_i).
+    \]
+    By \cref{prop:cormatrix,prop:cormult},
+    \[
+    \begin{aligned}
+        \nu_{W_{\bullet}}\bigl(q_i^*h_i^*S\bigr)
+        \cor(Y_{\bullet},\pi\circ h_i\circ q_i)^{-1}
+        &=
+        \nu_{W^i_{\bullet}}(h_i^*S)G_i(g_iG_i)^{-1}  \\
+        &=
+        \nu_{W^i_{\bullet}}(h_i^*S)g_i^{-1}.
+    \end{aligned}
+    \]
+    Since $h_1\circ q_1=h_2\circ q_2$, the left-hand side is independent of $i$. This proves that \eqref{eq:nuYbulletS} is well-defined.
+
+    For the birational invariance, choose a proper bimeromorphic morphism $q\colon \widehat Z\rightarrow Z'$ from a compact Kähler manifold such that $Y_{\bullet}$ admits a lifting to $\widehat Z$ with respect to $\pi\circ p\circ q$. Computing $\nu_{Y_{\bullet}}(p^*S)$ using $q$, and computing $\nu_{Y_{\bullet}}(S)$ using $p\circ q$, gives the same expression.
+\end{proof}
+
+\begin{remark}\label{rmk:valcurr}
+    Suppose that $X$ is a normal projective variety. Consider a rank $n$ (surjective) valuation $\nu\colon \mathbb{C}(X)^{\times}\rightarrow \mathbb{Z}^n$ and a closed positive $(1,1)$-current $T$ on $X$. Then we can always define $\nu(T)\in \mathbb{R}^n$ as follows: Take a resolution $\pi\colon Y\rightarrow X$ such that there is a smooth flag $Y_{\bullet}$ on $Y$ and $g\in \Aut(\mathbb{Z}^n_{\lex})$ such that
+    \[
+    \nu=\nu_{Y_{\bullet}}g.
+    \]
+    Then we define
+    \[
+    \nu(T)\coloneqq \nu_{Y_{\bullet}}(\pi^*T)g.
+    \]
+    This definition does not depend on the choice of $\pi$, by passing to a common resolution and applying \cref{prop:cormatrix,prop:cormult}.
+\end{remark}
+
+\section{Algebraic partial Okounkov bodies}\label{sec:PoB}
+Let $X$ be a connected smooth complex projective variety of dimension $n$ and $(L,h)$ be a Hermitian big line bundle on $X$.
+
+Let $h_0$ be a smooth Hermitian metric on $L$. Let $\theta=c_1(L,h_0)$. Then we can identify $h$ with a function $\varphi\in \PSH(X,\theta)$.
+We will use interchangeably the notations $(\theta,\varphi)$ and $(L,h)$. We assume that $\vol \theta_{\varphi}>0$ in this section.
+
+Fix a rank $n$ valuation $\nu\colon \mathbb{C}(X)^{\times}\rightarrow \mathbb{Z}^n$, which without loss of generality can be assumed to be surjective. We shall frequently use the standard fact that such a full-rank valuation has one-dimensional leaves: for every finite-dimensional subspace $V\subset \mathbb C(X)$,
+\[
+    \#\nu(V^\times)=\dim V.
+\]
+See \cite[Lemma~1.3]{LM09} for instance.
+
+We will adopt the notations of \cref{sec:clo1}.
+
+\subsection{The spaces of sections}
+\label{subsec:section_spaces}
+
+\begin{definition}\label{def:Okounkov:L484}
+    We will write
+\[
+\begin{aligned}
+\Gamma(\theta,\varphi)\coloneqq & \left\{ (\nu(s),k) : k\in \mathbb{N}, s\in \mathrm{H}^0(X,L^k\otimes \mathcal{I}(k\varphi))^{\times} \right\},\\
+\Delta_k(\theta,\varphi)\coloneqq & \Conv\left\{ k^{-1}\nu(s): s\in \mathrm{H}^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)^{\times} \right\}\subseteq \mathbb{R}^n,
+\end{aligned}
+\]
+\index{$\Gamma(\theta,\varphi)$}\index{$\Delta_k(\theta,\varphi)$}
+where the second set is defined only for those $k$ such that $\mathrm{H}^0(X,L^k\otimes \mathcal{I}(k\varphi))\neq 0$.
+
+When $\varphi=V_{\theta}$, we simply write $\Gamma(L)$ and $\Delta_k(L)$ instead.
+\end{definition}
+Here and in the sequel, the cross notation means excluding $0$.
+Here $\Conv$ denotes the convex hull. For large enough $k$, $\Delta_k(\theta,\varphi)$ is non-empty thanks to \cref{thm:DXmain1}.
+
+\begin{definition}\label{def:Okounkov:L500}
+    Assume that $\varphi$ has analytic singularities.
+We define
+    \begin{equation}\label{eq:Weps1}
+        \Gamma^{\infty}(\theta,\varphi)\coloneqq \left\{ (\nu(s),k):k\in \mathbb{N}, s\in \mathrm{H}^0(X,L^k\otimes \mathcal{I}_{\infty}(k\varphi))^{\times} \right\}.
+    \end{equation}\index{$\Gamma^{\infty}(\theta,\varphi)$}
+\end{definition}
+Recall that $\mathcal{I}_{\infty}$ is introduced in \cref{def:Iinfty}.
+
+
+
+For later use, we introduce a twisted version as well.
+
+\begin{definition}\label{def:DeltakT}
+If $T$ is a holomorphic line bundle on $X$, we introduce
+\[
+\begin{aligned}
+\Delta_{k,T}(\theta,\varphi)\coloneqq & \Conv\left\{ k^{-1}\nu(s): s\in \mathrm{H}^0(X,T\otimes L^k\otimes \mathcal{I}(k\varphi))^{\times} \right\}\subseteq \mathbb{R}^n,\\
+\Delta_{k,T}(L)\coloneqq & \Conv\left\{ k^{-1}\nu(s): s\in \mathrm{H}^0(X,T\otimes L^k)^{\times} \right\}\subseteq \mathbb{R}^n
+\end{aligned}
+\]
+\index{$\Delta_{k,T}(\theta,\varphi)$}\index{$\Delta_{k,T}(L)$}
+for all $k\in \mathbb{Z}_{>0}$ such that the relevant spaces of sections are non-zero.
+\end{definition}
+
+
+
+\subsection{Algebraic Okounkov bodies}
+\begin{proposition}\label{prop:Okounbiglbdl}
+    There is a convex body $\Delta\in \mathcal{K}_n$ such that $\Gamma(L)\in \mathcal{S}'(\Delta)$.
+\end{proposition}
+Here and in the sequel, the notation $\mathcal{S}'(\Delta)$ means $\mathcal{S}'(C(\Delta))$, where $C(\Delta)$ is the cone over $\Delta$.
+Recall that the notations $\mathcal{K}_n$ and $\mathcal{S}'(\Delta)$ are introduced in \cref{chap:almostsg}.
+
+\begin{proof}
+\textbf{Step~1}. We first show that there is $\Delta\in \mathcal{K}_n$ such that $\Delta_k(L)\subseteq \Delta$. For this purpose, using \cref{rmk:Abhyankar}, we may assume that $\nu$ is induced by an admissible flag $Y_{\bullet}$ on $X$. We may further assume that each $Y_i$ is smooth.
+
+
+Fix $s\in \mathrm{H}^0(X,L^k)^{\times}$ for some $k\in \mathbb{Z}_{>0}$. Assume that $s\neq 0$. We need to show that for each $i=1,\ldots,n$, $\nu(s)_i\leq Ck$ for some constant $C>0$, independent of the choices of $k$ and $s$.
+
+Fix an ample divisor $H$ on $X$. Take a large enough integer $b_1>0$ such that
+\[
+    (L-b_1 Y_1)\cdot H^{n-1}<0.
+\]
+Then $\nu(s)_1\leq b_1 k$. Next take a large enough integer $b_2$ such that, for every $a\in[0,b_1]$,
+\[
+\left((L-aY_1)|_{Y_1}-b_2Y_2\right) \cdot H^{n-2}<0.
+\]
+After removing the first vanishing order of $s$ along $Y_1$, the resulting section on $Y_1$ is a section of $k((L-aY_1)|_{Y_1})$ for some $a\in[0,b_1]$. Hence $\nu(s)_2\leq b_2k$. Continuing in this manner and choosing the constants uniformly over the compact ranges of the preceding normalized vanishing orders, we conclude that $\nu(s)_i/k$ is bounded for each $i$.
+
+Here the expressions involving $L-aY_1$ are understood numerically. At the $i$-th step the previous normalized vanishing orders lie in a compact polytope, and the intersection number is continuous in these parameters; hence the constants $b_i$ can be chosen uniformly.
+
+\textbf{Step~2}. Observe that $\Gamma(L)$ is clearly a semigroup. It remains to show that $\Gamma(L)$ generates $\mathbb{Z}^{n+1}$ as an Abelian group.
+
+For this purpose, take two very ample divisors $A$ and $B$ so that $L=\mathcal{O}_X(A-B)$. After choosing $A$ and $B$ ample enough, we may guarantee that there exist sections $s_0\in \mathrm{H}^0(X,A)$, $t_i\in \mathrm{H}^0(X,B)$ for $i=0,\dots,n$ such that
+\[
+\nu(s_0)=\nu(t_0)=0
+\]
+and $\nu(t_i)$ is the $i$-th unit vector $e_i\in \mathbb{R}^n$ for $i=1,\ldots,n$.
+
+Since $L$ is big, we can find $m_0>0$ such that for any $m\geq m_0$, we can find an effective divisor $F_m$ on $X$ linearly equivalent to $mL-B$. Let $f_m=\nu([F_m])$. Then
+\[
+(f_m,m),(f_m+e_1,m),\dots,(f_m+e_n,m)\in \Gamma(L).
+\]
+Since $(m+1)L$ is linearly equivalent to $A+F_m$, we have
+\[
+(f_m,m+1)\in \Gamma(L).
+\]
+It follows that $\Gamma(L)$ generates $\mathbb{Z}^{n+1}$.
+\end{proof}
+
+Thanks to \cref{prop:Okounbiglbdl}, we can introduce the next definition.
+\begin{definition}\label{def:Okobd}
+    We define the \emph{Okounkov body}\index{Okounkov body} of $L$ with respect to the valuation $\nu$ as
+    \[
+    \Delta_{\nu}(L)\coloneqq \Delta(\Gamma(L)).
+    \]
+    \index{$\Delta_{\nu}(L)$}
+\end{definition}
+When $\nu$ is induced by a smooth flag $Y_{\bullet}$ on $X$, we also write $\Delta_{Y_{\bullet}}(L)$ instead. The same convention applies to the partial Okounkov bodies studied below as well.
+
+\begin{proposition}\label{prop:Okounonlydepnum}
+    The Okounkov body $\Delta_{\nu}(L)$ depends only on the numerical class of $L$.
+\end{proposition}
+See \cite[Proposition~4.1]{LM09} for the elegant proof.
+
+\begin{corollary}\label{cor:Okounvol}
+    We have
+    \begin{equation}
+        \vol \Delta_{\nu}(L)=\frac{1}{n!}\vol L.
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    This follows immediately from \cref{prop:Okounbiglbdl} and \cref{thm:HausOkoun}.
+\end{proof}
+
+\begin{proposition}\label{prop:GammaepsSp}
+Assume that $\varphi$ has analytic singularities and $\theta_{\varphi}$ is a Kähler current. Then we have
+    \[
+    \Gamma^{\infty}(\theta,\varphi)\in \mathcal{S}'(\Delta_\nu(L))
+    \]
+    and
+    \[
+    \vol \Gamma^{\infty}(\theta,\varphi)=\frac{1}{n!}\int_X \theta_{\varphi}^n.
+    \]
+\end{proposition}
+\begin{proof}
+    By \cref{thm:resolvelogsing}, we can choose a modification $\pi\colon Y\to X$ such that $\pi^*\varphi$ has log singularities along an effective simple normal crossing $\mathbb Q$-divisor $D$. We regard $\nu$ as a valuation of $\mathbb C(Y)=\mathbb C(X)$. By the definition of $\mathcal I_\infty$, the section spaces defining $\Gamma^\infty(\theta,\varphi)$ are naturally identified with
+    \[
+        \mathrm{H}^0\left(Y,\pi^*L^k\otimes\mathcal O_Y(-\lceil kD\rceil)\right).
+    \]
+    Thus we may compute $\Gamma^\infty(\theta,\varphi)$ on $Y$.
+
+
+    In this case,
+    \[
+    \Gamma^{\infty}(\theta,\varphi)=
+    \Biggl\{
+    (\nu(s),k):k\in \mathbb{N},  s\in \mathrm{H}^0\left(Y,\pi^*L^k\otimes \mathcal{O}_Y(-\lceil k D \rceil)\right)^{\times}
+    \Biggr\}
+    \]
+    Since $\pi^*L-D$ is nef and big by \cref{lma:logsingrem}, our assertion follows from the same argument as \cref{prop:Okounbiglbdl}.
+\end{proof}
+
+We first extend \cref{thm:HausOkoun} to the twisted case.
+\begin{proposition}\label{prop:Deltaconvtwisted}
+    For any holomorphic line bundle $T$ on $X$, as $k\to\infty$
+    \[
+        \Delta_{k,T}(L)\xrightarrow{d_{\Haus}} \Delta_{\nu}(L).
+    \]
+\end{proposition}
+
+\begin{proof}
+    As $L$ is big, we can take $k_0\in \mathbb{Z}_{>0}$ so that
+    \begin{enumerate}
+        \item\label{itm:chapter-Okounkov:L657:1} $T^{-1}\otimes L^{k_0}$ admits a non-zero global holomorphic section $s_0$, and
+        \item\label{itm:chapter-Okounkov:L657:2} $T\otimes L^{k_0}$ admits a non-zero global holomorphic section $s_1$.
+    \end{enumerate}
+    Then for $k\in \mathbb{Z}_{>k_0}$, we have injective linear maps
+    \[
+        \mathrm{H}^0(X,L^{k-k_0})\xrightarrow{\times s_1}\mathrm{H}^0(X,T\otimes L^{k})\xrightarrow{\times s_0}\mathrm{H}^0(X, L^{k+k_0}).
+    \]
+    It follows that
+    \[
+        (k-k_0)\Delta_{k-k_0}(L)+\nu(s_1)\subseteq k\Delta_{k,T}(L)\subseteq (k+k_0)\Delta_{k+k_0}(L)-\nu(s_0).
+    \]
+    Using \cref{thm:HausOkoun}, we conclude.
+\end{proof}
+
+\begin{proposition}\label{prop:subaddOkoun}
+    Let $L'$ be another big line bundle on $X$. Then
+    \[
+    \Delta_{\nu}(L)+\Delta_{\nu}(L')\subseteq \Delta_{\nu}(L\otimes L').
+    \]
+\end{proposition}
+\begin{proof}
+    Observe that for each $k\in \mathbb{N}$, we have
+    \[
+    \Delta_k(L)+\Delta_k(L')\subseteq \Delta_k(L\otimes L').
+    \]
+    So our assertion follows immediately from \cref{thm:HausOkoun}.
+\end{proof}
+
+\begin{proposition}\label{prop:Okourescaling}
+    For any $a\in \mathbb{Z}_{>0}$, we have
+    \[
+    \Delta_{\nu}(L^a)=a\Delta_{\nu}(L).
+    \]
+\end{proposition}
+\begin{proof}
+    This is an immediate consequence of \cref{thm:HausOkoun}.
+\end{proof}
+
+\subsection{Construction of partial Okounkov bodies}
+\label{subsec:pob_construct}
+
+
+\begin{theorem}\label{thm:Gammaasg}
+    We have
+    \[
+    \Gamma(\theta,\varphi)\in \overline{\mathcal{S}'(\Delta_{\nu}(L))}_{>0}.
+    \]
+\end{theorem}
+We refer to \cref{def:SpCbar} for the definition of $\overline{\mathcal{S}'(\Delta_{\nu}(L))}_{>0}$.
+
+
+This theorem allows us to give the following definition:
+\begin{definition}\label{def:Okounkov:L687}
+The \emph{partial Okounkov body}\index{Okounkov body!partial Okounkov body} of $(L,h)$ is defined as
+\begin{equation}\label{eq:Deltalbdef}
+\Delta_{\nu}(L,h)=\Delta_{\nu}(\theta,\varphi)\coloneqq \Delta \left(\Gamma(\theta,\varphi)\right).
+\end{equation}
+\index{$\Delta_{\nu}(L,h)$}
+\end{definition}
+When $\nu$ is induced by an admissible flag $Y_{\bullet}$ on $X$ (see \cref{def:admfl}), we also say that $\Delta_{\nu}(\theta,\varphi)$ is the \emph{partial Okounkov body} of $(L,h)$ or of $(\theta,\varphi)$ with respect to $Y_{\bullet}$. In this case, we also write $\Delta_{Y_{\bullet}}$ instead of $\Delta_{\nu}$.
+
+Note that when $h$ has minimal singularities, we have
+\[
+\Delta_{\nu}(L,h)=\Delta_{\nu}(L).
+\]
+So partial Okounkov bodies generalize Okounkov bodies.
+
+%As an immediate consequence of \cref{thm:Gammaasg}, \cref{thm:DXmain1} and \cref{thm:Okocont}, we find the volume formula of partial Okounkov bodies:
+\begin{corollary}\label{cor:POBvolume}
+    We have
+\begin{equation}\label{eq:Okov}
+    \vol \Delta_{\nu}(\theta,\varphi)=\frac{1}{n!}\vol \theta_{\varphi}.
+\end{equation}
+\end{corollary}
+
+We will prove \cref{thm:Gammaasg} and \cref{cor:POBvolume} at the same time. The proof relies on the pseudometric $d_{\sg}$ introduced in \eqref{eq:dsgdef}.
+
+\begin{proof}
+    \textbf{Step~1}. We first assume that $\varphi$ has analytic singularities and $\theta_{\varphi}$ is a Kähler current.
+
+    We claim that
+    \begin{equation}\label{eq:Gamma0Gammaanalytic}
+        d_{\sg}(\Gamma^{\infty}(\theta,\varphi),\Gamma(\theta,\varphi))=0.
+    \end{equation}
+    Observe that for each $\epsilon\in \mathbb{Q}_{>0}$, we have
+    \[
+    \mathrm{H}^0\Bigl(X,L^k\otimes \mathcal{I}_{\infty}(k\varphi)\Bigr)\subseteq \mathrm{H}^0\Bigl(X,L^k\otimes \mathcal{I}(k\varphi)\Bigr)\subseteq \mathrm{H}^0\left(X,L^k\otimes \mathcal{I}_{\infty}(k(1-\epsilon)\varphi)\right)
+    \]
+    for all large enough $k$. This is a consequence of \cref{lma:IandIinf}. Therefore, it suffices to show that
+    \[
+    \lim_{\mathbb{Q}\ni \epsilon\to 0+}\vol \Gamma^{\infty}(\theta,(1-\epsilon)\varphi)=\vol \Gamma^{\infty}(\theta,\varphi).
+    \]
+    This follows from the explicit formula in \cref{prop:GammaepsSp}.
+
+    \textbf{Step~2}. We next handle the case where $\theta_{\varphi}$ is a Kähler current.
+
+    Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$. Then $\varphi_j\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}$ by \cref{cor:quasi-equichar}.
+
+In this case, it suffices to prove that
+\begin{equation}\label{eq:WtoWclaim}
+	\Gamma(\theta,\varphi_j)\xrightarrow{d_{\sg}} \Gamma(\theta,\varphi).
+\end{equation}
+In fact, by \cref{thm:DXmain1}, we have
+\[
+	\begin{aligned}
+		&d_{\sg}\left(\Gamma(\theta,\varphi_j),\Gamma(\theta,\varphi)\right) \\
+  =& \varlimsup_{k\to\infty} k^{-n} \left( h^0\left(X,L^k\otimes \mathcal{I}(k\varphi_j)\right)-h^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)\right)\\
+  = & \lim_{k\to\infty} k^{-n}h^0\left(X,L^k\otimes \mathcal{I}(k\varphi_j)\right)-\lim_{k\to\infty} k^{-n}h^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right) \\
+		 =&\frac{1}{n!}\vol \theta_{\varphi_j}-\frac{1}{n!}\vol \theta_{\varphi}.
+	\end{aligned}
+\]
+Letting $j\to\infty$, we conclude \eqref{eq:WtoWclaim} by \cref{thm:contvolu}.
+
+\textbf{Step~3}. Now we only assume that $\vol \theta_{\varphi}>0$.
+We may replace $\varphi$ with $P_{\theta}[\varphi]_{\mathcal{I}}$ and then assume that $\varphi\in \PSH(X,\theta)_{>0}$.
+
+Take a potential $\psi\in \PSH(X,\theta)$ such that $\psi \leq \varphi$ and $\theta_{\psi}$ is a Kähler current. The existence of $\psi$ is proved in \cref{lma:kahcurrentposmass}.
+For each $\epsilon\in (0,1)$, let $\varphi_{\epsilon}=(1-\epsilon)\varphi+\epsilon\psi$.
+It suffices to show that
+\[
+\Gamma(\theta,\varphi_{\epsilon})\xrightarrow{d_{\sg}}\Gamma(\theta,\varphi)
+\]
+as $\epsilon \to 0+$.
+We compute using \cref{thm:DXmain1}:
+\[
+\begin{aligned}
+    &d_{\sg}\left(\Gamma(\theta,\varphi_{\epsilon}),\Gamma(\theta,\varphi)\right)\\
+    =& \varlimsup_{k\to\infty} k^{-n} \left( h^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)- h^0\left(X,L^k\otimes \mathcal{I}(k\varphi_{\epsilon})\right) \right)\\
+    =& \lim_{k\to\infty}k^{-n}h^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)-\lim_{k\to\infty}k^{-n}h^0\left(X,L^k\otimes \mathcal{I}(k\varphi_{\epsilon})\right)\\
+    =& \frac{1}{n!}\vol \theta_{\varphi}- \frac{1}{n!}\vol \theta_{\varphi_{\epsilon}}\\
+    \to & 0
+\end{aligned}
+\]
+by \cref{thm:contvolu}, as $\epsilon \to 0+$. Combining the three steps, $\Gamma(\theta,\varphi)$ lies in $\overline{\mathcal S'(\Delta_\nu(L))}_{>0}$. This proves \cref{thm:Gammaasg}. Moreover, by the continuity of the volume on $\overline{\mathcal S}(\Delta_\nu(L))$ and by \cref{thm:DXmain1},
+\[
+\vol \Gamma(\theta,\varphi)=\lim_{k\to\infty}k^{-n}h^0(X,L^k\otimes\mathcal I(k\varphi))=\frac{1}{n!}\vol\theta_\varphi.
+\]
+Since $\vol\Delta(\Gamma(\theta,\varphi))=\vol\Gamma(\theta,\varphi)$ by \cref{thm:Okocont}, \eqref{eq:Okov} follows.
+\end{proof}
+
+
+\begin{remark}\label{rmk:DeltaanaW0}
+It follows from the proof that if $\varphi$ has analytic singularities and $\theta_{\varphi}$ is a Kähler current, then \eqref{eq:Gamma0Gammaanalytic} holds.
+
+If we take a modification $\pi\colon Y\rightarrow X$ such that $\pi^*\varphi$ has log singularities along an effective $\mathbb{Q}$-divisor $D$ on $Y$, then
+\begin{equation}\label{eq:DeltaanaW0}
+\Delta_{\nu}(\theta,\varphi)=\Delta_{\nu}(\pi^*L-D)+\nu(D).
+\end{equation}
+
+This is a very special case of \cref{thm:pobmain}.
+\end{remark}
+
+
+
+
+
+
+
+\subsection{Basic properties of partial Okounkov bodies}
+\label{subsec:pob_prop}
+
+\begin{proposition}\label{prop:Okocurrent}
+	The partial Okounkov body $\Delta_{\nu}(L,h)$ depends only on $\ddc h$, not on the explicit choices of $L,h_0,h$.
+\end{proposition}
+Thanks to this result, given a closed positive $(1,1)$-current $T\in c_1(L)$ on $X$ with $\int_X T^n>0$, we can write
+\[
+\Delta_{\nu}(T)\coloneqq \Delta_{\nu}(\theta,\varphi)
+\]
+if $T=\theta+\ddc\varphi$ for some $\varphi\in \PSH(X,\theta)$.
+\begin{proof}
+	There are two different claims to prove, as detailed in the two steps below.
+
+\textbf{Step~1}. Let $h_0'$ be another Hermitian metric on $L$. Set $\theta'=c_1(L,h_0')$. Write $\ddc f=\theta-\theta'$.
+	Let $\varphi'=\varphi+f\in \PSH(X,\theta')$. Then
+	\begin{equation}\label{eq:DeltaDelta1}
+		\Delta_{\nu}(\theta,\varphi)=\Delta_{\nu}(\theta',\varphi').
+	\end{equation}
+
+ This is obvious since $\Gamma(\theta,\varphi)=\Gamma(\theta',\varphi')$.
+
+ \textbf{Step~2}. Let $L'$ be another big line bundle on $X$. By Step~1, we may assume that the reference Hermitian metric $h'_0$ on $L'$ is such that $c_1(L',h'_0)=\theta$.
+
+ Let $h'$ be a plurisubharmonic metric on $L'$ with $c_1(L,h)=c_1(L',h')$. Then
+ \[
+ \Delta_{\nu}(L,h)=\Delta_{\nu}(L',h').
+ \]
+ By the approximation step in the construction of $\Delta_\nu(L,h)$ and the continuity of the extension in \cref{thm:Okocont}, it is enough to prove the assertion when $c_1(L,h)$ has analytic singularities. After taking a birational resolution, it suffices to deal with the case where $c_1(L,h)$ has analytic singularities along an effective $\mathbb{Q}$-divisor $D$. By rescaling, we may also assume that $D$ is a divisor. By \cref{rmk:DeltaanaW0}, we further reduce to the case where $c_1(L,h)$ is not singular.
+
+In this case, the assertion is proved in \cref{prop:Okounonlydepnum}.
+\end{proof}
+
+\begin{proposition}\label{prop:IcompimplyDeltacomp}
+	Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Assume that $\varphi\preceq_{\mathcal{I}} \psi$. Then
+	\begin{equation}\label{eq:Deltacomp}
+		\Delta_{\nu}(\theta,\varphi)  \subseteq \Delta_{\nu}(\theta,\psi).
+	\end{equation}
+\end{proposition}
+In particular, we always have
+\[
+\Delta_{\nu}(\theta,\varphi)\subseteq \Delta_{\nu}(L).
+\]
+\begin{proof}
+	This follows from \cref{cor:Okocomp}.
+\end{proof}
+
+
+
+
+\begin{theorem}\label{thm:Okoucont}
+	The Okounkov body map
+	\[
+		\Delta_{\nu}(\theta,\bullet):\left( \PSH(X,\theta)_{>0},d_S\right)\rightarrow \left(\mathcal{K}_n,d_{\Haus}\right)
+	\]
+	is continuous.
+\end{theorem}
+
+\begin{proof}
+Let $\varphi_j\to \varphi$ be a $d_S$-convergent sequence in $\PSH(X,\theta)_{>0}$.
+	We want to show that
+	\begin{equation}\label{eq:Deltavjv}
+		\Delta_{\nu}(\theta,\varphi_j)\xrightarrow{d_{\Haus}}\Delta_{\nu}(\theta,\varphi).
+	\end{equation}
+	Replacing the potentials by their $P$-envelopes does not change their partial Okounkov bodies, since $P$-equivalent potentials are $\mathcal{I}$-equivalent, nor does it change their $d_S$-classes. Thus we may assume that all $\varphi_j$'s and $\varphi$ are model potentials.
+
+	By \cref{prop:incanddec}, after passing to a subsequence we can sandwich $\varphi_j$ between a decreasing sequence and an increasing sequence, both converging to $\varphi$ in $d_S$. Using \cref{prop:IcompimplyDeltacomp} and \cref{thm:Blaschke}, it is enough to prove \eqref{eq:Deltavjv} when $(\varphi_j)_j$ is monotone. By \cref{thm:contPI}, replacing $\varphi_j$ and $\varphi$ by their $\mathcal{I}$-envelopes preserves this reduction, so we may further assume that the $\varphi_j$'s and $\varphi$ are $\mathcal{I}$-model.
+ In both cases, we claim that
+ \[
+ \Gamma(\theta,\varphi_j)\xrightarrow{d_{\sg}} \Gamma(\theta,\varphi)
+ \]
+ as $j\to\infty$.
+ In fact, using \cref{thm:DXmain1}, we can compute
+ \[
+ \begin{aligned}
+ d_{\sg}\left(\Gamma(\theta,\varphi_j), \Gamma(\theta,\varphi)\right) = &\varlimsup_{k\to\infty} k^{-n}\left| h^0\left(X,L^k\otimes \mathcal{I}(k\varphi_j)\right)-h^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right) \right|\\
+ =& \frac{1}{n!} \left| \vol \theta_{\varphi_j}-\vol \theta_{\varphi}\right|,
+ \end{aligned}
+ \]
+ which converges to $0$ by \cref{thm:contvolu}.
+\end{proof}
+
+\begin{proposition}\label{prop:birinvO}
+	Let $\pi \colon Y\rightarrow X$ be a modification. Then
+	\[
+		\Delta_{\nu}(\pi^*L,\pi^*h)=\Delta_{\nu}(L,h).
+	\]
+\end{proposition}
+\begin{proof}
+    Thanks to \cref{prop:Ienvelopebimero}, we may assume that $\varphi$ is $\mathcal{I}$-model.
+   By \cref{thm:charIgoodasclosure}, we can find a sequence $(\varphi_j)_j$ with analytic singularities in $\PSH(X,\theta)$ such that $\varphi_j\xrightarrow{d_S}\varphi$. It is clear that $\pi^*\varphi_j\xrightarrow{d_S}\pi^*\varphi$.
+    By \cref{thm:Okoucont}, we may then reduce to the case where $\varphi$ has analytic singularities. In this case, it suffices to apply \cref{rmk:DeltaanaW0}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:suba}
+	Let $(L', h')$ be another Hermitian big line bundle on $X$. Then
+	\[
+		\Delta_{\nu}(L,h)+\Delta_{\nu}(L', h')\subseteq\Delta_{\nu}(L\otimes L',h\otimes h').
+	\]
+\end{proposition}
+\begin{proof}
+	Take a Hermitian metric $h_0'$ on $L'$ and let $\theta'=c_1(L',h_0')$. We identify $h'$ with $\varphi'\in \PSH(X,\theta')$. Then we need to show
+	\begin{equation}\label{eq:suba}
+		\Delta_{\nu}(\theta,\varphi)+\Delta_{\nu}(\theta',\varphi')\subseteq \Delta_{\nu}(\theta+\theta',\varphi+\varphi').
+	\end{equation}
+    We observe that
+    \[
+    P_{\theta}[\varphi]_{\mathcal{I}}+P_{\theta'}[\varphi']_{\mathcal{I}}\sim_{\mathcal{I}} \varphi+\varphi'.
+    \]
+    Thus, after replacing $\varphi$ and $\varphi'$ by their $\mathcal{I}$-envelopes, in view of \cref{prop:IcompimplyDeltacomp}, we may assume that $\varphi$ and $\varphi'$ are $\mathcal{I}$-good.
+
+
+	By \cref{thm:charIgoodasclosure}, we can find sequences $(\varphi_j)_j$ and $(\varphi'_j)_j$ in $\PSH(X,\theta)_{>0}$ and $\PSH(X,\theta')_{>0}$ respectively such that
+	\begin{enumerate}
+		\item\label{itm:chapter-Okounkov:L930:1} $\varphi_j$ and $\varphi'_j$ both have analytic singularities for all $j\geq 1$, and
+		\item\label{itm:chapter-Okounkov:L930:2} $\varphi_j\xrightarrow{d_S}\varphi$, $\varphi'_j\xrightarrow{d_S}\varphi'$.
+	\end{enumerate}
+	Then $\varphi_j+\varphi'_j\in \PSH(X,\theta+\theta')_{>0}$ and $\varphi_j+\varphi'_j\xrightarrow{d_S} \varphi+\varphi'$ by \cref{thm:dSadditivity}. Thus, by \cref{thm:Okoucont}, we may assume that $\varphi$ and $\varphi'$ both have analytic singularities. Taking a birational resolution, we may further assume that they have log singularities. By \cref{rmk:DeltaanaW0}, we reduce to the case without singularities, in which case the result is just \cref{prop:subaddOkoun}.
+\end{proof}
+
+\begin{theorem}\label{thm:concOko}
+	Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Then for any $t\in (0,1)$,
+	\begin{equation}\label{eq:Deltaconcave}
+		\Delta_{\nu}\left(\theta,t\varphi+(1-t)\psi\right)\supseteq t\Delta_{\nu}(\theta,\varphi)+(1-t)\Delta_{\nu}(\theta,\psi).
+	\end{equation}
+\end{theorem}
+\begin{proof}
+		We may assume that $t$ is rational as a consequence of \cref{thm:Okoucont}. Similarly, as in the proof of \cref{prop:suba},
+		we may reduce to the case where both $\varphi$ and $\psi$ have analytic singularities.
+	In this case, let $N>0$ be an integer such that $Nt$ is an integer.
+    Then for any $s\in \mathrm{H}^0(X,L^k\otimes \mathcal{I}_{\infty}(k\varphi))$ and $r\in \mathrm{H}^0(X,L^k\otimes \mathcal{I}_{\infty}(k\psi))$, we have
+    \[
+    s^{tN}\otimes r^{N-tN}\in \mathrm{H}^0\left(X,L^{kN}\otimes \mathcal{I}_{\infty}\left(kN(t\varphi+(1-t)\psi)\right)\right).
+    \]
+	By \cref{thm:HausOkoun} and \cref{rmk:DeltaanaW0}, \eqref{eq:Deltaconcave} follows.
+\end{proof}
+
+\begin{proposition}\label{prop:res}
+	For any $a\in \mathbb{Z}_{>0}$,
+	\[
+		\Delta_{\nu}(a\theta,a\varphi)=a\Delta_{\nu}(\theta,\varphi).
+	\]
+\end{proposition}
+\begin{proof}
+As in the proof of \cref{prop:suba}, we may assume that $\varphi$ has log singularities. Using \cref{rmk:DeltaanaW0}, we reduce to the case without the singularities, which is proved in
+\cref{prop:Okourescaling}.
+\end{proof}
+
+In particular, if $S$ is a closed positive $(1,1)$-current on $X$ with $\int_X S^n>0$ and such that
+\[
+\{S\}\in \NS^1(X)_{\mathbb{Q}},
+\]
+we can define
+\begin{equation}\label{eq:DeltanuTalgebraic1}
+\Delta_{\nu}(S)\coloneqq a^{-1}\Delta_{\nu}(aS)
+\end{equation}
+for a sufficiently divisible positive integer $a$. This definition is independent of the choice of $a$ thanks to \cref{prop:res}.
+
+We also need the following perturbation. Let $A$ be an ample line bundle on $X$. Fix a Hermitian metric $h_A$ on $A$ such that $\omega\coloneqq c_1(A,h_A)$ is a Kähler form on $X$.
+
+\begin{proposition}\label{prop:Deltapert}
+    As $\mathbb{Q}_{>0}\ni\delta\searrow 0$, the convex bodies $\Delta_{\nu}(\theta+\delta\omega+\ddc\varphi)$ are decreasing and
+    \[
+    \Delta_{\nu}(\theta+\delta\omega+\ddc\varphi)\xrightarrow{d_{\Haus}} \Delta_{\nu}(\theta_{\varphi}).
+    \]
+\end{proposition}
+
+\begin{proof}
+	Let $0\leq \delta<\delta'$ be two rational numbers. Take $C\in \mathbb{N}_{>0}$ divisible enough, so that $C\delta$ and $C\delta'$ are both integers. Then by \cref{prop:suba},
+	\[
+		\Delta_{\nu}(C\theta+C\delta\omega+C\ddc\varphi)\subseteq \Delta_{\nu}(C\theta+C\delta'\omega+C\ddc \varphi).
+	\]
+	It follows that
+	\[
+		\Delta_{\nu}(\theta+\delta\omega+\ddc\varphi)\subseteq \Delta_{\nu}(\theta+\delta'\omega+\ddc\varphi).
+	\]
+	On the other hand,
+	\[
+		\vol   \Delta_{\nu}(\theta+\delta\omega+\ddc\varphi)=\frac{1}{n!}\vol (\theta+\delta\omega)_{\varphi}.
+	\]
+	As $\delta\to 0+$, the right-hand side converges to
+	\[
+		\vol \Delta_{\nu}(\theta,\varphi)=\frac{1}{n!}\vol \theta_{\varphi},
+	\]
+    thanks to \cref{prop:vollinearlimit}.
+	Our assertion therefore follows.
+\end{proof}
+
+\subsection{The Hausdorff convergence property}
+\label{subsec:HCP}
+Let $T$ be a holomorphic line bundle on $X$. The goal of this section is to prove the following:
+\begin{theorem}\label{thm:HCP}
+    As $k\to\infty$, we have
+    \begin{equation}\label{eq:HCP1}
+    \Delta_{k,T}(\theta,\varphi)\xrightarrow{d_{\Haus}} \Delta_{\nu}(\theta,\varphi).
+    \end{equation}
+\end{theorem}
+Recall that $\Delta_{k,T}(\theta,\varphi)$ is defined in \cref{def:DeltakT}. Note that it is defined when $k$ is large enough.
+
+Although we are only interested in the untwisted case, the proof given below requires the twisted case.
+
+We first observe that the sequence $\Delta_{k,T}(\theta,\varphi)$ is uniformly bounded: This follows easily from \cref{prop:Deltaconvtwisted}. So Blaschke's selection theorem \cref{thm:Blaschke} is applicable. We will apply this observation without further comments.
+
+
+\begin{lemma}\label{lma:twistedHcp}
+    Assume that $\varphi$ has analytic singularities and $\theta_{\varphi}$ is a Kähler current. Then \eqref{eq:HCP1} holds.
+\end{lemma}
+\begin{proof}
+    Up to replacing $X$ by a modification and twisting $T$ accordingly, we may assume that $\varphi$ has log singularities along an effective $\mathbb{Q}$-divisor $D$, see \cref{prop:birinvO} and \cref{thm:resolvelogsing}.
+
+    Take $\epsilon\in \mathbb{Q}\cap (0,1)$.
+    In this case, for large enough $k\in \mathbb{Z}_{>0}$ we have
+    \[
+    \begin{split}
+        \mathrm{H}^0\left(X,T\otimes L^k\otimes \mathcal{I}_{\infty}(k\varphi)\right) \subseteq & \mathrm{H}^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\right) \\
+        \subseteq & \mathrm{H}^0\left(X,T\otimes L^k\otimes \mathcal{I}_{\infty}(k(1-\epsilon)\varphi)\right).
+    \end{split}
+    \]
+    Take an integer $N\in \mathbb{Z}_{>0}$ so that $ND$ is a divisor and $N\epsilon$ is an integer.
+
+    Let $\Delta'$ be the limit of a subsequence of $(\Delta_{k,T}(\theta,\varphi))_k$, say the sequence defined by the indices $k_1,k_2,\ldots$. Thanks to \cref{thm:Blaschke}, it suffices to show that $\Delta'=\Delta_{\nu}(\theta,\varphi)$.
+
+
+    There exists $t\in \{0,1,\ldots,N-1\}$ such that $k_i\equiv t$ modulo $N$ for infinitely many $i$, up to replacing $(k_i)_i$ by a subsequence, we may assume that $k_i\equiv t$ modulo $N$ for all $i$. Write $k_i=N g_i+t$.
+    Then for large enough $i$, we have
+    \[
+    \begin{split}
+        \mathrm{H}^0\left(X,T\otimes L^{-N+t} \otimes L^{N(g_i+1)}\otimes \mathcal{I}_{\infty}\left(N(g_i+1)\varphi\right)\right) \subseteq \mathrm{H}^0\left(X,T\otimes L^{k_i}\otimes \mathcal{I}(k_i\varphi)\right) \\
+        \subseteq \mathrm{H}^0\left(X,T\otimes L^t \otimes L^{Ng_i}\otimes \mathcal{I}_{\infty}\left(g_i N(1-\epsilon)\varphi\right)\right).
+    \end{split}
+    \]
+    So
+    \[
+    \begin{split}
+    (g_i+1) \Delta_{g_i+1,T\otimes L^{-N+t}}(NL-ND)+N(g_i+1)\nu(D)\subseteq (Ng_i+t)\Delta_{k_i,T}(\theta,\varphi)\\
+    \subseteq
+    g_i\Delta_{g_i,T\otimes L^t}\left(NL-N(1-\epsilon)D\right)+Ng_i(1-\epsilon)\nu(D).
+    \end{split}
+    \]
+    Letting $i\to\infty$, by \cref{prop:Deltaconvtwisted},
+    \[
+        \Delta_{\nu}(L-D)+\nu(D)\subseteq \Delta'\subseteq \Delta_{\nu}(L-(1-\epsilon)D)+(1-\epsilon)\nu(D).
+    \]
+    Letting $\epsilon\to 0+$, using the continuity of classical Okounkov bodies in the big cone recalled in \cref{thm:Okounkovtranmain}, we find that
+    \[
+        \Delta'=\Delta_{\nu}(L-D)+\nu(D)=\Delta_{\nu}(\theta,\varphi),
+    \]
+    where we applied \cref{rmk:DeltaanaW0} as well. Our assertion follows.
+\end{proof}
+
+\begin{lemma}\label{lma:Hausconvbetato0}
+    Assume that $\theta_{\varphi}$ is a Kähler current. Then as $\mathbb{Q}\ni\beta\to 0+$, we have
+    \[
+        \Delta_{\nu}\Bigl((1-\beta)\theta,\varphi\Bigr)\xrightarrow{d_{\Haus}} \Delta_{\nu}(\theta,\varphi).
+    \]
+\end{lemma}
+Here and in the sequel, $\Delta_{\nu}((1-\beta)\theta,\varphi)=\Delta_{\nu}((1-\beta)\theta+\ddc\varphi)$ is defined in \eqref{eq:DeltanuTalgebraic1}.
+\begin{proof}
+    By \cref{prop:suba} and \cref{prop:IcompimplyDeltacomp}, we have
+    \[
+        \Delta_{\nu}\Bigl((1-\beta)\theta,\varphi\Bigr)+\beta\Delta_{\nu}(L)\subseteq \Delta_\nu\left(\theta,\varphi+\beta V_\theta\right)\subseteq \Delta_{\nu}(\theta,\varphi)
+    \]
+    for any small enough $\beta\in \mathbb{Q}_{>0}$.
+    In particular, if $\Delta'$ is the Hausdorff limit of a subnet of $(\Delta((1-\beta)\theta,\varphi))_{\beta}$, then $\Delta'\subseteq \Delta_{\nu}(\theta,\varphi)$.
+    But
+    \[
+    \begin{split}
+        \vol \Delta'=&\lim_{\beta\to 0+}\vol \Delta_{\nu}((1-\beta)\theta,\varphi)\\
+        =&\frac{1}{n!}\lim_{\beta\to 0+}\int_X \left((1-\beta)\theta+\ddc P_{(1-\beta)\theta}[\varphi]_{\mathcal{I}}\right)^n\\
+        =&\frac{1}{n!}\int_X (\theta+\ddc P_{\theta}[\varphi]_{\mathcal{I}})^n.
+    \end{split}
+    \]
+    Since we have not developed the theory of nef b-divisors yet, we give a direct proof as well. Take a Kähler form $\omega$ so that $\theta_{\varphi}\geq \omega$. Let $\psi=P_{\theta-\omega}[\varphi]_{\mathcal{I}}$. Then $\varphi\sim_{\mathcal{I}}\psi$. In order to establish the last equality, we may replace $\varphi$ by $\psi$ and hence assume that $\varphi$ is $\mathcal{I}$-good. For small enough $\beta>0$, the form $(1-\beta)\theta-(\theta-\omega)=\omega-\beta\theta$ is Kähler, so this remains true in the class $(1-\beta)\{\theta\}$ by \cref{lma:Igoodinsenspert}. Thus the equality of masses in an $\mathcal{I}$-equivalence class reduces the desired equality to
+    \[
+    \lim_{\beta\to 0+}\int_X ((1-\beta)\theta+\ddc \varphi)^n=\int_X \theta_{\varphi}^n,
+    \]
+    which is obvious.
+
+    It follows that $\Delta'=\Delta_{\nu}(\theta,\varphi)$. We conclude by \cref{thm:Blaschke}.
+\end{proof}
+
+
+
+\begin{proof}[Proof of \cref{thm:HCP}]
+Fix a very ample line bundle $H$ on $X$ and a Kähler form $\omega\in c_1(H)$ such that $\omega\geq \theta$.
+
+\textbf{Step~1}. We first handle the case where $\theta_{\varphi}$ is a Kähler current, say $\theta_{\varphi}\geq 2\delta\omega$ for some $\delta\in (0,1)$. Take a quasi-equisingular approximation $(\varphi_j)_j$ of $\varphi$ in $\PSH(X,\theta)$. We may assume that $\theta_{\varphi_j}\geq \delta\omega$ for all $j\geq 1$. After adding constants, we also assume that $\varphi\leq 0$ and $\varphi_j\leq 0$ for all $j$.
+
+Let $\Delta'$ be a limit of a subsequence of $(\Delta_{k,T}(\theta,\varphi))_k$. Let us say the indices of the subsequence are $k_1<k_2<\cdots$. By \cref{thm:Blaschke}, it suffices to show that $\Delta'=\Delta_{\nu}(\theta,\varphi)$.
+
+Observe that for each $j\geq 1$, we have $\Delta'\subseteq \Delta_{\nu}(\theta,\varphi_j)$ by \cref{lma:twistedHcp}. Letting $j\to \infty$, we find $\Delta'\subseteq \Delta_{\nu}(\theta,\varphi)$ as a consequence of \cref{thm:Okoucont}.
+Therefore, it suffices to prove that
+\[
+    \vol \Delta'\geq \vol \Delta_{\nu}(\theta,\varphi).
+\]
+Fix an integer $N>\delta^{-1}$. Observe that for any $j\geq 1$, we have $\varphi_j\in \PSH(X,(1-N^{-1})\theta)$. Similarly, $\varphi\in \PSH(X,(1-N^{-1})\theta)$.
+By \cref{lma:Hausconvbetato0}, it suffices to argue that
+\begin{equation}\label{eq:volDeltatoprove}
+\vol \Delta'\geq \vol \Delta_{\nu}\left((1-N^{-1})\theta,\varphi\right).
+\end{equation}
+
+\textbf{Step~1.1}. We first reduce to the case where $N|k_i$ for all $i$.
+
+We are free to replace $(k_i)_i$ by a subsequence, so we may assume that $k_i\equiv a$ modulo $N$ for all $i\geq 1$, where $a\in \{0,1,\ldots,N-1\}$. We write $k_i=g_i N+a$.
+Observe that for each $i\geq 1$,
+\[
+    \mathrm{H}^0\left(X,T\otimes L^{k_i}\otimes \mathcal{I}(k_i\varphi)\right)\supseteq \mathrm{H}^0\left(X,T\otimes L^{-N+a}\otimes L^{g_i N+ N}\otimes \mathcal{I}\left((g_iN+N)\varphi \right)\right).
+\]
+Up to replacing $T$ by $T\otimes L^{-N+a}$, we may therefore assume that $a=0$, so that $k_i=g_i N$.
+
+\textbf{Step~1.2}. Write $k_i=g_i N$ for all $i$. We prove \eqref{eq:volDeltatoprove}.
+
+Since
+\[
+    \int_X\theta_{\varphi_j}^n\to \int_X\theta_{P_\theta[\varphi]_{\mathcal I}}^n,
+\]
+we can apply \cref{lma:pathoenvelope} to find $j'\in \mathbb{Z}_{>0}$ such that for all $j\geq j'$, there is $\psi_j\in \PSH(X,\theta)_{>0}$ satisfying
+\begin{equation}\label{eq:PvarphiIgeq1mNm1_temp1}
+P_{\theta}[\varphi]_{\mathcal{I}}\geq \left(1-N^{-1}\right)\varphi_j+N^{-1} \psi_j.
+\end{equation}
+Fix $j\geq j'$. It suffices to show that
+\begin{equation}\label{eq:DeltatransinDeltaprime}
+    \Delta_{\nu}\left((1-N^{-1})\theta,\varphi_{j}\right)+v'\subseteq \Delta'
+\end{equation}
+for some $v'\in \mathbb{R}^n$. In fact, if this is true, we have
+\[
+\vol \Delta'\geq \vol \Delta_{\nu}\left((1-N^{-1})\theta,\varphi_j\right).
+\]
+Letting $j\to\infty$ and applying \cref{cor:dSconv_changetheta} and \cref{thm:Okoucont}, we conclude \eqref{eq:volDeltatoprove}.
+
+It remains to prove \eqref{eq:DeltatransinDeltaprime}.
+
+By \cref{lma:existsecposmass}, there is $g'>0$ such that for any $g\geq g'$, we can find a non-zero section
+\[
+    s_g\in \mathrm{H}^0\left(X,L^g\otimes\mathcal I(g\psi_j)\right).
+\]
+By \cref{lma:IandIinf}, after possibly increasing $g'$, for all $g\geq g'$,
+\[
+    \mathcal I\left(gN\varphi_j\right)\subseteq \mathcal I_\infty\left(g(N-1)\varphi_j\right).
+\]
+Moreover, the inequality \eqref{eq:PvarphiIgeq1mNm1_temp1} gives that for $g\geq g'$,
+\[
+\begin{aligned}
+    \mathcal I(gN\varphi_j)\cdot\mathcal I(g\psi_j)\subseteq & \mathcal I_\infty\left(g(N-1)\varphi_j\right)\cdot\mathcal I(g\psi_j)\\
+    \subseteq & \mathcal I\Bigl(g(N-1)\varphi_j+g\psi_j\Bigr)\\
+    \subseteq & \mathcal I\Bigl(gN P_\theta[\varphi]_{\mathcal I}\Bigr)\\
+    =&\mathcal I(gN\varphi),
+\end{aligned}
+\]
+where the second inclusion follows directly from the definition of $\mathcal I_\infty$. Thus multiplication by $s_g$ gives an injective linear map
+\[
+    \mathrm{H}^0\left(X,T\otimes L^{g(N-1)}\otimes\mathcal I(gN\varphi_j)\right)
+    \xrightarrow{\times s_g}
+    \mathrm{H}^0\left(X,T\otimes L^{gN}\otimes\mathcal I(gN\varphi)\right).
+\]
+In particular, when $g=g_i$ for some $i$ large enough, we then find
+\[
+    \Delta_{g_i,T}\left((N-1)\theta,N\varphi_{j}\right)+(g_i)^{-1}\nu(s_{g_i})\subseteq N\Delta_{k_i,T}(\theta,\varphi).
+\]
+We observe that the $(g_i)^{-1}\nu(s_{g_i})$'s are bounded, since both convex bodies appearing in this equation remain bounded as $i$ varies.
+After passing to a subsequence, we may assume that $(g_i)^{-1}\nu(s_{g_i})$ converges. Then \cref{lma:twistedHcp}, followed by division by $N$, gives a vector $v'\in \mathbb{R}^n$ such that \eqref{eq:DeltatransinDeltaprime} holds.
+
+\textbf{Step~2}. Next we handle the general case.
+
+Let $\Delta'$ be the Hausdorff limit of a subsequence of $(\Delta_{k,T}(\theta,\varphi))_k$, say the subsequence with indices $k_1<k_2<\cdots$.
+By \cref{thm:Blaschke}, it suffices to prove that $\Delta'=\Delta_{\nu}(\theta,\varphi)$.
+
+Take $\psi\in \PSH(X,\theta)$ such that $\theta_{\psi}$ is a Kähler current and $\psi\leq \varphi$. The existence of $\psi$ follows from \cref{lma:kahcurrentposmass}.
+
+    Then for any $\epsilon\in \mathbb{Q}\cap (0,1)$,
+    \[
+        \Delta_{k,T}(\theta,\varphi)\supseteq \Delta_{k,T}\Bigl(\theta,(1-\epsilon)\varphi+\epsilon\psi \Bigr)
+    \]
+    for all $k\geq 1$. It follows from Step~1 that
+    \[
+        \Delta' \supseteq \Delta_{\nu}\Bigl(\theta,(1-\epsilon)\varphi+\epsilon\psi\Bigr).
+    \]
+
+    As $\epsilon\to 0+$, we have
+    \[
+        (1-\epsilon)\varphi+\epsilon\psi\xrightarrow{d_S}\varphi
+    \]
+    by \cref{lma:dSsmallmult}. Hence \cref{thm:Okoucont} gives
+    \[
+        \Delta_{\nu}\Bigl(\theta,(1-\epsilon)\varphi+\epsilon\psi\Bigr)\to\Delta_{\nu}(\theta,\varphi)
+    \]
+    in the Hausdorff metric. It follows that $\Delta' \supseteq \Delta_{\nu}(\theta,\varphi)$.
+
+    It remains to establish that
+    \begin{equation}\label{eq:Deltapvolumeupp}
+        \vol \Delta'\leq \vol \Delta_{\nu}(\theta,\varphi).
+    \end{equation}
+    Fix an integer $N>0$, it suffices to argue that
+    \begin{equation}\label{eq:Deltapvolumeupp2}
+        \vol \Delta'\leq \frac{1}{n!} \int_X \left(N^{-1}\omega+\theta+\ddc P_{N^{-1}\omega+\theta}[\varphi]_{\mathcal{I}}\right)^n.
+    \end{equation}
+    Assuming this, letting $N\to\infty$ and using \cref{lma:perturbvol} together with \itemref{itm:prop:vollinearlimit:6}, we conclude \eqref{eq:Deltapvolumeupp}.
+
+    After adding a constant to $\varphi$, which does not change the multiplier ideals or the current $\theta+\ddc\varphi$, we may assume that $\varphi\leq 0$.
+
+    \textbf{Step~2.1}. We first reduce to the case $N|k_i$ for all $i$.
+
+    For this purpose, we are free to replace $k_1<k_2<\cdots$ by a subsequence. We may then assume that $k_i\equiv a$ modulo $N$ for all $i\geq 1$ for some $a\in \{0,1,\ldots,N-1\}$. We write $k_i=g_iN +a$. Observe that
+    \[
+        \mathrm{H}^0\left(X,T\otimes L^{k_i}\otimes \mathcal{I}(k_i \varphi)\right)\subseteq \mathrm{H}^0\left(X, T\otimes L^a \otimes L^{g_i N}\otimes \mathcal{I}(g_i N \varphi) \right).
+    \]
+    Up to replacing $T$ by $T\otimes L^a$, we may assume that $a=0$.
+
+    \textbf{Step~2.2}. We write $k_i=g_i N$ for all $i$.
+
+    Take a non-zero section $s\in \mathrm{H}^0(X,H)$.
+
+    We have an injective linear map
+    \[
+        \mathrm{H}^0\left(X,T\otimes L^{gN}\otimes \mathcal{I}(gN\varphi)\right)\xrightarrow{\times s^g}\mathrm{H}^0\left(X,T\otimes H^g\otimes L^{gN}\otimes \mathcal{I}(gN\varphi)\right)
+    \]
+    for each $g\geq 1$.
+    In particular, for each $i\geq 1$,
+    \[
+        k_i\Delta_{k_i,T}(\theta,\varphi)+g_i\nu(s)\subseteq g_i\Delta_{g_i,T}\left(\omega+N\theta,N\varphi\right).
+    \]
+    Letting $i\to\infty$, by Step~1, we have
+    \[
+        N\Delta' + \nu(s) \subseteq \Delta_{\nu}(\omega+N\theta,N\varphi).
+    \]
+    So
+    \[
+        \vol \Delta'\leq \vol \Delta_{\nu}\left(N^{-1}\omega+\theta,\varphi\right)=\frac{1}{n!}\int_X \left(N^{-1}\omega+\theta+\ddc P_{N^{-1}\omega+\theta}[\varphi]_{\mathcal{I}}\right)^n.
+    \]
+    This completes the proof.
+\end{proof}
+
+
+
+\subsection{Recover Lelong numbers from partial Okounkov bodies}
+\label{subsec:pob_lelong}
+
+
+
+\begin{theorem}\label{thm:nuOk}
+	Let $E$ be a prime divisor on $X$. Let $Y_{\bullet}$ be an admissible flag with $E=Y_1$. Then
+	\begin{equation}\label{eq:numinOk}
+		\nu(\varphi,E)=\min_{x\in \Delta_{Y_{\bullet}}(\theta,\varphi)}x_1.
+	\end{equation}
+\end{theorem}
+Here $x_1$ denotes the first component of $x$.
+
+The picture in \cref{fig:nuOk} illustrates the formula: the left supporting hyperplane of $\Delta_{Y_{\bullet}}(\theta,\varphi)$ is given by $x_1=\nu(\varphi,Y_1)$.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.85, line width=0.65pt, line cap=round, line join=round, every node/.style={font=\small}]
+    \def\nuval{1.42}
+
+    \draw[-{Latex[length=2.4mm]}] (0,0) -- (7.2,0) node[below right] {$x_1$};
+    \draw[-{Latex[length=2.4mm]}] (0,0) -- (0,5.1) node[above] {$(x_2,\ldots,x_n)$};
+
+    \path[fill=black!3, draw=black]
+        (1.05,1.02) -- (2.55,4.20) -- (6.05,1.50) -- (4.15,0.18) -- cycle;
+
+    \path[fill=red!7, draw=red!70!black]
+        (\nuval,1.80) -- (2.55,4.20) -- (4.40,2.77) -- (4.22,1.85)
+        .. controls (3.55,1.28) and (2.40,1.07) .. (\nuval,1.80) -- cycle;
+
+    \begin{scope}
+        \clip (\nuval,1.80) -- (2.55,4.20) -- (4.40,2.77) -- (4.22,1.85)
+            .. controls (3.55,1.28) and (2.40,1.07) .. (\nuval,1.80) -- cycle;
+        \foreach \x in {1.55,1.95,...,4.35} {
+            \draw[red!70!black] (\x,0.85) -- ++(-0.45,3.05);
+        }
+    \end{scope}
+    \draw[red!70!black]
+        (\nuval,1.80) -- (2.55,4.20) -- (4.40,2.77) -- (4.22,1.85)
+        .. controls (3.55,1.28) and (2.40,1.07) .. (\nuval,1.80) -- cycle;
+
+    \draw[blue!70!black, densely dashed] (\nuval,0) -- (\nuval,1.80);
+    \draw[blue!70!black, decorate, decoration={brace, mirror, amplitude=4pt}]
+        (0,-0.28) -- (\nuval,-0.28) node[midway, below=5pt] {$\nu(\varphi,Y_1)$};
+
+    \draw[red!70!black] (4.58,2.18) -- (4.18,2.14);
+    \node[red!70!black, anchor=west] at (4.62,2.18) {$\Delta_{Y_{\bullet}}(\theta,\varphi)$};
+    \node at (5.65,3.10) {$\Delta_{Y_{\bullet}}(L)$};
+\end{tikzpicture}
+\caption{Partial Okounkov body and Lelong number}
+\label{fig:nuOk}
+\end{figure}
+
+\begin{proof}
+Replacing $\varphi$ by $P_{\theta}[\varphi]_{\mathcal{I}}$, we may assume that $\varphi$ is $\mathcal{I}$-good.
+
+\textbf{Step~1}. We first reduce to the case where $\varphi$ has analytic singularities.
+
+By \cref{thm:charIgoodasclosure}, we can find a sequence $(\varphi_j)_j$ in $\PSH(X,\theta)_{>0}$ with analytic singularities such that $\varphi_j\xrightarrow{d_S}\varphi$. It follows from \cref{thm:Okoucont} that
+\[
+\Delta_{Y_{\bullet}}(\theta,\varphi_j)\xrightarrow{d_{\Haus}}\Delta_{Y_{\bullet}}(\theta,\varphi).
+\]
+Therefore, by \cref{lma:Hausdorffconvcoordbounds},
+\[
+\lim_{j\to\infty}\min_{x\in \Delta_{Y_{\bullet}}(\theta,\varphi_j)}x_1=\min_{x\in \Delta_{Y_{\bullet}}(\theta,\varphi)}x_1.
+\]
+In view of \cref{thm:Lelongcont}, it suffices to prove \eqref{eq:numinOk} with $\varphi_j$ in place of $\varphi$.
+
+\textbf{Step~2}. Assume that $\varphi$ has analytic singularities. In view of \cref{prop:birinvO} and \cref{thm:resolvelogsing}, after replacing $X$ by a modification, we may assume that $\varphi$ has log singularities along an effective $\mathbb{Q}$-divisor $F$.
+
+
+Perturbing $L$ by an ample $\mathbb{Q}$-line bundle by \cref{prop:Deltapert}, we may assume that $\theta_{\varphi}$ is a Kähler current. Therefore, $L-F$ is ample by \cref{lma:logsingrem}.
+Finally, by rescaling, we may assume that $F$ is a divisor and $L$ is a line bundle.
+
+	By \cref{thm:HCP}, we know that
+	\[
+		\min_{x\in \Delta_{Y_{\bullet}}(\theta,\varphi)}x_1=\adjustlimits\lim_{k\to\infty}\min_{x\in \Delta_k(\theta,\varphi)}x_1.
+	\]
+	By definition,
+	\[
+		\min_{x\in \Delta_k(\theta,\varphi)}x_1=k^{-1}\ord_E \mathrm{H}^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right).
+	\]
+	In view of \cref{prop:Lelongnumfrommis}, it remains to show that
+	\begin{equation}\label{eq:temp1}
+		\lim_{k\to\infty}k^{-1}\ord_E \mathrm{H}^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)=\lim_{k\to\infty}k^{-1}\ord_E \mathcal{I}(k\varphi).
+	\end{equation}
+	The $\geq$ direction is trivial, we prove the converse. Observe that
+	\[
+		\mathrm{H}^0\left(X,L^k\otimes \mathcal{I}(k\varphi)\right)=\mathrm{H}^0\left(X,L^k\otimes \mathcal{O}_X(-kF)\right),\quad \mathcal{I}(k\varphi)=\mathcal{O}(-kF).
+	\]
+	As $L-F$ is ample, for large enough $k$, the line bundle $k(L-F)$ is globally generated. Hence we can choose a section of $k(L-F)$ which does not vanish at the generic point of $E$. Viewed as a section of $L^k\otimes\mathcal O_X(-kF)$, it has vanishing order exactly $\ord_E(kF)$ along $E$. Therefore,
+	\[
+		\ord_E  \mathrm{H}^0\left(X,L^k\otimes \mathcal{O}_X(-kF)\right)=\ord_E(kF).
+	\]
+	Thus, \eqref{eq:temp1} follows.
+\end{proof}
+
+
+
+
+
+\begin{corollary}\label{cor:Deltacontimplyvarphi}
+	Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. If
+	\[
+		\Delta_{W_{\bullet}}(\pi^*\theta,\pi^*\varphi)\subseteq \Delta_{W_{\bullet}}(\pi^*\theta,\pi^*\psi)
+	\]
+	for all modifications $\pi\colon Y\rightarrow X$ and all admissible flags $W_{\bullet}$ on $Y$, then $\varphi\preceq_{\mathcal{I}} \psi$.
+\end{corollary}
+\begin{proof}
+    By \cref{thm:nuOk}, the assumed inclusions imply that for every prime divisor $E$ on every modification $\pi$,
+    \[
+    \nu(\pi^*\varphi,E)\geq \nu(\pi^*\psi,E).
+    \]
+    Hence $\varphi\preceq_{\mathcal{I}}\psi$ by \cref{prop:Iequivchar2}.
+\end{proof}
+\begin{corollary}\label{cor:numin}
+	Let $E$ be a prime divisor over $X$. Then
+	\begin{equation}\label{eq:nuVthetaE}
+		\nu(V_{\theta},E)=\lim_{k\to\infty}\frac{1}{k}\ord_E \mathrm{H}^0(X,L^k).
+	\end{equation}
+\end{corollary}
+
+\begin{proof}
+    After replacing $X$ by a modification, we may assume that $E$ is a prime divisor on $X$.
+    Note that since $X$ is projective, we can always find an admissible flag with $E$ being the first component.
+
+	Then \eqref{eq:nuVthetaE} follows from \cref{thm:nuOk} and the fact that $\Delta_{Y_{\bullet}}(\theta,V_{\theta})=\Delta_{Y_{\bullet}}(L)$ for any admissible flag $Y_{\bullet}$ on $X$.
+\end{proof}
+
+
+
+
+
+
+\section{Transcendental partial Okounkov bodies}\label{sec:tpob}
+Let $X$ be a connected compact Kähler manifold of dimension $n>0$.
+Fix a smooth flag $Y_{\bullet}$ on $X$. We will extend the theory of partial Okounkov bodies in the previous section to the transcendental setting.
+
+\subsection{The traditional approach to the Okounkov body problem}
+\label{subsec:trad_approach}
+
+\begin{definition}\label{def:tradOk}
+Let $\alpha$ be a big cohomology class on $X$. We define the \emph{Okounkov body}\index{Okounkov body} of $\alpha$ with respect to the flag $Y_{\bullet}$ as
+    \begin{equation}\label{eq:twodefspob}
+        \Delta_{Y_{\bullet}}(\alpha)\coloneqq \overline{\left\{\nu_{Y_{\bullet}}(S): S\in \mathcal{Z}_+(X,\alpha),S\textup{ has gentle analytic singularities} \right\}}.
+    \end{equation}
+    \index{$\Delta_{Y_{\bullet}}(\alpha)$}
+\end{definition}
+See \cref{def:analy-sing} for the definition of gentle analytic singularities.
+
+The results of \cite{DRWNXZ} can be summarized as follows:
+\begin{theorem}\label{thm:Okounkovtranmain}
+    For any big cohomology class $\alpha$ on $X$, the set $\Delta_{Y_{\bullet}}(\alpha)\subseteq \mathbb{R}^n$ is a convex body satisfying the following properties:
+    \begin{enumerate}
+        \item\label{itm:thm:Okounkovtranmain:1} We have
+        \[
+        \vol \Delta_{Y_{\bullet}}(\alpha)=\frac{1}{n!}\vol \alpha;
+        \]
+        \item\label{itm:thm:Okounkovtranmain:2} given another big cohomology class $\alpha'$ on $X$, we have
+        \[
+        \Delta_{Y_{\bullet}}(\alpha)+\Delta_{Y_{\bullet}}(\alpha')\subseteq \Delta_{Y_{\bullet}}(\alpha+\alpha');
+        \]
+        \item\label{itm:thm:Okounkovtranmain:3} let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism where $Y$ is a Kähler manifold. Assume that $(W_{\bullet},g)$ is the lifting of $Y_{\bullet}$ to $Y$. Then
+        \[
+        \Delta_{W_{\bullet}}(\pi^*\alpha)=\Delta_{Y_{\bullet}}(\alpha)g;
+        \]
+        \item\label{itm:thm:Okounkovtranmain:4} the map $\alpha\mapsto \Delta_{Y_{\bullet}}(\alpha)$ is continuous in the big cone with respect to the Hausdorff metric;
+        \item\label{itm:thm:Okounkovtranmain:5} for any small enough $t>0$, we have
+        \[
+            \left\{ y\in \mathbb{R}^{n-1}: (t,y)\in \Delta_{Y_{\bullet}}(\alpha) \right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}\Bigl((\alpha-t\{Y_1\})|_{Y_1}\Bigr).
+        \]
+    \end{enumerate}
+\end{theorem}
+See \cref{def:lifting} for the notion of lifting. The proof requires some techniques not covered in the current book; this theorem may be used as a black box.
+
+\subsection{Definitions of partial Okounkov bodies}
+\label{subsec:tpob_def}
+Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class $\alpha$.
+
+Let $T=\theta_{\varphi}\in \mathcal{Z}_+(X,\alpha)$. We shall define a convex body $\Delta_{Y_{\bullet}}(T)\subseteq \mathbb{R}^n$\index{$\Delta_{Y_{\bullet}}(T)$}, which is also written as $\Delta_{Y_{\bullet}}(\theta,\varphi)$. This convex body is called the \emph{partial Okounkov body}\index{partial Okounkov body} of $T$ with respect to the flag $Y_{\bullet}$.
+
+\subsubsection{The case of analytic singularities}
+\label{subsubsec:tpob_analytic}
+
+\begin{definition}\label{def:POBanalsing}
+    When $T$ is a Kähler current with analytic singularities, we take a modification $\pi\colon Y\rightarrow X$ so that
+    \index{partial Okounkov body!analytic singularities case}
+    \begin{enumerate}
+        \item\label{itm:def:POBanalsing:1}
+        \begin{equation}\label{eq:resolveanalytic}
+            \pi^*T=[D]+R,
+        \end{equation}
+        where $D$ is an effective $\mathbb{Q}$-divisor on $Y$ and $R$ is a closed positive $(1,1)$-current with bounded potential, and
+        \item\label{itm:def:POBanalsing:2} the lifting $(Z_{\bullet},g)$ of $Y_{\bullet}$ to $Y$ exists.
+    \end{enumerate}
+Define
+\begin{equation}\label{eq:POBanalsing}
+\Delta_{Y_{\bullet}}(T)\coloneqq\Delta_{Z_{\bullet}}(\{R\})g^{-1}+\nu_{Z_{\bullet}}([D])g^{-1}.
+\end{equation}
+\end{definition}
+The existence of $\pi$ is guaranteed by \cref{thm:resolvelogsing} and \cref{thm:liftableflag}.
+
+\begin{lemma}\label{lma:Okounkov:L1426}
+    The convex body $\Delta_{Y_{\bullet}}(T)$ defined in \cref{def:POBanalsing} is independent of the choice of $\pi$.
+\end{lemma}
+\begin{proof}
+    Take another map $\pi'\colon Y'\rightarrow X$ with the same properties. We want to show that $\pi$ and $\pi'$ define the same $\Delta_{Y_{\bullet}}(T)$. We may assume that $\pi'$ dominates $\pi$ through $p\colon Y'\rightarrow Y$, so that we have a commutative diagram
+    \[
+    \begin{tikzcd}
+Y' \arrow[rr, "p"] \arrow[rd, "\pi'"'] &   & Y \arrow[ld, "\pi"] \\
+                                       & X. &
+\end{tikzcd}
+    \]
+    We take $D$ and $R$ as in \eqref{eq:resolveanalytic}. Then
+    \[
+    \pi'^*T=[p^*D]+p^*R.
+    \]
+    Write $(Z_{\bullet},g)$ and $(Z_{\bullet}',g')$ for the liftings of $Y_{\bullet}$ to $Y$ and $Y'$ respectively.
+    We need to prove that
+    \[
+    \Delta_{Z_{\bullet}}(\{R\})g^{-1}+\nu_{Z_{\bullet}}([D])g^{-1}=\Delta_{Z_{\bullet}'}(\{p^*R\})g'^{-1}+\nu_{Z_{\bullet}'}([p^*D])g'^{-1}.
+    \]
+    By \cref{thm:Okounkovtranmain}, applied to the class $\{R\}$, we have
+    \[
+        \Delta_{Z'_\bullet}(\{p^*R\})=\Delta_{Z_\bullet}(\{R\})\,\cor(Z_\bullet,p).
+    \]
+    By \cref{prop:cormatrix}, applied to the divisor current $[D]$, we also have
+    \[
+        \nu_{Z'_\bullet}([p^*D])=\nu_{Z_\bullet}([D])\,\cor(Z_\bullet,p).
+    \]
+    Finally, \cref{prop:cormult} gives
+    \[
+        g'=g\,\cor(Z_\bullet,p).
+    \]
+    Multiplying by $(g')^{-1}$ gives the desired equality.
+\end{proof}
+
+The above proof also describes the bimeromorphic behavior of $\Delta_{Y_{\bullet}}(T)$:
+\begin{lemma}\label{lma:liftOkounana}
+Let $T\in \mathcal{Z}_{+}(X,\alpha)$ be a Kähler current with analytic singularities.
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism and $(W_{\bullet},g)$ be the lifting of $Y_{\bullet}$ to $Y$. Then
+    \[
+    \Delta_{W_{\bullet}}(\pi^*T)=\Delta_{Y_{\bullet}}(T)g.
+    \]
+\end{lemma}
+
+\begin{lemma}\label{lma:Okounkovanalycomp}
+    Assume that $T,S\in \mathcal{Z}_+(X,\alpha)$ are two Kähler currents with analytic singularities and $T\preceq S$. Then
+    \[
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(S)\subseteq \Delta_{Y_{\bullet}}(\alpha).
+    \]
+    Moreover,
+    \begin{equation}\label{eq:volpobanaly}
+\vol \Delta_{Y_{\bullet}}(T)=\frac{1}{n!} \int_X T^n.
+\end{equation}
+\end{lemma}
+\begin{proof}
+    We first show that
+    \[
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(S).
+    \]
+    Using \cref{lma:liftOkounana}, we may assume that $T$ and $S$ have log singularities along effective $\mathbb{Q}$-divisors $E$ and $F$ respectively. By assumption, $E\geq F$. Replacing $T$ and $S$ by $T-[F]$ and $S-[F]$ respectively, we may assume that $F=0$, cf. \eqref{eq:POBanalsing}.
+
+    In this case, we need to show that
+    \[
+    \Delta_{Y_{\bullet}}(\alpha)\supseteq \Delta_{Y_{\bullet}}(\alpha-\{E\})+\nu_{Y_{\bullet}}([E]),
+    \]
+    which is obvious.
+
+    Next we prove that
+    \[
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(\alpha).
+    \]
+    By \cref{lma:liftOkounana} and \cref{thm:Okounkovtranmain} again, we may assume that $T$ has log singularities. We take $D$ and $R$ as in \eqref{eq:resolveanalytic}. We need to show that
+    \[
+    \Delta_{Y_{\bullet}}(\alpha-\{D\})+\nu_{Y_{\bullet}}([D])\subseteq \Delta_{Y_{\bullet}}(\alpha),
+    \]
+    which is again obvious.
+
+    Finally, \eqref{eq:volpobanaly} follows immediately from \cref{thm:Okounkovtranmain}.
+\end{proof}
+
+\subsubsection{The case of Kähler currents}
+\label{subsubsec:tpob_Kahler}
+
+\begin{definition}\label{def:POBKahcurr}
+     Let $T\in \mathcal{Z}_+(X,\alpha)$ be a Kähler current. Take a quasi-equisingular approximation $(T_j)_j$ of $T$ in $\mathcal{Z}_+(X,\alpha)$. Then we define
+    \index{partial Okounkov body!Kähler current case}
+    \[
+        \Delta_{Y_{\bullet}}(T)\coloneqq \bigcap_{j=1}^{\infty}\Delta_{Y_{\bullet}}(T_j).
+    \]
+\end{definition}
+
+\begin{lemma}\label{lma:Okounkov:L1517}
+    The convex body $\Delta_{Y_{\bullet}}(T)$ in \cref{def:POBKahcurr} is independent of the choices of the $T_j$'s.
+\end{lemma}
+In particular, if $T$ also has analytic singularities, then the $\Delta_{Y_{\bullet}}(T)$'s defined in \cref{def:POBKahcurr} and in \cref{def:POBanalsing} coincide.
+\begin{proof}
+    It is more convenient to use the language of $\theta$-psh functions at this point. Let $\psi_k$ (resp. $\varphi_k$) denote the potentials in $\PSH(X,\theta)$ corresponding to $S_k$ (resp. $T_k$) for each $k\geq 1$. Note that $\psi_k$ and $\varphi_k$ are unique up to additive constants. By \cref{prop:compqequi}, for any small rational $\epsilon>0$, $j>0$, we can find $k>0$ so that
+    \[
+        \psi_k\preceq (1-\epsilon)\varphi_j.
+    \]
+    By \cref{lma:Okounkovanalycomp},
+    \[
+    \bigcap_{k=1}^{\infty}\Delta_{Y_{\bullet}}(\theta,\psi_k)\subseteq \Delta_{Y_{\bullet}}(\theta,(1-\epsilon)\varphi_j).
+    \]
+    On the other hand, observe that
+    \[
+    \bigcap_{\epsilon\in \mathbb{Q}_{>0}\text{ small enough}}\Delta_{Y_{\bullet}}(\theta,(1-\epsilon)\varphi_j)=\Delta_{Y_{\bullet}}(\theta,\varphi_j).
+    \]
+    In fact, the $\supseteq$ direction follows from \cref{lma:Okounkovanalycomp}, so it suffices to show that the two sides have the same volume, which follows from \eqref{eq:volpobanaly}.
+
+    It follows that
+    \[
+    \bigcap_{k=1}^{\infty}\Delta_{Y_{\bullet}}(\theta,\psi_k)\subseteq \bigcap_{j=1}^{\infty}\Delta_{Y_{\bullet}}(\theta,\varphi_j).
+    \]
+    The other inclusion follows by symmetry.
+\end{proof}
+
+The same argument shows that
+\begin{corollary}\label{cor:Kahlercurrentcase}
+    Suppose that $T,S\in \mathcal{Z}_+(X,\alpha)$ are two Kähler currents satisfying $T \preceq_{\mathcal{I}} S$. Then
+    \[
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(S)\subseteq \Delta_{Y_{\bullet}}(\alpha).
+    \]
+\end{corollary}
+
+\begin{proposition}\label{prop:Okounkov:L1551}
+    Let $T\in \mathcal{Z}_+(X,\alpha)$ be a Kähler current. Then
+    \begin{equation}\label{eq:volOkocur}
+        \vol \Delta_{Y_{\bullet}}(T)=\frac{1}{n!}\vol T.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+Take a quasi-equisingular approximation $(T_j)_j$ of $T$ in $\mathcal{Z}_+(X,\alpha)$. Note that $\Delta_{Y_{\bullet}}(T_j)$ is decreasing in $j$, as follows from \cref{lma:Okounkovanalycomp}. Our assertion follows from \eqref{eq:volpobanaly} and \cref{thm:contvolu}.
+\end{proof}
+
+
+\begin{lemma}\label{lma:Okomonotone}
+    Let $T\in \mathcal{Z}_+(X,\alpha)$ be a Kähler current and $\omega$ be a Kähler form on $X$. Then
+    \begin{equation}\label{eq:DeltaTincreaseomegatemp1}
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(T+\omega).
+    \end{equation}
+    Moreover,
+    \begin{equation}\label{eq:DeltaTincreaseomegatemp2}
+    \Delta_{Y_{\bullet}}(T)=\bigcap_{\epsilon>0}\Delta_{Y_{\bullet}}(T+\epsilon\omega).
+    \end{equation}
+\end{lemma}
+\begin{proof}
+We first prove \eqref{eq:DeltaTincreaseomegatemp1}.
+    Taking quasi-equisingular approximations, we reduce immediately to the case where $T$ has analytic singularities. By \cref{lma:liftOkounana}, we may assume that $T$ has log singularities.
+    Take $D$ and $R$ as in \eqref{eq:resolveanalytic}. By definition again, it suffices to show that
+    \[
+    \Delta_{Y_{\bullet}}(\{R\})\subseteq \Delta_{Y_{\bullet}}(\{R\}+\{\omega\}),
+    \]
+    which is clear by definition.
+
+Next we prove \eqref{eq:DeltaTincreaseomegatemp2}. Thanks to \eqref{eq:DeltaTincreaseomegatemp1}, it remains to prove that both sides have the same volume:
+\[
+\lim_{\epsilon\to 0+}\vol (T+\epsilon\omega)=\vol T.
+\]
+This is proved in \cref{prop:vollinearlimit}.
+\end{proof}
+
+\subsubsection{The general case}
+\label{subsubsec:tpob_general}
+
+\begin{definition}\label{def:generalPOB}
+    Let $T\in \mathcal{Z}_+(X,\alpha)$. Take a Kähler form $\omega$ on $X$. We define
+    \index{partial Okounkov body!general case}
+    \begin{equation}\label{eq:DeltaTgeneral}
+        \Delta_{Y_{\bullet}}(T)=\bigcap_{j=1}^{\infty}\Delta_{Y_{\bullet}}(T+j^{-1}\omega).
+    \end{equation}
+    The same definition makes sense when $\alpha$ is only pseudo-effective.
+\end{definition}
+This definition is clearly independent of the choice of $\omega$ by \cref{lma:Okomonotone}. Moreover, it extends \cref{def:POBKahcurr} and \cref{def:POBanalsing} as a result of \cref{lma:Okomonotone}.
+
+The main properties of $\Delta_{Y_{\bullet}}(T)$ are summarized as follows:
+\begin{theorem}\label{thm:pobmain}
+The convex bodies $\Delta_{Y_{\bullet}}(T)$ satisfy the following properties:
+\begin{enumerate}
+    \item\label{itm:thm:pobmain:1} Suppose that $T\in \mathcal{Z}_+(X,\alpha)_{>0}$. We have
+    \begin{equation}\label{eq:volpobgeneral}
+        \vol \Delta_{Y_{\bullet}}(T)=\frac{1}{n!}\vol T.
+    \end{equation}
+    \item\label{itm:thm:pobmain:2} For $T,S \in \mathcal{Z}_+(X,\alpha)$ satisfying $T\preceq_{\mathcal{I}}S$, we have
+    \[
+        \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(S)\subseteq \Delta_{Y_{\bullet}}(\alpha).
+    \]
+    \item\label{itm:thm:pobmain:3} For any current $T\in \mathcal{Z}_+(X,\alpha)$ with minimal singularities, we have
+    \[
+    \Delta_{Y_{\bullet}}(T)=\Delta_{Y_{\bullet}}(\alpha).
+    \]
+    \item\label{itm:thm:pobmain:4} The map $\mathcal{Z}_+(X,\alpha)_{>0}\rightarrow \mathcal{K}_n$ given by $T\mapsto \Delta_{Y_{\bullet}}(T)$ is continuous, where we endow the $d_S$-pseudometric on $\mathcal{Z}_+(X,\alpha)_{>0}$ and the Hausdorff topology on $\mathcal{K}_n$.
+    \item\label{itm:thm:pobmain:5} Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism, where $Y$ is a Kähler manifold. Assume that the lifting $(W_{\bullet},g)$ of $Y_{\bullet}$ to $Y$ exists. Then for any $T\in \mathcal{Z}_+(X,\alpha)_{>0}$, we have
+    \[
+        \Delta_{W_{\bullet}}(\pi^*T)=\Delta_{Y_{\bullet}}(T)g.
+    \]
+    \item\label{itm:thm:pobmain:6} For $T,S\in \mathcal{Z}_+(X,\alpha)$, we have
+    \begin{equation}\label{eq:pobadditiv}
+    \Delta_{Y_{\bullet}}(T)+\Delta_{Y_{\bullet}}(S)\subseteq \Delta_{Y_{\bullet}}(T+S).
+    \end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\ref{itm:thm:pobmain:1} By \eqref{eq:DeltaTgeneral} and \eqref{eq:volOkocur}, for any Kähler form $\omega$ on $X$,
+\[
+\vol \Delta_{Y_{\bullet}}(T)=\lim_{j\to\infty}\vol \Delta_{Y_{\bullet}}(T+j^{-1}\omega)=\frac{1}{n!}\lim_{j\to\infty}\vol(T+j^{-1}\omega).
+\]
+The right-hand side is computed in \cref{prop:vollinearlimit}. Hence, \eqref{eq:volpobgeneral} follows.
+
+\ref{itm:thm:pobmain:2} Fix a Kähler form $\omega$ on $X$. By \cref{cor:Kahlercurrentcase}, for each $j\geq 1$,
+\[
+\Delta_{Y_{\bullet}}(T+j^{-1}\omega)\subseteq \Delta_{Y_{\bullet}}(S+j^{-1}\omega)\subseteq \Delta_{Y_{\bullet}}(\alpha+j^{-1}\{\omega\}).
+\]
+It remains to show that
+\[
+\Delta_{Y_{\bullet}}(\alpha)=\bigcap_{j=1}^{\infty}\Delta_{Y_{\bullet}}(\alpha+j^{-1}\{\omega\}).
+\]
+The $\subseteq$ direction is clear. Comparing the volumes using \cref{thm:Okounkovtranmain}, we conclude that equality holds.
+
+\ref{itm:thm:pobmain:3} This follows from \ref{itm:thm:pobmain:1} and \ref{itm:thm:pobmain:2}.
+
+\ref{itm:thm:pobmain:4} Let $(T_j)_j$ be a sequence in $\mathcal{Z}_+(X,\alpha)_{>0}$ converging to $T\in \mathcal{Z}_+(X,\alpha)_{>0}$ with respect to $d_S$. We want to show that $\Delta_{Y_{\bullet}}(T_j)\xrightarrow{d_{\Haus}} \Delta_{Y_{\bullet}}(T)$. By \ref{itm:thm:pobmain:2}, replacing the potential of each current by its $\mathcal I$-model representative does not change its partial Okounkov body. Thus we may represent the singularity types by model potentials of uniformly positive mass. Applying \cref{prop:incanddec}, after passing to a subsequence we may sandwich the sequence between an increasing and a decreasing sequence converging to $T$ in $d_S$. Hence it suffices to treat the monotone cases.
+
+In either monotone case, \ref{itm:thm:pobmain:2} gives monotonicity of the convex bodies, while \ref{itm:thm:pobmain:1} and \cref{cor:massdiffdS} give convergence of their volumes to $\vol\Delta_{Y_{\bullet}}(T)$. Every Hausdorff cluster point is therefore a monotone limit with the same volume as $\Delta_{Y_{\bullet}}(T)$, hence is equal to $\Delta_{Y_{\bullet}}(T)$.
+
+\ref{itm:thm:pobmain:5} We may assume that $T$ is $\mathcal{I}$-good. It follows from \ref{itm:thm:pobmain:4} and \cref{thm:charIgoodasclosure} that we may reduce to the case where $T$ has analytic singularities. Our assertion follows from \cref{lma:liftOkounana}.
+
+\ref{itm:thm:pobmain:6} By \eqref{eq:DeltaTgeneral}, in order to prove \eqref{eq:pobadditiv}, we may assume that $T$ and $S$ are both Kähler currents. Take quasi-equisingular approximations $(T_j)_j$ and $(S_j)_j$ of $T$ and $S$ respectively. By \cref{thm:dSadditivity}, $T_j+S_j\xrightarrow{d_S} T+S$. By \ref{itm:thm:pobmain:4}, we may therefore assume that $T$ and $S$ have analytic singularities. Replacing $X$ by a suitable modification, we may assume that $T$ and $S$ both have log singularities, say
+\[
+T=[D]+R,\quad S=[D']+R',
+\]
+where $D$ and $D'$ are $\mathbb{Q}$-divisors on $X$ and $R$ and $R'$ are closed positive $(1,1)$-currents with bounded potentials. We need to show that
+\[
+\Delta_{Y_{\bullet}}(\{R\})+\Delta_{Y_{\bullet}}(\{R'\})+\nu_{Y_{\bullet}}([D])+\nu_{Y_{\bullet}}([D'])\subseteq \Delta_{Y_{\bullet}}(\{R+R'\})+\nu_{Y_{\bullet}}([D+D']).
+\]
+By \cref{prop:nuvaluationlinear}, this is equivalent to
+\[
+\Delta_{Y_{\bullet}}(\{R\})+\Delta_{Y_{\bullet}}(\{R'\})\subseteq \Delta_{Y_{\bullet}}(\{R+R'\}),
+\]
+which is already proved in \cref{thm:Okounkovtranmain}.
+\end{proof}
+
+\begin{corollary}\label{cor:transalgPOB}
+Assume that $L$ is a big line bundle on $X$ and $h$ is a plurisubharmonic metric on $L$ with positive volume. Then
+\begin{equation}\label{eq:tranOkounandalgOkoun}
+\Delta_{Y_{\bullet}}(\ddc h)=\Delta_{Y_{\bullet}}(L,h).
+\end{equation}
+\end{corollary}
+Similarly, the definition \eqref{eq:DeltanuTalgebraic1} is compatible with the definition in \cref{def:generalPOB}.
+\begin{proof}
+    We may assume that $\ddc h$ has positive mass and is $\mathcal{I}$-good. By the $d_S$-continuity of both sides of \eqref{eq:tranOkounandalgOkoun} as proved in \cref{thm:pobmain} and \cref{thm:Okoucont}, together with \cref{thm:charIgoodasclosure}, we may assume that $\ddc h$ has analytic singularities.
+
+    In this case, using the birational invariance of both sides of \eqref{eq:tranOkounandalgOkoun} as proved in \cref{prop:birinvO} and \cref{thm:pobmain}, we may assume that $\ddc h$ has log singularities. Finally, after all these reductions, the equality \eqref{eq:tranOkounandalgOkoun} holds by construction.
+\end{proof}
+
+
+
+\subsection{The valuative characterization}
+\label{subsec:tpob_valuative}
+In this section, we will characterize the partial Okounkov bodies using valuations of currents.
+
+\begin{lemma}\label{lma:Kahlerclassokounrest}
+    Let $\beta$ be a big and nef class on $X$. Then
+    \begin{equation}\label{eq:Deltaresttox10}
+    \left\{ y\in \mathbb{R}^{n-1}: (0,y)\in \Delta_{Y_{\bullet}}(\beta)\right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\beta|_{Y_1}).
+    \end{equation}
+\end{lemma}
+Here the right-hand side is understood in the sense of \cref{def:generalPOB} when $\beta|_{Y_1}$ is not big.
+\begin{proof}
+    \textbf{Step~1}. We first reduce to the case where $\beta$ is a Kähler class.
+
+    Take a Kähler class $\alpha$ on $X$. It follows from the volume formula in \cref{thm:Okounkovtranmain} that
+    \[
+        \Delta_{Y_{\bullet}}(\beta)=\bigcap_{\epsilon>0}\Delta_{Y_{\bullet}}(\beta+\epsilon\alpha).
+    \]
+    Since $\beta|_{Y_1}$ is nef, hence pseudo-effective, \cref{def:generalPOB} similarly gives
+    \[
+        \Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\beta|_{Y_1})= \bigcap_{\epsilon>0}\Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\beta|_{Y_1}+\epsilon \alpha|_{Y_1}).
+    \]
+    So it suffices to prove \eqref{eq:Deltaresttox10} with $\beta+\epsilon\alpha$ in place of $\beta$.
+
+    \textbf{Step~2}. Assume that $\beta$ is a Kähler class.
+    The $\supseteq$ direction in \eqref{eq:Deltaresttox10} follows from the extension theorem \cref{thm:CT-thm-refined'}. To prove the other direction, recall that by \cref{thm:Okounkovtranmain}, for $t>0$ small enough, we have
+    \[
+    \left\{ y\in \mathbb{R}^{n-1}: (t,y)\in \Delta_{Y_{\bullet}}(\beta) \right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}\left((\beta-t\{Y_1\})|_{Y_1}\right).
+    \]
+    As $t\to 0+$, the right-hand side converges to $\Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\beta|_{Y_1})$ with respect to the Hausdorff metric as a consequence of \cref{thm:Okounkovtranmain}, while the left-hand side converges to
+    \[
+    \left\{ y\in \mathbb{R}^{n-1}: (0,y)\in \Delta_{Y_{\bullet}}(\beta) \right\}
+    \]
+    by \cref{lma:Hausdorffconvslice}. We conclude our assertion.
+\end{proof}
+
+\begin{lemma}\label{lma:slicepob}
+    Let $T\in \mathcal{Z}_+(X,\alpha)$ be a Kähler current. Assume that $\nu(T,Y_1)=0$. Then
+    \begin{equation}\label{eq:Deltaslice}
+        \left\{ y\in \mathbb{R}^{n-1}: (0,y)\in \Delta_{Y_{\bullet}}(T)\right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}\left(\Tr^{\alpha|_{Y_1}}_{Y_1}(T)\right).
+    \end{equation}
+
+    More generally, if $T\in \mathcal{Z}_+(X,\alpha)$ and $\nu(T,Y_1)=0$, suppose in addition that $\Tr^{\alpha|_{Y_1}}_{Y_1}(T)$ is defined, then \eqref{eq:Deltaslice} still holds.
+\end{lemma}
+See \cref{rmk:tracecurrent} for the definition of $\Tr^{\alpha|_{Y_1}}_{Y_1}(T)$.
+Note that $\Delta_{Y_1\supseteq \cdots \supseteq Y_n}\left(\Tr^{\alpha|_{Y_1}}_{Y_1}(T)\right)$ is independent of the choice of the representative $\Tr^{\alpha|_{Y_1}}_{Y_1}(T)$.
+\begin{proof}
+    Let $\omega$ be a K\"ahler form on $X$. The last assertion follows from the first by perturbing $\theta$ to $\theta+\epsilon\omega$.
+
+    \textbf{Step~1}.
+    We first handle the case where $T$ has analytic singularities. Let $\pi\colon Z\rightarrow X$ be a modification such that
+    \begin{enumerate}
+        \item\label{itm:chapter-Okounkov:L1728:1} $Y_{\bullet}$ admits a lifting $(W_{\bullet},g)$, and
+        \item\label{itm:chapter-Okounkov:L1728:2} $\pi^*T=[D]+R$, where $D$ is an effective $\mathbb{Q}$-divisor on $Z$ and $R$ is a closed positive $(1,1)$-current with bounded potential.
+    \end{enumerate}
+    This is possible by \cref{thm:resolvelogsing} and \cref{thm:liftableflag}.
+
+    By \cref{lma:rescommpullback},
+    \[
+    \Pi^*\Tr_{Y_1}(T)\sim_P \Tr_{W_1}(\pi^*T),
+    \]
+    where $\Pi\colon W_1\rightarrow Y_1$ is the restriction of $\pi$. It follows from \cref{thm:pobmain} that
+    \[
+    \begin{split}
+    \Delta_{W_1\supseteq \cdots \supseteq W_n}(\Tr_{W_1}(\pi^*T))=& \Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\Tr_{Y_1}(T))\cor(Y_1\supseteq \cdots \supseteq Y_n,\Pi),\\
+    \Delta_{W_{\bullet}}(\pi^*T)=&\Delta_{Y_{\bullet}}(T)g.
+    \end{split}
+    \]
+    Taking \eqref{eq:correcur} into account, we find that it suffices to show that
+    \[
+    \left\{y\in \mathbb{R}^{n-1}:(0,y)\in\Delta_{W_{\bullet}}(\pi^*T) \right\}=\Delta_{W_1\supseteq \cdots \supseteq W_n}(\Tr_{W_1}(\pi^*T)).
+    \]
+    We may assume that $\pi$ is the identity map. Since $\nu(T,Y_1)=0$, the divisor $D$ does not contain $Y_1$. Hence we have
+    \[
+    T=[D]+R,\quad T|_{Y_1}=[D]|_{Y_1}+R|_{Y_1}.
+    \]
+    Note that $[D]|_{Y_1}$ is the current of integration along an effective $\mathbb{Q}$-divisor on $Y_1$.
+
+    In particular,
+    \[
+    \begin{split}
+    \Delta_{Y_{\bullet}}(T)=& \Delta_{Y_{\bullet}}(\{R\})+\nu_{Y_{\bullet}}([D]),\\
+    \Delta_{Y_1\supseteq \cdots \supseteq Y_n}(T|_{Y_1})=& \Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\{R\}|_{Y_1})+\nu_{Y_1\supseteq \cdots \supseteq Y_n}([D]|_{Y_1}).
+    \end{split}
+    \]
+    The first coordinate of $\nu_{Y_{\bullet}}([D])$ is $0$, and the remaining coordinates are exactly $\nu_{Y_1\supseteq \cdots \supseteq Y_n}([D]|_{Y_1})$. Thus it suffices to show that
+    \[
+    \left\{y\in \mathbb{R}^{n-1}: (0,y)\in \Delta_{Y_{\bullet}}(\{R\})\right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\{R\}|_{Y_1}).
+    \]
+    Since $R$ has bounded potential, its cohomology class is nef; it is big because $T$ is a Kähler current. Thus the last identity is exactly \cref{lma:Kahlerclassokounrest}.
+
+    \textbf{Step~2}.
+    Next we consider the case where $T$ is a Kähler current. Take a quasi-equisingular approximation $(T_j)_j$ of $T$ in $\mathcal{Z}_+(X,\alpha)$. From Step~1, we know that for large $j\geq 1$,
+    \[
+    \left\{y\in \mathbb{R}^{n-1}: (0,y)\in \Delta_{Y_{\bullet}}(T_j)\right\}=\Delta_{Y_1\supseteq \cdots \supseteq Y_n}(\Tr_{Y_1}(T_j)).
+    \]
+    Letting $j\to\infty$ and applying \cref{thm:pobmain} and \cref{prop:tracedeclimit}, we conclude \eqref{eq:Deltaslice}.
+\end{proof}
+
+\begin{remark}\label{rmk:slicepob}
+    More generally, the same argument shows the following result: Let $k=0,\ldots,n$ and $T\in \mathcal{Z}_+(X,\alpha)$ such that $\nu(T,Y_k)=0$. Assume that $\Tr^{\alpha|_{Y_k}}_{Y_k}(T)$ is defined. Then
+    \begin{equation}
+        \left\{ y\in \mathbb{R}^{n-k}: (0,\ldots,0,y)\in \Delta_{Y_{\bullet}}(T)\right\}=\Delta_{Y_k\supseteq \cdots \supseteq Y_n}\left(\Tr^{\alpha|_{Y_k}}_{Y_k}(T)\right).
+    \end{equation}
+    Also note that this result extends \cite[Theorem~3.4]{Jow10} and hence gives simpler proofs of \cite[Theorem~A, Theorem~B]{Jow10}.
+\end{remark}
+
+\begin{theorem}\label{thm:KahcurrminOkoun}
+Assume that $T\in \mathcal{Z}_+(X,\alpha)_{>0}$ is a Kähler current.
+We have
+\begin{equation}\label{eq:minOkounkov}
+    \min_{\lex} \Delta_{Y_{\bullet}}(T)=\nu_{Y_{\bullet}}(T).
+\end{equation}
+\end{theorem}
+Here the minimum is with respect to the lexicographic order.
+\begin{proof}
+We argue by induction on $n\geq 0$. The case $n=0$ is of course trivial. Let us assume that $n>0$ and the case $n-1$ has been proved.
+
+We first observe that by \cref{thm:pobmain},
+\[
+\Delta_{Y_{\bullet}}(T-\nu(T,Y_1)[Y_1])+(\nu(T,Y_1),0,\ldots,0)\subseteq \Delta_{Y_{\bullet}}(T).
+\]
+By \itemref{itm:prop:vollinearlimit:5}, removing the divisorial part does not change the volume. Comparing the volumes of both sides using \cref{thm:pobmain} and \cref{prop:vollinearlimit}, we find that equality holds:
+\[
+\Delta_{Y_{\bullet}}(T-\nu(T,Y_1)[Y_1])+(\nu(T,Y_1),0,\ldots,0)=\Delta_{Y_{\bullet}}(T).
+\]
+Replacing $T$ by $T-\nu(T,Y_1)[Y_1]$, we may therefore assume that $\nu(T,Y_1)=0$. It suffices to apply \cref{lma:slicepob} and the inductive hypothesis.
+\end{proof}
+
+\begin{corollary}\label{cor:valuationcurrentinPOB}
+For any $T\in \mathcal{Z}_+(X,\alpha)$,
+\[
+\nu_{Y_{\bullet}}(T)\in \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(\alpha).
+\]
+\end{corollary}
+\begin{proof}
+    When $T$ is a Kähler current, this follows from \cref{thm:KahcurrminOkoun}.
+
+    In general, by definition, $\nu_{Y_{\bullet}}(T)=\nu_{Y_{\bullet}}(T+\omega)$ for any Kähler form $\omega$ on $X$. It follows that
+    \[
+    \nu_{Y_{\bullet}}(T)\in \Delta_{Y_{\bullet}}(T+\omega)
+    \]
+    for any Kähler form $\omega$. It follows that $\nu_{Y_{\bullet}}(T)\in \Delta_{Y_{\bullet}}(T)$.
+\end{proof}
+
+
+\begin{theorem}\label{thm:Deltapartialint}
+    For any $T\in \mathcal{Z}_+(X,\alpha)_{>0}$,
+    \begin{equation}\label{eq:DeltaTequalallval}
+    \Delta_{Y_{\bullet}}(T)=\overline{\left\{\nu_{Y_{\bullet}}(S):S\in \mathcal{Z}_+(X,\alpha),S\preceq_{\mathcal{I}}T\right\}}.
+    \end{equation}
+    In particular,\footnote{According to Ya Deng, the definition \eqref{eq:TPOB_val} of $\Delta_{Y_{\bullet}}(\alpha)$ was what Demailly originally proposed for Deng's thesis. Due to the lack of the techniques of the trace operators, Deng had to work with analytic singularities instead. As a consequence, the transcendental analogue of \cref{prop:birinvO} is not obvious. This is one of the two main technical difficulties of \cref{thm:Okounkovtranmain}. This problem also led me to finally develop the theory of trace operators, a notion that had been on the author's mind for several years.}
+    \begin{equation}\label{eq:TPOB_val}
+    \Delta_{Y_{\bullet}}(\alpha)=\overline{\left\{\nu_{Y_{\bullet}}(S):S\in \mathcal{Z}_+(X,\alpha)\right\}}.
+    \end{equation}
+\end{theorem}
+
+\begin{remark}\label{rmk:Okounkov:L1841}
+We expect that the closure operation in \eqref{eq:DeltaTequalallval} is not necessary. This problem is closely related to the Dirichlet problem of the trace operator, see Page~\pageref{conj:exttracegeneral} for more details.
+\end{remark}
+
+
+\begin{proof}
+    The $\supseteq$ direction in \eqref{eq:DeltaTequalallval} follows from \cref{cor:valuationcurrentinPOB} together with \itemref{itm:thm:pobmain:2}.
+
+    Let us write
+    \[
+    D_{Y_{\bullet}}(T)=\left\{\nu_{Y_{\bullet}}(S):S\in \mathcal{Z}_+(X,\alpha),S\preceq_{\mathcal{I}}T\right\}
+    \]
+    for the time being.
+
+    \textbf{Step~1}.
+    Assume that $T$ has analytic singularities. We have
+    \[
+    \begin{split}
+    \Delta_{Y_{\bullet}}(T)\supseteq & \overline{D_{Y_{\bullet}}(T)}\\
+    \supseteq & \overline{\left\{\nu_{Y_{\bullet}}(S):\mathcal{Z}_+(X,\alpha)\ni S \textup{ has gentle analytic singularities}, S\preceq T\right\}}.
+    \end{split}
+    \]
+    It follows easily from \cref{thm:Okounkovtranmain} that the volume of the right-hand side is equal to the volume of $\Delta_{Y_{\bullet}}(T)$, so \eqref{eq:DeltaTequalallval} holds.
+
+    \textbf{Step~2}.
+    Assume that $T$ is a Kähler current. Take a quasi-equisingular approximation $T_j\in \mathcal{Z}_+(X,\alpha)$ of $T$.
+    Next we use the language of psh functions. Let $\varphi_j,\varphi\in \PSH(X,\theta)$ be the potentials corresponding to $T_j,T$ for each $j\geq 1$.
+
+    Fix an integer $N>0$. For large enough $j\geq 1$, we can find $\psi_j\in \PSH(X,\theta)_{>0}$ such that
+    \[
+    P_{\theta}[\varphi]_{\mathcal{I}}\geq (1-N^{-1})\varphi_j+N^{-1} \psi_j.
+    \]
+    The existence of $\psi_j$ follows from \cref{lma:pathoenvelope}.
+    It follows that
+    \[
+    \begin{aligned}
+    D_{Y_{\bullet}}(T)\supseteq & D_{Y_{\bullet}}\left(\theta+\ddc \left((1-N^{-1})\varphi_j+N^{-1} \psi_j\right)\right)\\
+    \supseteq & (1-N^{-1})D_{Y_{\bullet}}(T_j)+N^{-1} D_{Y_{\bullet}}(\theta+\ddc \psi_j).
+    \end{aligned}
+    \]
+    We claim that
+    \[
+    \overline{D_{Y_{\bullet}}(T)}\supseteq \bigcap_{j=1}^{\infty}\overline{D_{Y_{\bullet}}(T_j)}.
+    \]
+    Let $x$ be a point in the right-hand side. Fix $N>0$. For all large $j$, choose
+    \[
+    y_j\in D_{Y_{\bullet}}(T_j),\quad z_j\in D_{Y_{\bullet}}(\theta+\ddc \psi_j)
+    \]
+    with $y_j\to x$. By the preceding inclusion,
+    \[
+    (1-N^{-1})y_j+N^{-1}z_j\in D_{Y_{\bullet}}(T).
+    \]
+    The points $x,y_j,z_j$ all lie in the compact set $\Delta_{Y_{\bullet}}(\alpha)$ after taking closures, by \cref{cor:valuationcurrentinPOB}. Hence, letting $j\to\infty$ and then $N\to\infty$, we get $x\in \overline{D_{Y_{\bullet}}(T)}$, proving the claim.
+    Therefore, by Step~1, we conclude that
+    \[
+    \Delta_{Y_{\bullet}}(T)=\bigcap_{j=1}^{\infty}\overline{\Delta_{Y_{\bullet}}(T_j)}=\bigcap_{j=1}^{\infty}\overline{D_{Y_{\bullet}}(T_j)}\subseteq\overline{D_{Y_{\bullet}}(T)}.
+    \]
+The reverse direction is already known.
+
+\textbf{Step~3}.
+Finally, consider the general case. Take a Kähler current $T'\in \mathcal{Z}_+(X,\alpha)$ more singular than $T$ (the existence of which is given by \cref{lma:kahcurrentposmass}). For each $\epsilon\in (0,1)$, we know that
+\[
+\Delta_{Y_{\bullet}}((1-\epsilon)T+\epsilon T')=\overline{D_{Y_{\bullet}}((1-\epsilon)T+\epsilon T')}
+\subseteq \overline{D_{Y_{\bullet}}(T)}.
+\]
+Letting $\epsilon\to 0+$ and using the $d_S$-continuity in \itemref{itm:thm:pobmain:4},
+we find that
+\[
+\Delta_{Y_{\bullet}}(T)\subseteq \overline{D_{Y_{\bullet}}(T)}.
+\]
+As the other inclusion is already known, we conclude.
+\end{proof}
+
+\begin{corollary}\label{cor:KahcurrminOkoun}
+Assume that $T\in \mathcal{Z}_+(X,\alpha)_{>0}$.
+We have
+\begin{equation}\label{eq:minOkounkov3}
+    \min_{\lex} \Delta_{Y_{\bullet}}(T)=\nu_{Y_{\bullet}}(T).
+\end{equation}
+\end{corollary}
+\begin{proof}
+    By \cref{thm:Deltapartialint}, it is clear that
+    \[
+    \min_{\lex} \Delta_{Y_{\bullet}}(T)\leq_{\lex}\nu_{Y_{\bullet}}(T).
+    \]
+    On the other hand, we clearly have
+    \[
+    \Delta_{Y_{\bullet}}(T)\subseteq \Delta_{Y_{\bullet}}(T+\omega)
+    \]
+    for any Kähler form $\omega$ on $X$. It follows that
+    \[
+    \min_{\lex} \Delta_{Y_{\bullet}}(T)\geq_{\lex} \min_{\lex} \Delta_{Y_{\bullet}}(T+\omega).
+    \]
+    By \cref{thm:KahcurrminOkoun}, the right-hand side is just $\nu_{Y_{\bullet}}(T+\omega)=\nu_{Y_{\bullet}}(T)$. We conclude the proof.
+\end{proof}
+
+
+
+\section{Okounkov test curves}\label{sec:Okotc}
+Fix $n\in \mathbb{N}$.
+Let $\Delta,\Delta'\subseteq \mathbb{R}^n$ be convex bodies with positive volumes. The standard Lebesgue measure on $\mathbb{R}^n$ is denoted by $\vol$.
+
+Recall that $\mathcal{K}_n$ denotes the set of convex bodies in $\mathbb{R}^n$ and $d_{\Haus}$ denotes the Hausdorff metric.
+We refer to \cref{chap:almostsg} for the basic properties of these objects.
+
+We study the notion of Okounkov test curves in this section; this leads to the definition of the Duistermaat--Heckman measure of a non-Archimedean metric in \cref{sec:DHmeasure} below. This section can be skipped on a first reading.
+
+\begin{definition}\label{def:Otc}
+	An \emph{Okounkov test curve}\index{test curve!Okounkov test curve} relative to $\Delta$ consists of
+    \begin{enumerate}
+        \item\label{itm:def:Otc:1} a number $\Delta_{\max}\in \mathbb{R}$ and
+        \item\label{itm:def:Otc:2} an assignment $(-\infty,\Delta_{\max})\ni\tau \mapsto \Delta_{\tau}\in \mathcal{K}_n$ satisfying
+        \begin{enumerate}
+            \item\label{itm:def:Otc:2:a} the assignment $\tau\mapsto \Delta_{\tau}$ is decreasing and concave\footnote{Here concavity refers to the concavity with respect to the Minkowski sum.};
+            \item\label{itm:def:Otc:2:b} we have $\Delta_{\tau}\xrightarrow{d_{\Haus}}\Delta$ as $\tau\to-\infty$.
+        \end{enumerate}
+    \end{enumerate}
+    The set of Okounkov test curves relative to $\Delta$ is denoted by $\TC(\Delta)$\index{$\TC(\Delta)$}.
+
+    An Okounkov test curve $\Delta_{\bullet}$ relative to $\Delta$ is \emph{bounded}\index{Okounkov test curve!bounded Okounkov test curve} if $\Delta_{\tau}=\Delta$ when $\tau$ is small enough. The subset of bounded Okounkov test curves is denoted by $\TC^{\infty}(\Delta)$\index{$\TC^{\infty}(\Delta)$}.
+
+    An Okounkov test curve $\Delta_{\bullet}$ relative to $\Delta$ is said to have \emph{finite energy}\index{Okounkov test curve!Okounkov test curve with finite energy} if
+    \begin{equation}\label{eq:Otestcurvenergy}
+    \mathbf{E}(\Delta_{\bullet})\coloneqq n!\Delta_{\max} \vol \Delta+n!\int_{-\infty}^{\Delta_{\max}} \left(\vol \Delta_{\tau}-\vol \Delta\right)\,\mathrm{d}\tau>-\infty.
+    \end{equation}
+    \index{$\mathbf{E}(\Delta_{\bullet})$}
+    The subset of Okounkov test curves with finite energy is denoted by $\TC^{1}(\Delta)$\index{$\TC^{1}(\Delta)$}.
+
+    Given $\Delta_{\bullet}\in \TC(\Delta)$ and $\Delta'_{\bullet}\in \TC(\Delta')$, we say $\Delta_{\bullet}\leq \Delta'_{\bullet}$ if $\Delta_{\max}\leq \Delta'_{\max}$ and for any $\tau<\Delta_{\max}$, we have $\Delta_{\tau}\subseteq \Delta'_{\tau}$.
+\end{definition}
+Sometimes it is convenient to introduce
+\begin{equation}\label{eq:DeltaDeltamax}
+    \Delta_{\Delta_{\max}}=\bigcap_{\tau<\Delta_{\max}}\Delta_{\tau}\in \mathcal{K}_n.
+\end{equation}
+We shall always make this extension in the sequel when we talk about $\Delta_{\Delta_{\max}}$. Observe that $(-\infty,\Delta_{\max}]\ni\tau \mapsto \Delta_{\tau}$ is still concave.
+
+\begin{proposition}\label{prop:Otccont}
+	Any Okounkov test curve $(\Delta_{\tau})_{\tau< \Delta_{\max}}$ relative to $\Delta$ is continuous in $\tau$. Moreover, $\vol \Delta_{\tau}>0$ for all $\tau<\Delta_{\max}$.
+\end{proposition}
+\begin{proof}
+    We first claim that $\vol\Delta_{\tau'}>0$ for all $\tau'<\Delta_{\max}$. By Condition~(2b) in \cref{def:Otc} and \cref{thm:contvol}, we know that $\vol\Delta_{\tau''}>0$ when $\tau''$ is small enough. Fix one such $\tau''$.
+    We may assume that $\tau''\leq \tau'$ since otherwise there is nothing to prove. Next take $\tau'''\in (\tau',\Delta_{\max})$. Take $t\in (0,1)$ such that $\tau'=t\tau'''+(1-t)\tau''$. It follows that
+    \[
+    \vol \Delta_{\tau'}\geq \vol \left( t\Delta_{\tau'''}+(1-t)\Delta_{\tau''}\right)\geq (1-t)^n\vol \Delta_{\tau''}>0.
+    \]
+
+	Next we claim that $\vol\Delta_{\tau}$ is continuous for $\tau< \Delta_{\max}$. In fact, it follows from \cref{thm:BrunnMin} that $(-\infty,\Delta_{\max}) \ni \tau\mapsto \log \vol\Delta_{\tau}$ is concave, but we already know that it is finite, hence the continuity follows.
+
+	Next we show that
+	\[
+		\Delta_{\tau}=\bigcap_{\tau'<\tau}\Delta_{\tau'}.
+	\]
+	The $\subseteq$ direction is obvious. By the continuity of the volume, both sides have the same volume and the volume is positive, we therefore obtain the equality.
+
+	Similarly, we have
+	\[
+		\Delta_{\tau}=\overline{\bigcup_{\tau'>\tau}\Delta_{\tau'}}.
+	\]
+	The continuity of $\Delta_{\tau}$ at $\tau<\Delta_{\max}$ is proved.
+\end{proof}
+
+\begin{definition}\label{def:tf}
+    A \emph{test function}\index{test function} on $\Delta$ is a function $G\colon \Delta\rightarrow [-\infty,\infty)$ such that
+	\begin{enumerate}
+		\item\label{itm:def:tf:1} $G$ is concave,
+		\item\label{itm:def:tf:2} $G$ is finite on $\Int \Delta$, and
+		\item\label{itm:def:tf:3} $G$ is upper semicontinuous.
+	\end{enumerate}
+
+    A test function $G$ is \emph{bounded}\index{test function!bounded test function} if $G$ is bounded from below.
+
+    A test function $G$ has \emph{finite energy}\index{test function!test function with finite energy} if
+ \begin{equation}\label{eq:EF}
+	\mathbf{E}(G)\coloneqq n!\int_{\Delta} G\,\mathrm{d}\lambda>-\infty.
+\end{equation}
+\end{definition}
+
+\begin{definition}\label{def:LegOkoun}
+    Let $\Delta_{\bullet}\in \TC(\Delta)$. We define its \emph{Legendre transform}\index{Legendre transform} as
+    \[
+	   G[\Delta_{\bullet}] \colon \Delta\rightarrow [-\infty,\infty),\quad a\mapsto \sup\left\{\tau<\Delta_{\max}:a\in \Delta_{\tau}\right\}.
+	\]
+     Given a test function $G\colon \Delta\rightarrow [-\infty,\infty)$, we define its \emph{inverse Legendre transform}\index{Legendre transform!inverse Legendre transform} $\Delta[G]_{\bullet}$ as the Okounkov test curve relative to $\Delta$ defined as follows:
+     \begin{enumerate}
+         \item\label{itm:def:LegOkoun:1} $\Delta[G]_{\max}=\sup_{\Delta} G$, and
+         \item\label{itm:def:LegOkoun:2} for each $\tau<\sup_{\Delta} G$, we set
+         \[
+         \Delta[G]_{\tau}=\{x\in \Delta:G\geq \tau\}.
+         \]
+     \end{enumerate}
+\end{definition}
+We observe that
+\begin{equation}\label{eq:GDeltamax}
+    G[\Delta_{\bullet}](a)=\max\left\{\tau\leq \Delta_{\max}: a\in \Delta_{\tau}\right\},\textup{ if } G[\Delta_{\bullet}](a)>-\infty.
+\end{equation}
+
+\begin{lemma}\label{lma:convbodyLegendre}
+    Let $\Delta_{\bullet}\in \TC(\Delta)$. Then $G[\Delta_{\bullet}]$ defined in \cref{def:LegOkoun} is a test function.
+
+    Similarly, if $G\colon \Delta\rightarrow [-\infty,\infty)$ is a test function, then $\Delta[G]_{\bullet}$ is an Okounkov test curve.
+\end{lemma}
+\begin{proof}
+    First suppose that $\Delta_{\bullet}\in \TC(\Delta)$. We want to verify that $G[\Delta_{\bullet}]$ satisfies the conditions in \cref{def:tf}.
+
+    We first verify the concavity.
+    Take $a,b\in \Delta$. We want to prove that for any $t\in (0,1)$,
+	\begin{equation}\label{eq:GDeltaconc}
+		G[\Delta_{\bullet}](ta+(1-t)b)\geq tG[\Delta_{\bullet}](a)+(1-t)G[\Delta_{\bullet}](b).
+	\end{equation}
+	There is nothing to prove if $G[\Delta_{\bullet}](a)$ or $G[\Delta_{\bullet}](b)$ is $-\infty$. So we assume that both are finite. In this case, by \eqref{eq:GDeltamax},
+    \[
+    a\in \Delta_{G[\Delta_{\bullet}](a)},\quad b\in \Delta_{G[\Delta_{\bullet}](b)}.
+    \]
+    Thus,
+	\[
+		ta+(1-t)b\in t  \Delta_{G[\Delta_{\bullet}](a)}+(1-t)\Delta_{G[\Delta_{\bullet}](b)}\subseteq \Delta_{tG[\Delta_{\bullet}](a)+(1-t)G[\Delta_{\bullet}](b)}.
+	\]
+	We deduce that
+	\[
+		G[\Delta_{\bullet}](ta+(1-t)b)\geq tG[\Delta_{\bullet}](a)+(1-t)G[\Delta_{\bullet}](b).
+	\]
+	Therefore, \eqref{eq:GDeltaconc} follows.
+
+ It is clear that $G[\Delta_{\bullet}]$ is finite on the interior of $\Delta$. It remains to argue that $G[\Delta_{\bullet}]$ is upper semicontinuous.
+
+ Let $(a_i)_{i\geq 1}$ be a sequence in $\Delta$ with limit $a\in \Delta$. Define $\tau_i=G[\Delta_{\bullet}](a_i)$. Let $\tau=\varlimsup_i \tau_i$.
+	We need to show that
+	\begin{equation}\label{eq:ainDelta1}
+		G[\Delta_{\bullet}](a)\geq \tau.
+	\end{equation}
+    There is nothing to prove if $\tau=-\infty$. We assume that this is not the case. Passing to a subsequence, we may assume that $\tau_i\to \tau$. In particular, we can assume that $\tau_i\neq -\infty$ for all $i\geq 1$.
+    It follows from \eqref{eq:GDeltamax} that $a_i\in\Delta_{\tau_i}$ for all $i\geq 1$.
+    If $\tau<\Delta_{\max}$, then $\Delta_{\tau_i}\xrightarrow{d_{\Haus}}\Delta_{\tau}$, so \cref{thm:Hausconvcond} implies that $a\in \Delta_{\tau}$. If $\tau=\Delta_{\max}$, then the same conclusion follows from the definition $\Delta_{\Delta_{\max}}=\bigcap_{\tau'<\Delta_{\max}}\Delta_{\tau'}$.
+    Thus, \eqref{eq:ainDelta1} follows.
+
+    Conversely, suppose that $G\colon \Delta\rightarrow [-\infty,\infty)$ is a test function. We argue that $\Delta[G]_{\bullet}$ is an Okounkov test curve. We verify the conditions in \cref{def:Otc}.
+
+    Firstly, for each $\tau< \sup_{\Delta}G$, the set $\Delta[G]_{\tau}$ is a convex body as $G$ is concave and usc.
+	Moreover, $\Delta[G]_{\tau}$ is clearly decreasing in $\tau$.
+
+	Secondly, for each $a\in \Delta$, we can write $a=\lim_{i}a_i$ with $a_i\in \Int \Delta$. By assumption, $G$ is finite at $a_i$. Thus,
+	\[
+		a\in \overline{\{G>-\infty\}}=\overline{\bigcup_{\tau<\sup_{\Delta}G}\Delta[G]_{\tau}}.
+	\]
+	By \cref{thm:Hausconvcond}, $\Delta[G]_{\tau}\xrightarrow{d_{\Haus}}\Delta$ as $\tau\to -\infty$.
+
+	Thirdly, $\Delta[G]$ is concave. To see this, take $\tau,\tau'< \Delta_{\max}$. We need to prove that for any $t\in (0,1)$,
+	\begin{equation}\label{eq:Deconc}
+		\Delta[G]_{t\tau+(1-t)\tau'}\supseteq t\Delta[G]_{\tau}+(1-t)\Delta[G]_{\tau'}.
+	\end{equation}
+	Let $a\in \Delta[G]_{\tau}$ and $b\in \Delta[G]_{\tau'}$. We have $G(a)\geq\tau$ and $G(b)\geq \tau'$. As $G$ is concave, we have $G(ta+(1-t)b)\geq t\tau+(1-t)\tau'$. Thus,
+	\[
+		ta+(1-t)b\in \Delta[G]_{t\tau+(1-t)\tau'}
+	\]
+	and \eqref{eq:Deconc} follows.
+\end{proof}
+
+\begin{theorem}\label{thm:Okotestcurve}
+	The Legendre transform and inverse Legendre transform are inverse to each other,
+	defining a bijection between $\TC(\Delta)$ and the set of test functions on $\Delta$.
+
+    Under this bijection, $\TC^1(\Delta)$ corresponds to test functions on $\Delta$ with finite energy and $\TC^{\infty}(\Delta)$ corresponds to bounded test functions on $\Delta$.
+\end{theorem}
+\begin{proof}
+    Thanks to \cref{lma:convbodyLegendre}, in order to prove the first assertion, it only remains to see that the Legendre transform and the inverse Legendre transform are inverse to each other, which is immediate by definition.
+
+    It is obvious that $\TC^{\infty}(\Delta)$ corresponds to bounded test functions. Moreover, a direct computation shows that if $\Delta_{\bullet}\in \TC(\Delta)$, then
+    \[
+    \mathbf{E}(\Delta_{\bullet})=\mathbf{E}(G[\Delta_{\bullet}]),
+    \]
+    concluding the $\TC^{1}(\Delta)$ case.
+\end{proof}
+
+\begin{proposition}\label{prop:decnetLegend}
+    Let $(\Delta^i)_{i\in I}$ be a decreasing net in $\mathcal{K}_n$ such that $\Delta\subseteq \bigcap_{i\in I}\Delta^i$. Consider a decreasing net $(\Delta^i_{\bullet})_{i\in I}$ with $\Delta^i_{\bullet}\in \TC(\Delta^i)$ for all $i\in I$ such that there is $\Delta_{\bullet}\in \TC(\Delta)$ satisfying the following properties:
+    \begin{enumerate}
+        \item\label{itm:prop:decnetLegend:1} $\Delta_{\max}= \lim_{i\in I}\Delta^i_{\max}$;
+        \item\label{itm:prop:decnetLegend:2} for any $\tau<\Delta_{\max}$, we have $\Delta^i_{\tau}\xrightarrow{d_{\Haus}}\Delta_{\tau}$.
+    \end{enumerate}
+    Then for any $a\in \Delta$, we have
+    \begin{equation}\label{eq:pwconvLegendre}
+        \lim_{i\in I} G[\Delta^i_{\bullet}](a)=G[\Delta_{\bullet}](a).
+    \end{equation}
+\end{proposition}
+Note that in general,
+\[
+\Delta\subsetneq \bigcap_{i\in I}\Delta^i.
+\]
+\begin{proof}
+Fix $a\in \Delta$.
+    It follows immediately from the definition of $G$ that the net $(G[\Delta^i_{\bullet}](a))_{i\in I}$ is decreasing and the $\geq$ direction in \eqref{eq:pwconvLegendre} holds. Let us prove the reverse inequality. Let $\tau$ denote the left-hand side of \eqref{eq:pwconvLegendre} for the moment. By definition, for any $\epsilon>0$ and any $i\in I$, we have $a\in \Delta^i_{\tau-\epsilon}$.
+    It follows that
+    \[
+    a\in \Delta_{\tau-\epsilon}.
+    \]
+    Therefore,
+    \[
+    \tau\leq G[\Delta_{\bullet}](a).
+    \]
+    This completes the proof.
+\end{proof}
+
+Similarly, for increasing nets, we have:
+\begin{proposition}\label{prop:incnetLegend}
+    Let $(\Delta^i)_{i\in I}$ be an increasing net in $\mathcal{K}_n$ with Hausdorff limit $\Delta$ such that $\vol \Delta^i>0$ for all $i\in I$. Consider an increasing net $(\Delta^i_{\bullet})_{i\in I}$ with $\Delta^i_{\bullet}\in \TC(\Delta^i)$ for all $i\in I$.
+    Let $\Delta_{\max}=\lim_{i\in I}\Delta^i_{\max}$. For any $\tau<\Delta_{\max}$, let $\Delta_{\tau}$ be the Hausdorff limit of $\Delta^i_{\tau}$. Then $\Delta_{\bullet}\in \TC(\Delta)$ and
+    \begin{equation}\label{eq:apwconvLegendre}
+    \lim_{i\in I}G[\Delta^i_{\bullet}](a)=G[\Delta_{\bullet}](a)
+    \end{equation}
+    for any $a\in \Int \Delta$.
+\end{proposition}
+\begin{proof}
+    It is obvious that $\Delta_{\bullet}\in \TC(\Delta)$.
+
+    Fix $a\in \Int \Delta$. Since $\Delta^i\xrightarrow{d_{\Haus}}\Delta$, we have $a\in \Delta^i$ for all large enough $i$.
+    By definition, the net $(G[\Delta^i_{\bullet}](a))_{i\in I}$ is increasing and the $\leq$ direction in \eqref{eq:apwconvLegendre} holds.
+    Let us write $\tau=G[\Delta_{\bullet}](a)$ for the time being.
+    By definition of $G$, for any $\epsilon>0$, we have
+    \[
+    a\in \Delta_{\tau-\epsilon/2}.
+    \]
+    The concavity of $\Delta_{\bullet}$ guarantees that
+    \[
+    a\in \Int \Delta_{\tau-\epsilon}.
+    \]
+    Indeed, choose $\sigma\ll 0$ so that a small ball around $a$ is contained in $\Delta_\sigma$. Since $a\in\Delta_{\tau-\epsilon/2}$ and
+    \[
+        \tau-\epsilon=t\sigma+(1-t)(\tau-\epsilon/2)
+    \]
+    for a suitable $t\in(0,1)$, concavity gives a small ball around $a$ contained in $\Delta_{\tau-\epsilon}$.
+
+
+    Since $\Delta^i_{\tau-\epsilon}\xrightarrow{d_{\Haus}}\Delta_{\tau-\epsilon}$ and $a\in \Int \Delta_{\tau-\epsilon}$, it follows that for all large enough $i\in I$,
+    \[
+    a\in \Delta^i_{\tau-\epsilon}.
+    \]
+    Therefore,
+    \[
+    \tau-\epsilon\leq G[\Delta^i_{\bullet}](a)
+    \]
+    for all large enough $i$. Taking the limit with respect to $i$ and then with respect to $\epsilon$, we conclude the desired inequality.
+\end{proof}
+
+\begin{definition}\label{def:DHmeasureOTC}
+	Let $\Delta_{\bullet}$ be an Okounkov test curve relative to $\Delta$. We define the \emph{Duistermaat--Heckman measure}\index{Duistermaat--Heckman measure} $\DHm(\Delta_{\bullet})$\index{$\DHm(\Delta_{\bullet})$} as
+	\[
+		\DHm(\Delta_{\bullet})\coloneqq G[\Delta_{\bullet}]_*(\vol).
+	\]
+	It is a Radon measure on $\mathbb{R}$, since $G[\Delta_{\bullet}]$ is finite on $\Int \Delta$.
+\end{definition}
+In other words, $\DHm(\Delta_{\bullet})$ is the distribution of the random variable $G[\Delta_{\bullet}]$.
+
+\begin{proposition}\label{prop:DHmoments}
+    Let $\Delta_{\bullet}\in \TC(\Delta)$. Let $m\in \mathbb{Z}_{>0}$. Then the following extended moment identity holds:
+    \begin{equation}\label{eq:momentcalc}
+\int_{\mathbb{R}}x^m \DHm(\Delta_{\bullet})(x)=\Delta_{\max}^m\vol\Delta+m\int_{-\infty}^{\Delta_{\max}} \tau^{m-1}(\vol \Delta_{\tau}-\vol \Delta)\,\mathrm{d}\tau
+    \end{equation}
+and
+\begin{equation}\label{eq:massDHm1}
+\int_{\mathbb{R}}\DHm(\Delta_{\bullet})=\vol \Delta.
+\end{equation}
+\end{proposition}
+\begin{proof}
+In fact, \eqref{eq:massDHm1} follows immediately from the definition. Let $G=G[\Delta_{\bullet}]$. We first assume that $G$ is bounded from below. Then \eqref{eq:momentcalc} follows from a straightforward computation:
+\[
+\begin{aligned}
+    &\int_{\mathbb{R}}x^m \DHm(\Delta_{\bullet})(x)\\
+    =& \int_{\Delta} G[\Delta_{\bullet}](a)^m\,\mathrm{d}\vol(a)\\
+    =& \int_{\Delta} \left( \Delta_{\max}^m-\int_{G[\Delta_{\bullet}](a)}^{\Delta_{\max}} m\tau^{m-1}\,\mathrm{d}\tau\right)\,\mathrm{d}\vol(a)\\
+    =& \Delta_{\max}^m\vol \Delta-m\int_{\mathbb{R}}\int_{\Delta} \mathds{1}_{[G[\Delta_{\bullet}](a),\Delta_{\max}]}(\tau)\tau^{m-1}\,\mathrm{d}\vol(a)\,\mathrm{d}\tau\\
+    =& \Delta_{\max}^m\vol \Delta-m\int_{-\infty}^{\Delta_{\max}}\int_{\Delta\setminus \Delta_{\tau}} \tau^{m-1}\,\mathrm{d}\vol(a)\,\mathrm{d}\tau\\
+    =& \Delta_{\max}^m\vol \Delta-m\int_{-\infty}^{\Delta_{\max}} \tau^{m-1}\left(\vol \Delta-\vol \Delta_{\tau}\right)\,\mathrm{d}\tau.
+\end{aligned}
+\]
+In general, set $G_A=G\lor (-A)$. The same pointwise identity applied to $G_A$ gives
+\[
+\int_{\Delta}G_A^m\,\mathrm{d}\vol=\Delta_{\max}^m\vol\Delta
++m\int_{-A}^{\Delta_{\max}}\tau^{m-1}(\vol \Delta_{\tau}-\vol\Delta)\,\mathrm{d}\tau.
+\]
+Letting $A\to\infty$ gives \eqref{eq:momentcalc}: if $m$ is even, this follows from monotone convergence applied to $G_A^m\nearrow G^m$; if $m$ is odd, apply monotone convergence to $\Delta_{\max}^m-G_A^m\nearrow \Delta_{\max}^m-G^m$. Thus both sides of \eqref{eq:momentcalc} are interpreted in the corresponding extended sense.
+\end{proof}
+
+
+\begin{lemma}\label{lma:DHmconv}
+    Let $(\Delta^i)_{i\geq 1}$ be a decreasing sequence in $\mathcal{K}_n$ with limit $\Delta$.
+    Suppose that $(\Delta_{\bullet}^i)_{i\geq 1}$ is a decreasing sequence with $\Delta_{\bullet}^i\in \TC(\Delta^i)$.
+    Suppose that there is $\Delta_{\bullet}\in \TC(\Delta)$ such that
+    \begin{enumerate}
+        \item\label{itm:lma:DHmconv:1} $\Delta_{\max}=\lim_{i\to\infty}\Delta^i_{\max}$;
+        \item\label{itm:lma:DHmconv:2} for any $\tau<\Delta_{\max}$, we have $\Delta^i_{\tau}\xrightarrow{d_{\Haus}}\Delta_{\tau}$.
+    \end{enumerate}
+    Then $\DHm(\Delta_{\bullet}^i)\rightharpoonup \DHm(\Delta_{\bullet})$.
+\end{lemma}
+\begin{proof}
+    Let $f\in C_c(\mathbb{R})$. It follows from \cref{prop:decnetLegend} that
+    \[
+    G[\Delta_{\bullet}^i]\to G[\Delta_{\bullet}]
+    \]
+    pointwise on $\Delta$.
+    Hence the dominated convergence theorem gives
+    \[
+        \int_{\Delta} f(G[\Delta_{\bullet}^i])\,\mathrm{d}\lambda\to \int_{\Delta} f(G[\Delta_{\bullet}])\,\mathrm{d}\lambda.
+    \]
+    Since $\Delta^i\xrightarrow{d_{\Haus}}\Delta$, \cref{thm:contvol} gives $\vol(\Delta^i\setminus \Delta)\to 0$. The contribution of $\Delta^i\setminus\Delta$ is bounded by $\|f\|_{\infty}\vol(\Delta^i\setminus\Delta)$, so
+    \[
+        \int_{\Delta^i} f(G[\Delta_{\bullet}^i])\,\mathrm{d}\lambda\to \int_{\Delta} f(G[\Delta_{\bullet}])\,\mathrm{d}\lambda.
+    \]
+    This is the weak convergence.
+\end{proof}
+Similarly, we have
+\begin{lemma}\label{lma:DHmconv2}
+    Let $(\Delta^i)_{i\geq 1}$ be an increasing sequence in $\mathcal{K}_n$ with Hausdorff limit $\Delta$ such that $\vol \Delta^i>0$ for all $i\geq 1$. Consider an increasing sequence $(\Delta^i_{\bullet})_{i\geq 1}$ with $\Delta^i_{\bullet}\in \TC(\Delta^i)$ for all $i\geq 1$.
+    Let $\Delta_{\bullet}\in \TC(\Delta)$ be defined as
+    \begin{enumerate}
+        \item\label{itm:lma:DHmconv2:1} $\Delta_{\max}=\lim_{i\to\infty}\Delta^i_{\max}$;
+        \item\label{itm:lma:DHmconv2:2} for any $\tau<\Delta_{\max}$, $\Delta_{\tau}$ is the Hausdorff limit of $\Delta^i_{\tau}$.
+    \end{enumerate}
+    Then we have
+    \[
+    \DHm(\Delta_{\bullet}^i)\rightharpoonup \DHm(\Delta_{\bullet}).
+    \]
+\end{lemma}
+\begin{proof}
+    Let $f\in C_c(\mathbb{R})$. It follows from \cref{prop:incnetLegend} that
+    \[
+    G[\Delta_{\bullet}^i]\to G[\Delta_{\bullet}]
+    \]
+    almost everywhere on $\Delta$.
+    Extending $f(G[\Delta_{\bullet}^i])$ by $0$ outside $\Delta^i$, we also have $\mathds{1}_{\Delta^i}\to \mathds{1}_{\Delta}$ almost everywhere on $\Delta$, since the boundary of the convex body $\Delta$ has Lebesgue measure zero. The dominated convergence theorem gives
+    \[
+        \int_{\Delta^i} f(G[\Delta_{\bullet}^i])\,\mathrm{d}\lambda\to \int_{\Delta} f(G[\Delta_{\bullet}])\,\mathrm{d}\lambda.
+    \]
+    This is the weak convergence.
+\end{proof}
+
+
+
+
+
+
+
+
+
+The main source of Okounkov test curves is the following:
+\begin{theorem}\label{thm:Okountescurvex}
+Let $X$ be a connected compact Kähler manifold and $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a big cohomology class $\alpha$.
+    Let $Y_{\bullet}$ be a smooth flag on $X$ and $\Gamma\in \TC(X,\theta)_{>0}$.
+    Then the map
+    \[
+    (-\infty,\Gamma_{\max})\ni \tau\mapsto \Delta_{Y_{\bullet}}(\theta,\Gamma)_{\tau}\coloneqq \Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})
+    \]
+    defines an Okounkov test curve relative to $\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty})$.
+
+    If furthermore $\Gamma\in \TC^1(X,\theta;\Gamma_{-\infty})$ (resp. $\TC^{\infty}(X,\theta;\Gamma_{-\infty})$), then we have $\Delta_{Y_{\bullet}}(\theta,\Gamma)\in \TC^1(\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}))$ (resp. $\TC^{\infty}(\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}))$).
+\end{theorem}
+See \cref{def:testcur} and \cref{def:relattestcurv} for the relevant definitions.
+\begin{proof}
+    Consider $\Gamma\in \TC(X,\theta)_{>0}$. We need to verify that $\Delta_{Y_{\bullet}}(\theta,\Gamma)$ is an Okounkov test curve relative to $\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty})$.
+
+    First observe that $\tau\mapsto \Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})$ is concave and decreasing for $\tau<\Gamma_{\max}$. The decreasing property follows from \itemref{itm:thm:pobmain:2}. For concavity, use the valuative characterization \cref{thm:Deltapartialint} together with the additivity of valuations in \cref{prop:nuvaluationlinear}: if $x\in\Delta_{Y_\bullet}(\theta,\Gamma_\tau)$ and $y\in\Delta_{Y_\bullet}(\theta,\Gamma_{\tau'})$, then $tx+(1-t)y$ is obtained from the current $tS+(1-t)S'$, which is more singular than $\Gamma_{t\tau+(1-t)\tau'}$. Hence
+    \[
+        t\Delta_{Y_\bullet}\left(\theta,\Gamma_\tau\right)+(1-t)\Delta_{Y_\bullet}\left(\theta,\Gamma_{\tau'}\right)\subseteq\Delta_{Y_\bullet}\left(\theta,\Gamma_{t\tau+(1-t)\tau'}\right).
+    \]
+
+    Next we show that as $\tau\to -\infty$, we have
+    \[
+    \Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})\xrightarrow{d_{\Haus}}\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}).
+    \]
+
+    By \itemref{itm:thm:pobmain:2}, the bodies $\Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})$ are contained in $\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty})$ and increase as $\tau\to-\infty$. Thus it suffices to compute their volumes:
+    \[
+    \begin{split}
+    \lim_{\tau\to -\infty}\vol \Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})=\frac{1}{n!}\lim_{\tau\to -\infty}\vol (\theta+\ddc\Gamma_{\tau})=\frac{1}{n!}\vol (\theta+\ddc \Gamma_{-\infty}) \\
+    =\vol \Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}),
+    \end{split}
+    \]
+    where we applied \cref{thm:pobmain} and \cref{thm:contvolu}.
+
+    When $\Gamma\in \TC^{\infty}(X,\theta;\Gamma_{-\infty})$, it is clear that $\Delta_{Y_{\bullet}}(\theta,\Gamma)\in \TC^{\infty}(\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}))$.
+
+    When $\Gamma\in \TC^{1}(X,\theta;\Gamma_{-\infty})$, by \itemref{itm:thm:pobmain:1}, \eqref{eq:tcfiniteenergy} and \eqref{eq:Otestcurvenergy}, we have
+    \[
+    \mathbf{E}^{\Gamma_{-\infty}}(\Gamma)=\mathbf{E}(\Delta_{Y_{\bullet}}(\theta,\Gamma)).
+    \]
+    Indeed, by \itemref{itm:thm:pobmain:1},
+    \[
+        n!\vol\Delta_{Y_{\bullet}}(\theta,\Gamma_\tau)=\int_X\theta_{\Gamma_\tau}^n
+    \]
+    for every $\tau<\Gamma_{\max}$, and the same identity holds at $\tau=-\infty$. Comparing \eqref{eq:tcfiniteenergy} with \eqref{eq:Otestcurvenergy} gives the asserted equality of energies.
+
+    So $\Delta_{Y_{\bullet}}(\theta,\Gamma)\in \TC^1(\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}))$.
+\end{proof}
+
+
+\begin{remark}\label{rmk:Okounkov:L2335}
+    As a special case of this construction, suppose that $\Gamma$ is the test curve induced by a test configuration as in \cref{ex:RWN} and \cref{rmk:PhongSturm}, then for any $\tau<\Gamma_{\max}$, $\Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau})$ is the Okounkov body of a graded linear series
+    \[
+    \bigoplus_{k=0}^{\infty}\mathcal{F}^{k\tau}_k,
+    \]
+    where $\mathcal{F}$ is the filtration induced by the test configuration. See \cite[Theorem~5.28]{Xia21} for the details. In particular, in this case, our theory of partial Okounkov bodies recovers the Okounkov bodies of the filtered linear series in the sense of \cite{BC11}.
+\end{remark}

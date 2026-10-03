@@ -1,0 +1,239 @@
+\chapter{Pluripotential theory on unibranch spaces}
+\label[appendix]{chap:unibranch}
+
+This appendix explains how much of the pluripotential theory developed in the body of the book extends from compact K\"ahler manifolds to compact unibranch K\"ahler spaces. The unibranch hypothesis is the natural generality in which plurisubharmonic functions descend through resolutions and the basic envelope formalism remains meaningful. Some constructions, especially the trace operator of \cref{chap:trace}, require extra care in the singular setting; we record here the precise statements needed in the main text.
+
+
+\section{Complex spaces}
+\label{sec:unib_complex}
+
+A complex space is assumed to be reduced, Hausdorff and paracompact in the whole book.
+
+\begin{definition}\label{def:primdiv}
+A \emph{prime divisor}\index{prime divisor over a complex space} over an irreducible complex space $Z$ is a connected smooth hypersurface $E\subseteq X'$, where $X'\rightarrow Z$ is a proper bimeromorphic morphism with $X'$ smooth. Such a morphism $X'\rightarrow Z$ is also called a \emph{resolution}\index{resolution} of $Z$. The \emph{center}\index{center of a prime divisor} of the prime divisor is defined as the image of $E$ in $Z$.
+
+Two prime divisors $E_1\subseteq X'_1$ and $E_2\subseteq X'_2$ over $Z$ are \emph{equivalent} if there is a common resolution $X''\rightarrow Z$ dominating both $X_1'$ and $X_2'$ such that the strict transforms of $E_1$ and $E_2$ coincide.
+
+The set $Z^{\Div}$ is the set of pairs $(c,E)$, where $c\in \mathbb{Q}_{>0}$ and $E$ is an equivalence class of a prime divisor over $Z$. For simplicity, we will denote the pair $(c,E)$ by $c\ord_E$, although one should not really think of this object as a valuation unless $Z$ is projective and irreducible.
+\end{definition}
+Note that a prime divisor on $Z$ does not always define a prime divisor over $Z$ if $Z$ is singular.
+
+\begin{definition}\label{def:unibranch:L21}
+    A complex space $X$ is \emph{unibranch}\index{unibranch complex space} if for all $x\in X$, the local ring $\mathcal{O}_{X,x}$ is unibranch.
+\end{definition}
+See \cite[\href{https://stacks.math.columbia.edu/tag/0BPZ}{Tag 0BPZ}]{stacks-project} for the notion of unibranch local rings. In \cite{CAS}, the same notion is known as \emph{local irreducibility}. We prefer the name \emph{unibranchness}, because the corresponding terminology in algebraic geometry is standard and goes back to Grothendieck \cite[(0.23.2.1)]{EGAIV1}.
+
+The notion of unibranchness coincides with the usual one when $\mathcal{X}$ is an algebraic variety:
+\begin{proposition}\label{prop:unibranch_gaga}
+    Let $\mathcal{X}$ be a reduced scheme of finite type over $\mathbb{C}$, and let $\mathcal{X}^{\mathrm{An}}$ be the associated complex space.
+    Then $\mathcal{X}^{\An}$ is unibranch in the sense above if and only if $\mathcal{X}$ is unibranch in the algebraic sense (see \cite[\href{https://stacks.math.columbia.edu/tag/0BQ2}{Tag 0BQ2}]{stacks-project}).
+\end{proposition}
+This is \cite[Remark~2.7]{Xia23Mabuchi} in the arXiv version.
+\begin{proof}
+    Let $x\in \mathcal{X}(\mathbb{C})$. Then we claim that $\mathcal{X}$ is unibranch at $x$ if and only if $\mathcal{X}^{\An}$ is unibranch at $x$. By GAGA, there is a natural morphism of ringed spaces $(\mathcal{X}^{\An},\mathcal{O}_{\mathcal{X}^{\An}})\rightarrow (\mathcal{X},\mathcal{O}_{\mathcal{X}})$.
+	 Then since $\mathcal{O}_{\mathcal{X},x}$ is excellent, $\mathcal{X}$ is unibranch at $x$ if and only if $\widehat{\mathcal{O}_{\mathcal{X},x}}=\widehat{\mathcal{O}_{\mathcal{X}^{\An},x}}$ is integral (\cite[Théorème~18.9.1]{EGAIV4}). The latter implies that $\mathcal{O}_{\mathcal{X}^{\An},x}$ is unibranch by \cite[Chapitre~5, Exercise~2.8]{AC}. Running the same argument the other way round, we conclude that $\mathcal{O}_{\mathcal{X},x}$ is unibranch if and only if $\mathcal{O}_{\mathcal{X}^{\An},x}$ is.
+\end{proof}
+
+\begin{theorem}[Zariski's main theorem]\label{thm:Zariskimain}\index{theorem!Zariski's main theorem}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism between complex spaces. Assume that $X$ is unibranch. Then $\pi$ has connected fibers.
+\end{theorem}
+We follow \cite[Proof of Théorème~1.7]{Dem85}.
+\begin{proof}
+    Let $Z\subseteq X$ be the smallest nowhere dense analytic subset such that $\pi$ is an isomorphism over $X\setminus Z$.
+    Assume that the fiber $F=\pi^{-1}(x)$ over some $x\in X$ is disconnected.
+    Since $\pi$ is proper, $F$ is compact. Choose a decomposition $F=F_1\sqcup F_2$ into two non-empty disjoint compact open subsets of $F$, and choose disjoint open neighborhoods $W_1,W_2$ of $F_1,F_2$ in $Y$. Since proper maps are closed, after shrinking an open neighborhood $U$ of $x$, we may assume that
+    \[
+        \pi^{-1}(U)\subseteq W_1\cup W_2.
+    \]
+    Thus $\pi^{-1}(U)$ is disconnected.
+
+    Since $X$ is unibranch, we may shrink $U$ further so that $U$ is irreducible. Then $U\setminus Z$ is connected (cf. \cite[Chapter~9, \S1.2]{CAS}). Since $\pi$ is bimeromorphic, every irreducible component of $Y$ maps onto an irreducible component of $X$. Hence $\pi^{-1}(Z)$ contains no irreducible component of $Y$ and is nowhere dense. On the other hand, write
+    \[
+        \pi^{-1}(U)=V_1\sqcup V_2
+    \]
+    as a union of two non-empty disjoint open subsets. Each $V_i$ meets
+    $\pi^{-1}(U\setminus Z)$: otherwise $V_i$ would be a non-empty open subset of $Y$ contained in the nowhere dense analytic subset $\pi^{-1}(Z)$, which is impossible. Hence
+    \[
+        \pi^{-1}(U\setminus Z)
+        =
+        \bigl(V_1\cap \pi^{-1}(U\setminus Z)\bigr)
+        \sqcup
+        \bigl(V_2\cap \pi^{-1}(U\setminus Z)\bigr)
+    \]
+    is disconnected. This contradicts the fact that
+    $\pi\colon \pi^{-1}(U\setminus Z)\rightarrow U\setminus Z$ is an isomorphism and $U\setminus Z$ is connected.
+\end{proof}
+
+\begin{definition}\label{def:modif}
+    A \emph{modification}\index{modification!modification of a complex space} of a compact complex space $X$ is a finite composition of blow-ups with smooth centers.
+
+    We say a modification $\pi'\colon Z\rightarrow X$ \emph{dominates}\index{modification!domination of modifications} another $\pi\colon Y\rightarrow X$ if there is a morphism $g\colon Z\rightarrow Y$ of complex spaces making the following diagram commutative:
+    \begin{equation}\label{eq:domi}
+    \begin{tikzcd}
+Z \arrow[rr,"g"] \arrow[rd, "\pi'"'] &   & Y \arrow[ld, "\pi"] \\
+                                 & X. &
+\end{tikzcd}
+    \end{equation}
+\end{definition}
+
+The modifications of $X$ together with the domination relation form a directed set.
+
+
+
+
+\begin{theorem}[Hironaka's Chow lemma]\label{thm:HironakaChow}\index{theorem!Hironaka's Chow lemma}
+    Suppose that $X$ is a compact complex space. Then every proper bimeromorphic morphism to $X$ can be dominated by a modification.
+\end{theorem}
+This follows from the proof of \cite[Corollary~2]{Hir75}.
+
+\begin{theorem}\label{thm:res}
+    Let $X$ be a compact complex space. Then there is a modification $\pi\colon Y\rightarrow X$ such that $Y$ is smooth.
+\end{theorem}
+See \cite{BM97, Wlo09}.
+
+\begin{corollary}\label{cor:primerealization}
+    Let $X$ be an irreducible compact complex space and $E$ be a prime divisor over $X$. Then there is a modification $\pi\colon Y\rightarrow X$ such that $Y$ is smooth and $E$ can be realized as a prime divisor on $Y$.
+\end{corollary}
+\begin{proof}
+    Choose a smooth model $X'\rightarrow X$ on which $E$ is realized. By \cref{thm:HironakaChow}, this proper bimeromorphic morphism is dominated by a modification $Y\rightarrow X$. After further resolving the pair if necessary, we may assume that $Y$ is smooth and that the strict transform of $E$ on $Y$ is smooth. This strict transform realizes the same prime divisor over $X$.
+\end{proof}
+
+\section{Plurisubharmonic functions}
+\label{sec:unib_psh}
+Let $X$ be a complex space.
+
+\begin{definition}\label{def:unibranch:L105}
+    A function $\varphi\colon X\rightarrow [-\infty,\infty)$ is \emph{plurisubharmonic}\index{plurisubharmonic function!plurisubharmonic function on a complex space} if
+	\begin{enumerate}
+		\item\label{itm:appendix-unibranch:L107:1} $\varphi$ is not identically $-\infty$ on any irreducible component of $X$, and
+		\item\label{itm:appendix-unibranch:L107:2} for any $x\in X$, there is an open neighborhood $V$ of $x$ in $X$, a domain $\Omega\subseteq \mathbb{C}^N$, a closed immersion $V\hookrightarrow \Omega$ and a plurisubharmonic function $\tilde{\varphi}\in \PSH(\Omega)$ such that $\varphi|_V=\tilde{\varphi}|_V$ under this immersion.
+	\end{enumerate}
+	The set of plurisubharmonic functions on $X$ is denoted by $\PSH(X)$.
+
+    Similarly, if $\theta$ is a smooth closed\footnote{Here \emph{closed} means that locally $\theta$ is defined by a closed form under a local embedding.} real $(1,1)$-form on $X$, then a function $\varphi\colon X\rightarrow [-\infty,\infty)$ is \emph{$\theta$-plurisubharmonic}\index{plurisubharmonic function!theta-psh function on a complex space@$\theta$-psh function on a complex space} if for any $x\in X$, there is an open neighborhood $V$ of $x$ in $X$, a domain $\Omega\subseteq \mathbb{C}^N$, a closed immersion $V\hookrightarrow \Omega$ and a smooth function $g$ on $\Omega$ such that $\theta=(\ddc g)|_V$ and $g|_V+\varphi|_V\in \PSH(V)$.
+\end{definition}
+
+
+\begin{theorem}[Fornaess--Narasimhan]\label{thm:FN}\index{theorem!Fornaess--Narasimhan theorem}
+	Let $\varphi\colon X\rightarrow [-\infty,\infty)$ be a function. Assume that $\varphi$ is not identically $-\infty$ on any irreducible component of $X$. Then the following are equivalent:
+	\begin{enumerate}
+		\item\label{itm:thm:FN:1} $\varphi$ is psh;
+		\item\label{itm:thm:FN:2} $\varphi$ is usc and for any morphism $f\colon \Delta\rightarrow X$ from the open unit disk $\Delta$ in $\mathbb{C}$ to $X$ such that $f^*\varphi$ is not identically $-\infty$, the pull-back $f^*\varphi$ is subharmonic.
+	\end{enumerate}
+\end{theorem}
+See \cite{FN80}.
+
+
+
+
+
+\begin{theorem}[Grauert--Remmert]\label{thm:GRexten2}\index{theorem!Grauert--Remmert extension theorem}
+Let $X$ be a unibranch\footnote{Unibranchness is very important here. Otherwise, consider the case where $X$ is the union of two copies of $\mathbb{C}$ intersecting only at their origins, $Z$ is the common origin. If we set $\varphi\equiv 0$ on one punctured plane and $\varphi\equiv 1$ on the other, then it is clear that $\varphi$ cannot be extended to $X$. This leads to a few misleading statements in the modern literature. The problem is that in the early German literature, \emph{komplexer Raum} is assumed to be either normal or unibranch!} complex space, let $Z$ be an analytic subset in $X$, and let $\varphi\in \PSH(X\setminus Z)$. Then the function $\varphi$ admits an extension to $\PSH(X)$ in the following two cases:
+    \begin{enumerate}
+        \item\label{itm:thm:GRexten2:1} The set $Z$ has codimension at least $2$ everywhere.
+        \item\label{itm:thm:GRexten2:2} The set $Z$ has codimension at least $1$ everywhere and $\varphi$ is locally bounded from above on an open neighborhood of $Z$.
+    \end{enumerate}
+    In both cases, the extension is unique and is given by
+    \begin{equation}\label{eq:GRextvarphi}
+    \varphi(x)=\varlimsup_{X\setminus Z\ni y\to x}\varphi(y),\quad x\in X.
+    \end{equation}
+\end{theorem}
+The proof given below combines \cite[Théorème~1.7]{Dem85} and \cite{GR56}.\footnote{This theorem has a quite entangled history. The corresponding results for subharmonic functions are generally attributed to Brelot. In \cite{GR56}, they cited a paper of Brelot written in 1934, which I cannot find. But in 1949, on the very first issue of \emph{Annales de l'Institut Fourier}, Brelot published a paper \cite{Bre49} with a very similar title, studying the behavior of a subharmonic function on the punctured neighborhood of a point. The general theorem was due to Grauert and Remmert, see \cite{GR56}. Their original proof was quite complicated, due to the fact that resolution of singularities was not available at that time. Later on, in 1985, Demailly published the influential paper \cite{Dem85} and gave a simpler proof. Oddly enough, Demailly did not cite either Grauert--Remmert or Brelot. He did not even mention that this result was already proved by Grauert--Remmert. The paper \cite{Dem85} is so influential that in France few people know the existence of \cite{GR56}.}
+
+\begin{proof}
+    We first prove the uniqueness, which is a local problem on $X$. Let $\psi$ denote the function defined by the right-hand side of \eqref{eq:GRextvarphi}. If $\eta\in\PSH(X)$ is an extension of $\varphi$, then upper semicontinuity gives $\eta\geq\psi$. Conversely, take $z\in Z$ and a holomorphic map $f\colon \Delta\rightarrow X$ such that $f(0)=z$ and $f(\Delta)\not\subset Z$. From the subharmonicity of $f^*\eta$ and \eqref{eq:GRextvarphi}, we find that
+    \[
+    \eta(z)=f^*\eta(0)=\varlimsup_{\Delta^* \ni w\to 0}f^*\eta(w)\leq \varlimsup_{X\setminus Z\ni y\to z}\varphi(y)=\psi(z),
+    \]
+    where the second equality follows from \cref{thm:GRexten}. Thus $\eta=\psi$, and uniqueness follows.
+
+    Having established the uniqueness of the extension, the existence also becomes a local problem. So we can freely shrink $X$ around any point in $Z$ in the proof.
+
+    \ref{itm:thm:GRexten2:2}
+    Let $\pi\colon Y\rightarrow X$ be a resolution of singularities.
+    By the smooth version of the extension theorem \cref{thm:GRexten}, we know that $\pi^*\varphi$ admits a unique extension to a psh function on $Y$, which we denote by $\eta$.
+    Note that all fibers of $\pi$ are connected since $X$ is unibranch, thanks to \cref{thm:Zariskimain}. Furthermore, the fibers are compact, since $\pi$ is proper.
+    The restriction of $\eta$ to each fiber is psh or identically $-\infty$, hence is constant by the maximum principle applied to a resolution. It therefore descends to an upper semicontinuous function $\psi$ on $X$, and $\psi|_{X\setminus Z}=\varphi$.
+
+    We verify that $\psi$ is plurisubharmonic using \cref{thm:FN}. Let $f\colon \Delta\rightarrow X$ be a holomorphic map. We assume that $f^*\psi\not\equiv -\infty$.
+    It suffices to show that $f^*\psi$ is subharmonic at $0\in \Delta$. After replacing $\Delta$ by a finite ramified cover if necessary, the germ of $f$ lifts to $Y$. Indeed, consider the proper projection
+    \[
+        \Delta\times_X Y\longrightarrow \Delta.
+    \]
+    Choose an irreducible analytic curve in $\Delta\times_X Y$ passing through a point over $0$ and dominating $\Delta$; after shrinking $\Delta$ and normalizing this curve, we obtain a finite ramified cover of the disk. After replacing $\Delta$ by a smaller disk, there are an integer $k>0$ and a holomorphic map $f'\colon \Delta\to Y$ such that
+    \[
+        f(t^k)=\pi(f'(t)).
+    \]
+    Therefore, $\psi(f(t^k))=\eta(f'(t))$ near $0$. Since subharmonicity descends under the finite map $t\mapsto t^k$, it follows that $f^*\psi$ is subharmonic near $0$.
+
+     \ref{itm:thm:GRexten2:1} By the local description of complex spaces \cite[Section~3.4]{CAS}, we may assume that there is a domain $\Omega\subseteq \mathbb{C}^n$, a finite $s$-sheet branched covering $\Phi\colon X\rightarrow \Omega$ with branched locus contained in a proper analytic subset $V\subseteq \Omega$. We may assume that $X$ is connected, $n\geq 1$.
+
+     It suffices to show that $\varphi$ is locally bounded from above near $Z$, since then \ref{itm:thm:GRexten2:2} applies. Suppose that this fails. Then we can find $z\in Z$ and $x_i\in X\setminus Z$ ($i\geq 1$) converging to $z$ such that
+     \[
+     \lim_{i\to\infty} \varphi(x_i)=\infty.
+     \]
+    Using \eqref{eq:GRextvarphi} around each $x_i$, we may further assume that $x_i\in X\setminus (\Phi^{-1}(\Phi(Z)\cup V))$.
+
+     Let $L$ be a complex line passing through $\Phi(z)$ intersecting $(\Phi(Z)\cup V)\cap \overline{B}$ only at $\Phi(z)$, where $B\Subset B'\Subset \Omega$ are two small open balls centered at $\Phi(z)$. Since $\Phi$ is finite, $\Phi(Z)$ still has codimension at least $2$ in $\Omega$. Hence, for each $i$, the set of directions of lines through $\Phi(x_i)$ meeting $B'\cap \Phi(Z)$ is contained in a proper analytic subset of the projective space of directions. We can therefore choose lines $L_i$ through $\Phi(x_i)$ converging to $L$ such that $L_i\cap (B'\cap \Phi(Z))=\varnothing$. Moreover, since $\Phi(x_i)\notin V$, no such $L_i$ is contained in $V$, and hence $L_i\cap (B'\cap V)$ is discrete.
+     Then $\Phi$ restricts to a branched covering over $B'\cap L_i$ for all $i\geq 1$.
+     Adding a constant to $\varphi$, we may assume that $\varphi|_{\Phi^{-1}(L\cap \partial B)}<0$. We can then find an open neighborhood $U$ of $\Phi^{-1}(L\cap \partial B)$ so that $\varphi|_U<0$. For large $i$, we have $\Phi^{-1}(L_i\cap \partial B)\subseteq U$ and $\Phi(x_i)\in B$. Put
+    \[
+        C_i\coloneqq \Phi^{-1}(L_i\cap B').
+    \]
+    Thus $C_i$ is a one-dimensional complex space contained in $X\setminus Z$. Since $\Phi|_{C_i}$ is finite over $L_i\cap B'$, the inverse image $C_i\cap\Phi^{-1}(\overline B)$ is compact, and its boundary is contained in $\Phi^{-1}(L_i\cap\partial B)$.
+
+    Passing to the normalization of each irreducible component of $C_i$, the pull-back of $\varphi$ is subharmonic. The one-dimensional maximum principle therefore gives
+    \[
+        \varphi(x_i)\leq \sup_{\Phi^{-1}(L_i\cap \partial B)}\varphi<0,
+    \]
+    which is a contradiction.
+\end{proof}
+
+\begin{corollary}\label{cor:PSH}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism between compact K\"ahler spaces. Let $\theta$ be a smooth closed real $(1,1)$-form on $X$. Assume that $X$ is unibranch. Then the pull-back induces a bijection
+    \[
+    \pi^*\colon \PSH(X,\theta)\xlongrightarrow{\sim}\PSH(Y,\pi^*\theta).
+    \]
+\end{corollary}
+\begin{proof}
+    Injectivity follows from the surjectivity of $\pi$. For surjectivity, let $u\in \PSH(Y,\pi^*\theta)$. The assertion is local on $X$, so after subtracting a local potential of $\theta$ we may assume that $\theta=0$.
+
+    By \cref{thm:Zariskimain}, the fibers of $\pi$ are connected. The restriction of $u$ to any compact fiber is psh, hence is constant by the maximum principle. Thus $u$ descends to a function $v$ on $X$. Since $\pi$ is proper, $v$ is upper semicontinuous.
+
+    It remains to check that $v$ is psh. By \cref{thm:FN}, it suffices to test on holomorphic disks. Let $f\colon \Delta\rightarrow X$ be a holomorphic disk such that $f^*v\not\equiv -\infty$. As in the proof of \cref{thm:GRexten2}, after a finite ramified cover $\rho\colon \Delta\rightarrow \Delta$, the germ of $f\circ\rho$ lifts to $Y$. The pull-back $(f^*v)\circ\rho$ is therefore subharmonic, so $f^*v$ is subharmonic. Hence $v\in \PSH(X)$, and the general $\theta$-psh case follows by adding back the local potentials.
+\end{proof}
+
+\section{Extensions of the results in the smooth setting}
+\label{sec:unib_ext}
+Let $X$ be an irreducible unibranch compact K\"ahler space of dimension $n$. Let $\theta$ be a closed real smooth $(1,1)$-form on $X$. We say \emph{the cohomology class $\{\theta\}$} is big if for any proper bimeromorphic morphism $\pi\colon Y\rightarrow X$ from a compact K\"ahler manifold $Y$, $\{\pi^*\theta\}$ is big. This definition is independent of the choice of $\pi$.
+
+The non-pluripolar products can be defined exactly as in \cref{chap:npp} and the results in that chapter hold \emph{mutatis mutandis}.
+
+The results in \cref{chap:envelopes} can also be easily extended. The definition of the $P$-envelope remains unchanged. As for the $\mathcal{I}$-envelope, we define
+\begin{definition}\label{def:unibranch:L212}
+    Given $\varphi\in \PSH(X,\theta)$, we define $P_{\theta}[\varphi]_{\mathcal{I}}\in \PSH(X,\theta)$ as the unique element with the following property: If $\pi\colon Y\rightarrow X$ is a proper bimeromorphic morphism from a compact K\"ahler manifold $Y$, then
+    \index{envelope!I-envelope@$\mathcal{I}$-envelope!on a unibranch space}
+    \[
+        \pi^*P_{\theta}[\varphi]_{\mathcal{I}}=P_{\pi^*\theta}[\pi^*\varphi]_{\mathcal{I}}.
+    \]
+\end{definition}
+It follows from \cref{cor:PSH} and \cref{prop:Ienvelopebimero} that $P_{\theta}[\varphi]_{\mathcal{I}}$ is independent of the choice of $\pi$ and is well-defined.
+The other results can be easily extended.
+
+\cref{chap:rays} and \cref{chap:comp} can be extended without big changes. The only exception is \cref{thm:equising_cond_general}, where we do not have the notion of multiplier ideal sheaves. So we do not know how to extend this theorem.
+
+\cref{chap:Igood} can be extended except for \cref{sec:volHermitianbig} for the same reason as above.
+
+If $Y\subseteq X$ is an irreducible analytic subspace not contained in $X^{\Sing}$, then the trace operator of \cref{chap:trace} can be extended to this setting by using an embedded resolution. In general, due to the lack of Demailly regularization on singular spaces, we do not know how to define the trace operator.
+
+\cref{chap:testcurve} can be easily extended.
+
+\cref{chap:Okounkov} is easy to extend since the partial Okounkov bodies are bimeromorphically invariant in the sense of \cref{thm:pobmain}.
+
+\cref{chap:bdiv} is unchanged, since we always take projective limits with respect to all models in that section.
+
+\cref{chap:toric_big} can be extended using the toric resolution \cite[Theorem~11.1.9]{CLS11}.
+
+\cref{chap:NApotential} can be extended except for the parts involving the trace operator.
+
+\cref{chap:Bergman} can be easily extended by considering a resolution.

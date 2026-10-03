@@ -1,0 +1,1291 @@
+\motto{I speak twelve languages: English is the \emph{bestest}.
+
+--- Stefan Bergman\footnote{Stefan Bergman (1895--1977), bearing a very Scandinavian name, was a Polish-American mathematician best known for his work in complex analysis, especially in several complex variables. He introduced the Bergman kernel, a fundamental concept in complex analysis that has influenced many areas of mathematics and theoretical physics.
+
+Bergman was born in Poland (then part of the Russian Empire), and studied in Berlin. He fled Europe during World War II and eventually settled in the United States.}}
+\chapter{Partial Bergman kernels}
+\label{chap:Bergman}
+
+The classical Bergman kernel of a Hermitian line bundle $L$ on a compact Kähler manifold $X$ encodes, through its asymptotic expansion as the tensor power $L^k$ goes to infinity, deep geometric information about the underlying metric. This chapter develops the corresponding \emph{partial} Bergman kernel. The word partial refers to the fact that we only use sections cut out by an ideal, typically the multiplier ideal of an auxiliary psh weight on a closed subset $K\subseteq X$.
+
+The main result is the convergence theorem \cref{thm:pBMconvergence}. Given a $\theta$-psh potential $\varphi\in \PSH(X,\theta)_{>0}$, a closed non-pluripolar weighted subset $(K,v)$, and a Bernstein--Markov measure $\mu$, the normalized partial Bergman measures on $X$ converge weakly to the partial equilibrium measure of $(K,v,\varphi)$ as $k\to\infty$. This is the relative version of the theorem of Berman--Boucksom--Witt Nystr\"om \cite{BBWN11}, corresponding to the case $\varphi=V_\theta$. The assumptions are essentially the mildest ones under which the statement makes sense.
+
+The first part of the chapter introduces the relative envelope operators. In \cref{sec:envrel} we define the relative $P$-envelope $P_{\theta,K}[\varphi](v)$ and the relative $\mathcal{I}$-envelope $P_{\theta,K}[\varphi]_{\mathcal{I}}(v)$ by replacing the constraint $\eta\leq 0$ in the usual $P$- and $\mathcal{I}$-envelopes with the constraint $\eta|_K\leq v$. We establish their basic properties, including monotonicity, mass-preservation, and the relation with the envelope operators of \cref{chap:envelopes}.
+
+The second part develops the equilibrium theory associated with a weighted subset $(K,v)$. In \cref{sec:pem} we show that the Monge--Amp\`ere measure $\theta_{P_{\theta,K}[\varphi](v)}^n$ is carried by the contact locus $\{P_{\theta,K}[\varphi](v)|_K=v\}\subseteq K$, which justifies the name \emph{partial equilibrium measure}. The chapter concludes in \cref{sec:quant} with the proof of the weak convergence of partial Bergman measures towards this partial equilibrium.
+
+\section{Partial envelopes}\label{sec:envrel}
+Let $X$ be a connected compact Kähler manifold of dimension $n$ and $K \subseteq X$ be a closed non-pluripolar set.
+Let $\theta$ be a smooth closed real $(1,1)$-form on $X$ representing a pseudo-effective cohomology class.
+
+\begin{definition}\label{def:partial_env}
+    Given a function $f\colon K\rightarrow [-\infty,\infty]$ and $\varphi\in \PSH(X,\theta)$, we introduce the \emph{relative $P$-envelope}\index{envelope!P-envelope@$P$-envelope!relative P-envelope@relative $P$-envelope} of $\varphi$ (with respect to $K,f,\theta$) as
+    \begin{equation}\label{eq:PthetaKvarphiv}
+    P_{\theta,K}[\varphi](f)\coloneqq  \uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq \varphi\Bigr\}.
+    \end{equation}
+    \index{$P_{\theta,K}[\varphi](f)$}
+
+    Similarly, we define the \emph{relative $\mathcal{I}$-envelope}\index{envelope!I-envelope@$\mathcal{I}$-envelope!relative I-envelope@relative $\mathcal{I}$-envelope} of $\varphi$ (with respect to $K,f,\theta$) as
+    \begin{equation}\label{eq:PthetaKvarphivI}
+    P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\coloneqq  \uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq_{\mathcal{I}} \varphi\Bigr\}.
+    \end{equation}
+\end{definition}
+By $\eta|_K\leq f$ quasi-everywhere, we mean that there is a pluripolar set $S\subseteq X$ so that $\eta|_{K\setminus S}\leq f|_{K\setminus S}$. In general the upper envelope in \eqref{eq:PthetaKvarphiv} or \eqref{eq:PthetaKvarphivI} may be identically $\infty$.
+
+Observe that when $f$ is bounded from below, neither envelope is identically $-\infty$.
+
+
+
+The envelopes contain essentially all envelope operators that we have studied in this book:
+\begin{example}\label{ex:rel_env_cases}
+    When $K=X$ and $f=0$, we have
+    \[
+        P_{\theta,X}[\varphi](0)=P_{\theta}[\varphi],\quad P_{\theta,X}[\varphi]_{\mathcal{I}}(0)=P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    When $K=X$, we have
+    \[
+        P_{\theta,X}[\varphi](f)=P_{\theta}[\varphi](f).
+    \]
+    These definitions reduce to the envelopes studied in \cref{chap:envelopes}.
+    On the other hand, when $\varphi=V_{\theta}$, we have
+    \[
+    \begin{aligned}
+        P_{\theta,K}[V_{\theta}](f)
+        &=P_{\theta,K}[V_{\theta}]_{\mathcal{I}}(f)\\
+        &=\uscsup \left\{ \eta \in \PSH(X,\theta):
+        \begin{array}{l}
+        \eta|_K \leq f \textup{ quasi-everywhere}
+        \end{array}
+        \right\}.
+    \end{aligned}
+    \]
+    In an even more special case where $\varphi=V_{\theta}$ and $K=X$, we find that
+    \[
+        P_{\theta,X}[V_{\theta}](f)=\uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta \leq f \textup{ quasi-everywhere}\Bigr\}.
+    \]
+    This is nothing but $P_{\theta}(f)$ as we studied in \cref{def:Pthetaf}.
+\end{example}
+
+
+
+\begin{proposition}\label{prop:partial_env}
+    Let $f,g\colon K\rightarrow [-\infty,\infty]$ be functions and $\varphi,\psi\in \PSH(X,\theta)$. Then we have the following:
+    \begin{enumerate}
+        \item\label{itm:prop:partial_env:1} We have
+        \[
+        P_{\theta,K}[\varphi](f)\leq P_{\theta,K}[\varphi]_{\mathcal{I}}(f);
+        \]
+        \item\label{itm:prop:partial_env:2} assume that $f$ is bounded from above, then
+        \[
+        \begin{aligned}
+            \left.P_{\theta,K}[\varphi](f)\right|_K\leq & f\textup{ quasi-everywhere},\\
+             \left. P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\right|_K\leq & f\textup{ quasi-everywhere};
+        \end{aligned}
+        \]
+        \item\label{itm:prop:partial_env:3} suppose that $\varphi\preceq_{\mathcal{I}}\psi$, then
+        \[
+            P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\leq P_{\theta,K}[\psi]_{\mathcal{I}}(f);
+        \]
+        \item\label{itm:prop:partial_env:4} if $f\leq g$, then
+        \[
+        P_{\theta,K}[\varphi](f)\leq P_{\theta,K}[\varphi](g),\quad P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\leq P_{\theta,K}[\varphi]_{\mathcal{I}}(g);
+        \]
+        \item\label{itm:prop:partial_env:5} for any $t \in (0,1)$, we have
+        \[
+        \begin{aligned}
+            P_{\theta,K}\left[t\varphi+(1-t)\psi\right](f)\geq & tP_{\theta,K}[\varphi](f)+(1-t)P_{\theta,K}[\psi](f),\\
+            P_{\theta,K}\left[t\varphi+(1-t)\psi\right]_{\mathcal{I}}(f)\geq & tP_{\theta,K}[\varphi]_{\mathcal{I}}(f)+(1-t)P_{\theta,K}[\psi]_{\mathcal{I}}(f).
+        \end{aligned}
+        \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:partial_env:1} This follows from $\eta\preceq \varphi\Rightarrow \eta\preceq_{\mathcal I}\varphi$.
+
+    \ref{itm:prop:partial_env:2} This follows from \cref{prop:supsupstardiff} and \cref{rmk:L1cpt}.
+
+    \ref{itm:prop:partial_env:3} This follows by inclusion of the defining candidate sets.
+
+    \ref{itm:prop:partial_env:4} This follows by inclusion of the defining candidate sets.
+
+    \ref{itm:prop:partial_env:5} If $\eta,\eta'\in \PSH(X,\theta)$ are such that
+    \[
+    \begin{split}
+        &\eta|_K\leq f\textup{ quasi-everywhere},\quad \eta'|_K\leq f\textup{ quasi-everywhere},\\
+        &\eta\preceq \varphi,\quad \eta'\preceq \psi,
+    \end{split}
+    \]
+    then for $t\in (0,1)$,
+    \[
+        \left.\left(t\eta+(1-t)\eta'\right)\right|_K\leq f\textup{ quasi-everywhere},\quad t\eta+(1-t)\eta' \preceq t\varphi+(1-t)\psi.
+    \]
+    Therefore,
+    \[
+    t\eta+(1-t)\eta'\leq P_{\theta,K}\left[t\varphi+(1-t)\psi\right](f).
+    \]
+    Since $\eta$ and $\eta'$ are arbitrary, the first inequality follows. The second follows from the same argument.
+\end{proof}
+
+Similar to the usual envelopes studied in \cref{chap:envelopes}, the $P$-partial envelopes are well-behaved only when $\varphi$ has positive mass.
+
+\begin{lemma}\label{lma:pos_mass_partial}
+    Suppose that $f\colon K\rightarrow (-\infty,\infty]$ is bounded from below, and $\varphi\in \PSH(X,\theta)_{>0}$. Then
+    \begin{equation}\label{eq:Ptheta_partial_pos_mass}
+    P_{\theta,K}[\varphi](f)= \uscsup \Bigl\{ \eta \in \PSH(X,\theta)_{>0}: \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq \varphi\Bigr\}.
+    \end{equation}
+\end{lemma}
+In other words, in this situation, in the definition \eqref{eq:PthetaKvarphiv}, we may restrict to only those $\eta$ with positive mass.
+\begin{proof}
+    By our assumption, we can find $C>0$ so that $\varphi|_K-C\leq f$. Then if $\eta$ is a candidate in \eqref{eq:PthetaKvarphiv}, $\eta\lor (\varphi-C)$ is also a candidate, and $\eta\lor (\varphi-C)\in \PSH(X,\theta)_{>0}$. Therefore, $\eta\lor (\varphi-C)$ is also a candidate for the right-hand side of \eqref{eq:Ptheta_partial_pos_mass}. The equality \eqref{eq:Ptheta_partial_pos_mass} follows.
+\end{proof}
+
+Note that in the most important cases, we can actually replace the condition $\eta\leq f$ quasi-everywhere in \eqref{eq:PthetaKvarphiv} by everywhere.
+\begin{lemma}\label{lma:PKoutsidepps}
+    Let $f\colon K\rightarrow (-\infty,\infty]$ be bounded from below, and $\varphi\in \PSH(X,\theta)_{>0}$.
+    Then
+    \begin{equation}\label{eq:PthetaK_new_def}
+        \begin{split}
+    P_{\theta,K}[\varphi](f)=&\uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ and } \eta\preceq \varphi\Bigr\}\\
+    =& \uscsup \Bigl\{ \eta \in \PSH(X,\theta)_{>0}: \eta|_K \leq f  \textup{ and } \eta\preceq \varphi\Bigr\}.
+        \end{split}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+Both $\geq$ directions in \eqref{eq:PthetaK_new_def} are trivial.
+
+Conversely, let $\eta$ be a candidate in \eqref{eq:Ptheta_partial_pos_mass}.
+Let $S\subseteq X$ be a pluripolar set so that $\eta|_{K\setminus S}\leq f|_{K\setminus S}$.
+
+We now claim that we can choose $\chi\in \PSH(X,\theta)_{>0}$ with $\chi|_S\equiv -\infty$ and $\chi\leq \eta$.
+
+Assume this for the moment. For any $\delta\in (0,1)$, we have
+\[
+(1-\delta)\eta|_K+\delta \chi|_K\leq f,\quad (1-\delta)\eta+\delta \chi\preceq \varphi.
+\]
+Hence, $(1-\delta)\eta+\delta \chi$ is dominated by the right-hand side of \eqref{eq:PthetaK_new_def}.
+Letting $\delta \to 0+$, we conclude that $\eta$ is dominated by the right-hand side of \eqref{eq:PthetaK_new_def} and hence, \eqref{eq:PthetaK_new_def} follows.
+
+    It remains to construct $\chi$.
+    Since $\varphi$ has positive mass, the class $\{\theta\}$ is big. Fix a K\"ahler form $\omega_0$ on $X$ and choose $\rho\in \PSH(X,\theta)$ with $\theta_{\rho}\geq 2\epsilon_0\omega_0$ for some $\epsilon_0>0$. By \cref{thm:gloJosefson}, there is a quasi-psh function $q$ such that $q|_S\equiv -\infty$. Choose $A>0$ so that $A\omega_0+\ddc q\geq 0$. For $a>0$ small enough, $\rho+aq\in \PSH(X,\theta)$ and still has pole $-\infty$ on $S$. Replacing $\rho$ by $\rho+aq$, we may therefore assume that $\rho|_S\equiv -\infty$.
+    Since $\int_X \theta_{\eta}^n>0$, fixing such a $\rho$ and taking $\epsilon\in (0,1)$ small enough, we have
+    \[
+    \int_X \theta^n_{\epsilon \rho+(1-\epsilon)V_{\theta}}+\int_X \theta_{\eta}^n>\int_X \theta_{V_{\theta}}^n.
+    \]
+    Thus, by \cref{prop:landfinitecond1} and \cref{thm:diamond}, we have
+    \[
+    \Bigl(\epsilon \rho+(1-\epsilon)V_{\theta}\Bigr) \land \eta \in \PSH(X,\theta)_{>0}.
+    \]
+    It suffices to define this function as $\chi$.
+\end{proof}
+\begin{corollary}\label{cor:Ppartbdd_bdabove}
+    Suppose that $f\colon K\rightarrow \mathbb{R}$ is bounded, and $\varphi\in \PSH(X,\theta)_{>0}$. Then there is a constant $C=C(\sup_K f,K,X)>0$ such that
+        \[
+            P_{\theta,K}[\varphi](f)\leq C,\quad P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\leq C.
+        \]
+\end{corollary}
+\begin{proof}
+    Since $K$ is non-pluripolar, \cref{rmk:L1cpt} then gives a constant $C>0$, depending only on $\sup_K f$, $K$ and $X$, such that every $\eta\in\PSH(X,\theta)$ satisfying $\eta|_K\leq f$ quasi-everywhere satisfies $\eta\leq C$ on $X$.
+
+    This applies to the candidates defining both envelopes. Hence both candidate families are locally uniformly bounded above, so their upper semicontinuous suprema are genuine $\theta$-psh functions. By \itemref{itm:prop:partial_env:2}, both envelopes are dominated by $f$ quasi-everywhere on $K$. Applying \cref{rmk:L1cpt} once more gives
+    \[
+        P_{\theta,K}[\varphi](f)\leq C,\quad P_{\theta,K}[\varphi]_{\mathcal I}(f)\leq C.
+    \]
+\end{proof}
+
+
+\begin{proposition}\label{prop:Penv_partial_monotone}
+    Let $f\colon K\rightarrow (-\infty,\infty]$ be a function bounded from below and $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Suppose that $\varphi\preceq_{P} \psi$. Then
+    \[
+    P_{\theta,K}[\varphi](f)\leq P_{\theta,K}[\psi](f).
+    \]
+\end{proposition}
+\begin{proof}
+    Let $\eta\in \PSH(X,\theta)_{>0}$ be such that $\eta|_K\leq f$ quasi-everywhere and $\eta\preceq \varphi$. Then $\eta\preceq_P \psi$, and thanks to \cref{cor:P_par_envelope_rel} for any $C>0$, we have $\eta\land (\psi+C)\in \PSH(X,\theta)_{>0}$. But then $\eta\land (\psi+C)$ is a candidate in the definition of $P_{\theta,K}[\psi](f)$, and we find
+    \[
+    \eta\land (\psi+C)\leq P_{\theta,K}[\psi](f).
+    \]
+    By \cref{cor:P_par_envelope_rel} again, we get
+    \[
+    \eta=P_{\theta}[\psi](\eta)\leq P_{\theta,K}[\psi](f).
+    \]
+    Our assertion follows now from \cref{lma:pos_mass_partial}.
+\end{proof}
+
+\begin{corollary}\label{cor:partial_P_new_def}
+    Let $f\colon K\rightarrow (-\infty,\infty]$ be a function bounded from below and $\varphi \in \PSH(X,\theta)_{>0}$. Then
+    \[
+    \begin{aligned}
+    P_{\theta,K}[\varphi](f)= & \uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq_P \varphi\Bigr\}\\
+    =& \uscsup \Bigl\{ \eta \in \PSH(X,\theta)_{>0}: \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq_P \varphi\Bigr\}\\
+    =& \uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ and } \eta\preceq_P \varphi\Bigr\}\\
+    =& \uscsup \Bigl\{ \eta \in \PSH(X,\theta)_{>0}: \eta|_K \leq f  \textup{ and } \eta\preceq_P \varphi\Bigr\}.
+    \end{aligned}
+    \]
+\end{corollary}
+\begin{proof}
+    We first apply \cref{prop:Penv_partial_monotone},
+    \[
+    \begin{split}
+    P_{\theta,K}[\varphi](f)= & P_{\theta,K}\left[P_{\theta}[\varphi]\right](f)\\
+    =& \uscsup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq_P \varphi\Bigr\}.
+    \end{split}
+    \]
+    Next observe that by \cref{lma:pos_mass_partial}, the latter can also be written as
+    \[
+    \uscsup \Bigl\{ \eta \in \PSH(X,\theta)_{>0}: \eta|_K \leq f  \textup{ quasi-everywhere and } \eta\preceq_P \varphi\Bigr\}.
+    \]
+    Next we apply \cref{lma:PKoutsidepps}; the remaining statements follow.
+\end{proof}
+
+\begin{corollary}\label{cor:I-good_partial_env}
+    Let $f\colon K\rightarrow (-\infty,\infty]$ be a function bounded from below and $\varphi \in \PSH(X,\theta)_{>0}$ be $\mathcal{I}$-good. Then
+    \[
+        P_{\theta,K}[\varphi]_{\mathcal{I}}(f)=P_{\theta,K}[\varphi](f).
+    \]
+\end{corollary}
+\begin{proof}
+    In fact, since $\varphi$ is $\mathcal{I}$-good, a potential $\eta\in \PSH(X,\theta)$ satisfies $\eta\preceq_P \varphi$ if and only if $\eta\preceq_{\mathcal{I}} \varphi$. Therefore, our assertion follows from \cref{cor:partial_P_new_def} and \eqref{eq:PthetaKvarphivI}.
+\end{proof}
+
+
+
+Next, we make the following observations about the singularity types of our envelopes:
+\begin{lemma}\label{lma:same_sing_type} Let $f \colon K\rightarrow \mathbb{R}$ be a bounded function, and $\varphi\in \PSH(X,\theta)_{>0}$. We have
+\begin{equation}\label{eq:PthetaKvarphiv_singtype}
+P_{\theta,K}[\varphi](f)\sim P_{\theta}[\varphi],\quad P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\sim P_{\theta}[\varphi]_{\mathcal{I}}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+    We first prove the $P$-part of \eqref{eq:PthetaKvarphiv_singtype}.
+
+    If $\eta\in \PSH(X,\theta)$ with $\eta\preceq \varphi$ and $\eta\leq 0$, then $\eta+\inf_K f$ is a candidate in the definition \eqref{eq:PthetaKvarphiv}, and hence,
+    \[
+    \eta +\inf_K f \leq P_{\theta,K}[\varphi](f).
+    \]
+    It follows that
+    \[
+        P_{\theta}[\varphi]+\inf_K f \leq P_{\theta,K}[\varphi](f).
+    \]
+
+    Conversely, let $\eta\in \PSH(X,\theta)$ be such that
+    \[
+        \eta|_K\leq f,\quad \eta\preceq \varphi.
+    \]
+    Since $K$ is non-pluripolar, by \cref{rmk:L1cpt} we can find $C=C(\sup_K f,K, X)>0$ so that $\eta\leq C$. Hence $\eta-C$ is a candidate in the definition of $P_{\theta}[\varphi]$, and hence
+    \[
+        \eta-C\leq P_{\theta}[\varphi].
+    \]
+    By \cref{lma:PKoutsidepps}, this implies that
+    \[
+        P_{\theta,K}[\varphi](f) \leq P_{\theta}[\varphi] + C.
+    \]
+
+    The proof of the $\mathcal{I}$-part is similar, but we spell it out since this comparison will be used below. If $\eta\in \PSH(X,\theta)$ satisfies $\eta\leq 0$ and $\eta\preceq_{\mathcal{I}}\varphi$, then $\eta+\inf_K f$ is a candidate in \eqref{eq:PthetaKvarphivI}. Hence
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}+\inf_K f\leq P_{\theta,K}[\varphi]_{\mathcal{I}}(f).
+    \]
+    Conversely, let $\eta\in \PSH(X,\theta)$ be a candidate in \eqref{eq:PthetaKvarphivI}. Since $K$ is non-pluripolar and $f$ is bounded, the same compactness estimate gives a constant $C>0$, independent of $\eta$, such that $\eta\leq C$. Then $\eta-C\leq 0$ and $\eta-C\preceq_{\mathcal{I}}\varphi$. By \cref{cor:Ienvelopedef2},
+    \[
+        \eta-C\leq P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    Taking the upper envelope over all such $\eta$ gives
+    \[
+        P_{\theta,K}[\varphi]_{\mathcal{I}}(f)\leq P_{\theta}[\varphi]_{\mathcal{I}}+C.
+    \]
+    This completes the proof.
+\end{proof}
+
+\begin{corollary}\label{cor:PKtoPX}
+    Let $f\colon K\rightarrow \mathbb{R}$ be a bounded function, and $\varphi\in \PSH(X,\theta)_{>0}$. Then
+\begin{equation}\label{eq:PthetaKvarphiveq}
+P_{\theta,K}[\varphi](f)=P_{\theta,X}[\varphi]\left( P_{\theta,K}[V_{\theta}](f) \right).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Take any $\eta\in \PSH(X,\theta)$ with $\eta\preceq \varphi$ and $\eta|_K\leq f$ quasi-everywhere, then
+\[
+\eta\leq P_{\theta,K}[\varphi](f)\leq P_{\theta,K}[V_{\theta}](f).
+\]
+Therefore,
+\[
+\eta\leq P_{\theta,X}[\varphi]\left( P_{\theta,K}[V_{\theta}](f) \right).
+\]
+So we conclude the $\leq$ direction in \eqref{eq:PthetaKvarphiveq}.
+
+For the reverse direction, take $\eta\in \PSH(X,\theta)_{>0}$ such that
+\[
+\eta\preceq \varphi,\quad \eta\leq P_{\theta,K}[V_{\theta}](f) \quad \textup{quasi-everywhere}.
+\]
+Then $\eta|_K\leq f$ quasi-everywhere by \cref{prop:partial_env}. Hence
+\[
+\eta\leq P_{\theta,K}[\varphi](f).
+\]
+By \cref{cor:partial_P_new_def}, the $\geq$ direction in \eqref{eq:PthetaKvarphiveq} follows.
+\end{proof}
+
+\section{Partial equilibrium measures}\label{sec:pem}
+Let $X$ be a connected compact Kähler manifold of dimension $n$, and $\theta$ be a smooth closed real $(1,1)$-form on $X$ representing a pseudo-effective cohomology class.
+
+\begin{definition}\label{def:weightedss}
+A \emph{weighted subset}\index{weighted subset} of $X$ is a pair $(K,v)$ consisting of a closed non-pluripolar subset $K\subseteq X$ and a function $v\in C^0(K)$.
+\end{definition}
+The next result motivates our terminology to call the measures $\theta_{P_{\theta,K}[\varphi](f)}^n$ the \emph{partial equilibrium measures}\index{partial equilibrium measure} of our context:
+\begin{lemma}\label{lma:balayage}
+Let $(K,v)$ be a weighted subset of $X$, and $\varphi\in \PSH(X,\theta)_{>0}$.
+Then
+\begin{equation}\label{eq:intXminusKthetan_vanish}
+\int_{X\setminus K}\theta_{P_{\theta,K}[\varphi](v)}^n=0,\quad \int_K \mathds{1}_{\left\{P_{\theta,K}[\varphi](v)|_K\neq v\right\}}\theta_{P_{\theta,K}[\varphi](v)}^n=0.
+\end{equation}
+More precisely, we have
+\begin{equation}\label{eq:thetaPKuv}
+\theta_{P_{\theta,K}[\varphi](v)}^n\leq \mathds{1}_{\left\{P_{\theta,K}[\varphi](v)|_K=P_{\theta,K}[V_{\theta}](v)|_K=v\right\}}\,\theta_{P_{\theta,K}[V_{\theta}](v)}^n.
+\end{equation}
+\end{lemma}
+Here $\{P_{\theta,K}[\varphi](v)|_K\neq v\}$ and $\{P_{\theta,K}[\varphi](v)|_K=P_{\theta,K}[V_{\theta}](v)|_K=v\}$ are understood as consisting of points of $K$ satisfying these constraints.
+
+
+\begin{proof}
+\textbf{Step~1}. We first prove \eqref{eq:intXminusKthetan_vanish} when $\varphi = V_{\theta}$.
+
+Let $S\subseteq X$ be a proper analytic subset, such that $V_{\theta}$ is locally bounded on $X\setminus S$. Such $S$ exists by \cref{lma:Vthetalocbdd}.
+Fix holomorphic balls $B\Subset B'\Subset X\setminus S$.
+
+By \cref{prop:Choquet} and \cref{lma:PKoutsidepps}, we can take an increasing sequence $(\eta_j)_j$ in $\PSH(X,\theta)$ such that
+\[
+\eta_j\nearrow P_{\theta,K}[V_{\theta}](v)\textup{ a.e.},\quad \eta_j|_K\leq v\textup{ for all }j\geq 1.
+\]
+Note that $P_{\theta,K}[V_{\theta}](v)\sim V_{\theta}$ by \cref{lma:same_sing_type}. Take $C>0$ so that
+\[
+\left.\left( P_{\theta,K}[V_{\theta}](v) \right)\right|_K-C\leq v.
+\]
+Then we may replace $\eta_j$ by $\eta_j\lor (P_{\theta,K}[V_{\theta}](v)-C)$ and assume that $\eta_j\sim V_{\theta}$ for each $j$. In particular, $\eta_j$ is locally bounded on $X\setminus S$.
+
+For each $j\geq 1$, let $\gamma_j\in \PSH(X,\theta)$ be the balayage of $\eta_j$ on $B$, defined in \cref{prop:bal_general}. Note that $(\gamma_j)_j$ is increasing due to \cref{prop:dom_prin_loc}.
+
+For the first equality in \eqref{eq:intXminusKthetan_vanish},
+we may assume that $B\Subset X\setminus (S \cup K)$. It suffices to show that $\theta_{P_{\theta,K}[V_{\theta}](v)}^n$ does not charge $B$.
+
+Since $B$ lies outside $K$ by assumption, we also have $\gamma_j|_K=\eta_j|_K \leq v$ for all $j\geq 1$. In particular, $\gamma_j\leq P_{\theta,K}[V_{\theta}](v)$.
+
+It follows that $\gamma_j \nearrow P_{\theta,K}[V_{\theta}](v)$ almost everywhere as well. Testing against non-negative continuous functions supported in $B$ and using \cref{thm:semicon}, we find that $\theta^n_{P_{\theta,K}[V_{\theta}](v)}$ does not charge $B$, as desired.
+
+We next prove the second equality in \eqref{eq:intXminusKthetan_vanish}. The proof is essentially the same as that of \cref{lma:BT_freeenvelope}.
+
+It suffices to show that $\theta^n_{P_{\theta,K}[V_{\theta}](v)}$ does not charge the set $K\cap \{P_{\theta,K}[V_{\theta}](v)|_K<v\}$.
+
+
+Let $x\in (X\setminus S) \cap K$ be a point such that $P_{\theta,K}[V_{\theta}](v)(x)<v(x)-\epsilon$ for some $\epsilon>0$. We may assume that $x\in B$ and $B'$ is small enough, so that
+\begin{enumerate}
+    \item\label{itm:chapter-Bergman:L380:1} $P_{\theta,K}[V_{\theta}](v)|_{\overline {B'}}<v(x)-\epsilon$.
+    \item\label{itm:chapter-Bergman:L380:2} $v|_{\overline {B'}\cap K}>v(x)-\epsilon$.
+\end{enumerate}
+By \ref{itm:chapter-Bergman:L380:1}, we have $\gamma_j|_{\partial B}\leq v(x)-\epsilon$, hence by \cref{prop:dom_prin_loc}, $\gamma_j|_B\leq v(x)-\epsilon$. By \ref{itm:chapter-Bergman:L380:2}, we have $\gamma_j|_{B\cap K}\leq v|_{B\cap K}$. On the other hand, $\gamma_j|_{K\setminus B}=\eta_{j}|_{K\setminus B}\leq v|_{K\setminus B}$. Therefore, $\gamma_j|_K\leq v$. It follows again that $\gamma_j\leq P_{\theta,K}[V_{\theta}](v)$. Therefore, we conclude as in the previous paragraph that $\gamma_j\nearrow P_{\theta,K}[V_{\theta}](v)$. Thus, testing against non-negative continuous functions supported in $B$, we conclude that $\theta^n_{P_{\theta,K}[V_{\theta}](v)}$ does not charge $B$ again by \cref{thm:semicon}.
+
+\textbf{Step~2}. We handle the general case.
+
+By \cref{cor:PKtoPX},
+\[
+P_{\theta,K}[\varphi](v) = P_{\theta,X}[\varphi]\left(P_{\theta,K}[V_{\theta}](v)\right).
+\]
+Now \cref{cor:Pvarphisupport} gives
+\[
+\begin{aligned}
+\theta_{P_{\theta,K}[\varphi](v)}^n \leq & \mathds{1}_{\left\{P_{\theta,K}[\varphi](v) = P_{\theta,K}[V_{\theta}](v)\right\}} \theta_{P_{\theta,K}[V_{\theta}](v)}^n \\
+\leq & \mathds{1}_{\left\{P_{\theta,K}[\varphi](v)|_K=P_{\theta,K}[V_{\theta}](v)|_K=v\right\}}\,\theta_{P_{\theta,K}[V_{\theta}](v)}^n,
+\end{aligned}
+\]
+where in the second inequality we have used Step~1. Hence \eqref{eq:thetaPKuv} follows, and \emph{a fortiori} \eqref{eq:intXminusKthetan_vanish} follows as well.
+\end{proof}
+
+\begin{corollary}\label{cor:suppthetan}
+Let $v\in C^0(K)$ and $\varphi\in \PSH(X,\theta)_{>0}$. Then
+\begin{equation}\label{eq:thetandoesnotcharge1}
+\begin{aligned}
+\int_{(X\setminus K)\cup \left\{P_{\theta,K}[\varphi](v)<v\right\}}\theta^n_{P_{\theta,K}[\varphi](v)}=& 0,\\
+\int_{(X\setminus K)\cup \left\{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)<v\right\}}\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}=& 0.
+\end{aligned}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The first equation in \eqref{eq:thetandoesnotcharge1} follows from \cref{lma:balayage}. For the second, it suffices to observe that
+\[
+P_{\theta,K}[\varphi]_{\mathcal{I}}(v)=P_{\theta,K}\left[P_{\theta}[\varphi]_{\mathcal{I}}\right]_{\mathcal{I}}(v)=P_{\theta,K}\left[P_{\theta}[\varphi]_{\mathcal{I}}\right](v)
+\]
+by \cref{cor:I-good_partial_env}.
+\end{proof}
+
+
+\begin{definition}\label{def:partialequienergy}
+Given $\varphi\in \PSH(X,\theta)_{>0}$, we define the \emph{partial equilibrium energy}\index{partial equilibrium energy} functional $\mathcal{E}_{\theta,K}^{\varphi}\colon C^0(K)\rightarrow \mathbb{R}$\index{$\mathcal{E}_{\theta,K}^{\varphi}$} as follows: given $v \in C^0(K)$, we set
+\begin{equation}
+\mathcal{E}_{\theta,K}^{\varphi}(v)\coloneqq E_{\theta}^{P_{\theta}[\varphi]_{\mathcal{I}}}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right).
+\end{equation}
+\end{definition}
+Recall that the energy $E_{\theta}^{P_{\theta}[\varphi]_{\mathcal{I}}}$ functional is defined in \cref{def:MAenergy}.
+
+Note that by \cref{lma:same_sing_type}, we have
+\[
+P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\in \mathcal{E}^{\infty}\left(X,\theta;P_{\theta}[\varphi]_{\mathcal{I}}\right),
+\]
+so $\mathcal{E}_{\theta,K}^{\varphi}(v)\in \mathbb{R}$.
+
+
+\begin{proposition}\label{prop:differential_P} Let $v,f \in C^0(K)$ and $\varphi \in \PSH(X,\theta)_{>0}$.
+Then $\mathbb{R}\ni t \mapsto \mathcal{E}_{\theta,K}^{\varphi}(v+tf)$ is differentiable and
+\begin{equation}\label{eq:ddtI}
+\frac{\mathrm{d}}{\mathrm{d}t}\mathcal{E}_{\theta,K}^{\varphi}(v+tf) = \int_K f\, \theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)}
+\end{equation}
+for all $t\in \mathbb{R}$.
+\end{proposition}
+
+\begin{proof}
+We may assume that $\varphi$ is $\mathcal{I}$-model by replacing $\varphi$ by $P_{\theta}[\varphi]_{\mathcal{I}}$.
+
+Note that it suffices to prove \eqref{eq:ddtI} at $t=0$, which is equivalent to
+\begin{equation}\label{eq:to_prove_1}
+\lim_{t\to 0}\frac{E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)}{t}=\int_K f\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}.
+\end{equation}
+It suffices to prove the right derivative at $0$ for an arbitrary $f$; applying the same argument to $-f$ then gives the left derivative. In other words, we need to prove that
+\begin{equation}\label{eq:to_prove_2}
+\lim_{t\to 0+}\frac{E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)}{t}=\int_K f\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}.
+\end{equation}
+
+We first reduce the proof of \eqref{eq:to_prove_2} to the case $f\leq 0$. Assume that this case is known. Choose $A\in\mathbb R$ such that $f-A\leq 0$ on $K$. Since for any $t>0$,
+\[
+P_{\theta,K}[\varphi]_{\mathcal I}\Bigl( v+t(f-A) \Bigr)= P_{\theta,K}[\varphi]_{\mathcal I}(v+tf)-tA,
+\]
+then we have
+\[
+    \int_K f\, \theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}=\int_K (f-A)\, \theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}+A\int_X \theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}.
+\]
+By \eqref{eq:Ephiaddcst}, for any $t>0$,
+\[
+    E_{\theta}^{\varphi}\Bigl(P_{\theta,K}[\varphi]_{\mathcal{I}}\left(v+t(f-A)\right)\Bigr)=E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-tA\int_X\theta_{\varphi}^n.
+\]
+So the limit in \eqref{eq:to_prove_2} exists and is equal to the left-hand side of \eqref{eq:to_prove_2} with $f-A$ in place of $f$ plus $A\int_X\theta_{\varphi}^n$.
+So \eqref{eq:to_prove_2} for $f-A$ implies the desired formula for $f$ in view of \cref{lma:same_sing_type} and the monotonicity theorem \cref{thm:mono}. Hence we may assume that $f\leq 0$.
+
+
+Fix $t>0$.
+Set
+\[
+\eta_t\coloneqq P_{\theta,K}[\varphi]_{\mathcal I}(v+tf),\quad \eta_0\coloneqq P_{\theta,K}[\varphi]_{\mathcal I}(v).
+\]
+By the comparison principle \eqref{eq:comp_princi1} and \cref{prop:cocycE1}, we find
+\[
+\begin{aligned}
+E_{\theta}^{\varphi}(\eta_t)-E_{\theta}^{\varphi}(\eta_0)
+={}&\frac{1}{n+1}\sum_{i=0}^n\int_X(\eta_t-\eta_0)\,
+\theta_{\eta_t}^i\wedge\theta_{\eta_0}^{n-i}\\
+\leq{}& \int_X(\eta_t-\eta_0)\,\theta_{\eta_0}^n.
+\end{aligned}
+\]
+By \cref{lma:balayage} and \cref{cor:I-good_partial_env}, the measure $\theta_{\eta_0}^n$ is carried by $K\cap\{\eta_0=v\}$, and the measure $\theta_{\eta_t}^n$ is carried by $K\cap\{\eta_t=v+tf\}$.
+On $K\cap\{\eta_0=v\}$, we have $\eta_t\leq v+tf=\eta_0+tf$, hence
+\[
+\eta_t-\eta_0\leq tf.
+\]
+On $K\cap\{\eta_t=v+tf\}$, we have $\eta_0\leq v$, hence
+\[
+\eta_t-\eta_0\geq tf.
+\]
+It follows that
+\[
+\int_X(\eta_t-\eta_0)\,\theta_{\eta_0}^n \leq t\int_K f\,\theta_{\eta_0}^n
+\]
+and
+\[
+\int_X(\eta_t-\eta_0)\,\theta_{\eta_t}^n \geq t\int_K f\,\theta_{\eta_t}^n.
+\]
+Thus, letting $t\to 0+$, we get the inequality
+\[
+\varlimsup_{t\to 0+}\frac{E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)}{t}\leq\int_K f\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}.
+\]
+Similarly, for $t>0$, we have
+\[
+\begin{aligned}
+&E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)\\
+\geq & \int_X \left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)-P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)\,\theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)}^n\\
+\geq & t\int_K f\,\theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)}^n.
+\end{aligned}
+\]
+Letting $t\to 0+$, we find
+\[
+\varliminf_{t\to 0+}\frac{E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)\right)-E_{\theta}^{\varphi}\left(P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)}{t}\geq\int_K f\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}.
+\]
+Here we used the following elementary continuity consequence:
+\[
+P_{\theta,K}[\varphi]_{\mathcal{I}}(v)-t\|f\|_{C^0(K)}
+\leq P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)
+\leq P_{\theta,K}[\varphi]_{\mathcal{I}}(v)
+\]
+for $t>0$, and hence $P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf) \nearrow P_{\theta,K}[\varphi]_{\mathcal{I}}(v)$ almost everywhere when $t\to 0+$.
+Next we claim that
+\[
+    \int_K f\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}\leq \lim_{t\to 0+}  \int_K f\,\theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v+tf)}^n.
+\]
+Choose a continuous extension $\tilde f\in C^0(X)$ of $f$. Since \cref{lma:balayage,cor:I-good_partial_env} show that all the measures appearing here are carried by $K$, the integrals over $K$ against $f$ are the same as the integrals over $X$ against $\tilde f$. Thus \cref{cor:incseqnppcont} applies.
+
+We conclude \eqref{eq:to_prove_1}.
+\end{proof}
+
+\begin{lemma}\label{lma:global_env_approx} 
+    Assume that $\{\theta\}$ represents a big cohomology class.
+    Fix a Kähler form $\omega$ on $X$ and a weighted subset $(K,v)$ of $X$. There exists a uniformly bounded increasing sequence $(v^-_j)_j$ in $C^\infty(X)$ and a uniformly bounded decreasing sequence $(v^+_j)_j$ in $C^\infty(X)$, such that
+    \begin{equation}\label{eq:unf_bd_vj}
+    \sup_X |v_j^-|\leq C,\quad \sup_X |v_j^+|\leq C
+    \end{equation}
+    for some constant $C$ depending only on $\|v\|_{C^0(K)}$, $X$, $K$ and $\theta+\omega$. Furthermore, for any $\varphi \in \PSH(X,\theta)_{>0}$ and any $\delta\in [0,1]$ we have the following:
+\begin{enumerate}
+    \item\label{itm:lma:global_env_approx:1} We have
+    \[
+    P_{\theta+\delta \omega,X}[\varphi](v_j^+) \searrow P_{\theta+\delta \omega,K}[\varphi](v),
+    \]
+    and
+    \[
+    P_{\theta+\delta \omega,X}[\varphi](v^-_j) \nearrow P_{\theta+\delta \omega,K}[\varphi](v)
+    \]
+    almost everywhere.
+    \item\label{itm:lma:global_env_approx:2} Suppose in addition that $\varphi$ is $\mathcal{I}$-good, then
+    \[
+        \lim_{j\to\infty}\mathcal{E}_{\theta,X}^{\varphi}(v_j^-)=\mathcal{E}_{\theta,K}^{\varphi}(v),\quad \lim_{j\to\infty}\mathcal{E}_{\theta,X}^{\varphi}(v_j^+)=\mathcal{E}_{\theta,K}^{\varphi}(v).
+    \]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+    \textbf{Step~1}. First we construct $(v^-_j)_j$.
+
+    Let
+    \[
+        C_{K,v} \coloneqq \sup\left\{\sup_X \eta : \eta \in \PSH(X,\theta+\omega),  \eta|_K \leq v\right\}.
+    \]
+    Since $K$ is non-pluripolar, we have $C_{K,v} \in \mathbb{R}$ by \cref{rmk:L1cpt}.
+    Set
+    \[
+    M_{K,v}\coloneqq \max\{C_{K,v}+1,\sup_K v\}.
+    \]
+    Now define $\widetilde v \colon X \to \mathbb{R}$ as
+    \[
+    \widetilde{v}(x)=\left\{
+    \begin{aligned}
+        v(x),&\quad x\in K;\\
+        M_{K,v},&\quad x\in X\setminus K.
+    \end{aligned}
+    \right.
+    \]
+    Since $M_{K,v}\geq \sup_K v$, the function $\widetilde v$ is lower semicontinuous. Therefore there exists an increasing and uniformly bounded sequence $(v^-_j)_j$ in $C^\infty(X)$ such that $v^-_j \nearrow \widetilde v$ and
+    \[
+        \|v_j^-\|_{C^0(X)}\leq \|\tilde{v}\|_{L^{\infty}(X)}+1.
+    \]
+    The right-hand side can clearly be bounded by a constant as in \eqref{eq:unf_bd_vj}.
+
+    \textbf{Step~2}. We construct $(v_j^+)_j$.
+
+    Since
+\[
+h \coloneqq P_{\theta + \omega,K}[V_{\theta+\omega}](v) \lor \left(\inf_K v -1\right)
+\]
+is usc, there exists a decreasing and uniformly bounded sequence $(v^+_j)_j$ in $C^\infty(X)$ such that $v^+_j \searrow h$. We may guarantee that
+\[
+\|v^+_j\|_{C^0(X)}\leq \|h\|_{L^{\infty}(X)}+1.
+\]
+Note that $\inf_K v-1\leq h\leq C_{K,v} \lor (\inf_K v-1)$. So \eqref{eq:unf_bd_vj} is satisfied.
+
+
+
+
+\textbf{Step~3}. We finish the proof. Fix $\varphi\in \PSH(X,\theta)_{>0}$ and $\delta\in [0,1]$.
+
+Note that \ref{itm:lma:global_env_approx:2} follows from \cref{cor:I-good_partial_env}, \cref{lma:same_sing_type}, \cref{prop:Econt_mono} and \ref{itm:lma:global_env_approx:1}. Let us prove \ref{itm:lma:global_env_approx:1}.
+
+\textbf{Step~3.1}. We prove \ref{itm:lma:global_env_approx:1} for $(v^-_j)_j$.
+
+Observe that $P_{\theta + \delta \omega,X}[\varphi](v^-_j)$ is increasing in $j\geq 1$, and
+\[
+P_{\theta + \delta \omega,X}[\varphi]\left(v^-_j\right)\leq P_{\theta + \delta \omega,K}[\varphi](v).
+\]
+We claim that
+\begin{equation}\label{eq:Pthetapdeltaomega_temp1}
+P_{\theta + \delta \omega,X}[\varphi]\left(v^-_j\right) \nearrow P_{\theta + \delta \omega,K}[\varphi](v)\quad \textup{a.e.}.
+\end{equation}
+Let $\eta\in \PSH(X,\theta+\delta\omega)$ be a potential such that $\eta\preceq \varphi$ and $\eta|_K\leq v$. Take some $\epsilon>0$. Then, since $\eta$ is upper semicontinuous, $\widetilde v$ is lower semicontinuous and $\eta < \epsilon+\widetilde v$, compactness gives $j_0>0$ such that $\eta < \epsilon+ v^-_j$ for $j \geq j_0$. Hence,
+\[
+\eta \leq \epsilon+P_{\theta + \delta \omega,X}[\varphi](v^-_j)
+\]
+for $j\geq j_0$.
+Therefore,
+\[
+\eta\leq \uscsup[j\geq 1] P_{\theta + \delta \omega,X}[\varphi]\left(v^-_j\right)+\epsilon.
+\]
+Letting $\epsilon\to 0+$, we find
+\[
+\eta\leq \uscsup[j\geq 1] P_{\theta + \delta \omega,X}[\varphi]\left(v^-_j\right).
+\]
+Since $\eta$ is arbitrary, \eqref{eq:Pthetapdeltaomega_temp1} follows.
+
+\textbf{Step~3.2}. We prove \ref{itm:lma:global_env_approx:1} for $(v^+_j)_j$.
+
+Note that $P_{\theta + \delta \omega,X}[\varphi](v^+_j)$ is decreasing in $j$, and
+\begin{equation}\label{eq:defchilimPthetadeltaomega}
+\chi \coloneqq \lim_{j\to\infty} P_{\theta + \delta \omega,X}[\varphi]\left(v^+_j\right) \geq P_{\theta + \delta \omega,K}[\varphi](v).
+\end{equation}
+In particular, $\chi\in \PSH(X,\theta+\delta\omega)_{>0}$, since $P_{\theta + \delta \omega,K}[\varphi](v)$ has the same singularity types as $P_{\theta + \delta \omega}[\varphi]$ by \cref{lma:same_sing_type}.
+Observe that
+\[
+P_{\theta + \delta \omega,X}[\varphi]\left(v_j^+\right)\leq v_j^+
+\]
+for all $j\geq 1$, since $v_j^+$ is continuous. Thus, $\chi\leq h$.
+On the other hand, $h|_K\leq v$ quasi-everywhere. So in particular, $\chi|_{K}\leq v$ quasi-everywhere.
+On the other hand,
+\[
+\chi\leq P_{\theta + \delta \omega,X}[\varphi]\left(v^+_1\right)\sim_P \varphi
+\]
+by \cref{lma:same_sing_type}. Hence, by \cref{cor:partial_P_new_def},
+\[
+\chi\leq P_{\theta + \delta \omega,K}[\varphi](v).
+\]
+Therefore, \eqref{eq:defchilimPthetadeltaomega} is an equality.
+\end{proof}
+
+
+\begin{proposition}\label{prop:conv_of_K_env}
+    Let $(K,v)$ be a weighted subset of $X$. Let $(\varphi_j)_j$ be a sequence in $\PSH(X,\theta)_{>0}$ and $\varphi\in \PSH(X,\theta)_{>0}$. Then the following hold:
+\begin{enumerate}
+    \item\label{itm:prop:conv_of_K_env:1} If $(\varphi_j)_j$ is decreasing, and $\varphi_j\xrightarrow{d_S}\varphi$, then
+    \begin{equation}\label{eq:PthetaKvarphij1}
+    P_{\theta,K}[\varphi_j]_{\mathcal{I}}(v) \searrow P_{\theta,K}[\varphi]_{\mathcal{I}}(v),\quad P_{\theta,K}[\varphi_j](v) \searrow P_{\theta,K}[\varphi](v).
+    \end{equation}
+    \item\label{itm:prop:conv_of_K_env:2} If $\varphi_j \nearrow \varphi$ almost everywhere then
+    \[
+    P_{\theta,K}[\varphi_j]_{\mathcal{I}}(v) \nearrow P_{\theta,K}[\varphi]_{\mathcal{I}}(v)\textup{ a.e.},\quad P_{\theta,K}[\varphi_j](v) \nearrow P_{\theta,K}[\varphi](v) \textup{ a.e.}.
+    \]
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+We only give the proof for the relative $\mathcal{I}$-envelopes; the proof for the relative $P$-envelopes is identical, replacing $P_{\theta}[\bullet]_{\mathcal{I}}$ by $P_{\theta}[\bullet]$ and using \cref{cor:partial_P_new_def} for the final candidate condition.
+
+Set
+\[
+    \eta_j\coloneqq P_{\theta,K}[\varphi_j]_{\mathcal{I}}(v),\quad
+    \eta\coloneqq P_{\theta,K}[\varphi]_{\mathcal{I}}(v).
+\]
+By \cref{lma:same_sing_type}, $d_S(\eta_j,P_{\theta}[\varphi_j]_{\mathcal{I}})=0$ and $d_S(\eta,P_{\theta}[\varphi]_{\mathcal{I}})=0$ for all $j$. Moreover, \cref{thm:contPI} gives
+\[
+    P_{\theta}[\varphi_j]_{\mathcal{I}}\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}
+\]
+in case \ref{itm:prop:conv_of_K_env:1}, and the same convergence holds in case \ref{itm:prop:conv_of_K_env:2} by \cref{cor:incnetdSconv} and \cref{thm:contPI}.
+Consequently, $\eta_j\xrightarrow{d_S}\eta$ in both cases.
+
+Assume first that $(\varphi_j)_j$ is decreasing. Then $(\eta_j)_j$ is decreasing and $\eta_j\geq \eta$. Let $\eta_\infty\coloneqq \inf_j \eta_j$. The Monge--Amp\`ere masses of $\eta_j$ converge to the mass of $\eta$, by the preceding $d_S$-convergence and \cref{thm:convdS}. Since $\eta_j\geq \eta_\infty\geq \eta$, the monotonicity theorem \cref{thm:mono} gives
+\[
+    \int_X\theta_{\eta_\infty}^n=\int_X\theta_\eta^n.
+\]
+Hence $\eta_j\xrightarrow{d_S}\eta_\infty$ by \cref{cor:decnetdS}. The uniqueness of the $d_S$-limit gives $d_S(\eta_\infty,\eta)=0$. Since $\eta_\infty\geq \eta$, \cref{prop:ds0char} implies $\eta_\infty\sim_P \eta$. In particular, $\eta_\infty\preceq_{\mathcal{I}}\varphi$ by \cref{cor:PimpliesI}. The condition $\eta_\infty\leq v$ on $K$ quasi-everywhere is inherited from the $\eta_j$'s, so $\eta_\infty$ is a candidate for $P_{\theta,K}[\varphi]_{\mathcal{I}}(v)$. Thus $\eta_\infty\leq \eta$, and the reverse inequality was already observed. This proves the $\mathcal{I}$-part of \ref{itm:prop:conv_of_K_env:1}.
+
+Assume next that $\varphi_j\nearrow\varphi$ almost everywhere. Then $(\eta_j)_j$ is increasing and $\eta_j\leq \eta$. Put $\tilde\eta\coloneqq \uscsup_j \eta_j$. By \cref{cor:Ppartbdd_bdabove} and \cref{cor:incnetdSconv}, we have $\eta_j\xrightarrow{d_S}\tilde\eta$. The $d_S$-convergence above therefore gives $d_S(\tilde\eta,\eta)=0$, hence $\tilde\eta\sim_P \eta$ by \cref{prop:ds0char}. In particular, $\tilde\eta\preceq_{\mathcal{I}}\varphi$ by \cref{cor:PimpliesI}. Also $\tilde\eta\leq v$ on $K$ quasi-everywhere by \cref{prop:supsupstardiff}. Hence $\tilde\eta$ is a candidate for $P_{\theta,K}[\varphi]_{\mathcal{I}}(v)$, so $\tilde\eta\leq \eta$. Since $\eta_j\leq \eta$ for all $j$, this proves $\eta_j\nearrow \eta$ almost everywhere.
+\end{proof}
+
+
+
+
+
+
+
+\section{Quantization of partial equilibrium measures}\label{sec:quant}
+
+
+Let $X$ be a connected compact K\"ahler manifold of dimension $n$, let $L$ be a pseudo-effective line bundle on $X$, and let $h$ be a Hermitian metric on $L$. Set $\theta=c_1(L,h)$. Let $(T,h_T)$ be a Hermitian line bundle on $X$.
+
+\subsection{Bernstein--Markov measures}
+\label{subsec:BM}
+Let $K\subseteq X$ be a closed non-pluripolar subset, and $v\colon K\rightarrow [-\infty,\infty)$ be a measurable function.
+
+\begin{definition}\label{def:Bergman:L706}
+    Let $\mu$ be a Borel probability measure on $K$.
+We introduce the following functions on $\mathrm{H}^0(X,L^k \otimes T)$ ($k\geq 1$), with values possibly equal to $\infty$:
+\index{$N^k_{v,\mu}$}
+\index{$N^k_{v,K}$}
+\begin{equation}\label{eq:Nkvmu_norm}
+\begin{aligned}
+N^k_{v,\mu}(s) \coloneqq & \left(\int_K h^k \otimes h_T(s,s) \mathrm{e}^{-kv} \,\mathrm{d}\mu\right)^{1/2},\\
+N^k_{v,K}(s) \coloneqq & \sup_{K\setminus \{v=-\infty\}} \left( h^k \otimes h_T(s,s)\mathrm{e}^{-kv}\right)^{1/2}.
+\end{aligned}
+\end{equation}
+\end{definition}
+Observe that if $\mu$ puts no mass on $\{v=-\infty\}$ then we always have
+\begin{equation}\label{eq:Nkinfcomp}
+N^k_{v,\mu}(s)\leq N^k_{v,K}(s).
+\end{equation}
+
+
+We start with the following elementary observation:
+\begin{lemma}\label{lma:mononorm}
+Let $v_1,v_2\colon K\rightarrow [-\infty,\infty)$ be two measurable functions such that
+\begin{enumerate}
+    \item\label{itm:lma:mononorm:1} $v_1\leq v_2$;
+    \item\label{itm:lma:mononorm:2} $\{v_1=-\infty\}=\{v_2=-\infty\}$.
+\end{enumerate}
+Then for any $s\in \mathrm{H}^0(X,L^k\otimes T)$ ($k\geq 1$), we have
+\[
+N_{v_1,K}^k(s)\geq N_{v_2,K}^k(s).
+\]
+\end{lemma}
+\begin{proof}
+    This follows immediately from the definition \eqref{eq:Nkvmu_norm}.
+\end{proof}
+
+
+
+
+
+
+\begin{definition}\label{def:BMmeasure}
+Let $(K,v)$ be a weighted subset of $X$.
+A Borel probability measure $\mu$ on $K$ is \emph{Bernstein--Markov}\index{Bernstein--Markov measure} with respect to $(K,v)$ if for each $\epsilon>0$, there is a constant $C_\epsilon>0$ such that
+\begin{equation}\label{eq:BM}
+     N^k_{v,K}(s) \leq C_\epsilon \mathrm{e}^{\epsilon k} N^k_{v,\mu}(s)
+\end{equation}
+for any $s \in \mathrm{H}^0(X,L^k \otimes T)$ and any $k\in \mathbb{Z}_{>0}$.
+We write $\BM(K,v)$\index{$\BM(K,v)$} for the set of Bernstein--Markov measures with respect to $(K,v)$.
+\end{definition}
+As pointed out in \cite{BBWN11}, any volume form on $X$ is Bernstein--Markov with respect to $(X,v)$, with $v \in C^\infty(X)$.
+
+
+\begin{proposition}\label{prop:BMNimplynorm}
+Assume that $(K,v)$ is a weighted subset of $X$. Then
+\begin{enumerate}
+    \item\label{itm:prop:BMNimplynorm:1} $N^k_{v,K}$ is a norm on $\mathrm{H}^0(X,L^k\otimes T)$.
+    \item\label{itm:prop:BMNimplynorm:2} For any $\mu\in \BM(K,v)$, $N^k_{v,\mu}$ is a norm on $\mathrm{H}^0(X,L^k\otimes T)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\ref{itm:prop:BMNimplynorm:1}
+As $v$ is bounded, $N^k_{v,K}$ is clearly finite on $\mathrm{H}^0(X,L^k\otimes T)$. In order to show that it is a norm, it suffices to show that for any $s\in \mathrm{H}^0(X,L^k\otimes T)$, $N^k_{v,K}(s)=0$ implies that $s=0$. In fact, we have $s|_K=0$, hence $s=0$ by the connectedness of $X$ and the assumption that $K$ is non-pluripolar.
+
+\ref{itm:prop:BMNimplynorm:2}
+As $v$ is bounded, clearly $N^k_{v,\mu}$ is finite and satisfies the triangle inequality. Non-degeneracy follows from the fact that $N^k_{v,K}$ is a norm and \eqref{eq:BM}.
+\end{proof}
+
+
+
+\subsection{Partial Bergman kernels}
+\label{subsec:pBerg}
+In this section, we fix a weighted subset $(K,v)$ of $X$ and $\mu\in \BM(K,v)$.
+
+\begin{definition}\label{def:Bergman:L778}
+    For any $\varphi\in \PSH(X,\theta)_{>0}$, we introduce the \emph{partial Bergman kernels}\index{partial Bergman kernels} of $\varphi$ (with respect to $(K,v)$) as follows: For any $k\geq 1$, we introduce
+    \begin{equation}
+    \begin{aligned}
+     B^k_{v,\varphi, \mu}(x) \coloneqq \sup \left\{h^k \otimes h_T(s,s)\mathrm{e}^{-kv}(x):s \in \mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal{I}(k\varphi)\right),\right.\\
+     \left. N^k_{v,\mu}(s) \leq 1 \right\},\quad x\in K.
+     \end{aligned}
+ \end{equation}
+ \index{$B^k_{v,\varphi, \mu}$}
+ We extend $B^k_{v,\varphi, \mu}$ to the whole $X$ by setting it to be $0$ outside $K$.
+
+ The \emph{partial Bergman measures}\index{partial Bergman measures} of $\varphi$ (with respect to $(K,v)$) are defined as
+ \begin{equation}
+\beta^k_{v,\varphi,\mu} \coloneqq \frac{n!}{k^n} B^k_{v,\varphi,\mu} \,\mathrm{d}\mu
+\end{equation}
+\index{$\beta^k_{v,\varphi,\mu}$}
+for each $k\geq 1$.
+\end{definition}
+
+\begin{remark}\label{rmk:Bergman:L797}
+    Recall that in the definition of $\beta^k_{v,\varphi,\mu}$, the singular metric $\varphi$ only appears through the conditions $s \in \mathrm{H}^0(X,L^k \otimes T \otimes \mathcal{I}(k\varphi))$. The pointwise norm used to define $\beta^k_{v,\varphi,\mu}$ and $N^k_{v,\mu}$ is defined via $v$ not $\varphi$.
+
+    This leads to the following seemingly paradoxical consequence, if $\psi\in \PSH(X,\theta)$ and $\varphi\preceq_{\mathcal{I}}\psi$, then
+    \[
+        \beta^k_{v,\varphi,\mu}\leq \beta^k_{v,\psi,\mu}\quad \forall\,k\geq 1.
+    \]
+    We shall apply this consequence without further mention in the sequel.
+\end{remark}
+
+
+Observe that
+\[
+    \int_X \beta^k_{v,\varphi,\mu}=\frac{n!}{k^n}h^0\left(X,T\otimes L^k \otimes \mathcal{I}(k\varphi)\right).
+\]
+In particular,
+\begin{equation}\label{eq:betaint_conv}
+    \lim_{k\to\infty}\int_X \beta^k_{v,\varphi,\mu}=\vol\left(\theta_{\varphi}\right)=\int_X \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n
+\end{equation}
+by \cref{thm:DXmain1} and \cref{lma:same_sing_type}. The goal of this section is to improve this result to the convergence of the Bergman kernels themselves:
+\begin{theorem}\label{thm:pBMconvergence} Suppose that $\varphi \in \PSH(X,\theta)_{>0}$. Then
+\begin{equation}\label{eq:pbkconvgeneral}
+\beta^k_{v,\varphi,\mu} \rightharpoonup \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n,\quad \textup{as }k\to\infty.
+\end{equation}
+\end{theorem}
+
+The proof will be given at the end of this subsection. We shall prove a few preliminaries at first.
+
+
+
+Take a K\"ahler form $\omega$ on $X$ so that
+\[
+\int_X \omega^n = 1.
+\]
+\begin{proposition}\label{prop:smooth_weak_conv}
+    Assume here that $K=X$.
+    Let $\varphi \in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_{\varphi}$ is a Kähler current. If $v \in C^\infty(X)$, then
+\begin{equation}\label{eq:pbmconvanaly}
+\beta^k_{v,\varphi,\omega^n} \rightharpoonup \theta_{P_{\theta,X}[\varphi]_{\mathcal{I}}(v)}^n=\theta_{P_{\theta,X}[\varphi](v)}^n\quad \textup{as }k\to\infty.
+\end{equation}
+\end{proposition}
+
+\begin{proof} The equality part in \eqref{eq:pbmconvanaly} follows from \cref{cor:I-good_partial_env}. It remains to prove the weak convergence.
+
+Let $\tau$ be the weak limit of a subsequence of $(\beta^k_{v,\varphi,\omega^n})_k$. In view of \eqref{eq:betaint_conv}, it suffices to show that
+\begin{equation}\label{eq:muleq_temp1}
+\tau\leq \theta_{P_{\theta,X}[\varphi](v)}^n.
+\end{equation}
+
+We can obtain an upper bound of $\tau$ via the observation:
+\[
+\beta^k_{v,\varphi,\omega^n} \leq \beta^k_{v,V_{\theta},\omega^n}.
+\]
+After replacing $\varphi$ by $V_{\theta}$, the corresponding problem is handled by \cite[Theorem~1.2]{Ber11}, giving us
+\[
+\beta^k_{v,V_{\theta},\omega^n} \rightharpoonup \theta_{P_{\theta,X}[V_{\theta}](v)}^n=\mathds{1}_{\left\{v = P_{\theta,X}[V_{\theta}](v)\right\}}\,\theta_v^n \quad \textup{as }k\to\infty,
+\]
+where the last identity is due to \cref{prop:DNTenvelope2}.
+
+We obtain that
+\begin{equation}\label{eq:Bergmanmeasure}
+\tau \leq \mathds{1}_{\left\{v = P_{\theta,X}[V_{\theta}](v)\right\}}\,\theta_v^n.
+\end{equation}
+Now observe that it suffices to show that
+\begin{equation}\label{eq:muP0_temp1}
+\tau\left\{P_{\theta,X}[\varphi](v) < v\right\}=0.
+\end{equation}
+Assuming this, then \eqref{eq:Bergmanmeasure} further gives
+\[
+\tau \leq \mathds{1}_{\left\{P_{\theta,X}[\varphi](v)= v\right\}}\,\theta_v^n= \theta_{P_{\theta,X}[\varphi](v)}^n,
+\]
+where the equality follows from \cref{prop:DNTenvelope2}, and \eqref{eq:muleq_temp1} follows.
+
+It now remains to argue \eqref{eq:muP0_temp1}. Fix a Kähler form $\omega$ on $X$. Observe that
+\[
+P_{\theta +\epsilon \omega,X}[\varphi](v) \sim \varphi
+\]
+for all $\epsilon\geq 0$ by \cref{lma:same_sing_type} and \cref{prop:analysingcompPandPI}. The family $P_{\theta+\epsilon\omega,X}[\varphi](v)$ is decreasing as $\epsilon\to0+$. Let
+\[
+    \chi\coloneqq \inf_{\epsilon>0}P_{\theta+\epsilon\omega,X}[\varphi](v).
+\]
+Then $\chi\in\PSH(X,\theta)$ since $\chi\geq P_{\theta,X}[\varphi](v)$. Moreover $\chi\leq v$ and $\chi\preceq\varphi$. Hence
+\[
+    \chi\leq P_{\theta,X}[\varphi](v).
+\]
+Thus, equality holds, and
+\[
+    P_{\theta+\epsilon\omega,X}[\varphi](v)\searrow P_{\theta,X}[\varphi](v).
+\]
+In other words,
+\[
+\left\{P_{\theta,X}[\varphi](v) < v\right\}=\bigcup_{\epsilon\in \mathbb{Q}_{>0}}\left\{P_{\theta+\epsilon\omega,X}[\varphi](v) < v\right\}.
+\]
+So in order to show \eqref{eq:muP0_temp1}, we may fix $\epsilon>0$ and argue that
+\begin{equation}\label{eq:muP0_temp2}
+\tau\left\{P_{\theta+\epsilon\omega,X}[\varphi](v) < v\right\}=0.
+\end{equation}
+
+
+
+Let $k\geq 1$, and $s \in \mathrm{H}^0(X,L^k \otimes T \otimes \mathcal I(k\varphi))$ be a section such that $N^k_{v,\omega^n}(s) \leq 1$. Then by \cite[Lemma~4.1]{Ber11}, there exists $C>0$ such that
+\[
+h^k\otimes h_T(s,s)\mathrm{e}^{-kv} \leq B^k_{v,\varphi,\omega^n} \leq B^k_{v,V_{\theta},\omega^n} \leq k^n C.
+\]
+This implies that
+\[
+\frac{1}{k}\log h^k \otimes h_T(s,s) \leq v + \frac{\log C }{k} + n \frac{\log k}{ k }.
+\]
+We define $\varphi_k$ as in \cref{prop:Bergman_approx}. Take $\alpha_k\nearrow 1$ as in \cref{prop:Bergman_approx}.
+After adding a constant to $\varphi$, we may assume that $\varphi\leq 0$ on $X$. After replacing $\alpha_k$ by a subsequence, we also have $\alpha_k\varphi\in \PSH(X,\theta+\epsilon\omega)$ for all $k>0$, and $\alpha_k\varphi\searrow\varphi$.
+Then
+\[
+\frac{1}{k}\log h^k \otimes h_T(s,s)\preceq \varphi_k\preceq \alpha_k\varphi.
+\]
+We notice that $\frac{1}{k}\log h^k \otimes h_T(s,s) \in \PSH(X, \theta + \epsilon \omega)$ for all $k \geq k_0(\epsilon)$.
+Indeed,
+\[
+    \frac{1}{k}\log h^k\otimes h_T(s,s) \in \PSH\left(X,\theta+ k^{-1} c_1(T,h_T)\right)
+\]
+by \cref{prop:LelongPoincare}.
+
+
+In particular,
+\[
+\frac{1}{k}\log h^k \otimes h_T(s,s)-\frac{\log C}{k}-n\frac{\log k}{k}\leq P_{\theta+\epsilon\omega,X}[\alpha_k \varphi](v).
+\]
+Now taking supremum over all candidates $s$, we obtain that
+\begin{equation}\label{eq:smooth_Berg_est}
+B^k_{v,\varphi,\omega^n} \leq C k^n \mathrm{e}^{k \left(P_{\theta +\epsilon \omega,X}[\alpha_k \varphi](v)-v\right)},\quad k \geq k_0.
+\end{equation}
+
+Now we prove \eqref{eq:muP0_temp2}. First observe that $\alpha_k\varphi\xrightarrow{d_S}\varphi$ by \cref{lma:dSsmallmult}. Thus, by \cref{prop:conv_of_K_env},
+\[
+P_{\theta +\epsilon \omega,X}[\alpha_k \varphi](v) \searrow P_{\theta +\epsilon \omega,X}[\varphi](v)
+\]
+and we get that
+\[
+\bigcup_{k=1}^{\infty}\left\{P_{\theta +\epsilon \omega,X}[\alpha_k \varphi](v) < v\right\}=\left\{P_{\theta +\epsilon \omega,X}[\varphi](v) < v\right\}.
+\]
+    It suffices to show that $\tau$ does not put mass on the set $\{P_{\theta +\epsilon \omega,X}[\alpha_m \varphi](v) < v\}$ for each fixed $m$. Fix a positive rational $\delta>0$, it suffices to show that $\tau$ puts no mass on $F\coloneqq \{P_{\theta +\epsilon \omega,X}[\alpha_m \varphi](v) < v-\delta\}$.
+    Note that $F$ is open, and \eqref{eq:smooth_Berg_est} gives $\beta^\ell_{v,\varphi,\omega^n}(F)\to 0$. Therefore, $\tau$ puts no mass on $F$ as well, proving \eqref{eq:muP0_temp2}.
+\end{proof}
+
+
+
+\begin{definition}\label{def:Bergman:L942}
+    Take $k\geq 1$ and $\varphi\in \PSH(X,\theta)$, let $\Nm \mathrm{H}^0(X,L^k \otimes T \otimes \mathcal{I}(k\varphi))$ be the space of norms on the vector space $\mathrm{H}^0(X,L^k \otimes T \otimes \mathcal{I}(k\varphi))$.
+
+    Let $\mathcal{L}_{k,\varphi} \colon \Nm \mathrm{H}^0(X,L^k \otimes T \otimes \mathcal{I}(k\varphi)) \to \mathbb R$ be the \emph{partial Donaldson functional}\index{partial Donaldson functional}:
+\begin{equation}
+\mathcal{L}_{k,\varphi}(H) = \frac{n!}{k^{n+1}} \log \frac{\vol\{s \in \mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal{I}(k\varphi)\right) : H(s) \leq 1\}}{\vol \left\{s\in \mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal{I}(k\varphi)\right) : N^k_{0,\omega^n}(s) \leq 1\right\}},
+\end{equation}
+\index{$\mathcal{L}_{k,\varphi}$}
+where $\vol$ is a Lebesgue measure on $\mathrm{H}^0(X,L^k \otimes T \otimes \mathcal{I}(k\varphi))$. The normalization does not matter.
+\end{definition}
+
+\begin{proposition}\label{prop:quant_I_smooth}
+Let $w,w' \in C^0(X)$ and $\varphi \in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_{\varphi}$ is a Kähler current. Then
+\begin{equation}\label{eq:LdiffonXsmoothmeasure}
+\lim_{k\to\infty} \left(\mathcal{L}_{k,\varphi}(N^k_{w,\omega^n}) - \mathcal{L}_{k,\varphi}(N^k_{w',\omega^n}) \right)= \mathcal{E}_{\theta,X}^{\varphi}(w)-\mathcal{E}_{\theta,X}^{\varphi}(w').
+\end{equation}
+In particular,
+\begin{equation}\label{eq:LdiffonXsmoothmeasure2}
+\lim_{k\to\infty}\mathcal{L}_{k,\varphi}(N^k_{w,\omega^n})=\mathcal{E}_{\theta,X}^{\varphi}(w)\,.
+\end{equation}
+\end{proposition}
+
+
+\begin{proof}
+First observe that by \cref{prop:BMNimplynorm}, for any $k\geq 1$, $N^k_{w,\omega^n}$ and $N^k_{w',\omega^n}$ are both norms, hence the expressions inside the limit in \eqref{eq:LdiffonXsmoothmeasure} make sense.
+
+We first assume that $w,w'\in C^\infty(X)$. To start, we make the following observation:
+\[
+\begin{aligned}
+\mathcal{L}_{k,\varphi}(N^k_{w,\omega^n}) - \mathcal{L}_{k,\varphi}(N^k_{w',\omega^n})&= \int_0^1 \frac{\mathrm{d}}{\mathrm{d}t} \mathcal{L}_{k,\varphi}(N^k_{w' + t(w-w'),\omega^n})\,\mathrm{d}t\\
+& = \int_0^1 \int_X (w-w') \,\beta^k_{w' + t(w-w'),\varphi,\omega^n}\, \mathrm{d}t.
+\end{aligned}
+\]
+The second equality follows from differentiating the Gram matrix of the Hilbert norm $N^k_{w'+t(w-w'),\omega^n}$:
+\[
+    \frac{\mathrm d}{\mathrm dt}\mathcal L_{k,\varphi}
+    \left(N^k_{w'+t(w-w'),\omega^n}\right)=\int_X (w-w')\,\beta^k_{w'+t(w-w'),\varphi,\omega^n}.
+\]
+
+By \cref{prop:smooth_weak_conv}, we have
+\[
+\lim_{k\to\infty}\int_X (w-w') \,\beta^k_{w' + t(w-w'),\varphi,\omega^n}=\int_X (w-w')\,\theta_{P_{\theta,X}[\varphi](w' + t(w-w'))}^n.
+\]
+By \cref{thm:DXmain1}, we have
+\[
+\bigl|\int_X (w-w')\beta^k_{w' + t(w-w'),\varphi,\omega^n}\bigr| \leq C \sup_X |w - w'|.
+\]
+Hence, by the dominated convergence theorem we obtain that
+\[
+\begin{aligned}
+\lim_{k\to\infty} \left(\mathcal{L}_{k,\varphi}(N^k_{w,\omega^n}) - \mathcal{L}_{k,\varphi}(N^k_{w',\omega^n})\right) &= \int_0^1 \int_X (w-w') \,\theta_{P_{\theta,X}[\varphi](w' + t(w-w'))}^n \,\mathrm{d}t\\
+& = \mathcal{E}_{\theta,X}^{\varphi}(w)-\mathcal{E}_{\theta,X}^{\varphi}(w'),
+\end{aligned}
+\]
+where in the last line we have used \cref{prop:differential_P}.
+
+This proves \eqref{eq:LdiffonXsmoothmeasure} for smooth weights.
+
+For general $w,w'\in C^0(X)$, choose smooth functions $w_j,w'_j$ converging uniformly to $w,w'$, respectively. If $\|w_j-w\|_{C^0}\leq \delta_j$, then
+\[
+\mathrm{e}^{-k\delta_j/2}N^k_{w,\omega^n}\leq N^k_{w_j,\omega^n}\leq \mathrm{e}^{k\delta_j/2}N^k_{w,\omega^n},
+\]
+and hence
+\[
+\left|\mathcal{L}_{k,\varphi}(N^k_{w_j,\omega^n})-\mathcal{L}_{k,\varphi}(N^k_{w,\omega^n})\right|
+\leq \frac{n!}{k^n}h^0\left(X,L^k\otimes T\otimes \mathcal{I}(k\varphi)\right)\delta_j.
+\]
+The same estimate holds for $w'_j$ and $w'$. Moreover, \cref{prop:differential_P} shows that the energy side is Lipschitz with respect to the uniform norm of the weight. Letting first $k\to\infty$ in the smooth case, and then $j\to\infty$, proves \eqref{eq:LdiffonXsmoothmeasure} for continuous weights. Equation \eqref{eq:LdiffonXsmoothmeasure2} again follows by taking $w'=0$.
+\end{proof}
+
+\begin{lemma}\label{lma:BML}
+Let $\varphi\in \PSH(X,\theta)$.
+Let $(K,v)$ be a weighted subset of $X$. Let $\mu\in \BM(K,v)$. Then
+\begin{equation}\label{eq:Bern_Mark_implies}
+\lim_{k\to\infty} \big( \mathcal{L}_{k,\varphi}(N^k_{v,K}) - \mathcal{L}_{k,\varphi}(N^k_{v,\mu})\big) = 0\,.
+\end{equation}
+\end{lemma}
+\begin{proof}
+By \eqref{eq:Nkinfcomp} and \eqref{eq:BM}, for every $\epsilon>0$ and all $k\geq 1$,
+\[
+N^k_{v,\mu}\leq N^k_{v,K}\leq C_\epsilon \mathrm{e}^{\epsilon k}N^k_{v,\mu}.
+\]
+The corresponding unit balls therefore satisfy inclusions with radii differing by at most the factor $C_\epsilon \mathrm{e}^{\epsilon k}$. Taking logarithmic volumes and multiplying by $n!k^{-n-1}$ gives
+\[
+\left|\mathcal{L}_{k,\varphi}(N^k_{v,K})-\mathcal{L}_{k,\varphi}(N^k_{v,\mu})\right|
+\leq \frac{2n!}{k^{n+1}} h^0\left(X,L^k\otimes T\otimes \mathcal{I}(k\varphi)\right)(\log C_\epsilon+\epsilon k).
+\]
+The right-hand side has limsup at most $2\epsilon\vol(\theta_\varphi)$ by \cref{thm:DXmain1}. Letting $\epsilon\to 0+$ proves \eqref{eq:Bern_Mark_implies}.
+\end{proof}
+
+
+
+\begin{corollary}\label{cor:Ninfdifflim}
+Let $w \in C^0(X)$, $\varphi \in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_\varphi$ is a Kähler current. Then
+\[
+\lim_{k\to\infty}\mathcal{L}_{k,\varphi}(N^k_{w,X})=\mathcal{E}_{\theta,X}^{\varphi}(w).
+\]
+\end{corollary}
+\begin{proof}
+This follows from \cref{lma:BML} and \cref{prop:quant_I_smooth}: indeed $\omega^n \in \BM(X,0)$, hence $\omega^n\in \BM(X,w)$ as $w$ is bounded.
+\end{proof}
+
+
+It would be helpful to consider the following auxiliary functions:
+\[
+\begin{aligned}
+    P'_{\theta,K}[\varphi](v)\coloneqq & \sup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq v  \textup{ and } \eta\preceq \varphi\Bigr\},\\
+    P'_{\theta,K}[\varphi]_{\mathcal{I}}(v)\coloneqq & \sup \Bigl\{ \eta \in \PSH(X,\theta): \eta|_K \leq v  \textup{ and } \eta\preceq_{\mathcal{I}} \varphi\Bigr\}.
+\end{aligned}
+\]
+\index{$P'_{\theta,K}[\varphi](v)$}\index{$P'_{\theta,K}[\varphi]_{\mathcal{I}}(v)$}
+
+We note the following maximum principles that follow from the above definitions:
+\begin{lemma}\label{lma:max_princ} Let $v\in C^0(K)$, $\varphi\in \PSH(X,\theta)$, and $\eta \in \PSH(X,\theta)$.
+Assume that $\eta \preceq \varphi$. Then
+\begin{equation}\label{eq:max_princ}
+\sup_K (\eta-v) = \sup_{\{\eta\neq -\infty\}} \left(\eta - P'_{\theta,K}[\varphi](v)\right)=\sup_{\left\{P'_{\theta,K}[\varphi](v)\neq -\infty\right\}} \left(\eta - P'_{\theta,K}[\varphi](v)\right).
+\end{equation}
+\end{lemma}
+\begin{proof}
+We prove the first equality first. We write $S=\{\eta=-\infty\}$.
+
+By definition, $P'_{\theta,K}[\varphi](v)|_K\leq v$, so
+\[
+\left.\left(\eta-P'_{\theta,K}[\varphi](v)\right)\right|_{K\setminus S}\geq \eta|_{K\setminus S}-v|_{K\setminus S}\,.
+\]
+This implies that
+\[
+\sup_K (\eta-v) \leq \sup_{X\setminus S} \left(\eta - P'_{\theta,K}[\varphi](v)\right).
+\]
+
+Conversely, observe that $\sup_K(\eta-v)>-\infty$ as $K$ is non-pluripolar. It follows that $\eta-\sup_K (\eta-v)$ is a candidate in the definition of $P'_{\theta,K}[\varphi](v)$. Hence,
+\begin{equation}\label{eq:etaminussupK_temp1}
+\eta-\sup_K (\eta-v)\leq P'_{\theta,K}[\varphi](v).
+\end{equation}
+This implies that
+\[
+\sup_K (\eta-v) \geq \sup_{X\setminus S} \left(\eta - P'_{\theta,K}[\varphi](v)\right),
+\]
+finishing the proof of the first identity in \eqref{eq:max_princ}.
+
+In order to prove the latter identity, observe that
+\[
+\left\{P'_{\theta,K}[\varphi](v) =-\infty\right\} \subseteq S
+\]
+as a consequence of \eqref{eq:etaminussupK_temp1}. On $\{P'_{\theta,K}[\varphi](v)\neq -\infty\}\cap S$, we have $\eta-P'_{\theta,K}[\varphi](v)=-\infty$. Hence the last equality of \eqref{eq:max_princ} also follows.
+\end{proof}
+
+\begin{proposition}\label{prop:quant_I_algebraic_BM} Let $\varphi\in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_{\varphi}$ is a Kähler current. Let $(K,v)$, $(K',v')$ be two weighted subsets of $X$.
+Then
+\begin{equation}\label{eq:LkdiffconvtoI}
+\lim_{k\to\infty} \left( \mathcal{L}_{k,\varphi}(N^k_{v,K}) - \mathcal{L}_{k,\varphi}(N^k_{v',K'}) \right) = \mathcal{E}_{\theta,K}^{\varphi}(v)-\mathcal{E}_{\theta,K'}^{\varphi}(v').
+\end{equation}
+In particular,
+\begin{equation}\label{eq:Lkconv}
+\lim_{k\to\infty}\mathcal{L}_{k,\varphi}(N^k_{v,K})=\mathcal{E}_{\theta,K}^{\varphi}(v).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+First observe that by \cref{prop:BMNimplynorm}, for any $k>0$, $N^k_{v,K}$ and $N^k_{v',K'}$ are both norms, hence the expressions inside the limit in \eqref{eq:LkdiffconvtoI} make sense. Moreover, \eqref{eq:Lkconv} is just a special case of \eqref{eq:LkdiffconvtoI} for $K'=X$ and $v'= 0$.
+
+To prove \eqref{eq:LkdiffconvtoI} it is enough to show that for any fixed $w \in C^\infty(X)$ we have
+\begin{equation}\label{eq:inproofLdiffsmw}
+\lim_{k\to\infty} \big( \mathcal{L}_{k,\varphi}(N^k_{v,K}) - \mathcal{L}_{k,\varphi}(N^k_{w,X}) \big) = \mathcal{E}_{\theta,K}^{\varphi}(v) - \mathcal{E}_{\theta,X}^{\varphi}(w)\,.
+\end{equation}
+
+
+For $\epsilon \in (0,1)$ small enough, $\theta_{(1-\epsilon)\varphi}$ is still a Kähler current. Let us fix such $\epsilon$, along with an arbitrary $\epsilon' \in (0,1)$.
+
+Let $(v^-_{j})_j$ and $(v^+_{j})_j$ be the sequences of smooth functions constructed in \cref{lma:global_env_approx} for the data $(K,v)$.
+
+By \cref{prop:Bergman_approx} there exists $k_0(\epsilon,\epsilon') \in \mathbb N$ such that
+\[
+\frac{1}{k} \log h^k \otimes h_T (s,s) \preceq (1-\epsilon)\varphi,
+\]
+and $\frac{1}{k} \log h^k \otimes h_T (s,s) \in \PSH(X,\theta + \epsilon'\omega)$ for any $s \in \mathrm{H}^0(X,T\otimes L^k \otimes \mathcal{I}(k\varphi))$, as long as $k \geq k_0(\epsilon,\epsilon')$.
+
+In particular, \cref{lma:max_princ} gives that
+\[
+\begin{aligned}
+N^k_{P'_{\theta + \epsilon'\omega,K}[(1-\epsilon)\varphi](v),X}(s)=& N^k_{v,K}(s),\\
+N^k_{P'_{\theta + \epsilon'\omega,X}[(1-\epsilon)\varphi](v_{j}^-),X}(s)=& N^k_{v_{j}^-,X}(s),\\
+N^k_{P'_{\theta + \epsilon'\omega,X}[(1-\epsilon)\varphi](v_{j}^+),X}(s)=& N^k_{v^+_{j},X}(s).
+\end{aligned}
+\]
+As
+\[
+P'_{\theta + \epsilon'\omega,X}[(1-\epsilon)\varphi](v_{j}^-) \leq P'_{\theta + \epsilon'\omega,K}[(1-\epsilon)\varphi](v) \leq P'_{\theta + \epsilon'\omega,X}[(1-\epsilon)\varphi](v_{j}^+),
+\]
+where the second inequality follows from \cref{lma:global_env_approx} and the fact that $P'=P$ for the global continuous obstacles $v_j^\pm$. By \cref{lma:mononorm} we have
+\[
+N^k_{v^+_{j},X}(s) \leq N^k_{v,K}(s) \leq N^k_{v_{j}^-,X}(s), \quad s \in \mathrm{H}^0(X,T \otimes L^k  \otimes \mathcal{I}(k\varphi)), k \geq k_0(\epsilon,\epsilon').
+\]
+Composing with $\mathcal{L}_{k,\varphi}$ we arrive at
+\[
+\mathcal{L}_{k,\varphi}(N^k_{v^-_{j},X})\leq  \mathcal{L}_{k,\varphi}(N^k_{v,K})\leq  \mathcal{L}_{k,\varphi}(N^k_{v^+_{j},X})\,, \quad k \geq k_0(\epsilon,\epsilon').
+\]
+For any $j>0$, by \cref{cor:Ninfdifflim} we get
+\[
+\begin{aligned}
+\mathcal{E}_{\theta,X}^{\varphi}(v^-_{j}) - \mathcal{E}_{\theta,X}^{\varphi}(w)=& \lim_{k\to\infty} \left(\mathcal{L}_{k,\varphi}(N^k_{v^-_{j},X})-\mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+\leq & \varliminf_{k\to\infty}\left(\mathcal{L}_{k,\varphi}(N^k_{v,K})- \mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+\leq & \varlimsup_{k\to\infty}\left(\mathcal{L}_{k,\varphi}(N^k_{v,K})- \mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+\leq & \lim_{k\to\infty} \left(\mathcal{L}_{k,\varphi}(N^k_{v^+_{j},X})-\mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+=&  \mathcal{E}_{\theta,X}^{\varphi}(v^+_{j}) - \mathcal{E}_{\theta,X}^{\varphi}(w).
+\end{aligned}
+\]
+Using \cref{lma:global_env_approx}, we can let $j \to \infty$ to arrive at
+\[
+\begin{split}
+\mathcal{E}_{\theta,K}^{\varphi}(v)  -\mathcal{E}_{\theta,X}^{\varphi}(w) &\leq \varliminf_{k\to\infty}\left(\mathcal{L}_{k,\varphi}(N^k_{v,K})- \mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+&\leq\varlimsup_{k\to\infty}\left(\mathcal{L}_{k,\varphi}(N^k_{v,K})- \mathcal{L}_{k,\varphi}(N^k_{w,X})\right)\\
+& \leq \mathcal{E}_{\theta,K}^{\varphi}(v)  -\mathcal{E}_{\theta,X}^{\varphi}(w).
+\end{split}
+\]
+Hence, \eqref{eq:inproofLdiffsmw} follows.
+\end{proof}
+
+
+
+
+
+
+\begin{corollary} \label{cor:LktoI}
+Let $\varphi \in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_{\varphi}$ is a Kähler current.
+Then
+\[
+\lim_{k\to\infty}  \mathcal{L}_{k,\varphi}(N^k_{v,\mu})= \mathcal{E}_{\theta,K}^{\varphi}(v).
+\]
+\end{corollary}
+\begin{proof}
+Our claim follows from \cref{prop:quant_I_algebraic_BM} and \cref{lma:BML}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:weakconvana}
+Let $\varphi \in \PSH(X,\theta)$ be a potential with analytic singularities such that $\theta_{\varphi}$ is a Kähler current. Then
+\[
+\beta^k_{v,\varphi, \mu} \rightharpoonup \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n=\theta_{P_{\theta,K}[\varphi](v)}^n\quad \textup{as }k\to\infty.
+\]
+\end{proposition}
+
+\begin{proof}
+For $w\in C^0(X)$, let $f_k,g\colon \mathbb{R}\rightarrow \mathbb{R}$ ($k\geq 1$) be defined as
+\[
+f_k(t)\coloneqq \mathcal{L}_{k,\varphi}(N^k_{v+tw,\mu}),\quad g(t)\coloneqq \mathcal{E}_{\theta,K}^{\varphi}(v+tw).
+\]
+By \cref{cor:LktoI}, for all $t\in \mathbb{R}$, we have
+\[
+\lim_{k\to\infty} f_k(t)= g(t).
+\]
+Here we use that $\mu\in\BM(K,v+tw)$ for all fixed $t$, which follows from $\mu\in\BM(K,v)$ and the boundedness of $tw$ on $K$. Note that $f_k$ is concave by H\"older's inequality.
+For each $k$, the function $f_k$ is differentiable and
+\[
+    f_k'(0)=\int_X w\,\beta^k_{v,\varphi,\mu}.
+\]
+This follows by differentiating the Gram matrix of the Hilbert norm $N^k_{v+tw,\mu}$. The function $g$ is differentiable at $0$ by \cref{prop:differential_P}, with
+\[
+    g'(0)=\int_K w\,\theta^n_{P_{\theta,K}[\varphi]_{\mathcal I}(v)}.
+\]
+Applying \cref{lma:conc_lim_der} to the convex functions $-f_k$ and $-g$ gives
+\[
+    \lim_{k\to\infty} f_k'(0)=g'(0),
+\]
+which is equivalent to $\beta^k_{v, \varphi,\mu} \rightharpoonup \theta_{P_{\theta,K}[\varphi](v)}^n$, by \cref{prop:differential_P}.
+\end{proof}
+
+
+\begin{proposition} \label{prop:mainKahcurr}
+Suppose that $\varphi \in \PSH(X,\theta)$ is such that $\theta_{\varphi}$ is a Kähler current.
+Let $(K,v)$ be a weighted subset of $X$ and $\mu\in \BM(K,v)$. Then
+\begin{equation}\label{eq:pbkconv1}
+\beta^k_{v,\varphi,\mu} \rightharpoonup \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n\quad \textup{as } k\to\infty.
+\end{equation}
+\end{proposition}
+\begin{proof} Let $\tau$ be the weak limit of a subsequence of $\beta^k_{v,\varphi,\mu}$. We claim that
+\begin{equation}\label{eq:inproofmuleq}
+\tau\leq \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n.
+\end{equation}
+Observe that this claim implies the conclusion. In fact, by \cref{thm:DXmain1}, we have equality of the total masses, so equality holds in \eqref{eq:inproofmuleq}. As $\tau$ is an arbitrary cluster point of the sequence $(\beta^k_{v,\varphi,\mu})_k$, we get \eqref{eq:pbkconv1}.
+
+It remains to prove \eqref{eq:inproofmuleq}.
+Let $(\varphi_j)$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$. We may assume that $\theta_{\varphi_j}$ is a K\"ahler current for all $j\geq 1$.
+By \cref{cor:quasi-equichar}, we know that
+\[
+\varphi_j\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}.
+\]
+The quasi-equisingular approximation is decreasing, so applying the decreasing case of \cref{prop:conv_of_K_env} to the limit $P_{\theta}[\varphi]_{\mathcal{I}}$, and using the definition of the relative $\mathcal{I}$-envelope, we get
+\[
+P_{\theta,K}\left[\varphi_j\right]_{\mathcal{I}}(v)\searrow P_{\theta,K}[\varphi]_{\mathcal{I}}(v).
+\]
+In particular,
+\begin{equation}\label{eq:inproofeqmass}
+\lim_{j\to\infty} \int_X \theta_{P_{\theta,K}\left[\varphi_j\right]_{\mathcal{I}}(v)}^n= \int_X  \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n.
+\end{equation}
+Observe that
+\[
+\beta^k_{v,\varphi,\mu} \leq \beta^k_{v,\varphi_j,\mu}
+\]
+for any $k \geq 1$.
+As $\mu\in \BM(K,v)$,
+by \cref{prop:weakconvana},
+\[
+\tau \leq \theta_{P_{\theta,K}[\varphi_j]_{\mathcal{I}}(v)}^n,
+\]
+for any $j \geq 1$ fixed.
+By \eqref{eq:inproofeqmass} and the semicontinuity theorem \cref{thm:semicon}, we have
+\[
+\theta_{P_{\theta,K}\left[\varphi_j\right]_{\mathcal{I}}(v)}^n\rightharpoonup \theta_{P_{\theta,K}[\varphi]_{\mathcal{I}}(v)}^n
+\]
+as $j\to\infty$. Therefore, \eqref{eq:inproofmuleq} follows.
+\end{proof}
+
+
+
+
+
+\begin{proof}[Proof of \cref{thm:pBMconvergence}]
+By \cref{lma:same_sing_type} and \cref{prop:Ienvprojection}, the three potentials below have the same multiplier ideals. Hence
+\[
+\begin{aligned}
+\mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal{I}(k\varphi)\right) &= \mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal I(kP_{\theta}[\varphi]_{\mathcal{I}})\right)\\
+ &= \mathrm{H}^0\left(X,L^k \otimes T \otimes \mathcal I\left(kP_{\theta,K}[\varphi]_{\mathcal{I}}(v)\right)\right).
+ \end{aligned}
+\]
+This allows us to replace $\varphi$ with $P_{\theta,K}[\varphi]_{\mathcal{I}}(v)$.
+
+
+By \cref{lma:kahcurrentposmass}, there exists a sequence $(\varphi_j)_j$ in $\PSH(X,\theta)$ such that $\varphi_j\nearrow \varphi$ a.e.\ and $\theta_{\varphi_j}$ is a Kähler current for each $j\geq 1$. This gives
+\[
+\beta^k_{v,\varphi_j,\mu} \leq \beta^k_{v,\varphi,\mu}.
+\]
+Let $\tau$ be the weak limit of a subsequence of $(\beta^k_{v,\varphi,\mu})_k$. Then by \cref{prop:mainKahcurr},
+\[
+\theta_{P_{\theta,K} [\varphi_j]_{\mathcal{I}}(v)}^n\leq \tau.
+\]
+By \cref{prop:conv_of_K_env} and \cref{cor:incseqnppcont}, we have
+\[
+\theta_{P_{\theta,K} [\varphi_j]_{\mathcal{I}}(v)}^n \rightharpoonup \theta_{P_{\theta,K} [\varphi]_{\mathcal{I}}(v)}^n.
+\]
+Hence,
+\begin{equation}\label{eq:inproofmulower}
+\theta_{P_{\theta,K} [\varphi]_{\mathcal{I}}(v)}^n\leq \tau.
+\end{equation}
+A comparison of total masses using \eqref{eq:betaint_conv} gives that equality holds in \eqref{eq:inproofmulower}. As $\tau$ is arbitrary, we obtain \eqref{eq:pbkconvgeneral}.
+\end{proof}
+
+\begin{remark}\label{rmk:Bergman:L1290}
+    The results in this chapter can also be reformulated as the large deviation principle of a determinantal point process on $X$ using the Gärtner--Ellis theorem exactly as in \cite{Ber14}. We do not pursue this reformulation here.
+\end{remark}

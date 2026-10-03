@@ -1,0 +1,1459 @@
+\motto{A good theorem lasts forever. Once proved, it will always stay proved, and other mathematicians are free to use it and build on it as they please, sometimes to great effect.
+
+--- John Tate\footnote{John Torrence Tate Jr. (1925--2019), the grandfather of Dustin Clausen, was one of the greatest minds in the whole history of America. However, his aversion to publishing papers arguably impeded the progress of the development of mathematics to some extent. For example, his foundational work on rigid non-Archimedean geometry was written in 1962, but was not available to the public until 1971.}}
+\chapter{Non-Archimedean pluripotential theory}
+\label{chap:NApotential}
+
+This chapter develops a non-Archimedean pluripotential theory for compact K\"ahler manifolds. In the projective setting, Boucksom and Jonsson constructed a space of non-Archimedean psh metrics on the Berkovich analytification of a polarized variety. Our approach starts instead from the analytic objects developed in the previous chapters: $\mathcal I$-model test curves and their operations. The resulting theory agrees with the Boucksom--Jonsson theory in the projective case.
+
+The guiding idea is the Ross--Witt Nystr\"om correspondence. A geodesic ray can be encoded by a test curve, and the $\mathcal I$-model version of this construction retains precisely the multiplier-ideal information relevant to algebraic approximation. For a pseudo-effective class $\{\theta\}$, we define a non-Archimedean potential as an inverse system of $\mathcal I$-model test curves in the big classes $\{\theta+\omega\}$, where $\omega$ ranges over K\"ahler forms. The transition maps are given by the $\mathcal I$-envelope.
+
+After the definition, we develop the basic operations on non-Archimedean potentials. Sums, translations, maxima, suprema, infima and rescalings are induced from the corresponding operations on test curves. We also define the non-Archimedean volume and prove its basic monotonicity and continuity properties.
+
+The next part of the chapter constructs the Duistermaat--Heckman measure of a non-Archimedean potential based on the theory of Okounkov bodies developed in \cref{chap:Okounkov}. It is defined through Okounkov test curves and is shown to be independent of the chosen flag.
+
+The final part compares this construction with the Boucksom--Jonsson theory. In the projective case, we define the analytification of our non-Archimedean potentials and prove that the resulting space is naturally identified with the Boucksom--Jonsson space of psh non-Archimedean metrics.
+
+A related approach has been developed independently by Mesquita-Piccione \cite{MP24}, where a Berkovich-like analytification of a compact K\"ahler manifold is constructed. The present chapter is logically based on the test-curve formalism of \cref{chap:testcurve}, especially the $\mathcal I$-model theory of \cref{sec:Imodeltc} and the operations of \cref{sec:operationtc}. It is largely independent of \cref{chap:toric_big,chap:Bergman}, while the comparison with Boucksom--Jonsson uses the non-Archimedean theory recalled in \cref{sec:compBJ}.
+
+\section{The definition of non-Archimedean metrics}\label{sec:nAm_def}
+Let $X$ be a connected compact K\"ahler manifold of dimension $n$.
+Let $\Kah(X)$ be the set of K\"ahler forms on $X$ with the partial order given as follows: We say $\omega\preceq \omega'$ if $\omega\geq \omega'$. Note that the partially ordered set $\Kah(X)$ is a directed set.
+
+Let $\theta$ be a closed smooth real $(1,1)$-form representing a pseudo-effective cohomology class.
+\begin{definition}\label{def:NApotential:L24}
+    We define
+    \[
+        \PSH^{\NA}(X,\theta)=\varprojlim_{\omega\in \Kah(X)} \PSH^{\NA}(X,\theta+\omega)_{>0}\footnotemark
+    \]
+    \index{non-Archimedean metric}
+    \index{$\PSH^{\NA}(X,\theta)$} \footnotetext{The cumbersome projective limit can be avoided if instead of relying on the language of quasi-plurisubharmonic functions, we use that of augmented nef b-divisors developed in \cref{def:augmented_nefb} instead. But given the fact that these two formulations are completely equivalent to each other by \cref{cor:nef_b_degenerate_2}, we just stick to the slightly more traditional language here.}
+    in the category of sets, where the transition maps are given as follows: Suppose that $\omega,\omega'\in \Kah$ and $\omega\geq \omega'$. Then the transition map is defined in \cref{prop:transitionPI}:
+    \begin{equation}\label{eq:PItransPSHNApositive}
+        P_{\theta+\omega}[\bullet]_{\mathcal{I}}\colon \PSH^{\NA}(X,\theta+\omega')_{>0}\rightarrow \PSH^{\NA}(X,\theta+\omega)_{>0}.
+    \end{equation}
+    \index{$P_{\theta+\omega}[\bullet]_{\mathcal{I}}$}
+    Note that the transition maps are compatible:
+    \[
+    P_{\theta+\omega''}[P_{\theta+\omega'}[\varphi]_\mathcal{I}]_\mathcal{I}=P_{\theta+\omega''}[\varphi]_\mathcal{I},\quad \forall \, \varphi\in \PSH^{\NA}(X,\theta+\omega)_{>0}
+    \]
+    for $\omega\leq\omega'\leq\omega''$, since both sides are $\mathcal{I}$-model and are $\mathcal{I}$-equivalent to $\varphi$.
+\end{definition}
+Recall that $\PSH^{\NA}(X,\theta)_{>0}$ is defined in \cref{def:Imodeltestcur}.
+
+In general, when we denote an element in $\PSH^{\NA}(X,\theta)$ by $\Gamma$, its component in $\PSH^{\NA}(X,\theta+\omega)_{>0}$ ($\omega\in \Kah(X)$) will be written either as $\Gamma^{\theta+\omega}$ or as $P_{\theta+\omega}[\Gamma]_{\mathcal{I}}$.
+
+Note that $\Gamma^{\theta+\omega}_{\max}$ is independent of the choice of $\omega\in \Kah(X)$. We denote this common value by $\Gamma_{\max}$\index{$\Gamma_{\max}$}.
+\begin{remark}\label{rmk:NApotential:L47}
+    Thanks to \cref{prop:Imodeltestcurveindeptheta}, for any other $\theta'$ representing $\{\theta\}$, we have a canonical bijection
+    \[
+    \PSH^{\NA}(X,\theta)\xrightarrow{\sim}\PSH^{\NA}(X,\theta').
+    \]
+    Moreover, these bijections satisfy the cocycle condition. If we view the set of closed real smooth $(1,1)$-forms representing $\{\theta\}$ as a category with a unique morphism between any two objects, then we can define
+    \[
+    \PSH^{\NA}(X,\{\theta\})=\varprojlim_{\theta} \PSH^{\NA}(X,\theta).
+    \]
+    This definition is independent of the choice of the explicit representative of the cohomology class $\{\theta\}$.
+
+    However, given the fact that our notation is already quite heavy, we stick to the set $\PSH^{\NA}(X,\theta)$. The constructions below are independent of the choice of $\theta$ within its cohomology class.
+\end{remark}
+
+\begin{proposition}\label{prop:testcminftyPrela}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$. Then given $\omega,\omega'\in \Kah(X)$ with $\omega\geq \omega'$, we have
+    \[
+        P_{\theta+\omega}\left[ \Gamma^{\theta+\omega'}_{-\infty} \right]=P_{\theta+\omega}\left[ \Gamma^{\theta+\omega'}_{-\infty} \right]_{\mathcal{I}} = \Gamma^{\theta+\omega}_{-\infty}.
+    \]
+\end{proposition}
+\begin{proof}
+Since for any $\tau<\Gamma_{\max}$, the potential $\Gamma^{\theta+\omega'}_{\tau}$ is $\mathcal{I}$-good by \cref{ex:ImodelIgood}, it follows that
+\[
+P_{\theta+\omega}\left[ \Gamma^{\theta+\omega'}_{\tau} \right]=P_{\theta+\omega}\left[ \Gamma^{\theta+\omega'}_{\tau} \right]_{\mathcal{I}}=\Gamma^{\theta+\omega}_{\tau}
+\]
+for all $\tau<\Gamma_{\max}$.
+Our assertion follows from \cref{prop:incnetmodel} and \cref{prop:incnetmodelPI}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:NAposNAemb}
+    There is a natural injective map
+    \[
+        \PSH^{\NA}(X,\theta)_{>0}\hookrightarrow \PSH^{\NA}(X,\theta),\quad \Gamma\mapsto \left(P_{\theta+\omega}[\Gamma]_{\mathcal{I}}\right)_{\omega\in \Kah(X)}.
+    \]
+\end{proposition}
+In the sequel, we do not distinguish an element of $\PSH^{\NA}(X,\theta)_{>0}$ from its image in $\PSH^{\NA}(X,\theta)$. Note that given $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$, the value of $\Gamma_{\max}$ does not depend on whether we view it as an element of $\PSH^{\NA}(X,\theta)_{>0}$ or of $\PSH^{\NA}(X,\theta)$.
+\begin{proof}
+    The map is well-defined by the compatibility of the transition maps. It suffices to argue its injectivity. Suppose that $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)_{>0}$ and
+    \[
+        P_{\theta+\omega}[\Gamma]_{\mathcal{I}}=P_{\theta+\omega}[\Gamma']_{\mathcal{I}}
+    \]
+    for some K\"ahler form $\omega$ on $X$. Then $\Gamma_{\max}=\Gamma'_{\max}$ and
+    for any $\tau<\Gamma_{\max}$, we have
+    \[
+        \Gamma_{\tau}\sim_{\mathcal{I}}\Gamma'_{\tau}
+    \]
+    by \cref{prop:Icomparandenvelope}. It follows again from \cref{prop:Icomparandenvelope} that
+    \[
+    \Gamma_{\tau}=\Gamma'_{\tau}.
+    \]
+    This completes the proof.
+\end{proof}
+
+
+\begin{definition}\label{def:NApotential:L102}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$. We define its \emph{volume}\index{volume!volume of a non-Archimedean metric} as follows:
+    \[
+        \vol \Gamma\coloneqq \lim_{\omega\in \Kah(X)} \int_X \left(\theta+\omega+\ddc \Gamma^{\theta+\omega}_{-\infty}\right)^n\in [0,\infty).
+    \]
+    \index{$\vol \Gamma$}
+\end{definition}
+Observe that the net is decreasing, so the limit exists.
+
+\begin{proposition}\label{prop:PSHNApvolGamma}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$. Then
+    \[
+        \vol \Gamma=\int_X \left(\theta+\ddc \Gamma_{-\infty}\right)^n.
+    \]
+\end{proposition}
+\begin{proof}
+    This follows from \cref{prop:vol_limit_model}, \cref{cor:varphiperturbtheta} and \cref{prop:PpreGammainf}.
+\end{proof}
+
+\begin{lemma}\label{lma:NA_mass_drop_transition}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$, let $\omega$ be a Kähler form on $X$, and let $0<t\leq 1$. Then for every $\tau<\Gamma_{\max}$, we have
+    \[
+    \begin{aligned}
+    &\int_X \left(\theta+t\omega+\ddc\Gamma^{\theta+t\omega}_{-\infty}\right)^n-\int_X \left(\theta+t\omega+\ddc\Gamma^{\theta+t\omega}_{\tau}\right)^n\\
+    \leq{}&\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{-\infty}\right)^n-\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{\tau}\right)^n.
+    \end{aligned}
+    \]
+\end{lemma}
+\begin{proof}
+    For $\sigma\in\{-\infty,\tau\}$, put
+    \[
+        S_t^\sigma=\theta+t\omega+\ddc\Gamma^{\theta+t\omega}_{\sigma}.
+    \]
+    By the transition compatibility and \cref{prop:testcminftyPrela,ex:ImodelIgood,prop:Ppresmass}, projecting $\Gamma^{\theta+t\omega}_{\sigma}$ to the class $\theta+\omega$ does not change the total mass computed in the larger class. Thus
+    \[
+    \int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{\sigma}\right)^n
+    =
+    \int_X \left(S_t^\sigma+(1-t)\omega\right)^n.
+    \]
+    Expanding the right-hand side and subtracting the two identities for $\sigma=-\infty$ and $\sigma=\tau$, we get
+    \[
+    \begin{aligned}
+    &\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{-\infty}\right)^n-\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{\tau}\right)^n\\
+    ={}&\sum_{a=0}^n \binom{n}{a}(1-t)^{n-a}
+    \left(\int_X (S_t^{-\infty})^a\wedge\omega^{n-a}-\int_X (S_t^\tau)^a\wedge\omega^{n-a}\right).
+    \end{aligned}
+    \]
+    Since $\Gamma^{\theta+t\omega}_{-\infty}\geq \Gamma^{\theta+t\omega}_{\tau}$, each summand is non-negative by the monotonicity theorem for mixed non-pluripolar products. Keeping only the term $a=n$ gives the desired inequality.
+\end{proof}
+
+\begin{lemma}\label{lma:positivemasspart}
+The image of the canonical injection
+\[
+\PSH^{\NA}(X,\theta)_{>0}\hookrightarrow \PSH^{\NA}(X,\theta)
+\]
+is given by the set of $\Gamma\in \PSH^{\NA}(X,\theta)$ with positive volume.
+\end{lemma}
+\begin{proof}
+By \cref{prop:PSHNApvolGamma}, every element in the image has positive volume.
+
+Conversely, take $\Gamma\in \PSH^{\NA}(X,\theta)$ with positive volume. We want to construct $\Gamma'\in \PSH^{\NA}(X,\theta)_{>0}$ representing $\Gamma$.
+
+Fix a K\"ahler form $\omega$ on $X$. Define
+\begin{equation}\label{eq:Gamma'_tau}
+    \Gamma'_{\tau}\coloneqq \lim_{k\to\infty}\Gamma^{\theta+k^{-1}\omega}_{\tau},\quad \tau<\Gamma_{\max}.
+\end{equation}
+We claim that it suffices to show
+\begin{equation}\label{eq:theta_kinvomega_masslim_pos}
+    \varliminf_{k\to\infty}\int_X \left(\theta+k^{-1}\omega+\ddc\Gamma^{\theta+k^{-1}\omega}_{\tau}\right)^n>0
+\end{equation}
+for some $\tau<\Gamma_{\max}$. If this holds, then the argument of \cref{lma:testcurvposmass} implies that the same holds for all $\tau<\Gamma_{\max}$. Then \cref{prop:vol_limit_model,prop:decnetmodelPI} guarantee that $\Gamma'\in \PSH^{\NA}(X,\theta)_{>0}$ and represents $\Gamma$.
+
+It remains to argue \eqref{eq:theta_kinvomega_masslim_pos}.
+Let $\epsilon=\vol \Gamma>0$.
+Take $\tau<\Gamma_{\max}$ so that
+\[
+\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{-\infty}\right)^n-\int_X \left(\theta+\omega+\ddc\Gamma^{\theta+\omega}_{\tau}\right)^n<\epsilon/2.
+\]
+Therefore, by \cref{lma:NA_mass_drop_transition}, for any $k\geq 1$,
+\[
+\int_X \left(\theta+k^{-1}\omega+\ddc\Gamma^{\theta+k^{-1}\omega}_{-\infty}\right)^n-\int_X \left(\theta+k^{-1}\omega+\ddc\Gamma^{\theta+k^{-1}\omega}_{\tau}\right)^n<\epsilon/2.
+\]
+By the definition of $\vol\Gamma$, the first integral in the preceding line tends to $\epsilon$ as $k\to\infty$. Hence
+\[
+    \varliminf_{k\to\infty}\int_X \left(\theta+k^{-1}\omega+\ddc\Gamma^{\theta+k^{-1}\omega}_{\tau}\right)^n\geq \epsilon/2>0,
+\]
+which proves \eqref{eq:theta_kinvomega_masslim_pos}.
+\end{proof}
+
+\begin{example}\label{ex:embedpshintona}
+    Fix $\varphi\in \PSH(X,\theta)$. We can define an associated non-Archimedean metric
+    \[
+    \Gamma^{\varphi}\in \PSH^{\NA}(X,\theta)
+    \]
+    as follows:
+    \begin{enumerate}
+        \item\label{itm:ex:embedpshintona:1} $\Gamma^{\varphi}_{\max}=0$;
+        \item\label{itm:ex:embedpshintona:2} for any $\omega\in \Kah(X)$ and any $\tau<0$, we set
+        \[
+        \Gamma^{\varphi,\theta+\omega}_{\tau}=P_{\theta+\omega}[\varphi]_{\mathcal{I}}.
+        \]
+    \end{enumerate}
+    Such non-Archimedean metrics are called \emph{homogeneous}\index{homogeneous non-Archimedean metric} non-Archimedean metrics.
+
+    Observe that
+    \[
+    \vol \Gamma^{\varphi}=\vol \theta_{\varphi}.
+    \]
+    See \cref{prop:vollinearlimit} and the footnote there.
+\end{example}
+
+\begin{definition}\label{def:PSHNAtrangeneral}
+    Let $\omega$ be a closed real smooth positive $(1,1)$-form on $X$. We define the map
+    \[
+    P_{\theta+\omega}[\bullet]_{\mathcal{I}}\colon \PSH^{\NA}(X,\theta)\rightarrow \PSH^{\NA}(X,\theta+\omega)
+    \]
+    \index{$P_{\theta+\omega}[\bullet]_{\mathcal{I}}$}
+    as follows: Given $\Gamma\in \PSH^{\NA}(X,\theta)$, we define $P_{\theta+\omega}[\Gamma]_{\mathcal{I}}$ as the element such that for any $\omega'\in \Kah(X)$, we have
+    \[
+    P_{\theta+\omega}[\Gamma]_{\mathcal{I}}^{\theta+\omega+\omega'}=\Gamma^{\theta+\omega+\omega'}.
+    \]
+\end{definition}
+It is straightforward to check that under the identification of \cref{prop:NAposNAemb}, the map $P_{\theta+\omega}[\bullet]_{\mathcal{I}}$ extends the map \eqref{eq:PItransPSHNApositive}.
+
+\begin{proposition}\label{prop:NApotential:L222}
+    The maps $P_{\theta+\omega}[\bullet]_{\mathcal{I}}$ in \cref{def:PSHNAtrangeneral} together induce a bijection
+    \begin{equation}\label{eq:PSHNAprojlimigeneral2}
+    \PSH^{\NA}(X,\theta)\xrightarrow{\sim} \varprojlim_{\omega\in \Kah(X)}\PSH^{\NA}(X,\theta+\omega).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    It is a tautology that the maps $P_{\theta+\omega}[\bullet]_{\mathcal{I}}$ in \cref{def:PSHNAtrangeneral} are compatible with the transition maps. So the map \eqref{eq:PSHNAprojlimigeneral2} is well-defined. It is injective by the same argument as \cref{prop:NAposNAemb}. We argue the surjectivity.
+
+    By unfolding the definitions, an object in the target of \eqref{eq:PSHNAprojlimigeneral2} is an assignment: With each $\omega\in \Kah(X)$, we associate a family $(\Gamma^{\omega,\omega'})_{\omega'\in \Kah(X)}$ satisfying:
+    \begin{enumerate}
+        \item\label{itm:chapter-NApotential:L242:1} $\Gamma^{\omega,\omega'}\in \PSH^{\NA}(X,\theta+\omega+\omega')_{>0}$ for each $\omega,\omega'\in \Kah(X)$;
+        \item\label{itm:chapter-NApotential:L242:2} for each $\omega,\omega',\omega''\in \Kah(X)$ satisfying $\omega''\geq \omega'$, we have
+        \[
+        P_{\theta+\omega+\omega''}\left[\Gamma^{\omega,\omega'}\right]_{\mathcal{I}}=\Gamma^{\omega,\omega''};
+        \]
+        \item\label{itm:chapter-NApotential:L242:3} for each $\omega,\omega',\omega''\in \Kah(X)$ satisfying $\omega\leq \omega'$, we have
+        \[
+        P_{\theta+\omega'+\omega''}\left[\Gamma^{\omega,\omega''}\right]_{\mathcal{I}}=\Gamma^{\omega',\omega''}.
+        \]
+    \end{enumerate}
+    The preimage of such an object is given by the family $(\Gamma^{\theta+\omega})_{\omega\in \Kah(X)}$ given by
+    \[
+        \Gamma^{\theta+\omega}=\Gamma^{\omega/2,\omega/2}.
+    \]
+    The fact that the image of $\Gamma$ is as expected follows directly from the definitions.
+\end{proof}
+With an almost identical argument involving \cref{prop:vol_limit_model}, we get
+\begin{proposition}\label{prop:PSHNAreform1}
+    The maps $P_{\theta+\omega}[\bullet]_{\mathcal{I}}$ in \cref{def:PSHNAtrangeneral} and the injective maps \cref{prop:NAposNAemb} together induce bijections
+    \begin{equation}\label{eq:PSHNAprojlimigeneral}
+    \PSH^{\NA}(X,\theta)\xrightarrow{\sim} \varprojlim_{\omega}\PSH^{\NA}(X,\theta+\omega)_{>0}\xrightarrow{\sim} \varprojlim_{\omega}\PSH^{\NA}(X,\theta+\omega),
+    \end{equation}
+    where $\omega$ runs over either the partially ordered set of all smooth closed real positive $(1,1)$-forms with positive volume\footnote{This partially ordered set is not directed.} on $X$ or $\Kah(X)$.
+\end{proposition}
+
+\begin{corollary}\label{cor:PSHNAbimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a compact K\"ahler manifold $Y$. Then $\pi^*$ induces a bijection
+    \[
+    \PSH^{\NA}(X,\theta)\xrightarrow{\sim} \PSH^{\NA}(Y,\pi^*\theta).
+    \]
+\end{corollary}
+\begin{proof}
+    This follows immediately from \cref{prop:PSHNAreform1}.
+\end{proof}
+It is immediate to verify that $\pi^*$ in \cref{cor:PSHNAbimero} extends the map \cref{prop:ETCIbimero}.
+
+\section{Operations on non-Archimedean metrics}\label{sec:opnA}
+Let $X$ be a connected compact K\"ahler manifold of dimension $n$ and $\theta,\theta',\theta''$ be closed real smooth $(1,1)$-forms on $X$ representing big cohomology classes.
+
+This section relies heavily on \cref{sec:operationtc}. We shall use the notions introduced in that section without further explanations.
+
+\begin{definition}\label{def:NApotential:L274}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$, $\Gamma'\in \PSH^{\NA}(X,\theta')$. We say $\Gamma\leq \Gamma'$ if for some $\omega\in \Kah(X)$, we have
+    \index{non-Archimedean metric!partial order}
+    \[
+        \Gamma^{\theta+\omega} \leq \Gamma'{}^{\theta'+\omega}.
+    \]
+\end{definition}
+This notion is independent of the choice of $\omega$ thanks to \cref{lma:testcurord1}.
+
+Moreover, we have the following:
+\begin{proposition}\label{prop:NApotential:L284}
+    Let $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$ and $\omega$ be a closed smooth positive $(1,1)$-form on $X$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:chapter-NApotential:L296:1} $\Gamma\leq \Gamma'$;
+        \item\label{itm:chapter-NApotential:L296:2} $P_{\theta+\omega}[\Gamma]_{\mathcal{I}}\leq P_{\theta+\omega}[\Gamma']_{\mathcal{I}}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    This follows immediately from \cref{lma:testcurord1}.
+\end{proof}
+
+
+Observe that this definition coincides with the corresponding definition in \cref{def:potestcurve} when $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)_{>0}$.
+
+\begin{proposition}\label{prop:vol_NAmetric_mono}
+    Let $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$. Assume that $\Gamma\leq \Gamma'$. Then
+    \[
+    \vol \Gamma\leq \vol \Gamma'.
+    \]
+\end{proposition}
+\begin{proof}
+    It suffices to show that for any Kähler form $\omega$ on $X$, we have
+    \[
+    \vol \Gamma^{\theta+\omega}_{-\infty}\leq \vol \Gamma'{}^{\theta+\omega}_{-\infty},
+    \]
+    which is an immediate consequence of \cref{thm:mono}.
+\end{proof}
+
+\begin{definition}\label{def:sumNAmetrics}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $\Gamma'\in \PSH^{\NA}(X,\theta')$. Then we define $\Gamma+\Gamma'\in \PSH^{\NA}(X,\theta+\theta')$ as the unique element such that for any $\omega\in \Kah(X)$, we have
+    \index{non-Archimedean metric!sum}
+    \[
+    \left( \Gamma+\Gamma' \right)^{\theta+\theta'+2\omega}=\Gamma^{\theta+\omega}+\Gamma'^{\theta'+\omega}.
+    \]
+\end{definition}
+This definition yields an element in $\PSH^{\NA}(X,\theta+\theta')$ by \cref{lma:testcursumcomp} and it extends the definition in \cref{def:sumtestcur} by \cref{lma:testcursumcomp} as well.
+
+\begin{proposition}\label{prop:NApotential:L321}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $\Gamma'\in \PSH^{\NA}(X,\theta')$. Suppose that $\omega,\omega'$ are two smooth closed positive $(1,1)$-forms on $X$. Then
+    \[
+    P_{\theta+\omega+\theta'+\omega'}[\Gamma+\Gamma']_{\mathcal{I}}=P_{\theta+\omega}[\Gamma]_{\mathcal{I}}+P_{\theta'+\omega'}[\Gamma']_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of \cref{lma:testcursumcomp}.
+\end{proof}
+
+\begin{proposition}\label{prop:NApotential:L331}
+    The operation $+$ is commutative and associative: For any $\Gamma\in \PSH^{\NA}(X,\theta)$, $\Gamma'\in \PSH^{\NA}(X,\theta')$ and $\Gamma''\in \PSH^{\NA}(X,\theta'')$, we have
+    \[
+    \Gamma+\Gamma'=\Gamma'+\Gamma,\quad (\Gamma+\Gamma')+\Gamma''=\Gamma+(\Gamma'+\Gamma'').
+    \]
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of \cref{prop:testcurvesumproperty}.
+\end{proof}
+
+\begin{definition}\label{def:NApotential:L341}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $C\in \mathbb{R}$. We define $\Gamma+C\in \PSH^{\NA}(X,\theta)$ as the unique element such that for any $\omega\in \Kah(X)$, we have
+    \index{non-Archimedean metric!translation}
+    \[
+    \left( \Gamma+C \right)^{\theta+\omega}=\Gamma^{\theta+\omega}+C.
+    \]
+\end{definition}
+It is obvious from \cref{def:testcurvplusC} that $\Gamma+C\in \PSH^{\NA}(X,\theta)$. It is also obvious that this definition extends \cref{def:testcurvplusC}.
+
+\begin{proposition}\label{prop:NApotential:L350}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $C\in \mathbb{R}$. Suppose that $\omega$ is a smooth closed positive $(1,1)$-form on $X$. Then
+    \[
+    P_{\theta+\omega}[\Gamma]_{\mathcal{I}}+C=P_{\theta+\omega}[\Gamma+C]_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This is clear by definition.
+\end{proof}
+
+\begin{proposition}\label{prop:NAmetricplusC}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$, $\Gamma'\in \PSH^{\NA}(X,\theta')$ and $C,C'\in \mathbb{R}$. Then
+    \begin{enumerate}
+        \item\label{itm:prop:NAmetricplusC:1} $(\Gamma+\Gamma')+C=\Gamma+(\Gamma'+C)=(\Gamma+C)+\Gamma'$;
+        \item\label{itm:prop:NAmetricplusC:2} $\Gamma+(C+C')=(\Gamma+C)+C'$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of \cref{prop:testcurveplusC}.
+\end{proof}
+
+\begin{proposition}\label{prop:vol_inv_plusC}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $C\in \mathbb{R}$. Then
+    \[
+    \vol \Gamma=\vol (\Gamma+C).
+    \]
+\end{proposition}
+\begin{proof}
+    It suffices to show that for each Kähler form $\omega$ on $X$,
+    \[
+    \vol \Gamma^{\theta+\omega}_{-\infty}=\vol (\Gamma+C)^{\theta+\omega}_{-\infty},
+    \]
+    which is obvious.
+\end{proof}
+
+\begin{definition}\label{def:PSHNAlor}
+    Let $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$, we define $\Gamma\lor \Gamma'\in \PSH^{\NA}(X,\theta)$ as the unique element such that for any $\omega\in \Kah(X)$, we have
+    \index{non-Archimedean metric!maximum}
+    \[
+    \left( \Gamma\lor \Gamma' \right)^{\theta+\omega}=\Gamma^{\theta+\omega}\lor \Gamma'^{\theta+\omega}.
+    \]
+\end{definition}
+It follows from \cref{lma:testcurlorPthetapomega} that $\Gamma\lor \Gamma'\in \PSH^{\NA}(X,\theta)$ and this definition extends the corresponding definition in \cref{def:testcurlor}.
+
+\begin{proposition}\label{prop:NApotential:L394}
+    Let $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$ and $\omega$ be a closed smooth positive $(1,1)$-form on $X$. Then
+    \[
+    P_{\theta+\omega}[\Gamma\lor \Gamma']_{\mathcal{I}}=P_{\theta+\omega}[\Gamma]_{\mathcal{I}}\lor P_{\theta+\omega}[\Gamma']_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of \cref{lma:testcurlorPthetapomega}.
+\end{proof}
+
+\begin{proposition}\label{prop:NApotential:L404}
+    The operation $\lor$ is commutative and associative.
+\end{proposition}
+In particular, given a finite non-empty family $(\Gamma^i)_{i\in I}$ in $\PSH^{\NA}(X,\theta)$, we then define $\bigvee_{i\in I}\Gamma^i$ in the obvious way.
+\begin{proof}
+    This is a direct consequence of \cref{cor:testcurvlorprop}.
+\end{proof}
+
+
+\begin{definition}\label{def:NApotential:L413}
+    Let $(\Gamma^i)_{i\in I}$ be a non-empty family in $\PSH^{\NA}(X,\theta)$. Assume that
+    \index{non-Archimedean metric!usc supremum}
+    \begin{equation}\label{eq:supPSHNAmaxfinite}
+        \sup_{i\in I}\Gamma^i_{\max}<\infty.
+    \end{equation}
+    Then we define $\uscsup[i\in I]\Gamma^i\in \PSH^{\NA}(X,\theta)$ as the unique element such that for any $\omega\in \Kah(X)$, we have
+    \[
+        \left( \uscsup[i\in I]\Gamma^i \right)^{\theta+\omega}=\uscsup[i\in I]\Gamma^{i,\theta+\omega}.
+    \]
+\end{definition}
+It follows immediately from \cref{lma:testcursupcompatible} that $\uscsup[i\in I]\Gamma^i\in \PSH^{\NA}(X,\theta)$ and this definition extends \cref{def:testcurvsupsgeneral}.
+Moreover, this definition clearly extends \cref{def:PSHNAlor} as well.
+
+\begin{proposition}\label{prop:NAsupproj}
+    Let $(\Gamma^i)_{i\in I}$ be a non-empty family in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:supPSHNAmaxfinite}. Assume that $\omega$ is a closed smooth positive $(1,1)$-form on $X$. Then
+    \[
+    P_{\theta+\omega}\left[ \uscsup[i\in I] \Gamma^{i} \right]_{\mathcal{I}}= \uscsup[i\in I] P_{\theta+\omega}\left[ \Gamma^{i} \right]_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This is a direct consequence of \cref{lma:testcursupcompatible}.
+\end{proof}
+
+We also have a non-Archimedean version of Choquet's lemma.
+\begin{proposition}\label{prop:NAChoquet}
+    Let $(\Gamma^i)_{i\in I}$ be a non-empty family in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:supPSHNAmaxfinite}. Then there exists a countable subfamily $I'\subseteq I$ such that
+    \[
+        \uscsup[i\in I]\Gamma^i=\uscsup[i\in I']\Gamma^i.
+    \]
+\end{proposition}
+\begin{proof}
+    Fix a K\"ahler form $\omega_0$ on $X$. For each $m\geq 1$, \cref{prop:testcurvChoquet} gives a countable subfamily $I_m\subseteq I$ such that
+    \[
+    \uscsup[i\in I]P_{\theta+m^{-1}\omega_0}[\Gamma^i]_{\mathcal{I}}=\uscsup[i\in I_m]P_{\theta+m^{-1}\omega_0}[\Gamma^i]_{\mathcal{I}}.
+    \]
+    Set $I'=\bigcup_{m\geq 1}I_m$. This is countable. We claim that it works.
+
+    Let $\omega'\in \Kah(X)$. Choose $m$ so large that $\omega'\geq m^{-1}\omega_0$. By \cref{prop:NAsupproj} and the compatibility of the transition maps,
+    \[
+    \begin{aligned}
+    \uscsup[i\in I]P_{\theta+\omega'}[\Gamma^i]_{\mathcal{I}}
+    =&P_{\theta+\omega'}\left[\uscsup[i\in I]P_{\theta+m^{-1}\omega_0}[\Gamma^i]_{\mathcal{I}}\right]_{\mathcal{I}}\\
+    =&P_{\theta+\omega'}\left[\uscsup[i\in I']P_{\theta+m^{-1}\omega_0}[\Gamma^i]_{\mathcal{I}}\right]_{\mathcal{I}}\\
+    =&\uscsup[i\in I']P_{\theta+\omega'}[\Gamma^i]_{\mathcal{I}}.
+    \end{aligned}
+    \]
+    Thus the two non-Archimedean metrics have the same component in every class $\theta+\omega'$, and the assertion follows.
+\end{proof}
+
+\begin{proposition}\label{prop:supGammiotherprop2}
+    Let $(\Gamma^i)_{i\in I}$ be a non-empty family in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:supPSHNAmaxfinite}. Let $C\in \mathbb{R}$. Then
+    \[
+    \uscsup[i\in I] (\Gamma^i+C)=\uscsup[i\in I] \Gamma^i+C.
+    \]
+    Suppose that $(\Gamma'^i)_{i\in I}$ is another family in $\PSH^{\NA}(X,\theta')$ satisfying \eqref{eq:supPSHNAmaxfinite}. Suppose that $\Gamma^i\leq \Gamma'^i$ for all $i\in I$. Then
+    \[
+    \uscsup[i\in I]\Gamma^i\leq \uscsup[i\in I]\Gamma'^i.
+    \]
+\end{proposition}
+\begin{proof}
+    This is an immediate consequence of \cref{prop:supGammiotherprop}.
+\end{proof}
+
+\begin{proposition}\label{prop:vol_NA_incnet_cont}
+    Let $(\Gamma^i)_{i\in I}$ be an increasing net in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:supPSHNAmaxfinite}. Then
+    \begin{equation}\label{eq:prop:vol_NA_incnet_cont}
+    \vol \left( \uscsup[i\in I] \Gamma^i \right)=\lim_{i\in I} \vol \Gamma^i.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    The $\geq$ direction in \eqref{eq:prop:vol_NA_incnet_cont} is a direct consequence of \cref{prop:vol_NAmetric_mono}. It remains to prove the reverse inequality.
+
+    Note that \eqref{eq:prop:vol_NA_incnet_cont} holds when $\vol \Gamma^i>0$ for each $i\in I$, as a consequence of \cref{prop:supsincnetteestcur}, \cref{cor:incnetdSconv} and \cref{thm:contvolu}.
+
+    In particular, for each Kähler form $\omega$ on $X$, we have
+    \[
+    \vol \left( \uscsup[i\in I] \Gamma^{i,\theta+\omega} \right)=\lim_{i\in I} \vol \Gamma^{i,\theta+\omega}.
+    \]
+    For our purpose, we need to show that for any $\epsilon>0$, we can find $\omega$ so that
+    \[
+    \sup_{i\in I} \vol \Gamma^{i,\theta+\omega}<\sup_{i\in I} \vol \Gamma^{i}+\epsilon.
+    \]
+    We shall show that it is possible to choose $\omega$ so that the stronger statement holds:
+    \[
+    \vol \Gamma^{i,\theta+\omega}<\vol \Gamma^{i}+\epsilon,\quad \forall i\in I.
+    \]
+    Equivalently, we need to choose $\omega$ so that for any Kähler form $\omega'$ on $X$ dominated by $\omega$, we have
+    \[
+    \vol \Gamma^{i,\theta+\omega}_{-\infty}<\vol \Gamma^{i,\theta+\omega'}_{-\infty}+\epsilon/2,\quad \forall i\in I.
+    \]
+    Fix a K\"ahler form $\omega_0$ on $X$ and a K\"ahler form $\Omega$ such that $\Omega\geq \theta+\omega_0$. It is enough to take $\omega=\delta\omega_0$ for some $\delta\in (0,1)$. If $\omega'$ is dominated by $\omega$, then $\theta+\omega'\leq \Omega$. Set
+    \[
+        T_i\coloneqq \theta+\omega'+\ddc \Gamma^{i,\theta+\omega'}_{-\infty}.
+    \]
+    By the transition compatibility and \cref{prop:PpreGammainf}, the potential $\Gamma^{i,\theta+\omega}_{-\infty}$ has the same $P$-singularity type in the class $\theta+\omega$ as $\Gamma^{i,\theta+\omega'}_{-\infty}$. Hence its mass can be computed as
+    \[
+        \int_X\left(\theta+\omega+\ddc\Gamma^{i,\theta+\omega'}_{-\infty}\right)^n=\int_X \left(T_i+\omega-\omega'\right)^n.
+    \]
+    Therefore,
+    \[
+    \begin{aligned}
+    \vol \Gamma^{i,\theta+\omega}_{-\infty}-\vol \Gamma^{i,\theta+\omega'}_{-\infty}
+    =&\int_X \left(T_i+\omega-\omega'\right)^n-\int_X T_i^n\\
+    =& \sum_{a=0}^{n-1} \binom{n}{a} \int_X T_i^a\wedge \left( \omega-\omega'\right)^{n-a}\\
+    \leq &\sum_{a=0}^{n-1} \binom{n}{a} \int_X \Omega^a\wedge \omega^{n-a}.
+    \end{aligned}
+    \]
+    In the last inequality we used the facts that $0\leq \omega-\omega'\leq \omega$ and $\theta+\omega'\leq \Omega$, and the monotonicity theorem \cref{thm:mono}.
+    We can choose $\omega$ so that the right-hand side is less than $\epsilon/2$. Our assertion then follows.
+\end{proof}
+
+\begin{definition}\label{def:NApotential:L525}
+    Let $(\Gamma^i)_{i\in I}$ be a decreasing net in $\PSH^{\NA}(X,\theta)$. Assume that
+    \index{non-Archimedean metric!infimum of a decreasing net}
+    \begin{equation}\label{eq:decnetcontition}
+    \inf_{i\in I}\Gamma^i_{\max}>-\infty,
+    \end{equation}
+    then we define $\inf_{i\in I}\Gamma^i\in \PSH^{\NA}(X,\theta)$ as the unique element such that for each $\omega\in \Kah(X)$, we have
+    \begin{equation}\label{eq:decnettestcurdef}
+    \left( \inf_{i\in I}\Gamma^i \right)^{\theta+\omega}=\inf_{i\in I} \Gamma^{i,\theta+\omega}.
+    \end{equation}
+\end{definition}
+We observe that
+\[
+\left( \inf_{i\in I}\Gamma^i \right)^{\theta+\omega}\in \PSH^{\NA}(X,\theta+\omega)_{>0}.
+\]
+This follows from \cref{prop:inftcistc}. Moreover, by \cref{lma:testcurinfcompatible}, we have $\inf_{i\in I}\Gamma^i\in \PSH^{\NA}(X,\theta)$, and this definition extends \cref{def:testcurinf}.
+
+In general,
+\[
+\vol \left( \inf_{i\in I}\Gamma^i \right)\leq \lim_{i\in I} \vol \Gamma^i
+\]
+as a consequence of \cref{prop:vol_NAmetric_mono}. But the reverse inequality fails in general.
+
+\begin{proposition}\label{prop:NApotential:L548}
+    Let $(\Gamma^i)_{i\in I}$ be a decreasing net in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:decnetcontition}. Assume that $\omega$ is a closed smooth positive $(1,1)$-form on $X$. Then
+    \[
+    P_{\theta+\omega}\left[ \inf_{i\in I} \Gamma^{i} \right]_{\mathcal{I}}= \inf_{i\in I} P_{\theta+\omega}\left[ \Gamma^{i} \right]_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This follows from \cref{lma:testcurinfcompatible}.
+\end{proof}
+
+\begin{proposition}\label{prop:infGammiotherprop2}
+    Let $(\Gamma^i)_{i\in I}$ be a decreasing net in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:decnetcontition}. Let $C\in \mathbb{R}$. Then
+    \[
+    \inf_{i\in I} (\Gamma^i+C)=\inf_{i\in I} \Gamma^i+C.
+    \]
+    Suppose that $(\Gamma'^i)_{i\in I}$ is another decreasing net in $\PSH^{\NA}(X,\theta')$ satisfying \eqref{eq:decnetcontition}. Suppose that $\Gamma^i\leq \Gamma'^i$ for all $i\in I$. Then
+    \[
+    \inf_{i\in I}\Gamma^i\leq \inf_{i\in I}\Gamma'^i.
+    \]
+\end{proposition}
+\begin{proof}
+    This is clear by definition.
+\end{proof}
+
+\begin{definition}\label{def:NApotential:L572}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $\lambda\in \mathbb{R}_{>0}$. Then we define $\lambda \Gamma\in \PSH^{\NA}(X,\lambda\theta)$ as the unique element such that for any $\omega\in \Kah(X)$, we have
+    \index{non-Archimedean metric!rescaling}
+    \[
+    \left( \lambda\Gamma \right)^{\lambda\theta+\omega}=\lambda \Gamma^{\theta+\lambda^{-1}\omega}.
+    \]
+\end{definition}
+It follows immediately from \cref{lma:testcurvrescompatible} that $\lambda \Gamma\in \PSH^{\NA}(X,\lambda\theta)$ and this definition extends \cref{def:res}.
+
+\begin{proposition}\label{prop:NApotential:L581}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $\lambda\in \mathbb{R}_{>0}$. Then for any closed smooth positive $(1,1)$-form $\omega$ on $X$, we have
+    \[
+    P_{\lambda\theta+\omega}[\lambda\Gamma]_{\mathcal{I}}=\lambda P_{\theta+\lambda^{-1}\omega}[\Gamma]_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    This follows immediately from \cref{lma:testcurvrescompatible}.
+\end{proof}
+
+\begin{proposition}\label{prop:resclacompat2}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$, $\Gamma'\in \PSH^{\NA}(X,\theta')$, $C\in \mathbb{R}$ and $\lambda,\lambda'>0$, we have
+    \[
+        \begin{aligned}
+        \lambda(\Gamma+\Gamma')=&\lambda\Gamma+\lambda\Gamma',\\
+        (\lambda\lambda')\Gamma=&\lambda(\lambda'\Gamma),\\
+        \lambda(\Gamma+C)=&\lambda\Gamma+\lambda C.
+        \end{aligned}
+    \]
+    Suppose that $(\Gamma^i)_{i\in I}$ is a non-empty family in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:supPSHNAmaxfinite}. Then
+    \[
+    \lambda \left( \uscsup[i\in I]\Gamma^i \right)=\uscsup[i\in I](\lambda \Gamma^i).
+    \]
+    If $(\Gamma^i)_{i\in I}$ is a decreasing net in $\PSH^{\NA}(X,\theta)$ satisfying \eqref{eq:decnetcontition}, then
+    \[
+    \lambda \left( \inf_{i\in I}\Gamma^i \right)=\inf_{i\in I}(\lambda \Gamma^i).
+    \]
+\end{proposition}
+\begin{proof}
+Everything except the last assertion follows from \cref{prop:resclacompat}. The last assertion follows directly from the definition.
+\end{proof}
+
+\begin{proposition}\label{prop:vol_NA_resc}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $\lambda\in \mathbb{R}_{>0}$. Then
+    \[
+    \vol \left( \lambda \Gamma \right)=\lambda^n \vol \Gamma.
+    \]
+\end{proposition}
+\begin{proof}
+    This is clear by definition.
+\end{proof}
+
+\begin{definition}\label{def:NApotential:L623}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$. Let $Y\subseteq X$ be an irreducible analytic subset. We say that the trace operator of $\Gamma$ along $Y$ is \emph{well-defined} if
+    \index{non-Archimedean metric!trace operator}
+    \[
+    \nu\left(\Gamma_{\tau}^{\theta+\omega},Y\right)=0
+    \]
+    for all sufficiently negative $\tau$ and every $\omega\in \Kah(X)$. We define
+    \[
+    \left(\Tr_Y(\Gamma)\right)_{\max}\coloneqq \sup\left\{ \tau<\Gamma_{\max}: \nu\left(\Gamma_{\tau}^{\theta+\omega},Y\right)=0\right\}.
+    \]
+    Here $\omega$ is any K\"ahler form on $X$; this number is independent of the choice of $\omega$ by the compatibility of the transition maps.
+
+
+    In this case, we define $\Tr_Y(\Gamma)\in \PSH^{\NA}(\widetilde{Y},\theta|_{\widetilde{Y}})$\footnote{Here $\widetilde{Y}\rightarrow Y$ is the normalization of $Y$.} as the unique element such that for any $\omega\in \Kah(\widetilde{Y})$, the component
+    \begin{equation}\label{eq:TrYinPSHNAg0}
+    \Tr_Y(\Gamma)^{\theta|_{\widetilde{Y}}+\omega}\in \PSH^{\NA}(\widetilde{Y},\theta|_{\widetilde{Y}}+\omega)_{>0}
+    \end{equation}
+    is defined as follows:
+    \begin{enumerate}
+        \item\label{itm:eq:TrYinPSHNAg0:1} We let
+        \begin{equation}\label{eq:tracemax}
+        \left( \Tr_Y(\Gamma)^{\theta|_{\widetilde{Y}}+\omega} \right)_{\max}=\left(\Tr_Y(\Gamma)\right)_{\max};
+        \end{equation}
+        \item\label{itm:eq:TrYinPSHNAg0:2} for each $\tau\in \mathbb{R}$ less than $\left(\Tr_Y(\Gamma)\right)_{\max}$, we define
+        \[
+        \Tr_Y(\Gamma)^{\theta|_{\widetilde{Y}}+\omega}_{\tau}\coloneqq P_{\theta|_{\widetilde{Y}}+\omega}\left[ \Tr_Y^{\theta+\tilde{\omega}}\left(\Gamma^{\theta+\tilde{\omega}}_{\tau}\right) \right]_{\mathcal{I}},
+        \]
+        where $\tilde{\omega}$ is an arbitrary K\"ahler form on $X$ such that $\omega\geq \tilde{\omega}|_{\widetilde{Y}}$.
+    \end{enumerate}
+\end{definition}
+It follows from \cite[Proposition~3.6]{GK20} that $\widetilde{Y}$ is a normal K\"ahler space and hence $\tilde{\omega}$ exists. We observe that the choice of the trace operator $\Tr_Y^{\theta+\tilde{\omega}}\left(\Gamma^{\theta+\tilde{\omega}}_{\tau}\right)$ is irrelevant since two different choices are $\mathcal{I}$-equivalent. Moreover, \eqref{eq:TrYinPSHNAg0} holds as a consequence of \cref{prop:traceunique} and \cref{prop:tracelinear}. It is therefore clear that $\Tr_Y(\Gamma)\in \PSH^{\NA}(\widetilde{Y},\theta|_{\widetilde{Y}})$. Here when $\widetilde{Y}$ is not smooth, we understand $\PSH^{\NA}(\widetilde{Y},\theta|_{\widetilde{Y}})$ as the set of non-Archimedean metrics on a resolution of $\widetilde{Y}$, which is independent of the choice of the resolution by \cref{prop:tracelinear}. See \cref{chap:unibranch} for more details.
+
+\begin{proposition}\label{prop:NApotential:L655}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a compact K\"ahler manifold $Y$. Then all definitions in this section are invariant under pullback to $Y$.
+\end{proposition}
+The meaning is clear in most cases. In the case of the trace operator, this means the following: Suppose that $Z\subseteq X$ is an analytic subset and $\Gamma\in \PSH^{\NA}(X,\theta)$ has non-trivial restriction to $Z$. Suppose that $Z$ is not contained in the non-isomorphism locus of $\pi$ so that the strict transform $W$ of $Z$ is defined. If we write $\Pi\colon W\rightarrow Z$ for the restriction of $\pi$ and $\widetilde{\Pi}\colon \widetilde{W}\rightarrow \widetilde{Z}$ the strict transform of $\Pi$, then we have
+\[
+    \widetilde{\Pi}^* \Tr_Z(\Gamma)=\Tr_W(\pi^*\Gamma).
+\]
+The relevant notations are summarized in the following diagram:
+\[
+\begin{tikzcd}
+\widetilde{W} \arrow[r] \arrow[d, "\widetilde{\Pi}"] & W \arrow[r] \arrow[d, "\Pi"] & Y \arrow[d, "\pi"] \\
+\widetilde{Z} \arrow[r]                          & Z \arrow[r]                  & X.
+\end{tikzcd}
+\]
+\begin{proof}
+We only prove the assertion for the trace operator, as the other proofs are similar.
+
+We shall use the notations above. Observe that for any closed positive smooth $(1,1)$-form $\omega$ on $X$ with positive mass, we have
+\[
+\left(\widetilde{\Pi}^* \Tr_Z(\Gamma)\right)_{\max}=\left( \Tr_Z(\Gamma)\right)_{\max}=\sup\left\{ \tau<\Gamma_{\max}: \nu\left(\Gamma^{\theta+\omega}_{\tau},Z\right)=0 \right\},
+\]
+and
+\[
+\begin{aligned}
+\left(\Tr_W(\pi^*\Gamma)\right)_{\max}=&\sup\left\{ \tau<\Gamma_{\max}: \nu\left((\pi^*\Gamma)^{\pi^*\theta+\pi^*\omega}_{\tau},W\right)=0 \right\}\\
+=&\sup\left\{ \tau<\Gamma_{\max}: \nu\left(\pi^*\Gamma^{\theta+\omega}_{\tau},W\right)=0 \right\}\\
+=& \sup\left\{ \tau<\Gamma_{\max}: \nu\left(\Gamma^{\theta+\omega}_{\tau},Z\right)=0 \right\}.
+\end{aligned}
+\]
+Here we implicitly used \cref{prop:PSHNAreform1}.
+Therefore,
+\[
+\left(\widetilde{\Pi}^* \Tr_Z(\Gamma)\right)_{\max}=\left(\Tr_W(\pi^*\Gamma)\right)_{\max}.
+\]
+Let $\tau\in \mathbb{R}$ be less than this common value. Take a K\"ahler form $\omega_{\widetilde{Z}}$ (resp. $\omega_{\widetilde{W}}$) on $\widetilde{Z}$ (resp. $\widetilde{W}$).
+Take a K\"ahler form $\omega_Y$ on $Y$ (resp. $\omega_X$ on $X$) such that
+\[
+\omega_{\widetilde{Z}}\geq \omega_X|_{\widetilde{Z}},\quad \omega_{\widetilde{W}} \geq \omega_Y|_{\widetilde{W}},\quad \omega_Y \geq \pi^*\omega_X.
+\]
+We want to show that, after projection to the common background $(\pi^*\theta)|_{\widetilde{W}}+\omega_{\widetilde{W}}$,
+\[
+P_{(\pi^*\theta)|_{\widetilde{W}}+\omega_{\widetilde{W}}}\left[\widetilde{\Pi}^*\left(\Tr_Z(\Gamma)^{\theta|_{\widetilde{Z}}+\omega_{\widetilde{Z}}}_\tau\right)\right]_{\mathcal I} \sim_P
+\left(\Tr_W(\pi^*\Gamma)\right)^{(\pi^*\theta)|_{\widetilde{W}}+\omega_{\widetilde{W}}}_\tau.
+\]
+
+Unfolding the definitions, we reduce to
+\[
+\widetilde{\Pi}^* \Tr_Z^{\theta+\omega_X}\left( \Gamma^{\theta+\omega_X}_{\tau} \right)\sim_P \Tr_{W}^{\pi^*\theta+\omega_Y}\left( \left( \pi^*\Gamma\right)^{\pi^*\theta+\omega_Y}_{\tau}\right).
+\]
+Using \cref{prop:tracelinear}, this is equivalent to
+\[
+\widetilde{\Pi}^* \Tr_Z\left( \Gamma^{\theta+\omega_X}_{\tau} \right)\sim_P \Tr_{W}\left( \left( \pi^*\Gamma\right)^{\pi^*\theta+\pi^*\omega_X}_{\tau}\right).
+\]
+This is a consequence of \cref{lma:rescommpullback}.
+\end{proof}
+
+
+\section{Duistermaat--Heckman measures}\label{sec:DHmeasure}
+Let $X$ be a connected compact K\"ahler manifold of dimension $n$ and $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class.
+
+
+
+\begin{definition}\label{def:DHm}
+Assume that $X$ admits a smooth flag $Y_{\bullet}$. Let $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$.
+    The \emph{Duistermaat--Heckman measure}\index{Duistermaat--Heckman measure} $\DHm(\Gamma)$\index{$\DHm(\Gamma)$} of $\Gamma$ is defined as
+    \[
+    \DHm(\Gamma)\coloneqq n!\cdot \DHm\left(\Delta_{Y_{\bullet}}(\theta,\Gamma)\right).
+    \]
+\end{definition}
+Recall that $\Delta_{Y_{\bullet}}(\theta,\Gamma)\in \TC(\Delta_{Y_{\bullet}}(\theta,\Gamma_{-\infty}))$ is the Okounkov test curve defined in \cref{thm:Okountescurvex}.
+See \cref{def:DHmeasureOTC} for the definition of the Duistermaat--Heckman measure of an Okounkov test curve.
+
+\begin{theorem}\label{thm:DHindep}
+Assume that $X$ admits a smooth flag $Y_{\bullet}$.
+    The Duistermaat--Heckman measure $\DHm(\Gamma)$ of $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$ in \cref{def:DHm} is independent of the choice of the smooth flag $Y_{\bullet}$. Furthermore, for any $m\in \mathbb{Z}_{>0}$, the following moment identity holds:
+    \begin{equation}\label{eq:momentDHmtc1}
+    \int_{\mathbb{R}}x^m\DHm(\Gamma)(x)=\Gamma_{\max}^m\vol \Gamma+m\int_{-\infty}^{\Gamma_{\max}}\tau^{m-1}\Bigl( \vol (\theta+\ddc \Gamma_{\tau})-\vol \Gamma \Bigr)\,\mathrm{d}\tau,
+    \end{equation}
+    and
+    \begin{equation}\label{eq:momentDHmtc2}
+        \int_{\mathbb{R}}\DHm(\Gamma)=\vol \Gamma.
+    \end{equation}
+\end{theorem}
+For each $m\in \mathbb{N}$, $\int_{\mathbb{R}}x^m\DHm(\Gamma)(x)$ is indeed $n!$ times the $m$-th moment of the random variable $G[\Delta_{Y_{\bullet}}(\theta,\Gamma)]$, by \cref{def:DHm,def:DHmeasureOTC}.
+
+\begin{proof}
+We observe that \eqref{eq:momentDHmtc1} holds by the computations in \cref{prop:DHmoments} and \itemref{itm:thm:pobmain:1}. It is independent of the choice of the flag. Furthermore, \eqref{eq:momentDHmtc2} follows immediately from \itemref{itm:thm:pobmain:1}.
+
+
+Assume first that $\Gamma$ is bounded.
+Since the Duistermaat--Heckman measure has bounded support in this case (cf. \cref{thm:Okotestcurve}), we conclude that $\DHm(\Gamma)$ is uniquely determined.
+
+By translating the parameter, it suffices to treat the case $\Gamma_{\max}=0$. Indeed, if $a=\Gamma_{\max}$ and
+\[
+    \widetilde\Gamma_\tau\coloneqq\Gamma_{\tau+a},
+\]
+then $\widetilde\Gamma_{\max}=0$, and the associated test function is translated by $a$. Consequently,
+\[
+    \DHm(\Gamma)=(x\mapsto x+a)_*\DHm(\widetilde\Gamma).
+\]
+Thus independence of the flag and the moment identity for $\widetilde\Gamma$ imply the corresponding assertions for $\Gamma$.
+
+For each $\epsilon>0$, we define $\Gamma^{\epsilon}\in \PSH^{\NA}(X,\theta)_{>0}$ as follows:
+\begin{enumerate}
+        \item\label{itm:chapter-NApotential:L761:1} Let $\Gamma^{\epsilon}_{\max}=0$, and
+        \item\label{itm:chapter-NApotential:L761:2} we set
+        \[
+        \Gamma^{\epsilon}_{\tau}=
+        \begin{cases}
+            \Gamma_{-\infty},&\text{ if }\tau\leq -\epsilon^{-1},\\
+            P_{\theta}\left[ (1+\epsilon\tau)\Gamma_{\tau}-\epsilon\tau \Gamma_{-\infty} \right],&\text{ if }\tau\in \left(-\epsilon^{-1},0\right).
+        \end{cases}
+        \]
+    \end{enumerate}
+Let us check that $\Gamma^\epsilon$ is indeed an element of $\PSH^{\NA}(X,\theta)_{>0}$. The concavity and monotonicity in $\tau$ follow from \cref{prop:Pconc}. Since the $\Gamma_\tau$'s are $\mathcal I$-model, they are $\mathcal I$-good by \cref{ex:ImodelIgood}; hence
+\[
+(1+\epsilon\tau)\Gamma_\tau-\epsilon\tau\Gamma_{-\infty}
+\]
+is $\mathcal I$-good by \cref{prop:Igoodlinear}. Therefore its $P$-envelope is also its $\mathcal I$-envelope, and the corresponding level is $\mathcal I$-model. The value at $-\infty$ is
+$\Gamma_{-\infty}$. Thus $\Gamma^\epsilon\in\PSH^{\NA}(X,\theta)_{>0}$.
+
+
+For each fixed $\tau<0$, the argument of \cref{thm:Legenbij} Step~3.3 gives
+\[
+    \Gamma^\epsilon_\tau\searrow \Gamma_\tau \quad\textup{as }\epsilon\to 0+.
+\]
+By \cref{prop:vol_limit_model} and \cref{cor:decnetdS}, this convergence is in $d_S$. Hence \itemref{itm:thm:pobmain:4} gives
+\[
+    \Delta_{Y_\bullet}(\theta,\Gamma^\epsilon_\tau)\xrightarrow{d_{\Haus}}\Delta_{Y_\bullet}(\theta,\Gamma_\tau)
+\]
+for every $\tau<0$. Since
+\[
+    \Gamma^\epsilon_{-\infty}=\Gamma_{-\infty}
+\]
+for all $\epsilon$, the underlying convex body is fixed. Therefore \cref{lma:DHmconv} applies and gives
+\[
+    \DHm(\Gamma^\epsilon)\rightharpoonup\DHm(\Gamma).
+\]
+It follows that $\DHm(\Gamma)$ is independent of the choice of the flag.
+\end{proof}
+
+More generally, when $X$ does not admit a smooth flag, we may choose a modification $\pi\colon Y\rightarrow X$ so that $Y$ admits a flag. We define
+\begin{equation}\label{eq:DHmgeneral}
+\DHm(\Gamma)\coloneqq \DHm(\pi^*\Gamma).
+\end{equation}
+It follows from \itemref{itm:thm:pobmain:5} that this measure is independent of the choice of $\pi$.
+
+
+\begin{proposition}\label{prop:contDH}
+Let
+\[
+(\Gamma^i)_{i\geq 1}\subseteq \PSH^{\NA}(X,\theta)_{>0},\quad \Gamma\in \PSH^{\NA}(X,\theta)_{>0}.
+\]
+Assume one of the following conditions holds:
+\begin{enumerate}
+    \item\label{itm:prop:contDH:1} The sequence $(\Gamma^i)_{i\geq 1}$ is decreasing and $\Gamma=\inf_{i\geq 1}\Gamma^i$. Assume that
+    \begin{equation}\label{eq:volGammalim}
+    \vol \Gamma=\lim_{i\to\infty}\vol \Gamma^i.
+    \end{equation}
+    \item\label{itm:prop:contDH:2} The sequence $(\Gamma^i)_{i\geq 1}$ is increasing and $\Gamma=\uscsup[i\geq 1]\Gamma^i$.
+\end{enumerate}
+    Then
+    \begin{equation}\label{eq:contDHm}
+    \DHm(\Gamma^i)\rightharpoonup \DHm(\Gamma).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We may assume that $X$ admits a smooth flag $Y_{\bullet}$.
+
+    Assume \ref{itm:prop:contDH:1}. Let
+\[
+    \eta\coloneqq\inf_{i\geq 1}\Gamma^i_{-\infty}.
+\]
+Since $\Gamma_\tau\leq \Gamma^i_{-\infty}$ for every $i$ and every $\tau<\Gamma_{\max}$, we have
+\[
+    \Gamma_{-\infty}\leq \eta.
+\]
+By \cref{prop:vol_limit_model}, the decreasing limit $\eta$ is model and
+\[
+    \int_X\theta_\eta^n=\lim_{i\to\infty}\int_X\theta_{\Gamma^i_{-\infty}}^n=\lim_{i\to\infty}\vol\Gamma^i.
+\]
+Using \eqref{eq:volGammalim}, this equals
+\[
+    \vol\Gamma=\int_X\theta_{\Gamma_{-\infty}}^n.
+\]
+Since $\Gamma_{-\infty}\leq\eta$ and both potentials are model, \cref{prop:Pequivchar2} gives
+\[
+    \Gamma_{-\infty}=\eta.
+\]
+Thus
+\[
+    \Gamma_{-\infty}=\inf_{i\geq1}\Gamma^i_{-\infty}.
+\]
+
+We want to derive \eqref{eq:contDHm} from \cref{lma:DHmconv}.
+    It boils down to prove the following: For any $\tau<\Gamma_{\max}$, we have
+    \[
+        \Delta_{Y_{\bullet}}(\theta,\Gamma^i_{\tau})\xrightarrow{d_{\Haus}} \Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau}).
+    \]
+    For fixed $\tau<\Gamma_{\max}$, the potentials $\Gamma^i_\tau$ decrease to $\Gamma_\tau$. By \cref{prop:vol_limit_model}, their masses converge to the mass of $\Gamma_\tau$; hence $\Gamma^i_\tau\xrightarrow{d_S}\Gamma_\tau$ by \cref{cor:decnetdS}. Applying the continuity of the partial Okounkov body map, \itemref{itm:thm:pobmain:4}, gives
+    \[
+        \Delta_{Y_{\bullet}}(\theta,\Gamma^i_{\tau})\xrightarrow{d_{\Haus}}\Delta_{Y_{\bullet}}(\theta,\Gamma_{\tau}).
+    \]
+
+    The proof under the assumption \ref{itm:prop:contDH:2} is similar. We only need to apply \cref{lma:DHmconv2} instead of \cref{lma:DHmconv}.
+\end{proof}
+
+\begin{remark}\label{rmk:NApotential:L862}
+    When $\{\theta\}$ is a Hodge class and $\Gamma$ is induced by a test configuration as in \cref{ex:RWN} and \cref{rmk:PhongSturm}, our Duistermaat--Heckman measure coincides with the more traditional definition of \cite[Section~3.2]{BHJ17}. This is explained in \cite[Remark~7.17]{Xia21}.
+\end{remark}
+
+\section{Comparison with Boucksom--Jonsson's theory}\label{sec:compBJ}
+
+\subsection{A brief recap of Boucksom--Jonsson's theory}
+\label{subsec:BJ_recap}
+
+In this section, we briefly recall the non-Archimedean global pluripotential theory à la Boucksom--Jonsson \cite{BJ22}. Our presentation is selective, so the original paper remains the best companion for this section.
+
+\subsubsection{Valuations}
+\label{subsubsec:BJ_val}
+
+Let $X$ be an irreducible reduced variety over $\mathbb{C}$ of dimension $n$. We recall the Berkovich analytification $X^{\An}$ of $X$ with respect to the trivial valuation on $\mathbb{C}$.
+
+\begin{definition}\label{def:NApotential:L878}
+    A (real-valued) \emph{valuation}\index{valuation} on $X$ (or a \emph{valuation} of $\mathbb{C}(X)$) is a map $v\colon \mathbb{C}(X)\rightarrow (-\infty,\infty]$ satisfying the following conditions:
+\begin{enumerate}
+    \item\label{itm:chapter-NApotential:L883:1} For $f\in \mathbb{C}(X)$, $v(f)=\infty$ if and only if $f=0$;
+    \item\label{itm:chapter-NApotential:L883:2} For $f,g\in \mathbb{C}(X)$, $v(fg)=v(f)+v(g)$;
+    \item\label{itm:chapter-NApotential:L883:3} For $f,g\in \mathbb{C}(X)$, $v(f+g)\geq v(f)\land v(g)$;
+    \item\label{itm:chapter-NApotential:L883:4} For $c\in \mathbb{C}^{\times}$, $v(c)=0$.
+\end{enumerate}
+\end{definition}
+The set of valuations on $X$ is denoted by $X^{\val}$. The center of a valuation $v$ is the scheme-theoretic point $c=c(v)$ of $X$ such that $v\geq 0$ on $\mathcal{O}_{X,c}$ and $v>0$ on the maximal ideal $\mathfrak{m}_{X,c}$ of $\mathcal{O}_{X,c}$. The center is unique if it exists, and it exists if $X$ is proper.
+
+In the remainder of this section, we assume that $X$ is projective.
+
+As a set, $X^{\An}$ is the set of \emph{semi-valuations} on $X$, in other words, real-valued valuations $v$ on irreducible reduced subvarieties $Y$ of $X$ that are trivial on $\mathbb{C}$. We call $Y$ the \emph{support} of the semi-valuation $v$.
+In other words,
+\[
+X^{\An}=\coprod_{Y} Y^{\val}.
+\]
+We will write $v_{\triv}\in X^{\An}$ for the trivial valuation on $X$: $v_{\triv}(f)=0$ for any $f\in \mathbb{C}(X)^{\times}$.
+
+We endow $X^{\An}$ with the coarsest topology such that
+\begin{enumerate}
+    \item\label{itm:chapter-NApotential:L902:1} for any Zariski open subset $U\subseteq X$, the subset $U^{\An}$ of $X^{\An}$ consisting of semi-valuations whose supports meet $U$ is open;
+    \item\label{itm:chapter-NApotential:L902:2} for each Zariski open subset $U\subseteq X$ and each $f\in \mathrm{H}^0(U,\mathcal{O}_X)$ (here $\mathcal{O}_X$ is the sheaf of regular functions), the map $|f|\colon U^{\An}\rightarrow \mathbb{R}$ sending $v$ to $\exp(-v(f))$ is continuous.
+\end{enumerate}
+See \cite{Berk93} for more details.
+
+We will be most interested in divisorial valuations. Recall that a \emph{divisorial valuation} on $X$ is a valuation of the form $t\ord_E$, where $t\in \mathbb{Q}_{>0}$ and $E$ is a prime divisor over $X$. The set of divisorial valuations on $X$ is denoted by $X^{\Div}$. When $\mathbb{Q}_{>0}$ is replaced by $\mathbb{R}_{>0}$, we can similarly define a space $X^{\Div}_{\mathbb{R}}$.
+
+Given any coherent ideal $\mathfrak{a}$ on $X$ and any $v\in X^{\An}$, we define
+\begin{equation}\label{eq:va}
+v(\mathfrak{a})\coloneqq\min\{v(f):f\in \mathfrak{a}_{c(v)}\}\in [0,\infty],
+\end{equation}
+where $c(v)$ is the center of the valuation $v$ on $X$.
+
+Given any valuation $v$ on $X$, the Gauss extension of $v$ is a valuation $\sigma(v)$ on $X\times \mathbb{A}^1$:
+\begin{equation}\label{eq:Gext}
+\sigma(v)\left(\sum_i f_i t^i\right)\coloneqq\min_i (v(f_i)+i).
+\end{equation}
+Here $t$ is the standard coordinate on $\mathbb{A}^1=\Spec \mathbb{C}[t]$. The key property is that when $v$ is a divisorial valuation, then so is $\sigma(v)$. See \cite[Lemma~4.2]{BHJ17}.
+
+
+\subsubsection{Non-Archimedean plurisubharmonic functions}
+\label{subsubsec:BJ_NApsh}
+
+Let $X$ be an irreducible complex projective variety of dimension $n$ and $L$ be a holomorphic pseudo-effective $\mathbb{Q}$-line bundle on $X$. Through the GAGA morphism $X^{\An}\rightarrow X$ of ringed spaces, $L$ can be pulled back to an analytic line bundle $L^{\An}$ on $X$. The purpose of this section is to study the psh metrics on $L^{\An}$. We will follow the approach of \cite{BJ22}, which avoids the direct treatment of $L^{\An}$ itself.
+
+Following \cite[Definition~2.18]{BJ22}, we define $\mathcal{H}^{\gf}_{\mathbb{Q}}(L^{\An})$, the set of \emph{(rational) generically finite Fubini--Study functions} $\phi\colon X^{\An}\rightarrow [-\infty,\infty)$ that are of the following form:
+    \begin{equation}
+    \phi=\frac{1}{m}\max_j \{\log|s_j|+\lambda_j\}.
+    \end{equation}
+Here $m\in \mathbb{Z}_{>0}$ is an integer such that $L^m$ is a line bundle, the $s_j$'s are a finite collection of non-zero sections in $\mathrm{H}^0(X,L^m)$, and $\lambda_j\in \mathbb{Q}$. We follow the convention of Boucksom--Jonsson by writing $\log |s_j|(v)=-v(s_j)$.
+
+\begin{definition}[{\cite[Definition~4.1]{BJ22}}]\label{def:BJpshmetric}
+A \emph{plurisubharmonic metric}\index{plurisubharmonic metric} (or \emph{psh metric} for short) on $L^{\An}$ is a function $\phi\colon X^{\An}\rightarrow [-\infty,\infty)$ that is not identically $-\infty$, and is the pointwise limit of a decreasing net $(\phi_i)_{i\in I}$, where $\phi_i\in \mathcal{H}^{\gf}_{\mathbb{Q}}(L_i^{\An})$ for some $\mathbb{Q}$-line bundles $L_i$ on $X$ satisfying $c_1(L_i)\to c_1(L)$ in $\NS^1(X)_{\mathbb{R}}$.
+\end{definition}
+
+
+The set of psh metrics on $L^{\An}$ is denoted by $\PSH(L^{\An})$.
+We endow $\PSH(L^{\An})$ with the topology of pointwise convergence on $X^{\Div}$. This topology is Hausdorff as functions in $\PSH(L^{\An})$ are completely determined by their restriction on $X^{\Div}$:
+\begin{theorem}[{\cite[Theorem~4.22]{BJ22}}]\label{thm:pshdetbydiv}
+Let $\phi \in\PSH(L^{\An})$ and $\psi:X^{\An}\rightarrow [-\infty,\infty)$ be an usc function. Assume that $\phi\leq \psi$ on $X^{\Div}$. Then the same holds on $X^{\An}$.
+\end{theorem}
+
+
+
+\begin{proposition}[{\cite[Theorem~4.7]{BJ22}}]\label{prop:BJclosedmax}
+    Let $\phi,\phi'\in \PSH(L^{\An})$. Then so is their pointwise maximum $\phi\lor \phi'$.
+\end{proposition}
+
+\begin{proposition}\label{prop:BJdecseqstab}
+    Let $H$ be an ample line bundle on $X$. Consider $\phi\in \PSH((L+H)^{\An})$.
+    Assume that for each $m\in \mathbb{Z}_{>0}$, we have $\phi\in \PSH((L+m^{-1}H)^{\An})$. Then $\phi\in \PSH(L^{\An})$.
+\end{proposition}
+This is a special case of \cite[(PSH2)]{BJ22} on Page~45.
+
+Next we note that we may use sequences instead of nets in the definition of $\PSH(L^{\An})$:
+\begin{theorem}[{\cite[Corollary~12.18]{BJ22}}]\label{thm:BJappseq}
+Let $S$ be an ample line bundle on $X$. Let $\phi \in \PSH(L^{\An})$.
+Then there is a sequence of rational numbers $\varepsilon_i\searrow 0$ and a decreasing sequence $\phi_i\in \mathcal{H}^{\gf}_{\mathbb{Q}}((L+\varepsilon_i S)^{\An})$ such that $\phi$ is the pointwise limit of $\phi_i$, as $i\to\infty$.
+\end{theorem}
+
+
+The space $\PSH(L^{\An})$ inherits most of the expected properties of (Archimedean) psh functions (\cite[Theorem~4.7]{BJ22}). However, the following compactness result is not known:
+\begin{conjecture}[{\cite[\S 5]{BJ22}}]\label{conj:env}
+Assume that $X$ is unibranch. Then every bounded from above increasing net of elements in $\PSH(L^{\An})$ converges in $\PSH(L^{\An})$.
+\end{conjecture}
+This prediction is equivalent to the so-called envelope conjecture \cite[Conjecture~5.14]{BJ22}: the regularized supremum of a bounded from above family of functions in $\PSH(L^{\An})$ lies in $\PSH(L^{\An})$. See \cite[Theorem~5.11]{BJ22} for the proof of the equivalence. This conjecture is proved when $X$ is smooth and $L$ is nef in \cite{BJ22}. More recently, in \cite{BJ22b}, Boucksom--Jonsson further established the case when $X$ is smooth and $L$ is pseudo-effective.
+
+
+\subsection{The analytifications}
+\label{subsec:analytifications}
+Let $X$ be a connected projective manifold of dimension $n$. Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a pseudo-effective cohomology class.
+
+\subsubsection{The transcendental setting}
+\label{subsubsec:analytic_trans}
+
+\begin{definition}\label{def:NApotential:L975}
+    For $\varphi\in \PSH(X,\theta)$, we define the \emph{analytification}\index{analytification} $\varphi^{\An}\colon X^{\An}\rightarrow [-\infty,0]$ as follows:
+\begin{equation}\label{eq:varphianv}
+\varphi^{\An}(v)\coloneqq -v(\varphi)=-\lim_{k\to\infty}\frac{1}{k}v\left(\mathcal{I}(k\varphi) \right).
+\end{equation}
+\end{definition}
+By \cref{thm:multipsubadd} and Fekete's lemma, the limit in \eqref{eq:varphianv} exists.
+
+Note that we can also write
+\begin{equation}\label{eq:varphiAnalt}
+\varphi^{\An}(v)=\inf_{k\in \mathbb{Z}_{>0}} -2^{-k}v\left( \mathcal{I}(2^k\varphi)\right).
+\end{equation}
+
+When $v=t\ord_E$ for some prime divisor $E$ over $X$, $\varphi^{\An}(v)=-t\nu(\varphi,E)$ by \cref{prop:Lelongnumfrommis}.
+
+\begin{definition}\label{def:Gammaana}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$. We define the \emph{analytification}\index{analytification} $\Gamma^{\An}\colon X^{\Div}\rightarrow [-\infty,\infty)$ of $\Gamma$ as follows: For any $\omega\in \Kah(X)$, we define
+    \begin{equation}\label{eq:psiandef}
+        \Gamma^{\An}(v)\coloneqq \sup_{\tau\leq \Gamma_{\max}}\left(\Gamma_{\tau}^{\theta+\omega,\An}(v)+\tau\right).
+    \end{equation}
+\end{definition}
+Clearly, \eqref{eq:psiandef} is independent of the choice of $\omega$.
+
+Note that \eqref{eq:psiandef} can be equivalently written as
+\[
+\Gamma^{\An}(v)= \sup_{\tau\leq \Gamma_{\max}}\left(\Gamma_{\tau}^{\theta+\omega,\An}(v)+\tau\right)=\sup_{\tau\in \mathbb{R}}\left(\Gamma_{\tau}^{\theta+\omega,\An}(v)+\tau\right)
+\]
+with $(-\infty)^{\An}(v) = -\infty$ understood.
+
+\begin{proposition}\label{prop:psiandPhi}
+Let $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$ with $\Gamma_{\max}\leq 0$. Let $\Psi$ be the complexification of $\Gamma^*$. Then
+\begin{equation}\label{eq:psiansigma}
+\Gamma^{\An}(v)=-\sigma(v)(\Psi)\quad \forall v\in X^{\Div}.
+\end{equation}
+\end{proposition}
+See \cref{def:subgeoray} for the definition of the complexification $\Psi\in \QPSH(X\times \Delta)$. Note that since $\Gamma_{\max}\leq 0$, by \cref{cor:reltestcursuplinear} and \cref{thm:GRexten}, $\Psi$ extends uniquely to a quasi-psh function on $X\times \Delta$.
+
+\begin{proof}
+Recall that
+\[
+\Psi(x,\delta)=\sup_{\tau\leq \Gamma_{\max}} (\Gamma_{\tau}(x)-\log|\delta|^2\tau)\quad \text{for }x\in X, \delta\in \Delta^*.
+\]
+By \eqref{eq:Gext}, we have $\sigma(v)(\log |\delta|^2)=1$ and $\sigma(v)(\Gamma_{\tau})=v(\Gamma_{\tau})$ for all $\tau\leq \Gamma_{\max}$. So we have
+\[
+\sigma(v)(\Gamma_\tau(x) - \log|\delta|^2 \tau) = v(\Gamma_\tau) - \tau.
+\]
+Lastly, since $\sigma(v)$ is a divisorial valuation on $X \times \Delta$, by \cref{cor:supsLelong}, we conclude \eqref{eq:psiansigma}.
+\end{proof}
+
+\begin{definition}\label{def:piecewiselincurv}
+Let $N\in \mathbb{N}$, and $A_{0},\ldots,A_N$ be a finite collection of elements in $\PSH(X,\theta)$, and $\tau_0>\tau_1>\cdots>\tau_N$ be finitely many real numbers. Then the \emph{piecewise linear curve}\index{piecewise linear curve} $A=(A_{\tau})_{\tau\in \mathbb{R}}$ in $\PSH(X,\theta)\cup \{-\infty\}$ associated with these data is the affine interpolation of these data:
+\begin{enumerate}
+    \item\label{itm:def:piecewiselincurv:1} $A_{\tau_i}=A_i$ for $i=0,\ldots,N$;
+    \item\label{itm:def:piecewiselincurv:2} $A_{\tau}=A_{\tau_N}$ for $\tau\leq \tau_N$;
+    \item\label{itm:def:piecewiselincurv:3} for $t\in (0,1)$ and $i=0,\ldots,N-1$, we have
+    \[
+        A_{(1-t)\tau_i+t\tau_{i+1}}=(1-t)A_{\tau_i}+tA_{\tau_{i+1}};
+    \]
+    \item\label{itm:def:piecewiselincurv:4} $A_{\tau}\equiv -\infty$ for $\tau>\tau_0$.
+\end{enumerate}
+The \emph{analytification}\index{analytification} of $A$ is the function $A^{\An}\colon X^{\An}\rightarrow [-\infty,\infty)$ defined as follows:
+\begin{equation}\label{eq:psianvlinear}
+A^{\An}(v)\coloneqq \sup_{\tau\leq \tau_0} (A_\tau^{\An}(v)+\tau)=\max_{i=0,\ldots,N} \left(A_{\tau_i}^{\An}(v)+\tau_i\right)\quad \forall v\in X^{\An}.
+\end{equation}
+\end{definition}
+We also say $A=(A_{\tau})_{\tau\leq \tau_0}$ is a piecewise linear curve in $\PSH(X,\theta)$.
+
+\begin{remark}\label{rmk:pwlinhull}
+Note that $\tau\mapsto A_{\tau}$ is upper semicontinuous, but not necessarily concave.
+Let $(A'_{\tau})_{\tau\in \mathbb{R}}$ be the upper concave envelope of $\tau\mapsto A_{\tau}$. Then it can be inductively constructed as follows:
+\begin{enumerate}
+    \item\label{itm:rmk:pwlinhull:1} For $\tau \in (\tau_0,\infty)$, we let $A'_{\tau}\equiv -\infty$;
+    \item\label{itm:rmk:pwlinhull:2} we set $A'_{\tau_0}=A_{\tau_0}$;
+    \item\label{itm:rmk:pwlinhull:3} define inductively for $j=0,\ldots,N-1$ the following: For $\tau\in [\tau_{j+1},\tau_j)$, we set
+    \[
+    A'_{\tau}=\max_{i=j+1,\ldots,N}\left( \frac{\tau_j-\tau}{\tau_j-\tau_i}A_{\tau_i}+\frac{\tau-\tau_i}{\tau_j-\tau_i}A'_{\tau_j} \right)\lor A'_{\tau_j};
+    \]
+    \item\label{itm:rmk:pwlinhull:4} for $\tau\in (-\infty,\tau_N)$, we set $A'_{\tau}=A_{\tau_N}$.
+\end{enumerate}
+This construction is just a reformulation of the general formula \cref{prop:concavhull}.
+
+In particular, $A'_{\tau}\in \PSH(X,\theta)$ for all $\tau\leq \tau_0$.
+
+Note that $A'$ is not necessarily piecewise linear.
+\end{remark}
+
+\begin{lemma}\label{lma:psieqpsiprimeondiv}
+Let $A$ be a piecewise linear curve in $\PSH(X,\theta)$. Let $(A'_{\tau})_{\tau\in \mathbb{R}}$ be the upper concave envelope of $\tau\mapsto A_{\tau}$. Define $\tilde A$ by
+\[
+    \tilde{A}^{\theta+\omega}_{\tau}\coloneqq P_{\theta+\omega}[A'_{\tau}]_{\mathcal I}, \quad \omega\in\Kah(X),\ \tau<\tau_0.
+\]
+Then $\tilde A\in\PSH^{\NA}(X,\theta)$, and
+\begin{equation}\label{eq:psieqsiprime}
+A^{\An}=\tilde{A}^{\An}\quad \text{on }X^{\Div}.
+\end{equation}
+\end{lemma}
+Here $\tau_0$ is as in \cref{def:piecewiselincurv}.
+\begin{proof}
+We continue to use the notations in \cref{def:piecewiselincurv}. The fact that $\tilde{A}\in \PSH^{\NA}(X,\theta)$ follows from \cref{rmk:pwlinhull} and the cocycle property of the $\mathcal{I}$-projection. In order to prove \eqref{eq:psieqsiprime}, we fix $v\in X^{\Div}$ and $\omega\in\Kah(X)$.
+The inductive construction in \cref{rmk:pwlinhull} uses only finite maxima and positive affine combinations of the potentials $A_{\tau_i}$. On divisorial valuations, analytification commutes with both operations.
+Moreover, $P_{\theta+\omega}[\bullet]_{\mathcal I}$ does not change divisorial valuations. Hence
+\[
+\tau\mapsto \left(P_{\theta+\omega}[A'_\tau]_{\mathcal I}\right)^{\An}(v)= (A'_\tau)^{\An}(v)
+\]
+is the ordinary upper concave envelope of $\tau\mapsto A_\tau^{\An}(v)$. The Legendre-type supremum over $\tau$ is therefore unchanged by passing from $A$ to $A'$, which proves \eqref{eq:psieqsiprime}.
+\end{proof}
+
+
+
+
+\subsubsection{The algebraic setting}
+\label{subsubsec:analytic_alg}
+
+Let $L$ be a $\mathbb{Q}$-line bundle on $X$ and $h$ be a Hermitian metric on $L$ with $\theta=c_1(L,h)$.
+
+
+
+\begin{lemma}\label{lma:varphian}
+For any $\varphi\in \PSH(X,\theta)$, we have $\varphi^{\An}\in \PSH(L^{\An})$.
+\end{lemma}
+\begin{proof}
+After replacing $L$ with a sufficiently high power, we may assume that $L$ is a line bundle. Take a very ample line bundle $H$ on $X$.
+By Siu's uniform global generation theorem \cite{Siu98}, \cite[Theorem~6.27]{Dem12} there exists $b>0$ large enough so that $H^{b}\otimes L^k\otimes \mathcal{I}(k\varphi)$ is globally generated for all $k>0$. Let $\{s_i\}_i$ be a finite set of global sections that generate the sheaf $H^{b}\otimes L^k\otimes \mathcal{I}(k\varphi)$. Then
+\[
+v(\mathcal{I}(k\varphi))=\min_i v(s_i).
+\]
+It follows that $v\mapsto -k^{-1}v\left(\mathcal{I}(k\varphi) \right)$ lies in $\mathcal{H}^{\gf}_{\mathbb{Q}}((L+\frac{b}{k}H)^{\An})$. Using \eqref{eq:varphiAnalt}, we conclude that $\varphi^{\An}\in \PSH(L^{\An})$.
+\end{proof}
+
+
+\begin{lemma}\label{lma:pltest}
+Let $\Gamma$ be a piecewise linear curve in $\PSH(X,\theta)$.
+Then $\Gamma^{\An}\in \PSH(L^{\An})$.
+\end{lemma}
+\begin{proof}  The result follows from \eqref{eq:psianvlinear}, \cref{prop:BJclosedmax} and \cref{lma:varphian}.
+\end{proof}
+
+\begin{lemma}\label{lma:istab}
+Let $R$ be a commutative $\mathbb{C}$-algebra of finite type and $I$ be an ideal of $ R[t]$. If for any $a\in S^1$, $a^*I\subseteq I$, then $I$ is stable under the $\mathbb C^*$-action. Moreover, there are ideals $I_0\subseteq I_1\subseteq \cdots \subseteq I_m$ in $R$ so that
+\begin{equation}\label{eq:Iexp}
+    I=I_0 + I_1t+ \cdots + I_m (t^m).
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+It suffices to argue that $I$ can be expanded as in \eqref{eq:Iexp}.
+To see this, assume that $a\in I$. We can write $a=a_0+a_1t+\cdots+a_mt^m$ with $a_i\in R$. Then our assumption implies that $\sum_i a_i \rho^i t^i\in I$ as well for all $\rho\in S^1$. So by the Lagrange interpolation formula, $a_it^i\in I$ for all $i$. Therefore, we can write $I$ as $I_0+I_1t+I_2t^2+\cdots$ for some ideals $I_0\subseteq I_1\subseteq \cdots$ in $R$. But as $R$ is noetherian, there is $m\geq 0$ so that $I_{m'}=I_m$ for $m'>m$. \eqref{eq:Iexp} follows.
+\end{proof}
+
+\begin{lemma}\label{lma:GAGA}
+Let $X$ be a complex projective variety and $p:X\times \mathbb{C}\rightarrow X$ be the natural projection. Assume that $\mathcal{I}$ is an analytic coherent ideal sheaf on $X\times \mathbb{C}$. Assume that $\mathcal{I}|_{X \times \mathbb C^*}=p^*\mathcal{J}$ for some coherent ideal sheaf $\mathcal{J}$ on $X$. Then $\mathcal{I}$ is the analytification of an algebraic coherent ideal sheaf.
+\end{lemma}
+
+
+
+\begin{proof}
+    Let $q:X\times (\mathbb{P}^1\setminus \{0\})\rightarrow X$ be the natural projection. Since $\mathbb C^* \subset \mathbb{P}^1\setminus \{0\}$, we can glue $q^*\mathcal{J}$ with $\mathcal{I}$ to get an analytic coherent ideal sheaf on $X\times \mathbb{P}^1$. By the GAGA principle, this ideal sheaf is necessarily algebraic, hence so is its restriction to $X\times \mathbb{C}$.
+\end{proof}
+
+Next we point out a version of Siu's uniform global generation lemma \cite{Siu88} that we will need in the proof of our next theorem:
+
+\begin{lemma}\label{lma:Siu_global_uniform_generatedness} Let $L$ be a big line bundle on $X$ such that $c_1(L) = \{\theta\}$ and $\Phi \in \PSH(X\times \Delta, p_1^*\theta)$, where $\Delta$ is the unit disk. Let $G$ be an ample line bundle on $X$. Then there exists $k>0$, depending only on $X$ and $G$, such that $p_1^*(G^k \otimes L^m)\otimes \mathcal I(m \Phi)$ is globally generated for all $m \in \mathbb{Z}_{>0}$.
+\end{lemma}
+
+\begin{proof} The argument for this is exactly the same as the one in \cite[Lemma~5.6]{BBJ21} with Nadel's vanishing theorem replaced by the family version proved by Matsumura in \cite[Theorem~1.7]{Mat16}.
+\end{proof}
+
+
+
+
+
+
+
+\begin{proposition}\label{prop:PhiinducePSH}
+Let $\phi\in \PSH(X,\theta)_{>0}$ be a model potential and $\ell\in \mathcal{R}(X,\theta;\phi)$ with $\sup_X \ell_1\leq 0$. Let $\Phi$ be the complexification of $\ell$. Then the function
+\[
+v\mapsto -\sigma(v)(\Phi) \quad \text{for } v\in X^{\Div}
+\]
+admits a unique extension to an element of $\PSH(L^{\An})$.
+\end{proposition}
+\begin{proof}
+We may assume that $L$ is a line bundle. Observe that the extension is unique if it exists by \cref{thm:pshdetbydiv}.
+
+Let $p_1\colon X\times \mathbb{C}\rightarrow X$ be the projection. For each $t>0$, we have $\ell_t\in \mathcal{E}(X,\theta;\phi)$, hence $\ell_t\sim_P\phi$ by \cref{thm:Pvarphidiffdef} and $\ell_t\sim_{\mathcal{I}}\phi$ by \cref{cor:PimpliesI}. Thanks to \cref{prop:pull-backmis} and \cref{lma:fibIeq}, for each $m\in \mathbb{Z}_{>0}$, we have
+\[
+\mathcal{I}(m\Phi)|_{X\times \Delta^*} = p_1^* \mathcal{I}(m\phi)|_{X\times \Delta^*}.
+\]
+In particular, $\mathcal{I}(m\Phi)$ admits an $S^1$-invariant coherent extension to $X\times \mathbb{C}$, obtained by gluing it with $p_1^*\mathcal{I}(m\phi)$ over $X\times \mathbb{C}^*$.
+
+From \cref{lma:istab} and \cref{lma:GAGA}, we get that
+\begin{equation}\label{eq:ImPhiexp}
+\mathcal{I}(m\Phi)=\mathfrak{a}_0 +\mathfrak{a}_1 t+\cdots+\mathfrak{a}_{N-1} t^{N-1}+\mathfrak{a}_N (t^N)\,,
+\end{equation}
+where the $\mathfrak{a}_i$'s are coherent ideal sheaves on $X$.
+
+Using \cref{lma:Siu_global_uniform_generatedness}, there exists an ample line bundle $T$ over $X$ such that $p_1^* (T\otimes L^m)\otimes \mathcal{I}(m\Phi)$ is globally generated, which is equivalent to $T\otimes L^m\otimes \mathfrak{a}_i$ being globally generated for all $i$.\footnote{In contrast with the case where $\phi$ is bounded, explored in \cite{BBJ21}, $\mathfrak{a}_N \neq \mathcal{O}_X$ in general.}
+
+We define
+\[
+\varphi_m(v)\coloneqq -\frac{1}{m}\sigma(v)(\mathcal{I}(m\Phi))=-\frac{1}{m}\min_i (v(\mathfrak{a}_i)+i),\quad v\in X^{\Div}.
+\]
+From the right-hand side of the formula, $\varphi_m$ can be extended to an element in $\mathcal{H}^{\gf}_{\mathbb{Q}}((L+m^{-1}T)^{\An})$, which we denote by the same symbol.
+
+For $v\in X^{\Div}$,
+\[
+-\sigma(v)(\Phi)=\lim_{m\to\infty}-\frac{1}{2^m}\sigma(v)(\mathcal{I}(2^m\Phi))=\lim_{m\to\infty}\varphi_{2^m}(v)
+\]
+and the right-hand side defines an element in $\PSH(L^{\An})$ by definition, since $\{\varphi_{2^m}\}_m$ is decreasing by the subadditivity of multiplier ideals \cref{thm:multipsubadd}.
+\end{proof}
+
+\begin{corollary}\label{cor:testcurvegivepshme}
+Let $\Gamma\in \PSH^{\NA}(X,\theta)$. Then $\Gamma^{\An}$ defined in \cref{def:Gammaana} admits a unique extension to $\PSH(L^{\An})$.
+\end{corollary}
+The extension will be denoted by the same notation $\Gamma^{\An}$.
+
+\begin{proof}
+Observe that the extension is unique if it exists by \cref{thm:pshdetbydiv}. We may assume that $\Gamma_{\max}=0$ without loss of generality.
+
+When $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$, our assertion follows from \cref{prop:PhiinducePSH} and \cref{prop:psiandPhi}.
+
+In general, fix an ample line bundle $H$ on $X$ and a K\"ahler form $\omega\in c_1(H)$. Then we know that
+\[
+\Gamma^{\An}=\left(\Gamma^{m^{-1}\omega}\right)^{\An}\in \PSH((L+m^{-1}H)^{\An})
+\]
+for any $m\in \mathbb{Z}_{>0}$. Therefore, $\Gamma^{\An}\in \PSH(L^{\An})$ by \cref{prop:BJdecseqstab}.
+\end{proof}
+
+\subsection{The comparison theorem}
+\label{subsec:NA_comparison}
+Let $X$ be a connected projective manifold of dimension $n$. Let $L$ be a pseudo-effective $\mathbb{Q}$-line bundle on $X$ and $h$ be a Hermitian metric on $L$ with $\theta=c_1(L,h)$.
+
+Thanks to \cref{cor:testcurvegivepshme}, we already have a map
+\begin{equation}\label{eq:analymap}
+    \PSH^{\NA}(X,\theta)\rightarrow \PSH(L^{\An}),\quad \Gamma\mapsto \Gamma^{\An}.
+\end{equation}
+We observe that for $\Gamma\in \PSH^{\NA}(X,\theta)$ and a K\"ahler form $\omega$ on $X$, we have
+\begin{equation}\label{eq:proj_NA_an_invariance}
+\left( P_{\theta+\omega}\left[  \Gamma \right]_{\mathcal{I}} \right)^{\An}=\Gamma^{\An}.
+\end{equation}
+Also observe that
+\begin{equation}\label{eq:Gammamax}
+    \Gamma_{\max}=\Gamma^{\An}(v_{\triv}),
+\end{equation}
+
+
+\begin{lemma}\label{lma:anaorder}
+    The map \eqref{eq:analymap} is order preserving. Moreover, suppose that $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$ satisfies that $\Gamma^{\An}\leq \Gamma'^{\An}$, then $\Gamma\leq \Gamma'$.
+
+    In particular, the map \eqref{eq:analymap} is injective.
+\end{lemma}
+\begin{proof}
+    The map \eqref{eq:analymap} is order preserving by definition. Let us take $\Gamma,\Gamma'\in \PSH^{\NA}(X,\theta)$ with $\Gamma^{\An}\leq \Gamma'^{\An}$. Fix a K\"ahler form $\omega$ on $X$.
+
+    Let $v\in X^{\Div}$ and $t \in \mathbb{Q}_{>0}$. Then, using \eqref{eq:psiandef} and the homogeneity of divisorial valuations, we notice that
+\begin{equation}\label{eq:legendre_NA}
+t \Gamma^\An \left(t^{-1} v \right) =  \sup_{\tau\in \mathbb{R}}\left( \left(\Gamma_{\tau}^{\theta+\omega}\right)^{\An}(v)+ t \tau\right).
+\end{equation}
+A similar equality holds for $\Gamma'$. Therefore, by \cref{cor:Leginvpartdef}, we have
+\[
+\left(\Gamma_{\tau}^{\theta+\omega}\right)^{\An}\leq \left(\Gamma'{}_{\tau}^{\theta+\omega}\right)^{\An}
+\]
+for all $\tau \in \mathbb{R}$. It follows that
+\[
+\Gamma_{\tau}^{\theta+\omega}\preceq_{\mathcal{I}} \Gamma'{}_{\tau}^{\theta+\omega}
+\]
+by \cref{prop:Iequivchar2}. Since both sides are $\mathcal{I}$-model, \cref{prop:Icomparandenvelope} gives
+\[
+\Gamma_{\tau}^{\theta+\omega}\leq \Gamma'{}_{\tau}^{\theta+\omega}
+\]
+for all $\tau\in \mathbb{R}$. Hence $\Gamma\leq \Gamma'$ by the definition of the order.
+\end{proof}
+
+\begin{lemma}\label{lma:gfinimage}
+    Let $\phi \in \mathcal{H}^{\gf}_{\mathbb{Q}}(L^{\An})$. Then there is a piecewise linear curve $A$ in $\PSH(X,\theta)$ with $\phi=A^{\An}$. In particular, $\phi$ is in the image of \eqref{eq:analymap}.
+\end{lemma}
+Note that from the proof below, the test curve $\Gamma$ corresponding to $\phi$ satisfies the following: For any $\tau\leq \Gamma_{\max}$, $\Gamma_{\tau}$ is elementary. See \cref{def:elemetric} for the definition of elementary metrics.
+\begin{proof}
+     Let us write
+    \begin{equation}\label{eq:phiintominversemax}
+        \phi=\frac{1}{m}\max_{i=1,\ldots,M} \left(\log|s_i|+\lambda_i\right),
+    \end{equation}
+where $m\in \mathbb{Z}_{>0}$, $s_{1},\ldots, s_M$ are a finite number of sections of $L^m$ and $\lambda_1,\ldots,\lambda_M\in \mathbb{Q}$.
+
+Write $I_{\tau}$ for the set of $i$ such that $m^{-1}\lambda_i=\tau$. We denote the finitely many $\tau$ so that $I_{\tau}$ is non-empty as $\tau_0> \cdots > \tau_N$.
+For each $i=0,\ldots,N$, we write
+\[
+A_{\tau_i}=\frac{1}{m}\max_{j\in I_{\tau_i}} \log |s_j|^2_{h^m}.
+\]
+We define $A$ as the piecewise linear curve associated with the $A_{\tau_i}$'s and the $\tau_i$'s. For every $v\in X^{\An}$,
+\[
+A^{\An}(v)=\max_{i=0,\ldots,N}\left(A_{\tau_i}^{\An}(v)+\tau_i\right)
+=\frac{1}{m}\max_{j=1,\ldots,M}\left(\log|s_j|(v)+\lambda_j\right)=\phi(v),
+\]
+where we used the convention $\log|s_j|(v)=-v(s_j)$.
+
+The final assertion follows from \cref{lma:psieqpsiprimeondiv} and \cref{thm:pshdetbydiv}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:anpreinf}
+    Let $(\Gamma_i)_{i\in I}$ be a decreasing net in $\PSH^{\NA}(X,\theta)$. Assume that \eqref{eq:decnetcontition} is satisfied. Then
+    \[
+        \left( \inf_{i\in I} \Gamma_{i} \right)^{\An}=\inf_{i\in I} \Gamma_{i}^{\An}.
+    \]
+\end{proposition}
+\begin{proof}
+    Take a K\"ahler form $\omega$ on $X$. We need to show that
+    \[
+    \left( \inf_{i\in I} P_{\theta+\omega}[\Gamma_i]_{\mathcal{I}} \right)^{\An}=\inf_{i\in I} \Gamma_{i}^{\An}.
+    \]
+    Therefore, after replacing $\theta$ by $\theta+\omega$, we may assume that $\Gamma_i\in \PSH^{\NA}(X,\theta)_{>0}$ for all $i\in I$ and $\inf_{i\in I}\Gamma_i\in \PSH^{\NA}(X,\theta)_{>0}$.
+    Fix $v\in X^{\Div}$. By \cref{thm:pshdetbydiv}, it suffices to prove that
+    \begin{equation}\label{eq:anpreinf1}
+        \sup_{\tau\in \mathbb{R}} \left( \left(\inf_{i\in I}\Gamma_{i,\tau}\right)^{\An}(v)+\tau \right)= \adjustlimits\inf_{i\in I}\sup_{\tau\in \mathbb{R}} \left( \Gamma_{i,\tau}^{\An}(v)+\tau \right).
+    \end{equation}
+    Write $\Gamma=\inf_{i\in I}\Gamma_i$. We first compare the two sides inside the Legendre-type supremum. If $\tau<\Gamma_{\max}$, then by the definition of the infimum test curve,
+    \[
+        \Gamma_{\tau}=\inf_{i\in I}\Gamma_{i,\tau}.
+    \]
+    The net $(\Gamma_{i,\tau})_i$ decreases to $\Gamma_{\tau}$. By \cref{lma:testcurinfcompatible}, $\Gamma_{\tau}$ is stable under $P_{\theta}[\bullet]$.
+    Hence \cref{prop:vol_limit_model} gives convergence of the masses, and \cref{cor:decnetdS} yields
+    \[
+        \Gamma_{i,\tau}\xrightarrow{d_S}\Gamma_{\tau}.
+    \]
+    Hence \cref{thm:Lelongcont} gives
+    \[
+        \Gamma_{\tau}^{\An}(v)=\inf_{i\in I}\Gamma_{i,\tau}^{\An}(v),\quad \tau<\Gamma_{\max}.
+    \]
+    If $\tau>\Gamma_{\max}$, then $\Gamma_{\tau}\equiv-\infty$, and also $\inf_i\Gamma_{i,\tau}\equiv-\infty$, since $\Gamma_{\max}=\inf_i(\Gamma_i)_{\max}$. Thus the same equality holds for $\tau>\Gamma_{\max}$ as well, with value $-\infty$. The possible endpoint $\tau=\Gamma_{\max}$ does not affect the supremum: for any test curve $\Lambda$ and any $v\in X^{\Div}$,
+    \[
+        \sup_{\tau\leq \Lambda_{\max}}\left(\Lambda_{\tau}^{\An}(v)+\tau\right)
+        =\sup_{\tau< \Lambda_{\max}}\left(\Lambda_{\tau}^{\An}(v)+\tau\right),
+    \]
+    because $\Lambda_{\Lambda_{\max}}\leq \Lambda_{\tau}$ for $\tau<\Lambda_{\max}$, hence
+    \[
+        \Lambda_{\Lambda_{\max}}^{\An}(v)+\Lambda_{\max}
+        \leq \Lambda_{\tau}^{\An}(v)+\Lambda_{\max}
+    \]
+    and we let $\tau\nearrow \Lambda_{\max}$.
+
+    Consequently, in \eqref{eq:anpreinf1} we may replace $\left(\inf_i\Gamma_{i,\tau}\right)^{\An}(v)$ by $\inf_i\Gamma_{i,\tau}^{\An}(v)$ inside the supremum. The equality then follows from \cref{prop:Legendretranssup} applied to the closed convex functions $-\Gamma_{i,\bullet}^{\An}(v)$.
+\end{proof}
+
+\begin{theorem}\label{thm:DXZ}
+    The map \eqref{eq:analymap} is an order preserving bijection.
+\end{theorem}
+\begin{proof}
+    The map \eqref{eq:analymap} is an order preserving injection by \cref{lma:anaorder}. It remains to prove that it is surjective. Let $\phi\in \PSH(L^{\An})$. We want to construct $\Gamma\in \PSH^{\NA}(X,\theta)$ with $\Gamma^{\An}=\phi$.
+
+    Let $H$ be an ample line bundle and $(\epsilon_i)_i$ be a decreasing sequence of rational numbers with limit $0$, $\phi_i\in \mathcal{H}^{\gf}_{\mathbb{Q}}((L+\epsilon_i H)^{\An})$ such that
+    \[
+    \phi=\inf_{i>0}\phi_i.
+    \]
+    The existence of these data is guaranteed by \cref{thm:BJappseq}. Fix a K\"ahler form $\omega\in c_1(H)$.
+
+    Thanks to \cref{lma:gfinimage}, we can find $\Gamma^i\in \PSH^{\NA}(X,\theta+\epsilon_i \omega)$ with $(\Gamma^i)^{\An}=\phi_i$. It follows from \cref{lma:anaorder} that
+    \[
+    \Gamma^i\geq P_{\theta+\epsilon_i\omega}\left[ \Gamma^{i+1} \right]_{\mathcal{I}} \geq \Gamma^{i+1}.
+    \]
+    Therefore, for any $\omega'\in \Kah(X)$, after discarding finitely many $i$ so that $\omega'\geq \epsilon_i\omega$, the sequence $(P_{\theta+\omega'}\left[ \Gamma^{i} \right]_{\mathcal{I}})_i$ is decreasing. This does not change its infimum. We let
+    \[
+    \Gamma^{\theta+\omega'}=\inf_{i\gg 1}P_{\theta+\omega'}\left[ \Gamma^{i} \right]_{\mathcal{I}}\in \PSH^{\NA}(X,\theta+\omega').
+    \]
+    Note that the infimum is defined thanks to \eqref{eq:Gammamax}. It follows from \cref{prop:anpreinf} that
+    \[
+    \left(\Gamma^{\theta+\omega'} \right)^{\An}=\phi.
+    \]
+    From this, we conclude that for $\omega',\omega''\in \Kah(X)$ with $\omega'\leq \omega''$, we have
+    \[
+    P_{\theta+\omega''}\left[ \Gamma^{\theta+\omega'}\right]_{\mathcal{I}}=\Gamma^{\theta+\omega''}.
+    \]
+    Indeed, both sides have analytification $\phi$, by \eqref{eq:proj_NA_an_invariance} and \eqref{eq:analymap}. The injectivity part of \cref{lma:anaorder} gives our assertion.
+
+    It follows that $(\Gamma^{\theta+\omega'})_{\omega'\in \Kah(X)}$ defines an element $\Gamma$ in $\PSH^{\NA}(X,\theta)$ and $\Gamma^{\An}=\phi$.
+\end{proof}
+
+
+\begin{theorem}\label{thm:NApotential:L1352}
+    Under the bijection \cref{thm:DXZ}, the operations on the space $\PSH^{\NA}(X,\theta)$ defined in \cref{sec:opnA} all correspond to the corresponding operations on $\PSH(L^{\An})$ in Boucksom--Jonsson's theory.
+\end{theorem}
+The meaning is immediate for all operations except for the trace operator, and the proofs are elementary, as we have seen in \cref{prop:anpreinf} for the infimum operator. We shall only restate and prove the case of trace operators; the remaining arguments are recorded in \cite{Xia23Operations}.
+
+\begin{theorem}\label{thm:comp_traceop}
+    Let $Y\subseteq X$ be an irreducible analytic subset.
+    Consider an element $\Gamma\in \PSH^{\NA}(X,\theta)$ with well-defined restriction to $Y$. Then
+    \begin{equation}\label{eq:Tracena}
+    \Tr_Y(\Gamma)^{\An}|_{Y^{\Div}}=\Gamma^{\An}|_{Y^{\Div}}.
+    \end{equation}
+\end{theorem}
+Observe that there is a canonical identification $Y^{\Div}=\widetilde{Y}^{\Div}$. Recall that a generalized Fubini--Study metric is defined in \cref{def:gFSmetric}.
+
+\begin{proof}
+    We first reduce to the positive mass case. Choose a K\"ahler form $\omega_0$ on $X$ and set $\widehat{\Gamma}=P_{\theta+\omega_0}[\Gamma]_{\mathcal{I}}$. Replacing $\theta$ by $\theta+\omega_0$ and $\Gamma$ by $\widehat{\Gamma}$ does not change $\Gamma^{\An}$, by \eqref{eq:proj_NA_an_invariance}; it also only replaces $\Tr_Y(\Gamma)$ by the corresponding $\mathcal{I}$-projection on $\widetilde{Y}$, whose analytification is unchanged. Hence we may assume that $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$.
+    Let $\phi=\Gamma^{\An}\in \PSH(L^{\An})$. By \cref{lma:non-trivrest}, $\phi(v_{Y,\triv})\neq -\infty$.
+
+    Take an ample line bundle $S$ on $X$ and a K\"ahler form $\omega$ in $c_1(S)$.
+    Write $\phi$ as the decreasing limit of a sequence $(\phi^{i})_i$ of elements in $\mathcal{H}^{\gf}_{\mathbb{Q}}((L+i^{-1}S)^{\An})$ as in \cref{thm:BJappseq}.
+
+    Take $\Gamma^{i}\in \PSH^{\NA}(X,\theta+i^{-1}\omega)$ such that $\Gamma^{i,\An}=\phi^{i}$. Note that by \cref{lma:positivemasspart}, $\Gamma^i\in \PSH^{\NA}(X,\theta+i^{-1}\omega)_{>0}$.
+
+    Write $\widehat{\Gamma}^i\coloneqq P_{\theta+\omega}[\Gamma^i]_{\mathcal{I}}$ and $\widehat{\Gamma}\coloneqq P_{\theta+\omega}[\Gamma]_{\mathcal{I}}$. Applying \cref{prop:anpreinf} to the decreasing sequence $(\widehat{\Gamma}^i)_i$ and then using the injectivity in \cref{lma:anaorder}, we get $\inf_i\widehat{\Gamma}^i=\widehat{\Gamma}$. Hence, by the componentwise definition of this infimum, for any $\tau<\Gamma_{\max}$, we have
+    \[
+    \inf_{i\in \mathbb{N}}\widehat{\Gamma}^{i}_{\tau}=\widehat{\Gamma}_{\tau}.
+    \]
+    Now \cref{prop:vol_limit_model} and \cref{cor:decnetdS} give
+    \[
+        \widehat{\Gamma}^{i}_{\tau}\xrightarrow{d_S} \widehat{\Gamma}_{\tau}.
+    \]
+    for all $\tau<\Gamma_{\max}$.
+
+    By \cref{lma:non-trivrest} again, each $\widehat{\Gamma}^{i}$ has non-trivial restriction to $Y$. By \cref{prop:tracedeclimit}, for any K\"ahler form $\omega'$ on $\widetilde{Y}$ satisfying $\omega'\geq \omega|_{\widetilde{Y}}$ we have
+    \[
+    \Tr_Y \left( \widehat{\Gamma}^{i}_{\tau} \right)\xrightarrow{d_S} \Tr_Y \left( \widehat{\Gamma}_{\tau}\right)
+    \]
+    for any $\tau<(\Tr_Y(\Gamma))_{\max}$. Thanks to \cref{thm:Lelongcont}, for every $c\ord_F\in Y^{\Div}$ and every such $\tau$,
+    \[
+    \Tr_Y \left( \widehat{\Gamma}_{\tau} \right)^{\An}(c\ord_F)=\inf_{i\geq 1}\Tr_Y \left( \widehat{\Gamma}^{i}_{\tau} \right)^{\An}(c\ord_F).
+    \]
+    Applying \cref{prop:Legendretranssup} to the Legendre transforms in $\tau$, and using again that $\mathcal{I}$-projection does not change analytification, we get
+    \[
+    \Tr_Y(\Gamma)^{\An}(c\ord_F)=\inf_{i\geq 1}\Tr_Y(\Gamma^i)^{\An}(c\ord_F).
+    \]
+    Since also $\Gamma^{\An}=\inf_i \Gamma^{i,\An}$, it suffices to prove \eqref{eq:Tracena} with $\Gamma^i$ in place of $\Gamma$.
+
+    In other words, we have reduced to the case where $\phi\in \mathcal{H}^{\gf}_{\mathbb{Q}}(L^{\An})$ and $L$ is big.
+
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)_{>0}$ with $\Gamma^{\An}=\phi$. By \cref{lma:gfinimage}, we can find a concave curve $(\Gamma'_{\tau})_{\tau\leq \Gamma_{\max}}$ such that $\Gamma'_{\tau}$ is a generalized Fubini--Study metric for each $\tau\leq \Gamma_{\max}$ and such that
+    \[
+    \Gamma_{\tau}=P_{\theta}[\Gamma'_{\tau}]_{\mathcal{I}}=P_{\theta}[\Gamma'_{\tau}].
+    \]
+    Here the second equality follows from \cref{ex:analyIgood}, since generalized Fubini--Study metrics have analytic singularities.
+    With the convention that $\Tr_Y(-\infty)=-\infty$ and $(-\infty)^{\An}\equiv -\infty$, it follows that for any $c\ord_F\in \widetilde{Y}^{\Div}$,
+    \[
+    \begin{aligned}
+    \phi|_{Y^{\An}}(c\ord_F)=&\sup_{\tau<\Gamma_{\max}} \left(\Gamma'_{\tau}{}^{\An}(c\ord_F)+\tau\right)\\
+    =& \sup_{\tau<\Gamma_{\max}} \left(\left(\Gamma'_{\tau}|_{\widetilde{Y}}\right)^{\An}(c\ord_F)+\tau\right)\\
+    =& \sup_{\tau<\Gamma_{\max}} \left(\Tr_Y(\Gamma'_{\tau})^{\An}(c\ord_F)+\tau\right)\\
+     =& \sup_{\tau<\Gamma_{\max}} \left(\Tr_Y(\Gamma_{\tau})^{\An}(c\ord_F)+\tau\right)\\
+    =& \Tr_Y(\Gamma)^{\An}(c\ord_F).
+    \end{aligned}
+    \]
+    The third equality follows from \cref{ex:resanalyt}, since $\Gamma'_{\tau}$ has analytic singularities. The fourth equality follows from $\Gamma_{\tau}=P_{\theta}[\Gamma'_{\tau}]$, \cref{prop:tracelinear} and \cref{cor:PimpliesI}. It remains to justify the second line. Namely, we want to show that for any generalized Fubini--Study metric $\varphi$ whose restriction to $\widetilde{Y}$ is not identically $-\infty$, we have
+    \begin{equation}\label{eq:varphiAncordF}
+    \varphi^{\An}(c\ord_F)=\left(\varphi|_{\widetilde{Y}}\right)^{\An}(c\ord_F).
+    \end{equation}
+    We can immediately reduce to the case where $\varphi$ is a Fubini--Study metric, and then to the case
+    \[
+    \varphi=\log |s|_{h_0}^2,
+    \]
+    where $s$ is a holomorphic section of $L$, not vanishing identically on $Y$, in which case \eqref{eq:varphiAncordF} is obvious.
+\end{proof}
+
+
+\begin{lemma}\label{lma:non-trivrest}
+    Let $\Gamma\in \PSH^{\NA}(X,\theta)$ and $Y\subseteq X$ be an irreducible analytic subset. Then the following are equivalent:
+    \begin{enumerate}
+    \item\label{itm:lma:non-trivrest:1} $\Gamma^{\An}(v_{Y,\triv})\neq -\infty$;
+    \item\label{itm:lma:non-trivrest:2} $\Gamma^{\An}|_{Y^{\An}}\not\equiv -\infty$;
+    \item\label{itm:lma:non-trivrest:3} $\Gamma$ has a well-defined restriction to $Y$.
+\end{enumerate}
+\end{lemma}
+Here $v_{Y,\triv}$ denotes the trivial valuation of $\mathbb{C}(Y)$.
+
+\begin{proof}
+The equivalence between \ref{itm:lma:non-trivrest:1} and \ref{itm:lma:non-trivrest:2} is a simple consequence of the maximum principle \cite[Lemma~1.4(i)]{BJ22}.
+
+To see the equivalence between \ref{itm:lma:non-trivrest:1} and \ref{itm:lma:non-trivrest:3}, it suffices to observe that for any $\varphi\in \PSH(X,\theta)$,
+\[
+\varphi^{\An}(v_{Y,\triv})=
+\begin{cases}
+    -\infty,&\textup{if }\nu(\varphi,Y)>0;\\
+    0,& \textup{if }\nu(\varphi,Y)=0.
+\end{cases}
+\]
+This completes the proof.
+\end{proof}
+
+
+
+
+%\input{author/references}

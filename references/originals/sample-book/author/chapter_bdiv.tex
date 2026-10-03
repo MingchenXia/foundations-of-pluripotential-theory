@@ -1,0 +1,751 @@
+\motto{The mathematician's patterns, like the painter's or the poet's must be beautiful; the ideas, like the colors or the words must fit together in a harmonious way. Beauty is the first test: There is no permanent place in this world for ugly mathematics.
+
+--- Godfrey Harold Hardy\footnote{Godfrey Harold Hardy (1877--1947) was a British mathematician famous for his work in number theory and mathematical analysis. Apart from his research, Hardy was a strong advocate for pure mathematics and believed that mathematics should be pursued for its own beauty, not just for practical use.
+
+He remained lifelong unmarried and dedicated much of his life entirely to mathematics, fitting into the common stereotype of a mathematician.}}
+\chapter{The theory of b-divisors}
+\label{chap:bdiv}
+
+The purpose of this chapter is to translate the singularity theory developed in the preceding chapters into the language of b-divisors. A b-divisor records, on all proper bimeromorphic models of $X$, the cohomological data attached to a singular object.
+
+Given a closed positive $(1,1)$-current $T$ on $X$, we associate to it a b-divisor $\mathbb D(T)$ by taking, on each modification $\pi\colon Y\to X$, the cohomology class of the regular part of $\pi^*T$ with respect to Siu's decomposition. This construction removes divisorial components and keeps track of the moving positivity of $T$ on every model. The resulting b-divisor is nef in a suitable sense, and its volume agrees with the volume of $T$.
+
+The first part of the chapter develops this construction and studies its basic properties. We prove that $d_S$-convergence of currents implies convergence of the associated b-divisors, and we compare the $P$- and $\mathcal I$-orders through their b-divisorial data. This gives a birational way to read some of the singularity information encoded by envelopes and multiplier ideals.
+
+The second part relates b-divisors to $\mathcal I$-good currents. In the big case, $\mathcal I$-good non-divisorial currents give rise to big and nef b-divisors, and conversely big and nef b-divisors can be represented by such currents.
+
+The final part defines mixed intersection numbers of nef b-divisors. For big and nef b-divisors this is done through the corresponding $\mathcal I$-good currents and the mixed volume formalism of \cref{chap:Igood}; the general nef case is obtained by K\"ahler perturbation. We prove symmetry, multilinearity, monotonicity, continuity under decreasing nets, and upper semicontinuity. These results provide the b-divisorial counterpart of the mixed volume theory.
+
+
+\section{The notion of b-divisors}\label{sec:bdivnotion}
+
+The b-divisors defined in this section are sometimes called b-divisor classes. We always omit the word \emph{classes} to save space.
+
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+Let us recall the following elementary result regarding how cohomology behaves under blow-up.
+\begin{proposition}\label{prop:blowup_cone}
+    Let $\pi\colon Y\rightarrow X$ be a blow-up with \emph{connected} smooth center of codimension at least $2$ with exceptional divisor $E$. Then there is a natural identification
+    \begin{equation}\label{eq:H11blowup}
+    \mathrm{H}^{1,1}(Y,\mathbb{R})=\mathrm{H}^{1,1}(X,\mathbb{R})\oplus \mathbb{R}\{E\}.
+    \end{equation}
+\end{proposition}
+See \cite{RYY19} for a much more general result.
+
+
+\subsection{Nef b-divisors}
+\label{subsec:nefbdiv}
+\begin{definition}\label{def:bdiv:L38}
+    A \emph{(Weil) b-divisor}\index{b-divisor} $\mathbb{D}$ over $X$ is an assignment $(\mathbb{D}_{\pi})_{\pi\colon Y\rightarrow X}$\index{$\mathbb{D}$}, where $\pi\colon Y\rightarrow X$ runs over all modifications of $X$ such that
+    \begin{enumerate}
+        \item\label{itm:chapter-bdiv:L43:1} $\mathbb{D}_{\pi}\in \mathrm{H}^{1,1}(Y,\mathbb{R})$;
+        \item\label{itm:chapter-bdiv:L43:2} The classes are compatible under push-forwards: If $\pi'\colon Z\rightarrow X$ and $\pi\colon Y\rightarrow X$ are both modifications of $X$ and $\pi'$ dominates $\pi$ through $g\colon Z\rightarrow Y$, then $g_*\mathbb{D}_{\pi'}=\mathbb{D}_{\pi}$.
+    \end{enumerate}
+    We also write $\mathbb{D}_Y=\mathbb{D}_{\pi}$ if there is no risk of confusion.
+
+    Given two Weil b-divisors $\mathbb{D}$ and $\mathbb{D}'$ over $X$, we say $\mathbb{D}\leq \mathbb{D}'$ if for each modification $\pi$ of $X$, we have $\mathbb{D}_{\pi}\leq \mathbb{D}'_{\pi}$. Recall that by definition, this means the class $\mathbb{D}'_{\pi}-\mathbb{D}_{\pi}$ is pseudo-effective.
+
+    A Weil b-divisor with $\mathbb{D}\geq 0$ is called \emph{pseudo-effective}\index{b-divisor!pseudo-effective b-divisor}.
+\end{definition}
+The class $\mathbb{D}_X$ is called the \emph{root}\index{root!root of a b-divisor} of $\mathbb{D}$.
+The set of Weil b-divisors over $X$ has the natural structure of a real vector space.
+
+
+\begin{definition}\label{def:volb}
+    The \emph{volume}\index{volume!volume of a b-divisor} of a pseudo-effective Weil b-divisor $\mathbb{D}$ over $X$ is
+    \[
+        \vol \mathbb{D}\coloneqq \lim_{\pi\colon Y\rightarrow X} \vol \mathbb{D}_Y.
+    \]
+    The right-hand side is a decreasing net due to \cref{prop:cones_modif2}, hence the limit always exists. The volume of a non-pseudo-effective Weil b-divisor is defined to be $0$.
+
+    We say $\mathbb{D}$ is \emph{big}\index{b-divisor!big b-divisor} if $\vol \mathbb{D}>0$.
+\end{definition}
+
+\begin{lemma}\label{lma:volbdivnet}
+    Let $(\mathbb{D}_i)_{i\in I}$ be a net of pseudo-effective b-divisors converging to a Weil b-divisor $\mathbb{D}$. Then
+    \begin{equation}\label{eq:vollimsup}
+    \varlimsup_{i\in I}\vol \mathbb{D}_i\leq \vol \mathbb{D}.
+    \end{equation}
+    If the net is decreasing, then
+    \[
+    \lim_{i\in I}\vol \mathbb{D}_i=\vol \mathbb{D}.
+    \]
+\end{lemma}
+Here we say $(\mathbb{D}_i)_{i\in I}$ converges to $\mathbb{D}$ if for any modification $\pi\colon Y\rightarrow X$, we have $\mathbb{D}_{i,Y}\to \mathbb{D}_Y$ with respect to the Euclidean topology.
+\begin{proof}
+    First observe that $\mathbb{D}$ is pseudo-effective, since $\mathbb{D}_i\geq 0$ for all $i$.
+
+    Let $\pi\colon Y\rightarrow X$ be a modification. Then
+    \[
+    \vol \mathbb{D}_Y=\lim_{i\in I} \vol \mathbb{D}_{i,Y}\geq \varlimsup_{i\in I} \vol \mathbb{D}_i.
+    \]
+    The inequality \eqref{eq:vollimsup} follows.
+    As for the decreasing case, it suffices to observe that both sides of \eqref{eq:vollimsup} can be written as
+    \[
+    \inf_i \inf_{\pi\colon Y\rightarrow X} \vol \mathbb{D}_{i,Y}.
+    \]
+    This completes the proof.
+\end{proof}
+
+\begin{example}\label{ex:volbdivnetstrict}
+    In general, equality need not hold in \eqref{eq:vollimsup}. Let $X=\mathbb{P}^2$, and let $H=c_1(\mathcal{O}_{\mathbb{P}^2}(1))$. Choose a sequence of points
+    $p_i\in X$ converging to the generic point in the following sense: for every algebraic curve $C\subseteq X$, the set of indices $i$ with $p_i\in C$ is finite.
+
+    Let
+    \[
+        \pi_i\colon X_i\rightarrow X
+    \]
+    be the blow-up of $X$ at $p_i$, with exceptional divisor $E_i$. Let $\mathbb{D}_i$ be the Cartier b-divisor realized on $X_i$ by the nef class
+    \[
+        \pi_i^*H-\{E_i\},
+    \]
+    and let $\mathbb{D}$ be the Cartier b-divisor realized on $X$ by $H$. Then $\mathbb{D}_i\to \mathbb{D}$.
+    Indeed, for any fixed modification $\rho\colon Y\rightarrow X$, the morphism $\rho$ is an isomorphism over $p_i$ for all large enough $i$, hence the trace of $\mathbb{D}_i$ on $Y$ is $\rho^*H$ for all large enough $i$.
+
+    On the other hand,
+    \[
+        \vol \mathbb{D}_i=\left(\pi_i^*H-\{E_i\}\right)^2=0
+    \]
+    for all $i$, whereas
+    \[
+        \vol \mathbb{D}=H^2=1.
+    \]
+    Thus the inequality in \eqref{eq:vollimsup} is strict for this sequence.
+\end{example}
+
+\begin{definition}\label{def:bdiv:L116}
+    A \emph{Cartier b-divisor}\index{b-divisor!Cartier b-divisor} $\mathbb{D}$ over $X$ is a Weil b-divisor $\mathbb{D}$ over $X$ such that there exists a modification $\pi\colon Y\rightarrow X$ and a class $\alpha_Y\in \mathrm{H}^{1,1}(Y,\mathbb{R})$ so that for each $\pi'\colon Z\rightarrow X$ dominating $\pi$, the class $\mathbb{D}_Z$ is the pull-back of $\alpha_Y$. Any such $(\pi,\alpha_Y)$ is called a \emph{realization}\index{realization!realization of a Cartier b-divisor} of $\mathbb{D}$.
+\end{definition}
+By abuse of language, we also say $(Y,\alpha_Y)$ is a realization of $\mathbb{D}$.
+The realization is not unique in general.
+
+
+\begin{definition}\label{def:nefCar}
+    A Cartier b-divisor $\mathbb{D}$ over $X$ is \emph{nef}\index{b-divisor!Cartier b-divisor!nef Cartier b-divisor} if there exists a realization $(\pi\colon Y\rightarrow X, \alpha_Y)$ of $\mathbb{D}$ such that $\alpha_Y$ is nef.
+\end{definition}
+
+\begin{definition}\label{def:nefb}
+    A Weil b-divisor $\mathbb{D}$ over $X$ is \emph{nef}\index{b-divisor!nef b-divisor} if it is the limit of a net of nef Cartier b-divisors $(\mathbb{D}_i)_i$ over $X$.
+\end{definition}
+In other words, for each modification $\pi\colon Y\rightarrow X$, we have $\mathbb{D}_{i,Y}\to \mathbb{D}_Y$.
+
+Note that thanks to \cref{prop:cones_modif}, each $\mathbb{D}_Y$ is necessarily modified nef, but it is not nef in general. The notion of modified nef classes is defined in \cref{def:mnclass}.
+
+\emph{A priori}, for a Cartier b-divisor, nefness could mean either the notion defined by \cref{def:nefCar} or the one defined by \cref{def:nefb}. We will show in \cref{cor:nefbCequiv} that they are actually equivalent. Before that, by a nef Cartier b-divisor, we always mean nefness in the sense of \cref{def:nefCar}.
+
+Our definition \cref{def:nefb} amounts to defining the set of Weil b-divisors as the closure of the set of Cartier b-divisors in $\varprojlim_{\pi}\mathrm{H}^{1,1}(Y,\mathbb{R})$ with respect to the projective limit topology. In particular, the limit of a converging net of nef b-divisors is still nef.
+
+\subsection{The b-divisors of currents}\label{subsec:b-div_curr}
+
+\begin{definition}\label{def:DT}
+Let $T$ be a closed positive $(1,1)$-current on $X$. Given any modification $\pi\colon Y\rightarrow X$, we define
+\begin{equation}
+\mathbb{D}(T)_Y\coloneqq \left\{ \Reg \pi^*T \right\}\in \mathrm{H}^{1,1}(Y,\mathbb{R}).
+\end{equation}
+We call $\mathbb{D}(T)$\index{$\mathbb{D}(T)$} the \emph{b-divisor of $T$}\index{b-divisor!b-divisor of a current}.
+\end{definition}
+This assignment is compatible with push-forwards. Indeed, if $g\colon Z\to Y$ is a modification and $\pi\colon Y\to X$, then
+\[
+    g_*\Reg\bigl(g^*\pi^*T\bigr)=\Reg(\pi^*T)
+\]
+by Siu's decomposition and \cref{lma:Siudec_pullpush}. Hence
+\[
+    g_*\mathbb D(T)_Z=\mathbb D(T)_Y.
+\]
+Thus $\mathbb D(T)$ is a Weil b-divisor.
+
+We observe that if $T'$ is another closed positive $(1,1)$-current on $X$ and $\lambda\geq 0$, then
+\[
+\mathbb{D}(T+T')=\mathbb{D}(T)+\mathbb{D}(T'),\quad \mathbb{D}(\lambda T)=\lambda \mathbb{D}(T).
+\]
+We shall use these identities implicitly in the sequel.
+
+Note that when $T$ has analytic singularities, $\mathbb{D}(T)$ is Cartier.
+
+\begin{theorem}\label{thm:DT}
+    Let $T$ be a closed positive $(1,1)$-current on $X$. Then $\mathbb{D}(T)$ is nef. Moreover,
+    \begin{equation}\label{eq:volDT}
+    \vol T=\vol \mathbb{D}(T).
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    Let $\omega$ be a Kähler form on $X$.
+
+    \textbf{Step~1}. Reduce to the case where $T$ is a Kähler current.
+
+    Note that $\mathbb{D}(\omega)$ is the Cartier b-divisor realized by $(X,\{\omega\})$.
+    The b-divisors $\mathbb{D}(T+\epsilon\omega)=\mathbb{D}(T)+\epsilon \mathbb{D}(\omega)$ decrease to $\mathbb{D}(T)$ as $\epsilon\searrow 0$. Hence, by \cref{lma:volbdivnet} and \cref{prop:vollinearlimit}, it suffices to prove our assertion with $T+\epsilon\omega$ in place of $T$.
+
+    \textbf{Step~2}. We prove the assertion under the additional assumption that $T$ has analytic singularities.
+
+    Let $\pi\colon Y\rightarrow X$ be a modification so that
+    \[
+    \pi^*T=[D]+R,
+    \]
+    where $D$ is an effective $\mathbb{Q}$-divisor on $Y$ and $R$ is a closed positive $(1,1)$-current with locally bounded potentials. See \cref{thm:resolvelogsing} for the existence of $\pi$.
+    Then $\mathbb{D}(T)$ is the nef Cartier b-divisor realized by $(\pi,\{R\})$. Note that \eqref{eq:volDT} is immediate in this case.
+
+    \textbf{Step~3}. We prove the assertion for a general Kähler current $T$.
+    Next, take a closed smooth real $(1,1)$-form $\theta$ in the cohomology class of $T$ and write $T=\theta_{\varphi}$ for some $\varphi\in \PSH(X,\theta)$. Since $T$ is a Kähler current, we choose the quasi-equisingular approximation $(\varphi_j)_j$ of $\varphi$ so that, after discarding finitely many terms, each $\theta+\ddc\varphi_j$ is a Kähler current. This is possible by Demailly regularization, in the form used in the proof of \cref{thm:charIgoodasclosure}. We claim that
+    \begin{equation}\label{eq:conv_bdiv_temp1}
+        \mathbb{D}(\theta+\ddc \varphi_j)\to \mathbb{D}(\theta+\ddc \varphi).
+    \end{equation}
+    By definition of this convergence, we need to establish the following: for every modification $\pi\colon Y\rightarrow X$, we have
+    \[
+        \left\{\Reg\left(\pi^*(\theta+\ddc\varphi_j)\right)\right\}\to \left\{\Reg\left(\pi^*(\theta+\ddc\varphi)\right)\right\}.
+    \]
+    This follows immediately from \cref{thm:Lelongcont} if $\Sing (\pi^*T)$ has only finitely many components.
+
+    Fix a Kähler form $\omega_Y$ on $Y$. We want to show that for any $\epsilon>0$, we can find $j_0>0$ so that when $j\geq j_0$,
+\begin{equation}\label{eq:Regpivarphij_conv_temp1}
+\left\{\Reg\left(\pi^*(\theta+\ddc\varphi_j)\right)\right\}\leq \left\{\Reg\left(\pi^*(\theta+\ddc\varphi)\right)\right\}+\epsilon\{\omega_Y\}.
+\end{equation}
+Write the divisorial part of $\pi^*\theta+\ddc \pi^*\varphi_j$ and $\pi^*\theta+\ddc \pi^*\varphi$ as
+\[
+\sum_{i=1}^{\infty}a_i^j [E_i],\quad \sum_{i=1}^{\infty}a_i [E_i].
+\]
+Then $a_i^j\leq a_i$.
+
+We can find an integer $N>0$ large enough so that, in the pseudo-effective order of cohomology classes,
+\[
+\sum_{i=N+1}^{\infty}a_i \{E_i\}\leq \frac{\epsilon}{2}\{\omega_Y\}.
+\]
+By \cref{thm:Lelongcont}, we can take $j_0$ large enough so that for $j>j_0$,
+\[
+\sum_{i=1}^{N}(a_i-a_i^j)\{E_i\}\leq \frac{\epsilon}{2}\{\omega_Y\}.
+\]
+Then \eqref{eq:Regpivarphij_conv_temp1} follows, and \eqref{eq:conv_bdiv_temp1} is established.
+
+As a consequence, $\mathbb{D}(T)$ is nef and the volume can be computed using \cref{lma:volbdivnet}:
+\[
+\vol\mathbb{D}(T)=\lim_{j\to\infty}\vol \mathbb{D}\left( \theta+\ddc\varphi_j \right)=\lim_{j\to\infty}\vol \left(\theta+\ddc\varphi_j\right)=\vol T.
+\]
+Hence, \eqref{eq:volDT} follows.
+\end{proof}
+
+
+Conversely, we want to realize nef b-divisors as $\mathbb{D}(T)$. We first prove a continuity result.
+\begin{proposition}\label{prop:dscontbdiv}
+Let $\theta$ be a closed real smooth $(1,1)$-form on $X$, let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$, and let $\varphi\in \PSH(X,\theta)$. If $\varphi_i\xrightarrow{d_S}\varphi$, then
+\begin{equation}\label{eq:Dcont1}
+    \mathbb{D}\left(\theta_{\varphi_i}\right)\to \mathbb{D}\left(\theta_{\varphi}\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+    Fix a modification $\pi\colon Y\rightarrow X$.
+    Fix a Kähler form $\omega$ on $X$.
+    It suffices to establish the following:
+    \begin{equation}\label{eq:Dcont2}
+    \mathbb{D}\left(\theta_{\varphi_i}\right)_Y\to \mathbb{D}\left(\theta_{\varphi}\right)_Y.
+    \end{equation}
+    As a map from the pseudometric space $\PSH(X,\theta)$ to the finite-dimensional Euclidean space $\mathrm{H}^{1,1}(Y,\mathbb{R})$, the continuity of $\mathbb{D}(\bullet)_Y$ can be tested on sequences. Thus, without loss of generality, we may assume that $(\varphi_i)_i$ is a sequence and $I=\mathbb{Z}_{>0}$. It is enough to prove that every subsequence has a further subsequence for which \eqref{eq:Dcont3} holds.
+
+    By \cref{cor:dSconv_bimero}, $\pi^*\varphi_i\xrightarrow{d_S}\pi^*\varphi$. Hence it suffices to prove the claim on $Y$, so we may assume that $\pi$ is the identity. Therefore, we are reduced to the following assertion:
+    \begin{equation}\label{eq:Dcont3}
+        \left\{ \Reg \theta_{\varphi_i} \right\}\to \left\{ \Reg \theta_{\varphi} \right\}.
+    \end{equation}
+    After adding a Kähler form to $\theta$, we may also assume that $\theta_{\varphi}$ is a Kähler current. By \cref{thm:contPI}, replacing all potentials by their $\mathcal{I}$-envelopes does not change the divisorial parts and preserves $d_S$-convergence. The masses are then bounded from below along a tail, so after passing to a subsequence \cref{prop:incanddec} supplies increasing and decreasing envelopes $\eta_i\leq \varphi_i\leq \psi_i$ which both converge to $\varphi$ in $d_S$. Since
+    \[
+        \mathbb{D}(\theta_{\eta_i})_X\leq \mathbb{D}(\theta_{\varphi_i})_X\leq \mathbb{D}(\theta_{\psi_i})_X,
+    \]
+    it is enough to treat the case where $(\varphi_i)_i$ is monotone.
+
+    Write the divisorial parts of $\theta_{\varphi_i}$ and $\theta_{\varphi}$ as
+    \[
+        \sum_{m=1}^{\infty}a_m^i[D_m],\quad \sum_{m=1}^{\infty}a_m[D_m].
+    \]
+    By \cref{thm:Lelongcont}, $a_m^i\to a_m$ for each fixed $m$. If $(\varphi_i)_i$ is decreasing, then $a_m^i\leq a_m$ for all $i,m$. The finite-tail argument in the proof of \eqref{eq:Regpivarphij_conv_temp1} then gives
+    \[
+        \left\{\Reg\theta_{\varphi}\right\}\leq \left\{\Reg\theta_{\varphi_i}\right\}\leq \left\{\Reg\theta_{\varphi}\right\}+\epsilon\{\omega\}
+    \]
+    for all sufficiently large $i$.
+
+    If $(\varphi_i)_i$ is increasing, then $a_m\leq a_m^i\leq a_m^1$. We first choose $N$ so that the tails of both $\sum_m a_m[D_m]$ and $\sum_m a_m^1[D_m]$ are at most $(\epsilon/3)\{\omega\}$ in the pseudo-effective order. The convergence of the finitely many coefficients $a_m^i$, $m\leq N$, then gives
+    \[
+        \left\{\Reg\theta_{\varphi_i}\right\}\leq \left\{\Reg\theta_{\varphi}\right\}\leq \left\{\Reg\theta_{\varphi_i}\right\}+\epsilon\{\omega\}
+    \]
+    for all sufficiently large $i$. This proves \eqref{eq:Dcont3}.
+\end{proof}
+
+\begin{lemma}\label{lma:pushIpo}
+    Let $\pi\colon X\rightarrow Z$ be a proper bimeromorphic morphism from $X$ to a Kähler manifold $Z$. Consider non-divisorial closed positive $(1,1)$ currents $T,S$ on $X$ in the same cohomology class. If $T\preceq_{\mathcal{I}} S$, then $\pi_*T\preceq_{\mathcal{I}} \pi_*S$.
+\end{lemma}
+\begin{proof}
+    By Hironaka's Chow lemma \cref{thm:HironakaChow} and \cref{lma:Ipartorderinv}, we may assume that $\pi$ is a modification.
+
+    By \cref{lma:Siudec_pullpush},
+    \[
+    \pi^*\pi_*T=T+F_T,\quad \pi^*\pi_*S=S+F_S,
+    \]
+    where $F_T$ and $F_S$ are effective $\pi$-exceptional divisors. Since $\{T\}=\{S\}$, the exceptional divisors $F_T$ and $F_S$ have the same cohomology class. Factoring $\pi$ into blow-ups and using \cref{prop:blowup_cone} at each step, the classes of $\pi$-exceptional prime divisors are linearly independent in the relative cohomology; hence $F_T=F_S$. It follows that
+    \[
+    \pi^*\pi_*T=T+F_T\preceq_{\mathcal{I}}S+F_S=\pi^*\pi_*S.
+    \]
+    Our assertion then follows from \cref{lma:Ipartorderinv}.
+\end{proof}
+\begin{theorem}\label{thm:bigandnefreal}
+    Each big and nef b-divisor $\mathbb{D}$ over $X$ can be realized as $\mathbb{D}(T)$ for some $T\in \mathbb{D}_X$. Furthermore, we may always assume that $T$ is $\mathcal{I}$-good.
+\end{theorem}
+Note that $T$ is not unique. The current $T$ is necessarily non-divisorial.
+
+\begin{proof}
+    Fix a big and nef b-divisor $\mathbb{D}$ over $X$.
+
+    For each $\pi\colon Y\rightarrow X$, we take a current with minimal singularities $T_Y$ in $\mathbb{D}_Y$.
+    We claim that $\mathbb{D}(\pi_*T_Y)$ coincides with $\mathbb{D}$ up to the level of $Y$: For any modification $\pi'\colon Z\rightarrow X$ dominated by $\pi$ through a morphism $g\colon Y\rightarrow Z$, we have
+    \[
+    \mathbb{D}_Z=\mathbb{D}(\pi_*T_Y)_Z.
+    \]
+    The notations are summarized in the following commutative diagram:
+    \begin{equation}\label{eq:domi2}
+    \begin{tikzcd}
+Y \arrow[rr,"g"] \arrow[rd, "\pi"'] &   & Z \arrow[ld, "\pi'"] \\
+                                 & X. &
+\end{tikzcd}
+    \end{equation}
+    After unfolding the definitions, this means
+    \[
+        \Reg(\pi'^*\pi_*T_Y)\in \mathbb{D}_Z.
+    \]
+    Note that
+    \[
+        \Reg(\pi'^*\pi_*T_Y)=\Reg(\pi'^* \pi'_* g_*T_Y).
+    \]
+    Due to \cref{prop:cones_modif} and \cref{prop:cones_modif2}, we know that $\mathbb{D}_Y$ is modified nef and big. In particular, $T_Y$ is non-divisorial, hence so is $g_*T_Y$ by \cref{lma:ndvpush}. It follows from \cref{lma:Siudec_pullpush} that
+    \[
+    \Reg(\pi'^* \pi'_* g_*T_Y)=\Reg(g_*T_Y)=g_*T_Y\in \mathbb{D}_Z.
+    \]
+    Note that
+    \begin{equation}\label{eq:vol_unif_bound}
+    \vol T_Y\geq \vol \mathbb{D}>0.
+    \end{equation}
+
+    Next we claim that the $P$-singularity types of the net $(\pi_*T_Y)_Y$ form a decreasing net.
+
+    To see this, let us fix a diagram as \eqref{eq:domi2}. We need to show that
+    \[
+    \pi_*T_Y\preceq_P \pi'_*T_Z.
+    \]
+    Since $T_Z$ has minimal singularities, we have $g_*T_Y\preceq_{\mathcal{I}} T_Z$. In particular, \cref{lma:pushIpo} guarantees that $\pi_*T_Y\preceq_{\mathcal{I}} \pi'_*T_Z$.
+    But by \cref{cor:Igoodpush} and \cref{ex:ImodelIgood}, both $\pi_*T_Y$ and $\pi'_*T_Z$ are $\mathcal{I}$-good, so there is no difference between the $P$-preorder and the $\mathcal{I}$-preorder in this case. Our assertion follows.
+
+    Next observe that the net $(\pi_*T_Y)_Y$ is decreasing with respect to the $P$-preorder and has a $d_S$-limit as a consequence of \eqref{eq:vol_unif_bound} and \cref{cor:completenessdS}.
+    Take a closed positive $(1,1)$-current $T\in \mathbb{D}_X$ such that
+    \[
+    \pi_*T_Y\xrightarrow{d_S}T.
+    \]
+    It follows from \cref{prop:dscontbdiv} that
+    \[
+    \mathbb{D}(\pi_*T_Y)\to \mathbb{D}(T).
+    \]
+    Therefore, we conclude that
+    \[
+    \mathbb{D}(T)=\mathbb{D}.
+    \]
+    Thanks to \cref{thm:DT}, $\vol T>0$. Write $T=\theta+\ddc \varphi$ for some $\varphi\in \PSH(X,\theta)$, then
+    \[
+    T'\coloneqq \theta+\ddc P_{\theta}[\varphi]_{\mathcal{I}}
+    \]
+    is $\mathcal{I}$-good, non-divisorial and $\mathbb{D}(T')=\mathbb{D}(T)$.
+\end{proof}
+
+\begin{corollary}\label{cor:mn_level_nefb}
+    Let $\mathbb{D}$ be a b-divisor over $X$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:mn_level_nefb:1} $\mathbb{D}$ is nef;
+        \item\label{itm:cor:mn_level_nefb:2} for each modification $\pi\colon Y\rightarrow X$, the class $\mathbb{D}_Y$ is modified nef.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    \ref{itm:cor:mn_level_nefb:1} $\implies$ \ref{itm:cor:mn_level_nefb:2}. Suppose that \ref{itm:cor:mn_level_nefb:1} holds. Fix a modification $\pi\colon Y\rightarrow X$. Then we need to show that $\mathbb{D}_Y$ is modified nef. Since modified nefness is a closed condition, after approximating $\mathbb{D}$ by nef Cartier b-divisors, we may assume that $\mathbb{D}$ itself is a nef Cartier b-divisor. We can then find a modification $\pi'\colon Z\rightarrow X$ dominating $\pi$ so that $\mathbb{D}$ is realized by a nef class $\alpha$ on $Z$. Then $\mathbb{D}_Y$ is nothing but the pushforward of $\alpha$, and hence modified nef thanks to \cref{prop:cones_modif}.
+
+    \ref{itm:cor:mn_level_nefb:2} $\implies$ \ref{itm:cor:mn_level_nefb:1}. Suppose that \ref{itm:cor:mn_level_nefb:2} holds. We need to show that $\mathbb{D}$ is nef. Fix a Kähler form $\omega$ on $X$. It suffices to show that $\mathbb{D}+\epsilon\mathbb{D}(\omega)$ is nef for each $\epsilon>0$. After replacing $\mathbb{D}$ by the latter, we may further assume that $\mathbb{D}_Y$ is big for each modification $\pi\colon Y\rightarrow X$, and $\vol \mathbb{D}_Y$ has a uniform positive lower bound.
+    In this case, the argument of \cref{thm:bigandnefreal} shows that $\mathbb{D}=\mathbb{D}(T)$ for some closed positive $(1,1)$-current in $\mathbb{D}_X$. Therefore, $\mathbb{D}$ is nef, thanks to \cref{thm:DT}.
+\end{proof}
+
+
+Let $\alpha$ be a modified nef class on $X$. We write $\mathcal{G}(\alpha)$ for the set of closed positive $(1,1)$-currents $T$ on $X$ with $T=\Reg T\in \alpha$ and $\vol T>0$.
+\begin{theorem}\label{thm:bdiv_current_corr}
+    There is a natural bijection from $\mathcal{G}(\alpha)/\sim_{\mathcal{I}}$ to the set of big and nef b-divisors $\mathbb{D}$ over $X$ with $\mathbb{D}_X=\alpha$.
+\end{theorem}
+\begin{proof}
+
+
+    Given $T\in \mathcal{G}(\alpha)$, we associate the b-divisor $\mathbb{D}(T)$. It is big and nef due to \cref{thm:DT}. This map clearly descends to $\mathcal{G}(\alpha)/\sim_{\mathcal{I}}$.
+
+    This map is surjective by \cref{thm:bigandnefreal}. Now we show that it is injective. Let $T,T'\in \mathcal{G}(\alpha)$. Assume that $\mathbb{D}(T)=\mathbb{D}(T')$, we want to show that $T\sim_{\mathcal{I}} T'$.
+
+    Let $E$ be a prime divisor over $X$, it suffices to show that
+    \begin{equation}\label{eq:nuTE}
+    \nu(T,E)=\nu(T',E).
+    \end{equation}
+    We may assume that $E$ is not a prime divisor on $X$, as otherwise both sides vanish.
+
+    Choose a sequence of blow-ups with smooth \emph{connected} centers
+    \[
+    Y\coloneqq X_k\rightarrow X_{k-1}\rightarrow \cdots \rightarrow X_0\coloneqq X
+    \]
+    so that $E$ is a prime divisor on $Y$, exceptional with respect to $X_k\rightarrow X_{k-1}$. Denote the composition by $\pi\colon Y\rightarrow X$.
+    Thanks to \cref{prop:blowup_cone},
+    \[
+    \mathrm{H}^{1,1}(X_k,\mathbb{R})=\mathrm{H}^{1,1}(X_{k-1},\mathbb{R})\oplus \mathbb{R}\{E_k\},
+    \]
+    where $E_k=E$ is the exceptional divisor of $X_k\rightarrow X_{k-1}$.
+
+    By induction,
+    \[
+    \mathrm{H}^{1,1}(Y,\mathbb{R})=\mathrm{H}^{1,1}(X,\mathbb{R})\oplus \bigoplus_{i=1}^{k} \mathbb{R} \{E_i\},
+    \]
+    where $E_i$ is the exceptional divisor of $X_i\rightarrow X_{i-1}$. Now by \cref{lma:Siudec_pullpush},
+    \begin{equation}\label{eq:RegpistarT}
+    \Reg \pi^*T=\pi^*T-\sum_{i=1}^k \nu(T,E_i)[E_i].
+    \end{equation}
+    In particular, the cohomology class of $\Reg \pi^*T$ determines $\nu(T,E)$. Hence, \eqref{eq:nuTE} follows.
+\end{proof}
+
+
+\begin{corollary}\label{cor:nef_b_degenerate_1}
+    The set of nef b-divisors over $X$ with root $\alpha$ can be naturally identified with
+    \[
+    \varprojlim_{\omega} \left( \mathcal{G}(\alpha+\omega)/\sim_{\mathcal{I}} \right),
+    \]
+    where $\omega$ runs over the directed set of Kähler forms on $X$ (with respect to the preorder of reverse domination), and given two Kähler forms $\omega\leq \omega'$ the transition map
+    \[
+    \mathcal{G}(\alpha+\omega)/\sim_{\mathcal{I}}\rightarrow \mathcal{G}(\alpha+\omega')/\sim_{\mathcal{I}}
+    \]
+    is induced by the map $\mathcal{G}(\alpha+\omega)\rightarrow \mathcal{G}(\alpha+\omega')$ sending $T$ to $T+\omega'-\omega$.
+\end{corollary}
+\begin{proof}
+For each Kähler form $\omega$, \cref{thm:bdiv_current_corr} identifies $\mathcal G(\alpha+\omega)/\sim_{\mathcal I}$ with the set of big and nef b-divisors whose root on $X$ is $\alpha+\{\omega\}$. The transition map is exactly addition of $\mathbb D(\omega'-\omega)$. Passing to the inverse limit  gives precisely nef b-divisors with root $\alpha$.
+\end{proof}
+
+It is tempting to extend these results to more general currents, not necessarily non-divisorial ones. For this purpose, we introduce the following definition:
+\begin{definition}\label{def:augmented_nefb}
+    An \emph{augmented nef b-divisor}\index{augmented nef b-divisor} over $X$ is a pair $(\mathbb{D},D)$, where
+    \begin{enumerate}
+        \item\label{itm:def:augmented_nefb:1} $\mathbb{D}$ is a nef b-divisor over $X$;
+        \item\label{itm:def:augmented_nefb:2} $D$ is a formal sum
+        \[
+        D=\sum_{E} c_E E,\quad c_E\in \mathbb{R}_{\geq 0},
+        \]
+        where $E$ runs over the set of prime divisors on $X$,
+    \end{enumerate}
+    such that the following condition is satisfied:
+    \[
+    \sum_{E}c_E \{E\}
+    \]
+    is convergent as a sum in $\mathrm{H}^{1,1}(X,\mathbb{R})$.
+
+    The \emph{cohomology class} of $(\mathbb{D},D)$ is defined as
+    \[
+    \mathbb{D}_X+\sum_{E}c_E \{E\}\in \mathrm{H}^{1,1}(X,\mathbb{R}).
+    \]
+    The \emph{volume} of $(\mathbb{D},D)$ is defined as
+    \[
+    \vol (\mathbb{D},D)=\vol \mathbb{D}.
+    \]
+\end{definition}
+
+Recall that we defined $\mathcal{Z}_+(X,\alpha)$ as the set of closed positive $(1,1)$-currents $T\in \alpha$ in \cref{def:spaceofcurrents}. We introduce a further notation here:
+\[
+\mathcal{Z}_+(X,\alpha)_{>0}\coloneqq \left\{T\in \mathcal{Z}_+(X,\alpha): \vol T>0\right\}.
+\]
+\index{$\mathcal{Z}_+(X,\alpha)_{>0}$}
+
+\begin{corollary}\label{cor:Iequiv_curr_b_div}
+    There is a canonical bijection between the following sets:
+    \begin{enumerate}
+        \item\label{itm:cor:Iequiv_curr_b_div:1} The set $\mathcal{Z}_+(X,\alpha)_{>0}/\sim_{\mathcal{I}}$;
+        \item\label{itm:cor:Iequiv_curr_b_div:2} the set of augmented nef b-divisors over $X$ with positive volume with cohomology class $\alpha$.
+    \end{enumerate}
+\end{corollary}
+More precisely, given a current $T\in \mathcal{Z}_+(X,\alpha)_{>0}$, we associate $(\mathbb{D},D)$ as follows:
+\[
+\mathbb{D}=\mathbb{D}(T),\quad D=\sum_E \nu(T,E)E,
+\]
+where $E$ runs over the set of prime divisors on $X$.
+\begin{proof}
+    This is a direct consequence of \cref{thm:bdiv_current_corr} and Siu's decomposition \cref{lma:Siudec}.
+\end{proof}
+
+In fact, \cref{cor:Iequiv_curr_b_div} can also be reformulated in an elementary manner, without referring to b-divisors at all. Suppose that we are given a big cohomology class $\alpha$ on $X$ and a non-negative real number $c_E$ for each prime divisor $E$ over $X$. A natural question is: When is there a closed positive $(1,1)$-current $T\in \alpha$ with positive volume such that $\nu(T,E)=c_E$ for every $E$? Then \cref{cor:Iequiv_curr_b_div} says that $T$ exists if and only if the following two conditions hold:
+\begin{enumerate}
+    \item\label{itm:chapter-bdiv:L472:1}
+    \[
+    \lim_{\pi\colon Y\rightarrow X} \vol\left( \pi^*\alpha-\sum_{E\subseteq Y} c_E \{E\} \right)>0\footnotemark,
+    \]
+    \footnotetext{In particular, implicitly, the sum $\sum_{E\subseteq Y} c_E \{E\}$ converges in $\mathrm{H}^{1,1}(Y,\mathbb{R})$.}
+    where $\pi$ runs over all modifications of $X$;
+    \item\label{itm:chapter-bdiv:L472:2} for each modification $\pi\colon Y\rightarrow X$, the class $ \pi^*\alpha-\sum_{E\subseteq Y} c_E \{E\}$ is modified nef.
+\end{enumerate}
+
+
+
+
+Similarly, we have the following generalization of \cref{cor:nef_b_degenerate_1}.
+\begin{corollary}\label{cor:nef_b_degenerate_2}
+    There is a canonical bijection between the following two sets:
+    \begin{enumerate}
+        \item\label{itm:cor:nef_b_degenerate_2:1} The set of
+        \[
+            \varprojlim_{\omega} \left( \mathcal{Z}_+(X,\alpha+\omega)_{>0}/\sim_{\mathcal{I}} \right),
+        \]
+        where $\omega$ runs over the directed set of Kähler forms on $X$;
+    \item\label{itm:cor:nef_b_degenerate_2:2} the set of augmented nef b-divisors over $X$ with cohomology class $\alpha$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+Apply \cref{cor:nef_b_degenerate_1} to the non-divisorial parts and use Siu's decomposition on $X$ to record the divisorial part. The convergence condition in \cref{def:augmented_nefb} is exactly the condition that the roots of the non-divisorial parts converge to the prescribed cohomology class $\alpha$.
+\end{proof}
+
+\begin{corollary}\label{cor:nefbCequiv}
+    Let $\mathbb{D}$ be a Cartier b-divisor over $X$. Then $\mathbb{D}$ is nef in the sense of \cref{def:nefCar} if and only if it is nef in the sense of \cref{def:nefb}.
+\end{corollary}
+
+\begin{proof}
+    We only handle the nontrivial implication. Assume that $\mathbb{D}$ is nef in the sense of \cref{def:nefb}. We want to show that $\mathbb{D}$ is nef in the sense of \cref{def:nefCar}. After replacing $X$ by a realization of $\mathbb{D}$, we may assume that $\mathbb{D}$ is realized by $(X,\alpha)$ for some cohomology class $\alpha\in \mathrm{H}^{1,1}(X,\mathbb{R})$.
+
+    We first assume that $\mathbb{D}$ is big. Choose a non-divisorial closed positive $(1,1)$-current $T$ on $X$ such that $\mathbb{D}=\mathbb{D}(T)$. Now $\mathbb{D}=\mathbb{D}(T)$ means that for each modification $\pi\colon Y\rightarrow X$, the current $\pi^*T$ is non-divisorial. In particular, $T$ has vanishing generic Lelong number along each prime divisor over $X$, see \eqref{eq:RegpistarT}. Equivalently, $T$ has vanishing Lelong number everywhere. By Demailly's regularization theorem, a pseudo-effective class carrying a positive current with vanishing Lelong number at every point is nef. Hence $\alpha=\{T\}$ is nef.
+
+    In the general case, fix a Kähler form $\omega$ on the realization of $\mathbb{D}$. For every $\epsilon>0$, the Cartier b-divisor $\mathbb{D}+\epsilon\mathbb{D}(\omega)$ is big and nef in the sense of \cref{def:nefb}, hence is nef in the sense of \cref{def:nefCar} by the big case. Thus $\alpha+\epsilon\{\omega\}$ is nef for all $\epsilon>0$, and the closedness of the nef cone shows that $\alpha$ is nef.
+\end{proof}
+
+\begin{corollary}\label{cor:Dorder_Iorder}
+    Let $T$ and $T'$ be non-divisorial closed positive $(1,1)$-currents on $X$. Suppose that $\{T\}=\{T'\}$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:Dorder_Iorder:1} $\mathbb{D}(T)\leq \mathbb{D}(T')$;
+        \item\label{itm:cor:Dorder_Iorder:2} $T\preceq_{\mathcal{I}}T'$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    Let $E$ be a prime divisor over $X$. Choose a sequence of blow-ups with smooth connected centers as in the proof of \cref{thm:bdiv_current_corr}, so that $E$ appears as one of the exceptional prime divisors on the resulting model $\pi\colon Y\rightarrow X$. By \eqref{eq:RegpistarT}, the difference
+    \[
+        \mathbb{D}(T')_Y-\mathbb{D}(T)_Y
+    \]
+    is represented in the relative cohomology by
+    \[
+        \sum_i\left(\nu(T,E_i)-\nu(T',E_i)\right)\{E_i\}.
+    \]
+    Using \cref{prop:blowup_cone} inductively, or equivalently the negativity lemma for exceptional classes, pseudo-effectivity of this exceptional class is equivalent to the non-negativity of all coefficients. Hence $\mathbb{D}(T)\leq \mathbb{D}(T')$ is equivalent to
+    \[
+        \nu(T,E)\geq \nu(T',E)
+    \]
+    for every prime divisor $E$ over $X$, which is exactly $T\preceq_{\mathcal{I}}T'$ by \cref{prop:Iequivchar2}.
+\end{proof}
+
+\begin{corollary}\label{cor:nef_Cartierseq}
+    Let $\mathbb{D}$ be a nef b-divisor over $X$. Then there is a decreasing sequence of nef and big Cartier b-divisors $\mathbb{D}_i$ over $X$ with limit $\mathbb{D}$.
+\end{corollary}
+\begin{proof}
+    Take a Kähler form $\omega$ on $X$. By \cref{thm:bigandnefreal}, for each $i>0$, we can find a non-divisorial Kähler current $T_i\in \mathbb{D}_X+i^{-1}\{\omega\}$ such that
+    \[
+    \mathbb{D}(T_i)=\mathbb{D}+i^{-1}\mathbb{D}(\omega).
+    \]
+    We observe that $T_i$ and $T_{i+1}$ have the same $\mathcal{I}$-singularity type. Indeed, applying \cref{cor:Dorder_Iorder} to $T_i$ and $T_{i+1}+(i^{-1}-(i+1)^{-1})\omega$ shows that these two currents are $\mathcal{I}$-equivalent; adding the smooth form does not change the singularity type.
+    Let $(T_i^j)_j$ be quasi-equisingular approximations of $T_i$ such that
+    \begin{enumerate}
+        \item\label{itm:chapter-bdiv:L544:1}
+        $T_i^j$ is a Kähler current in $\mathbb{D}_X+i^{-1}\{\omega\}$ for $j\geq j_0(i)$, and
+        \item\label{itm:chapter-bdiv:L544:2} for each fixed $j$, the singularity type of $T_i^j$ is independent of $i$.
+    \end{enumerate}
+    Note that \ref{itm:chapter-bdiv:L544:2} is possible by using the Bergman kernel construction of the quasi-equisingular approximations, since the $T_i$'s have the same multiplier ideals.
+
+    For fixed $j$, the b-divisor
+    \[
+        \mathbb{B}_j\coloneqq \mathbb{D}(T_i^j)-i^{-1}\mathbb{D}(\omega)
+    \]
+    is independent of $i$. Since the quasi-equisingular approximations are decreasing in $j$, the sequence $(\mathbb{B}_j)_j$ is decreasing, and \cref{prop:dscontbdiv} gives $\mathbb{B}_j\to \mathbb{D}$. It suffices to take $\mathbb{D}_i=\mathbb{B}_{j_i}+i^{-1}\mathbb{D}(\omega)=\mathbb{D}(T_i^{j_i})$, where $j_i$ is chosen to be a sufficiently fast increasing sequence of positive integers with $j_i\geq j_0(i)$.
+\end{proof}
+
+
+\section{Properties of the intersection product}\label{sec:int_b_div}
+Let $X$ be a connected compact Kähler manifold of dimension $n$. Recall that the mixed volume of currents is studied in \cref{sec:mix_vol}.
+
+\begin{definition}\label{def:DF_ext2}
+    Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be big and nef b-divisors over $X$. Then we define their intersection as
+    \index{b-divisor!intersection product}
+    \[
+    \left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)\coloneqq \vol (T_1,\ldots,T_n),
+    \]
+    \index{$\left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)$}%
+    where $T_1,\ldots,T_n$ are closed positive $(1,1)$-currents in $\mathbb{D}_{1,X},\ldots,\mathbb{D}_{n,X}$ respectively such that $\mathbb{D}(T_i)=\mathbb{D}_{i}$.
+\end{definition}
+The definition makes sense thanks to \cref{thm:bigandnefreal}. It does not depend on the choices of $T_1,\ldots,T_n$ since they are uniquely defined up to $\mathcal{I}$-equivalence, as proved in \cref{thm:bdiv_current_corr}.
+
+
+
+\begin{lemma}\label{lma:DFlinear}\leavevmode
+    \begin{enumerate}
+        \item\label{itm:lma:DFlinear:1} The product in \cref{def:DF_ext2} is symmetric in its $n$ variables.
+        \item\label{itm:lma:DFlinear:2} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n,\mathbb{D}'_1$ be big and nef b-divisors over $X$. Then
+        \[
+        \left(\mathbb{D}_1+\mathbb{D}_1',\ldots,\mathbb{D}_n \right)=\left(\mathbb{D}_1,\ldots,\mathbb{D}_n \right)+\left(\mathbb{D}_1',\ldots,\mathbb{D}_n \right).
+        \]
+        \item\label{itm:lma:DFlinear:3} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be big and nef b-divisors over $X$ and $\lambda\geq 0$. Then
+        \[
+        \left(\lambda \mathbb{D}_1,\ldots,\mathbb{D}_n \right)=\lambda \left(\mathbb{D}_1,\ldots,\mathbb{D}_n \right).
+        \]
+        \item\label{itm:lma:DFlinear:4} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ and $\mathbb{D}'$ be big and nef b-divisors over $X$ such that $\mathbb{D}_1\leq \mathbb{D}'$. Then
+        \[
+            \left(\mathbb{D}_1,\ldots,\mathbb{D}_n  \right)\leq \left(\mathbb{D}',\mathbb{D}_2,\ldots,\mathbb{D}_n  \right).
+        \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \ref{itm:lma:DFlinear:1}, \ref{itm:lma:DFlinear:2} and \ref{itm:lma:DFlinear:3} follow immediately from the corresponding results for mixed volumes, as proved in \cref{prop:vollinearlimit}.
+
+    \ref{itm:lma:DFlinear:4} Take $\mathcal{I}$-good non-divisorial closed positive $(1,1)$-currents $T_1,\ldots,T_n$ and $T'$ so that $\mathbb{D}(T_i)=\mathbb{D}_i$ for all $i=1,\ldots,n$ and $\mathbb{D}(T')=\mathbb{D}'$.
+    Furthermore, we may assume that the $T_i$'s and $T'$ are Kähler currents by the perturbation argument.
+
+    Let $(T_{i}^j)_j$ be a quasi-equisingular approximation of $T_i$ for $i=2,\ldots,n$. It follows from \cref{thm:convdS} that
+    \[
+    \int_X T_1\wedge \cdots \wedge T_n=\lim_{j\to\infty} \int_X T_1\wedge T_2^j\wedge\cdots \wedge T_n^j.
+    \]
+    It suffices to show that for all $j\geq 1$,
+    \[
+    \int_X T_1\wedge T_2^j\wedge\cdots \wedge T_n^j\leq \int_X T'\wedge T_2^j\wedge\cdots \wedge T_n^j.
+    \]
+    Therefore, we have reduced to the case where $T_2,\ldots,T_n$ have analytic singularities. After a resolution, we may assume that they have log singularities along $\mathbb{Q}$-divisors. By \itemref{itm:prop:vollinearlimit:5}, we can further reduce to the case where $T_2,\ldots,T_n$ have bounded local potentials. Perturbing $T_2,\ldots,T_n$ by a Kähler form, we may further assume that $\{T_2\},\ldots, \{T_n\}$ are Kähler classes. By \itemref{itm:prop:vollinearlimit:4}, we finally reduce to the case where $T_2,\ldots,T_n$ are Kähler forms. In this case, the assertion follows from the pseudo-effectivity of $\{T'\}-\{T_1\}$.
+\end{proof}
+
+
+In general, we can extend the definition of the intersection product to nef b-divisors as follows:
+\begin{definition}\label{def:DF_ext}
+    Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be nef b-divisors over $X$. Then we define their intersection as
+    \index{b-divisor!intersection product}
+    \begin{equation}\label{eq:mixed_product_limit_def}
+        \left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)\coloneqq \lim_{\epsilon \to 0+}\Bigl( \mathbb{D}_1+\epsilon \mathbb{D}(\omega),\ldots,\mathbb{D}_n+\epsilon \mathbb{D}(\omega) \Bigr),
+    \end{equation}
+    \index{$\left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)$}%
+    where $\omega$ is a Kähler form on $X$.
+
+    Note that as $\epsilon\to 0+$, $\left( \mathbb{D}_1+\epsilon \mathbb{D}(\omega),\ldots,\mathbb{D}_n+\epsilon \mathbb{D}(\omega) \right)$ is decreasing, as a consequence of \itemref{itm:lma:DFlinear:4}. Similarly, by \itemref{itm:lma:DFlinear:4} again, the definition is independent of the choice of $\omega$.
+\end{definition}
+
+
+\begin{proposition}\label{prop:DFlinear}\leavevmode
+    \begin{enumerate}
+        \item\label{itm:prop:DFlinear:1} The product in \cref{def:DF_ext} is symmetric in its $n$ variables.
+        \item\label{itm:prop:DFlinear:2} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n,\mathbb{D}'_1$ be nef b-divisors over $X$. Then
+        \[
+        \left(\mathbb{D}_1+\mathbb{D}_1',\ldots,\mathbb{D}_n \right)=\left(\mathbb{D}_1,\ldots,\mathbb{D}_n \right)+\left(\mathbb{D}_1',\ldots,\mathbb{D}_n \right).
+        \]
+        \item\label{itm:prop:DFlinear:3} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be nef b-divisors over $X$ and $\lambda\geq 0$. Then
+        \[
+        \left(\lambda \mathbb{D}_1,\ldots,\mathbb{D}_n \right)=\lambda \left(\mathbb{D}_1,\ldots,\mathbb{D}_n \right).
+        \]
+        \item\label{itm:prop:DFlinear:4} Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ and $\mathbb{D}'$ be nef b-divisors over $X$ such that $\mathbb{D}_1\leq \mathbb{D}'$. Then
+        \[
+            \left(\mathbb{D}_1,\ldots,\mathbb{D}_n  \right)\leq \left(\mathbb{D}',\mathbb{D}_2,\ldots,\mathbb{D}_n  \right).
+        \]
+        \item\label{itm:prop:DFlinear:5} Let $T_1,\ldots,T_n$ be closed positive $(1,1)$-currents on $X$. Then
+        \[
+            \Bigl( \mathbb{D}(T_1),\ldots,\mathbb{D}(T_n) \Bigr)= \vol (T_1,\ldots,T_n).
+        \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:DFlinear:1}, \ref{itm:prop:DFlinear:2}, \ref{itm:prop:DFlinear:3} and \ref{itm:prop:DFlinear:4} These are immediate consequences of the corresponding results in the big and nef case established in \cref{lma:DFlinear}.
+
+    \ref{itm:prop:DFlinear:5} By \eqref{eq:volmixedgeneral} and \eqref{eq:mixed_product_limit_def}, we may assume that $T_1,\ldots,T_n$ are Kähler currents. In this case, the assertion follows from the definitions.
+\end{proof}
+
+
+\begin{lemma}\label{lma:perturbDF}
+    Let $\omega$ be a Kähler form on $X$. Fix a compact set $K\subseteq \mathrm{H}^{1,1}(X,\mathbb{R})$.
+    Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be nef b-divisors over $X$ such that $\mathbb{D}_{i,X}\in K$ for each $i=1,\ldots,n$. Then there is a constant $C$ depending only on $X,K,\{\omega\}$ such that for any $\epsilon\in [0,1]$, we have
+    \[
+    0\leq \Bigl( \mathbb{D}_1+\epsilon \mathbb{D}(\omega),\ldots,\mathbb{D}_n+\epsilon \mathbb{D}(\omega) \Bigr)-\left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)\leq C\epsilon.
+    \]
+\end{lemma}
+\begin{proof}
+    By \itemref{itm:lma:DFlinear:4}, the left-hand side is non-negative. For the upper bound, by the multi-linearity of the product proved in \cref{prop:DFlinear}, we can rewrite the difference as a sum of $2^n-1$ terms like
+    \[
+        \epsilon^{m} \Bigl( \mathbb{D}(\omega)^{m}, \mathbb{D}_{i_1},\ldots, \mathbb{D}_{i_{n-m}} \Bigr),
+    \]
+    where $J\subseteq\{1,\ldots,n\}$ is a non-empty subset of cardinality $m$, and $\{i_1,\ldots,i_{n-m}\}$ is the complement of $J$. We need to show that these coefficients are uniformly bounded by a constant depending only on the given data. For this purpose, we add $\mathbb{D}(\omega)$ to each $\mathbb{D}_i$ and then replace $K$ by $K+\{\omega\}$. Therefore, we reduce to the case where each $\mathbb{D}_i$ is nef and big, and hence $\mathbb{D}_i=\mathbb{D}(T_i)$ for some $\mathcal{I}$-good closed positive $(1,1)$-currents on $X$ with positive volumes. Then we need to bound
+    \[
+        \int_X \omega^m\wedge T_{i_1}\wedge \cdots \wedge T_{i_{n-m}}.
+    \]
+    For this purpose, let $D\geq 0$ be the minimal non-negative number so that $D\{\omega\}-\alpha$ is nef for any $\alpha\in K$. Then the integral is bounded by the cohomological intersection $\{\omega\}^m\cap (D\{\omega\})^{n-m}$. Our assertion follows.
+\end{proof}
+
+
+
+
+We first make a consistency check.
+\begin{proposition}\label{prop:bdiv:L678}
+    Suppose that $\mathbb{D}$ is a nef b-divisor over $X$. Then
+    \[
+    \left( \mathbb{D},\ldots,\mathbb{D} \right)=\vol \mathbb{D}.
+    \]
+\end{proposition}
+\begin{proof}
+    Using \cref{lma:perturbDF} and \cref{lma:volbdivnet}, we may easily reduce to the case where $\mathbb{D}$ is nef and big. In this case, take a non-divisorial closed positive $(1,1)$-current $T$ in $\mathbb{D}_X$ such that $\mathbb{D}(T)=\mathbb{D}$. Then we need to show that
+    \[
+    \vol \mathbb{D}=\vol T,
+    \]
+    which is proved in \cref{thm:DT}.
+\end{proof}
+
+\begin{proposition}\label{prop:bdiv:L692}
+    Let $\mathbb{D}_1,\ldots,\mathbb{D}_n$ be nef b-divisors over $X$. Then
+    \[
+    \left(\mathbb{D}_1,\ldots,\mathbb{D}_n \right)\geq \prod_{i=1}^n \left( \vol \mathbb{D}_i\right)^{1/n}.
+    \]
+\end{proposition}
+\begin{proof}
+    We may assume that $\vol \mathbb{D}_i>0$ for each $i=1,\ldots,n$ since there is nothing to prove otherwise. In this case, our assertion follows from \cref{prop:logvol}.
+\end{proof}
+
+\begin{proposition}\label{prop:DFusc}
+    The product in \cref{def:DF_ext} is upper semicontinuous in the following sense. Suppose that $(\mathbb{D}_i^j)_{j\in J}$ are nets of nef b-divisors over $X$ with limits $\mathbb{D}_i$ for each $i=1,\ldots,n$. Then
+    \begin{equation}\label{eq:limsupint_prod}
+    \varlimsup_{j\in J}\left(\mathbb{D}_1^j,\ldots,\mathbb{D}_n^j \right)\leq  \left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    \textbf{Step~1}. We first assume that the $\mathbb D_i^j$'s and the $\mathbb D_i$'s are all big.
+
+    Choose $\mathcal I$-good non-divisorial currents $T_i^j$ and $T_i$ such that $\mathbb D(T_i^j)=\mathbb D_i^j$ and $\mathbb D(T_i)=\mathbb D_i$. Fix a Kähler form $\omega$ on $X$ and fix $\epsilon>0$. Since $\mathbb D_{i,X}^j\to\mathbb D_{i,X}$, for all sufficiently large $j$ the class
+    \[
+        \mathbb D_{i,X}+\epsilon\{\omega\}-\mathbb D_{i,X}^j
+    \]
+    is Kähler. Choose a Kähler form $\chi_i^j$ in this class and set $S_i^j=T_i^j+\chi_i^j$. Then $S_i^j$ lies in the fixed class $\mathbb D_{i,X}+\epsilon\{\omega\}$ and has the same divisorial Lelong numbers as $T_i^j$. Hence, by \cref{thm:usc_mix_vol} and \itemref{itm:prop:vollinearlimit:2},
+    \[
+        \varlimsup_{j\in J}\vol\Bigl(T_1^j,\ldots,T_n^j\Bigr)\leq \varlimsup_{j\in J}\vol\Bigl(S_1^j,\ldots,S_n^j\Bigr)\leq\vol\left(T_1+\epsilon\omega,\ldots,T_n+\epsilon\omega\right).
+    \]
+    Therefore,
+    \[
+        \varlimsup_{j\in J}\Bigl(\mathbb D_1^j,\ldots,\mathbb D_n^j\Bigr)\leq \Bigl(\mathbb D_1+\epsilon\mathbb D(\omega),\ldots,\mathbb D_n+\epsilon\mathbb D(\omega)\Bigr).
+    \]
+    Letting $\epsilon\to 0+$ gives \eqref{eq:limsupint_prod}.
+
+    \textbf{Step~2}. Next we handle the general case.
+
+    Take a Kähler form $\omega$ on $X$. Then by \cref{lma:perturbDF}, for any $\epsilon\in (0,1]$, we have
+    \[
+    \begin{aligned}
+          \varlimsup_{j\in J}\left(\mathbb{D}_1^j,\ldots,\mathbb{D}_n^j \right)
+        \leq & \varlimsup_{j\in J}\left(\mathbb{D}_1^j+\epsilon \mathbb{D}(\omega),\ldots,\mathbb{D}_n^j+\epsilon \mathbb{D}(\omega) \right)\\
+        \leq & \left( \mathbb{D}_1+\epsilon \mathbb{D}(\omega),\ldots,\mathbb{D}_n+\epsilon \mathbb{D}(\omega) \right)\\
+        \leq & \left( \mathbb{D}_1,\ldots,\mathbb{D}_n \right)+C\epsilon.
+    \end{aligned}
+    \]
+    Since $\epsilon$ is arbitrary, our assertion follows.
+\end{proof}
+
+\begin{proposition}\label{prop:DFdecnet}
+    The product in \cref{def:DF_ext} is continuous along decreasing nets in each variable. In other words, if $(\mathbb{D}_i^j)_{j\in J}$ ($i=1,\ldots,n$) are decreasing nets of nef b-divisors over $X$ with limits $\mathbb{D}_i$, then
+    \[
+    \lim_{j\in J} \left(\mathbb{D}_1^j,\ldots,\mathbb{D}_n^j\right)=\left(\mathbb{D}_1,\ldots,\mathbb{D}_n\right).
+    \]
+\end{proposition}
+\begin{proof}
+    This is a straightforward consequence of \itemref{itm:lma:DFlinear:4} and \cref{prop:DFusc}.
+\end{proof}
+
+\begin{remark}\label{rmk:bdiv:L749}
+The algebraic nef b-divisors are introduced by Dang--Favre \cite{DF20}, as their intersection theory. It is a straightforward application of the results proved in this section that our transcendental intersection theory coincides with theirs in the algebraic setting.
+\end{remark}

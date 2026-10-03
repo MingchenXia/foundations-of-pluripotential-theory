@@ -1,0 +1,1766 @@
+\documentclass[11pt,a4paper]{amsart}
+\usepackage{cgeometry}
+\addbibresource{ComplexGeometry.bib}
+\defbibheading{bibliography}[\refname]{\section*{#1}}
+\setlength{\bibitemsep}{0pt}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\allowdisplaybreaks[2]
+\emergencystretch=1em
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Notation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\EnK}{E_{\mathrm{nK}}}
+\newcommand{\Enn}{E_{\mathrm{nn}}}
+\newcommand{\trc}{\operatorname{Tr}}            % trace operator
+\newcommand{\dS}{d_{S}}                          % the d_S pseudometric
+\DeclareMathOperator{\Exc}{Exc}
+\DeclareMathOperator{\im}{im}
+\newcommand{\rest}[1]{\operatorname{Res}_{#1}}   % restriction of an ideal
+\newcommand{\lessing}{\preceq}                   % more singular than
+\newcommand{\lessP}{\preceq_{P}}
+\newcommand{\lessI}{\preceq_{\mathcal I}}
+\newcommand{\simP}{\sim_{P}}
+\newcommand{\simI}{\sim_{\mathcal I}}
+
+\theoremstyle{definition}
+\newtheorem{setup}[theorem]{Setup}
+
+\title{A transcendental Nakamaye theorem}
+\author{Duc Viet Vu \and Mingchen Xia}
+\date{}
+
+\begin{document}
+\begin{abstract}
+Let $X$ be a connected compact K\"ahler manifold and let $\alpha$ be a
+pseudoeffective real $(1,1)$-class on $X$. We prove that every
+positive-dimensional irreducible component $V$ of the non-K\"ahler locus
+$\EnK(\alpha)$ has vanishing numerical restricted volume,
+\[
+  \langle\alpha^{\dim V}\rangle_{X\mid V}=0.
+\]
+Consequently, the non-K\"ahler locus of $\alpha$ coincides with the null
+locus of $\alpha$ defined through numerical restricted volumes. This
+confirms a conjecture of Collins and Tosatti, and gives a transcendental
+version of the theorems of Nakamaye and of
+Ein--Lazarsfeld--Musta\c{t}\u{a}--Nakamaye--Popa on augmented base loci.
+\end{abstract}
+\maketitle
+
+
+\section{Introduction}
+
+Let $X$ be a connected compact K\"ahler manifold of dimension $n$. For a big
+class $\alpha\in H^{1,1}(X,\mathbf R)$, Boucksom \cite{Bou04} introduced
+the \emph{non-K\"ahler locus}
+\[
+  \EnK(\alpha)=\bigcap_{T}E_+(T),
+\]
+where $T$ runs over the K\"ahler currents in $\alpha$ and $E_+(T)$
+is the set of points at which the Lelong number of $T$ is positive.
+By \cite[Theorem~3.17]{Bou04}, there is a K\"ahler current
+$T\in\alpha$ with analytic singularities such that
+$E_+(T)=\EnK(\alpha)$; in particular, $\EnK(\alpha)$ is a proper analytic
+subset of $X$. When $X$ is projective and $\alpha=c_1(L)$ for a big
+line bundle $L$, the non-K\"ahler locus is the augmented base
+locus $B_+(L)$. Following \cite{CT22}, we set $\EnK(\alpha)=X$
+when $\alpha$ is pseudoeffective but not big.
+
+Nakamaye's theorem \cite{Nak00} describes the augmented base locus of a nef
+and big line bundle $L$ on a projective manifold as the \emph{null locus}
+of $L$, the union of the positive-dimensional irreducible
+subvarieties $V\subset X$ with $(L^{\dim V}\cdot V)=0$. It was extended
+to arbitrary big divisors $D$ by
+Ein--Lazarsfeld--Musta\c{t}\u{a}--Nakamaye--Popa \cite{ELMNP09}, who showed
+that $B_+(D)$ is the union of the positive-dimensional subvarieties along
+which the restricted volume $\vol_{X\mid V}(D)$ vanishes. On the
+transcendental side, Collins and Tosatti \cite{CT15} proved that
+$\EnK(\alpha)=\Null(\alpha)$ for every nef and big class $\alpha$ on a
+compact K\"ahler manifold, where
+$\Null(\alpha)$ is the union of the positive-dimensional irreducible
+subvarieties $V$ with $\int_V\alpha^{\dim V}=0$.
+
+To formulate a statement valid for all pseudoeffective classes,
+Collins and Tosatti \cite{CT22} introduced the \emph{numerical restricted
+volume}
+$\langle\alpha^{\dim V}\rangle_{X\mid V}$ of a pseudoeffective class
+$\alpha$ along a positive-dimensional irreducible analytic subvariety
+$V\subset X$ (see \cref{sec:restricted-volumes}), defined the null locus
+\begin{equation}\label{eq:null-locus}
+  \Null(\alpha)
+  =\bigcup_{\substack{V\subset X\ \text{irreducible},\ \dim V>0\\
+      \langle\alpha^{\dim V}\rangle_{X\mid V}=0}}V,
+\end{equation}
+and conjectured that $\EnK(\alpha)=\Null(\alpha)$ for every pseudoeffective
+class $\alpha$ \cite[Conjecture~1.1]{CT22}. The inclusion
+$\Null(\alpha)\subset\EnK(\alpha)$ always holds
+(\cref{sec:restricted-volumes}\ref{it:rv-positive}). They proved the conjecture
+when $\alpha$ admits a Zariski decomposition, in particular whenever
+$\dim X=2$ \cite[Theorem~1.2]{CT22}; when $X$ is projective and
+$\alpha=c_1(D)$ for a big $\mathbf R$-divisor $D$, the conjecture reduces
+to the theorem of \cite{ELMNP09} \cite[Proposition~1.4]{CT22}. Since the
+non-K\"ahler locus of a big class has no isolated points
+(\cref{lem:no-isolated-points}), the conjecture follows once the
+numerical restricted volume is known to vanish along every irreducible
+component of $\EnK(\alpha)$. This is what we prove.
+
+\begin{samepage}
+\begin{maintheorem}\label{thm:main}
+Let $X$ be a connected compact K\"ahler manifold and let $\alpha$ be a
+pseudoeffective real $(1,1)$-class on $X$. If $V$ is a
+positive-dimensional irreducible component of $\EnK(\alpha)$, then
+\[
+  \langle\alpha^{\dim V}\rangle_{X\mid V}=0.
+\]
+In particular, $\EnK(\alpha)=\Null(\alpha)$.
+\end{maintheorem}
+\end{samepage}
+
+Collins and Tosatti derived several consequences of their conjecture
+\cite[Theorems~1.6, 1.7 and~1.8]{CT22}, concerning the moving Seshadri
+constants of big classes, their continuity on the big cone, and the
+non-K\"ahler locus of classes containing a positive current which is a
+K\"ahler metric on an open set; by \cref{thm:main}, these statements now
+hold unconditionally.
+
+\subsection*{Where the difficulty lies}
+Let $\alpha$ be big and let $V$ be a smooth irreducible component of
+$\EnK(\alpha)$ of dimension $k>0$, not contained in the non-nef locus
+$\Enn(\alpha)$; the general case reduces to this one
+(\cref{sec:setup}). Assume that
+$h\coloneqq\langle\alpha^k\rangle_{X\mid V}>0$. We shall reach a
+contradiction by constructing, on a modification $\pi\colon Y\to X$, a
+K\"ahler current in $\pi^*\alpha$ whose potential is bounded near some point
+of the strict transform of $V$.
+
+In the algebraic setting, the theorem of \cite{ELMNP09} rests on the
+extension of sections of line bundles from $V$ to $X$; no such tool is
+available for transcendental classes. What remains is the gluing
+mechanism already used in the nef case \cite{CT15}: a K\"ahler current
+$T_U\in\alpha$ defined near $V$ and a global K\"ahler current
+$T_G\in\alpha$ singular along $V$ can be glued, by taking the maximum of
+their potentials, as soon as the potential of $T_U$ is bounded above by
+that of $T_G$, up to a constant, near $V$ but off $V$
+(\cref{prop:gluing}). We call this the \emph{collar condition}. The
+natural candidate for $T_U$ is an extension of a K\"ahler current on $V$
+in the class $\alpha|_V$. When $\alpha$ is nef, $T_G$ may be chosen with
+arbitrarily mild singularities and the collar condition costs nothing.
+For a general big class it is the heart of the matter, and three
+problems arise.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=.2em,topsep=.3em]
+\item \emph{Singularities are forced on $V$.} Every closed positive
+  current in $\alpha$ is at least as singular as the potential $V_\theta$ with minimal
+  singularities ($\theta$ a smooth representative of $\alpha$), which may be singular along subvarieties of $V$, since
+  $V$ may meet $\Enn(\alpha)$. Hence $T_U$, and the current on $V$ from
+  which it is built, must be at least as singular as the restrictions
+  $\mathfrak b_q$ to $V$ of the multiplier ideals $\mathcal I(qV_\theta)$.
+  The trace operator of \cite{DX24} provides the relevant object: the
+  trace $u$ of $V_\theta$ on $V$ has non-pluripolar mass $h$, and its
+  multiplier ideals satisfy $\mathcal I(qu)\subset\mathfrak b_q$. But
+  $u$ is not a K\"ahler current, and a positive mass only says that
+  $\alpha|_V$ is big. A domination lemma (\cref{lem:domination}),
+  based on the bigness criterion of Xiao and Popovici
+  \cite{Xiao15,Pop16}, turns a lower bound on the mass into a K\"ahler
+  current on $V$ that is at least as singular as $u$ in the sense of
+  multiplier ideals, with uniform positivity.
+\item \emph{Singular currents do not extend.} There is no general
+  procedure extending a singular K\"ahler current from $V$ to a
+  neighborhood of $V$. We therefore make its singularities divisorial on a
+  modification $\pi\colon Y\to X$ obtained by blowing up centers contained
+  in, or disjoint from, the strict transforms of $V$. On the strict transform $W$ of $V$ the current
+  becomes a K\"ahler class plus an effective divisor; the class extends to a
+  K\"ahler form near $W$, and the divisor extends as soon as it is the
+  restriction to $W$ of an effective divisor $D$ on $Y$. The collar
+  condition then becomes a comparison, near $W$, between $D$ and the
+  singularities of $\pi^*T_G$.
+\item \emph{Blowing up has a price.} To be a K\"ahler current, $T_G$ is
+  built from a regularization of $V_\theta$ at a level $M$, which loses
+  positivity of order $1/M$, corrected by a small multiple $(L/M)R$ of a
+  K\"ahler current $R$ singular along $\EnK(\alpha)\supset V$. On $Y$ we
+  have $\mathcal I_V\mathcal O_Y=\mathcal O_Y(-H)\cdot\mathcal I_W$ for an
+  exceptional divisor $H$ which meets $W$, so $\pi^*T_G$ is singular along
+  $H$, with a coefficient of order $1/M$. The collar condition forces the
+  current on $W$ to be more singular than the trace by an amount of order
+  $1/M$ along $H|_W$, and the trace offers no such margin.
+\end{enumerate}
+
+\subsection*{Strategy}
+The margin is created by a rooftop envelope at two levels $m\ll M$. Let
+$\phi_m$ be the restriction to $V$ of a Demailly approximation of
+$V_\theta$ at level $m$; it is less singular than $u$, and its
+singularities are those of $\mathfrak b_m$. For an integer $C$ chosen
+before $m$ and $M$, the theorem on rooftop envelopes
+(\cref{thm:rooftop}) yields a potential
+\[
+  v\le Cu-(C-1)\phi_m
+\]
+whose non-pluripolar mass is bounded below independently of $m$, and
+hence a K\"ahler current $K$ on $V$ which is at least as singular as $v$.
+Writing $M=C\ell$ and $p=(C-1)\ell/m$, the multiplier ideal
+$\mathfrak k=\mathcal I(\ell\varphi_K)$ of the potential
+$\varphi_K$ of $K$ at level $\ell$ satisfies
+(\cref{lem:ideal-comparison})
+\[
+  \mathfrak k\,\mathfrak b_m^{\,p}\subset\mathcal I(Mu)\subset\mathfrak b_M .
+\]
+On a modification of $V$ on which $\mathfrak k$, $\mathfrak b_m$ and
+$\mathfrak b_M$ become invertible, with divisors $G_K$, $G_m$ and $G_M$,
+this means that
+\[
+  \frac1\ell\,G_K=\frac1M\,G_M+\frac{C-1}M\Bigl(G_M-\frac Mm\,G_m\Bigr)
+  +\frac CM\,F
+\]
+with $F\ge0$ and $G_M-(M/m)G_m\ge0$. The first term matches the
+singularities of the regularization of $V_\theta$ at level $M$; the other
+two terms are the margin. By a principalization relative to the strict
+transform of $V$ (\cref{lem:relative-principalization}) we construct $Y$
+so that $H$ is the sum of three exceptional divisors whose restrictions
+to $W$ are $G_m$, $G_M-(M/m)G_m$ and $F$. The last two pieces are paid
+for by the margin, because $C$ is chosen so that $(C-1)/M$ dominates the
+coefficient of $H$ in $\pi^*T_G$. The first piece does not depend on $M$; it is absorbed
+by a global quasi-plurisubharmonic function with loss of positivity of
+order $1/M$. This is why two levels are needed.
+
+The order in which the constants are chosen is essential: the constants
+governing positivity are fixed before $M$, while singularities are
+compared at the level $M$. This is possible because Demailly's
+regularization loses positivity at the rate $O(1/M)$, with a constant
+independent of the function being regularized
+(\cref{lem:regularization}): the weight of $R$, and hence the margin
+needed, is then of order $1/M$, like the margin produced by the rooftop
+construction. The order of choices is summarized in
+\cref{rem:order}.
+
+\subsection*{Organization}
+\Cref{sec:prelim} collects notation and the results from pluripotential
+theory used in the proof; we follow the lecture notes \cite{XiaSGPT},
+whose results we use freely. \Cref{sec:aux} contains the auxiliary
+results: the bigness criterion of Xiao and Popovici, the domination lemma,
+a patching lemma with its two applications (the quantitative
+regularization lemma and functions with prescribed singularities), the
+relative principalization lemma, a lemma on K\"ahler forms on blowups,
+and the gluing proposition. The proof of \cref{thm:main} occupies
+\cref{sec:setup,sec:positive-current,sec:extension}:
+\cref{sec:setup} reduces the theorem to a statement about the trace,
+\cref{sec:positive-current} constructs the K\"ahler current $K$ on $V$,
+and \cref{sec:extension} extends it across $V$ and concludes.
+
+\subsection*{Acknowledgments}
+The initial proof was due to the
+\href{https://github.com/frenzymath/Danus}{Danus agent} (improved by Felix
+Ye), using the \texttt{gpt-5.6-sol} model. The authors then simplified
+the construction and improved the presentation, and are fully responsible
+for all assertions in this paper.
+
+The second-named author is supported by the National Key R\&D Program
+of China under Grant No.~2025YFA1018200.
+
+\section{Preliminaries}\label{sec:prelim}
+
+Throughout, $X$ denotes a connected compact K\"ahler manifold of
+dimension $n$ and $\omega$ a K\"ahler form on $X$. Submanifolds are
+closed; in particular, submanifolds of compact manifolds are compact. We
+write $\ddc=(2\pi)^{-1}\mathrm{i}\partial\bar\partial$, so that
+$\ddc\log|z|^2$ is the current of integration at the origin of
+$\mathbf C$. A \emph{modification} is a finite composition of blowups
+with smooth centers between compact complex manifolds. A \emph{prime
+divisor over $X$} is a prime divisor $E$ on some modification
+$\pi\colon Y\to X$. For a quasi-plurisubharmonic (quasi-psh) function
+$\varphi$ on $X$, we write $\nu(\varphi,x)$ for its Lelong number at
+$x\in X$, $\nu(\varphi,Z)$ for its generic Lelong number along an
+irreducible analytic subset $Z\subset X$, and $\nu(\varphi,E)$ for the
+generic Lelong number of $\pi^*\varphi$ along a prime divisor $E$ over
+$X$. The same notation is used for closed positive $(1,1)$-currents.
+If $D$ is a divisor on a modification and $f$ is a further modification,
+$f^*D$ denotes the total transform of $D$.
+
+\subsection{Quasi-psh functions, multiplier ideals and analytic
+singularities}\label{sec:qpsh}
+
+For a smooth closed real $(1,1)$-form $\theta$ on $X$, we denote by
+$\PSH(X,\theta)$ the set of quasi-psh functions $\varphi$ on $X$ with
+$\theta_\varphi\coloneqq \theta+\ddc\varphi\ge0$; equivalently, if
+$\theta=\ddc g$ locally, then $g+\varphi$ is psh. For quasi-psh functions
+$\varphi,\psi$ we write $\varphi\lessing\psi$, and say that $\varphi$ is
+\emph{more singular} than $\psi$, if $\varphi\le\psi+C$ for a constant
+$C$; we write $\varphi\sim\psi$ if $\varphi\lessing\psi$ and
+$\psi\lessing\varphi$.
+
+For a quasi-psh function $\varphi$ and $\lambda>0$, the
+\emph{multiplier ideal} $\mathcal I(\lambda\varphi)\subset\mathcal O_X$
+\cite{Nad90} is the sheaf of germs of holomorphic functions $f$ with
+$|f|^2\mathrm{e}^{-\lambda\varphi}\in L^1_{\mathrm{loc}}$. It is coherent
+and integrally closed, and by the subadditivity theorem \cite{DEL00},
+\begin{equation}\label{eq:subadditivity}
+  \mathcal I\bigl((\lambda+\lambda')\varphi\bigr)
+  \subset\mathcal I(\lambda\varphi)\,\mathcal I(\lambda'\varphi),
+  \qquad \lambda,\lambda'>0.
+\end{equation}
+
+For a coherent ideal $\mathfrak a$ with local generators
+$f_1,\dots,f_N$, we set $\psi_{\mathfrak a}\coloneqq \log\sum_j|f_j|^2$.
+We write $O(1)$ for a locally bounded function; a different choice of
+generators changes $\psi_{\mathfrak a}$ by $O(1)$, and inequalities
+between such locally defined functions are understood locally, with
+constants that can be chosen uniformly on compact sets. If
+$\mathfrak b\subset\mathfrak a$, then
+$\psi_{\mathfrak b}\le\psi_{\mathfrak a}+O(1)$; moreover
+$\psi_{\mathfrak a\mathfrak b}=\psi_{\mathfrak a}+\psi_{\mathfrak b}+O(1)$,
+and $\psi_{\mathfrak a}\circ\pi=\psi_{\mathfrak a\mathcal O_Y}+O(1)$ for
+every modification $\pi\colon Y\to X$. If $Y\subset X$ is a submanifold,
+the \emph{restriction} of $\mathfrak a$ to $Y$ is the image ideal
+$\rest{Y}\mathfrak a\coloneqq \im(\mathfrak a\to\mathcal O_Y)$
+\cite[Definition~1.4.5]{XiaSGPT}; it is generated by the restrictions of
+local generators of $\mathfrak a$ (it should not be confused with
+$\mathfrak a\otimes\mathcal O_Y$), so that
+$\psi_{\rest Y\mathfrak a}=\psi_{\mathfrak a}|_Y+O(1)$.
+
+For an effective divisor $D$ we write
+$\psi_D\coloneqq \log|s_D|_{h_D}^2$, where $s_D$ is the canonical section of
+$\mathcal O(D)$ and $h_D$ a smooth Hermitian metric on $\mathcal O(D)$;
+by the Poincar\'e--Lelong formula, $\ddc\psi_D=[D]-\Theta_D$, where
+$\Theta_D$ is the Chern form of $h_D$. For an effective
+$\mathbf Q$-divisor we clear denominators. Thus $\psi_D$ is bounded above,
+$\psi_{D_1+D_2}=\psi_{D_1}+\psi_{D_2}+O(1)$,
+$\psi_{D_1}\le\psi_{D_2}+O(1)$ if $D_1\ge D_2$, and
+$\psi_{\mathfrak a}\circ\pi=\psi_D+O(1)$ if
+$\mathfrak a\mathcal O_Y=\mathcal O_Y(-D)$ for a modification
+$\pi\colon Y\to X$. When exact identities between divisorial potentials or
+their Chern forms are used, the metrics are chosen compatibly with sums,
+pullbacks and restrictions.
+
+A quasi-psh function $\varphi$ has \emph{analytic singularities of type
+$(c,\mathfrak a)$}, where $c\in\mathbf Q_{>0}$ and $\mathfrak a$ is a
+coherent ideal, if $\varphi=c\,\psi_\mathfrak a+O(1)$ locally
+\cite[Definition~1.6.1]{XiaSGPT}; the remainder is merely bounded.
+(Numerical restricted volumes are defined in
+\cref{sec:restricted-volumes} with the stronger convention of
+\cite[Section~2]{CT22}, with smooth remainder.) If moreover
+$\mathfrak a\mathcal O_Y=\mathcal O_Y(-D)$ is invertible on a modification
+$\pi\colon Y\to X$ (a \emph{principalization} of $\mathfrak a$), then
+$\pi^*\varphi=c\,\psi_D+O(1)$, and we say that $\pi^*\varphi$ has
+\emph{log singularities} along the $\mathbf Q$-divisor $cD$. Every
+coherent ideal on a compact complex manifold admits a principalization,
+and every quasi-psh function with analytic singularities admits a
+\emph{log resolution}, a modification on which it has log singularities
+along an effective $\mathbf Q$-divisor with simple normal crossing support
+\cite[Theorem~1.6.1]{XiaSGPT}. If $\varphi$ has analytic singularities of
+type $(c,\mathfrak a)$ and $Y\subset X$ is a submanifold with
+$\mathfrak a\not\subset\mathcal I_Y$, then $\varphi|_Y$ has analytic
+singularities of type $(c,\rest{Y}\mathfrak a)$.
+
+The cohomological content of log singularities is the following.
+
+\begin{lemma}[{\cite[Lemma~1.6.1]{XiaSGPT}}]\label{lem:residual-nef}
+Let $\theta$ be a smooth closed real $(1,1)$-form on a compact K\"ahler
+manifold $Z$, and let $\varphi\in\PSH(Z,\theta)$ have log singularities
+along an effective $\mathbf Q$-divisor $D$. Then the class $\{\theta\}-\{D\}$ is
+nef. If moreover $\theta+\ddc\varphi$ is a K\"ahler current, then
+$\{\theta\}-\{D\}$ is K\"ahler.
+\end{lemma}
+
+\subsection{Non-pluripolar products, envelopes and comparison of
+singularities}\label{sec:npp}
+
+Let $\theta$ be a smooth closed real $(1,1)$-form on $X$ and
+$\varphi\in\PSH(X,\theta)$. The non-pluripolar product
+$\theta_\varphi^n$, which goes back to Bedford--Taylor \cite{BT87} and
+was developed by Guedj--Zeriahi \cite{GZ07} and
+Boucksom--Eyssidieux--Guedj--Zeriahi \cite{BEGZ10}, is a positive measure
+on $X$ putting no mass on pluripolar sets. More generally, mixed
+non-pluripolar products
+$\theta_{1,\varphi_1}\wedge\dots\wedge\theta_{n,\varphi_n}$ are well
+defined and multilinear \cite[Proposition~2.2.1]{XiaSGPT}. Powers of
+positive currents are always understood in the non-pluripolar sense. We
+use the following facts.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=.2em,topsep=.3em]
+\item\label{it:monotone} (Monotonicity \cite{WN19,DDNL18mono}; see
+  \cite[Theorem~2.4.3]{XiaSGPT} for the mixed statement.) If
+  $\varphi_j\lessing\psi_j$ for all $j$, then
+  $\int_X\theta_{1,\varphi_1}\wedge\dots\wedge\theta_{n,\varphi_n}
+  \le\int_X\theta_{1,\psi_1}\wedge\dots\wedge\theta_{n,\psi_n}$.
+\item\label{it:invariance} (Invariance \cite[Proposition~2.4.2]{XiaSGPT}.)
+  If $\pi\colon Y\to X$ is a modification and $T_1,\dots,T_n$ are
+  closed positive $(1,1)$-currents on $X$, then
+  $\int_Y\pi^*T_1\wedge\dots\wedge\pi^*T_n=\int_XT_1\wedge\dots\wedge T_n$.
+\item\label{it:bigness} (\cite[Proposition~1.22]{BEGZ10}; see
+  \cite[Proposition~2.4.1]{XiaSGPT}.) If some $\varphi\in\PSH(X,\theta)$
+  satisfies $\int_X\theta_\varphi^n>0$, then $\{\theta\}$ is big.
+\end{enumerate}
+We write $\PSH(X,\theta)_{>0}$ for the set of $\varphi\in\PSH(X,\theta)$
+with $\int_X\theta_\varphi^n>0$, and
+$V_\theta\coloneqq \sup\{\varphi\in\PSH(X,\theta):\varphi\le0\}$ for the
+potential with minimal singularities.
+
+\subsubsection*{Envelopes}
+For $\varphi\in\PSH(X,\theta)$, the \emph{envelope of the singularity
+type} of $\varphi$ is
+\[
+  P_\theta[\varphi]
+  \coloneqq \sup{}^*\bigl\{\psi\in\PSH(X,\theta):\psi\le0,\ \psi\lessing\varphi\bigr\}
+\]
+\cite[Definition~3.1.2]{XiaSGPT}, where $\sup^*$ denotes the upper
+semicontinuous regularization; such envelopes were introduced by
+Ross--Witt~Nystr\"om \cite{RWN14} and studied in big classes by
+Darvas--Di~Nezza--Lu \cite{DDNL18full,DDNL18mono}. For a function
+$f\colon X\to[-\infty,\infty]$, the \emph{rooftop envelope} is
+\[
+  P_\theta(f)\coloneqq \sup{}^*\bigl\{\psi\in\PSH(X,\theta):
+     \psi\le f\ \text{quasi-everywhere}\bigr\}
+\]
+\cite[Definition~2.4.1]{XiaSGPT}, where quasi-everywhere means outside a
+pluripolar set. It is either identically $\pm\infty$ or $\theta$-psh, and
+$P_\theta(f)\le f$ quasi-everywhere.
+
+\subsubsection*{The \texorpdfstring{$P$}{P}- and
+\texorpdfstring{$\mathcal I$}{I}-preorders}
+Following \cite[Definition~6.1.1]{XiaSGPT}, we write $\varphi\lessP\psi$
+if $P_\theta[\varphi]\le P_\theta[\psi]$ for some (equivalently, every)
+$\theta$ with $\varphi,\psi\in\PSH(X,\theta)_{>0}$. We write
+$\varphi\lessI\psi$ if
+$\mathcal I(\lambda\varphi)\subset\mathcal I(\lambda\psi)$ for all
+$\lambda>0$. The corresponding equivalence relations are denoted
+$\simP$ and $\simI$, and the preorders apply to closed positive
+$(1,1)$-currents through their potentials. We use the following facts.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=.2em,topsep=.3em,resume]
+\item\label{it:I-valuative} $\varphi\lessI\psi$ if and only if
+  $\nu(\varphi,E)\ge\nu(\psi,E)$ for every prime divisor $E$ over $X$
+  \cite[Proposition~6.1.2]{XiaSGPT} (see also \cite{BFJ08}); this
+  relation is invariant under modifications
+  \cite[Lemma~6.1.4]{XiaSGPT}.
+\item\label{it:orders} $\varphi\lessing\psi\Rightarrow\varphi\lessP\psi
+  \Rightarrow\varphi\lessI\psi$ (see the remark following
+  \cite[Definition~6.1.1]{XiaSGPT}, and
+  \cite[Corollary~6.1.1]{XiaSGPT}). In particular, $\mathcal I$-equivalent,
+  and a fortiori $P$-equivalent, functions have the same multiplier ideals
+  and the same generic Lelong numbers along prime divisors over $X$
+  \cite[Proposition~3.2.1]{XiaSGPT}.
+\item\label{it:I-envelope} For $\varphi\in\PSH(X,\theta)$, the
+  $\mathcal I$-envelope $P_\theta[\varphi]_{\mathcal I}$ of Darvas--Xia
+  \cite{DX22} satisfies $\varphi\simI P_\theta[\varphi]_\mathcal I$
+  \cite[Proposition~3.2.6]{XiaSGPT}.
+\end{enumerate}
+
+The following theorem is the source of the margin described in the
+introduction.
+
+\begin{theorem}[{\cite[Theorem~6.1.1]{XiaSGPT}}]\label{thm:rooftop}
+Let $\varphi,\psi\in\PSH(X,\theta)_{>0}$ with $\varphi\lessP\psi$, and
+let $t>1$ satisfy
+$t^n\int_X\theta_\varphi^n>(t^n-1)\int_X\theta_\psi^n$. Then
+$P_\theta\bigl(t\varphi-(t-1)\psi\bigr)\in\PSH(X,\theta)_{>0}$.
+\end{theorem}
+
+\subsubsection*{The pseudometric \texorpdfstring{$\dS$}{dS}}
+For a big class $\{\theta\}$, let $\dS=d_{S,\theta}$ be the pseudometric
+on $\PSH(X,\theta)$ of Darvas--Di~Nezza--Lu \cite{DDNL21}; see
+\cite[Definition~6.2.1]{XiaSGPT}. We only use the following properties.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=.2em,topsep=.3em,resume]
+\item\label{it:dS-zero} $\dS(\varphi,\psi)=0$ if and only if
+  $\varphi\simP\psi$ \cite[Proposition~6.2.2]{XiaSGPT}.
+\item\label{it:dS-background} For a K\"ahler form $\omega'$, a net
+  converges in $d_{S,\theta}$ if and only if it converges in
+  $d_{S,\theta+\omega'}$ \cite[Corollary~6.2.9]{XiaSGPT}; thus
+  $\dS$-convergence does not depend on the background form.
+\item\label{it:dS-mass} If $\theta_1,\dots,\theta_n$ represent big
+  classes and $\varphi_j^i\xrightarrow{\dS}\varphi_j$ in
+  $\PSH(X,\theta_j)$ for $j=1,\dots,n$, then
+  $\int_X\theta_{1,\varphi^i_1}\wedge\dots\wedge\theta_{n,\varphi^i_n}
+  \to\int_X\theta_{1,\varphi_1}\wedge\dots\wedge\theta_{n,\varphi_n}$
+  \cite[Theorem~6.2.1]{XiaSGPT}.
+\item\label{it:dS-closed} If $\varphi_i\xrightarrow{\dS}\varphi$ and
+  $\varphi_i\lessP\psi$ for all $i$, then $\varphi\lessP\psi$
+  \cite[Proposition~6.2.5]{XiaSGPT}.
+\item\label{it:dS-lelong} If $\varphi_i\xrightarrow{\dS}\varphi$, then
+  $\nu(\varphi_i,E)\to\nu(\varphi,E)$ for every prime divisor $E$ over
+  $X$ \cite[Theorem~6.2.4]{XiaSGPT}, a result originally proved in
+  \cite{Xia24}.
+\end{enumerate}
+
+\subsubsection*{Quasi-equisingular approximations}
+Let $\varphi\in\PSH(X,\theta)$. A sequence $(\varphi_j)_{j\ge1}$ of
+quasi-psh functions with analytic singularities is a
+\emph{quasi-equisingular approximation} of $\varphi$ if it decreases to
+$\varphi$, if $\varphi_j\in\PSH(X,\theta+\epsilon_j\omega)$ for a
+sequence $\epsilon_j\downarrow0$, and if for all $\lambda'>\lambda>0$
+one has $\mathcal I(\lambda'\varphi_j)\subset\mathcal I(\lambda\varphi)$
+for $j$ large \cite[Definition~1.6.4]{XiaSGPT}. By Demailly's
+regularization theorem \cite{Dem92,DPS01}, in the form of
+\cite[Theorem~1.6.2]{XiaSGPT}, every $\varphi\in\PSH(X,\theta)$ admits a
+quasi-equisingular approximation $(\varphi_j)_j$ such that $\varphi_j$ has
+analytic singularities of type $(2^{-j},\mathcal I(2^j\varphi))$. If
+$\varphi\in\PSH(X,\theta)_{>0}$, a decreasing sequence $(\varphi_j)_j$ of
+potentials with analytic singularities, with
+$\varphi_j\in\PSH(X,\theta+\epsilon_j\omega)$, $\epsilon_j\downarrow0$ and
+$\inf_j\varphi_j=\varphi$, is a quasi-equisingular approximation of
+$\varphi$ if and only if $\varphi_j\xrightarrow{\dS}P_\theta[\varphi]_\mathcal I$
+\cite[Corollary~7.1.2]{XiaSGPT}; this circle of ideas goes back to
+\cite{DX22,DX24b}.
+
+\subsection{Non-K\"ahler locus and non-nef locus}\label{sec:nK}
+
+If $\alpha$ is big and a K\"ahler current $T\in\alpha$ has a potential
+which is bounded near a point $x$, then $\nu(T,x)=0$, so
+$x\notin\EnK(\alpha)$. By \cite[Theorem~3.17]{Bou04} (see also
+\cite[Theorem~1.7.1]{XiaSGPT}), there is a K\"ahler current $R\in\alpha$
+with analytic singularities whose polar set is exactly $\EnK(\alpha)$.
+
+For a pseudoeffective class $\alpha$, the \emph{non-nef locus} is
+\[
+  \Enn(\alpha)\coloneqq \bigcup_{\epsilon>0}\EnK(\alpha+\epsilon\{\omega\});
+\]
+it does not depend on $\omega$ \cite[Section~2]{CT22}. If $\alpha$ is big
+and $\theta\in\alpha$ is a smooth representative, then
+$\Enn(\alpha)=\{x\in X:\nu(V_\theta,x)>0\}\subset\EnK(\alpha)$
+\cite[Definitions~1.7.6 and~1.7.7]{XiaSGPT}. By Siu's theorem
+\cite{Siu74}, for an irreducible analytic subset $Z$ one has
+$\nu(V_\theta,Z)=0$ if and only if $Z\not\subset\Enn(\alpha)$. For big
+$\alpha$ and a modification $\mu\colon\widetilde X\to X$, we shall use
+the transformation rules \cite[Lemmas~4.1 and~4.3]{CT22}
+\begin{equation}\label{eq:transformation-rules}
+  \Enn(\mu^*\alpha)=\mu^{-1}\bigl(\Enn(\alpha)\bigr),\qquad
+  \EnK(\mu^*\alpha)=\mu^{-1}\bigl(\EnK(\alpha)\bigr)\cup\Exc(\mu),
+\end{equation}
+where $\Exc(\mu)$ is the exceptional locus of $\mu$.
+
+\subsection{Numerical restricted volumes and the trace
+operator}\label{sec:restricted-volumes}
+
+Let $\alpha$ be a pseudoeffective class, let $\theta\in\alpha$ be a
+smooth representative, and let $V\subset X$ be an irreducible analytic
+subset of dimension $k>0$. Following \cite[Section~2]{CT22}, the
+\emph{numerical restricted volume} of $\alpha$ along $V$ is
+$\langle\alpha^k\rangle_{X\mid V}\coloneqq 0$ if $V\subset\Enn(\alpha)$,
+and otherwise
+\[
+  \langle\alpha^k\rangle_{X\mid V}
+  \coloneqq \lim_{\epsilon\downarrow0}\ \sup_{T}
+     \int_{V_{\mathrm{reg}}}
+     \bigl((T+\epsilon\omega)|_{V_{\mathrm{reg}}}\bigr)_{\mathrm{ac}}^k,
+\]
+where $T$ runs over the closed real $(1,1)$-currents in $\alpha$ with
+$T\ge-\epsilon\omega$ whose polar sets do not contain $V$ and whose local
+potentials have the form $c\log\sum_j|f_j|^2+g$ with $c>0$ and $g$ smooth;
+the subscript $\mathrm{ac}$ denotes the absolutely continuous part. For
+such currents the integrand is the non-pluripolar product, both being the
+extension by zero of the smooth product off the polar set
+\cite[Remark~2.2]{CT22}. For $V=X$ one recovers the volume,
+$\langle\alpha^n\rangle_{X\mid X}=\vol(\alpha)$, which vanishes if and
+only if $\alpha$ is not big \cite{Bou02b}. We use two further properties
+from \cite{CT22}.
+\begin{enumerate}[label=(\alph*),leftmargin=*,itemsep=.2em,topsep=.3em]
+\item\label{it:rv-positive} If $V\not\subset\EnK(\alpha)$, then
+  $\langle\alpha^k\rangle_{X\mid V}>0$. Indeed, by
+  \cite[Lemma~2.7]{CT22} the numerical restricted volume is then the
+  supremum of
+  $\int_{V_{\mathrm{reg}}}(T|_{V_{\mathrm{reg}}})_{\mathrm{ac}}^k$
+  over the K\"ahler currents $T\in\alpha$ with local potentials of the
+  form above whose polar sets do not contain $V$, and such currents exist
+  when $V\not\subset\EnK(\alpha)$. If $T\ge\delta\omega$, the restricted
+  integral is at least $\delta^k\int_V\omega^k>0$.
+\item\label{it:rv-birational} If $\alpha$ is big,
+  $\mu\colon\widetilde X\to X$ is a modification with
+  $V\not\subset\mu(\Exc(\mu))$, and $\widetilde V$ is the strict transform
+  of $V$, then $\langle(\mu^*\alpha)^k\rangle_{\widetilde X\mid\widetilde V}
+  =\langle\alpha^k\rangle_{X\mid V}$ \cite[Lemma~4.2]{CT22}.
+\end{enumerate}
+
+\subsubsection*{The trace operator}
+Let $V\subset X$ be a connected submanifold of dimension $k$, and let
+$\varphi$ be a quasi-psh function on $X$ with $\nu(\varphi,V)=0$. If
+$(\varphi_j)_j$ is a quasi-equisingular approximation of $\varphi$, then
+$\varphi_j|_V\not\equiv-\infty$ for all $j$, and the restrictions
+$\varphi_j|_V$ converge in $\dS$, with respect to any sufficiently
+positive K\"ahler form on $V$, to a quasi-psh function on $V$ which is
+independent of the approximation up to $P$-equivalence
+\cite[Propositions~8.1.1 and~8.1.2, Definition~8.1.1]{XiaSGPT}. Any such
+limit is called a \emph{trace} of $\varphi$ along $V$ and is denoted by
+$\trc_V(\varphi)$. If $\varphi\in\PSH(X,\theta)$ and a trace of
+$\varphi$ can be chosen in $\PSH(V,\theta|_V)_{>0}$, one sets
+\[
+  \trc^\theta_V(\varphi)\coloneqq P_{\theta|_V}\bigl[\trc_V(\varphi)\bigr]
+  \in\PSH(V,\theta|_V)_{>0}
+\]
+\cite[Definition~8.1.2]{XiaSGPT}. The trace operator was introduced in
+\cite{DX24}; we need two facts about it.
+
+\begin{theorem}[{\cite[Theorem~8.3.1]{XiaSGPT}}]\label{thm:trace-formula}
+Let $\alpha$ be a big class, $\theta\in\alpha$ a smooth representative,
+and $V\subset X$ a connected submanifold of dimension $k>0$ with
+$V\not\subset\Enn(\alpha)$. Then
+\[
+  \langle\alpha^k\rangle_{X\mid V}
+  =\int_V\bigl(\theta|_V+\ddc\trc^\theta_V(V_\theta)\bigr)^k,
+\]
+where the right-hand side is understood to be $0$ if
+$\trc^\theta_V(V_\theta)$ is not defined.
+\end{theorem}
+
+\begin{proof}
+For $\epsilon>0$, put
+$T_\epsilon\coloneqq \theta+\epsilon\omega+\ddc V_{\theta+\epsilon\omega}$.
+Since $V\not\subset\Enn(\alpha)\supset\EnK(\alpha+\epsilon\{\omega\})$
+and $V_{\theta+\epsilon\omega}$ is locally bounded outside
+$\EnK(\alpha+\epsilon\{\omega\})$, the restriction $T_\epsilon|_V$ is well
+defined, and by \cite[Remark~2.2 and equation~(2.3)]{CT22},
+\[
+  \langle\alpha^k\rangle_{X\mid V}
+  =\lim_{\epsilon\downarrow0}\int_V(T_\epsilon|_V)^k .
+\]
+By the equality of the second and the last quantities displayed in
+\cite[Theorem~8.3.1]{XiaSGPT}, an identity between non-pluripolar masses
+whose proof does not involve the definition of restricted volumes, this
+limit equals the right-hand side of the formula, with the same convention
+when the trace is not defined.
+\end{proof}
+
+\begin{theorem}[{\cite[Proposition~8.2.3]{XiaSGPT}}]\label{thm:trace-multiplier}
+Let $V\subset X$ be a connected submanifold and let $\varphi$ be a
+quasi-psh function on $X$ with $\nu(\varphi,V)=0$. Then
+$\mathcal I\bigl(\lambda\trc_V(\varphi)\bigr)\subset\rest{V}\mathcal I(\lambda\varphi)$
+for every $\lambda>0$.
+\end{theorem}
+
+Since $P$-equivalent functions have the same multiplier ideals
+(\cref{sec:npp}\ref{it:orders}), the inclusion holds for every trace of
+$\varphi$, and in particular for $\trc^\theta_V(\varphi)$ when it is
+defined.
+
+\section{Auxiliary results}\label{sec:aux}
+
+\subsection{A bigness criterion}
+
+We use the following criterion of Xiao, a weak form of the transcendental
+holomorphic Morse inequalities. It is the special case of
+\cite[Theorem~1.4]{Xiao15}, stated there for Hermitian metrics $\omega$
+with $\partial\bar\partial\omega^j=0$, in which the metric is K\"ahler.
+The sharp criterion, with $4k$ replaced by $k$, was proved by Popovici
+\cite[Theorem~1.1]{Pop16}, confirming a conjecture of
+Boucksom--Demailly--P\u{a}un--Peternell in the K\"ahler case; the weak
+form suffices for our purposes.
+
+\begin{theorem}[{\cite[Theorem~1.4]{Xiao15}}]\label{thm:nef-difference}
+Let $Z$ be a compact K\"ahler manifold of dimension $k$ and let
+$A,B$ be nef classes on $Z$. If $A^k-4kA^{k-1}\cdot B>0$, then $A-B$ is
+big.
+\end{theorem}
+
+\subsection{Divisorial domination}
+
+The following lemma turns a lower bound on the non-pluripolar mass of a
+potential into a K\"ahler current which is at least as singular as the
+potential in the sense of multiplier ideals, with a positivity constant
+that depends only on the lower bound.
+
+\begin{lemma}\label{lem:domination}
+Let $(Z,\omega_Z)$ be a connected compact K\"ahler manifold of
+dimension $k$, let $\gamma$ be a smooth closed real $(1,1)$-form on $Z$,
+and let $h_0>0$. There is a constant $\delta_*\in(0,1]$, depending only on
+$(Z,\omega_Z)$, $\gamma$ and $h_0$, with the following property. If
+$0\le\eta\le1$, $\gamma_\eta\coloneqq\gamma+\eta\omega_Z$, and
+$v\in\PSH(Z,\gamma_\eta)$ satisfies $\int_Z(\gamma_\eta)_v^k\ge h_0$, then
+there is a closed positive current $S\in\{\gamma_\eta\}$ such that
+\[
+  S\ge\delta_*\omega_Z
+  \qquad\text{and}\qquad S\lessI v.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose $C^\dagger>0$ such that $\gamma+C^\dagger\omega_Z$ is K\"ahler, put
+\[
+  C_*\coloneqq\max_{0\le s\le 2+C^\dagger}
+  \bigl(\{\gamma\}+s\{\omega_Z\}\bigr)^{k-1}\cdot\{\omega_Z\},
+\]
+and choose $\delta_*\in(0,1]$ with $8k\delta_*C_*<h_0$. Let $\eta$ and $v$ be as
+in the statement.
+
+\emph{Step 1: analytic approximation.} The class $\{\gamma_\eta\}$ is big
+by \cref{sec:npp}\ref{it:bigness}. By \cite[Theorem~1.6.2]{XiaSGPT},
+$v$ admits a quasi-equisingular approximation $(v_j)_{j}$ with
+$v_j\in\PSH(Z,\gamma_j)$, where $\gamma_j\coloneqq\gamma_\eta+\epsilon_j\omega_Z$
+and $\epsilon_j\downarrow0$; we may assume that $\epsilon_j\le\delta_*$ for all $j$.
+Since $v\in\PSH(Z,\gamma_\eta)_{>0}$, \cite[Corollary~7.1.2]{XiaSGPT}
+gives $v_j\xrightarrow{\dS}P_{\gamma_\eta}[v]_\mathcal I$, hence, by
+\cref{sec:npp}\ref{it:dS-lelong}, \ref{it:orders} and~\ref{it:I-envelope},
+\begin{equation}\label{eq:dom-lelong-conv}
+  \nu(v_j,E)\to\nu(v,E)
+  \qquad\text{for every prime divisor $E$ over $Z$}.
+\end{equation}
+Since $v\le v_j$, monotonicity (\cref{sec:npp}\ref{it:monotone}) and
+multilinearity give
+$\int_Z(\gamma_j)_{v_j}^k\ge\int_Z\bigl((\gamma_\eta)_v+\epsilon_j\omega_Z\bigr)^k
+\ge\int_Z(\gamma_\eta)_v^k\ge h_0$.
+
+\emph{Step 2: a K\"ahler current on a log resolution.} Let
+$\rho_j\colon Z_j\to Z$ be a log resolution of $v_j$, and write the Siu
+decomposition of the pullback as
+\[
+  \rho_j^*\bigl((\gamma_j)_{v_j}\bigr)=T_j+[F_j],
+\]
+where $F_j$ is an effective $\mathbf Q$-divisor and $T_j$ is a closed
+positive current with locally bounded potentials. The class
+$A_j\coloneqq\{T_j\}=\rho_j^*\{\gamma_j\}-\{F_j\}$ is nef by
+\cref{lem:residual-nef}. Since non-pluripolar products do not charge
+$F_j$, Bedford--Taylor theory, \cref{sec:npp}\ref{it:invariance} and
+Step~1 give
+\[
+  A_j^k=\int_{Z_j}T_j^k
+  =\int_{Z_j}\bigl(\rho_j^*(\gamma_j)_{v_j}\bigr)^k
+  =\int_Z(\gamma_j)_{v_j}^k\ge h_0.
+\]
+The class
+$\kappa_j\coloneqq\rho_j^*\{\gamma+(\eta+\epsilon_j+C^\dagger)\omega_Z\}$ is nef
+and $\kappa_j-A_j=\{F_j\}+C^\dagger\rho_j^*\{\omega_Z\}$ is pseudoeffective.
+Since the product of a pseudoeffective class with nef classes is
+nonnegative, expanding
+$\kappa_j^{k-1}-A_j^{k-1}=\sum_{i=0}^{k-2}\kappa_j^i\cdot(\kappa_j-A_j)\cdot A_j^{k-2-i}$
+gives
+\[
+  A_j^{k-1}\cdot\rho_j^*\{\omega_Z\}
+  \le \kappa_j^{k-1}\cdot\rho_j^*\{\omega_Z\}
+  =\bigl(\{\gamma\}+(\eta+\epsilon_j+C^\dagger)\{\omega_Z\}\bigr)^{k-1}
+   \cdot\{\omega_Z\}
+  \le C_*.
+\]
+As $\epsilon_j\le\delta_*$, it follows that
+$A_j^k-4k(\epsilon_j+\delta_*)A_j^{k-1}\cdot\rho_j^*\{\omega_Z\}
+\ge h_0-8k\delta_*C_*>0$. By \cref{thm:nef-difference}, applied on $Z_j$
+to the nef classes $A_j$ and $(\epsilon_j+\delta_*)\rho_j^*\{\omega_Z\}$,
+the class $A_j-(\epsilon_j+\delta_*)\rho_j^*\{\omega_Z\}$ contains a
+K\"ahler current $S'_j$. Put
+\[
+  \widetilde S_j\coloneqq S'_j+\delta_*\rho_j^*\omega_Z+[F_j].
+\]
+Then $\widetilde S_j\ge\delta_*\rho_j^*\omega_Z$,
+$\widetilde S_j\ge[F_j]$, and
+$\{\widetilde S_j\}=A_j+\{F_j\}-\epsilon_j\rho_j^*\{\omega_Z\}
+=\rho_j^*\{\gamma_\eta\}$.
+
+\emph{Step 3: descent and passage to the limit.} By the $\ddc$-lemma,
+$\widetilde S_j-\delta_*\rho_j^*\omega_Z
+=\rho_j^*(\gamma_\eta-\delta_*\omega_Z)+\ddc\widetilde s_j$ with
+$\widetilde s_j\in\PSH\bigl(Z_j,\rho_j^*(\gamma_\eta-\delta_*\omega_Z)\bigr)$.
+By \cite[Proposition~1.5.3]{XiaSGPT}, $\widetilde s_j=s_j\circ\rho_j$ for
+some $s_j\in\PSH(Z,\gamma_\eta-\delta_*\omega_Z)$, and
+$S_j\coloneqq\gamma_\eta+\ddc s_j$ satisfies $S_j\ge\delta_*\omega_Z$ and
+$\rho_j^*S_j=\widetilde S_j$. Since $T_j$ has locally bounded potentials,
+it has vanishing Lelong numbers, so $\widetilde S_j\ge[F_j]$ implies
+$\nu(\widetilde S_j,E)\ge\nu([F_j],E)=\nu(\rho_j^*v_j,E)$ for every prime
+divisor $E$ over $Z_j$. By \cref{sec:npp}\ref{it:I-valuative}, applied on
+$Z_j$ and then on $Z$, we get $\widetilde S_j\lessI\rho_j^*v_j$, then
+$S_j\lessI v_j$, and finally $\nu(S_j,E)\ge\nu(v_j,E)$ for every prime
+divisor $E$ over $Z$.
+
+Normalize $\sup_Zs_j=0$. By compactness, a subsequence of $(s_j)_j$
+converges in $L^1(Z)$ to some $s\in\PSH(Z,\gamma_\eta-\delta_*\omega_Z)$,
+and $S\coloneqq\gamma_\eta+\ddc s$ satisfies $S\ge\delta_*\omega_Z$. For
+every prime divisor $E$ over $Z$, the upper semicontinuity of Lelong
+numbers under weak convergence, applied on a modification on which $E$
+lives, and \eqref{eq:dom-lelong-conv} give
+\[
+  \nu(S,E)\ge\varlimsup_{j\to\infty}\nu(S_j,E)
+  \ge\lim_{j\to\infty}\nu(v_j,E)=\nu(v,E).
+\]
+Hence $S\lessI v$ by \cref{sec:npp}\ref{it:I-valuative}.
+\end{proof}
+
+\subsection{Regularization with controlled positivity}
+
+We shall glue local quasi-psh functions by the following elementary
+patching procedure, a variant of Richberg's technique \cite{Ric68}. Let
+$(Z,\omega_Z)$ be a compact K\"ahler manifold. A \emph{patching datum}
+on $Z$ consists of finitely many open sets
+$U_j\Subset U_j'\Subset B_j$, $j=1,\dots,J$, such that the $U_j$ cover
+$Z$, together with functions $\chi_j\in C^\infty_c(U'_j)$ with
+$0\le\chi_j\le1$ and $\chi_j=1$ on $U_j$; we fix $C_\chi>0$ with
+$\ddc\chi_j\ge-C_\chi\omega_Z$ for all $j$.
+
+\begin{lemma}\label{lem:patching}
+Let $(U_j,U'_j,B_j,\chi_j)_j$ be a patching datum on $Z$, let $\zeta$ be a
+smooth closed real $(1,1)$-form on $Z$, and let $a\ge0$. Let $\varphi_j$
+be a quasi-psh function on $B_j$ with $\zeta+\ddc\varphi_j\ge0$, for
+$j=1,\dots,J$, and assume that $\varphi_j\le\varphi_l+a$ on
+$\overline U{}'_j\cap\overline U{}'_l$ for all $j,l$. Then
+\[
+  \varphi(z)\coloneqq\max\bigl\{\varphi_j(z)+a\chi_j(z):\
+  j\text{ such that }z\in\overline U{}'_j\bigr\}
+\]
+is a quasi-psh function on $Z$ with $\zeta+\ddc\varphi\ge-aC_\chi\omega_Z$,
+and $\varphi_j\le\varphi\le\varphi_j+2a$ on $U_j$ for every $j$.
+\end{lemma}
+
+\begin{proof}
+Fix $z_0\in Z$ and choose $i$ with $z_0\in U_i$. Let $J_0$ be the set of
+indices $j$ with $z_0\in U'_j$, and $J_1$ the set of those with
+$z_0\in\partial U'_j$. Choose a neighborhood $O$ of $z_0$ contained in
+$U_i$ and in $U'_j$ for $j\in J_0$, disjoint from $\overline U{}'_j$ for
+$j\notin J_0\cup J_1$, and disjoint from the compact set
+$\operatorname{supp}\chi_j\subset U'_j$ for $j\in J_1$. If $z\in O$ and
+$j\in J_1$ are such that $z\in\overline U{}'_j$, then $\chi_j(z)=0$ and
+$\chi_i(z)=1$, so that
+$\varphi_j(z)+a\chi_j(z)\le\varphi_i(z)+a\chi_i(z)$, with $i\in J_0$.
+Hence $\varphi=\max_{j\in J_0}(\varphi_j+a\chi_j)$ on $O$. Each function
+$\varphi_j+a\chi_j$ with $j\in J_0$ is quasi-psh on $O$ and satisfies
+$\zeta+\ddc(\varphi_j+a\chi_j)\ge-aC_\chi\omega_Z$ there, and so does
+their maximum. Finally, if $z\in U_j$, the $j$-th function enters the
+definition of $\varphi(z)$ with $\chi_j(z)=1$, so $\varphi(z)\ge\varphi_j(z)$;
+and every function entering it satisfies
+$\varphi_l(z)+a\chi_l(z)\le\varphi_j(z)+2a$, since
+$z\in\overline U{}'_l\cap\overline U{}'_j$.
+\end{proof}
+
+The next lemma is Demailly's regularization theorem \cite{Dem92,DPS01} in
+a quantitative form: the loss of positivity is $O(m^{-1})$, with a constant
+that does not depend on the function being regularized. The qualitative
+version, with an unspecified loss $\epsilon_m\downarrow0$ but with the
+precise singularity type $(m^{-1},\mathcal I(m\varphi))$, is
+\cite[Theorem~1.6.2]{XiaSGPT}; it suffices for all the regularizations on
+$V$ below. The rate $O(m^{-1})$ is needed exactly once, for the ambient
+current of \cref{sec:ambient}. The lemma was stated in \cite{Pop04}, but
+we are unable to follow the arguments there, and we include a complete
+proof. We only record the lower bound on the singularities of the
+regularization, which is all that will be used.
+
+\begin{lemma}\label{lem:regularization}
+Let $(Z,\omega_Z)$ be a compact K\"ahler manifold of dimension $d$. There
+is a constant $c>0$, depending only on $(Z,\omega_Z)$, with the following
+property. For every smooth closed real $(1,1)$-form $\zeta$ on $Z$, every
+$\varphi\in\PSH(Z,\zeta)$ and every integer $m\ge1$, there is a quasi-psh
+function $\varphi_m$ on $Z$ such that
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*,itemsep=.2em,topsep=.3em]
+\item\label{it:reg-positivity}
+  $\zeta+\ddc\varphi_m\ge-\dfrac{c}{m}\,\omega_Z$;
+\item\label{it:reg-lower} locally on $Z$,
+  $\varphi_m\ge m^{-1}\psi_{\mathcal I(m\varphi)}+O(1)$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Fix, once and for all, finitely many coordinate balls covering $Z$. Using a Lebesgue number of this cover, choose coordinate
+balls $B_j^+$ with concentric balls $U_j\Subset U'_j\Subset B_j\Subset B_j^+$,
+$j=1,\dots,J$, such that the $U_j$ cover $Z$ and such that, whenever
+$\overline U{}'_j\cap\overline U{}'_l\ne\varnothing$, the union
+$B_j^+\cup B_l^+$ is contained in one of these balls, which we
+denote by $\mathcal B_{jl}$. Complete these sets to a patching datum by
+choosing functions $\chi_j$. On the finitely many balls involved, the
+volume form $\mathrm{d}V\coloneqq\omega_Z^d/d!$ is uniformly comparable
+with the Lebesgue measures of the coordinates. All constants below depend
+only on these choices.
+
+\emph{Step 1: local Bergman kernels.} On each $B_j^+$ choose a smooth
+function $h_j$ with $\ddc h_j=\zeta$; then $\varphi+h_j$ is psh on
+$B_j^+$. For $m\ge1$, let $\mathcal H_{j}$ be the Hilbert space of
+holomorphic functions $f$ on $B_j$ with
+$\|f\|^2\coloneqq\int_{B_j}|f|^2\mathrm{e}^{-m(\varphi+h_j)}\,\mathrm{d}V<\infty$,
+let $\mathcal K_j\coloneqq\sup\{|f|^2:f\in\mathcal H_j,\ \|f\|\le1\}$ be its
+Bergman kernel on the diagonal, which is the sum of the squared moduli of
+the elements of an orthonormal basis, and set
+\[
+  \varphi_{j,m}\coloneqq\frac1m\log\mathcal K_j-h_j .
+\]
+Then $\zeta+\ddc\varphi_{j,m}=m^{-1}\ddc\log\mathcal K_j\ge0$ on $B_j$. Since
+$\varphi+h_j$ is psh on $B_j^+\Supset B_j$, the ideal
+$\mathcal I(m\varphi)=\mathcal I(m(\varphi+h_j))$ is generated on $B_j$ by
+elements of $\mathcal H_j$ \cite[Proposition~1.2]{DEL00} (applied with
+the weight $\tfrac m2(\varphi+h_j)$, the multiplier ideal being defined
+there with the factor $\mathrm{e}^{-2\varphi}$). By coherence, near a
+given point of $B_j$ the ideal $\mathcal I(m\varphi)$ is generated by
+finitely many $f_1,\dots,f_s\in\mathcal H_j$ of norm at most $1$, and
+$\mathcal K_j\ge s^{-1}\sum_i|f_i|^2$ there. In particular $\varphi_{j,m}$ is not
+identically $-\infty$, and
+\begin{equation}\label{eq:reg-local-lower}
+  \varphi_{j,m}\ge m^{-1}\psi_{\mathcal I(m\varphi)}+O(1)
+  \qquad\text{locally on }B_j .
+\end{equation}
+
+\emph{Step 2: comparison on overlaps.} We claim that there is a constant
+$C_B$, independent of $\zeta$, $\varphi$ and $m$, such that
+\begin{equation}\label{eq:reg-overlap}
+  \varphi_{j,m}\le\varphi_{l,m}+\frac{C_B}m
+  \qquad\text{on }\overline U{}'_j\cap\overline U{}'_l .
+\end{equation}
+Fix $j,l$ with $\overline U{}'_j\cap\overline U{}'_l\ne\varnothing$, and
+work in the coordinates $z$ of $\mathcal B_{jl}$. Choose a smooth function $g$
+on $\mathcal B_{jl}$ with $\ddc g=\zeta$. The functions $h_j-g$ and $h_l-g$ are
+pluriharmonic on the balls $B_j^+$ and $B_l^+$, so $h_j-g=\Re a_j$ and
+$h_l-g=\Re a_l$ with $a_j$, $a_l$ holomorphic. Put $\Psi\coloneqq\varphi+g$,
+a psh function on $\mathcal B_{jl}$, and for $B\in\{B_j,B_l\}$ let $\mathcal K^\Psi_B$
+be the Bergman kernel on the diagonal of the space of holomorphic
+functions on $B$ which are square integrable against
+$\mathrm{e}^{-m\Psi}\mathrm{d}V$. Since
+$\mathrm{e}^{-m(\varphi+h_j)}=\bigl|\mathrm{e}^{-ma_j/2}\bigr|^2\mathrm{e}^{-m\Psi}$,
+multiplication by $\mathrm{e}^{-ma_j/2}$ is an isometry from $\mathcal H_j$
+onto this space for $B=B_j$, so that
+$\mathcal K^\Psi_{B_j}=\mathcal K_j\,\mathrm{e}^{-m\Re a_j}$, that is,
+$\varphi_{j,m}=m^{-1}\log\mathcal K^\Psi_{B_j}-g$; similarly
+$\varphi_{l,m}=m^{-1}\log\mathcal K^\Psi_{B_l}-g$. It therefore suffices to find
+$C_0$, independent of $\Psi$, $m$ and $x$, such that for every
+$x\in\overline U{}'_j\cap\overline U{}'_l$ and every $f$ in the unit ball
+of the $\Psi$-weighted space on $B_j$ there is a holomorphic function $F$
+on $B_l$ with $F(x)=f(x)$ and $\Psi$-weighted norm at most $C_0$; then
+$\mathcal K^\Psi_{B_l}(x)\ge C_0^{-2}\mathcal K^\Psi_{B_j}(x)$, and \eqref{eq:reg-overlap}
+holds with $C_B=2\log C_0$ for this pair, and in general with the maximum
+over the finitely many pairs.
+
+Choose $\varrho\in C^\infty_c(B_j\cap B_l)$ with $0\le\varrho\le1$ and
+$\varrho=1$ near $\overline U{}'_j\cap\overline U{}'_l$, let $r>0$ be the
+distance from $\overline U{}'_j\cap\overline U{}'_l$ to the support of
+$\bar\partial\varrho$. Fix $x$
+and $f$ as above, extend $\varrho f$ by zero to $B_l$, and solve
+$\bar\partial u=\bar\partial(\varrho f)$ on the pseudoconvex domain $B_l$
+with respect to the weight $m\Psi+2d\log|z-x|+|z|^2$, whose complex
+Hessian dominates that of $|z|^2$. H\"ormander's $L^2$-estimate
+\cite[Chapter~VIII, \S6]{DemCADG} gives a solution with
+\[
+  \int_{B_l}|u|^2\frac{\mathrm{e}^{-m\Psi-|z|^2}}{|z-x|^{2d}}\,\mathrm{d}V
+  \le C_H\int_{B_l}|\bar\partial\varrho|^2|f|^2
+  \frac{\mathrm{e}^{-m\Psi-|z|^2}}{|z-x|^{2d}}\,\mathrm{d}V
+  \le C_Hr^{-2d}\sup|\bar\partial\varrho|^2 ,
+\]
+where $C_H$ depends only on $d$ and on the comparison between
+$\mathrm{d}V$ and the Lebesgue measure. Since $|z-x|$ and $|z|$ are bounded
+on $B_l$ by the diameter of $\mathcal B_{jl}$ and a bound for the
+coordinates, the $\Psi$-weighted norm of $u$ is bounded by a constant $C_1$. Moreover $u$
+is holomorphic near $x$, where $\bar\partial\varrho=0$, and $\Psi$ is
+bounded above near $x$; the local integrability of $|u|^2|z-x|^{-2d}$
+therefore forces $u(x)=0$. Hence $F\coloneqq\varrho f-u$ is holomorphic on
+$B_l$, $F(x)=f(x)$, and $F$ has $\Psi$-weighted norm at most $C_0\coloneqq
+1+C_1$. This proves \eqref{eq:reg-overlap}.
+
+\emph{Step 3: patching.} By \eqref{eq:reg-overlap}, \cref{lem:patching}
+applies to the functions $\varphi_{j,m}$ with $a=C_B/m$. The resulting
+function $\varphi_m$ satisfies
+$\zeta+\ddc\varphi_m\ge-(C_BC_\chi/m)\omega_Z$, which is
+\ref{it:reg-positivity} with $c\coloneqq C_BC_\chi$, and
+$\varphi_m\ge\varphi_{j,m}$ on $U_j$, which gives \ref{it:reg-lower} by
+\eqref{eq:reg-local-lower}.
+\end{proof}
+
+The same patching produces global quasi-psh functions with prescribed
+singularities.
+
+\begin{lemma}\label{lem:ideal-function}
+Let $Z$ be a connected compact K\"ahler manifold and let
+$\mathfrak a\subset\mathcal O_Z$ be a nonzero coherent ideal. There is a
+quasi-psh function $\Psi_{\mathfrak a}$ on $Z$ with
+$\Psi_{\mathfrak a}=\psi_{\mathfrak a}+O(1)$ locally. In particular,
+$\Psi_{\mathfrak a}$ is locally bounded outside the zero locus of
+$\mathfrak a$.
+\end{lemma}
+
+\begin{proof}
+Choose a patching datum $(U_j,U'_j,B_j,\chi_j)_j$ such that $\mathfrak a$
+is generated on a neighborhood of $\overline B_j$ by finitely many
+sections $g_{j1},\dots,g_{jN_j}$, and put
+$\psi_j\coloneqq\log\sum_i|g_{ji}|^2$, a psh function on $B_j$ which is
+not identically $-\infty$ because $\mathfrak a\ne0$ and $Z$ is connected.
+Since both families generate $\mathfrak a$ near the compact set
+$\overline U{}'_j\cap\overline U{}'_l$, there is a constant $C_B$ with
+$\psi_j\le\psi_l+C_B$ there, for all $j,l$. \Cref{lem:patching}, with
+$\zeta=0$ and $a=C_B$, yields a quasi-psh function $\Psi_\mathfrak a$ with
+$\psi_j\le\Psi_\mathfrak a\le\psi_j+2C_B$ on $U_j$.
+\end{proof}
+
+\subsection{Relative principalization}
+
+Let $Y$ be a complex manifold and $W\subset Y$ a connected submanifold. A
+composition $f\colon Y'\to Y$ of blowups with smooth centers is
+\emph{adapted to $W$} if each center is either a proper analytic subset of
+the strict transform of $W$ at that stage, or disjoint from it. By
+induction on the number of blowups, the image in $Y$ of each center meets
+$W$ in a proper analytic subset. Consequently, $f$ is an isomorphism over
+the complement of an analytic subset of $Y$ which meets $W$ in a proper
+analytic subset; the strict transform $W'$ of $W$ is a connected
+submanifold of $Y'$ mapping onto $W$; and no $f$-exceptional prime
+divisor contains $W'$. If $g\colon Y''\to Y'$ is adapted to $W'$, then
+$f\circ g$ is adapted to $W$.
+
+\begin{lemma}\label{lem:relative-principalization}
+Let $Y$ be a compact complex manifold, let $W\subsetneq Y$ be a
+connected submanifold, and let $\mathfrak a\subset\mathcal O_Y$ be a
+coherent ideal with $\rest W\mathfrak a\ne0$, that is,
+$\mathfrak a\not\subset\mathcal I_W$. There are a composition of blowups
+$f\colon Y'\to Y$ adapted to $W$, with strict transform $W'$ of $W$, and an
+effective divisor $H$ on $Y'$ supported on the exceptional locus of $f$,
+such that
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*,itemsep=.2em,topsep=.3em]
+\item\label{it:rp-ideal-W}
+  $\mathcal I_W\mathcal O_{Y'}=\mathcal O_{Y'}(-H)\cdot\mathcal I_{W'}$;
+\item\label{it:rp-principal}
+  $\mathfrak a\mathcal O_{Y'}=\mathcal O_{Y'}(-H-H')$ for an effective
+  divisor $H'$ on $Y'$ disjoint from $W'$;
+\item\label{it:rp-restriction}
+  $(\rest{W}\mathfrak a)\mathcal O_{W'}=\mathcal O_{W'}(-H|_{W'})$.
+\end{enumerate}
+\end{lemma}
+
+In words: after the blowups, $\mathfrak a$ is invertible, and near $W'$ it
+coincides with the ideal $\mathcal O_{Y'}(-H)$ which
+\ref{it:rp-ideal-W} attaches to the blowups alone. Since no component of
+$H$ contains $W'$, property~\ref{it:rp-ideal-W} determines $H$. If
+$g\colon Y''\to Y'$ is a further composition of blowups adapted to $W'$,
+with divisor $H''$ satisfying \ref{it:rp-ideal-W} for $W'$, then
+$g^*H+H''$ satisfies \ref{it:rp-ideal-W} for $f\circ g$ and $W$.
+
+In the proof, we use the terminology of \cite{BM08,Wlo05}.
+
+\begin{proof}
+Put $\mathfrak b\coloneqq \rest W\mathfrak a\ne0$. By \cite[Theorem~1.3]{BM08}
+there is a resolution of the marked ideal $(\mathfrak b,1)$ on $W$: a
+finite sequence of blowups of $W$ with smooth centers, each contained
+in the cosupport of the current controlled transform of $\mathfrak b$,
+after which the controlled transform is the unit ideal. Blowing up the
+same centers in the ambient manifold produces a sequence
+$f_i\colon Y_i\to Y_{i-1}$, $i=1,\dots,t$, with $Y_0=Y$, whose
+$i$-th center $C_i$ is a proper analytic subset of the strict
+transform $W_{i-1}$ of $W$. (If $C_i$ has codimension one in
+$W_{i-1}$, then $W_i\to W_{i-1}$ is an isomorphism and $E_i|_{W_i}=C_i$.)
+Let $E_i\subset Y_i$ be the exceptional divisor, and define inductively
+\[
+  H_0=0,\quad H_i=f_i^*H_{i-1}+E_i,\qquad
+  \mathfrak a_0=\mathfrak a,\quad
+  \mathfrak a_i=\mathcal O_{Y_i}(E_i)\,\mathfrak a_{i-1}\mathcal O_{Y_i}.
+\]
+We show by induction on $i$ that $\mathfrak a_i\subset\mathcal O_{Y_i}$ is
+an ideal and that
+\begin{equation}\label{eq:rp-induction}
+  \mathcal I_W\mathcal O_{Y_i}=\mathcal O_{Y_i}(-H_i)\,\mathcal I_{W_i},\qquad
+  \mathfrak a\mathcal O_{Y_i}=\mathcal O_{Y_i}(-H_i)\,\mathfrak a_i,\qquad
+  \rest{W_i}\mathfrak a_i=\mathfrak b_i,
+\end{equation}
+where $\mathfrak b_i$ denotes the controlled transform of $\mathfrak b$.
+This is clear for $i=0$. Assume it for $i-1$. By the third identity, the
+restriction to $W_{i-1}$ of a local section of $\mathfrak a_{i-1}$ lies in
+$\mathfrak b_{i-1}$, hence vanishes on $C_i$, which lies in the
+cosupport of $\mathfrak b_{i-1}$. Thus $\mathfrak a_{i-1}\subset\mathcal
+I_{C_i}$, so $\mathfrak a_{i-1}\mathcal O_{Y_i}\subset\mathcal
+O_{Y_i}(-E_i)$ and $\mathfrak a_i$ is an ideal. The first identity for $i$
+follows from
+$\mathcal I_{W_{i-1}}\mathcal O_{Y_i}=\mathcal O_{Y_i}(-E_i)\,\mathcal I_{W_i}$,
+a computation in coordinates adapted to $C_i\subset W_{i-1}\subset Y_{i-1}$;
+the second follows by pulling back its predecessor and inserting the
+definition of $\mathfrak a_i$; and restricting the definition of
+$\mathfrak a_i$ to $W_i$ gives
+$\rest{W_i}\mathfrak a_i=\mathcal O_{W_i}(E_i|_{W_i})\,\mathfrak b_{i-1}\mathcal O_{W_i}
+=\mathfrak b_i$.
+
+At the end, $\mathfrak b_t=\mathcal O_{W_t}$, so $\mathfrak a_t$ is the unit
+ideal on a neighborhood of $W_t$. Principalize $\mathfrak a_t$ by a
+second application of \cite[Theorem~1.3]{BM08}; all its centers lie in
+the cosupport of $\mathfrak a_t$, hence are disjoint from the strict
+transforms of $W_t$. If $H$ denotes the total transform of $H_t$ and
+$H'$ the divisor with $\mathfrak a_t\mathcal O_{Y'}=\mathcal O_{Y'}(-H')$,
+then \eqref{eq:rp-induction} gives \ref{it:rp-ideal-W} and
+\ref{it:rp-principal}, with $H'\cap W'=\varnothing$. Restricting
+\ref{it:rp-principal} to $W'$ gives \ref{it:rp-restriction}. All centers
+are adapted to $W$.
+\end{proof}
+
+\subsection{K\"ahler forms on blowups}
+
+\begin{lemma}\label{lem:exceptional-metric}
+Let $(Z,\omega_Z)$ be a compact K\"ahler manifold and let
+$\rho\colon Z'\to Z$ be a composition of blowups with smooth centers.
+There are an effective $\rho$-exceptional $\mathbf Q$-divisor $E_\rho$
+on $Z'$ and a smooth Hermitian metric on $\mathcal O_{Z'}(E_\rho)$ such that
+$\rho^*\omega_Z-\Theta_{E_\rho}$ is a K\"ahler form on $Z'$.
+\end{lemma}
+
+\begin{proof}
+Blowups along centers of codimension one are isomorphisms and may be
+omitted. Consider a single blowup $f\colon Z_1\to Z$ with smooth center
+$C$ of codimension at least two and exceptional divisor $F$. By
+\cite[Chapter~VII, Proposition~12.4 and its proof]{DemCADG}, $F=\mathbf
+P(N_{C/Z})$ and $\mathcal O_{Z_1}(-F)|_F=\mathcal O_{\mathbf P(N_{C/Z})}(1)$,
+so a Hermitian metric on $N_{C/Z}$ induces a metric on
+$\mathcal O_{Z_1}(-F)|_F$ whose curvature is positive along the fibers of
+$F\to C$; extend it smoothly to $\mathcal O_{Z_1}(-F)$. The form
+$-\Theta_F$ is then positive on the nonzero vectors of $\ker\mathrm df$,
+which are the vectors tangent to the fibers of $F\to C$, while
+$f^*\omega_Z$ is semipositive with kernel $\ker\mathrm df$. By compactness
+of the unit sphere bundle, $f^*\omega_Z-\epsilon\Theta_F$ is a K\"ahler
+form for every sufficiently small $\epsilon>0$. In general, argue by
+induction: if $\omega_{i-1}=\rho_{i-1}^*\omega_Z-\Theta_{E_{i-1}}$ is a
+K\"ahler form on $Z_{i-1}$ and $f_i\colon Z_i\to Z_{i-1}$ is the next
+blowup, with exceptional divisor $F_i$, then
+$f_i^*\omega_{i-1}-\epsilon_i\Theta_{F_i}$ is K\"ahler for a small rational
+$\epsilon_i>0$, and it equals $\rho_i^*\omega_Z-\Theta_{E_i}$ with
+$E_i\coloneqq f_i^*E_{i-1}+\epsilon_iF_i$ and the induced metric.
+\end{proof}
+
+\subsection{Gluing}
+
+The following proposition isolates the maximum construction behind the
+collar condition. It is used twice: for \cref{lem:no-isolated-points}
+below, and at the end of the proof of \cref{thm:main}.
+
+\begin{proposition}\label{prop:gluing}
+Let $Y$ be a compact K\"ahler manifold with a smooth closed real
+$(1,1)$-form $\theta_Y$, let $W\subset Y$ be a compact subset with an
+open neighborhood $U$, and let $y\in W$. Let $\varphi_G$ be a quasi-psh
+function on $Y$ and $\varphi_U$ a quasi-psh function on $U$, and assume
+that, for some K\"ahler form $\omega_0$ on $Y$,
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*,itemsep=.25em]
+\item\label{it:gl-current}
+  $\theta_Y+\ddc\varphi_G\ge\omega_0$ on $Y$, and $\varphi_G(y)=-\infty$;
+\item\label{it:gl-local}
+  $\theta_Y+\ddc\varphi_U\ge\omega_0$ on $U$, and $\varphi_U$ is bounded
+  near $y$;
+\item\label{it:gl-collar} for every compact set $\Lambda\subset U\setminus W$
+  there is a constant $C_\Lambda$ with $\varphi_U\le\varphi_G+C_\Lambda$
+  on $\Lambda$.
+\end{enumerate}
+Then $\{\theta_Y\}$ contains a K\"ahler current whose potential is bounded
+near $y$. In particular, $y\notin\EnK(\{\theta_Y\})$.
+\end{proposition}
+
+\begin{proof}
+Choose open sets $W\subset U_1\Subset U_2\Subset U$, and let
+$c_1\coloneqq C_\Lambda$ for $\Lambda\coloneqq\overline U_2\setminus U_1$. The
+function
+\[
+  \Phi\coloneqq
+  \begin{cases}
+    \max\{\varphi_U-c_1,\varphi_G\}&\text{on }U_2,\\
+    \varphi_G&\text{on }Y\setminus\overline U_1
+  \end{cases}
+\]
+is well defined, because $\varphi_U-c_1\le\varphi_G$ on
+$U_2\setminus\overline U_1$ by \ref{it:gl-collar}. By
+\ref{it:gl-current} and \ref{it:gl-local}, $\Phi$ is locally the maximum
+of $(\theta_Y-\omega_0)$-psh functions, so
+$\theta_Y+\ddc\Phi\ge\omega_0$ is a K\"ahler current in $\{\theta_Y\}$.
+Since $\varphi_U$ is bounded near $y$, while $\varphi_G(y)=-\infty$ and
+$\varphi_G$ is upper semicontinuous, $\Phi=\varphi_U-c_1$ near $y$. The last
+assertion follows from \cref{sec:nK}.
+\end{proof}
+
+As a first application, we record the following fact, extracted from the
+proof of \cite[Lemma~3.1]{CT15}.
+
+\begin{lemma}\label{lem:no-isolated-points}
+The non-K\"ahler locus of a big class on a compact K\"ahler manifold has
+no isolated points.
+\end{lemma}
+
+\begin{proof}
+Let $\alpha$ be a big class on a compact K\"ahler manifold $Y$, with a
+smooth representative $\theta_Y$, and suppose that $x$ is an isolated
+point of $\EnK(\alpha)$. By \cref{sec:nK}, there is a K\"ahler current
+$\theta_Y+\ddc\varphi_G$ with analytic singularities whose polar set is
+$\EnK(\alpha)$; thus $\varphi_G(x)=-\infty$, $\varphi_G$ is locally
+bounded on $Y\setminus\EnK(\alpha)$, and $\theta_Y+\ddc\varphi_G\ge\omega_0$
+for some K\"ahler form $\omega_0$. Choose a coordinate ball $B$ centered at
+$x$, relatively compact in a coordinate chart, whose closure meets
+$\EnK(\alpha)$ only at $x$, and $A>0$ so large that
+$\theta_Y+\ddc(A|z|^2)\ge\omega_0$ on $B$. Then
+\cref{prop:gluing} applies with $W=\{x\}=\{y\}$, $U=B$ and
+$\varphi_U=A|z|^2$: hypothesis~\ref{it:gl-collar} holds because
+$\varphi_U$ is bounded above on $B$ and $\varphi_G$ is bounded below on
+every compact subset of $B\setminus\{x\}$. Hence
+$x\notin\EnK(\alpha)$, a contradiction.
+\end{proof}
+
+\section{Reduction to a statement about the trace}\label{sec:setup}
+
+\subsection{Reductions}
+
+Let $X$, $\alpha$ and $V$ be as in \cref{thm:main}, and put
+$k\coloneqq \dim V>0$. We have to prove that
+$\langle\alpha^k\rangle_{X\mid V}=0$. If $\alpha$ is not big, then
+$\EnK(\alpha)=X$, so $V=X$ and
+$\langle\alpha^n\rangle_{X\mid X}=\vol(\alpha)=0$
+(\cref{sec:restricted-volumes}). We may therefore assume that $\alpha$ is
+big; then $\EnK(\alpha)$ is a proper analytic subset of $X$, so $k<n$. If
+$V\subset\Enn(\alpha)$, the vanishing holds by definition. We may
+therefore assume that $V\not\subset\Enn(\alpha)$, and we argue by
+contradiction, assuming that $h\coloneqq \langle\alpha^k\rangle_{X\mid V}>0$.
+
+\begin{lemma}\label{lem:resolution}
+In this situation, there is a modification
+$\mu\colon\widetilde X\to X$ which is an isomorphism over
+$X\setminus V_{\mathrm{sing}}$ and such that the strict transform
+$\widetilde V$ of $V$ is smooth. Moreover, $\widetilde X$ is a connected
+compact K\"ahler manifold, $\mu^*\alpha$ is big, $\widetilde V$ is an
+irreducible component of $\EnK(\mu^*\alpha)$ not contained in
+$\Enn(\mu^*\alpha)$, and
+$\langle(\mu^*\alpha)^k\rangle_{\widetilde X\mid\widetilde V}=h$.
+\end{lemma}
+
+\begin{proof}
+Let $\mu$ be an embedded resolution of $V\subset X$, that is, a
+composition of blowups with smooth centers lying over $V_{\mathrm{sing}}$,
+which is an isomorphism over $X\setminus V_{\mathrm{sing}}$ and such that
+the strict transform of $V$ is smooth; it exists by Hironaka's theorem,
+see for instance \cite{BM97}. Blowups of compact K\"ahler manifolds along
+smooth centers are compact K\"ahler, and the pullback of a big class under
+a modification is big. Since $V\not\subset\mu(\Exc(\mu))\subset
+V_{\mathrm{sing}}$, \cref{sec:restricted-volumes}\ref{it:rv-birational}
+gives $\langle(\mu^*\alpha)^k\rangle_{\widetilde X\mid\widetilde V}=h$. By
+\eqref{eq:transformation-rules}, $\Enn(\mu^*\alpha)=\mu^{-1}(\Enn(\alpha))$,
+so $\widetilde V\subset\Enn(\mu^*\alpha)$ would give
+$V=\mu(\widetilde V)\subset\Enn(\alpha)$, which is excluded.
+
+It remains to see that $\widetilde V$ is an irreducible component of
+$\EnK(\mu^*\alpha)=\mu^{-1}(\EnK(\alpha))\cup\Exc(\mu)$. Clearly
+$\widetilde V\subset\EnK(\mu^*\alpha)$. Let $Z\supset\widetilde V$ be an
+irreducible component of $\EnK(\mu^*\alpha)$. Then $\mu(Z)$ is an
+irreducible analytic subset of
+$\EnK(\alpha)\cup V_{\mathrm{sing}}=\EnK(\alpha)$ containing $V$, so
+$\mu(Z)=V$ because $V$ is an irreducible component of $\EnK(\alpha)$.
+Hence $Z\subset\mu^{-1}(V)=\widetilde V\cup\mu^{-1}(V_{\mathrm{sing}})$,
+and since $Z$ is irreducible and $\mu(Z)\not\subset V_{\mathrm{sing}}$, we
+conclude that $Z=\widetilde V$.
+\end{proof}
+
+Replacing $(X,\alpha,V)$ by $(\widetilde X,\mu^*\alpha,\widetilde V)$,
+we are reduced to the following situation, which remains in force until
+the end of the proof.
+
+\begin{setup}\label{setup}
+$X$ is a connected compact K\"ahler manifold of dimension $n$ with
+K\"ahler form $\omega$; $\alpha$ is a big class with a smooth
+representative $\theta$; $V\subset X$ is a connected submanifold of
+dimension $k$, $0<k<n$, which is an irreducible component of
+$\EnK(\alpha)$ and is not contained in $\Enn(\alpha)$; and
+$h=\langle\alpha^k\rangle_{X\mid V}>0$. We put $\omega_V\coloneqq \omega|_V$
+and $\gamma\coloneqq \theta|_V$.
+\end{setup}
+
+We shall reach a contradiction in \cref{sec:conclusion}.
+
+\subsection{The trace and its approximations}\label{sec:trace-approx}
+
+Since $V\not\subset\Enn(\alpha)$, we have $\nu(V_\theta,V)=0$, and there
+is a point $x_*\in V$ with $\nu(V_\theta,x_*)=0$ (\cref{sec:nK}). By
+\cref{thm:trace-formula},
+\[
+  h=\int_V\bigl(\gamma+\ddc\trc^\theta_V(V_\theta)\bigr)^k,
+\]
+where the right-hand side would vanish if $\trc^\theta_V(V_\theta)$ were
+not defined. Since $h>0$, the trace is defined, and we put
+\[
+  u\coloneqq \trc^\theta_V(V_\theta)\in\PSH(V,\gamma)_{>0},
+  \qquad\int_V\gamma_u^k=h .
+\]
+For every integer $q\ge1$ we consider the ambient multiplier ideals and
+their restrictions to $V$,
+\[
+  \mathfrak B_q\coloneqq \mathcal I(qV_\theta)\subset\mathcal O_X,
+  \qquad
+  \mathfrak b_q\coloneqq \rest{V}\mathfrak B_q\subset\mathcal O_V .
+\]
+By Skoda's theorem and $\nu(V_\theta,x_*)=0$, $\mathfrak B_q$ is the unit
+ideal near $x_*$; in particular $\mathfrak b_q\ne0$. By
+\cref{thm:trace-multiplier} and the subadditivity
+\eqref{eq:subadditivity}, for all integers $q,r\ge1$,
+\begin{equation}\label{eq:trace-ideals}
+  \mathcal I(qu)\subset\mathfrak b_q,
+  \qquad
+  \mathfrak B_{rq}\subset\mathfrak B_q^{\,r},
+  \qquad
+  \mathfrak b_{rq}\subset\mathfrak b_q^{\,r}.
+\end{equation}
+
+Let $(\Phi_q)_q$ be a quasi-equisingular approximation of $V_\theta$ as
+in \cref{sec:npp}, indexed by the dyadic integers $q=2^j$. Thus $\Phi_q$
+decreases to $V_\theta$ as $q\to\infty$, and
+\[
+  \Phi_q\in\PSH(X,\theta+\eta_q\omega),\qquad
+  \eta_q\downarrow0,\qquad
+  \Phi_q\ \text{has analytic singularities of type }(q^{-1},\mathfrak B_q).
+\]
+Since $\mathfrak B_q\not\subset\mathcal I_V$, the restriction
+$\phi_q\coloneqq \Phi_q|_V$ is not identically $-\infty$; it belongs to
+$\PSH(V,\beta_q)$, where $\beta_q\coloneqq \gamma+\eta_q\omega_V$, and
+\begin{equation}\label{eq:phiq-singularities}
+  \phi_q=q^{-1}\psi_{\mathfrak b_q}+O(1)\qquad\text{locally on }V.
+\end{equation}
+By the definition of the trace and \cref{sec:npp}\ref{it:dS-zero},
+$\phi_q\xrightarrow{\dS}u$.
+
+\begin{lemma}\label{lem:trace-approximants}
+As $q\to\infty$ along the dyadic integers,
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=*,itemsep=.2em,topsep=.3em]
+\item\label{it:vq-mass} $\int_V(\beta_q)_{\phi_q}^k\to h$;
+\item\label{it:vq-order} $u\lessP\phi_q$ for every sufficiently large $q$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Choose $A>\sup_q\eta_q$ such that $\beta\coloneqq \gamma+A\omega_V$ is a
+K\"ahler form on $V$, so that $\phi_q\in\PSH(V,\beta)$ for all $q$. Writing
+$(\beta_q)_{\phi_q}=\beta_{\phi_q}-(A-\eta_q)\omega_V$ and expanding by
+multilinearity, \ref{it:vq-mass} follows from the continuity of mixed
+masses (\cref{sec:npp}\ref{it:dS-mass}) and $\eta_q\to0$.
+
+By \ref{it:vq-mass}, $\int_V\beta_{\phi_q}^k\ge\int_V(\beta_q)_{\phi_q}^k>0$
+for all large $q$, and $\int_V\beta_u^k\ge\int_V\gamma_u^k=h>0$; so $u$ and
+$\phi_q$ lie in $\PSH(V,\beta)_{>0}$ for large $q$. Fix such a $q$. For
+dyadic $q'\ge q$ we have $\phi_{q'}\le\phi_q$, hence
+$\phi_{q'}\lessP\phi_q$ (\cref{sec:npp}\ref{it:orders}). Since
+$\phi_{q'}\xrightarrow{\dS}u$, \cref{sec:npp}\ref{it:dS-closed} gives
+$u\lessP\phi_q$.
+\end{proof}
+
+\section{A K\"ahler current on the submanifold}\label{sec:positive-current}
+
+We keep \cref{setup} and the notation of \cref{sec:setup}. In this section
+we construct a K\"ahler current on $V$ whose multiplier ideals are
+controlled by the restricted ideals $\mathfrak b_m$ and $\mathfrak b_M$ at
+two levels $m\ll M$.
+
+\subsection{Data fixed first}\label{sec:fixed-data}
+
+Let $\delta_*\in(0,1]$ be the constant of \cref{lem:domination} for
+$(Z,\omega_Z,\gamma,h_0)=(V,\omega_V,\gamma,2^{-k-1}h)$, and put
+$\delta\coloneqq \delta_*/8$.
+
+By \cref{sec:nK}, there is a K\"ahler current with analytic singularities
+\[
+  R=\theta+\ddc\Phi_R\in\alpha,\qquad R\ge\delta_R\,\omega,
+\]
+whose polar set is $\EnK(\alpha)$, for some $\delta_R>0$. Let $Z'$ be
+the union of the irreducible components of $\EnK(\alpha)$ other than $V$,
+and let $\mathfrak j\coloneqq \mathcal I_{Z'}$, with $\mathfrak j=\mathcal
+O_X$ if $Z'=\varnothing$. Since $V\not\subset Z'$, we have
+$\rest V\mathfrak j\ne0$. Write $\Phi_R=c_R\,\psi_{\mathfrak r}+O(1)$ locally.
+The zero locus of $\mathfrak r$ is $\EnK(\alpha)=V\cup Z'$, so by
+R\"uckert's Nullstellensatz \cite[Chapter~II, Theorem~4.22]{DemCADG} and
+compactness, $\mathcal I_V^N\mathfrak j^N\subset\mathfrak r$ for some
+integer $N$. With $A_R\coloneqq c_RN$, this gives
+\begin{equation}\label{eq:PhiR-lower}
+  \Phi_R\ge A_R\bigl(\psi_{\mathcal I_V}+\psi_{\mathfrak j}\bigr)+O(1)
+  \qquad\text{locally on }X.
+\end{equation}
+
+Let $c_0$ be the constant of \cref{lem:regularization} for
+$(Z,\omega_Z)=(X,\omega)$, and choose integers $L,C\ge1$ with
+\begin{equation}\label{eq:constants}
+  L\delta_R>c_0,\qquad C\ge 1+LA_R .
+\end{equation}
+
+\subsection{A rooftop envelope with positive mass}
+
+\begin{lemma}\label{lem:positive-rooftop}
+For every sufficiently large dyadic integer $m$, there is a function
+$v\in\PSH(V,\beta_m)$ such that
+\[
+  v\le Cu-(C-1)\phi_m\ \text{quasi-everywhere}
+  \qquad\text{and}\qquad
+  \int_V(\beta_m)_{v}^k\ge2^{-k-1}h .
+\]
+\end{lemma}
+
+\begin{proof}
+Put $a_m\coloneqq \int_V(\beta_m)_u^k$ and
+$b_m\coloneqq \int_V(\beta_m)_{\phi_m}^k$. By multilinearity,
+$a_m=\sum_{j=0}^k\binom kj\eta_m^{k-j}\int_V\gamma_u^j\wedge\omega_V^{k-j}\to h$,
+and $b_m\to h$ by \cref{lem:trace-approximants}\ref{it:vq-mass}. Hence,
+for $m$ large, $u,\phi_m\in\PSH(V,\beta_m)_{>0}$,
+$(2C)^ka_m>((2C)^k-1)b_m$, $b_m>h/2$, and $u\lessP\phi_m$ by
+\cref{lem:trace-approximants}\ref{it:vq-order}. \Cref{thm:rooftop},
+applied on $V$ with $\theta=\beta_m$, $\varphi=u$, $\psi=\phi_m$ and
+$t=2C$, shows that
+$w\coloneqq P_{\beta_m}\bigl(2Cu-(2C-1)\phi_m\bigr)$ belongs to
+$\PSH(V,\beta_m)$; we only use that it is not identically $-\infty$. Put
+$v\coloneqq \tfrac12(w+\phi_m)\in\PSH(V,\beta_m)$. Since
+$w\le 2Cu-(2C-1)\phi_m$ quasi-everywhere, $v\le Cu-(C-1)\phi_m$
+quasi-everywhere. By multilinearity and the positivity of mixed
+non-pluripolar products,
+\[
+  \int_V(\beta_m)_{v}^k
+  =\int_V\Bigl(\tfrac12(\beta_m)_{w}+\tfrac12(\beta_m)_{\phi_m}\Bigr)^k
+  \ge2^{-k}b_m>2^{-k-1}h. \qedhere
+\]
+\end{proof}
+
+\subsection{The first level}\label{sec:first-level}
+
+We now fix a dyadic integer $m$ such that \cref{lem:positive-rooftop}
+applies and $\eta_m\le\delta_*/2$, and let $v$ be as in that lemma.
+\Cref{lem:domination}, applied with $\eta=\eta_m\le1$, gives a closed
+positive current $K^+\in\{\beta_m\}$ with $K^+\ge\delta_*\omega_V$ and
+$K^+\lessI v$. Hence
+\begin{equation}\label{eq:def-K}
+  K\coloneqq K^+-\eta_m\omega_V=\gamma+\ddc\varphi_K\in\alpha|_V,\qquad
+  K\ge4\delta\,\omega_V,\qquad
+  \varphi_K\lessI v .
+\end{equation}
+Next, \cref{lem:ideal-function}, applied to the nonzero ideal
+$\mathfrak j\mathfrak B_m$ on $X$, gives a quasi-psh function $\Psi_m$ on
+$X$ and a constant $c_\Psi>0$ with
+\begin{equation}\label{eq:def-Psi}
+  \Psi_m=\psi_{\mathfrak j}+\psi_{\mathfrak B_m}+O(1)\ \text{locally},
+  \qquad
+  \ddc\Psi_m\ge-c_\Psi\,\omega .
+\end{equation}
+In particular, $\Psi_m$ is locally bounded outside
+$Z'\cup Z(\mathfrak B_m)$, where $Z(\mathfrak B_m)$ is the zero locus of
+$\mathfrak B_m$. Finally, since
+$\varphi_K\in\PSH(V,\gamma-4\delta\omega_V)$, \cite[Theorem~1.6.2]{XiaSGPT}
+provides a quasi-equisingular approximation $(\varphi_{K,q})_q$ of
+$\varphi_K$, indexed by the dyadic integers $q$, such that
+$\varphi_{K,q}$ has analytic singularities of type
+$(q^{-1},\mathcal I(q\varphi_K))$ and
+$\gamma+\ddc\varphi_{K,q}\ge(4\delta-\eta'_q)\omega_V$ with
+$\eta'_q\downarrow0$.
+
+\subsection{The second level}
+
+Choose a dyadic integer $\ell\ge m$ such that $\eta'_\ell\le2\delta$ and
+such that
+\begin{equation}\label{eq:choice-M}
+  M\coloneqq C\ell\quad\text{satisfies}\quad
+  M>L\quad\text{and}\quad M\ge(C-1)c_\Psi/\delta .
+\end{equation}
+Since $m$ divides $\ell$, the numbers $M/m$ and $p\coloneqq (C-1)\ell/m$
+are integers, and $M/m=p+\ell/m$. Put
+\begin{equation}\label{eq:def-K-ell}
+  K_\ell\coloneqq \gamma+\ddc\varphi_{K,\ell}\ge2\delta\,\omega_V,
+  \qquad
+  \mathfrak k\coloneqq \mathcal I(\ell\varphi_K)\subset\mathcal O_V ,
+\end{equation}
+so that $\varphi_{K,\ell}$ has analytic singularities of type
+$(\ell^{-1},\mathfrak k)$.
+
+\begin{remark}[Order of choices]\label{rem:order}
+The data are chosen in the following order: $\delta_*$ and $\delta$; the
+current $R$ and the constants $\delta_R$, $A_R$ and $c_0$; the integers $L$
+and $C$; the level $m$, and with it $K$, $\Psi_m$, $c_\Psi$ and
+$(\varphi_{K,q})_q$; the level $\ell$, and with it $M$ and $p$; finally,
+in \cref{sec:extension}, a modification $\pi$ and a rational number
+$\tau$. Every constant measuring positivity is fixed before $M$, and the
+conditions imposed on $\ell$ and $M$ are lower bounds.
+\end{remark}
+
+\begin{lemma}\label{lem:ideal-comparison}
+The ideals $\mathfrak k$, $\mathfrak b_m$ and $\mathfrak b_M$ on $V$ satisfy
+\begin{equation}\label{eq:ideal-comparison}
+  \mathfrak k\,\mathfrak b_m^{\,p}\subset\mathcal I(Mu)\subset\mathfrak b_M
+  \subset\mathfrak b_m^{\,M/m}.
+\end{equation}
+Consequently, on any modification of $V$ on which $\mathfrak k$,
+$\mathfrak b_m$ and $\mathfrak b_M$ are invertible, with divisors $G_K$,
+$G_m$ and $G_M$ respectively, the divisors $G_M-(M/m)G_m$ and
+$F\coloneqq G_K+pG_m-G_M$ are effective, and
+\begin{equation}\label{eq:GK-decomposition}
+  \frac1\ell\,G_K=\frac1M\,G_M+\frac{C-1}M\Bigl(G_M-\frac Mm\,G_m\Bigr)
+     +\frac CM\,F .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The last two inclusions in \eqref{eq:ideal-comparison} are contained in
+\eqref{eq:trace-ideals}. For the first, let $f$ be a local section of
+$\mathfrak k$ and $g$ a local section of $\mathfrak b_m^{\,p}$. By
+\eqref{eq:def-K}, $f\in\mathcal I(\ell v)$, that is,
+$|f|^2\mathrm{e}^{-\ell v}$ is locally integrable. By
+\eqref{eq:phiq-singularities} and $mp=(C-1)\ell$,
+$|g|^2\mathrm{e}^{-(C-1)\ell\phi_m}\le c_g\,\mathrm{e}^{p\psi_{\mathfrak b_m}-mp\,\phi_m}$
+is locally bounded outside the zero locus of $\mathfrak b_m$, hence almost
+everywhere. Since $\ell v\le Mu-(C-1)\ell\phi_m$ almost
+everywhere by \cref{lem:positive-rooftop},
+\[
+  |fg|^2\mathrm{e}^{-Mu}\le|f|^2\mathrm{e}^{-\ell v}\cdot
+  |g|^2\mathrm{e}^{-(C-1)\ell\phi_m}
+  \qquad\text{almost everywhere},
+\]
+so $fg\in\mathcal I(Mu)$.
+
+On a modification as in the statement, \eqref{eq:ideal-comparison}
+translates into $G_K+pG_m\ge G_M\ge(M/m)G_m$, which is the effectivity
+of the two divisors. Finally, substituting $G_K=G_M-pG_m+F$,
+$M=C\ell$ and $p=(C-1)\ell/m$, the coefficients of $G_M$, $G_m$ and $F$
+on both sides of \eqref{eq:GK-decomposition} are $C/M$,
+$-(C-1)/m$ and $C/M$ respectively.
+\end{proof}
+
+\section{Extension across the submanifold}\label{sec:extension}
+
+We keep the notation of \cref{sec:setup,sec:positive-current}. In this
+section we construct a modification $\pi\colon Y\to X$, a point $y$ in the
+strict transform $W$ of $V$, a neighborhood $U$ of $W$, and quasi-psh
+functions $\varphi_G$ on $Y$ and $\varphi_U$ on $U$, to which
+\cref{prop:gluing} applies with $\theta_Y\coloneqq \pi^*\theta$. This will
+contradict $V\subset\EnK(\alpha)$.
+
+\subsection{The ambient current}\label{sec:ambient}
+
+Apply \cref{lem:regularization} to $V_\theta$ on $(X,\omega)$, with
+$\zeta=\theta$ and the level $M$: we obtain a quasi-psh function $\Upsilon_M$ on
+$X$ with
+\[
+  \theta+\ddc \Upsilon_M\ge-\frac{c_0}M\,\omega,\qquad
+  \Upsilon_M\ge\frac1M\,\psi_{\mathfrak B_M}+O(1)\ \text{locally on }X.
+\]
+Consider the current
+$Q\coloneqq (1-L/M)(\theta+\ddc \Upsilon_M)+(L/M)R\in\alpha$, with potential
+$\varphi_Q\coloneqq (1-L/M)\Upsilon_M+(L/M)\Phi_R$. Since $M>L$ and
+$L\delta_R>c_0$,
+\begin{equation}\label{eq:QM-positivity}
+  Q\ge\frac{L\delta_R-(1-L/M)c_0}M\,\omega\ge\epsilon_0\,\omega,
+  \qquad \epsilon_0\coloneqq \frac{L\delta_R-c_0}M>0 .
+\end{equation}
+Since the polar set of $R$ contains $V$, $\varphi_Q=-\infty$ on $V$, and
+by \eqref{eq:PhiR-lower},
+\begin{equation}\label{eq:phiQ-lower}
+  \varphi_Q\ge\frac{1-L/M}M\,\psi_{\mathfrak B_M}
+   +\frac{LA_R}M\bigl(\psi_{\mathcal I_V}+\psi_{\mathfrak j}\bigr)+O(1)
+   \qquad\text{locally on }X.
+\end{equation}
+
+\subsection{The modification}\label{sec:modification}
+
+We construct $\pi$ in three stages
+\[
+  Y=Y_3\longrightarrow Y_2\longrightarrow Y_1\longrightarrow Y_0=X,
+\]
+each obtained from \cref{lem:relative-principalization} applied to the
+strict transform $W_{i-1}$ of $V$ in $Y_{i-1}$; we write $W_i$ for the
+strict transform of $V$ in $Y_i$, $W\coloneqq W_3$, and $H_i$ for the
+divisor on $Y_i$ given by the lemma at the $i$-th stage. Divisors on
+$Y_i$ and on $W_i$ are tacitly replaced by their total transforms on the
+later stages; since no divisor below contains the relevant strict
+transform of $V$, this is compatible with restriction to the strict
+transforms.
+
+\emph{Stage 1.} Apply \cref{lem:relative-principalization} to
+$\mathfrak B_m$ on $X$, with $V$ as submanifold. We obtain $Y_1$, $W_1$,
+$H_1$, and an effective divisor $\widetilde G_m\ge H_1$ with
+$\mathfrak B_m\mathcal O_{Y_1}=\mathcal O_{Y_1}(-\widetilde G_m)$. Its
+restriction $G_m\coloneqq \widetilde G_m|_{W_1}$ is the divisor of
+$\mathfrak b_m\mathcal O_{W_1}$.
+
+\emph{Stage 2.} Since $\mathfrak B_M\subset\mathfrak B_m^{M/m}$ by
+\eqref{eq:trace-ideals} and $\mathfrak B_m^{M/m}\mathcal O_{Y_1}$ is
+invertible, there is a coherent ideal $\mathfrak c\subset\mathcal O_{Y_1}$
+with
+$\mathfrak B_M\mathcal O_{Y_1}=\mathcal O_{Y_1}\bigl(-\tfrac Mm\widetilde G_m\bigr)\cdot\mathfrak c$.
+Restricting to $W_1$ gives
+$\mathfrak b_M\mathcal O_{W_1}=\mathcal O_{W_1}\bigl(-\tfrac MmG_m\bigr)\cdot\rest{W_1}\mathfrak c$,
+so $\rest{W_1}\mathfrak c\ne0$. Apply
+\cref{lem:relative-principalization} to $\mathfrak c$ on $Y_1$, with
+$W_1$ as submanifold. We obtain $Y_2$, $W_2$ and $H_2$ with
+$\mathfrak c\mathcal O_{Y_2}=\mathcal O_{Y_2}(-H_2-H_2')$. Thus
+$\mathfrak B_M\mathcal O_{Y_2}=\mathcal O_{Y_2}(-\widetilde G_M)$ with
+$\widetilde G_M\coloneqq \tfrac Mm\widetilde G_m+H_2+H_2'$, the restriction
+$G_M\coloneqq \widetilde G_M|_{W_2}$ is the divisor of
+$\mathfrak b_M\mathcal O_{W_2}$, and
+\cref{lem:relative-principalization}\ref{it:rp-restriction} gives
+\[
+  H_2|_{W_2}=G_M-\frac Mm\,G_m .
+\]
+
+\emph{Stage 3.} On $W_2$ the ideals $\mathfrak b_m^{\,p}\mathcal O_{W_2}=\mathcal
+O_{W_2}(-pG_m)$ and $\mathfrak b_M\mathcal O_{W_2}=\mathcal O_{W_2}(-G_M)$
+are invertible, so \eqref{eq:ideal-comparison} shows that
+\[
+  \mathfrak f\coloneqq (\mathfrak k\mathcal O_{W_2})\cdot
+  \mathcal O_{W_2}(G_M-pG_m)
+\]
+is a nonzero coherent ideal of $\mathcal O_{W_2}$. Let
+$\widetilde{\mathfrak f}\subset\mathcal O_{Y_2}$ be its inverse image under
+$\mathcal O_{Y_2}\to\mathcal O_{W_2}$, so that
+$\rest{W_2}\widetilde{\mathfrak f}=\mathfrak f\ne0$. Apply
+\cref{lem:relative-principalization} to $\widetilde{\mathfrak f}$ on
+$Y_2$, with $W_2$ as submanifold. We obtain $Y=Y_3$, $W=W_3$ and $H_3$,
+and \ref{it:rp-restriction} of that lemma shows that
+$\mathfrak f\mathcal O_W=\mathcal O_W(-F)$ with $F\coloneqq H_3|_W$. Hence
+$\mathfrak k\mathcal O_W=\mathcal O_W(-G_K)$ with $G_K=G_M-pG_m+F$, in
+accordance with \cref{lem:ideal-comparison}.
+
+Let $\pi\colon Y\to X$ be the composition. It is adapted to $V$, so
+$\pi|_W\colon W\to V$ is a modification of $V$ and no $\pi$-exceptional
+divisor contains $W$. By
+\cref{lem:relative-principalization}\ref{it:rp-ideal-W}, applied to the
+three stages,
+\begin{equation}\label{eq:IV-H}
+  \mathcal I_V\mathcal O_Y=\mathcal O_Y(-H)\cdot\mathcal I_W,
+  \qquad H\coloneqq H_1+H_2+H_3 .
+\end{equation}
+To summarize, on $Y$ we have
+$\mathfrak B_m\mathcal O_Y=\mathcal O_Y(-\widetilde G_m)$ with
+$\widetilde G_m\ge H_1$ and
+$\mathfrak B_M\mathcal O_Y=\mathcal O_Y(-\widetilde G_M)$, and on $W$
+\begin{equation}\label{eq:restrictions}
+  \widetilde G_M|_W=G_M,\qquad
+  H_2|_W=G_M-\frac Mm\,G_m,\qquad
+  H_3|_W=F,
+\end{equation}
+where $G_m$, $G_M$, $G_K$ are the divisors of $\mathfrak b_m\mathcal O_W$,
+$\mathfrak b_M\mathcal O_W$, $\mathfrak k\mathcal O_W$, and $F$ is as in
+\cref{lem:ideal-comparison}.
+
+\subsection{The global potential}
+
+By \cref{lem:exceptional-metric}, applied to $\pi$ and $\omega$, there is an
+effective $\pi$-exceptional $\mathbf Q$-divisor $E_\pi$, with a smooth
+metric, such that $\omega_Y\coloneqq \pi^*\omega-\Theta_{E_\pi}$ is a
+K\"ahler form on $Y$. Fix a rational number $\tau$ with
+$0<\tau<\min\{\epsilon_0,\delta\}$, and put
+\[
+  \varphi_G\coloneqq \varphi_Q\circ\pi+\tau\psi_{E_\pi}.
+\]
+By \eqref{eq:QM-positivity},
+\[
+  \theta_Y+\ddc\varphi_G
+  =\pi^*Q+\tau\bigl([E_\pi]-\Theta_{E_\pi}\bigr)
+  \ge(\epsilon_0-\tau)\pi^*\omega+\tau\omega_Y
+  \ge\tau\omega_Y ,
+\]
+and $\varphi_G=-\infty$ on $W$, because $\varphi_Q=-\infty$ on $V$. Let
+$\Lambda\subset Y\setminus W$ be compact. Pulling back
+\eqref{eq:phiQ-lower}, and using
+$\psi_{\mathfrak B_M}\circ\pi=\psi_{\widetilde G_M}+O(1)$ and
+$\psi_{\mathcal I_V}\circ\pi=\psi_H+\psi_{\mathcal I_W}+O(1)$ (by
+\eqref{eq:IV-H}), where $\psi_{\mathcal I_W}$ is bounded on $\Lambda$, we
+obtain a constant $C_\Lambda$ with
+\begin{equation}\label{eq:phiG-lower}
+  \varphi_G\ge\frac{1-L/M}M\,\psi_{\widetilde G_M}
+   +\frac{LA_R}M\bigl(\psi_H+\psi_{\mathfrak j}\circ\pi\bigr)
+   +\tau\psi_{E_\pi}-C_\Lambda
+  \qquad\text{on }\Lambda .
+\end{equation}
+
+\subsection{The local potential}
+
+Define the effective $\mathbf Q$-divisor
+\begin{equation}\label{eq:def-D}
+  D\coloneqq \frac1M\,\widetilde G_M+\frac{C-1}M\,H_2+\frac CM\,H_3
+  +\tau E_\pi
+\end{equation}
+on $Y$. No component of $D$ contains $W$, and by \eqref{eq:restrictions}
+and \eqref{eq:GK-decomposition},
+\begin{equation}\label{eq:D-restriction}
+  D|_W=\frac1M\,G_M+\frac{C-1}M\Bigl(G_M-\frac Mm\,G_m\Bigr)+\frac CM\,F
+       +\tau E_\pi|_W
+  =\frac1\ell\,G_K+\tau E_\pi|_W .
+\end{equation}
+This identity is the point of the construction: the divisor $D$ on $Y$
+restricts on $W$ to the singularity divisor of the pullback of $K_\ell$
+(up to the small correction $\tau E_\pi$), while its coefficients along
+$H_2$ and $H_3$ are large enough to dominate the singularities of
+$\varphi_G$ in \eqref{eq:phiG-lower}.
+
+\emph{A K\"ahler class on $W$.} Put
+$\theta_W\coloneqq (\theta_Y-\delta\pi^*\omega)|_W$ and
+$\varphi'\coloneqq (\pi|_W)^*\varphi_{K,\ell}+\tau\psi_{E_\pi}|_W$. Since
+$\varphi_{K,\ell}$ has analytic singularities of type
+$(\ell^{-1},\mathfrak k)$ and $\mathfrak k\mathcal O_W=\mathcal O_W(-G_K)$,
+the function $\varphi'$ has log singularities along $D|_W$ by
+\eqref{eq:D-restriction}. By \eqref{eq:def-K-ell} and $\tau<\delta$,
+\[
+  \theta_W+\ddc\varphi'
+  =(\pi|_W)^*K_\ell-\delta\pi^*\omega|_W
+   +\tau\bigl([E_\pi|_W]-\Theta_{E_\pi}|_W\bigr)
+  \ge(\delta-\tau)\pi^*\omega|_W+\tau\omega_Y|_W
+  \ge\tau\omega_Y|_W .
+\]
+By \cref{lem:residual-nef}, the class
+$\{\theta_W\}-\{D|_W\}=\{\theta_Y-\Theta_D-\delta\pi^*\omega\}|_W$ is
+K\"ahler on $W$.
+
+\emph{Extension to a neighborhood of $W$.} Choose a K\"ahler form on $W$
+in this class, of the form
+$(\theta_Y-\Theta_D-\delta\pi^*\omega)|_W+\ddc f$ with $f$ smooth on $W$;
+extend $f$ to a smooth function $\widetilde f$ on $Y$, and let $r_W^2$ be
+the squared distance to $W$ for a Riemannian metric on $Y$, which is smooth
+near $W$. At points of $W$, the form $\ddc r_W^2$ is semipositive with
+kernel the tangent space of $W$. Hence, by compactness of $W$, for $b\gg1$
+the form
+\[
+  \Omega\coloneqq \theta_Y-\Theta_D-\delta\pi^*\omega
+  +\ddc\bigl(\widetilde f+b\,r_W^2\bigr)
+\]
+is positive at every point of $W$, and there are a relatively compact
+open neighborhood $U$ of $W$, on which $r_W^2$ is smooth, and a constant
+$c_\Omega>0$ with $\Omega\ge c_\Omega\omega_Y$ on $U$. Put
+\[
+  \chi\coloneqq \frac{C-1}M\,\Psi_m\circ\pi,
+  \qquad
+  \varphi_U\coloneqq \widetilde f+b\,r_W^2+\psi_D+\chi\quad\text{on }U.
+\]
+By \eqref{eq:def-Psi} and \eqref{eq:choice-M},
+$\ddc\chi\ge-\frac{(C-1)c_\Psi}M\pi^*\omega\ge-\delta\pi^*\omega$, so
+\[
+  \theta_Y+\ddc\varphi_U
+  =\Omega+[D]+\bigl(\delta\pi^*\omega+\ddc\chi\bigr)
+  \ge c_\Omega\,\omega_Y
+  \qquad\text{on }U.
+\]
+
+\emph{The point $y$.} Since no component of $D$ contains $W$, and since
+$\pi(W)=V$ is not contained in $Z'\cup Z(\mathfrak B_m)$ (recall that
+$\mathfrak B_m$ is the unit ideal near $x_*\in V$), the set of points of
+$W$ lying in $\Supp D\cup\pi^{-1}\bigl(Z'\cup Z(\mathfrak B_m)\bigr)$ is a
+proper analytic subset of $W$. Choose $y\in W$ outside it. Near $y$,
+$\psi_D$ is smooth and $\chi$ is bounded, so $\varphi_U$ is bounded near
+$y$.
+
+\emph{The collar condition.} Let $\Lambda\subset U\setminus W$ be
+compact. On $\Lambda$, the function $\widetilde f+b\,r_W^2$ is bounded.
+By \eqref{eq:def-Psi} and $\widetilde G_m\ge H_1$, we have
+$\chi\le\frac{C-1}M\bigl(\psi_{\mathfrak j}\circ\pi+\psi_{H_1}\bigr)+O(1)$,
+and therefore, by \eqref{eq:def-D},
+\[
+  \psi_D+\chi\le\frac1M\,\psi_{\widetilde G_M}
+  +\frac{C-1}M\bigl(\psi_{H_1}+\psi_{H_2}+\psi_{\mathfrak j}\circ\pi\bigr)
+  +\frac CM\,\psi_{H_3}+\tau\psi_{E_\pi}+O(1).
+\]
+Compare this with \eqref{eq:phiG-lower}, in which
+$\psi_H=\psi_{H_1}+\psi_{H_2}+\psi_{H_3}+O(1)$. The coefficients of
+$\psi_{\widetilde G_M}$, of $\psi_{H_1}$, $\psi_{H_2}$ and
+$\psi_{\mathfrak j}\circ\pi$, and of $\psi_{H_3}$ above are $1/M$, $(C-1)/M$
+and $C/M$, and they are at least the corresponding coefficients
+$(1-L/M)/M$, $LA_R/M$ and $LA_R/M$ in \eqref{eq:phiG-lower}, by
+\eqref{eq:constants}. Since all these functions are locally bounded above,
+it follows that $\psi_D+\chi\le\varphi_G+C'_\Lambda$, and hence
+$\varphi_U\le\varphi_G+C''_\Lambda$ on $\Lambda$, for suitable constants.
+
+\subsection{End of the proof}\label{sec:conclusion}
+
+The manifold $Y$ is compact K\"ahler, $W$ is compact, and
+\cref{prop:gluing} applies to $\theta_Y=\pi^*\theta$, $W$, $U$, $y$,
+$\varphi_G$ and $\varphi_U$, with the K\"ahler form
+$\omega_0\coloneqq \min\{\tau,c_\Omega\}\,\omega_Y$: hypotheses
+\ref{it:gl-current}, \ref{it:gl-local} and \ref{it:gl-collar} were
+verified in the last two subsections. Hence $y\notin\EnK(\pi^*\alpha)$. On
+the other hand, by \eqref{eq:transformation-rules},
+\[
+  \EnK(\pi^*\alpha)\supset\pi^{-1}\bigl(\EnK(\alpha)\bigr)
+  \supset\pi^{-1}(V)\supset W\ni y,
+\]
+a contradiction. Therefore the assumption $h>0$ made in
+\cref{sec:setup} is false, and $\langle\alpha^k\rangle_{X\mid V}=0$. This
+proves the first assertion of \cref{thm:main}.
+
+For the second assertion, if $\alpha$ is not big, then $\EnK(\alpha)=X$ by
+convention, and $\Null(\alpha)=X$ because
+$\langle\alpha^n\rangle_{X\mid X}=\vol(\alpha)=0$. If $\alpha$ is big,
+then $\EnK(\alpha)$ has no isolated points by
+\cref{lem:no-isolated-points}, so each of its irreducible components is
+positive-dimensional and, by the first assertion, contained in
+$\Null(\alpha)$; thus $\EnK(\alpha)\subset\Null(\alpha)$. Conversely, a
+positive-dimensional irreducible subvariety $V\not\subset\EnK(\alpha)$ has
+positive numerical restricted volume by
+\cref{sec:restricted-volumes}\ref{it:rv-positive}, so every subvariety
+occurring in \eqref{eq:null-locus} is contained in $\EnK(\alpha)$, and
+$\Null(\alpha)\subset\EnK(\alpha)$. This completes the proof of
+\cref{thm:main}.\qed
+
+\printbibliography
+
+\bigskip
+\noindent Duc Viet Vu, \textsc{Universit\"at zu K\"oln}\par\nopagebreak
+\noindent\textit{Email address:} \texttt{vuvietsp@gmail.com}
+
+\medskip
+\noindent Mingchen Xia, \textsc{Institute of Geometry and Physics,
+University of Science and Technology of China}\par\nopagebreak
+\noindent\textit{Email address:} \texttt{xiamingchen2008@gmail.com}
+
+\end{document}

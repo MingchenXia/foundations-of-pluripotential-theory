@@ -1,0 +1,1810 @@
+\motto{Algebra is the offer made by the devil to the mathematician. The devil says: ``I will give you this powerful machine, it will answer any question you like. All you need to do is give me your soul: give up geometry and you will have this marvelous machine.''
+
+--- Michael Atiyah\footnote{Sir Michael Francis Atiyah (1929--2019) wrote the influential \emph{Introduction to commutative algebra} together with I.~G.~MacDonald, whose name is often omitted or misspelled.}}
+\chapter{Comparison of singularities}
+\label{chap:comp}
+
+A central theme of this book is that singularities of quasi-plurisubharmonic functions can be compared at several levels of precision. The preorder $\preceq$ of \cref{def:parorder} compares potentials up to additive constants. It is the most concrete notion, but it is often too fine for global pluripotential theory: the $P$-envelope identifies potentials with the same model representative, while multiplier ideals identify singularities that have the same integrability behavior. This chapter makes these two coarser comparisons systematic.
+
+We first introduce the $P$-preorder and the $\mathcal I$-preorder on $\QPSH(X)$. The $P$-preorder is defined by comparing $P$-envelopes, and its equivalence classes are the $P$-singularity types. The $\mathcal I$-preorder is defined by comparing multiplier ideals $\mathcal I(k\varphi)$ for all $k\in\mathbb Z_{>0}$. These two preorders are compatible with ordinary singularity comparison, but they capture different information: the former is governed by non-pluripolar mass, while the latter is governed by valuative and multiplier-ideal data.
+
+The second main object of the chapter is the pseudometric $d_S$. For positive-mass potentials in a fixed class, $d_S$ is defined through the Darvas $d_1$-distance between the associated geodesic rays. Its zero locus is precisely $P$-equivalence. Thus $d_S$ should be viewed as a convergence structure on $P$-singularity types. The chapter proves the basic properties of $d_S$, including monotone convergence, sandwich criteria and compatibility with changing the background form.
+
+The final results establish the continuity properties that will be used throughout the rest of the book. We prove continuity of the $\mathcal I$-envelope, continuity of non-pluripolar mass and volume, and a general equisingularity criterion. These results allow one to pass from analytic approximations to limiting singularities while controlling both $P$-types and multiplier ideals. They are used repeatedly in the theory of $\mathcal I$-good singularities, trace operators, test curves, partial Okounkov bodies and non-Archimedean potentials.
+
+\section{The \texorpdfstring{$P$}{P} and \texorpdfstring{$\mathcal{I}$}{I}-preorders}\label{sec:PIpartialorder}
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+
+Recall that we defined a preorder on $\QPSH(X)$ in \cref{def:parorder} to compare the singularity types of quasi-plurisubharmonic functions. The problem with this preorder is that it is too fine. For our purposes, it is useful to consider rougher relations.
+
+\subsection{The definitions of the preorders}
+\label{subsec:preorder_def}
+
+Recall that the $P$-envelope is defined in \cref{def:Penv}.
+\begin{definition}\label{def:Pmoresing}
+    For $\varphi,\psi\in \QPSH(X)$, we say $\varphi$ is \emph{$P$-more singular than $\psi$}\index{P-more singular@$P$-more singular} and write $\varphi\preceq_P \psi$\index{$\varphi\preceq_P \psi$} if for some (equivalently, every, due to \cref{lma:Pproj_insens_omega} below) closed smooth real $(1,1)$-form $\theta$ on $X$ such that $\varphi,\psi\in \PSH(X,\theta)_{>0}$, we have
+        \begin{equation}\label{eq:Penvleq}
+        P_{\theta}[\varphi]\leq P_{\theta}[\psi].
+        \end{equation}
+    If $\varphi\preceq_P \psi$ and $\psi \preceq_P \varphi$, we write $\varphi\sim_P \psi$ and say that $\varphi$ and $\psi$ have the same \emph{$P$-singularity type}\index{P-singularity type@$P$-singularity type}.
+\end{definition}
+Recall that $\PSH(X,\theta)_{>0}$ was introduced in \eqref{eq:PSHpos}.
+Note that if $\varphi\preceq \psi$, then $\varphi\preceq_P \psi$. So the $P$-preorder is \emph{coarser} than $\preceq$.
+
+The $P$-equivalence relation can also be formulated using the language of relative full mass classes developed in \cref{subsec:fullmass}.
+In fact, $\varphi,\psi\in \PSH(X,\theta)_{>0}$ satisfies $\varphi\sim_P \psi$ if and only if $\varphi,\psi \in \mathcal{E}(X,\theta;\phi)$ for a common model potential $\phi\in \PSH(X,\theta)_{>0}$.
+
+
+The condition \eqref{eq:Penvleq} is independent of the choice of $\theta$:
+\begin{lemma}\label{lma:Pproj_insens_omega}
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. For any Kähler form $\omega$ on $X$, the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:lma:Pproj_insens_omega:1} $P_{\theta}[\varphi]\leq P_{\theta}[\psi]$;
+        \item\label{itm:lma:Pproj_insens_omega:2} $P_{\theta+\omega}[\varphi]\leq P_{\theta+\omega}[\psi]$.
+    \end{enumerate}
+\end{lemma}
+In particular, $\preceq_P$ defines a preorder on $\QPSH(X)$.
+\begin{proof}
+    \ref{itm:lma:Pproj_insens_omega:1} $\implies$ \ref{itm:lma:Pproj_insens_omega:2}. Assume \ref{itm:lma:Pproj_insens_omega:1}. Observe that
+    \[
+    \varphi\preceq P_{\theta}[\varphi]\leq P_{\theta+\omega}[\varphi].
+    \]
+    Taking the $P_{\theta+\omega}$-envelope, we find
+    \[
+    P_{\theta+\omega}[\varphi] \leq P_{\theta+\omega}\Bigl[P_{\theta}[\varphi]\Bigr] \leq P_{\theta+\omega}\Bigl[P_{\theta+\omega}[\varphi]\Bigr]=P_{\theta+\omega}[\varphi],
+    \]
+    where the equality follows from \cref{thm:Pvarphidiffdef}. In particular,
+    \begin{equation}\label{eq:doubleP}
+    P_{\theta+\omega}[\varphi]=P_{\theta+\omega}\Bigl[P_{\theta}[\varphi]\Bigr].
+    \end{equation}
+    A similar formula holds for $\psi$. So we see that \ref{itm:lma:Pproj_insens_omega:2} holds.
+
+    \ref{itm:lma:Pproj_insens_omega:2} $\implies$ \ref{itm:lma:Pproj_insens_omega:1}. Assume \ref{itm:lma:Pproj_insens_omega:2}. By \eqref{eq:doubleP}, we may assume that $\varphi$ and $\psi$ are both model potentials in $\PSH(X,\theta)_{>0}$.
+
+    Observe that $\varphi\lor \psi\preceq P_{\theta+\omega}[\psi]$.
+    It follows that $P_{\theta+\omega}[\varphi\lor \psi]\leq P_{\theta+\omega}[\psi]$.
+    The reverse inequality is trivial, so
+    \[
+    P_{\theta+\omega}[\varphi\lor \psi]= P_{\theta+\omega}[\psi].
+    \]
+    From the direction we have proved, for any $C\geq 1$,
+    \[
+    P_{\theta+C\omega}[\varphi\lor \psi]= P_{\theta+C\omega}[\psi].
+    \]
+    So by \cref{prop:Ppresmass},
+    \[
+    \int_X \Bigl(\theta+C\omega+\ddc(\varphi\lor \psi)\Bigr)^n=\int_X\left(\theta+C\omega+\ddc\psi\right)^n.
+    \]
+    Since both sides are polynomials in $C$, the equality extends to $C=0$, namely,
+    \[
+    \int_X \theta_{\varphi\lor \psi}^n=\int_X \theta_{\psi}^n.
+    \]
+    In particular, $\varphi\lor \psi\leq P_{\theta}[\psi]=\psi$ by \eqref{eq:Penvdef}. So \ref{itm:lma:Pproj_insens_omega:1} follows.
+\end{proof}
+As a consequence of \cref{lma:Pproj_insens_omega}, we can define the $P$-preorder at the level of currents.
+Given closed positive $(1,1)$-currents $T=\theta_{\varphi}$, $S=\theta'_{\psi}$, we write $T\preceq_P S$ (resp. $T\sim_P S$) if $\varphi\preceq_P \psi$ (resp. $\varphi\sim_P \psi$). This definition is independent of the decompositions of $T$ and $S$.
+
+As a first example of $P$-equivalence, we have:
+\begin{example}\label{ex:Pequiv}
+    Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ and $\varphi\in \PSH(X,\theta)_{>0}$. Then
+    \[
+        \varphi\sim_P P_{\theta}[\varphi]\footnotemark.
+    \]
+    \footnotetext{It is not known to us whether the same holds when $\varphi$ has vanishing mass.}
+    This follows immediately from \cref{thm:Pvarphidiffdef}.
+\end{example}
+
+We give a very useful criterion of the $P$-equivalence in terms of the non-pluripolar masses.
+\begin{proposition}\label{prop:Pequivchar2}
+    Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a big cohomology class.
+    Let $\varphi,\psi\in \PSH(X,\theta)$ and $\varphi\preceq_P \psi$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Pequivchar2:1} $\varphi\sim_P \psi$;
+        \item\label{itm:prop:Pequivchar2:2} for each $j=0,\ldots,n$, we have
+            \begin{equation}\label{eq:mixedmassequal}
+                \int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+            \end{equation}
+    \end{enumerate}
+    Assume furthermore that $\varphi,\psi\in \PSH(X,\theta)_{>0}$, then these conditions are equivalent to the following:
+    \begin{enumerate}[resume]
+        \item\label{itm:prop:Pequivchar2:3} We have
+            \[
+                \int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n.
+            \]
+    \end{enumerate}
+\end{proposition}
+Recall that $V_{\theta}$ is introduced in \eqref{eq:Vtheta}.
+
+\begin{proof}
+    We first prove the equivalence between \ref{itm:prop:Pequivchar2:1} and \ref{itm:prop:Pequivchar2:3} when $\varphi,\psi\in \PSH(X,\theta)_{>0}$.
+
+    \ref{itm:prop:Pequivchar2:1} $\implies$ \ref{itm:prop:Pequivchar2:3}. Assume that $\varphi\sim_P \psi$. By \cref{lma:Pproj_insens_omega}, we have
+    \[
+        P_{\theta}[\varphi]=P_{\theta}[\psi].
+    \]
+    So \ref{itm:prop:Pequivchar2:3} follows from \cref{prop:Ppresmass}.
+
+    \ref{itm:prop:Pequivchar2:3} $\implies$ \ref{itm:prop:Pequivchar2:1}. Since $\varphi\preceq_P\psi$, we have $P_{\theta}[\varphi]\leq P_{\theta}[\psi]$.
+    Moreover, \cref{prop:Ppresmass} shows that $P_{\theta}[\varphi]$ and $P_{\theta}[\psi]$ have the same positive mass.
+    By \cref{thm:Pvarphidiffdef}, $P_{\theta}[\psi]$ is a candidate in the characterization of $P_{\theta}\bigl[P_{\theta}[\varphi]\bigr]=P_{\theta}[\varphi]$.
+    Hence $P_{\theta}[\psi]\leq P_{\theta}[\varphi]$, and therefore $P_{\theta}[\varphi]=P_{\theta}[\psi]$.
+    So \ref{itm:prop:Pequivchar2:1} follows.
+
+    Let us come back to the general case with $\varphi,\psi\in \PSH(X,\theta)$.
+
+    \ref{itm:prop:Pequivchar2:1} $\implies$ \ref{itm:prop:Pequivchar2:2}.
+    Fix $j\in \{0,\ldots,n\}$. We argue \eqref{eq:mixedmassequal}.
+
+    Take a Kähler form $\omega$ on $X$. By \cref{lma:Pproj_insens_omega}, for each $\epsilon>0$, we have
+    \[
+        P_{\theta+\epsilon\omega}[\varphi]=  P_{\theta+\epsilon\omega}[\psi].
+    \]
+    It follows from \cref{prop:Ppresmass} that
+    \[
+        \begin{aligned}
+        \int_X \left(\theta+\epsilon\omega+\ddc \psi  \right)^j\wedge \theta_{V_{\theta}}^{n-j}=&\int_X \Bigl(\theta+\epsilon\omega+\ddc P_{\theta+\epsilon\omega}[\psi]  \Bigr)^j\wedge \theta_{V_{\theta}}^{n-j}\\
+        =&\int_X \Bigl(\theta+\epsilon\omega+\ddc P_{\theta+\epsilon\omega}[\varphi]  \Bigr)^j\wedge \theta_{V_{\theta}}^{n-j} \\
+        =& \int_X \left(\theta+\epsilon\omega+\ddc \varphi  \right)^j\wedge \theta_{V_{\theta}}^{n-j}.
+        \end{aligned}
+    \]
+    Since the two extremes are both polynomials in $\epsilon$ by the multi-linearity of the non-pluripolar products \itemref{itm:prop:npp1:6}, we conclude that the same holds when $\epsilon=0$, that is, \eqref{eq:mixedmassequal} holds.
+
+    \ref{itm:prop:Pequivchar2:2} $\implies$ \ref{itm:prop:Pequivchar2:1}. Assume \eqref{eq:mixedmassequal} holds for all $j=0,\ldots,n$. Then the same holds with $P_{\theta}[\psi]$ in place of $\psi$, thanks to \cref{prop:Ppresmass}.
+    Therefore, for each $t\in (0,1)$, we have
+    \[
+        \int_X \theta_{t\varphi+(1-t)V_{\theta}}^n=  \int_X \theta_{tP_{\theta}[\psi]+(1-t)V_{\theta}}^n
+    \]
+    by the binomial expansion. Furthermore, $t\varphi+(1-t)V_{\theta}\preceq tP_{\theta}[\psi]+(1-t)V_{\theta}$.
+    By the implication \ref{itm:prop:Pequivchar2:3} $\implies$ \ref{itm:prop:Pequivchar2:1}, we have
+    \[
+        t\varphi+(1-t)V_{\theta}\sim_P t P_{\theta}[\psi]+(1-t)V_{\theta}
+    \]
+    for each $t\in (0,1)$.
+
+    Fix a Kähler form $\omega$ on $X$.
+    From the implication \ref{itm:prop:Pequivchar2:1} $\implies$ \ref{itm:prop:Pequivchar2:3}, we have
+    \[
+        \int_X (\theta+\omega)_{t\varphi+(1-t)V_{\theta}}^n=  \int_X (\theta+\omega)_{tP_{\theta}[\psi]+(1-t)V_{\theta}}^n.
+    \]
+    Since both sides are polynomials in $t$ by the multi-linearity of the non-pluripolar products \itemref{itm:prop:npp1:6}, the same holds when $t=1$. From the implication \ref{itm:prop:Pequivchar2:3} $\implies$ \ref{itm:prop:Pequivchar2:1} again, we have $\varphi\sim_P P_{\theta}[\psi]\sim_P \psi$.
+\end{proof}
+
+
+
+Next we introduce a different preorder.
+\begin{proposition}\label{prop:Iequivchar2}
+    Given $\varphi,\psi\in \QPSH(X)$, the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Iequivchar2:1} For any $k\in \mathbb{Z}_{>0}$, we have
+        \[
+            \mathcal{I}(k\varphi)\subseteq\mathcal{I}(k\psi);
+        \]
+        \item\label{itm:prop:Iequivchar2:2} for any $\lambda\in \mathbb{R}_{>0}$, we have
+            \[
+            \mathcal{I}(\lambda\varphi)\subseteq\mathcal{I}(\lambda\psi);
+            \]
+        \item\label{itm:prop:Iequivchar2:3} for any modification $\pi\colon Y\rightarrow X$ and any $y\in Y$, we have
+            \[
+                \nu(\pi^*\varphi,y)\geq \nu(\pi^*\psi,y);
+            \]
+        \item\label{itm:prop:Iequivchar2:4} for any proper bimeromorphic morphism $\pi\colon Y\rightarrow X$ from a Kähler manifold and any $y\in Y$, we have
+            \[
+                \nu(\pi^*\varphi,y)\geq \nu(\pi^*\psi,y);
+            \]
+        \item\label{itm:prop:Iequivchar2:5} for any prime divisor $E$ over $X$, we have
+            \[
+                \nu(\varphi,E)\geq \nu(\psi,E).
+            \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    The proof is almost identical to that of \cref{prop:Iequivchar}.
+\end{proof}
+
+\begin{definition}\label{def:Imoresing}
+    Let $\varphi,\psi\in \QPSH(X)$, we say $\varphi$ is \emph{$\mathcal{I}$-more singular than $\psi$}\index{I-more singular@$\mathcal{I}$-more singular} and write $\varphi\preceq_{\mathcal{I}} \psi$\index{$\varphi\preceq_{\mathcal{I}} \psi$} if the equivalent conditions in \cref{prop:Iequivchar2} are satisfied.
+\end{definition}
+It is clear that $\preceq_{\mathcal{I}}$ is a preorder on $\QPSH(X)$.
+
+Note that $\varphi\preceq_{\mathcal{I}}\psi$ and $\psi\preceq_{\mathcal{I}}\varphi$ both hold if and only if $\varphi\sim_{\mathcal{I}}\psi$ in the sense of \cref{def:Iequiv}.
+
+Given closed positive $(1,1)$-currents $T=\theta_{\varphi}$, $S=\theta'_{\psi}$, we write $T\preceq_{\mathcal{I}} S$ (resp. $T\sim_{\mathcal{I}} S$) if $\varphi\preceq_{\mathcal{I}} \psi$ (resp. $\varphi\sim_{\mathcal{I}} \psi$). This definition is independent of the decompositions of $T$ and $S$.
+
+\begin{lemma}\label{lma:Plor1}
+    Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a big cohomology class.
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Then
+    \begin{equation}\label{eq:Plor1}
+    P_{\theta}[\varphi\lor \psi]=P_{\theta}\Bigl[ P_{\theta}[\varphi]\lor P_{\theta}[\psi] \Bigr].
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Since $\varphi\lor \psi\preceq P_{\theta}[\varphi]\lor P_{\theta}[\psi]$, the $\leq$ direction of \eqref{eq:Plor1} follows. Conversely, it suffices to show that
+    \[
+    P_{\theta}[\varphi\lor \psi]\geq P_{\theta}[\varphi]\lor P_{\theta}[\psi],
+    \]
+    which follows from $\varphi\preceq\varphi\lor\psi$, $\psi\preceq\varphi\lor\psi$, and the monotonicity of the $P$-envelope with respect to $\preceq$.
+\end{proof}
+
+\begin{lemma}\label{lma:reform_preceqP}
+    Let $\varphi,\psi\in \QPSH(X)$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:lma:reform_preceqP:1} $\varphi\preceq_P \psi$ (resp. $\varphi\preceq_{\mathcal{I}} \psi$);
+        \item\label{itm:lma:reform_preceqP:2} $\varphi\lor \psi\sim_P\psi$ (resp. $\varphi\lor \psi\sim_{\mathcal{I}}\psi$).
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+Take a closed real smooth $(1,1)$-form $\theta$ on $X$ such that $\varphi,\psi\in \PSH(X,\theta)_{>0}$. We only prove the $P$ case, the $\mathcal{I}$ case is similar.
+
+\ref{itm:lma:reform_preceqP:2} $\implies$ \ref{itm:lma:reform_preceqP:1}. Assume \ref{itm:lma:reform_preceqP:2}. By \ref{itm:lma:reform_preceqP:2} and \cref{ex:Pequiv}, $P_{\theta}[\varphi\lor \psi]=P_{\theta}[\psi]\sim_P \psi$. But $\varphi\preceq P_{\theta}[\varphi\lor \psi]$, so \ref{itm:lma:reform_preceqP:1} follows.
+
+\ref{itm:lma:reform_preceqP:1} $\implies$ \ref{itm:lma:reform_preceqP:2}. Assume \ref{itm:lma:reform_preceqP:1}. We may assume that $\varphi,\psi$ are both model by \cref{lma:Plor1}.
+    Then $\varphi\leq \psi$ and \ref{itm:lma:reform_preceqP:2} follows.
+\end{proof}
+
+\begin{corollary}\label{cor:PimpliesI}
+    Let $\varphi,\psi \in \QPSH(X)$. Assume that $\varphi\preceq_P \psi$. Then $\varphi\preceq_{\mathcal{I}}\psi$.
+\end{corollary}
+Therefore, the preorder $\preceq_{\mathcal{I}}$ is coarser than $\preceq_P$. Given $\varphi,\psi\in \QPSH(X)$, we therefore have the implications:
+\[
+\varphi\preceq \psi \implies \varphi\preceq_P \psi \implies \varphi\preceq_{\mathcal{I}} \psi.
+\]
+\begin{proof}
+    Thanks to \cref{lma:reform_preceqP}, we have $\varphi\lor \psi\sim_P \psi$. Take a closed smooth real $(1,1)$-form $\theta$ on $X$ such that $\varphi,\psi\in \PSH(X,\theta)_{>0}$.
+    Then by \cref{prop:PandPI}, we have
+    \[
+        \psi\sim_{\mathcal{I}} P_{\theta}[\psi]= P_{\theta}\left[\varphi\lor \psi\right]\sim_{\mathcal{I}} \varphi\lor \psi.
+    \]
+    Our assertion follows from the $\mathcal{I}$-version of \cref{lma:reform_preceqP}.
+\end{proof}
+
+Next we give a few extra characterizations of the $P$-envelope.
+\begin{corollary}\label{cor:Pvarphidef3}
+    Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a big cohomology class.
+    Assume that $\varphi\in \PSH(X,\theta)_{>0}$. Then
+    \[
+        \begin{aligned}
+        P_{\theta}[\varphi]=&\sup\left\{ \psi\in \PSH(X,\theta): \psi\leq 0, \psi\sim_P \varphi \right\}\\
+        =&  \sup\left\{ \psi\in \PSH(X,\theta): \psi\leq 0, \psi\preceq_P \varphi \right\}.
+        \end{aligned}
+    \]
+\end{corollary}
+Just for comparison, let us recall a few other characterizations of the $P$-envelope for $\varphi\in \PSH(X,\theta)_{>0}$:
+\[
+\begin{aligned}
+    P_{\theta}[\varphi]=&\uscsup\left\{ \psi\in \PSH(X,\theta):\psi\leq 0,\psi\preceq \varphi \right\}\\
+    =&\uscsup\left\{ \psi\in \PSH(X,\theta):\psi\leq 0,\psi\sim \varphi \right\}\\
+    =&\uscsup[C\in \mathbb{Z}_{>0}] (\varphi+C)\land V_{\theta}\\
+    =& \sup\left\{\psi\in \PSH(X,\theta): \psi\leq 0,\varphi\preceq \psi, \int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n\right\}.
+\end{aligned}
+\]
+\begin{proof}
+    Note that $\psi\sim_P \varphi$ implies that $\psi\in \PSH(X,\theta)_{>0}$ by \cref{prop:Ppresmass}. We observe that
+    \[
+    \begin{split}
+    &\sup\left\{ \psi\in \PSH(X,\theta): \psi\leq 0, \psi\sim_P \varphi \right\}\\=&\sup\left\{ \psi\in \PSH(X,\theta): \psi\leq 0, \varphi\preceq \psi, \psi\sim_P \varphi \right\}
+    \end{split}
+    \]
+    since for any candidate $\psi$ for the first supremum, $\psi \lor (\varphi-\sup_X \varphi)$ is larger than $\psi$, and is a candidate for the second supremum thanks to \cref{lma:reform_preceqP}.
+    So the first equality is a direct consequence of \cref{prop:Pequivchar2} and \cref{thm:Pvarphidiffdef}.
+
+    Next we prove the second equality. We only need to show that for any $\psi\in \PSH(X,\theta)$ with $\psi\leq 0$ and $\psi\preceq_P \varphi$, we have $\psi\leq P_{\theta}[\varphi]$.
+
+    By \cref{lma:reform_preceqP} and \cref{ex:Pequiv}, we know that $P_{\theta}[\varphi]\lor \psi\sim_P \varphi$ and $P_{\theta}[\varphi]\lor \psi\leq 0$. It follows from the first equality that $\psi\leq P_{\theta}[\varphi]$.
+\end{proof}
+Similarly, we have a new characterization of the $\mathcal{I}$-envelope.
+\begin{corollary}\label{cor:Ienvelopedef2}
+    Let $\theta$ be a closed smooth real $(1,1)$-form on $X$ representing a pseudo-effective cohomology class.
+    Assume that $\varphi\in \PSH(X,\theta)$. Then
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}=\sup\left\{ \psi\in \PSH(X,\theta): \psi\leq 0, \psi\preceq_{\mathcal{I}} \varphi \right\}.
+    \]
+\end{corollary}
+\begin{proof}
+    It suffices to show that for any $\psi\in \PSH(X,\theta)$ with $\psi\leq 0$ and $\psi\preceq_{\mathcal{I}}\varphi$, we have $\psi\leq P_{\theta}[\varphi]_{\mathcal{I}}$.
+    By \cref{lma:reform_preceqP} and \cref{prop:Ienvprojection}, we know that $P_{\theta}[\varphi]_{\mathcal{I}}\lor \psi\sim_{\mathcal{I}}\varphi$. Therefore, $P_{\theta}[\varphi]_{\mathcal{I}}\lor \psi$ is a candidate in the definition of $P_{\theta}[\varphi]_{\mathcal{I}}$ (cf. \eqref{eq:Ienvelopedef}), so
+    \[
+    \psi\leq P_{\theta}[\varphi]_{\mathcal{I}}\lor \psi\leq P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    We conclude the proof.
+\end{proof}
+
+\begin{proposition}\label{prop:Icomparandenvelope}
+    Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ and $\varphi,\psi\in \PSH(X,\theta)$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Icomparandenvelope:1} $\varphi\preceq_{\mathcal{I}}\psi$;
+        \item\label{itm:prop:Icomparandenvelope:2} $P_{\theta}[\varphi]_{\mathcal{I}}\leq P_{\theta}[\psi]_{\mathcal{I}}$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:Icomparandenvelope:1} $\implies$ \ref{itm:prop:Icomparandenvelope:2}. This follows immediately from \cref{cor:Ienvelopedef2}.
+
+    \ref{itm:prop:Icomparandenvelope:2} $\implies$ \ref{itm:prop:Icomparandenvelope:1}. It follows from \cref{prop:Ienvprojection} that
+    \[
+        \varphi\sim_{\mathcal{I}} P_{\theta}[\varphi]_{\mathcal{I}}\leq P_{\theta}[\psi]_{\mathcal{I}} \sim_{\mathcal{I}} \psi.
+    \]
+    We conclude \ref{itm:prop:Icomparandenvelope:1}.
+\end{proof}
+
+\begin{example}\label{ex:Pequivnotequivex}
+    Let us continue our example \cref{ex:loglogsing}, where $X=\mathbb{P}^1$, $\omega$ is the Fubini--Study metric and $\varphi\in \PSH(X,\omega)$ has log-log singularity at $0$. We have shown that $P_{\omega}[\varphi]=0$ in \eqref{eq:Pomegavarphi0temp1}, so $\varphi\sim_{P} 0$ and hence $\varphi\sim_{\mathcal{I}} 0$. In particular, $P$-equivalence is not equivalent to the equivalence of singularity types.
+
+    On the other hand, consider a potential $\psi\in \PSH(X,\omega)$ with log singularity at $0$, as in \cref{ex:logsingP1}. We know that $\nu(\psi,0)=1$ from the explicit expression \eqref{eq:logsingP1ex}. So $\psi\not\sim_{\mathcal{I}} 0$ and hence $\psi\not\sim_{P} 0$.
+
+    Moreover, $\psi \preceq_{P} \varphi$ and hence $\psi\preceq_{\mathcal{I}}\varphi$.
+\end{example}
+
+
+We give an example showing that $P$-equivalence is not equivalent to $\mathcal{I}$-equivalence.
+\begin{example}\label{ex:BBJ}
+    Let $X=\mathbb{P}^1$ and $\omega$ be the Fubini--Study metric. Let $K\subseteq \mathbb{P}^1$ be a polar Cantor set carrying an atom free probability measure $\mu$ supported on $K$ (see \cite[Page~31]{Car83}). Write $\mu=\omega+\ddc\varphi$ for some $\omega$-subharmonic function $\varphi$. Since $\mu$ is atom free, we know that all Lelong numbers of $\varphi$ are $0$. On the other hand, $\varphi$ has $0$ non-pluripolar mass since $K$ is pluripolar.
+
+    Then observe that $\varphi\sim_{\mathcal{I}} 0$ while $\varphi\not\sim_P 0$.
+\end{example}
+
+For later use, we give the following definition.
+\begin{definition}\label{def:elemetric}
+    Let $L$ be a pseudo-effective line bundle on $X$. An \emph{elementary metric}\index{elementary metric} on $L$ is a psh metric $h$ on $L$ such that there is a generalized Fubini--Study metric $h'$ on $L$ such that
+    \[
+    \ddc h\sim_{P} \ddc h'.
+    \]
+    The set of elementary metrics on $L$ is denoted by $\Ele(L)$\index{$\Ele(L)$}.
+
+    We also say $\ddc h$ is elementary. If we have fixed a Hermitian metric $h_0$ on $L$, and if we represent $h$ as $h_0\exp(-\varphi)$, we also say the quasi-psh function $\varphi$ is elementary.
+\end{definition}
+Recall that the generalized Fubini--Study metrics are defined in \cref{def:gFSmetric}.
+
+\subsection{Properties of the preorders}
+\label{subsec:preorder_prop}
+
+Now we state a more natural version of the monotonicity theorem \cref{thm:mono}.
+\begin{proposition}[Monotonicity theorem]\label{prop:mono2}
+    Let $\theta_1,\ldots,\theta_n$ be closed real smooth $(1,1)$-forms on $X$.
+    Let $\varphi_i,\psi_i\in \PSH(X,\theta_i)$ for $i=1,\ldots,n$. Assume that $\varphi_i\preceq_P \psi_i$ for each $i$. Then
+    \[
+        \int_X \theta_{1,\varphi_1}\wedge \cdots \wedge  \theta_{n,\varphi_n}\leq \int_X \theta_{1,\psi_1}\wedge \cdots \wedge  \theta_{n,\psi_n}.
+    \]
+    In other words, the non-pluripolar mass is a decreasing quantity with respect to the $P$-singularity types of the potentials.
+\end{proposition}
+\begin{proof}
+    Fix a Kähler form $\omega$ on $X$. For each $i=1,\ldots,n$, since $\varphi_i\preceq_P\psi_i$, we have
+    \[
+        P_{\theta_i+\epsilon\omega}[\varphi_i]\leq P_{\theta_i+\epsilon\omega}[\psi_i]
+    \]
+    for all $\epsilon>0$. Therefore, by \cref{prop:Ppresmass} and our previous monotonicity theorem \cref{thm:mono}, we have
+    \[
+        \int_X (\theta_1+\epsilon\omega)_{\varphi_1}\wedge \cdots \wedge (\theta_n+\epsilon\omega)_{\varphi_n}\leq \int_X (\theta_1+\epsilon\omega)_{\psi_1}\wedge \cdots \wedge (\theta_n+\epsilon\omega)_{\psi_n}.
+    \]
+    Letting $\epsilon\to 0+$ and applying the multi-linearity of the non-pluripolar products \itemref{itm:prop:npp1:6}, we find the desired inequality.
+\end{proof}
+
+The $P$-preorder allows us to derive a natural generalization of \cref{lma:pathoenvelope}.
+\begin{theorem}\label{thm:pathoenvelope}
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$, $\varphi\preceq_P \psi$. Then for any
+    \begin{equation}\label{eq:arangetemp_reproduce}
+        a\in \left( 1, \left(\frac{\int_X \theta_{\psi}^n}{\int_X \theta_{\psi}^n-\int_X \theta_{\varphi}^n}\right)^{1/n} \right),
+    \end{equation}
+    the function
+    \[
+        \eta\coloneqq P_{\theta}\Bigl(a\varphi+(1-a)\psi\Bigr)
+    \]
+    lies in $\PSH(X,\theta)_{>0}$, satisfies $\eta\preceq_P \varphi$ and
+    \begin{equation}\label{eq:path_env_reproduce}
+        a^{-1}\eta+\left(1-a^{-1}\right)\psi\leq \varphi.
+    \end{equation}
+
+    If in addition, $\varphi\sim_P \psi$, then $\eta\sim_P \varphi$ as well.
+\end{theorem}
+In \eqref{eq:arangetemp_reproduce}, the fraction is understood as $\infty$ if either $\int_X \theta_{\psi}^n=\int_X \theta_{\varphi}^n$ or $n=0$, exactly as in \cref{lma:pathoenvelope}.
+\begin{proof}
+    By our assumption and \eqref{eq:varphipreceqP}, we have $\varphi\preceq P_{\theta}[\varphi]\leq P_{\theta}[\psi]$.
+    Due to \cref{prop:Ppresmass}, the interval \eqref{eq:arangetemp_reproduce} remains unchanged after replacing $\psi$ by $P_{\theta}[\psi]$. Fix $a$ in this interval.
+    So by \cref{lma:pathoenvelope} and the discussions afterwards,
+    \[
+        \eta'\coloneqq  P_{\theta}\Bigl(a\varphi+(1-a)P_{\theta}[\psi]\Bigr)\in \PSH(X,\theta)_{>0}.
+    \]
+    We first check that $\eta$ is a genuine $\theta$-psh function. Choose a closed non-pluripolar set $K\subseteq X$ on which $\varphi$ and $\psi$ are bounded. Then the obstacle $a\varphi+(1-a)\psi$ is bounded above on $K$.
+    Every candidate in the definition of $\eta$ is therefore uniformly bounded above on $X$ by \cref{rmk:L1cpt}, so $\eta\not\equiv \infty$ and hence $\eta\in \PSH(X,\theta)\cup\{-\infty\}$.
+    On the other hand, since $\psi\preceq P_{\theta}[\psi]$, we can find $C>0$ such that $\psi\leq P_{\theta}[\psi]+C$. Then
+    \[
+        \eta'-(a-1)C\leq a\varphi+(1-a)\psi
+    \]
+    quasi-everywhere, hence $\eta\geq \eta'-(a-1)C$. Thus $\eta'\preceq \eta$, and the monotonicity theorem \cref{thm:mono} gives $\eta\in \PSH(X,\theta)_{>0}$.
+
+    By \eqref{eq:Pthetafleqfqe},
+    \[
+        \eta\leq a\varphi+(1-a)\psi
+    \]
+    quasi-everywhere. Equivalently, \eqref{eq:path_env_reproduce} holds quasi-everywhere. Since both sides of \eqref{eq:path_env_reproduce} are $\theta$-psh, \cref{prop:pshfuncdetdense} upgrades the inequality to an everywhere inequality.
+
+    It remains to prove the assertion about the $P$-order.
+    Using \cref{prop:Pconc}, we get
+    \[
+        a^{-1} P_{\theta}[\eta]+\left(1-a^{-1}\right)P_{\theta}[\psi] \leq P_{\theta}[\varphi].
+    \]
+    By the assumption $\varphi\preceq_P\psi$, we also have $P_{\theta}[\varphi]\leq P_{\theta}[\psi]$. Therefore,
+    \[
+        a^{-1} P_{\theta}[\eta]\leq P_{\theta}[\varphi]-\left(1-a^{-1}\right)P_{\theta}[\psi]\leq a^{-1} P_{\theta}[\varphi]
+    \]
+    quasi-everywhere and hence everywhere by \cref{prop:pshfuncdetdense}. It follows that $P_{\theta}[\eta]\leq P_{\theta}[\varphi]$, namely $\eta\preceq_P\varphi$.
+
+    Finally assume that $\varphi\sim_P\psi$. Then $\int_X\theta_{P_{\theta}[\psi]}^n=\int_X\theta_{\varphi}^n$ by \cref{prop:Ppresmass}.
+    Applying \cref{cor:pathoenvelopeeqmass} gives
+    \[
+        \int_X\theta_{\eta'}^n=\int_X\theta_{\varphi}^n.
+    \]
+    Since $\eta'\preceq\eta$, the monotonicity theorem \cref{thm:mono} gives
+    \[
+        \int_X\theta_{\eta}^n\geq \int_X\theta_{\varphi}^n.
+    \]
+    The reverse inequality follows from $\eta\preceq_P\varphi$ and \cref{prop:mono2}. Hence $\eta\sim_P\varphi$ by \cref{prop:Pequivchar2}.
+\end{proof}
+
+
+Next we show that the $P$ and $\mathcal{I}$-preorders are preserved by some natural operations.
+
+\begin{lemma}\label{lma:Ipartorderinv}
+Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$.
+    Given two quasi-plurisubharmonic functions $\varphi,\psi$ on $X$, then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:lma:Ipartorderinv:1} $\varphi\preceq_{P} \psi$;
+        \item\label{itm:lma:Ipartorderinv:2} $\pi^*\varphi\preceq_{P} \pi^*\psi$.
+    \end{enumerate}
+    The same holds with $\mathcal{I}$ in place of $P$.
+\end{lemma}
+\begin{proof}
+   In the $P$-case, this follows from \cref{prop:Penvbimero}, while in the $\mathcal{I}$-case, this follows from \cref{prop:Ienvelopebimero}.
+\end{proof}
+
+\begin{proposition}\label{prop:Ppartialsum}
+    Let $\varphi,\psi,\varphi',\psi'\in \QPSH(X)$. Assume that
+    \[
+    \varphi\preceq_P \psi,\quad \varphi'\preceq_P \psi'.
+    \]
+    Then
+    \[
+    \varphi+\varphi'\preceq_P \psi+\psi'.
+    \]
+    The same holds with $\preceq_{\mathcal{I}}$ in place of $\preceq_P$.
+\end{proposition}
+\begin{proof}
+    Take a Kähler form $\omega$ on $X$ such that $\varphi,\psi,\varphi',\psi'\in \PSH(X,\omega)_{>0}$. The statement for $\preceq_{\mathcal{I}}$ is a simple consequence of \cref{prop:Lelongmax}. We only need to handle the case of $\preceq_{P}$.
+
+    \textbf{Step~1}.
+    We first show that
+    \[
+    P_{\omega}[\varphi]+P_{\omega}[\varphi']\sim_P \varphi+\varphi'.
+    \]
+    In fact, we clearly have
+    \[
+    P_{\omega}[\varphi]+P_{\omega}[\varphi']\succeq \varphi+\varphi'.
+    \]
+    So by \cref{prop:Pequivchar2}, it suffices to show that they have the same mass. We compute
+    \[
+    \begin{aligned}
+    &\int_X \Bigl(2\omega+\ddc P_{\omega}[\varphi]+\ddc P_{\omega}[\varphi']\Bigr)^n\\
+    =& \sum_{j=0}^n \binom{n}{j} \int_X \Bigl(\omega+\ddc P_{\omega}[\varphi]\Bigr)^j\wedge \Bigl(\omega+\ddc P_{\omega}[\varphi']\Bigr)^{n-j}\\
+    =& \sum_{j=0}^n \binom{n}{j} \int_X \omega_{\varphi}^j\wedge \omega_{\varphi'}^{n-j}\\
+    =& \int_X \left(2\omega+\ddc\varphi+\ddc\varphi'\right)^n,
+    \end{aligned}
+    \]
+    where we applied \cref{prop:Ppresmass} to the mixed products on the third line.
+
+    \textbf{Step~2}. By Step~1, we may assume that $\varphi,\psi,\varphi',\psi'$ are all model potentials, after replacing them by their $P_{\omega}$-envelopes. So $\varphi\leq \psi$ and $\varphi'\leq \psi'$. Our assertion follows.
+\end{proof}
+\begin{proposition}\label{prop:Ppartialsup}
+    Let $(\varphi_i)_{i\in I}$, $(\psi_i)_{i\in I}$ be uniformly bounded from above non-empty families in $\QPSH(X)$. Assume that there exists a closed smooth real $(1,1)$-form $\theta$ such that $\varphi_i,\psi_i\in \PSH(X,\theta)$ and $\varphi_i\preceq_P \psi_i$ for all $i\in I$. Then
+    \[
+    \uscsup[i\in I] \varphi_i\preceq_P \uscsup[i\in I]\psi_i.
+    \]
+
+    The same holds with $\preceq_{\mathcal{I}}$ in place of $\preceq_P$.
+\end{proposition}
+\begin{proof}
+    By adding a Kähler form to $\theta$, we may assume that $\varphi_i,\psi_i\in \PSH(X,\theta)_{>0}$ for all $i\in I$. The statement for $\preceq_{\mathcal{I}}$ is a simple consequence of \cref{cor:supsLelong}, we only have to consider the statement for $\preceq_P$.
+
+    \textbf{Step~1}. We first handle the case where $I$ is a directed set and $(\varphi_i)_{i\in I}$ and $(\psi_i)_{i\in I}$ are increasing nets.
+
+   In this case,  our assertion follows simply from \cref{prop:incnetmodel}.
+
+    \textbf{Step~2}. We handle the case where $I$ is finite. We may assume that $I=\{0,1\}$.
+    It suffices to show that
+    \[
+        P_{\theta}[\varphi_0]\lor P_{\theta}[\varphi_1]\sim_P \varphi_0\lor\varphi_1,
+    \]
+    which follows from \cref{lma:Plor1}.
+
+    \textbf{Step~3}. The general case can be reduced to the two cases handled in Step~1 and Step~2. More precisely,
+    by applying \cref{prop:Choquet} to the two families and taking the union of the resulting countable subsets, we can find a countable subset $J\subseteq I$ such that
+    \[
+    \uscsup[j\in J] \varphi_j=\uscsup[i\in I] \varphi_i,\quad \uscsup[j\in J] \psi_j=\uscsup[i\in I] \psi_i.
+    \]
+    We may replace $I$ by $J$ and assume that $I$ is countable. If $I$ is finite, Step~2 applies directly. Otherwise, write $I=\mathbb{Z}_{>0}$ and set
+    \[
+        \tilde{\varphi}_m=\varphi_1\lor\cdots\lor\varphi_m,\quad
+        \tilde{\psi}_m=\psi_1\lor\cdots\lor\psi_m.
+    \]
+    By Step~2, $\tilde{\varphi}_m\preceq_P\tilde{\psi}_m$ for every $m$. The two new sequences are increasing and have the same upper envelopes as the original families, so Step~1 applies.
+
+\end{proof}
+
+We now refine \cref{lma:landcorrectmass} using the $P$-equivalence relation.
+\begin{proposition}\label{prop:rooftopprePequiv}
+    Let $\varphi,\psi,\varphi',\psi'\in \PSH(X,\theta)$ for some closed smooth real $(1,1)$-form $\theta$ on $X$. Assume that
+    \[
+    \varphi\sim_P \varphi',\quad \psi\sim_P\psi',\quad  \varphi'\land \psi'\in \PSH(X,\theta)_{>0}.
+    \]
+    Then
+    \[
+    \varphi\land \psi\in \PSH(X,\theta)_{>0},\quad \varphi\land \psi\sim_P \varphi'\land \psi'.
+    \]
+\end{proposition}
+\begin{proof}
+    We first observe that $\varphi,\varphi',\psi,\psi'\in \PSH(X,\theta)_{>0}$ by assumption. Let
+    \[
+    \phi\coloneqq P_{\theta}[\varphi]=P_{\theta}[\varphi'],\quad \gamma=P_{\theta}[\psi]=P_{\theta}[\psi'].
+    \]
+    Since $\varphi'\preceq\phi$ and $\psi'\preceq\gamma$, after adding a common constant to $\varphi'$ and $\psi'$, we may assume that $\varphi'\leq\phi$ and $\psi'\leq\gamma$. Then $\varphi'\land\psi'\leq\phi\land\gamma$, so the assumption $\varphi'\land\psi'\in \PSH(X,\theta)_{>0}$ implies $\phi\land \gamma \in \PSH(X,\theta)_{>0}$ by monotonicity. It follows from \cref{lma:landcorrectmass} that
+    \[
+    \int_X \theta_{\varphi'\land \psi'}^n=\int_X \theta_{\phi\land \gamma}^n.
+    \]
+    Next, we apply \cref{lma:landcorrectmass} again to conclude that $\varphi\land \psi\in \PSH(X,\theta)$ and
+    \[
+    \int_X \theta_{\varphi\land \psi}^n=\int_X \theta_{\phi\land \gamma}^n=\int_X \theta_{\varphi'\land \psi'}^n>0.
+    \]
+    Since $\varphi\land\psi\preceq \phi\land\gamma$ and the two potentials have the same positive mass, \cref{thm:Pvarphidiffdef} gives $P_{\theta}[\varphi\land\psi]=\phi\land\gamma$. The same argument gives $P_{\theta}[\varphi'\land\psi']=\phi\land\gamma$, hence $\varphi\land\psi\sim_P\varphi'\land\psi'$.
+\end{proof}
+
+We can formulate a generalization of \cref{prop:envrelfullmass} using the $P$-partial order.
+\begin{corollary}\label{cor:P_par_envelope_rel}
+    Let $\varphi,\psi\in \PSH(X,\theta)_{>0}$. Assume that $\psi\preceq_P \varphi$. Then for any $C>0$, $\psi\land (\varphi+C)\in \PSH(X,\theta)_{>0}$ and
+    \begin{equation}\label{eq:supvarphipsipC}
+        P_{\theta}[\varphi](\psi)=\uscsup[C>0] \psi\land (\varphi+C)=\psi.
+    \end{equation}
+\end{corollary}
+We refer to \cref{def:Pthetavarphif} for the definition of $P_{\theta}[\varphi](\psi)$.
+\begin{proof}
+    Since $\psi\preceq_P\varphi$, by \cref{prop:rooftopprePequiv}, we get
+    \[
+        \psi\land(\varphi+C)\in \PSH(X,\theta)_{>0}
+    \]
+    and $\psi\land(\varphi+C)\sim_P\psi$ for every $C>0$.
+
+    Let
+    \[
+        \eta\coloneqq \uscsup[C>0]\psi\land(\varphi+C).
+    \]
+    Then $\eta\sim_P \psi$.
+    By \cref{cor:Pvarphisupport}, we have
+    \[
+        \theta_\eta^n\leq \mathds{1}_{\{\eta=\psi\}}\,\theta_\psi^n.
+    \]
+    The domination principle \cref{thm:dom_prin_1} gives $\eta\geq \psi$. The reverse inequality is trivial, so $\eta=\psi$.
+\end{proof}
+
+
+The $P$-equivalence relation characterizes when a subgeodesic exists. See \cref{def:subgeod} for the notion of subgeodesics.
+\begin{theorem}\label{thm:geodexi}
+    Let $\varphi_0,\varphi_1\in \PSH(X,\theta)_{>0}$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:thm:geodexi:1} There is a subgeodesic from $\varphi_0$ to $\varphi_1$;
+        \item\label{itm:thm:geodexi:2} $\varphi_0\sim_P\varphi_1$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \ref{itm:thm:geodexi:2} $\implies$ \ref{itm:thm:geodexi:1}. This follows from \cref{prop:perronenvissubgeod}.
+
+    \ref{itm:thm:geodexi:1} $\implies$ \ref{itm:thm:geodexi:2}.
+    Let $(\varphi_t)_{t\in (0,1)}$ be a subgeodesic from $\varphi_0$ to $\varphi_1$.
+
+    \textbf{Step~1}. We assume that $\varphi_0\geq \varphi_1$.
+
+    We first replace the given subgeodesic by the geodesic from $\varphi_0$ to $\varphi_1$. Note that the geodesic is necessarily a subgeodesic as well by \cref{lma:geodsubgeod}.
+
+    Observe that $t\mapsto\varphi_t$ is decreasing due to \cref{lma:geoddecreasing}.
+
+    Let $\varphi_t=\varphi_1$ for all $t>1$. Then by the gluing lemma \cref{lma:subgeodgluing}, we find that $(\varphi_t)_{t\geq 0}$ is a subgeodesic ray.
+
+    Next, we consider the Legendre transform
+    \[
+    \Gamma_{\tau}\coloneqq \inf_{t\geq 0}(\varphi_t-t\tau),\quad \tau\in \mathbb{R}.
+    \]
+    It follows from Kiselman's principle \cref{prop:Kis} that $\Gamma_{\tau}\in \PSH(X,\theta)\cup \{-\infty\}$. Note that for $\tau>0$, we clearly have $\Gamma_{\tau}\equiv -\infty$. On the other hand, for $\tau\leq 0$,
+    \[
+    \Gamma_{\tau}=\inf_{t\in [0,1]}(\varphi_t-t\tau)\in \PSH(X,\theta).
+    \]
+
+    By Legendre inversion (cf. \cref{cor:Leginvpartdef}), for $t>0$,
+    \[
+    \varphi_t=\sup_{\tau<0} \left(\Gamma_{\tau}+t\tau\right).
+    \]
+    Fix a K\"ahler form $\omega$ on $X$.
+    It follows from \cref{prop:Ppartialsup} that for each $t>0$,
+    \[
+    \varphi_t\sim_P \uscsup[\tau<0] P_{\theta+\omega}[\Gamma_{\tau}].
+    \]
+    The right-hand side is independent of $t$.
+    Here by adding $\omega$, we no longer have to worry about the possibility where $\Gamma_{\tau}$ has vanishing mass.
+
+    Write
+    \[
+    \varphi_0=\uscsup[t\in (0,1)]\varphi_t.
+    \]
+    By \cref{prop:Ppartialsup} again, we find that
+    \[
+    \varphi_0\sim_P \uscsup[\tau<0] P_{\theta+\omega}[\Gamma_{\tau}]
+    \]
+    as well. So $\varphi_0\sim_P \varphi_1$.
+
+
+    \textbf{Step~2}. We prove the general case.
+
+    Observe that $(\varphi_t\lor\varphi_1)_{t\in (0,1)}$ is a subgeodesic from $\varphi_0\lor \varphi_1$ to $\varphi_1$. By Step~1,
+    \[
+    \varphi_0\lor \varphi_1\sim_P \varphi_1.
+    \]
+    Hence $\varphi_0\preceq_P \varphi_1$ by \cref{lma:reform_preceqP}. The converse is proved similarly. Hence \ref{itm:thm:geodexi:2} follows.
+
+\end{proof}
+
+Restating the \ref{itm:thm:geodexi:1} $\implies$ \ref{itm:thm:geodexi:2} direction in the theorem in terms of the complexification, we find the following interesting result.
+
+Let $S=\{z\in \mathbb{C}:0< \Real z <1\}$. We write $p_1\colon X\times S\rightarrow X$ for the natural projection.
+\begin{corollary}\label{cor:comp:L653}
+    Let $\Phi\in \PSH(X\times S,p_1^*\theta)$. Assume that for any $c\in \mathbb{R}$, $x\in X$ and $z\in S$, we have
+    \[
+    \Phi(x,z)=\Phi(x,z+\mathrm{i}c).
+    \]
+    Then $\int_X (\theta+\ddc \Phi_z)^n$ is independent of $z\in S$, where $\Phi_z \in \PSH(X,\theta)$ is given by $\Phi_z(x)=\Phi(x,z)$.
+\end{corollary}
+
+\begin{proof}
+    Fix a Kähler form $\omega$ on $X$. We may regard $\Phi$ as an element of $\PSH(X\times S,p_1^*(\theta+\omega))$. For any $0<a<b<1$, the restriction $(\Phi_t)_{t\in [a,b]}$ is then a subgeodesic from $\Phi_a$ to $\Phi_b$ in the class $\theta+\omega$. The slices have positive mass in this class, so \cref{thm:geodexi} gives $\Phi_a\sim_P\Phi_b$. By \cref{prop:mono2}, this directly implies
+    \[
+        \int_X \theta_{\Phi_a}^n=\int_X \theta_{\Phi_b}^n.
+    \]
+    Since $\Phi$ is invariant under imaginary translations, $\Phi_z$ depends only on $\Real z$, so the mass is independent of $z\in S$.
+\end{proof}
+
+\section[The \texorpdfstring{$\lowercase{d}_S$}{dS}-pseudometric]{The \texorpdfstring{$d_S$}{dS}-pseudometric}\label{sec:dsdef}
+Let $X$ be a connected compact Kähler manifold of dimension $n$ and $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class. The goal of this section is to study a pseudometric on the space $\PSH(X,\theta)$.
+
+
+\subsection{The definition of the \texorpdfstring{$d_S$}{dS}-pseudometric}
+\label{subsec:dS_def}
+Recall that for any $\varphi\in \PSH(X,\theta)$, the geodesic ray $\ell^{\varphi}\in \mathcal{R}^1(X,\theta)$ is defined in \cref{ex:rayasspsh}.
+\begin{definition}\label{def:dS}
+    For $\varphi,\psi\in \PSH(X,\theta)$, we define
+    \[
+        d_S(\varphi,\psi)\coloneqq d_1(\ell^{\varphi},\ell^{\psi}).
+    \]
+    \index{$d_S$}
+    When we want to be more specific, we write $d_{S,\theta}$ instead of $d_S$.
+\end{definition}
+The $d_1$ distance of geodesic rays is defined in \cref{def:d1rays}.
+
+\begin{proposition}\label{prop:comp:L686}
+    The function $d_S$ defined in \cref{def:dS} is a pseudometric on $\PSH(X,\theta)$.
+\end{proposition}
+\begin{proof}
+    This follows immediately from \cref{thm:d1raycomplete}.
+\end{proof}
+When studying a pseudometric, the first thing is to understand when the distance between two elements vanishes.
+
+We first prove a preparation:
+\begin{lemma}\label{lma:dSalmostriang}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Then
+    \[
+        d_S(\varphi,\psi)\leq d_S(\varphi,\varphi\lor \psi)+d_S(\psi,\varphi\lor \psi) \leq C_n d_S(\varphi,\psi),
+    \]
+    where $C_n=3(n+1)2^{n+2}$.
+\end{lemma}
+We shall use the notations introduced in \cref{ex:rayasspsh}.
+\begin{proof}
+    We claim that
+    \begin{equation}\label{eq:elllorsingtype}
+        \ell^{\varphi}\lor \ell^{\psi}=\ell^{\varphi\lor \psi}.
+    \end{equation}
+    Recall that $\lor$ is defined in \cref{def:lorray1}.
+    Note that this assertion implies our desired inequality by \cref{lma:d1rayineq}.
+
+    In proving this assertion, we may assume that $\varphi,\psi\leq 0$ since
+    \[
+    \ell^{\varphi+C}=\ell^{\varphi},\quad \ell^{\psi+C}=\ell^{\psi},\quad \ell^{(\varphi+C)\lor (\psi+C)}=\ell^{\varphi\lor \psi}
+    \]
+    for any $C\in \mathbb{R}$.
+
+    In fact, it is clear that
+    \[
+        \ell^{\varphi}\leq   \ell^{\varphi\lor \psi},\quad \ell^{\psi}\leq   \ell^{\varphi\lor \psi},
+    \]
+    so the $\leq$ direction in \eqref{eq:elllorsingtype} holds.
+
+    Conversely, if $\ell'\in \mathcal{R}^1(X,\theta)$ and $\ell'\geq \ell^{\varphi}\lor \ell^{\psi}$, then for each $t\geq 0$,
+    \[
+        \ell'_t\geq \Bigl((V_{\theta}-t)\lor \varphi\Bigr) \lor \Bigl((V_{\theta}-t)\lor \psi\Bigr)=(V_{\theta}-t)\lor (\varphi\lor \psi).
+    \]
+    See \eqref{eq:ellphitexp} for the first inequality.
+    Therefore, thanks to the definition of the Perron envelopes (cf. \eqref{eq:Perron2}), we have
+    \[
+    \ell'_s\geq \ell^{\varphi\lor \psi,t}_s
+    \]
+    for any $0\leq s\leq t$.
+    It follows from \eqref{eq:ellphitexp} that $\ell'_s\geq \ell^{\varphi\lor \psi}_s$ for any $s\geq 0$.
+\end{proof}
+
+
+\begin{proposition}\label{prop:ds0char}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:ds0char:1} $\varphi\sim_P \psi$;
+        \item\label{itm:prop:ds0char:2} $d_S(\varphi,\psi)=0$.
+    \end{enumerate}
+
+    In particular, $d_S(\varphi,P_{\theta}[\varphi])=0$ for all $\varphi\in \PSH(X,\theta)_{>0}$.
+\end{proposition}
+\begin{proof}
+    By \cref{lma:reform_preceqP}, we have $\varphi\sim_P \psi$ if and only if $\varphi\sim_P \varphi\lor \psi$ and $\psi\sim_P \varphi\lor \psi$. By \cref{lma:dSalmostriang}, $d_S(\varphi,\psi)=0$ if and only if $d_S(\varphi,\varphi\lor \psi)=0$ and $d_S(\psi,\varphi\lor \psi)=0$. So it suffices to prove the assertion when $\varphi\leq \psi$. Assuming this, by \cref{prop:d1geod_diff_E}, \ref{itm:prop:ds0char:2} holds if and only if
+    \[
+        \mathbf{E}\left(\ell^{\varphi}\right)=  \mathbf{E}\left(\ell^{\psi}\right),
+    \]
+    where $\mathbf{E}$ is introduced in \cref{def:radialMAenergy2}.
+    But by \eqref{eq:Elphi}, this holds if and only if
+    \[
+        \sum_{j=0}^n \int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}=\sum_{j=0}^n \int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+    \]
+    Thanks to the monotonicity theorem \cref{thm:mono}, this holds if and only if for all $j=0,\ldots,n$,
+    \[
+        \int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j},
+    \]
+    which is equivalent to \ref{itm:prop:ds0char:1} by \cref{prop:Pequivchar2}.
+\end{proof}
+
+
+\begin{lemma}\label{lma:varphileqpsi_metric}
+    Suppose that $\varphi,\psi\in \PSH(X,\theta)$ and $\varphi\preceq_P \psi$. Then
+    \[
+    d_S(\varphi,\psi)=\frac{1}{n+1}\sum_{j=0}^n \left(\int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}\right).
+    \]
+\end{lemma}
+\begin{proof}
+    Set $\chi\coloneqq\varphi\lor\psi$. By \cref{lma:reform_preceqP}, we have $\chi\sim_P\psi$. Hence \cref{prop:ds0char} gives $d_S(\chi,\psi)=0$, and the pseudometric property gives
+    \[
+        d_S(\varphi,\psi)=d_S(\varphi,\chi).
+    \]
+    Since $\varphi\leq\chi$, \eqref{eq:Elphi} and \cref{prop:d1geod_diff_E} give
+    \[
+    d_S(\varphi,\chi)=\frac{1}{n+1}\sum_{j=0}^n \left(\int_X \theta_{\chi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}\right).
+    \]
+    Finally, \cref{prop:Pequivchar2} applied to $\psi\leq\chi$ gives
+    \[
+        \int_X \theta_{\chi}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j}
+    \]
+    for all $j=0,\ldots,n$.
+\end{proof}
+\begin{corollary}\label{cor:dsthreeterm}
+    Suppose that $\varphi,\psi,\eta\in \PSH(X,\theta)$ and $\varphi\preceq_P\psi\preceq_P \eta$. Then
+    \[
+        d_S(\varphi,\eta)\geq d_S(\varphi,\psi),\quad d_S(\varphi,\eta)\geq d_S(\psi,\eta).
+    \]
+\end{corollary}
+\begin{proof}
+    This is an immediate consequence of \cref{lma:varphileqpsi_metric} and the monotonicity theorem \cref{prop:mono2}.
+\end{proof}
+
+\begin{corollary}\label{cor:dsmetricdoubleineq}
+    For any $\varphi,\psi\in \PSH(X,\theta)$, we have
+    \begin{equation}\label{eq:ds_biineq}
+        \begin{split}
+            d_S(\varphi,\psi)\leq & \frac{1}{n+1}\sum_{j=0}^n \left( 2\int_X \theta_{\varphi\lor \psi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\psi}^j\wedge \theta_{V_{\theta}}^{n-j} \right) \\
+            \leq & C_n d_S(\varphi,\psi),
+        \end{split}
+\end{equation}
+where $C_n=3(n+1)2^{n+2}$.
+
+In particular, if $(\varphi_i)_{i\in I}$ is a net in $\PSH(X,\theta)$ with $d_S$-limit $\varphi$, then for each $j=0,\ldots,n$,
+\[
+    \lim_{i\in I}\int_X \theta_{\varphi_i}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}=\lim_{i\in I}\int_X \theta_{\varphi_i\lor \varphi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+\]
+\end{corollary}
+\begin{proof}
+    The estimates \eqref{eq:ds_biineq} follow from the combination of \cref{lma:varphileqpsi_metric} and \cref{lma:dSalmostriang}.
+
+    Suppose that $\varphi_i\xrightarrow{d_S}\varphi$. Then $\varphi_i\lor \varphi\xrightarrow{d_S}\varphi$ by \cref{lma:dSalmostriang}. Therefore, \cref{thm:mono} and \cref{lma:varphileqpsi_metric} imply that
+    \[
+    \lim_{i\in I}\int_X \theta_{\varphi_i\lor \varphi}^j\wedge \theta_{V_{\theta}}^{n-j}= \int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}
+    \]
+    for any $j=0,\ldots,n$.
+    The last assertion now follows from \eqref{eq:ds_biineq} and \cref{thm:mono}.
+\end{proof}
+
+\begin{corollary}\label{cor:dSconv_bimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold. Given a net $(\varphi_i)_{i\in I}$ in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$, the following are equivalent:
+    \begin{enumerate}
+        \item $\varphi_i\xrightarrow{d_S}\varphi$;
+        \item $\pi^*\varphi_i\xrightarrow{d_S}\pi^*\varphi$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    It suffices to observe that the middle term in \eqref{eq:ds_biineq} is invariant under $\pi^*$.
+\end{proof}
+
+\begin{corollary}\label{cor:incnetdSconv}
+    Suppose that $(\varphi_i)_{i\in I}$ is an increasing net in $\PSH(X,\theta)$, uniformly bounded from above. Then
+    \[
+        \varphi_i\xrightarrow{d_S} \uscsup[i\in I]\varphi_i.
+    \]
+\end{corollary}
+If the $\varphi_i$'s are all model potentials in $\PSH(X,\theta)_{>0}$, then so is $\uscsup[i\in I]\varphi_i$, as we have seen in \cref{prop:incnetmodel}.
+\begin{proof}
+    Write $\varphi=\uscsup[j\in I]\varphi_j$. Recall that by \cref{prop:pshfunction_closedseq}, $\varphi\in \PSH(X,\theta)$.
+    By \cref{lma:varphileqpsi_metric}, it suffices to show that for each $k=0,\ldots,n$, we have
+    \[
+        \lim_{j\in I}\int_X \theta_{\varphi_j}^k\wedge \theta_{V_{\theta}}^{n-k} =  \int_X \theta_{\varphi}^k\wedge \theta_{V_{\theta}}^{n-k}.
+    \]
+    The latter follows from \cref{cor:incseqnppcont}.
+\end{proof}
+
+\begin{corollary}\label{cor:massdiffdS}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Then
+    \[
+    \left| \int_X \theta_{\varphi}^n-\int_X \theta_{\psi}^n \right|\leq D_n d_S(\varphi,\psi),
+    \]
+    where $D_n=3(n+1)C_n$ with $C_n$ being the same constant as in \cref{lma:dSalmostriang}.
+\end{corollary}
+In other words, the non-pluripolar mass is uniformly continuous with respect to the $d_S$-pseudometric.
+\begin{proof}
+    We compute
+    \[
+    \begin{aligned}
+        \left| \int_X \theta_{\varphi}^n-\int_X \theta_{\psi}^n \right|\leq & \left|2\int_X \theta_{\varphi\lor \psi}^n-\int_X \theta_{\varphi}^n-\int_X \theta_{\psi}^n\right| + 2\left| \int_X \theta_{\varphi\lor \psi}^n-\int_X \theta_{\varphi}^n\right|\\
+        \leq &  (n+1)C_n d_S(\varphi,\psi)+2(n+1) d_S(\varphi,\varphi\lor \psi)\\
+        \leq & (n+1)C_n d_S(\varphi,\psi)+2(n+1)C_n d_S(\varphi,\psi),
+    \end{aligned}
+    \]
+    where the first line is just the triangle inequality, the second line follows from \cref{cor:dsmetricdoubleineq} and the third line follows from \cref{lma:dSalmostriang}.
+\end{proof}
+
+By contrast to the increasing case, for nets decreasing with respect to the $P$-preorder, the situation is different:
+\begin{corollary}\label{cor:decnetdS}
+    Suppose that $(\varphi_i)_{i\in I}$ is a net in $\PSH(X,\theta)$ such that
+    \[
+        \varphi_j\preceq_P\varphi_i
+    \]
+    whenever $j\geq i$. Let $\varphi\in\PSH(X,\theta)$ be such that $\varphi\preceq_P\varphi_i$ for all $i\in I$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:decnetdS:1} We have
+            \[
+                \varphi_i\xrightarrow{d_S} \varphi;
+            \]
+        \item\label{itm:cor:decnetdS:2} for each $k=0,\ldots,n$, we have
+            \begin{equation}\label{eq:mixedmasslim}
+                \lim_{j\in I}\int_X \theta_{\varphi_j}^k\wedge \theta_{V_{\theta}}^{n-k} =  \int_X \theta_{\varphi}^k\wedge \theta_{V_{\theta}}^{n-k}.
+            \end{equation}
+    \end{enumerate}
+    If we assume furthermore that $\int_X \theta_{\varphi}^n>0$, then the above conditions are equivalent to the following:
+    \begin{enumerate}[resume]
+        \item\label{itm:cor:decnetdS:3} We have
+            \[
+                \lim_{j\in I}\int_X \theta_{\varphi_j}^n=\int_X \theta_{\varphi}^n.
+            \]
+    \end{enumerate}
+    When $\int_X \theta_{\varphi}^n>0$ and these equivalent conditions are met, we also have
+    \begin{equation}\label{eq:Pcontdecseq}
+        P_{\theta}[\varphi]=\inf_{j\in I}P_{\theta}[\varphi_j].
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    \ref{itm:cor:decnetdS:1} $\iff$ \ref{itm:cor:decnetdS:2}. This follows immediately from \cref{lma:varphileqpsi_metric}.
+
+    Assume that $\int_X \theta_{\varphi}^n>0$.
+
+    \ref{itm:cor:decnetdS:2} $\implies$ \ref{itm:cor:decnetdS:3}. This is the case $k=n$ in \eqref{eq:mixedmasslim}.
+
+    \ref{itm:cor:decnetdS:3} $\implies$ \ref{itm:cor:decnetdS:2}.
+    Assume (3). If for some $i\in I$, $\int_X \theta_{\varphi_i}^n= \int_X \theta_{\varphi}^n$, then for all $j\geq i$ we have
+    \[
+        \varphi\preceq_P\varphi_j\preceq_P\varphi_i.
+    \]
+    Hence $\int_X\theta_{\varphi_j}^n=\int_X\theta_{\varphi}^n$ by \cref{prop:mono2}. It follows from \cref{prop:Pequivchar2} that $\varphi_j\sim_P\varphi$, and (2) follows from \cref{prop:Ppresmass}. So in the sequel, we shall assume that for all $i\in I$, we have $\int_X \theta_{\varphi_i}^n>\int_X \theta_{\varphi}^n$.
+    In particular, each $\varphi_i$ has positive mass.
+
+    Let $(b_j)_{j\in I}$ be a net converging to $\infty$ such that
+    \[
+    b_j\in \left( 1, \left(\frac{\int_X \theta_{\varphi_j}^n}{\int_X \theta_{\varphi_j}^n-\int_X \theta_{\varphi}^n}\right)^{1/n} \right).
+    \]
+    This can be achieved for example by taking $b_j$ as the midpoint of this interval.
+    By \cref{thm:pathoenvelope}, for each $j\in I$, we can find $\eta_j\in \PSH(X,\theta)$ such that
+    \[
+    b_j^{-1}\eta_j +\left(1-b_j^{-1}\right)\varphi_j \leq \varphi.
+    \]
+    It follows from the monotonicity theorem \cref{thm:mono} that for any $k=0,\ldots,n$,
+    \[
+    \int_X \theta_{\varphi}^k \wedge \theta_{V_{\theta}}^{n-k}\geq \left(1-b_j^{-1}\right)^k\int_X \theta_{\varphi_j}^k \wedge \theta_{V_{\theta}}^{n-k}.
+    \]
+    Taking the limit, we conclude the $\leq$ direction in \eqref{eq:mixedmasslim}. The $\geq$ direction follows from \cref{prop:mono2}.
+
+    Finally, we argue \eqref{eq:Pcontdecseq}.
+    Let $\psi_j=P_{\theta}[\varphi_j]$. It follows from \cref{cor:Psendspotentialtomodel} that $\psi_j$ is a model potential. Since the net $(\varphi_j)_{j\in I}$ is decreasing with respect to the $P$-preorder, $(\psi_j)_{j\in I}$ is decreasing pointwise. Let
+    \[
+        \psi=\inf_{j\in I}\psi_j\geq P_{\theta}[\varphi].
+    \]
+    By \cref{prop:decseqmodel}, $\psi$ is a model potential. Since $P_{\theta}[\varphi]\leq \psi\leq \psi_j$ for all $j\in I$, the monotonicity theorem \cref{thm:mono} and \cref{prop:Ppresmass} give
+    \[
+        \int_X \theta_{\varphi}^n=\int_X\theta_{P_{\theta}[\varphi]}^n\leq \int_X \theta_{\psi}^n\leq \lim_{j\in I}\int_X \theta_{\psi_j}^n=\lim_{j\in I}\int_X \theta_{\varphi_j}^n=\int_X \theta_{\varphi}^n.
+    \]
+    Hence $\psi$ has the same mass as $P_{\theta}[\varphi]$. As $\psi$ is model and $\psi\geq P_{\theta}[\varphi]$, \cref{thm:Pvarphidiffdef} gives $\psi=P_{\theta}[\varphi]$.
+\end{proof}
+
+
+
+
+Having understood the increasing and decreasing cases, we shall handle general convergent sequences. In fact, since $d_S$ is a pseudometric, the topology is completely determined by convergent sequences, so we do not need to consider nets in general.
+
+\begin{proposition}\label{prop:incanddec}
+    Let $\varphi_j,\varphi\in \PSH(X,\theta)$ ($j\geq 1$), $\varphi_j\xrightarrow{d_S}\varphi$. Assume that there is $\delta>0$ such that
+    \[
+    \int_X \theta_{\varphi_j}^n\geq \delta
+    \]
+    for all $j$ and the $\varphi_j$'s are all model potentials. Then up to replacing $(\varphi_j)_j$ by a subsequence, there is a decreasing sequence $(\psi_j)_j$ and an increasing sequence $(\eta_j)_j$ in $\PSH(X,\theta)$ such that
+    \begin{enumerate}
+        \item\label{itm:prop:incanddec:1} $\psi_j\xrightarrow{d_S}\varphi$, $\eta_j\xrightarrow{d_S}\varphi$;
+        \item\label{itm:prop:incanddec:2} $\psi_j\geq \varphi_j\geq \eta_j$ for all $j$.
+    \end{enumerate}
+    In fact, for any $j\geq 1$, we will take
+    \[
+    \eta_j=\inf_{k\in \mathbb{N}}\varphi_j\land \varphi_{j+1}\land \cdots \land \varphi_{j+k},\quad
+    \psi_j=\uscsup[k\geq j]\varphi_k.
+    \]
+\end{proposition}
+\begin{proof}
+    First note that $\int_X \theta_{\varphi}^n\geq \delta$ as well, due to the $d_S$-continuity of non-pluripolar masses as proved in \cref{cor:massdiffdS}. Replacing $\varphi$ by $P_{\theta}[\varphi]$, we may then assume that $\varphi$ is a model potential in $\PSH(X,\theta)_{>0}$.
+
+    We are free to replace $(\varphi_j)_j$ by a subsequence. So we may assume that
+    \begin{equation}\label{eq:conditiononvarphijtemp1}
+    d_S(\varphi_j,\varphi_{j+1})\leq \frac{\delta 2^{-j-4}}{D_n C_n^{j+1}},\quad d_S(\varphi,\varphi_j)\leq \frac{\delta 2^{-j-4}}{D_n},
+    \end{equation}
+    where $C_n$ is the constant in \cref{cor:dsmetricdoubleineq}, $D_n$ is the constant in \cref{cor:massdiffdS}.
+
+    In particular, by \cref{cor:massdiffdS},
+    \begin{equation}\label{eq:varphijvarphimassdiffbdd}
+        \left|\int_X \theta_{\varphi_j}^n-\int_X \theta_{\varphi}^n\right|\leq \delta 2^{-j-4}.
+    \end{equation}
+
+    \textbf{Step~1}. We handle the $\psi_j$'s. For each $j\geq 1$ and $k\geq 1$, by \cref{lma:dSalmostriang} we have
+    \[
+    \begin{aligned}
+    d_S(\varphi_j,\varphi_j\lor\varphi_{j+1}\lor\cdots\lor \varphi_{j+k})
+    &\leq C_n\,d_S(\varphi_j,\varphi_{j+1}\lor\cdots\lor \varphi_{j+k})\\
+    &\leq C_n\,d_S(\varphi_j,\varphi_{j+1})\\
+    &\quad + C_n\,d_S(\varphi_{j+1},\varphi_{j+1}\lor\cdots\lor \varphi_{j+k}).
+    \end{aligned}
+    \]
+    By iteration, we find
+    \[
+    \begin{split}
+        d_S(\varphi_j,\varphi_j\lor\varphi_{j+1}\lor\cdots\lor \varphi_{j+k})\leq \sum_{a=j}^{j+k-1}C_n^{a+1-j}d_S(\varphi_a,\varphi_{a+1})\\
+        \leq \frac{C_n^{-j}}{D_n}\sum_{a=j}^{j+k-1}\delta 2^{-a-4}\leq \frac{\delta 2^{-j-3}}{D_n}.
+    \end{split}
+    \]
+    Using \cref{cor:incnetdSconv}, we have
+    \[
+        \varphi_j\lor\varphi_{j+1}\lor\cdots\lor \varphi_{j+k}\xrightarrow{d_S}\psi_j
+    \]
+    as $k\to\infty$. Hence
+    \begin{equation}\label{eq:dsvarphijpsijesttemp1}
+        d_S(\varphi_j,\psi_j)\leq \frac{\delta 2^{-j-3}}{D_n}.
+    \end{equation}
+    We conclude that $\psi_j\xrightarrow{d_S}\varphi$.
+
+    Moreover, we observe that
+    \begin{equation}\label{eq:varphiexpressiontemp1}
+        \varphi=\inf_{j\geq 1} P_{\theta}[\psi_j]
+    \end{equation}
+    Indeed, set $\tilde{\psi}_j=P_{\theta}[\psi_j]$. Then $(\tilde{\psi}_j)_j$ is a decreasing sequence of model potentials, and $d_S(\tilde{\psi}_j,\psi_j)=0$ by \cref{prop:ds0char}. Hence $\tilde{\psi}_j\xrightarrow{d_S}\varphi$. If $\chi=\inf_j\tilde{\psi}_j$, then \cref{prop:vol_limit_model} and \cref{cor:decnetdS} give $\tilde{\psi}_j\xrightarrow{d_S}\chi$. Thus $d_S(\chi,\varphi)=0$. Since both $\chi$ and $\varphi$ are model potentials, \cref{prop:ds0char} gives $P_{\theta}[\chi]=P_{\theta}[\varphi]$, hence $\chi=\varphi$, proving \eqref{eq:varphiexpressiontemp1}.
+
+    \textbf{Step~2}. We consider the $\eta_j$'s.
+
+    For each $j\geq 1$ and $k\geq 0$, we let
+    \[
+        \eta_j^k\coloneqq \varphi_j\land \cdots \land \varphi_{j+k}.
+    \]
+    Using \eqref{eq:conditiononvarphijtemp1}, \eqref{eq:dsvarphijpsijesttemp1} and \cref{cor:massdiffdS}, we have
+    \[
+        \left|\int_X\theta_{\psi_j}^n-\int_X \theta_{\varphi}^n \right|\leq \delta 2^{-j-2}
+    \]
+    for all $j\geq 1$. Taking \eqref{eq:varphijvarphimassdiffbdd} into account, we have
+    \begin{equation}\label{eq:varphijpsijmassdiffbddtemp1}
+     \left|\int_X\theta_{\varphi_j}^n-\int_X \theta_{\psi_{j-1}}^n \right|\leq \delta 2^{-j}
+    \end{equation}
+    for $j>1$.
+
+    \textbf{Step~2.1}.
+     We claim that for a fixed $j\geq 1$, for any $k\in \mathbb{N}$, we have
+    $\eta_j^k\in \PSH(X,\theta)$ and
+    \begin{equation}\label{eq:etajkmassbddbelowtemp1}
+        \int_X \theta_{\eta_j^k}^n\geq \int_X \theta_{\varphi_j}^n-\sum_{a=1}^{k} \delta 2^{-j-a}.
+    \end{equation}
+
+    We argue by induction on $k\geq 0$.
+    The case $k=0$ is trivial. When $k>0$, assume that the case $k-1$ is known. Then
+    \[
+        \begin{aligned}
+            \int_X \theta_{\eta_j^{k-1}}^n+\int_X \theta_{\varphi_{j+k}}^n
+            \geq \int_X \theta_{\varphi_j}^n-\sum_{a=1}^{k-1}\delta 2^{-j-a}+\int_X \theta_{\psi_{j+k-1}}^n-\delta 2^{-j-k}\\
+            \geq \int_X \theta_{\varphi_j}^n-\delta 2^{-j}+\int_X \theta_{\psi_{j+k-1}}^n>\int_X \theta_{\psi_{j+k-1}}^n,
+        \end{aligned}
+    \]
+    where the first inequality follows from the inductive hypothesis and \eqref{eq:varphijpsijmassdiffbddtemp1}.
+
+    Observe that
+    \[
+    \eta_j^{k-1}\lor \varphi_{j+k}\leq \psi_{j+k-1},
+    \]
+    it follows from \cref{prop:landfinitecond1} that $\eta_j^k\in \PSH(X,\theta)$. By \cref{thm:diamond}, we deduce that
+    \[
+    \begin{aligned}
+        \int_X \theta_{\eta_j^k}^n\geq & \int_X \theta_{\varphi_{j+k}}^n+  \int_X \theta_{\eta_j^{k-1}}^n-\int_X \theta_{\psi_{j+k-1}}^n\\
+        \geq & \int_X \theta_{\varphi_j}^n-\sum_{a=1}^{k} \delta 2^{-j-a},
+    \end{aligned}
+    \]
+    where the second inequality follows from the inductive hypothesis and \eqref{eq:varphijpsijmassdiffbddtemp1}. Therefore, \eqref{eq:etajkmassbddbelowtemp1} follows.
+
+
+    \textbf{Step~2.2}.
+    It follows by induction from \cref{prop:landpresmodel} that for any $j\geq 1$, $k\geq 0$,
+    \[
+        P_{\theta}\left[\eta_j^k\right]=\eta_j^k.
+    \]
+    By \cref{prop:vol_limit_model}, we have
+    \[
+        \lim_{k\to\infty} \int_X \theta_{\eta_j^k}^n=\int_X \theta_{\eta_j}^n
+    \]
+    for any $j\geq 1$.
+    Letting $k\to\infty$ in \eqref{eq:etajkmassbddbelowtemp1}, we find that
+    \[
+        \int_X \theta_{\eta_j}^n\geq \int_X \theta_{\varphi_j}^n-\delta 2^{-j}>0
+    \]
+    for $j\geq 1$.
+    Observe that we also have
+    \[
+        \int_X \theta_{\eta_j}^n\leq \int_X \theta_{\varphi_j}^n \leq \int_X \theta_{\psi_j}^n
+    \]
+    for $j\geq 1$ by \cref{thm:mono}.
+    It follows from these inequalities and \eqref{eq:varphijvarphimassdiffbdd} that
+    \[
+        \lim_{j\to\infty}\int_X\theta_{\eta_j}^n=\int_X\theta_{\varphi}^n.
+    \]
+    For $k\geq 1$, we have
+    \[
+        \eta_j^k=\varphi_j\land\eta_{j+1}^{k-1}\leq \eta_{j+1}^{k-1}.
+    \]
+    Letting $k\to\infty$ gives $\eta_j\leq\eta_{j+1}$. Hence $(\eta_j)_j$ is increasing. Hence \cref{cor:incseqnppcont} gives
+    \[
+        \int_X \theta_{\eta}^n=\lim_{j\to\infty}\int_X \theta_{\eta_j}^n=\int_X \theta_{\varphi}^n,
+    \]
+    where $\eta=\uscsup[j\geq 1] \eta_j$.
+    For fixed $m$, if $j\geq m$, then $\eta_j\leq\varphi_j\leq\psi_m$, whereas if $j<m$, then $\eta_j\leq\eta_m\leq\psi_m$. Thus $\eta_j$ is a candidate in the definition of $P_{\theta}[\psi_m]$ for all $j,m$, and \eqref{eq:varphiexpressiontemp1} gives $\eta\leq \varphi$.
+    It follows from \cref{prop:Pequivchar2} that $\eta\sim_P \varphi$. By \cref{cor:incnetdSconv} and \cref{prop:ds0char}, we have $\eta_j\xrightarrow{d_S}\varphi$.
+\end{proof}
+
+
+\begin{corollary}\label{cor:completenessdS}
+    Let $(\varphi_j)_{j\in I}$ be a Cauchy net (with respect to $d_S$) in $\PSH(X,\theta)$. Assume that there is $\delta>0$ such that $\int_X \theta_{\varphi_j}^n\geq \delta$ for all $j\in I$. Then $(\varphi_j)_{j\in I}$ converges with respect to $d_S$.
+
+    In particular, if $(\varphi_j)_{j\in I}$ is a decreasing net such that $\int_X \theta_{\varphi_j}^n\geq \delta>0$ for all $j\in I$, then $(\varphi_j)_{j\in I}$ converges with respect to $d_S$.
+\end{corollary}
+We can obviously relax the decreasing condition to the following: the $P$-singularity types of $(\varphi_j)_{j\in I}$ are decreasing.
+
+\begin{proof}
+    In a pseudometric space, sequential completeness implies completeness for Cauchy nets. So for the first assertion, we may assume that $(\varphi_j)_j$ is a Cauchy sequence.
+
+    We first treat the case of a decreasing sequence $(\gamma_j)_j$ with $\int_X\theta_{\gamma_j}^n\geq\delta$ for all $j$. Put $\tilde \gamma_j=P_\theta[\gamma_j]$. Then $(\tilde \gamma_j)_j$ is a decreasing sequence of model potentials, $d_S(\gamma_j,\tilde \gamma_j)=0$, and
+    \[
+        \int_X\theta_{\tilde \gamma_j}^n=\int_X\theta_{\gamma_j}^n\geq \delta
+    \]
+    by \cref{prop:Ppresmass}. By \cref{prop:vol_limit_model}, the decreasing limit $\tilde \gamma=\inf_j\tilde \gamma_j$ is model and
+    \[
+        \lim_{j\to\infty}\int_X\theta_{\tilde \gamma_j}^n=\int_X\theta_{\tilde \gamma}^n\geq\delta.
+    \]
+    Hence $\tilde \gamma_j\to\tilde \gamma$ in $d_S$ by \cref{cor:decnetdS}, and therefore $\gamma_j$ also converges in $d_S$.
+
+    Next let $(\varphi_j)_{j>0}$ be a $d_S$-Cauchy sequence with masses bounded from below by $\delta$. Put
+    \[
+        \tilde{\varphi}_j=P_\theta[\varphi_j].
+    \]
+    By \cref{cor:Psendspotentialtomodel,ex:Pequiv,prop:ds0char}, the $\tilde{\varphi}_j$'s are model potentials, $d_S(\varphi_j,\tilde{\varphi}_j)=0$, and
+    \[
+        \int_X\theta_{\tilde{\varphi}_j}^n=\int_X\theta_{\varphi_j}^n\geq\delta
+    \]
+    by \cref{prop:Ppresmass}. Replacing $\varphi_j$ by $\tilde{\varphi}_j$, we may therefore assume that the $\varphi_j$'s are model potentials. Passing to a subsequence, we may also assume that
+    \[
+        d_S(\varphi_j,\varphi_{j+1})\leq C_n^{-2j},
+    \]
+    where $C_n$ is the constant in \cref{cor:dsmetricdoubleineq}.
+    Define
+    \[
+    \psi_j=\uscsup[k\geq j]\varphi_k
+    \]
+    for each $j>0$. As in the proof of \cref{prop:incanddec} Step~1, especially \eqref{eq:dsvarphijpsijesttemp1}, we know that
+    \[
+    \lim_{j\to\infty} d_S(\varphi_j,\psi_j)=0.
+    \]
+    The sequence $(\psi_j)_j$ is decreasing and satisfies $\int_X\theta_{\psi_j}^n\geq\delta$ by \cref{thm:mono}. By the first paragraph, $(\psi_j)_j$ converges in $d_S$. Hence the chosen subsequence of $(\varphi_j)_j$ converges, and the original Cauchy sequence converges as well.
+
+    Finally, suppose that $(\varphi_j)_{j\in I}$ is a decreasing net with masses bounded from below by $\delta$. For each $k=0,\ldots,n$, the net
+    \[
+        \int_X\theta_{\varphi_j}^k\wedge\theta_{V_\theta}^{n-k}
+    \]
+    is decreasing and bounded from below, hence Cauchy as a real-valued net. If $j'\geq j$, then $\varphi_{j'}\leq\varphi_j$, and \cref{lma:varphileqpsi_metric} expresses $d_S(\varphi_{j'},\varphi_j)$ as a finite sum of the corresponding differences of these mixed masses. For two sufficiently large indices, we choose a common upper bound in $I$ and use the triangle inequality. It follows that $(\varphi_j)_{j\in I}$ is $d_S$-Cauchy. The first assertion gives its convergence.
+\end{proof}
+
+\begin{lemma}\label{lma:dSsmallmult}
+    There is a constant $C>0$ depending only on $X$ and $\theta$ such that for any $\varphi\in \PSH(X,\theta)$ satisfying that $\theta_{\varphi}$ is a Kähler current, we have
+        \[
+        d_{S,\theta}\Bigl((1-\epsilon)\varphi,\varphi\Bigr)\leq C \epsilon
+        \]
+        for small enough $\epsilon>0$ such that $(1-\epsilon)\varphi\in \PSH(X,\theta)$.
+    \end{lemma}
+    \begin{proof}
+        After adding a constant, we may assume that $\varphi\leq 0$. Since $\theta_{\varphi}$ is a Kähler current, $(1-\epsilon)\varphi\in \PSH(X,\theta)$ for all small enough $\epsilon>0$. Fix such an $\epsilon$. Take any Kähler form $\omega$ on $X$ so that $\omega-\theta$ is still a Kähler form. Note that the choice of $\omega$ depends only on $X$ and $\theta$.
+
+        Since $\varphi\preceq (1-\epsilon)\varphi$, by \cref{lma:varphileqpsi_metric} and the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:3}, we can compute
+        \[
+        \begin{aligned}
+            d_{S,\theta}\Bigl((1-\epsilon)\varphi,\varphi\Bigr)=& \frac{1}{n+1}\sum_{j=0}^n \left(\int_X \theta_{(1-\epsilon)\varphi}^j \wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j \wedge \theta_{V_{\theta}}^{n-j}\right)\\
+            \leq & \frac{1}{n+1}\sum_{j=0}^n \left(\int_X \left((1-\epsilon)\theta_{\varphi}+\epsilon\omega\right)^j \wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j \wedge \theta_{V_{\theta}}^{n-j}\right)\\
+            =&\sum_{m=1}^n c_m(\varphi)\epsilon^m,
+        \end{aligned}
+        \]
+        where, for $1\leq m\leq n$,
+        \[
+            c_m(\varphi)=\frac{1}{n+1}\sum_{j=m}^n \binom{j}{m}
+            \sum_{\ell=0}^m (-1)^{m-\ell}\binom{m}{\ell}
+            \int_X \omega^\ell\wedge\theta_{\varphi}^{j-\ell}\wedge \theta_{V_{\theta}}^{n-j}.
+        \]
+        Note that
+        \[
+        \begin{aligned}
+            \left|c_m(\varphi)\right| \leq & \frac{1}{n+1}\sum_{j=m}^n \binom{j}{m}
+            \sum_{\ell=0}^m \binom{m}{\ell}
+            \int_X \omega^\ell\wedge\theta_{\varphi}^{j-\ell}\wedge \theta_{V_{\theta}}^{n-j}\\
+            \leq &  \frac{1}{n+1}\sum_{j=m}^n \binom{j}{m}
+            \sum_{\ell=0}^m \binom{m}{\ell}
+            \int_X \omega^\ell\wedge \theta_{V_{\theta}}^{n-\ell}
+        \end{aligned}
+        \]
+        where we used the monotonicity theorem \cref{thm:mono}. Hence the whole expression is of the order of $\mathcal{O}(\epsilon)$, and our assertion follows.
+    \end{proof}
+
+\subsection{Convergence theorems}
+\label{subsec:dS_conv}
+Next we establish some important convergence theorems, allowing us to effectively manipulate the $d_S$-convergence.
+
+\begin{lemma}\label{lma:dsconvpertV}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$. Assume that $\varphi_i\xrightarrow{d_S}\varphi$. Then for any $t\in (0,1]$,
+    \[
+    (1-t)\varphi_i+ tV_{\theta}\xrightarrow{d_S}(1-t)\varphi+ tV_{\theta}.
+    \]
+\end{lemma}
+ When $t=1$, the sum is understood as in \cref{rmk:linearcompsh}.
+\begin{proof}
+    Fix $t\in (0,1]$. We write
+    \[
+    \varphi_{i,t}=(1-t)\varphi_i+ tV_{\theta},\quad \varphi_t=(1-t)\varphi+ tV_{\theta}
+    \]
+    for any $i\in I$.
+
+    By \cref{cor:dsmetricdoubleineq}, it suffices to show that for each $j=0,\ldots,n$,
+    \begin{equation}\label{eq:massconvafterpert}
+    2\int_X \theta_{\varphi_{i,t}\lor \varphi_t}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi_{i,t}}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi_t}^j\wedge \theta_{V_{\theta}}^{n-j}\to 0.
+    \end{equation}
+    Observe that
+    \[
+    \varphi_{i,t}\lor \varphi_t=(1-t)(\varphi\lor \varphi_i)+t V_{\theta}.
+    \]
+    So after binomial expansion, \eqref{eq:massconvafterpert} follows from \cref{cor:dsmetricdoubleineq}.
+\end{proof}
+
+\begin{lemma}\label{lma:linearpertbyVtheta}
+    Let $\varphi\in \PSH(X,\theta)$. For each $t\in (0,1)$, let $\varphi_t=(1-t)\varphi+t V_{\theta}$. Then
+    \[
+        \varphi_t\xrightarrow{d_S}\varphi
+    \]
+    as $t\to 0+$.
+\end{lemma}
+\begin{proof}
+    Since $\varphi\preceq\varphi_t$, by \cref{lma:varphileqpsi_metric}, we need to show that for each $j=1,\dots,n$, we have
+    \[
+        \lim_{t\to 0+} \int_X \theta_{\varphi_t}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+    \]
+    For this purpose, we compute
+    \[
+        \begin{aligned}
+            & \int_X \theta_{\varphi_t}^j\wedge \theta_{V_{\theta}}^{n-j}- \int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}\\
+            =&\left((1-t)^j-1\right)\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}\\
+            &+\sum_{i=0}^{j-1} \binom{j}{i}(1-t)^i t^{j-i}\int_X\theta_{\varphi}^i\wedge \theta_{V_{\theta}}^{n-i}.
+        \end{aligned}
+    \]
+    As $t\to 0+$, the right-hand side clearly tends to $0$.
+\end{proof}
+
+
+The following convergence theorem lies at the heart of the whole theory.
+\begin{theorem}\label{thm:convdS}
+    Let $\theta_1,\ldots,\theta_n$ be smooth closed real $(1,1)$-forms on $X$ representing big cohomology classes. Suppose that $(\varphi_j^k)_{k\in I}$ are nets in $\PSH(X,\theta_j)$ and $\varphi_j\in \PSH(X,\theta_j)$ for $j=1,\ldots,n$. We assume that $\varphi_j^k\xrightarrow{d_S}\varphi_j$ for each $j=1,\ldots,n$. Then
+    \begin{equation}\label{eq:convmixedmassds}
+        \lim_{k\in I}\int_X\theta_{1,\varphi_1^k}\wedge\cdots\wedge \theta_{n,\varphi_n^k}=\int_X\theta_{1,\varphi_1}\wedge\cdots\wedge \theta_{n,\varphi_n}.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+Since $d_S$ is a pseudometric, in order to establish the continuity of mixed masses, it suffices to consider sequences instead of nets. So we may assume that $I=\mathbb{Z}_{>0}$ as ordered sets.
+
+\textbf{Step~1}. We reduce to the case where $\varphi_j^k,\varphi_j$ all have positive masses and there is a constant $\delta>0$ such that for all $j=1,\ldots,n$ and $k\in I$,
+	\[
+		\int_X \theta_{j,\varphi_j^k}^n>\delta.
+	\]
+    Assuming in this case, the theorem has been proved, let us handle the general case.
+    Take $t\in (0,1)$.
+    By \cref{lma:dsconvpertV}, we have
+    \[
+    (1-t)\varphi_j^k+tV_{\theta_j}\xrightarrow{d_S}(1-t)\varphi_j+tV_{\theta_j}
+    \]
+    as $k\to\infty$ for each $j=1,\ldots,n$.
+    Note that for all $k\in I$,
+    \[
+        \int_X \theta^n_{j,(1-t)\varphi_j^k+tV_{\theta_j}}\geq t^n\int_X \theta_{V_{\theta_j}}^n>0.
+    \]
+    Assume that we have proved the special case of the theorem, we have
+    \[
+    \begin{split}
+    &\lim_{k\to\infty}\int_X\theta_{1,(1-t)\varphi_1^k+tV_{\theta_1}}\wedge\cdots\wedge \theta_{n,(1-t)\varphi_n^k+tV_{\theta_n}}\\
+    =&\int_X\theta_{1,(1-t)\varphi_1+tV_{\theta_1}}\wedge\cdots\wedge \theta_{n,(1-t)\varphi_n+tV_{\theta_n}}.
+    \end{split}
+    \]
+    More explicitly, for fixed $k$ the left-hand side is the value at $t$ of a polynomial $Q_k(t)$ of degree at most $n$, and the right-hand side is the value of a polynomial $Q(t)$ of degree at most $n$. Choose $n+1$ distinct numbers $t_0,\ldots,t_n\in (0,1)$. Lagrange interpolation expresses $Q_k(0)-Q(0)$ as a fixed linear combination of the numbers $Q_k(t_a)-Q(t_a)$, which tend to $0$. Hence the same formula holds at $t=0$.
+    From this, \eqref{eq:convmixedmassds} follows.
+
+
+
+    \textbf{Step~2}. We now assume that the assumptions mentioned at the beginning of Step~1 are met. Note that we may assume that $\varphi_j^k$, $\varphi_j$ are model potentials for all $j=1,\ldots,n$, $k>0$ by \cref{prop:ds0char} and \cref{cor:Psendspotentialtomodel}.
+
+    We first handle the following monotone situation. Assume that, for each fixed $i$, the sequence $(\varphi_i^k)_k$ is either increasing or decreasing. Let $\tilde{\varphi}_i$ denote its pointwise limit, namely
+\[
+\tilde{\varphi}_i=\inf_{k>0}\varphi_i^k
+\]
+in the decreasing case and
+\[
+\tilde{\varphi}_i=\uscsup[k>0]\varphi_i^k
+\]
+in the increasing case. We assume moreover that $\tilde{\varphi}_i\sim_P\varphi_i$ for every $i$. Since mixed non-pluripolar masses are invariant under replacing each entry by a $P$-equivalent potential, it suffices in this monotone situation to prove convergence to the mixed mass of the $\tilde{\varphi}_i$'s.
+
+After reordering the indices, we may assume that there is $i_0\in \{0,\ldots,n\}$ such that $(\varphi_i^k)_k$ is decreasing for $i\leq i_0$ and increasing for $i>i_0$. Therefore, for each $k>0$, using \cref{thm:mono}, we have
+\[
+\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}\geq \int_X \theta_{1,\tilde{\varphi}_1}\wedge\cdots\wedge \theta_{i_0,\tilde{\varphi}_{i_0}}\wedge \theta_{i_0+1,\varphi^k_{i_0+1}}\wedge \cdots  \wedge\theta_{n,\varphi_n^k}.
+\]
+Using \cref{cor:incseqnppcont}, we therefore conclude that
+\[
+\varliminf_{k\to\infty}\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}\geq \int_X \theta_{1,\tilde{\varphi}_1}\wedge\cdots\wedge\theta_{n,\tilde{\varphi}_n}.
+\]
+It remains to prove
+	\begin{equation}\label{eq:limsup}
+		\varlimsup_{k\to\infty}\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}\leq\int_X \theta_{1,\tilde{\varphi}_1}\wedge\cdots\wedge\theta_{n,\tilde{\varphi}_n}.
+	\end{equation}
+By \cref{thm:mono}, for each $k>0$, we have
+\[
+\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}\leq \int_X \theta_{1,\varphi_1^k}\wedge \cdots \wedge \theta_{i_0,\varphi_{i_0}^k}\wedge \theta_{i_0+1,\tilde{\varphi}_{i_0+1}}\wedge \cdots\wedge \theta_{n,\tilde{\varphi}_{n}}.
+\]
+When proving \eqref{eq:limsup}, we may replace $\varphi_j^k$ by $\tilde{\varphi}_j$ whenever $j>i_0$, $k>0$.
+Thus, we are reduced to the case where for all $i$, $(\varphi_i^k)_k$ is decreasing.
+
+By \cref{prop:vol_limit_model}, the masses $\int_X\theta_{i,\varphi_i^k}^n$ decrease to $\int_X\theta_{i,\tilde{\varphi}_i}^n$. Hence, thanks to \cref{lma:pathoenvelope}, for each $i=1,\ldots,n$, we may take an increasing sequence $(b^k_i)_k$ tending to $\infty$ satisfying
+\[
+b_i^k\in \left(1, \left( \frac{\int_X \theta_{i,\varphi_i^k}^n}{\int_X \theta_{i,\varphi_i^k}^n-\int_X \theta_{i,\tilde{\varphi}_i}^n} \right)^{1/n} \right)
+\]
+where the upper endpoint is understood as $\infty$ if the denominator is $0$. For each such $b_i^k$, \cref{lma:pathoenvelope} gives $\rho_i^k\in \PSH(X,\theta_i)$ with
+\[
+	(b^k_i)^{-1}\rho_i^k+\left(1-(b^k_i)^{-1}\right)\varphi_i^k\leq \tilde{\varphi}_i.
+\]
+
+Then by \cref{thm:mono} again,
+\[
+	\prod_{i=1}^n\left(1-(b^k_i)^{-1}\right)\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}\leq \int_X \theta_{1,\tilde{\varphi}_1}\wedge\cdots\wedge\theta_{n,\tilde{\varphi}_n}.
+\]
+Letting $k\to\infty$, we conclude \eqref{eq:limsup}. This proves the monotone situation.
+
+We now return to the general case. It suffices to prove that any subsequence of
+\[
+\int_X \theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}
+\]
+has a further subsequence converging to the desired limit. Starting with an arbitrary subsequence, we pass to a further subsequence, still indexed by $k$, so that the construction in \cref{prop:incanddec} applies simultaneously to the finitely many sequences $(\varphi_i^k)_k$, $i=1,\ldots,n$.
+
+Thus, after discarding finitely many terms and relabeling, for each $i$ there are model potentials $\eta_i^k,\psi_i^k\in \PSH(X,\theta_i)$ such that $(\eta_i^k)_k$ is increasing, $(\psi_i^k)_k$ is decreasing, and
+\[
+\eta_i^k\leq \varphi_i^k\leq \psi_i^k,\quad
+\eta_i^k\xrightarrow{d_S}\varphi_i,\quad
+\psi_i^k\xrightarrow{d_S}\varphi_i.
+\]
+For the upper sequence, we take $\psi_i^k=P_{\theta_i}[\uscsup[\ell\geq k]\varphi_i^\ell]$; as in \eqref{eq:varphiexpressiontemp1}, this gives $\inf_k\psi_i^k=\varphi_i$. For the lower sequence, the construction in \cref{prop:incanddec} together with \cref{prop:decseqmodel} shows that the $\eta_i^k$'s are model after discarding finitely many terms, and the proof of \cref{prop:incanddec} shows that their increasing limit is $P$-equivalent to $\varphi_i$.
+
+By \cref{thm:mono}, for every $k$,
+\[
+\int_X\theta_{1,\eta_1^k}\wedge\cdots\wedge\theta_{n,\eta_n^k}
+\leq
+\int_X\theta_{1,\varphi_1^k}\wedge\cdots\wedge\theta_{n,\varphi_n^k}
+\leq
+\int_X\theta_{1,\psi_1^k}\wedge\cdots\wedge\theta_{n,\psi_n^k}.
+\]
+The monotone situation just proved applies to both the lower and upper sequences, and both limiting mixed masses are equal to
+\[
+\int_X\theta_{1,\varphi_1}\wedge\cdots\wedge\theta_{n,\varphi_n}.
+\]
+The squeeze theorem therefore gives the desired convergence along this further subsequence. This concludes the proof.
+\end{proof}
+
+
+\begin{corollary}\label{cor:dsconvcrit}
+    Suppose that $(\varphi_i)_{i\in I}$ is a net in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:dsconvcrit:1} $\varphi_i\xrightarrow{d_S}\varphi$;
+        \item\label{itm:cor:dsconvcrit:2} $\varphi_i\lor \varphi\xrightarrow{d_S}\varphi$ and
+        \begin{equation}\label{eq:massconv_varphii}
+        \lim_{i\in I}\int_X \theta_{\varphi_i}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}
+        \end{equation}
+        for each $j=0,\ldots,n$;
+        \item\label{itm:cor:dsconvcrit:3} for each $j=0,\ldots,n$, \eqref{eq:massconv_varphii} holds and
+        \begin{equation}\label{eq:massconv_varphii2}
+        \lim_{i\in I}\int_X \theta_{\varphi_i\lor \varphi}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+        \end{equation}
+    \end{enumerate}
+\end{corollary}
+The corollary allows us to reduce a number of convergence problems related to $d_S$ to the case $\varphi_i\geq \varphi$.
+This is the most handy way of establishing $d_S$-convergence in practice.
+\begin{proof}
+    The equivalence between \ref{itm:cor:dsconvcrit:2} and \ref{itm:cor:dsconvcrit:3} follows directly from \cref{lma:varphileqpsi_metric}.
+
+    \ref{itm:cor:dsconvcrit:1} $\implies$ \ref{itm:cor:dsconvcrit:2}. That $\varphi_i\lor \varphi\xrightarrow{d_S}\varphi$ follows from \cref{cor:dsmetricdoubleineq}. While \eqref{eq:massconv_varphii} follows from \cref{thm:convdS}.
+
+    \ref{itm:cor:dsconvcrit:2} $\implies$ \ref{itm:cor:dsconvcrit:1}. By \eqref{eq:ds_biineq}, we need to show that for each $j=0,\ldots,n$, we have
+    \[
+    2\int_X \theta_{\varphi_i\lor \varphi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}-\int_X \theta_{\varphi_i}^j\wedge \theta_{V_{\theta}}^{n-j}\to 0.
+    \]
+    This follows from \cref{thm:convdS} and \eqref{eq:massconv_varphii}.
+\end{proof}
+
+\begin{corollary}\label{cor:dSconv_changetheta}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$. Let $\omega$ be a closed smooth positive $(1,1)$-form on $X$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:dSconv_changetheta:1} $\varphi_i\xrightarrow{d_{S,\theta}}\varphi$;
+        \item\label{itm:cor:dSconv_changetheta:2} $\varphi_i\xrightarrow{d_{S,\theta+\omega}}\varphi$.
+    \end{enumerate}
+\end{corollary}
+In particular, there is no risk when we simply write $\varphi_i\xrightarrow{d_S}\varphi$. Similarly, consider two nets $(\varphi_i)_{i\in I}$, $(\psi_i)_{i\in I}$ in $\PSH(X,\theta)$. If both admit $d_S$-limits in $\PSH(X,\theta)$, then we can write $d_S(\varphi_i,\psi_i)\to 0$ without ambiguity.
+
+\begin{proof}
+    \ref{itm:cor:dSconv_changetheta:1} $\implies$ \ref{itm:cor:dSconv_changetheta:2}. It suffices to show that for each $j=0,\ldots,n$, we have
+    \[
+    \begin{split}
+        2\int_X (\theta+\omega)_{\varphi_i\lor \varphi}^j\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j}-\int_X (\theta+\omega)_{\varphi_i}^j\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j}\\
+        -\int_X (\theta+\omega)_{\varphi}^j\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j}\to 0.
+    \end{split}
+    \]
+    Note that this quantity is a linear combination of terms of the following form:
+    \[
+    \begin{split}
+        2\int_X \theta_{\varphi_i\lor \varphi}^r\wedge \omega^{j-r}\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j}-\int_X \theta_{\varphi_i}^r\wedge \omega^{j-r}\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j}\\
+        -\int_X \theta_{\varphi}^r\wedge \omega^{j-r}\wedge (\theta+\omega)_{V_{\theta+\omega}}^{n-j},
+    \end{split}
+    \]
+    where $r=0,\ldots,j$. By \cref{thm:convdS}, it suffices to show that $\varphi \lor \varphi_i \xrightarrow{d_S}\varphi$. But this follows from \cref{cor:dsconvcrit}.
+
+    \ref{itm:cor:dSconv_changetheta:2} $\implies$ \ref{itm:cor:dSconv_changetheta:1}. From the direction we already proved, for each $C\geq 1$, we have
+    \[
+        \varphi_i\xrightarrow{d_{S,\theta+C\omega}}\varphi.
+    \]
+    By \cref{thm:convdS}, it follows that
+    \[
+        \lim_{i\in I}\int_X (\theta+C\omega)_{\varphi_i}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X (\theta+C\omega)_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}
+    \]
+    for all $j=0,\ldots,n$.
+    It follows that
+    \begin{equation}\label{eq:varphijmass_limit}
+        \lim_{i\in I}\int_X \theta_{\varphi_i}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi}^j\wedge \theta_{V_{\theta}}^{n-j}.
+    \end{equation}
+    By \cref{cor:dsconvcrit}, it remains to show that $\varphi_i\lor \varphi\xrightarrow{d_{S,\theta}}\varphi$. By \cref{cor:dsconvcrit} again, we know that $\varphi_i\lor \varphi\xrightarrow{d_{S,\theta+\omega}}\varphi$. So it suffices to apply \eqref{eq:varphijmass_limit} to $\varphi_i\lor \varphi$ instead of $\varphi_i$, and we conclude by \cref{lma:varphileqpsi_metric}.
+\end{proof}
+
+\begin{corollary}\label{cor:lineardsconv}
+    Let $\varphi_0,\varphi_1\in \PSH(X,\theta)$. Define $\varphi_t=t\varphi_1+(1-t)\varphi_0$ for $t\in (0,1)$.
+    Then
+    \[
+    \varphi_t\xrightarrow{d_S}\varphi_0
+    \]
+    as $t\to 0+$.
+\end{corollary}
+\begin{proof}
+First note that for each $j=0,\ldots,n$,
+\[
+\lim_{t\to 0+}\int_X \theta_{\varphi_t}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi_0}^j\wedge \theta_{V_{\theta}}^{n-j}.
+\]
+So thanks to \cref{cor:dsconvcrit}, it remains to argue that for all $j=0,\ldots,n$,
+\[
+\lim_{t\to 0+}\int_X \theta_{\varphi_t\lor \varphi_0}^j\wedge \theta_{V_{\theta}}^{n-j}=\int_X \theta_{\varphi_0}^j\wedge \theta_{V_{\theta}}^{n-j}.
+\]
+Observe that for $t\in (0,1)$, we have
+\[
+\varphi_t\lor \varphi_0=t(\varphi_1\lor \varphi_0)+(1-t)\varphi_0,
+\]
+so the desired limit follows by the same binomial expansion.
+\end{proof}
+
+We have the following sandwich criterion:
+\begin{corollary}\label{cor:dsconvupplower}
+    Let $(\varphi_i)_{i\in I}, (\psi_i)_{i\in I}, (\eta_i)_{i\in I}$ be three nets in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$. Assume that
+    \begin{enumerate}
+        \item\label{itm:cor:dsconvupplower:1} $\psi_i\preceq_P \varphi_i\preceq_P \eta_i$ for each $i\in I$;
+        \item\label{itm:cor:dsconvupplower:2} $\eta_i\xrightarrow{d_S} \varphi$, $\psi_i\xrightarrow{d_S} \varphi$.
+    \end{enumerate}
+    Then $\varphi_i\xrightarrow{d_S}\varphi$.
+\end{corollary}
+\begin{proof}
+    By \cref{cor:dSconv_changetheta}, we may replace $\theta$ by $\theta+\omega$, where $\omega$ is a Kähler form on $X$. In particular, we may assume that $\varphi_i,\psi_i,\eta_i\in \PSH(X,\theta)_{>0}$ for all $i\in I$.
+    By \cref{prop:ds0char}, we may assume that $\varphi_i,\psi_i,\eta_i$ are model potentials for all $i\in I$ and hence $\psi_i \leq \varphi_i\leq \eta_i$ for all $i\in I$.
+
+    It follows from \cref{thm:mono} that for each $k=0,\ldots,n$, we have
+    \[
+    \int_X \theta_{\psi_i}^k\wedge \theta_{V_{\theta}}^{n-k}\leq \int_X \theta_{\varphi_i}^k\wedge \theta_{V_{\theta}}^{n-k}\leq \int_X \theta_{\eta_i}^k\wedge \theta_{V_{\theta}}^{n-k}
+    \]
+    for all $i\in I$. By \cref{thm:convdS}, the limits, with respect to $i\in I$, of the two outer terms are $\int_X \theta_{\varphi}^k\wedge \theta_{V_{\theta}}^{n-k}$. It follows that
+    \begin{equation}\label{eq:thetak_conv}
+    \lim_{i\in I}\int_X \theta_{\varphi_i}^k\wedge \theta_{V_{\theta}}^{n-k}=\int_X \theta_{\varphi}^k\wedge \theta_{V_{\theta}}^{n-k}.
+    \end{equation}
+    By \cref{cor:dsconvcrit}, it remains to prove that $\varphi_i \lor \varphi \xrightarrow{d_S}\varphi$. By \cref{cor:dsconvcrit} and \cref{prop:Ppartialsup}, up to replacing $\psi_i$ (resp. $\varphi_i$, $\eta_i$) by $\psi_i\lor \varphi$ (resp. $\varphi_i\lor\varphi$, $\eta_i\lor\varphi$), we may assume from the beginning that $\psi_i,\varphi_i,\eta_i\geq \varphi$. Now $\varphi_i\xrightarrow{d_S}\varphi$ by \eqref{eq:thetak_conv} and \cref{lma:varphileqpsi_metric}.
+\end{proof}
+
+\begin{lemma}\label{lma:dS_res}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$, and $\varphi\in \PSH(X,\theta)$. Fix $\lambda>0$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:lma:dS_res:1} $\varphi_i\xrightarrow{d_{S,\theta}}\varphi$;
+        \item\label{itm:lma:dS_res:2} $\lambda\varphi_i\xrightarrow{d_{S,\lambda\theta}}\lambda\varphi$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    We have $V_{\lambda\theta}=\lambda V_{\theta}$. The middle expression in \eqref{eq:ds_biineq} for the pair $(\lambda\varphi_i,\lambda\varphi)$ in the class $\lambda\theta$ is therefore $\lambda^n$ times the corresponding expression for $(\varphi_i,\varphi)$ in the class $\theta$. The equivalence follows from \cref{cor:dsmetricdoubleineq}.
+\end{proof}
+
+
+
+\begin{proposition}\label{prop:lor_dS_conv}
+    Let $(\varphi_i)_{i\in I}$ (resp. $(\psi_i)_{i\in I}$) be a net in $\PSH(X,\theta)$ such that $\varphi_i \xrightarrow{d_S}\varphi\in \PSH(X,\theta)$ (resp. $\psi_i \xrightarrow{d_S}\psi\in \PSH(X,\theta)$).
+    Then
+    \[
+    \varphi_i\lor\psi_i\xrightarrow{d_S}\varphi\lor \psi.
+    \]
+\end{proposition}
+\begin{proof}
+    Since $d_S$ is a pseudometric, we may assume that both nets are actually sequences and $I=\mathbb{Z}_{>0}$. By \cref{cor:dSconv_changetheta}, we may assume that the masses $\int_X \theta_{\varphi}^n>0$, $\int_X \theta_{\psi}^n>0$.
+
+    By \cref{prop:ds0char} and \cref{prop:Ppartialsup}, replacing all potentials by their $P$-envelopes changes neither the hypotheses nor the conclusion. Thus we may assume that the $\varphi_j$'s, the $\psi_j$'s, $\varphi$ and $\psi$ are all model. After discarding finitely many terms, the masses of the two sequences are bounded below by a positive constant. Applying \cref{prop:incanddec} to both sequences and using the sandwich criterion \cref{cor:dsconvupplower}, it is enough to treat the case where each of $(\varphi_j)_j$ and $(\psi_j)_j$ is monotone. In this reduced situation, $(\varphi_j)_j$ (resp. $(\psi_j)_j$) converges to $\varphi$ (resp. $\psi$) almost everywhere due to \cref{prop:decPorderPenvconve}, \cref{cor:incnetdSconv} and \cref{prop:incnetmodel}.
+
+    We handle three cases separately.
+
+\textbf{Step~1}. Assume that both sequences are increasing.
+
+In this case, we have $\varphi_j\lor \psi_j\nearrow \varphi\lor \psi$ almost everywhere. Therefore, $\varphi_j\lor \psi_j\xrightarrow{d_S} \varphi\lor \psi$ by \cref{cor:incnetdSconv}.
+
+\textbf{Step~2}. Assume that one sequence, say $(\varphi_j)_j$ is increasing while the other is decreasing. Then we have
+\[
+\varphi_j \lor \psi \leq \varphi_j \lor \psi_j \leq \varphi \lor \psi_j.
+\]
+Thanks to \cref{cor:dsconvupplower}, it suffices to show that both sides converge to $\varphi\lor \psi$ with respect to $d_S$. So we reduce to the case where both sequences are decreasing.
+
+\textbf{Step~3}. Assume that both sequences are decreasing.
+
+In this case, due to \cref{cor:decnetdS}, it suffices to show that
+\begin{equation}\label{eq:masslortemp1}
+\lim_{j\to\infty} \int_X \theta_{\varphi_j\lor \psi_j}^n=\int_X \theta_{\varphi\lor \psi}^n.
+\end{equation}
+The $\geq$ direction follows from \cref{thm:mono}; it remains to argue the $\leq$ direction.
+
+Thanks to \cref{lma:pathoenvelope}, we may find a sequence $(\epsilon_j)_j$ in $(0,1)$ with limit $0$ and a sequence $(\eta_j)_j$ in $\PSH(X,\theta)_{>0}$ such that
+\[
+    (1-\epsilon_j)\varphi_j+\epsilon_j \eta_j \leq \varphi,\quad \eta_j \leq \varphi_j.
+\]
+It follows that for each $j\geq 1$, we have
+\[
+(1-\epsilon_j)(\varphi_j\lor \psi_j)+\epsilon_j \eta_j \leq \varphi \lor \psi_j.
+\]
+Therefore by \cref{thm:mono},
+\[
+(1-\epsilon_j)^n \int_X \theta_{\varphi_j\lor \psi_j}^n\leq \int_X \theta_{\varphi \lor \psi_j}^n.
+\]
+Letting $j\to\infty$, we find that
+\[
+\lim_{j\to\infty}\int_X \theta_{\varphi_j\lor \psi_j}^n\leq \lim_{j\to\infty}\int_X \theta_{\varphi\lor \psi_j}^n.
+\]
+Therefore, in order to prove \eqref{eq:masslortemp1}, we may assume that one of the sequences is constant; let us say $\psi_j=\psi$ for all $j$. Repeating the same argument as before and constructing $(\epsilon_j)_j$, $(\eta_j)_j$ as above, we get
+\[
+(1-\epsilon_j)^n \int_X \theta_{\varphi_j\lor \psi}^n\leq \int_X \theta_{\varphi \lor \psi}^n.
+\]
+Letting $j\to\infty$, we conclude \eqref{eq:masslortemp1}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:dsconvpresorder}
+    Let $(\varphi_i)_{i\in I}$, $(\psi_i)_{i\in I}$ be nets in $\PSH(X,\theta)$ such that $\varphi_i\xrightarrow{d_S} \varphi\in \PSH(X,\theta)$ and $\psi_i\xrightarrow{d_S}\psi\in \PSH(X,\theta)$. Assume that $\varphi_i\preceq_P \psi_i$ for all $i\in I$. Then $\varphi\preceq_P \psi$.
+\end{proposition}
+\begin{proof}
+    It follows from \cref{prop:lor_dS_conv} that
+    \[
+        \varphi_i\lor\psi_i\xrightarrow{d_S}\varphi\lor \psi.
+    \]
+    By \cref{lma:reform_preceqP}, we have $\varphi_i\lor\psi_i\sim_P \psi_i$ for all $i\in I$. In particular, by \cref{prop:ds0char},
+    \[
+        \varphi_i\lor\psi_i\xrightarrow{d_S}\psi.
+    \]
+    By \cref{prop:ds0char} again, $\varphi\lor\psi\sim_P\psi$ and hence $\varphi\preceq_P \psi$ by \cref{lma:reform_preceqP}.
+\end{proof}
+
+\begin{theorem}\label{thm:dSadditivity}
+    Let $\theta_1$, $\theta_2$ be smooth real closed $(1,1)$-forms on $X$ representing big cohomology classes. Suppose that $(\varphi_i)_{i\in I}$ (resp. $(\psi_i)_{i\in I}$) be a net in $\PSH(X,\theta_1)$ (resp. $\PSH(X,\theta_2)$) and $\varphi\in \PSH(X,\theta_1)$ (resp. $\psi\in \PSH(X,\theta_2)$).
+    Consider the following three conditions:
+    \begin{enumerate}
+        \item\label{itm:thm:dSadditivity:1} $\varphi_i\xrightarrow{d_{S}}\varphi$;
+        \item\label{itm:thm:dSadditivity:2} $\psi_i\xrightarrow{d_{S}}\psi$;
+        \item\label{itm:thm:dSadditivity:3} $\varphi_i+\psi_i\xrightarrow{d_{S}}\varphi+\psi$.
+    \end{enumerate}
+    Then any two of these conditions imply the third.
+\end{theorem}
+\begin{proof}
+By \cref{cor:dSconv_changetheta}, we may assume that $\theta_1,\theta_2$ are both Kähler forms. We denote them by $\omega_1,\omega_2$ instead. Let $\omega=\omega_1+\omega_2$.
+
+\ref{itm:thm:dSadditivity:1}+\ref{itm:thm:dSadditivity:2} $\implies$ \ref{itm:thm:dSadditivity:3}.
+	It suffices to show that for each $r=0,\ldots,n$,
+	\[
+		2\int_X \omega_{(\varphi_i+\psi_i)\lor(\varphi+\psi)}^r\wedge \omega^{n-r}-\int_X \omega_{\varphi_i+\psi_i}^r\wedge \omega^{n-r}-\int_X \omega_{\varphi+\psi}^r\wedge\omega^{n-r}\to 0.
+	\]
+	Observe that for each $i\in I$,
+	\[
+		(\varphi_i+\psi_i)\lor (\varphi+\psi)\leq (\varphi_i\lor \varphi)+(\psi_i \lor \psi).
+	\]
+	The expression with the actual rooftop is non-negative and is bounded above by the same expression with this larger potential in place of $(\varphi_i+\psi_i)\lor(\varphi+\psi)$. Thus, it suffices to show that
+	\[
+		2\int_X \omega_{(\varphi_i\lor \varphi)+(\psi_i\lor \psi)}^r\wedge \omega^{n-r}-\int_X \omega_{\varphi_i+\psi_i}^r\wedge \omega^{n-r}-\int_X \omega_{\varphi+\psi}^r\wedge\omega^{n-r}\to 0.
+	\]
+	The left-hand side is a linear combination of
+	\[
+		2\int_X \omega_{1,\varphi_i\lor\varphi}^a\wedge \omega_{2,\psi_i\lor\psi}^{r-a}\wedge \omega^{n-r}-\int_X \omega_{1,\varphi_i}^a\wedge \omega_{2,\psi_i}^{r-a} \wedge \omega^{n-r}-\int_X \omega_{1,\varphi}^a\wedge \omega_{2,\psi}^{r-a} \wedge \omega^{n-r}
+	\]
+	with $a=0,\ldots,r$. Observe that $\varphi_i\lor\varphi\xrightarrow{d_S}\varphi$ and $\psi_i\lor\psi\xrightarrow{d_S}\psi$ by \cref{cor:dsmetricdoubleineq}, each term tends to $0$ by \cref{thm:convdS}.
+
+
+\ref{itm:thm:dSadditivity:1}+\ref{itm:thm:dSadditivity:3} $\implies$ \ref{itm:thm:dSadditivity:2}. For each $C\geq 1$, from the direction we already proved together with \cref{lma:dS_res},
+    \[
+    C\varphi_i+\psi_i\xrightarrow{d_{S}} C\varphi+\psi.
+    \]
+By \cref{thm:convdS}, for each $j=0,\ldots,n$,
+\[
+\begin{split}
+&\lim_{i\in I} \int_X \Bigl(C\omega_1+\omega_2+\ddc(C\varphi_i+\psi_i)\Bigr)^j\wedge \omega_2^{n-j}\\
+= &\int_X \Bigl(C\omega_1+\omega_2+\ddc(C\varphi+\psi)\Bigr)^j\wedge \omega_2^{n-j}.
+\end{split}
+\]
+Both sides are polynomials in $C$. Comparing the constant terms gives
+\begin{equation}\label{eq:psii_quant_conv}
+\lim_{i\in I} \int_X \omega_{2,\psi_i}^j\wedge \omega_2^{n-j}=\int_X \omega_{2,\psi}^j\wedge \omega_2^{n-j}.
+\end{equation}
+Therefore, \ref{itm:thm:dSadditivity:2} follows if $\psi_i\geq \psi$ for each $i$ by \cref{lma:varphileqpsi_metric}.
+
+Next we prove the general case. By the direction that we already proved, we know that $\varphi_i+\psi\xrightarrow{d_{S}} \varphi+\psi$. By \cref{prop:lor_dS_conv}, we have
+\[
+\varphi_i+(\psi_i\lor \psi)\xrightarrow{d_{S}} \varphi+\psi.
+\]
+It follows from the special case above that $\psi_i\lor \psi\xrightarrow{d_{S}}\psi$. It follows from \eqref{eq:psii_quant_conv} and \cref{cor:dsconvcrit} that \ref{itm:thm:dSadditivity:2} holds.
+
+\ref{itm:thm:dSadditivity:2}+\ref{itm:thm:dSadditivity:3} $\implies$ \ref{itm:thm:dSadditivity:1}. This is similar.
+
+\end{proof}
+
+\begin{proposition}\label{prop:decPorderPenvconve}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\PSH(X,\theta)$, decreasing with respect to the $P$-partial order. Assume that there is $\varphi\in \PSH(X,\theta)_{>0}$ with $\varphi_i\xrightarrow{d_S}\varphi$, then
+    \begin{equation}\label{eq:decPorderPenvconve}
+        \inf_{i\in I} P_{\theta}[\varphi_i]=P_{\theta}[\varphi].
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    First observe that by our assumption, $(P_{\theta}[\varphi_i])_{i\in I}$ is a decreasing net. By the continuity of non-pluripolar masses \cref{cor:massdiffdS}, we have
+    \[
+        \lim_{i\in I} \int_X \theta_{P_{\theta}[\varphi_i]}^n=\lim_{i\in I} \int_X \theta_{\varphi_i}^n= \int_X \theta_{\varphi}^n.
+    \]
+    Replacing $I$ by a tail, we may therefore assume that $\varphi_i\in \PSH(X,\theta)_{>0}$ for each $i\in I$.
+    Since $\varphi_i\sim_P P_\theta[\varphi_i]$, replacing $\varphi_i$ by $P_\theta[\varphi_i]$ does not change its $d_S$-class by \cref{prop:ds0char}. We may assume that each $\varphi_i$ is model and $(\varphi_i)_{i\in I}$ is decreasing. In this case, by \cref{prop:vol_limit_model}, the potential
+    \[
+        \psi\coloneqq \inf_{i\in I} \varphi_i
+    \]
+    is model in $\PSH(X,\theta)_{>0}$ with
+    \[
+        \int_X \theta_{\psi}^n=\lim_{i\in I} \int_X \theta_{\varphi_i}^n= \int_X \theta_{\varphi}^n.
+    \]
+    Therefore, by \cref{cor:decnetdS}, we find $\varphi_i\xrightarrow{d_S}\psi$. In particular, $\varphi\sim_P \psi$ by \cref{prop:ds0char}. Therefore,
+    \[
+        \psi=P_{\theta}[\psi]=P_{\theta}[\varphi].
+    \]
+    Therefore, \eqref{eq:decPorderPenvconve} follows.
+\end{proof}
+
+
+
+
+\begin{theorem}\label{thm:contPI}
+    The map
+    \[
+        P_{\theta}[\bullet]_{\mathcal{I}}\colon \PSH(X,\theta)_{>0}\rightarrow \PSH(X,\theta)_{>0}
+    \]
+    is continuous with respect to $d_S$.
+   \end{theorem}
+   \begin{proof}
+       Let $(\varphi_i)_{i\in \mathbb{Z}_{>0}}$ be a sequence in $\PSH(X,\theta)_{>0}$ such that $\varphi_i\xrightarrow{d_S}\varphi\in \PSH(X,\theta)_{>0}$. We want to show that
+       \begin{equation}
+           P_{\theta}[\varphi_i]_{\mathcal{I}}\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}.
+       \end{equation}
+       We may assume that the $\varphi_i$'s and $\varphi$ are all model potentials by \cref{prop:ds0char}.
+
+
+       By \cref{prop:incanddec} and \cref{cor:dsconvupplower}, we may assume that $(\varphi_i)_i$ is either increasing or decreasing.
+       In the increasing case, we apply \cref{prop:incnetmodelPI} and \cref{cor:incnetdSconv}, while in the decreasing case, we apply \cref{prop:decnetmodelPI}, \cref{prop:vol_limit_model} and \cref{cor:decnetdS}.
+    \end{proof}
+
+We record the following result for later use.
+\begin{lemma}\label{lma:Vthetaepsconv}
+Fix a Kähler form $\omega$ on $X$.
+As $\epsilon\to 0$ (from both sides), we have
+\begin{equation}\label{eq:Vthetaeps_dS}
+    V_{\theta+\epsilon\omega}\xlongrightarrow{d_S}V_{\theta}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+There are two assertions to prove, as detailed in the two steps.
+
+\textbf{Step~1}. We first handle the case where $\epsilon\to 0+$.
+
+In this case \eqref{eq:Vthetaeps_dS} means
+\[
+    V_{\theta+\epsilon\omega}\xlongrightarrow{d_{S,\theta+\omega}}V_{\theta}
+\]
+as $\epsilon\to 0+$. So thanks to \cref{cor:decnetdS} and \cref{prop:vol_limit_model}, it suffices to prove the following:
+\begin{equation}\label{eq:epsil_P_temp1}
+    \inf_{\epsilon>0} P_{\theta+\omega}\left[ V_{\theta+\epsilon\omega} \right]=P_{\theta+\omega}\left[ V_{\theta} \right].
+\end{equation}
+First observe that
+\[
+V_{\theta}=\inf_{\epsilon>0} V_{\theta+\epsilon\omega}.
+\]
+In fact, the $\leq$ direction is trivial. As for the reverse inequality, it suffices to observe that the right-hand side lies in $\PSH(X,\theta)$.
+Therefore, due to \cref{prop:vol_limit_model},
+\[
+\lim_{\epsilon \to 0+} \int_X \left( \theta+\epsilon\omega+\ddc V_{\theta+\epsilon\omega} \right)^n=\int_X \theta_{V_{\theta}}^n.
+\]
+Therefore, for all $\epsilon>0$ small enough, we can find $\eta_{\epsilon}\in \PSH(X,\theta+\epsilon\omega)$ and $a_{\epsilon}>0$ decreasing to $0$ so that
+\[
+(1-a_\epsilon)V_{\theta+\epsilon \omega} + a_\epsilon \eta_\epsilon \leq V_{\theta}.
+\]
+Therefore, thanks to \cref{prop:Pconc},
+\[
+(1-a_\epsilon)P_{\theta+\omega}\left[ V_{\theta+\epsilon \omega} \right] + a_\epsilon P_{\theta+\omega}\left[\eta_\epsilon\right] \leq P_{\theta+\omega}\left[V_{\theta}\right].
+\]
+Since the envelopes $P_{\theta+\omega}[\eta_\epsilon]$ have supremum $0$, they are uniformly bounded in $L^1$ by \cref{prop:L1compa}; hence $a_\epsilon P_{\theta+\omega}[\eta_\epsilon]\to 0$ in $L^1$. Letting $\epsilon\to 0$ and using \cref{prop:pshfuncdetdense}, we conclude \eqref{eq:epsil_P_temp1}.
+
+\textbf{Step~2}. We then handle the case where $\epsilon\to 0-$.
+
+In this case, \eqref{eq:Vthetaeps_dS} simply means
+\[
+V_{\theta-\epsilon\omega}\xrightarrow{d_{S,\theta}}V_{\theta}
+\]
+as $\epsilon\to 0+$.
+But this follows from \cref{cor:incnetdSconv} if we can prove
+\begin{equation}\label{eq:Vthetamepsomega_temp1}
+\uscsup[\epsilon>0] V_{\theta-\epsilon\omega}=V_{\theta},
+\end{equation}
+where we understand that $\epsilon$ is small enough so that $\theta-\epsilon\omega$ represents a big cohomology class. Since $\{\theta\}$ is big, we can find $\varphi\in \PSH(X,\theta)$ so that
+\[
+\varphi\leq 0,\quad \theta_{\varphi}\geq \delta\omega
+\]
+for some $\delta>0$. For a small $\epsilon>0$, we then have
+\[
+\theta+\ddc \left( \left(1-\frac{\epsilon}{\delta}\right)V_{\theta}+ \frac{\epsilon}{\delta}\varphi\right)\geq \epsilon\omega.
+\]
+Therefore,
+\[
+\left(1-\frac{\epsilon}{\delta}\right)V_{\theta}+ \frac{\epsilon}{\delta}\varphi\leq V_{\theta-\epsilon\omega}.
+\]
+Letting $\epsilon\to 0+$, we then find
+\[
+V_{\theta}\leq \uscsup[\epsilon>0] V_{\theta-\epsilon\omega}.
+\]
+The reverse inequality is trivial, hence \eqref{eq:Vthetamepsomega_temp1} is established.
+\end{proof}
+
+\subsection{Continuity of invariants}\label{subsec:continv}
+In this section, we prove the continuity of a few invariants of the singularities with respect to $d_S$.
+
+
+
+    \begin{theorem}\label{thm:Lelongcont}
+        Let $(\varphi_j)_{j\in I}$ be a net in $\PSH(X,\theta)$ and $\varphi_j\xrightarrow{d_S}\varphi\in \PSH(X,\theta)$. Then for any prime divisor $E$ over $X$, we have
+        \begin{equation}\label{eq:convnu}
+        \lim_{j\in I}\nu(\varphi_j,E)=\nu(\varphi,E).
+        \end{equation}
+    \end{theorem}
+\begin{proof}
+    First observe that since $d_S$ is a pseudometric, it suffices to prove \eqref{eq:convnu} when $I=\mathbb{Z}_{>0}$ as partially ordered sets.
+
+    By \cref{cor:dSconv_changetheta}, after adding a Kähler form to $\theta$, we may assume that the masses of $\varphi_j$ and of $\varphi$ are bounded from below by a positive constant.
+
+    By \cref{thm:contPI}, we may assume that $\varphi_j$ and $\varphi$ are both $\mathcal{I}$-model and hence model. When proving \eqref{eq:convnu}, we are free to pass to subsequences.
+
+    By \cref{prop:incanddec} and a sandwich argument, we may assume that the sequence $(\varphi_j)_j$ is either increasing or decreasing. In the increasing case, the Lelong numbers $\nu(\varphi_j,E)$ decrease to a limit at least $\nu(\varphi,E)$, while $L^1$-convergence gives the opposite inequality by upper semicontinuity of Lelong numbers. In the decreasing case, \eqref{eq:convnu} follows from \cref{prop:vol_limit_model}.
+\end{proof}
+
+
+\begin{theorem}\label{thm:contvolu}
+    Let $(\varphi_j)_{j\in I}$ be a net in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)_{>0}$. Assume that $\varphi_j\xrightarrow{d_S}\varphi$. Then
+    \begin{equation}\label{eq:Ivolcont}
+        \vol \theta_{\varphi_j}\to \vol \theta_{\varphi},\quad \int_X \theta_{\varphi_j}^n\to \int_X \theta_{\varphi}^n.
+    \end{equation}
+\end{theorem}
+Recall the volume is defined in \cref{def:volqpsh}. In fact, we do not have to assume the positivity of the mass of $\varphi$. The proof of the general statement is slightly more involved. See \cref{cor:contvolu2} below.
+\begin{proof}
+    The latter part of \eqref{eq:Ivolcont} is just a special case of \cref{thm:convdS}. It remains to prove the former part.
+
+    We may therefore assume that $\int_X \theta_{\varphi_j}^n>0$ for all $j\in I$ after passing to a tail. Then by \cref{thm:contPI}, we have
+    \[
+        P_{\theta}[\varphi_j]_{\mathcal{I}}\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    Therefore, the first part of \eqref{eq:Ivolcont} follows again from \cref{thm:convdS}.
+\end{proof}
+
+Next we show that $d_S$-convergent sequences have a sort of quasi-equisingular property (cf. \eqref{eq:quasi_eq_prop}).
+\begin{theorem}\label{thm:equising_cond_general}
+    Let $\varphi_j,\varphi\in \PSH(X,\theta)$ ($j\in \mathbb{Z}_{>0}$). Assume that $\varphi_j\xrightarrow{d_S}\varphi$. Then for each $\lambda'>\lambda>0$, there is $j_0>0$ so that for $j\geq j_0$,
+    \begin{equation}\label{eq:quasi_equi_cond}
+        \mathcal{I}(\lambda' \varphi_j)\subseteq \mathcal{I}(\lambda \varphi).
+    \end{equation}
+\end{theorem}
+\begin{proof}
+Fix $\lambda'>\lambda>0$. We want to find $j_0>0$ so that for $j\geq j_0$, \eqref{eq:quasi_equi_cond} holds.
+
+\textbf{Step~1}. We first assume that $\varphi$ has analytic singularities.
+
+Let $\pi\colon Y\rightarrow X$ be a log resolution of $\varphi$ and let $E_1,\ldots,E_N$ be all prime divisors in the polar locus of $\varphi$ on $Y$.
+Recall that by \cref{thm:valuativemulti}, a non-zero local holomorphic function $f$ lies in the right-hand side of \eqref{eq:quasi_equi_cond} if and only if for all $i=1,\ldots,N$,
+\begin{equation}\label{eq:ordEif}
+\ord_{E_i}(f)>\lambda \nu(\varphi,E_i)-A_X(E_i),
+\end{equation}
+where $A_X$ denotes the log discrepancy.
+Similarly, if $f$ lies in the left-hand side of \eqref{eq:quasi_equi_cond}, then for all $i=1,\ldots,N$,
+\[
+\ord_{E_i}(f)> \lambda'\nu(\varphi_j,E_i)-A_X(E_i).
+\]
+As Lelong numbers are continuous with respect to $d_S$ by \cref{thm:Lelongcont}, we can find $j_0>0$ so that when $j\geq j_0$, $\lambda'\nu(\varphi_j,E_i)\geq \lambda \nu(\varphi,E_i)$ for all $i$. In particular, \eqref{eq:ordEif} follows.
+
+\textbf{Step~2}. We handle the general case.
+
+By \cref{cor:dSconv_changetheta}, we are free to increase $\theta$ and assume that $\theta_{\varphi}$ is a Kähler current.
+
+Take a quasi-equisingular approximation $(\psi_k)_k$ of $\varphi$ in $\PSH(X,\theta)$. The existence is guaranteed by \cref{thm:qequi}.
+Take $\lambda''\in (\lambda,\lambda')$. Then by definition of quasi-equisingular approximations (cf. \eqref{eq:quasi_eq_prop}), we can find $k>0$ so that
+\[
+    \mathcal{I}(\lambda''\psi_k)\subseteq \mathcal{I}(\lambda \varphi).
+\]
+Observe that $\psi_k\geq \varphi$ for all $k>0$. By \cref{prop:lor_dS_conv}, we then find that for any $k>0$, we have $\varphi_j\lor \psi_k\xrightarrow{d_S}\varphi\lor \psi_k=\psi_k$ as $j\to\infty$.
+By Step~1, we can find $j_0>0$ so that for $j\geq j_0$,
+\[
+    \mathcal{I}\Bigl(\lambda' (\varphi_j\lor \psi_k)\Bigr)\subseteq \mathcal{I}(\lambda''\psi_k).
+\]
+It follows that for $j\geq j_0$,
+\[
+    \mathcal{I}(\lambda' \varphi_j)\subseteq  \mathcal{I}(\lambda \varphi).
+\]
+This completes the proof.
+\end{proof}

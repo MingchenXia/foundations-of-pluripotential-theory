@@ -1,0 +1,1066 @@
+\motto{Le but de cette thèse est de munir son auteur du titre de Docteur.\footnote{Similarly, the purpose of the current book is to make my complaints about France in the acknowledgments published.}
+
+--- Adrien Douady\footnote{Adrien Douady (1935--2006) was a French mathematician known for his pioneering work in complex dynamics and fractal geometry. Along with John H. Hubbard, he proved important results about the Mandelbrot set and developed renormalization theory for polynomial mappings. He discovered the \emph{Douady Rabbit}, a famous fractal Julia set.
+
+Douady studied at École Normale Supérieure (the place where I began to hate France, thanks to Claude Viterbo) and taught at several French universities. He was also a member of the Bourbaki group.
+
+Tragically, he died in a swimming accident in 2006.
+}, at the beginning of his thesis}
+\chapter{\texorpdfstring{$\mathcal{I}$}{I}-good singularities}
+\label{chap:Igood}
+
+The class of $\mathcal I$-good singularities is the central object of this part of the book. These are the singularities for which the pluripotential-theoretic and multiplier-ideal notions of singularity type agree. Equivalently, they are the positive-mass potentials for which the ordinary model envelope and the $\mathcal I$-model envelope coincide, or for which the non-pluripolar mass equals the volume defined through multiplier ideals.
+
+The starting point is the characterization theorem \cref{thm:charIgoodasclosure}. For $\varphi\in\PSH(X,\theta)_{>0}$, it shows that the following three conditions are equivalent: $\varphi$ lies in the $d_S$-closure of potentials with analytic singularities; the mass-volume identity
+\[
+    \int_X\theta_\varphi^n=\vol\theta_\varphi
+\]
+holds; and
+\[
+    P_\theta[\varphi]=P_\theta[\varphi]_{\mathcal I}.
+\]
+
+After establishing this characterization, the chapter develops the basic calculus of $\mathcal I$-good singularities. We prove stability under natural operations, including linear combinations and suprema, and record the main examples: analytic singularities, $\mathcal I$-model potentials, elementary metrics, and toric potentials. These closure properties are used repeatedly in later chapters, especially for traces, test curves and non-Archimedean potentials.
+
+The next part of the chapter introduces mixed volumes for singular currents. The definition is first made in positive-volume classes by replacing each current with its $\mathcal I$-model envelope, and is then extended by K\"ahler perturbation. We prove symmetry, multilinearity, monotonicity, birational invariance, log-concavity and continuity with respect to $d_S$-convergence.
+
+The final section proves the asymptotic Riemann--Roch formula \cref{thm:DXmain1}. For a Hermitian pseudo-effective line bundle $(L,h)$ on a connected compact K\"ahler manifold $X$ of dimension $n$, the theorem identifies
+\[
+    \lim_{k\to\infty}\frac{n!}{k^n}
+    h^0\left(X,L^k\otimes\mathcal I(h^k)\right)
+\]
+with the volume of the Chern current of $h$. This result is the main algebraic manifestation of $\mathcal I$-goodness. It will be used later in the construction of partial Okounkov bodies and in the study of partial Bergman kernels.
+
+\section{The notion of \texorpdfstring{$\mathcal{I}$}{I}-good singularities}\label{sec:Igoodnotion}
+
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+
+
+\begin{theorem}\label{thm:charIgoodasclosure}
+    Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class, and $\varphi\in \PSH(X,\theta)_{>0}$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:thm:charIgoodasclosure:1} There exists a sequence $(\varphi_j)_{j>0}$ in $\PSH(X,\theta)$ with analytic singularities such that $\varphi_j\xrightarrow{d_S}\varphi$;
+        \item\label{itm:thm:charIgoodasclosure:2} we have
+        \begin{equation}\label{eq:nppmassequalvolume}
+            \int_X \theta_{\varphi}^n=\vol \theta_{\varphi};
+        \end{equation}
+        \item\label{itm:thm:charIgoodasclosure:3} we have
+            \begin{equation}\label{eq:PequpI}
+                P_{\theta}[\varphi]=P_{\theta}[\varphi]_{\mathcal{I}}.
+            \end{equation}
+    \end{enumerate}
+    In \ref{itm:thm:charIgoodasclosure:1}, we can in addition require that each $\theta_{\varphi_j}$ is a Kähler current.
+
+    Moreover, if $\theta_{\varphi}$ is a Kähler current, one may take the sequence in \ref{itm:thm:charIgoodasclosure:1} to be any quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$.
+\end{theorem}
+Since $(\PSH(X,\theta),d_S)$ is a pseudometric space, in \ref{itm:thm:charIgoodasclosure:1} we can also replace the word \emph{sequence} by \emph{net}.
+
+Recall that according to \cref{cor:compnppmassandvol} and \cref{prop:PandPI}, one direction of \eqref{eq:nppmassequalvolume} and \eqref{eq:PequpI} always holds:
+\[
+ \int_X \theta_{\varphi}^n\leq \vol \theta_{\varphi},\quad P_{\theta}[\varphi]\leq P_{\theta}[\varphi]_{\mathcal{I}}.
+\]
+\begin{proof}
+    \ref{itm:thm:charIgoodasclosure:1} $\implies$ \ref{itm:thm:charIgoodasclosure:2}. By \cref{thm:convdS}, we have
+    \[
+    \lim_{j\to\infty} \int_X \theta_{\varphi_j}^n=\int_X \theta_{\varphi}^n>0.
+    \]
+    We may therefore assume that $\int_X \theta_{\varphi_j}^n>0$ for all $j \geq 1$.
+    It follows from \cref{prop:analysingcompPandPI} that
+    \[
+        \int_X \theta_{\varphi_j}^n=\vol \theta_{\varphi_j}
+    \]
+    for any $j\geq 1$. Using \cref{thm:contvolu}, we conclude \eqref{eq:nppmassequalvolume}.
+
+    \ref{itm:thm:charIgoodasclosure:2} $\iff$ \ref{itm:thm:charIgoodasclosure:3}. By definition,
+    \[
+        \vol\theta_{\varphi}= \int_X\theta_{P_{\theta}[\varphi]_{\mathcal I}}^n.
+    \]
+    Moreover, $\varphi-\sup_X\varphi\leq P_{\theta}[\varphi]_{\mathcal I}$.
+    Thus, if \ref{itm:thm:charIgoodasclosure:2} holds, \cref{thm:Pvarphidiffdef} gives $P_{\theta}[\varphi]_{\mathcal I}\leq P_{\theta}[\varphi]$; the reverse inequality follows from \cref{prop:PandPI}. Conversely, if \ref{itm:thm:charIgoodasclosure:3} holds, then \ref{itm:thm:charIgoodasclosure:2} follows from \cref{prop:Ppresmass}.
+
+    \ref{itm:thm:charIgoodasclosure:3} $\implies$ \ref{itm:thm:charIgoodasclosure:1}. Note that the condition in \ref{itm:thm:charIgoodasclosure:1} characterizes the closure of analytic singularities in $\PSH(X,\theta)$.
+
+    \textbf{Step~1}. We first assume that $\theta_{\varphi}$ is a Kähler current. We will prove the following more general result in this case: Without assuming \ref{itm:thm:charIgoodasclosure:3}, $P_{\theta}[\varphi]_{\mathcal{I}}$ always lies in the closure of analytic singularities.
+
+    Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$. We will show that $\varphi_j\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}$.
+    Let
+\[
+    \psi=\inf_{j\in \mathbb{Z}_{>0}} P_{\theta}[\varphi_j].
+\]
+Since $\varphi\leq \varphi_j$ for all $j>0$, we have
+\[
+    \varphi-\sup_X\varphi\leq P_{\theta}[\varphi_j]
+\]
+for all $j$, and hence
+\[
+    \varphi-\sup_X\varphi\leq \psi.
+\]
+In particular, $\int_X\theta_\psi^n>0$.
+
+Now \cref{prop:ds0char}, \cref{prop:vol_limit_model} and
+\cref{cor:decnetdS} give
+\[
+    \varphi_j\xrightarrow{d_S}\psi.
+\]
+Moreover, observe that $\psi$ is $\mathcal{I}$-model by \cref{prop:decnetmodelPI} and \cref{prop:analysingcompPandPI}. Hence, if $\varphi\sim_{\mathcal I}\psi$, then
+\[
+    P_\theta[\varphi]_{\mathcal I}=P_\theta[\psi]_{\mathcal I}=\psi.
+\]
+So it suffices to show that $\varphi\sim_{\mathcal I}\psi$.
+It only remains to argue that $\psi \preceq_{\mathcal{I}} \varphi$. For this purpose, take $\lambda>0$. We need to show that
+    \[
+        \mathcal{I}(\lambda \psi)\subseteq \mathcal{I}(\lambda \varphi).
+    \]
+    By the strong openness \cref{thm:strongopen}, we may take $\lambda'>\lambda$ such that $\mathcal{I}(\lambda \psi)=\mathcal{I}(\lambda' \psi)$. It follows from the definition of the quasi-equisingular approximation that
+    \[
+        \mathcal{I}(\lambda'\psi)\subseteq \mathcal{I}(\lambda'\varphi_j)\subseteq \mathcal{I}(\lambda\varphi)
+    \]
+    for large enough $j$, where the first inclusion uses $\psi\leq P_\theta[\varphi_j]$ and $P_\theta[\varphi_j]\sim_{\mathcal{I}}\varphi_j$. Our assertion follows.
+
+    It follows from the proof that we may take $\varphi_j$ so that $\theta_{\varphi_j}$ is a K\"ahler current for all $j\geq 1$.
+
+    \textbf{Step~2}. We handle the general case.
+
+    Assume \ref{itm:thm:charIgoodasclosure:3} holds.
+    By \cref{lma:kahcurrentposmass}, we can find $\psi\in \PSH(X,\theta)$ so that $\theta_{\psi}$ is a Kähler current and $\psi\leq \varphi$. We let
+    \[
+        \psi_j=(1-j^{-1})\varphi+j^{-1}\psi
+    \]
+    for each $j\in \mathbb{Z}_{>1}$. Then $(\psi_j)_j$ is an increasing sequence converging almost everywhere to $\varphi$.
+    Then
+    \[
+    P_{\theta}[\psi_j]_{\mathcal{I}}\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}=P_{\theta}[\varphi]
+    \]
+    by \cref{prop:incnetmodelPI}, \cref{cor:incnetdSconv}.
+    From Step~1, we know that each $P_{\theta}[\psi_j]_{\mathcal{I}}$ lies in the closure of analytic singularities, hence so is $P_{\theta}[\varphi]\sim_P \varphi$. Therefore, \ref{itm:thm:charIgoodasclosure:1} follows.
+\end{proof}
+
+
+\begin{definition}\label{def:Igoodpot}
+    We say a potential $\varphi\in \QPSH(X)$ is \emph{$\mathcal{I}$-good}\index{potential!I-good potential@$\mathcal{I}$-good potential} if for some smooth closed real $(1,1)$-form $\theta$ on $X$ such that $\varphi\in \PSH(X,\theta)_{>0}$, we have
+    \begin{equation}\label{eq:envelopeeq}
+    P_{\theta}[\varphi]=P_{\theta}[\varphi]_{\mathcal{I}}.
+    \end{equation}
+\end{definition}
+
+\begin{remark}\label{rmk:Macron}
+    In view of \cref{thm:charIgoodasclosure} and \cref{cor:compnppmassandvol}, the failure of $\mathcal{I}$-goodness of a given $\varphi\in \PSH(X,\theta)_{>0}$ can be characterized using the difference between the volume and the mass. We therefore introduce
+    \[
+    \Macron(\theta_{\varphi})\coloneqq \vol \theta_{\varphi}-\int_X \theta_{\varphi}^n.
+    \]
+    \index{$\Macron$}
+\end{remark}
+
+An immediate question is to verify that \cref{def:Igoodpot} is independent of the choice of $\theta$.
+\begin{lemma}\label{lma:Igoodinsenspert}
+Let $\varphi\in \PSH(X,\theta)_{>0}$ for some smooth closed real $(1,1)$-form $\theta$ on $X$. Take a Kähler form $\omega$ on $X$. Then the following are equivalent:
+\begin{enumerate}
+    \item\label{itm:lma:Igoodinsenspert:1} $P_{\theta}[\varphi]=P_{\theta}[\varphi]_{\mathcal{I}}$;
+    \item\label{itm:lma:Igoodinsenspert:2} $P_{\theta+\omega}[\varphi]=P_{\theta+\omega}[\varphi]_{\mathcal{I}}$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+    \ref{itm:lma:Igoodinsenspert:1} $\implies$ \ref{itm:lma:Igoodinsenspert:2}. By \cref{thm:charIgoodasclosure}, we can find a sequence $(\varphi_j)_j$ in $\PSH(X,\theta)$ with analytic singularities such that $\varphi_j\xrightarrow{d_{S,\theta}}\varphi$. By \cref{cor:dSconv_changetheta}, we have $\varphi_j\xrightarrow{d_{S,\theta+\omega}}\varphi$. Therefore, by \cref{thm:charIgoodasclosure} again, \ref{itm:lma:Igoodinsenspert:2} holds.
+
+    \ref{itm:lma:Igoodinsenspert:2} $\implies$ \ref{itm:lma:Igoodinsenspert:1}. Suppose that \ref{itm:lma:Igoodinsenspert:1} fails, so that
+\[
+\int_X (\theta+\ddc \varphi)^n< \int_X (\theta+\ddc P_{\theta}[\varphi]_{\mathcal{I}})^n.
+\]
+Since $\varphi \preceq P_{\theta}[\varphi]_{\mathcal I}$, the monotonicity theorem \cref{thm:mono} gives
+\[
+    \int_X \theta_{\varphi}^i\wedge\omega^{n-i}\leq \int_X \theta_{P_{\theta}[\varphi]_{\mathcal I}}^i\wedge\omega^{n-i}
+\]
+for all $i=0,\ldots,n$, and the inequality is strict for $i=n$.
+It follows that
+\[
+\begin{aligned}
+\int_X (\theta+\omega+\ddc \varphi)^n
+=& \sum_{i=0}^n\binom{n}{i}\int_X \theta_{\varphi}^i\wedge \omega^{n-i}\\
+<& \sum_{i=0}^n\binom{n}{i}\int_X \theta_{P_{\theta}[\varphi]_{\mathcal{I}}}^i\wedge \omega^{n-i}\\
+=& \int_X (\theta+\omega+\ddc P_{\theta}[\varphi]_{\mathcal{I}})^n
+\\
+\leq &\int_X (\theta+\omega+\ddc P_{\theta+\omega}[\varphi]_{\mathcal{I}})^n.
+\end{aligned}
+\]
+So \ref{itm:lma:Igoodinsenspert:2} fails as well.
+\end{proof}
+
+
+\begin{corollary}\label{cor:Igoodclosed}
+    Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class.
+    Let $(\varphi_j)_{j\in I}$ be a net of $\mathcal{I}$-good potentials in $\PSH(X,\theta)$ such that $\varphi_j\xrightarrow{d_S}\varphi$. Then $\varphi$ is $\mathcal{I}$-good.
+\end{corollary}
+Note that we do not need to assume that $\varphi\in \PSH(X,\theta)_{>0}$.
+\begin{proof}
+    By adding a Kähler form to $\theta$, and using \cref{lma:Igoodinsenspert,cor:dSconv_changetheta}, we may assume that $\varphi_j,\varphi\in \PSH(X,\theta)_{>0}$ for all $j\in I$. It follows from \cref{thm:charIgoodasclosure} that
+    \[
+        \int_X \theta_{\varphi_j}^n=\vol \theta_{\varphi_j}
+    \]
+    for all $j\in I$. Taking limit with respect to $j$ with the help of \cref{thm:contvolu}, we conclude that
+    \[
+        \int_X \theta_{\varphi}^n=\vol \theta_{\varphi}.
+    \]
+    Therefore, by \cref{thm:charIgoodasclosure} again, we find that $\varphi$ is $\mathcal{I}$-good.
+\end{proof}
+
+\begin{example}\label{ex:analyIgood}
+    Assume that $\varphi\in \QPSH(X)$ has analytic singularities. Then $\varphi$ is $\mathcal{I}$-good. This is proved in \cref{prop:analysingcompPandPI}.
+
+    In particular, the potential in \cref{ex:logsingP1} is $\mathcal{I}$-good.
+\end{example}
+
+\begin{example}\label{ex:ImodelIgood}
+Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class, and let $\varphi\in \PSH(X,\theta)_{>0}$\footnote{It is not known to us whether the same holds when $\varphi$ has vanishing mass.} be an $\mathcal{I}$-model potential. Then $\varphi$ is $\mathcal{I}$-good.
+
+In particular, $V_{\theta}$ is $\mathcal{I}$-good.
+\end{example}
+
+\begin{example}\label{ex:fullmassIgood}
+Let $\theta$ be a closed real smooth $(1,1)$-form on $X$ representing a big cohomology class, and let $\varphi\in \mathcal{E}(X,\theta)$. Then $\varphi$ is $\mathcal{I}$-good. In fact, since $P_{\theta}[\varphi]=V_{\theta}$, we deduce that $P_{\theta}[\varphi]_{\mathcal{I}}=V_{\theta}$ as well.
+
+    In particular, the potential in \cref{ex:loglogsing} is $\mathcal{I}$-good.
+\end{example}
+
+A further class of examples of $\mathcal{I}$-good singularities will be given in \cref{ex:toricIgood} below.
+
+There do exist, however, non-$\mathcal{I}$-good potentials.
+\begin{example}\label{ex:Igood:L228}
+    The potential in \cref{ex:BBJ} is not $\mathcal{I}$-good. In fact, since all Lelong numbers of $\varphi$ vanish, we know that $\varphi\sim_{\mathcal{I}}0$, hence
+    \[
+    P_{2\omega}[\varphi]_{\mathcal{I}}=0.
+    \]
+    On the other hand,
+    \[
+    \int_X (2\omega+\ddc \varphi)^1=\int_X \omega<\int_X (2\omega),
+    \]
+    where $(2\omega+\ddc \varphi)^1$ is understood in the non-pluripolar sense.
+\end{example}
+
+Quasi-equisingular approximations and $d_S$-convergent sequences are related in the following manner:
+\begin{corollary}\label{cor:quasi-equichar}
+    Let $\varphi\in \PSH(X,\theta)_{>0}$ and $(\epsilon_j)_j$ be a decreasing sequence in $\mathbb{R}_{\geq 0}$ with limit $0$. Fix a Kähler form $\omega$ on $X$.
+    Consider a decreasing sequence $(\varphi_j)_{j>0}$, where each $\varphi_j\in \PSH(X,\theta+\epsilon_j\omega)$ is a potential with analytic singularities. Assume that $\varphi=\inf_j \varphi_j$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:cor:quasi-equichar:1} $\varphi_j\xrightarrow{d_S}P_{\theta}[\varphi]_{\mathcal{I}}$\footnote{Just to be sure, this means $\varphi_j\xrightarrow{d_{S,\theta+\epsilon \omega}}P_{\theta}[\varphi]_{\mathcal{I}}$ for any $\epsilon>0$. The choice of $\epsilon$ is irrelevant due to \cref{cor:dSconv_changetheta}.}, and
+        \item\label{itm:cor:quasi-equichar:2} $(\varphi_j)_j$ is a quasi-equisingular approximation of $\varphi$.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    By \cref{cor:dSconv_changetheta} and \cref{ex:ImodelIgood}, we may replace $\theta$ by $\theta+C\omega$ for some large constant $C>0$ and assume that $\varphi,\varphi_j\in \PSH(X,\theta-\omega)$ for all $j\geq 1$.
+
+    Here the limit in \ref{itm:cor:quasi-equichar:1} is unchanged by this replacement. Indeed, $P_{\theta}[\varphi]_{\mathcal I}$ is $\mathcal I$-model, hence $\mathcal I$-good by \cref{ex:ImodelIgood}. This implies
+\[
+    P_{\theta+C\omega}\bigl[P_{\theta}[\varphi]_{\mathcal I}\bigr]=P_{\theta+C\omega}\bigl[P_{\theta}[\varphi]_{\mathcal I}\bigr]_{\mathcal I}=P_{\theta+C\omega}[\varphi]_{\mathcal I}.
+\]
+Thus the old and new targets are $P$-equivalent in the enlarged class, and \cref{prop:ds0char,cor:dSconv_changetheta} shows that condition \ref{itm:cor:quasi-equichar:1} is
+unchanged.
+
+    \ref{itm:cor:quasi-equichar:2} $\implies$ \ref{itm:cor:quasi-equichar:1}. This is already proved in the proof of \cref{thm:charIgoodasclosure}.
+
+    \ref{itm:cor:quasi-equichar:1} $\implies$ \ref{itm:cor:quasi-equichar:2}. This follows from \cref{thm:equising_cond_general}.
+\end{proof}
+
+
+\begin{corollary}\label{cor:quasi_equising_bimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a compact K\"ahler manifold $Y$. Let $\varphi\in \PSH(X,\theta)$ and let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$. Then $(\pi^*\varphi_j)_j$ is a quasi-equisingular approximation of the $\pi^*\theta$-psh function $\pi^*\varphi$.
+\end{corollary}
+This result is by no means obvious from the definition of quasi-equisingular approximations.
+\begin{proof}
+    Let $(\epsilon_j)_j$ and $\omega$ be as in \cref{def:quasiequsing}, so that $\epsilon_j\searrow 0$ and $\varphi_j\in\PSH(X,\theta+\epsilon_j\omega)$ for all $j$. Choose a K\"ahler form $\tilde\omega$ on $Y$ and a constant $C>0$ such that $\pi^*\omega\leq C\tilde\omega$. Then
+    \[
+        \pi^*\varphi_j\in \PSH(Y,\pi^*\theta+C\epsilon_j\tilde\omega).
+    \]
+    Moreover, the sequence $(\pi^*\varphi_j)_j$ is decreasing, has analytic singularities, and decreases to $\pi^*\varphi$.
+
+    It remains to verify the quasi-equisingular condition \itemref{itm:def:quasiequsing:4}. Fix a constant $A>0$. Then $(\varphi_j)_j$ is also a quasi-equisingular approximation of $\varphi$ with respect to $\theta+A\omega$. Since $\theta_{\varphi}+A\omega$ is a K\"ahler current, \cref{cor:quasi-equichar} gives
+    \[
+        \varphi_j\xrightarrow{d_S}P_{\theta+A\omega}[\varphi]_{\mathcal I}.
+    \]
+    Viewing the convergence in a fixed enlarged background class, pulling back and using \cref{cor:dSconv_bimero,prop:Ienvelopebimero}, we get
+    \[
+        \pi^*\varphi_j\xrightarrow{d_S}\pi^*P_{\theta+A\omega}[\varphi]_{\mathcal I}
+        =P_{\pi^*(\theta+A\omega)}[\pi^*\varphi]_{\mathcal I}.
+    \]
+    The domination $\pi^*\omega\leq C\tilde\omega$ also gives
+    \[
+        \pi^*\varphi_j\in \PSH\bigl(Y,\pi^*(\theta+A\omega)+C\epsilon_j\tilde\omega\bigr),
+    \]
+    so the preceding convergence is in the setting of \cref{cor:quasi-equichar} on $Y$. The potential $\pi^*\varphi$ has positive mass with respect to $\pi^*(\theta+A\omega)$ by the bimeromorphic invariance of non-pluripolar products \cref{prop:nppmassinv}. Applying \cref{cor:quasi-equichar} again on $Y$ shows that $(\pi^*\varphi_j)_j$ satisfies the quasi-equisingular condition \itemref{itm:def:quasiequsing:4} for $\pi^*\varphi$. Combining this with the first paragraph proves the assertion with respect to $\pi^*\theta$.
+\end{proof}
+
+
+
+
+
+\section{Properties of \texorpdfstring{$\mathcal{I}$}{I}-good singularities}\label{sec:Igoodprop}
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+
+
+We show that $\mathcal{I}$-goodness is preserved by a number of natural operations.
+\begin{proposition}\label{prop:Igoodlinear}
+    Let $\varphi,\psi\in \QPSH(X)$ be $\mathcal{I}$-good and $\lambda>0$. Then the following potentials are all $\mathcal{I}$-good:
+    \begin{enumerate}
+        \item\label{itm:prop:Igoodlinear:1} $\varphi+\psi$;
+        \item\label{itm:prop:Igoodlinear:2} $\varphi\lor \psi$;
+        \item\label{itm:prop:Igoodlinear:3} $\lambda\varphi$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Take a closed real smooth $(1,1)$-form $\theta$ on $X$ such that $\varphi,\psi\in \PSH(X,\theta)_{>0}$. It follows from \cref{thm:charIgoodasclosure} that there are sequences $(\varphi_j)_j,(\psi_j)_j$ in $\PSH(X,\theta)$ with analytic singularities such that $\varphi_j\xrightarrow{d_S}\varphi$ and $\psi_j\xrightarrow{d_S}\psi$.
+
+    By \cref{thm:dSadditivity}, \cref{prop:lor_dS_conv}, we have
+    \[
+        \varphi_j+\psi_j\xrightarrow{d_S}\varphi+\psi,\quad \varphi_j\lor\psi_j\xrightarrow{d_S}\varphi\lor\psi.
+    \]
+    By \cref{prop:analysingclosed}, the potentials $\varphi_j+\psi_j$ and $\varphi_j\lor\psi_j$ have analytic singularities. So $\varphi+\psi$ and $\varphi\lor\psi$ are $\mathcal{I}$-good by \cref{thm:charIgoodasclosure}.
+
+    On the other hand, \cref{lma:dS_res} gives
+    \[
+        \lambda \varphi_j\xrightarrow{d_S}\lambda \varphi.
+    \]
+    Here the convergence is understood in the scaled class. So by \cref{thm:charIgoodasclosure}, in order to show that $\lambda\varphi$ is $\mathcal{I}$-good, it suffices to show that $\lambda \varphi_j$ is $\mathcal{I}$-good. In other words, we may assume that $\varphi$ has analytic singularities. We may further assume that $\varphi\leq 0$.
+
+    In this case, take a decreasing sequence of rational numbers $\lambda_j\searrow \lambda$. Take a sufficiently large Kähler form $\omega$ on $X$ so that $\lambda_j\varphi,\lambda\varphi\in \PSH(X,\omega)_{>0}$ for any $j$. Then observe that
+    \[
+        \lambda\varphi=\uscsup[j>0] \lambda_j \varphi.
+    \]
+    Therefore, $\lambda_j\varphi\xrightarrow{d_S} \lambda \varphi$ by \cref{cor:incnetdSconv}. Each $\lambda_j \varphi$ has analytic singularities, and hence is $\mathcal{I}$-good by \cref{ex:analyIgood}. Therefore, $\lambda\varphi$ is $\mathcal{I}$-good by \cref{thm:charIgoodasclosure}.
+\end{proof}
+
+\begin{example}\label{ex:eleIgood}
+    Let $L$ be a pseudo-effective line bundle on $X$. Elementary metrics on $L$ are defined in \cref{def:elemetric}. Let $h$ be an elementary metric on $L$. Then $\ddc h$ is $\mathcal{I}$-good.
+
+    This is a direct consequence of \cref{prop:Igoodlinear} and \cref{ex:analyIgood}, and the fact that $\mathcal{I}$-goodness depends only on the $P$-singularity type.
+\end{example}
+
+\begin{proposition}\label{prop:Igoodsup}
+    Let $(\varphi_j)_{j\in I}$ be a non-empty family of $\mathcal{I}$-good potentials in $\PSH(X,\theta)$ for some closed real smooth $(1,1)$-form $\theta$ on $X$. Assume that this family is locally uniformly bounded from above. Then $\uscsup[j\in I] \varphi_j$ is $\mathcal{I}$-good.
+\end{proposition}
+\begin{proof}
+    After adding a K\"ahler form to $\theta$, we may assume that $\varphi_j\in \PSH(X,\theta)_{>0}$ for all $j\in I$.
+
+    When $I$ is finite, this result follows from \cref{prop:Igoodlinear}.
+    When $I$ is infinite, by Choquet's lemma \cref{prop:Choquet}, we may assume that $I=\mathbb{Z}_{>0}$. Replacing $\varphi_j$ by $\varphi_1\lor\cdots\lor\varphi_j$ and using \cref{prop:Igoodlinear}, we may assume that the sequence $(\varphi_j)_j$ is increasing. In this case, as shown in \cref{cor:incnetdSconv},
+    \[
+        \varphi_j\xrightarrow{d_S}\uscsup[ i\in \mathbb{Z}_{>0}] \varphi_i.
+    \]
+    Therefore, $\uscsup[i\in \mathbb{Z}_{>0}] \varphi_i$ is $\mathcal{I}$-good by \cref{cor:Igoodclosed}.
+\end{proof}
+
+\section{Mixed volumes}\label{sec:mix_vol}
+
+We first extend the notion of volume in \cref{def:volqpsh} to the mixed case.
+Let $\theta_1,\ldots,\theta_n$ be smooth closed real $(1,1)$-forms on $X$ representing pseudo-effective classes.
+
+\begin{definition}\label{def:mix_vol2}
+    Let $\varphi_i\in \PSH(X,\theta_i)$ for $i=1,\ldots,n$. Write $T_i=\theta_i+\ddc \varphi_i$ for each $i=1,\ldots,n$. Assume that $\vol T_i>0$ for all $i=1,\ldots,n$.
+    We define the \emph{mixed volume}\index{mixed volume} $\vol(T_1,\ldots,T_n)$\index{$\vol(T_1,\ldots,T_n)$} as follows:
+            \begin{equation}\label{eq:volmixed}
+                \vol(T_1,\ldots,T_n)=\int_X \left(\theta_1+\ddc P_{\theta_1}[\varphi_1]_{\mathcal{I}}\right)\wedge \dots\wedge \left(\theta_n+\ddc P_{\theta_n}[\varphi_n]_{\mathcal{I}}\right).
+            \end{equation}
+\end{definition}
+When $\vol T_i>0$ for each $i=1,\ldots,n$, the definition \eqref{eq:volmixed} does not depend on how we represent $T_i$ as $T_i=\theta_i+\ddc \varphi_i$, this is a consequence of \cref{thm:mono} and \cref{prop:Ienvindeptheta}.
+
+
+\begin{lemma}\label{lma:vollinearlimit2}\leavevmode
+    \begin{enumerate}
+        \item\label{itm:lma:vollinearlimit2:1} The mixed volume is symmetric in its $n$-variables.
+        \item\label{itm:lma:vollinearlimit2:2} For any Kähler form $\omega$ on $X$, we have
+        \begin{equation}\label{eq:mix_vol_comp1}
+            \vol\left(T_1,\ldots,T_n\right)=\lim_{\epsilon\to 0+} \vol\left(T_1+\epsilon\omega,\ldots,T_n+\epsilon\omega\right).
+        \end{equation}
+        \item\label{itm:lma:vollinearlimit2:3} Consider closed positive $(1,1)$-currents $T_1,\ldots,T_n,T_1'$ on $X$ with positive volumes, then
+        \begin{equation}
+            \vol (T_1+T_1',T_2,\ldots,T_n)=\vol (T_1,T_2,\ldots,T_n)+\vol (T_1',T_2,\ldots,T_n).
+        \end{equation}
+        \item\label{itm:lma:vollinearlimit2:4} Consider closed positive $(1,1)$-currents $T_1,\ldots,T_n$ on $X$ with positive volumes and $\lambda > 0$, then
+        \[
+        \vol (\lambda T_1,T_2,\ldots,T_n)=\lambda \vol (T_1,T_2,\ldots,T_n).
+        \]
+        \item\label{itm:lma:vollinearlimit2:5} Suppose that $T_1,\ldots,T_n,S_1,\ldots,S_n$ are closed positive $(1,1)$-currents on $X$ with positive volumes such that $T_i\preceq_{\mathcal{I}} S_i$ and $\{T_i\}=\{S_i\}$ for each $i=1,\ldots,n$. Then
+        \begin{equation}
+            \vol(T_1,\ldots,T_n)\leq \vol(S_1,\ldots,S_n).
+        \end{equation}
+    \end{enumerate}
+\end{lemma}
+The notation $\Reg$ is defined in \eqref{eq:Siudec}.
+\begin{proof}
+    \ref{itm:lma:vollinearlimit2:1} This follows from the symmetry of the mixed non-pluripolar product in \eqref{eq:volmixed}, cf. \itemref{itm:prop:npp1:2}.
+
+    \ref{itm:lma:vollinearlimit2:2} For each $i$ and each $\epsilon>0$, we have
+    \[
+        P_{\theta_i}[\varphi_i]_{\mathcal{I}}\sim_P P_{\theta_i+\epsilon\omega}\left[P_{\theta_i}[\varphi_i]_{\mathcal{I}}\right]_{\mathcal{I}}=P_{\theta_i+\epsilon\omega}[\varphi_i]_{\mathcal{I}}
+    \]
+    as a consequence of \cref{ex:ImodelIgood}. Hence using \cref{prop:mono2} and the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6},
+    \[
+        \begin{aligned}
+            &\lim_{\epsilon\to 0+}\vol(T_1+\epsilon\omega,\ldots,T_n+\epsilon\omega)\\
+            =&\lim_{\epsilon\to 0+}\int_X \left(\theta_1+\epsilon\omega+\ddc P_{\theta_1}[\varphi_1]_{\mathcal{I}}\right)\wedge \cdots \wedge \left(\theta_n+\epsilon\omega+\ddc P_{\theta_n}[\varphi_n]_{\mathcal{I}}\right)\\
+            =& \vol(T_1,\ldots,T_n).
+        \end{aligned}
+    \]
+
+    \ref{itm:lma:vollinearlimit2:3}
+    We write $T_i=\theta_i+\ddc \varphi_i$ as before for each $i$ and $T_1'=\theta_1'+\ddc \varphi_1'$.
+    The potentials $P_{\theta_1}[\varphi_1]_{\mathcal I}$ and $P_{\theta_1'}[\varphi_1']_{\mathcal I}$ are $\mathcal I$-model with positive masses, hence $\mathcal I$-good. By \cref{prop:Igoodlinear}, their sum is $\mathcal I$-good. Moreover, it is $\mathcal I$-equivalent to $\varphi_1+\varphi_1'$. Then thanks to \cref{prop:Igoodlinear},
+    \[
+    P_{\theta_1}[\varphi_1]_{\mathcal{I}}+P_{\theta_1'}[\varphi_1']_{\mathcal{I}}\sim_P P_{\theta_1+\theta_1'}\left[P_{\theta_1}[\varphi_1]_{\mathcal{I}}+P_{\theta_1'}[\varphi_1']_{\mathcal{I}} \right]_{\mathcal{I}} = P_{\theta_1+\theta_1'}\left[\varphi_1+\varphi_1'\right]_{\mathcal{I}}
+    \]
+    Thus by \cref{prop:mono2}, we have
+    \[
+    \begin{aligned}
+        &\vol (T_1+T_1',T_2,\ldots,T_n)\\
+        =&\int_X \left( \theta_1+\theta_1'+\ddc P_{\theta_1+\theta_1'}[\varphi_1+\varphi_1']_{\mathcal{I}} \right)\wedge \left( \theta_2+\ddc P_{\theta_2}[\varphi_2]_{\mathcal{I}}\right)\wedge \cdots \\
+        &\wedge  \left( \theta_n+\ddc P_{\theta_n}[\varphi_n]_{\mathcal{I}}\right)\\
+        =&\int_X \left( \theta_1+\theta_1'+\ddc P_{\theta_1}[\varphi_1]_{\mathcal{I}}+\ddc P_{\theta_1'}[\varphi_1']_{\mathcal{I}} \right)\wedge \left( \theta_2+\ddc P_{\theta_2}[\varphi_2]_{\mathcal{I}}\right)\wedge \cdots \\
+        &\wedge  \left( \theta_n+\ddc P_{\theta_n}[\varphi_n]_{\mathcal{I}}\right)\\
+        =& \vol (T_1,T_2,\ldots,T_n)+\vol (T_1',T_2,\ldots,T_n).
+    \end{aligned}
+    \]
+
+    \ref{itm:lma:vollinearlimit2:4} This follows from \eqref{eq:volmixed}, \itemref{itm:prop:PIconc:1} and \itemref{itm:prop:npp1:6}.
+
+    \ref{itm:lma:vollinearlimit2:5} Our assertion follows from the monotonicity theorem \cref{thm:mono}.
+\end{proof}
+
+In view of \itemref{itm:lma:vollinearlimit2:2}, we may extend the definition of mixed volumes to the more general setting as follows:
+\begin{definition}\label{def:mix_vol}
+    Let $\varphi_i\in \PSH(X,\theta_i)$ for $i=1,\ldots,n$. Write $T_i=\theta_i+\ddc \varphi_i$ for each $i=1,\ldots,n$. Take a Kähler form $\omega$ on $X$. We define the \emph{mixed volume}\index{mixed volume} $\vol(T_1,\ldots,T_n)$\index{$\vol(T_1,\ldots,T_n)$} as
+        \begin{equation}\label{eq:volmixedgeneral}
+            \vol\left(T_1,\ldots,T_n\right)=\lim_{\epsilon\to 0+}\vol\left(T_1+\epsilon\omega,\ldots,T_n+\epsilon\omega\right).
+        \end{equation}
+    Note that $\vol(T_1+\epsilon\omega,\ldots,T_n+\epsilon\omega)$ is decreasing as $\epsilon \to 0+$ due to \itemref{itm:lma:vollinearlimit2:3}, so the limit exists.
+
+    Furthermore, $\vol(T_1,\ldots,T_n)$ does not depend on the choice of $\omega$, as a consequence of \itemref{itm:lma:vollinearlimit2:3}.
+\end{definition}
+
+
+
+\begin{proposition}\label{prop:vollinearlimit}\leavevmode
+    \begin{enumerate}
+        \item\label{itm:prop:vollinearlimit:1} The mixed volume is symmetric in its $n$-variables.
+        \item\label{itm:prop:vollinearlimit:2} Consider closed positive $(1,1)$-currents $T_1,\ldots,T_n,T_1'$ on $X$, then
+        \begin{equation}
+            \vol (T_1+T_1',T_2,\ldots,T_n)=\vol (T_1,T_2,\ldots,T_n)+\vol (T_1',T_2,\ldots,T_n).
+        \end{equation}
+        \item\label{itm:prop:vollinearlimit:3} Consider closed positive $(1,1)$-currents $T_1,\ldots,T_n$ on $X$ and $\lambda\geq 0$, then
+        \[
+        \vol (\lambda T_1,T_2,\ldots,T_n)=\lambda \vol (T_1,T_2,\ldots,T_n).
+        \]
+        \item\label{itm:prop:vollinearlimit:4} Suppose that $T_1,\ldots,T_n,S_1,\ldots,S_n$ are closed positive $(1,1)$-currents on $X$ such that $T_i\preceq_{\mathcal{I}} S_i$ and $\{T_i\}=\{S_i\}$ for each $i=1,\ldots,n$. Then
+        \begin{equation}
+            \vol(T_1,\ldots,T_n)\leq \vol(S_1,\ldots,S_n).
+        \end{equation}
+        \item\label{itm:prop:vollinearlimit:5} Suppose that $T_1,\ldots,T_n$ are closed positive $(1,1)$-currents on $X$. Then
+        \begin{equation}
+            \vol\left(T_1,\ldots,T_n \right)=\vol\left(\Reg T_1,\ldots,\Reg T_n \right).
+        \end{equation}
+        \item\label{itm:prop:vollinearlimit:6} For any closed positive $(1,1)$-current $T$ on $X$, we have
+        \begin{equation}\label{eq:mix_vol_ext_pure}
+            \vol(T,\ldots,T)=\vol T.
+        \end{equation}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \ref{itm:prop:vollinearlimit:1}, \ref{itm:prop:vollinearlimit:2}, \ref{itm:prop:vollinearlimit:3}, \ref{itm:prop:vollinearlimit:4} are immediate consequences of the corresponding properties proved in \cref{lma:vollinearlimit2}.
+
+    \ref{itm:prop:vollinearlimit:5} Using \ref{itm:prop:vollinearlimit:3} and \ref{itm:prop:vollinearlimit:4}, it suffices to establish the following: Suppose that
+    \begin{equation}\label{eq:T_count_sum_temp1}
+        T=\sum_i c_i[E_i]
+    \end{equation}
+    is a closed positive $(1,1)$-current on $X$, where $\{E_i\}$ is a countable collection of prime divisors on $X$ and $c_i>0$. Then
+    \begin{equation}\label{eq:volTT2Tn_temp1}
+    \vol\left(T,T_2,\ldots,T_n \right)=0
+    \end{equation}
+    for any closed positive $(1,1)$-currents $T_2,\ldots,T_n$ on $X$.
+
+    \textbf{Step~1}. We first assume that \eqref{eq:T_count_sum_temp1} is a finite sum. Fix a Kähler form $\omega$ on $X$.
+
+    In this case, thanks to \ref{itm:lma:vollinearlimit2:3} and \ref{itm:lma:vollinearlimit2:4} again, we may assume that $T=[E]$ for some prime divisor $E$ on $X$. Write $[E]=\theta_{\varphi}$. Then $\varphi$ has analytic singularities thanks to \cref{prop:LelongPoincare}. Therefore, $P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}}\sim \varphi$ for any $\epsilon>0$ due to \cref{prop:analysingcompPandPI}. Write $T_i=\theta_i+\ddc \varphi_i$ for $i=2,\ldots,n$, and choose $C>0$ so that $C\omega+\theta_i$ are Kähler forms for each $i=2,\ldots,n$. Then
+    \[
+    \begin{aligned}
+    &\vol(T,T_2,\ldots,T_n)\\
+    =& \lim_{\epsilon\to 0+} \int_X \left([E]+\epsilon\omega\right)\wedge \left( \theta_2+\epsilon\omega+\ddc P_{\theta_2+\epsilon\omega}[\varphi_2]_{\mathcal{I}}\right)\wedge \cdots \\
+    &\wedge \left( \theta_n+\epsilon\omega+\ddc P_{\theta_n+\epsilon\omega}[\varphi_n]_{\mathcal{I}}\right)\\
+    =&\lim_{\epsilon\to 0+} \epsilon\int_X \omega \wedge \left( \theta_2+\epsilon\omega+\ddc P_{\theta_2+\epsilon\omega}[\varphi_2]_{\mathcal{I}}\right)\wedge \cdots \\
+    &\wedge \left( \theta_n+\epsilon\omega+\ddc P_{\theta_n+\epsilon\omega}[\varphi_n]_{\mathcal{I}}\right)\\
+    \leq &\lim_{\epsilon\to 0+} \epsilon\int_X \omega \wedge \left( \theta_2+C\omega\right)\wedge \cdots \wedge \left( \theta_n+C\omega\right)\\
+    =&0,
+    \end{aligned}
+    \]
+    where the inequality step follows from the monotonicity theorem \cref{thm:mono} and the fact that $P_{\theta_i+\epsilon\omega}[\varphi_i]_{\mathcal{I}}\leq 0$ for all $i=2,\ldots,n$.
+
+    \textbf{Step~2}. We prove the case where $\{E_i\}$ is infinite. We may assume that $i$ runs over $\mathbb{Z}_{>0}$.
+
+    Write $T_i=\theta_{i}+\ddc\varphi_i$ for $i=2,\ldots,n$ as before.
+    Fix a Kähler form $\omega$ on $X$ so that $\theta_i+\omega$ is a Kähler form for each $i=2,\ldots,n$. Fix $\epsilon>0$.
+
+    We can find $N_0>0$ so that for any $N\geq N_0$, the class of
+    \[
+    \epsilon\omega+ \sum_{i=N+1}^{\infty}c_i[E_i]
+    \]
+    is Kähler. Take a Kähler form $\omega_N$ in this class.
+    Then the currents
+    \[
+    \sum_{i=1}^N c_i [E_i]+\omega_N,\quad \sum_{i=1}^{\infty} c_i [E_i]+\epsilon\omega
+    \]
+    all lie in the same cohomology class.
+    Moreover,
+    \[
+        \sum_{i=1}^{\infty} c_i [E_i]+\epsilon\omega\preceq_{\mathcal{I}}\sum_{i=1}^N c_i [E_i]+\omega_N.
+    \]
+    Therefore, by the monotonicity in \ref{itm:lma:vollinearlimit2:5}, followed by the finite divisorial case of Step~1,
+    \[
+    \begin{aligned}
+    \vol\left(T,T_2,\ldots,T_n\right)\leq & \vol\left(T+\epsilon\omega,T_2,\ldots,T_n\right)\\
+    \leq & \vol\left(\sum_{i=1}^N c_i [E_i]+\omega_N,T_2,\ldots,T_n\right)\\
+    =&  \vol\left(\omega_N,T_2,\ldots,T_n\right)\\
+    \leq & \int_X \omega_N\wedge (\theta_2+\omega)\wedge \cdots\wedge (\theta_n+\omega).
+    \end{aligned}
+    \]
+    Letting $N\to\infty$, and using $\{\omega_N\}\to \{\epsilon\omega\}$, we get
+    \[
+    \vol\left(T,T_2,\ldots,T_n\right)\leq \epsilon \int_X \omega\wedge (\theta_2+\omega)\wedge \cdots\wedge (\theta_n+\omega).
+    \]
+    Since $\epsilon>0$ is arbitrary, we conclude \eqref{eq:volTT2Tn_temp1}.
+
+    \ref{itm:prop:vollinearlimit:6} Write $T=\theta_{\varphi}$. In more concrete terms, we need to show that
+    \[
+    \lim_{\epsilon\to 0+}\int_X (\theta+\epsilon\omega+\ddc P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}})^n=\int_X (\theta+\ddc P_{\theta}[\varphi]_{\mathcal{I}})^n.
+    \]
+
+    We may replace $\varphi$ by $P_{\theta}[\varphi]_{\mathcal{I}}$ and assume that $\varphi$ is $\mathcal{I}$-model in $\PSH(X,\theta)$. Then we claim that
+    \[
+    \varphi=\inf_{\epsilon>0}P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}}.
+    \]
+    From this, our assertion follows from \cref{prop:vol_limit_model}.
+
+    The $\leq$ direction is clear. For the converse, since $\varphi$ is $\mathcal{I}$-model, it suffices to show that for each prime divisor $E$ over $X$, we have
+    \[
+    \nu(\varphi,E)\leq \nu\left(\inf_{\epsilon>0}P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}},E\right).
+    \]
+    We simply compute
+    \[
+    \nu\left(\inf_{\epsilon>0}P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}},E\right)\geq \sup_{\epsilon>0}\nu\left(P_{\theta+\epsilon\omega}[\varphi]_{\mathcal{I}},E\right)=\nu(\varphi,E).
+    \]
+\end{proof}
+
+
+\begin{lemma}\label{lma:perturbvol}
+    Let $\omega$ be a Kähler form on $X$. Then there is a constant $C>0$ depending only on $X,\omega,\{T_1\},\ldots,\{T_n\}$ such that
+    \[
+    0\leq \vol(T_1+\epsilon\omega,\ldots, T_n+\epsilon\omega)-\vol(T_1,\ldots,T_n)\leq C\epsilon
+    \]
+    for any $\epsilon\in [0,1]$.
+\end{lemma}
+\begin{proof}
+    By the multi-linearity established in \cref{prop:vollinearlimit}, we can write
+    \[
+        \vol\left(T_1+\epsilon\omega,\ldots, T_n+\epsilon\omega\right)-\vol(T_1,\ldots,T_n)
+    \]
+    as a linear combination of the $2^n-1$-terms:
+    \[
+        \epsilon^m\vol\left(\omega^m, T_{i_1},\ldots,T_{i_{n-m}} \right)
+    \]
+    where $J\subseteq \{1,\ldots,n\}$ is a non-empty subset of cardinality $m$, and $\{i_1,\ldots,i_{n-m}\}$ is the complement of $J$.
+    It suffices to show that the coefficients are bounded by a constant as above. Take $D\geq 0$ as the minimal non-negative number so that $D\{\omega\}+\{T_i\}$ is nef for each $i=1,\ldots,n$. Then by the monotonicity theorem \cref{thm:mono},
+    \[
+        \vol\left(\omega^m, T_{i_1},\ldots,T_{i_{n-m}} \right)\leq \{\omega\}^m\cap \left( \{T_{i_1}\}+D\{\omega\} \right) \cap \cdots \cap \left( \{T_{i_{n-m}}\}+D\{\omega\} \right).
+    \]
+    Our assertion follows.
+\end{proof}
+
+Next we show that \cref{thm:contvolu} continues to hold even when $\varphi$ has vanishing mass. We prove a slightly more general result:
+\begin{theorem}\label{thm:mvolcont}
+    Let $\theta_1,\ldots,\theta_n$ be smooth closed real $(1,1)$-forms representing big cohomology classes. Suppose that $(\varphi_j^k)_{k\in I}$ are nets in $\PSH(X,\theta_j)$ and $\varphi_j\in \PSH(X,\theta_j)$ for $j=1,\ldots,n$. We assume that $\varphi_j^k\xrightarrow{d_S}\varphi_j$ for each $j=1,\ldots,n$. Then
+    \begin{equation}\label{eq:convmixedvolds}
+        \lim_{k\in I}\vol \left( \theta_{1,\varphi_1^k},\ldots, \theta_{n,\varphi_n^k}\right)=\vol \left( \theta_{1,\varphi_1},\ldots, \theta_{n,\varphi_n}\right).
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    Fix a Kähler form $\omega$. Then for any $\epsilon>0$, we have
+    \[
+    \lim_{k\in I}\vol \left( (\theta_1+\epsilon\omega)_{\varphi_1^k},\ldots, (\theta_n+\epsilon\omega)_{\varphi_n^k}\right)=\vol \left( (\theta_1+\epsilon\omega)_{\varphi_1},\ldots, (\theta_n+\epsilon\omega)_{\varphi_n}\right)
+    \]
+    as a consequence of \cref{cor:dSconv_changetheta}, \cref{thm:convdS} and \cref{thm:contPI}.
+
+    Now thanks to \cref{lma:perturbvol}, there is $C>0$ so that for each $k\in I$,
+    \[
+    \begin{aligned}
+    0\leq & \vol \left( (\theta_1+\epsilon\omega)_{\varphi_1^k},\ldots, (\theta_n+\epsilon\omega)_{\varphi_n^k}\right)-\vol \left( \theta_{1,\varphi_1^k},\ldots, \theta_{n,\varphi_n^k}\right)\leq C\epsilon,\\
+    0\leq & \vol \left( (\theta_1+\epsilon\omega)_{\varphi_1},\ldots, (\theta_n+\epsilon\omega)_{\varphi_n}\right)-\vol \left( \theta_{1,\varphi_1},\ldots, \theta_{n,\varphi_n}\right)\leq C\epsilon.
+    \end{aligned}
+    \]
+    Therefore, \eqref{eq:convmixedvolds} follows.
+\end{proof}
+
+\begin{corollary}\label{cor:contvolu2}
+    Let $\theta$ be a smooth closed real $(1,1)$-form representing a big cohomology class. Let $(\varphi_j)_{j\in I}$ be a net in $\PSH(X,\theta)$ and $\varphi\in \PSH(X,\theta)$. Assume that $\varphi_j\xrightarrow{d_S}\varphi$. Then
+    \begin{equation}\label{eq:Ivolcont2}
+        \vol \theta_{\varphi_j}\to \vol \theta_{\varphi},\quad \int_X \theta_{\varphi_j}^n\to \int_X \theta_{\varphi}^n.
+    \end{equation}
+\end{corollary}
+
+
+\begin{proof}
+    The first part of \eqref{eq:Ivolcont2} is a special case of \cref{thm:mvolcont}, while the second part of \eqref{eq:Ivolcont2} is a special case of \cref{thm:convdS}.
+\end{proof}
+
+
+The mixed volume has a log-concavity property:
+\begin{proposition}\label{prop:logvol}
+    Let $T_1,\ldots,T_n$ be closed positive $(1,1)$-currents on $X$. Then
+    \[
+    \vol(T_1,\ldots,T_n)\geq \prod_{i=1}^n(\vol T_i)^{1/n}.
+    \]
+\end{proposition}
+\begin{proof}
+    We may assume that $\vol T_i>0$ for each $i=1,\ldots,n$ since there is nothing to prove otherwise. In this case, we need to show that
+    \[
+    \begin{split}
+    &\int_X \left(\theta_1+\ddc P_{\theta_1}[\varphi_1]_{\mathcal{I}}\right)\wedge \cdots \wedge \left(\theta_n+\ddc P_{\theta_n}[\varphi_n]_{\mathcal{I}}\right)\\
+    \geq & \prod_{i=1}^n\left(\int_X \left(\theta_i+\ddc P_{\theta_i}[\varphi_i]_{\mathcal{I}} \right)^n \right)^{1/n}.
+    \end{split}
+    \]
+    This is a special case of \cref{thm:logconc}.
+\end{proof}
+
+Next, we also study how the mixed volume behaves under bimeromorphic transforms.
+\begin{proposition}\label{prop:biminv}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$ to $X$. Then
+    \[
+    \vol\left(\pi^*T_1,\ldots,\pi^*T_n\right)=\vol\left(T_1,\ldots,T_n\right).
+    \]
+\end{proposition}
+\begin{proof}
+    Using the definition of the mixed volume, we may easily reduce to the case where $\vol T_i>0$ for each $i=1,\ldots,n$. By \cref{prop:Ienvelopebimero}, we know that if we write $T_i=\theta_i+\ddc\varphi_i$, then
+    \[
+    \pi^*P_{\theta_i}[\varphi_i]_{\mathcal{I}}=P_{\pi^*\theta_i}[\pi^*\varphi_i]_{\mathcal{I}}
+    \]
+    for each $i=1,\ldots,n$.
+    In particular,
+    \[
+    \vol \pi^*T_i=\vol T_i>0.
+    \]
+    Our assertion follows from the bimeromorphic invariance of the non-pluripolar product \cref{prop:nppmassinv}.
+\end{proof}
+
+As for pushforward, we also have a similar result. We need a preliminary result:
+
+\begin{lemma}\label{lma:Siudec_pullpush}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$.
+    Then for any non-divisorial closed positive $(1,1)$-current $T$ on $Y$, we have
+    \[
+    \pi^* \pi_* T=T+\sum_{i=1}^N c_i [E_i]
+    \]
+    for finitely many $\pi$-exceptional divisors $E_i$ and $c_i>0$.
+\end{lemma}
+
+\begin{proof}
+    Let $E$ be the exceptional locus of $\pi$. Then
+    \[
+    T=\mathds{1}_{Y\setminus E}\pi^* \pi_* T.
+    \]
+    Therefore,
+    \[
+    \pi^* \pi_* T-T=\mathds{1}_E\pi^* \pi_* T,
+    \]
+    which has the stated form, due to the support theorems, see \cite[Section~8]{DemBook}.
+\end{proof}
+
+\begin{corollary}\label{cor:vol_inv_push}
+    Let $\pi\colon X\rightarrow Z$ be a proper bimeromorphic morphism from $X$ to a Kähler manifold $Z$. Then
+    \begin{equation}\label{eq:volpushinc}
+    \vol(T_1,\ldots,T_n)=\vol(\pi_*T_1,\ldots,\pi_*T_n).
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    Observe that we may assume that $T_i=\Reg T_i$ for all $i=1,\ldots,n$. In fact, since the pushforward of the divisorial part of $T_i$ is divisorial as well, hence by \itemref{itm:prop:vollinearlimit:5}, they do not contribute to the volumes.
+
+    Now by \cref{prop:biminv}, it remains to show that
+    \[
+    \vol(T_1,\ldots,T_n)=\vol(\pi^*\pi_*T_1,\ldots,\pi^*\pi_*T_n).
+    \]
+    By \cref{lma:Siudec_pullpush}, the difference $\pi^*\pi_*T_i-T_i$ is divisorial, hence our desired equality follows from \itemref{itm:prop:vollinearlimit:5}.
+\end{proof}
+
+A particular corollary of \cref{cor:vol_inv_push} will be useful later.
+\begin{corollary}\label{cor:Igoodpush}
+     Let $\pi\colon X\rightarrow Z$ be a proper bimeromorphic morphism from $X$ to a Kähler manifold $Z$. Assume that $T$ is an $\mathcal{I}$-good closed positive $(1,1)$-current on $X$. Then so is $\pi_*T$.
+\end{corollary}
+\begin{proof}
+    We may assume that $\int_X T^n>0$. Then by \cref{cor:vol_inv_push},
+    \[
+    \vol \pi_*T=\vol T>0
+    \]
+    as well.
+    Since $T$ is $\mathcal{I}$-good, we have
+    \[
+    \vol T=\int_X T^n.
+    \]
+    But $\int_X T^n=\int_Z (\pi_*T)^n$, so
+    \[
+    \vol \pi_*T=\int_Z (\pi_*T)^n>0.
+    \]
+    It follows that $\pi_*T$ is $\mathcal{I}$-good.
+\end{proof}
+
+
+Finally we establish a semicontinuity property of the mixed volumes.
+\begin{theorem}\label{thm:usc_mix_vol}
+   Let $(\varphi_i^j)_{j\in J}$ ($i=1,\ldots,n$) be nets in $\PSH(X,\theta_i)$, and $\varphi_i\in \PSH(X,\theta_i)$ ($i=1,\ldots,n$). Assume that for each prime divisor $E$ over $X$, we have
+   \[
+   \lim_{j\in J} \nu\left(\varphi_i^j,E\right)=\nu\left(\varphi_i,E\right),\quad i=1,\ldots,n.
+   \]
+   Then
+   \[
+   \varlimsup_{j\in J} \vol \left(\theta_1+\ddc \varphi_1^j, \dots,\theta_n+\ddc \varphi_n^j \right) \leq  \vol\left(\theta_1+\ddc \varphi_1, \dots,\theta_n+\ddc \varphi_n\right).
+   \]
+\end{theorem}
+\begin{proof}
+    \textbf{Step~1}. We first assume that $\vol (\theta_i+\ddc \varphi_i^j)>0$ and $\vol (\theta_i+\ddc \varphi_i)>0$ for all $i=1,\ldots,n$ and $j\in J$.
+
+    Without loss of generality, we may assume that the $\varphi_i^j$'s and the $\varphi_i$'s are $\mathcal{I}$-model for all $i=1,\ldots,n$ and $j\in J$. Our assertion becomes
+    \begin{equation}\label{eq:volineq_1}
+    \varlimsup_{j\in J} \int_X \left(\theta_1+\ddc \varphi_1^j\right)\wedge \dots \wedge \left(\theta_n+\ddc \varphi_n^j \right) \leq  \int_X \left(\theta_1+\ddc \varphi_1\right) \wedge \dots \wedge \left(\theta_n+\ddc \varphi_n\right).
+    \end{equation}
+    For each $j\in J$, define
+    \[
+    \psi_i^j\coloneqq \uscsup[k\geq j] \varphi_i^k,\quad i=1,\ldots,n.
+    \]
+    Observe that $\psi_i^j$ is $\mathcal{I}$-good thanks to \cref{prop:Igoodsup}, since after the preceding reduction the tail family is bounded above by $0$.
+    It follows from \cref{cor:supsLelong} and our assumption that
+    \[
+    \lim_{j\in J}\nu\left(\psi_i^j,E\right)=\nu\left(\varphi_i,E\right),\quad i=1,\ldots,n.
+    \]
+    Moreover, for each $j\in J$, the same formula gives $\varphi_i\preceq_{\mathcal{I}}\psi_i^j$. Since $\varphi_i$ is $\mathcal{I}$-model and $\psi_i^j$ is $\mathcal{I}$-good, \cref{prop:Icomparandenvelope} gives
+    \[
+        \varphi_i\leq P_{\theta_i}\left[\psi_i^j\right].
+    \]
+    For each $i=1,\ldots,n$, we define
+    \[
+    \psi_i=\inf_{j\in J}P_{\theta_i}\left[\psi_i^j\right].
+    \]
+    In particular, $\psi_i\geq\varphi_i$, so $\int_X\theta_{i,\psi_i}^n>0$.
+    Since $\psi_i^j$ is $\mathcal{I}$-good, $P_{\theta_i}[\psi_i^j]$ is both model and $\mathcal{I}$-model. Due to \cref{prop:decnetmodelPI}, $\psi_i$ is $\mathcal{I}$-model.
+    Thanks to \cref{prop:vol_limit_model}, we know
+    \[
+    \nu(\psi_i,E)=\nu(\varphi_i,E)
+    \]
+    for any $i=1,\ldots,n$ and any prime divisor $E$ over $X$. In other words, $\psi_i\sim_{\mathcal{I}} \varphi_i$ for $i=1,\ldots,n$. But both $\varphi_i$ and $\psi_i$ are $\mathcal{I}$-good, therefore,
+    \[
+    \psi_i\sim_{P} \varphi_i,\quad i=1,\ldots,n.
+    \]
+    By \cref{prop:mono2}, we have
+    \[
+    \int_X (\theta_1+\ddc \psi_1)\wedge \cdots\wedge (\theta_n+\ddc \psi_n)=\int_X (\theta_1+\ddc \varphi_1)\wedge \cdots\wedge (\theta_n+\ddc \varphi_n).
+    \]
+    Next by \cref{prop:mono2} again,
+    \[
+    \begin{split}
+    &\varlimsup_{j\in J} \int_X \left(\theta_1+\ddc \varphi_1^j\right)\wedge\dots\wedge  \left(\theta_n+\ddc \varphi_n^j \right)\\
+    \leq & \varlimsup_{j\in J} \int_X \left(\theta_1+\ddc \psi_1^j\right)\wedge \dots \wedge \left(\theta_n+\ddc \psi_n^j \right).
+    \end{split}
+    \]
+    On the other hand, due to \cref{prop:vol_limit_model} and \cref{cor:decnetdS}, for each $i=1,\ldots,n$, we have
+    \[
+    \psi_i^j\xrightarrow{d_S}\psi_i.
+    \]
+    We conclude from \cref{thm:convdS} that
+    \[
+    \varlimsup_{j\in J} \int_X \left(\theta_1+\ddc \psi_1^j\right)\wedge \dots \wedge \left(\theta_n+\ddc \psi_n^j \right)=\int_X (\theta_1+\ddc \psi_1)\wedge \cdots\wedge (\theta_n+\ddc \psi_n).
+    \]
+    Putting these equations together, \eqref{eq:volineq_1} follows.
+
+    \textbf{Step~2}. Next we handle the general case.
+
+    Fix a Kähler form $\omega$ on $X$. For any $\epsilon\in (0,1]$, from Step~1, we know that
+    \[
+    \begin{split}
+   &\varlimsup_{j\in J} \vol \left(\theta_1+\epsilon\omega+\ddc \varphi_1^j, \dots,\theta_n+\epsilon\omega+\ddc \varphi_n^j \right) \\
+   \leq & \vol\left(\theta_1+\epsilon\omega+\ddc \varphi_1, \dots,\theta_n+\epsilon\omega+\ddc \varphi_n\right).
+   \end{split}
+   \]
+   Using \cref{lma:perturbvol}, we have
+   \[
+   \begin{aligned}
+     &\varlimsup_{j\in J} \vol \left(\theta_1+\ddc \varphi_1^j, \dots,\theta_n+\ddc \varphi_n^j \right)\\
+     \leq & \varlimsup_{j\in J} \vol \left(\theta_1+\epsilon\omega+\ddc \varphi_1^j, \dots,\theta_n+\epsilon\omega+\ddc \varphi_n^j \right)\\
+     \leq &\vol\left(\theta_1+\epsilon\omega+\ddc \varphi_1, \dots,\theta_n+\epsilon\omega+\ddc \varphi_n\right)\\
+     \leq &\vol\left(\theta_1+\ddc \varphi_1, \dots,\theta_n+\ddc \varphi_n\right)+C\epsilon.
+    \end{aligned}
+   \]
+   But since $\epsilon$ is arbitrary, our assertion follows.
+\end{proof}
+
+\section{The volumes of Hermitian pseudo-effective line bundles}\label{sec:volHermitianbig}
+Let $X$ be a connected compact Kähler manifold of dimension $n$.
+
+
+
+\begin{definition}\label{def:Hermpsef}
+    A \emph{Hermitian pseudo-effective line bundle}\index{line bundle!Hermitian pseudo-effective line bundle} $(L,h)$ on a complex manifold $Y$ consists of a holomorphic line bundle $L$ on $Y$ together with a plurisubharmonic metric $h$ on $L$.
+\end{definition}
+
+
+
+\begin{theorem}[Asymptotic Riemann--Roch formula]\label{thm:DXmain1}\index{theorem!asymptotic Riemann--Roch formula}
+    Let $(L,h)$ be a Hermitian pseudo-effective line bundle on $X$ and $T$ be a holomorphic line bundle on $X$.
+    We have
+    \begin{equation}\label{eq:DXmain1}
+        \lim_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(h^k)\right)=\vol \left(\ddc h\right).
+    \end{equation}
+    In particular, the limit exists.
+\end{theorem}
+
+For the proof, let us fix a smooth Hermitian metric $h_0$ on $L$ with $\theta=c_1(L,h_0)$. We identify $h$ with $h_0\exp(-\varphi)$ for some $\varphi\in \PSH(X,\theta)$. See \cref{sec:pshmetriconlb} for the relevant notations.
+
+Recall that when $X$ admits a big line bundle, it is necessarily projective. See \cite[Theorem~2.2.26]{MM07}.
+
+We first handle the case where $\varphi$ has analytic singularities.
+\begin{proposition}\label{prop:DXmainanalytic}
+    Under the assumptions of \cref{thm:DXmain1}, assume furthermore that $\varphi$ has analytic singularities such that $\theta_{\varphi}$ is a Kähler current, then \eqref{eq:DXmain1} holds.
+\end{proposition}
+\begin{proof}
+    \textbf{Step~1}. Reduce to the case of log singularities.
+
+    Let $\pi\colon Y\rightarrow X$ be a log resolution of $\varphi$. In this case, for each $k\in \mathbb{Z}_{>0}$, we have
+    \[
+        h^0\Bigl(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\Bigr)=h^0\Bigl(Y,K_{Y/X}\otimes \pi^*T\otimes \pi^*L^k\otimes \mathcal{I}(k\pi^*\varphi)\Bigr).
+    \]
+    By \cref{prop:Ienvelopebimero}, we have
+    \[
+        \vol(\ddc h)=\vol (\ddc \pi^*h).
+    \]
+    Therefore, it suffices to argue \eqref{eq:DXmain1} with $K_{Y/X}\otimes \pi^*T$, $\pi^*L$ and $\pi^*h$ in place of $T$, $L$ and $h$.
+
+    Note that $\theta_{\varphi}$ is no longer a Kähler current, but it still has positive mass.
+
+    \textbf{Step~2}. Assume that $\varphi$ has log singularities along an effective $\mathbb{Q}$-divisor $D$. We may assume that $D$ is simple normal crossing by replacing $X$ by a modification and $D$ by the pull-back. We decompose $D$ into irreducible components, say
+    \[
+        D=\sum_{i=1}^N a_iD_i.
+    \]
+    In this case, we can easily compute
+    \[
+        \mathcal{I}(k\varphi)=\mathcal{O}_X\left(-\sum_{i=1}^N\lfloor k a_i \rfloor D_i\right)
+    \]
+    for each $k\in \mathbb{Z}_{>0}$.
+    Observe that $L-D$ is nef (see \cref{lma:logsingrem}). Choose an integer $q>0$ so that $qD$ is integral. For each residue class $s=0,\ldots,q-1$, we have
+    \[
+        \left\lfloor (mq+s)D\right\rfloor=mqD+\lfloor sD\rfloor.
+    \]
+    Hence, on the residue class $k=mq+s$, the line bundle
+    \[
+        T\otimes L^k\otimes \mathcal{O}_X\left(-\sum_{i=1}^N\lfloor k a_i \rfloor D_i\right)
+    \]
+    is a fixed twist of $\left(q(L-D)\right)^m$. Applying the asymptotic Riemann--Roch theorem \cite[Corollary~1.4.41]{PAG1} to the nef line bundle $q(L-D)$ and then letting $m\to\infty$ in each residue class, we conclude that
+    \[
+        \lim_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{O}_X\left(-\sum_{i=1}^N\lfloor k a_i \rfloor D_i\right)\right)= (L-D)^n.
+    \]
+    Observe that by \cref{prop:LelongPoincare},
+    \[
+        \theta_{\varphi}=[D]+S,
+    \]
+    where $S$ is a closed positive $(1,1)$-current with bounded potential. Therefore,
+    \[
+        (L-D)^n=\int_X S^n=\int_X  \theta_{\varphi}^n.
+    \]
+    By \cref{ex:analyIgood}, we know that the right-hand side is exactly $\vol \theta_{\varphi}$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:DXmain1}]
+    \textbf{Step~1}. We first handle the case where $\theta_{\varphi}$ is a Kähler current. Fix a Kähler form $\omega\geq \theta$ on $X$ such that $\theta_{\varphi}\geq 2\delta\omega$ for some $\delta\in (0,1)$.
+
+    Let $(\varphi_j)_j$ be a quasi-equisingular approximation of $\varphi$ in $\PSH(X,\theta)$.
+    We may assume that $\theta_{\varphi_j}\geq \delta\omega$ for all $j$.
+    From \cref{prop:DXmainanalytic}, we know that for each $j\geq 1$,
+    \[
+        \varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\leq   \lim_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi_j)\right)=\vol \theta_{\varphi_j}.
+    \]
+    It follows from \cref{thm:charIgoodasclosure} and \cref{thm:contvolu} that the right-hand side converges to $\vol \theta_{\varphi}$ as $j\to\infty$. Therefore,
+    \[
+        \varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\leq \vol \theta_{\varphi}.
+    \]
+    Conversely, fix an integer $N>\delta^{-1}$.
+    From \cref{thm:charIgoodasclosure} and \cref{thm:convdS}, we know that
+    \begin{equation}\label{eq:quasiequmassconvtemp1}
+        \lim_{j\to\infty}\int_X \theta_{\varphi_j}^n=\int_X \theta_{P_{\theta}[\varphi]_{\mathcal{I}}}^n>0.
+    \end{equation}
+    Therefore, by \cref{lma:pathoenvelope}, we can find $j_0>0$ such that for $j\geq j_0$, there is $\psi\in \PSH(X,\theta)_{>0}$ (depending on $j$) with
+    \begin{equation}\label{eq:linearlowerbdPItemp1}
+        (1-N^{-1})\varphi_j+N^{-1}\psi \leq P_{\theta}[\varphi]_{\mathcal{I}}.
+    \end{equation}
+    For each $k>0$, we write $k=k'N-r$, where $k'\in \mathbb{N}$ and $r\in \{0,1,\ldots,N-1\}$.
+    Then we compute for $j\geq j_0$ and large enough $k$ (to be specified shortly) that
+    \[
+        \begin{aligned}
+            & h^0\left(X,T\otimes L^{k}\otimes \mathcal{I}(k\varphi)\right)\\
+            \geq & h^0\left(X,T\otimes L^{-r}\otimes L^{k'N}\otimes \mathcal{I}(k'N\varphi)\right)\\
+            \geq & h^0\left(X,T\otimes L^{-r}\otimes L^{k'N}\otimes \mathcal{I}\left(k'(\psi+(N-1)\varphi_j)\right)\right)\\
+            \geq & h^0\left(X,T\otimes L^{-r}\otimes L^{k'(N-1)}\otimes \mathcal{I}\left(k'N\varphi_j\right)\right),
+        \end{aligned}
+    \]
+    where the third line follows from \eqref{eq:linearlowerbdPItemp1}, the fourth line can be argued as follows: For large enough $k$, there is a non-zero section $s\in \mathrm{H}^0(X,L^{k'}\otimes \mathcal{I}(k'\psi))$ by \cref{lma:existsecposmass}. It follows from \cref{lma:IandIinf} that for large enough $k$,
+    \[
+        \mathcal{I}\left(k'N\varphi_j\right)\subseteq \mathcal{I}_{\infty}\left(k'(N-1)\varphi_j\right).
+    \]
+    It follows that multiplication by $s$ gives an injective map
+    \[
+        \begin{split}
+            \mathrm{H}^0\left(X,T\otimes L^{-r}\otimes L^{k'(N-1)}\otimes \mathcal{I}\left(k'N\varphi_j\right)\right)\hookrightarrow \\
+            \mathrm{H}^0\left(X,T\otimes L^{-r}\otimes L^{k'N}\otimes \mathcal{I}\left(k'\psi+k'(N-1)\varphi_j\right)\right).
+        \end{split}
+    \]
+    Next observe that
+\[
+    (N-1)\theta+N\ddc\varphi_j= N\theta_{\varphi_j}-\theta \geq N\delta\omega-\theta \geq (N\delta-1)\omega.
+\]
+Since $N>\delta^{-1}$, this is a Kähler current. Hence \cref{prop:DXmainanalytic} is applicable. We let $k\to\infty$ to conclude that
+    \[
+        \begin{aligned}
+        \varliminf_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^{k}\otimes \mathcal{I}(k\varphi)\right)
+        \geq & N^{-n}\int_{X} \left( (N-1)\theta+N\ddc \varphi_j\right)^n\\
+        =& \int_X \left((1-N^{-1})\theta+\ddc\varphi_j \right)^n\\
+        \geq & \int_X \left(\theta+\ddc\varphi_j \right)^n -C N^{-1},
+        \end{aligned}
+    \]
+    where $C$ is a constant independent of $N$ and $j$.
+    Letting $j\to\infty$ and then $N\to\infty$ and using \eqref{eq:quasiequmassconvtemp1}, we find that
+    \[
+        \varliminf_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^{k}\otimes \mathcal{I}(k\varphi)\right)\geq \int_X \theta_{P_{\theta}[\varphi]_{\mathcal{I}}}^n.
+    \]
+    Therefore, \eqref{eq:DXmain1} follows.
+
+    \textbf{Step~2}. We handle the case where $\vol \theta_{\varphi}>0$. We may assume that $\varphi$ is $\mathcal{I}$-model.
+
+    First observe that $L$ is big by \cref{prop:nppposimpbig}. Hence $X$ is projective.
+    Take a very ample line bundle $A$ on $X$ and a Kähler form $\omega$ in $c_1(A)$. Take a Hermitian metric $h_A$ on $A$ with $\ddc h_A=\omega$.
+
+    Fix $N\in \mathbb{Z}_{>0}$. We decompose any $k>0$ as $k=k'N+r$ with $k'\in \mathbb{N}$ and $r\in \{0,1,\ldots,N-1\}$. Then
+    \[
+    h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\leq h^0\left(X,T\otimes L^r \otimes L^{k'N}\otimes  \mathcal{I}(k'N\varphi)\right).
+    \]
+    Therefore,
+    \[
+    \begin{aligned}
+     &\varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\\
+     \leq & \max_{r=0,\ldots,N-1}\varlimsup_{k'\to\infty}\frac{n!}{k'^nN^n} h^0\left(X,T\otimes L^r \otimes L^{k'N}\otimes  \mathcal{I}(k'N\varphi)\right)\\
+     \leq & \max_{r=0,\ldots,N-1}\varlimsup_{k'\to\infty}\frac{n!}{k'^nN^n} h^0\left(X,T\otimes L^r \otimes L^{k'N}\otimes A^{k'}\otimes  \mathcal{I}(k'N\varphi)\right)\\
+     =& \int_X \left(N^{-1}\omega+\theta+\ddc P_{\theta+N^{-1}\omega}[\varphi]_{\mathcal{I}}\right)^{n},
+    \end{aligned}
+    \]
+    where the third line uses multiplication by a non-zero section of $A^{k'}$, and we have applied Step~1 to the Hermitian pseudo-effective line bundle $(L^N\otimes A,h^{\otimes N}\otimes h_A)$ on the fourth line.
+    On the other hand, since $\varphi$ is $\mathcal{I}$-good by \cref{ex:ImodelIgood}, \cref{lma:Igoodinsenspert} gives
+    \[
+        P_{\theta+N^{-1}\omega}[\varphi]_{\mathcal{I}}=P_{\theta+N^{-1}\omega}[\varphi].
+    \]
+    It follows from \cref{prop:Ppresmass} that
+    \[
+        \varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\leq \int_X   \left(N^{-1}\omega+\theta+\ddc \varphi\right)^n.
+    \]
+    Letting $N\to\infty$, we conclude
+    \[
+        \varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\leq \int_X \theta_{\varphi}^n.
+    \]
+    It remains to argue the reverse inequality.
+
+    Choose $\psi\in \PSH(X,\theta)$ such that $\theta_{\psi}$ is a Kähler current and $\psi\leq \varphi$. The existence of $\psi$ is guaranteed by \cref{lma:kahcurrentposmass}. Then for any $t\in (0,1)$, we set
+    \[
+        \varphi_t=(1-t)\varphi+t\psi.
+    \]
+    It follows again from Step~1 that
+    \[
+        \varliminf_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\geq \lim_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi_t)\right)=\vol \theta_{\varphi_t}.
+    \]
+    On the other hand, by \cref{thm:mvolcont} and \cref{cor:lineardsconv},
+    \[
+        \lim_{t\to 0+}\vol \theta_{\varphi_t}=\vol \theta_{\varphi}.
+    \]
+    So we find
+    \[
+        \varliminf_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes  \mathcal{I}(k\varphi)\right)\geq \vol \theta_{\varphi}.
+    \]
+    We conclude \eqref{eq:DXmain1} in this case.
+
+    \textbf{Step~3}. We finally handle the case where $\vol \theta_{\varphi}=0$. Replacing $\varphi$ by $P_{\theta}[\varphi]_{\mathcal{I}}$, we may assume that $\varphi$ is $\mathcal{I}$-model.
+
+    Assume that \eqref{eq:DXmain1} fails. That is,
+    \[
+    \varlimsup_{k\to\infty}\frac{n!}{k^n}h^0\left(X,T\otimes L^k\right)\geq \varlimsup_{k\to\infty} \frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\right)>0,
+    \]
+    then $L$ is a big line bundle and hence $X$ is projective.
+
+    Fix a very ample line bundle $A$ on $X$ and a K\"ahler form $\omega\in c_1(A)$. Take a decreasing sequence $(\epsilon_j)_j$ of rational numbers with limit $0$ and a quasi-equisingular approximation $(\varphi_j)_j$ of $\varphi$ with $\varphi_j\in \PSH(X,\theta+\epsilon_j\omega)_{>0}$.
+
+    We claim that as $j\to\infty$, the sequence $P_{\theta+\epsilon_j\omega}[\varphi_j]$ is decreasing with limit $\varphi$.
+
+    It is clear that this sequence is decreasing. Let $\psi$ denote its limit for the moment. It is also clear that $\psi\geq\varphi$. Since $\varphi$ is $\mathcal{I}$-model, it remains to show that $\psi\preceq_{\mathcal{I}}\varphi$. Fix $\lambda>0$. By strong openness, choose $\lambda'>\lambda$ such that $\mathcal{I}(\lambda\psi)=\mathcal{I}(\lambda'\psi)$. For $j$ large enough, the quasi-equisingularity of $(\varphi_j)_j$ gives
+    \[
+        \mathcal{I}(\lambda'\psi)\subseteq \mathcal{I}(\lambda'\varphi_j)\subseteq \mathcal{I}(\lambda\varphi),
+    \]
+    where the first inclusion uses $\psi\leq P_{\theta+\epsilon_j\omega}[\varphi_j]$ and $P_{\theta+\epsilon_j\omega}[\varphi_j]\sim_{\mathcal{I}}\varphi_j$. Thus $\psi\preceq_{\mathcal{I}}\varphi$, and the claim follows.
+
+    By our claim, \cref{prop:Ppresmass} and \cref{prop:vol_limit_model}, we find that
+    \begin{equation}\label{eq:volumeconv0temp1}
+    \lim_{j\to\infty} \int_X \left(\theta+\epsilon_j\omega+\ddc \varphi_j\right)^n=\int_X \theta_{\varphi}^n=0.
+    \end{equation}
+
+    Fix $j>0$, take an integer $N>0$ so that $N\epsilon_j$ is an integer. Then we compute
+    \[
+    \begin{aligned}
+    &\varlimsup_{k\to\infty} \frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\right)\\
+    \leq & \varlimsup_{k\to\infty} \frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi_j)\right)\\
+    \leq & \max_{a=0,\ldots,N-1}\varlimsup_{k'\to\infty} \frac{n!}{(k'N)^n}h^0\left(X,T\otimes L^a\otimes L^{Nk'}\otimes \mathcal{I}(Nk'\varphi_j)\right)\\
+    \leq & \max_{a=0,\ldots,N-1}\varlimsup_{k'\to\infty} \frac{n!}{(k'N)^n}h^0\left(X,T\otimes L^a\otimes L^{Nk'}\otimes A^{k'N\epsilon_j}\otimes \mathcal{I}(Nk'\varphi_j)\right)\\
+    =& \frac{1}{N^n}\int_X \left( N\theta+\epsilon_jN\omega+N\ddc \varphi_j \right)^n,
+    \end{aligned}
+    \]
+    where the third line follows by writing $k=Nk'+a$ as before,
+    we applied Step~2 on the last line. Dividing by $N^n$, we find that
+    \[
+    \varlimsup_{k\to\infty} \frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\right)\leq \int_X \left(\theta+\epsilon_j\omega+\ddc \varphi_j\right)^n.
+    \]
+    Since we know \eqref{eq:volumeconv0temp1}, letting $j\to\infty$, we conclude that
+    \[
+    \varlimsup_{k\to\infty} \frac{n!}{k^n}h^0\left(X,T\otimes L^k\otimes \mathcal{I}(k\varphi)\right)=0,
+    \]
+    which is a contradiction. Hence \eqref{eq:DXmain1} is established in full generality.
+ \end{proof}
+
+
+\begin{corollary}\label{cor:volbigL}
+Let $L$ be a pseudo-effective line bundle on $X$, and let $h$ be a smooth Hermitian metric on $L$ with $\theta=c_1(L,h)$. Then we have
+    \begin{equation}\label{eq:volbig}
+        \lim_{k\to\infty}\frac{n!}{k^n}h^0\left(X,L^k\right)=\int_X \theta_{V_{\theta}}^n.
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    It suffices to observe that
+    \begin{equation}\label{eq:H0eqH0IVtheta}
+        \mathrm{H}^0\left(X,L^k \otimes \mathcal{I}\left(kV_{\theta}\right) \right)=\mathrm{H}^0\left(X,L^k\right)
+    \end{equation}
+    for all $k>0$, since for any holomorphic section $s$ of $L^k$, the function $\log |s|_{h^k}^2$ is $\theta$-psh thanks to \cref{prop:LelongPoincare} and therefore, we have
+    \[
+        \frac{1}{k}\log |s|_{h^k}^2\preceq V_{\theta}.
+    \]
+    In particular, $s\in \mathrm{H}^0\left(X,L^k \otimes \mathcal{I}\left(kV_{\theta}\right) \right)$.
+\end{proof}
+This common quantity is the \emph{volume}\index{volume!volume of a pseudo-effective line bundle} of $L$, usually denoted by $\vol L$. In view of \cref{def:volcohclass}, we have
+\begin{equation}\label{eq:volL_volc1L}
+\vol L=\vol c_1(L).
+\end{equation}
+
+
+
+
+\begin{example}\label{ex:toricIgood}
+    If $X$ is a smooth projective toric variety and $\theta$ is invariant under the action of the compact torus, then any $\varphi\in \PSH_{\tor}(X,\theta)$ is $\mathcal{I}$-good.
+\end{example}
+\begin{proof}
+    Thanks to \cref{lma:Igoodinsenspert}, we may assume that $\theta\in c_1(L)$ for some toric invariant ample line bundle $L$. In this case, the result follows from \cref{thm:charIgoodasclosure}, \cref{thm:DXmain1} and \cref{thm:Yao}.
+\end{proof}
+
+%\input{author/references}

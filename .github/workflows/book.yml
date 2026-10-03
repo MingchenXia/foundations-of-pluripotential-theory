@@ -1,0 +1,25 @@
+name: Private book build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install TeX and verify project
+        run: bash scripts/setup-cloud.sh
+      - name: Store draft PDF and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: foundations-draft
+          path: |
+            build/book.pdf
+            build/book.log
+            build/book.blg
+          retention-days: 14

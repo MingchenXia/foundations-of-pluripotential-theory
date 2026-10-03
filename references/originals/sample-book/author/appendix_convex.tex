@@ -1,0 +1,759 @@
+\chapter{Convex functions and convex bodies}
+\label[appendix]{chap:convex}
+
+This appendix collects the basic facts about convex functions and convex bodies that are used throughout the book. Our standard reference is \cite{Roc70}. All results stated for convex functions apply equally to concave functions, after replacing the function by its negative.
+
+\section{The notion of convex functions}
+\label{sec:convex_notion}
+Let $N$ be a real vector space of finite dimension.
+
+\begin{definition}
+    Let $F\colon N\rightarrow [-\infty,\infty]$ be a function. The \emph{epigraph}\index{epigraph} of $F$ is defined as the following set
+    \[
+    \epi F\coloneqq \left\{ (n,r)\in N\times \mathbb{R}: r\geq F(n) \right\}.
+    \]
+\end{definition}
+\begin{definition}\label{def:convexfun}
+    A \emph{convex function}\index{convex function} on $N$ is a function $F\colon N\rightarrow [-\infty,\infty]$ such that the epigraph $\epi F$ is a convex subset of $N\times \mathbb{R}$.
+
+    The \emph{effective domain}\index{convex function!effective domain} of $F$ is the set
+    \[
+    \Dom F\coloneqq \left\{ n\in N : F(n)<\infty \right\}.
+    \]
+    A convex function $F$ on $N$ such that $\Dom F\neq \varnothing$ and $F(n)\neq -\infty$ for all $n\in N$ is said to be \emph{proper}\index{convex function!proper convex function}.
+
+    The set of convex functions on $N$ is denoted by $\Conv(N)$. The subset of proper convex functions is denoted by $\Conv^{\prop}(N)$.
+\end{definition}
+
+The following characterization of convex functions is well-known.
+\begin{lemma}\label{lma:charconvex}
+    Let $F\colon N\rightarrow [-\infty,\infty]$. Then $F$ is convex if and only if the following condition holds: suppose that $n,r\in N$ and $a,b\in \mathbb{R}$ such that $a>F(n)$, $b>F(r)$, then for any $t\in (0,1)$, we have
+    \[
+    F(tn+(1-t)r)<ta+(1-t)b.
+    \]
+\end{lemma}
+See \cite[Theorem~4.2]{Roc70} for the proof.
+
+\begin{example}\label{ex:charconvex}
+    Let $A\subseteq N$ be a convex subset. Then the \emph{characteristic function}\index{characteristic function}\index{$\chi_A$} $\chi_A\colon N\rightarrow \{0,\infty\}$ of $A$ is defined by
+    \[
+    \chi_A(n)\coloneqq
+    \left\{
+    \begin{aligned}
+        0,&\quad n\in A;\\
+        \infty,&\quad n\not\in A.
+    \end{aligned}
+    \right.
+    \]
+    The function $\chi_A$ lies in $\Conv(N)$.
+\end{example}
+
+\begin{example}\label{ex:suppfun}
+    Let $M$ be the dual vector space of $N$ and $P\subseteq M$ be a convex subset. The \emph{support function}\index{support function} $\Supp_P\in \Conv(N)$\index{$\Supp_P$} of $P$ is defined as follows:
+    \[
+        \Supp_P(n)\coloneqq \sup\{ \langle m,n \rangle: m\in P \}.
+    \]
+\end{example}
+
+It is well-known that convexity is preserved by a number of natural operations. We recall a few to fix the notation.
+
+\begin{definition}\label{def:convex:L60}
+    Let $F_1,\ldots,F_m\in \Conv^{\prop}(N)$ ($m\in \mathbb{Z}_{>0}$). We define their \emph{infimal convolution}\index{infimal convolution} $F_1 \square \cdots \square F_m\in \Conv(N)$\index{$F_1 \square \cdots \square F_m$} as follows:
+    \[
+    F_1 \square \cdots \square F_m(n)\coloneqq \inf\left\{ \sum_{i=1}^m F_i(n_i):n_i\in N, \sum_{i=1}^m n_i=n \right\}.
+    \]
+\end{definition}
+The fact $F_1 \square \cdots \square F_m\in \Conv(N)$ is proved in \cite[Theorem~5.4]{Roc70}. One should note that $F_1 \square \cdots \square F_m$ is not always proper.
+
+\begin{proposition}\label{prop:supconv}
+    Let $\{F_i\}_{i\in I}$ be a non-empty family in $\Conv(N)$. Then $\sup_{i\in I} F_i\in \Conv(N)$.
+\end{proposition}
+This follows from \cite[Theorem~5.5]{Roc70}. In particular, this allows us to introduce
+\begin{definition}\label{def:LCE}
+    Let $f\colon N\rightarrow [-\infty,\infty]$. The \emph{lower convex envelope}\index{lower convex envelope}\index{$\LCE$} of $f$ is defined as
+    \[
+    \LCE f\coloneqq \sup\{F\in \Conv(N): F\leq f \}.
+    \]
+    It follows from \cref{prop:supconv} that $\LCE f\in \Conv(N)$.
+\end{definition}
+
+
+
+\begin{definition}\label{def:convwedge}
+Given a non-empty family $\{F_i\}_{i\in I}$ in $\Conv(N)$, we define
+\index{convex function!rooftop}
+\index{$\bigwedge_i F_i$}
+\[
+\bigwedge_{i\in I}F_i\coloneqq \LCE \left(\inf_{i\in I} F_i\right).
+\]
+When the family $I$ is finite, say $I=\{1,\ldots,m\}$, we also write
+\[
+F_1\land \cdots\land F_m=\bigwedge_{i\in I}F_i.
+\]
+\end{definition}
+\begin{definition}\label{def:convlor}
+   Given a non-empty family $\{F_i\}_{i\in I}$ in $\Conv(N)$, we define
+\index{convex function!maximum}
+\index{$\bigvee_i F_i$}
+\[
+\bigvee_{i\in I}F_i\coloneqq \sup_{i\in I} F_i.
+\]
+When the family $I$ is finite, say $I=\{1,\ldots,m\}$, we also write
+\[
+F_1\lor \cdots\lor F_m=\bigvee_{i\in I}F_i.
+\]
+\end{definition}
+Recall that $\bigvee_{i\in I}F_i\in \Conv(N)$ by \cref{prop:supconv}.
+
+\begin{proposition}\label{prop:concavhull}
+    Let $F_1,\ldots,F_m\in \Conv^{\prop}(N)$. Then
+    \[
+    \begin{split}
+        F_1\land \cdots\land F_m(x)=\inf\left\{\sum_{i=1}^m \lambda_i F_i(x_i):x_i\in \Dom(F_i),\right.\\
+        \left.\lambda_i\in [0,1],\sum_{i=1}^m\lambda_i=1, \sum_{i=1}^m\lambda_i x_i=x \right\}.
+    \end{split}
+    \]
+\end{proposition}
+See \cite[Theorem~5.6]{Roc70} for the more general result.
+
+
+
+\begin{lemma}\label{lma:convdecnet}
+    Let $\{F_i\}_{i\in I}$ be a decreasing net in $\Conv(N)$. Then $\inf_{i\in I} F_i\in \Conv(N)$.
+\end{lemma}
+\begin{proof}
+Write $F=\inf_{i\in I} F_i$.
+    We shall apply the characterization in \cref{lma:charconvex}. Take $n,r\in N$, $a,b\in \mathbb{R}$ such that $a>F(n)$, $b>F(r)$ and $t\in (0,1)$. We need to show that
+    \begin{equation}\label{eq:convtemp1}
+    F(tn+(1-t)r)<ta+(1-t)b.
+    \end{equation}
+    By definition, there are $j_n,j_r\in I$ such that $a>F_i(n)$ for $i\geq j_n$ and $b>F_i(r)$ for $i\geq j_r$. Since $I$ is directed, we can find $j\in I$ dominating both $j_n$ and $j_r$, and then for any $i\geq j$, we have
+    \[
+    a>F_i(n),\quad b>F_i(r).
+    \]
+    It follows from \cref{lma:charconvex} that
+    \[
+    F_i(tn+(1-t)r)<ta+(1-t)b
+    \]
+    for any $i\geq j$. Since $F_i$ is decreasing in $i$, we conclude \eqref{eq:convtemp1}.
+\end{proof}
+
+\begin{definition}\label{def:convexclosure}
+    Let $F\in \Conv(N)$\index{$\Conv(N)$}. The \emph{closure}\index{convex function!closure of a convex function}\index{$\cl F$} $\cl F\in \Conv(N)$ of $F$ is defined as follows: If $F(n)=-\infty$ for some $n\in N$, then $\cl F\coloneqq -\infty$. Otherwise, we define $\cl F$ as the lower semicontinuity regularization of $F$.
+
+    A convex function $F\in \Conv(N)$ is \emph{closed}\index{convex function!closed convex function} if $F=\cl F$. In other words, $F\in \Conv(N)$ is closed if one of the following conditions holds:
+    \begin{enumerate}
+        \item\label{itm:def:convexclosure:1} $F\equiv -\infty$;
+        \item\label{itm:def:convexclosure:2} $F\equiv \infty$;
+        \item\label{itm:def:convexclosure:3} $F$ is proper and lower semicontinuous.
+    \end{enumerate}
+\end{definition}
+\begin{proposition}
+    Let $F\in \Conv(N)$ be a closed convex function. Then $F$ is the supremum of all affine functions lying below $F$.
+\end{proposition}
+See \cite[Theorem~12.1]{Roc70}.
+
+\begin{theorem}\label{thm:closurepropconv}
+    Let $F\in \Conv^{\prop}(N)$\index{$\Conv^{\prop}(N)$}. Then $\cl F$ is a closed proper convex function. Moreover, $\cl F$ agrees with $F$ except possibly on the relative boundary of $\Dom F$.
+\end{theorem}
+See \cite[Theorem~7.4]{Roc70}.
+
+\begin{proposition}\label{prop:closedcvx_domain}
+    Let $F,F'\in \Conv(N)$ be closed convex functions. Assume that
+    \begin{enumerate}
+        \item\label{itm:prop:closedcvx_domain:1} $\RelInt \Dom F=\RelInt \Dom F'$, and
+        \item\label{itm:prop:closedcvx_domain:2} $F=F'$ on $\RelInt \Dom F$.
+    \end{enumerate}
+    Then $F=F'$.
+\end{proposition}
+This is a special case of \cite[Corollary~7.3.4]{Roc70}.
+
+\begin{definition}\label{def:partialorderconv}
+    Given $F,F'\in \Conv(N)$, we write $F\preceq F'$ if there is $C\in \mathbb{R}$ such that
+    \index{convex function!singularity type}
+    \index{$F\preceq F'$}
+    \[
+        F\leq F'+C.
+    \]
+    We say $F\sim F'$ if $F\preceq F'$ and $F'\preceq F$ both hold.
+\end{definition}
+
+\begin{theorem}\label{thm:seqconv}
+    Let $C\subseteq N$ be an open subset. Let $(f_i)_{i>0}$ be a sequence of real-valued convex functions on $C$. Suppose that the sequence converges on a dense subset of $C$ and the limit is finite. Then the limit
+    \[
+    f(x)\coloneqq \lim_{i\to\infty} f_i(x)
+    \]
+    exists for all $x\in C$ and is convex on $C$. Moreover, the sequence $(f_i)_i$ converges uniformly to $f$ on each compact subset of $C$.
+\end{theorem}
+This is a special case of \cite[Theorem~10.8]{Roc70}.
+
+
+\section{Legendre transform}\label{sec:Leg}
+Let $N$ be a real vector space of finite dimension and $M$ be the dual vector space.
+The pairing $M\times N\rightarrow \mathbb{R}$ will be denoted by $\langle \bullet, \bullet \rangle$.
+
+\begin{definition}\label{def:Legendregeneral}
+    Let $F\in \Conv(N)$ be a convex function. We define the \emph{Legendre transform}\index{Legendre transform!Legendre transform of a convex function} of $F$ as the function $F^*\in \Conv(M)$:
+    \begin{equation}\label{eq:Legtrandef}
+        F^*(m)\coloneqq \sup_{n\in N} \left( \langle m,n \rangle-F(n) \right)=\sup_{n\in \RelInt \Dom F} \left( \langle m,n \rangle-F(n) \right).
+    \end{equation}
+\end{definition}
+The latter equality follows from \cite[Corollary~12.2.2]{Roc70}.
+
+Recall the well-known Legendre--Fenchel duality \cite[Theorem~12.2]{Roc70}.
+\begin{theorem}\label{thm:Legendredual}
+    Let $F\in \Conv(N)$. Then $F^*$ is a closed convex function. The function $F^*$ is proper if and only if $F$ is.
+
+    Moreover, we have $(\cl F)^*=F^*$ and
+    \[
+        F^{**}=\cl F.
+    \]
+\end{theorem}
+
+\begin{example}\label{ex:suppfundual}
+    Let $P\subseteq M$ be a closed convex subset. Then
+    \[
+    \Supp_P^*=\chi_P,\quad \chi_P^*=\Supp_P.
+    \]
+    See \cite[Theorem~13.2]{Roc70}.
+\end{example}
+
+The following special case will be useful to us in the sequel.
+\begin{corollary}\label{cor:Leginvpartdef}
+    Let $F\colon (0,\infty)\rightarrow [-\infty,\infty)$ be a convex function. If we define $G\colon \mathbb{R}\rightarrow (-\infty,\infty]$ by
+    \[
+        G(\tau)=\sup_{t>0} \Bigl( t\tau-F(t) \Bigr),
+    \]
+    then $G$ is a convex function and
+    \begin{equation}\label{eq:Leginvpartdef}
+    F(t)=G^*(t),\quad \forall t>0.
+    \end{equation}
+    Moreover,
+    \begin{equation}\label{eq:LegratQ}
+        G(\tau)=\sup_{t\in \mathbb{R}_{>0}} \Bigl( t\tau-F(t) \Bigr)=\sup_{t\in \mathbb{Q}_{>0}} \Bigl( t\tau-F(t) \Bigr).
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    We distinguish two cases.
+
+    First suppose that $F(t)=-\infty$ for some $t>0$. Then $F(t)=-\infty$ for all $t>0$ by the convexity of $F$. Our assertions are clear in this case.
+
+    Next assume that $F(t)\neq -\infty$ for all $t>0$. In this case, \cref{thm:closurepropconv} guarantees that $F$ admits a closed proper extension $\tilde{F}\in \Conv(\mathbb{R})$ with
+    \[
+    \tilde{F}(t)=\infty,\quad \forall t<0.
+    \]
+    It follows from \eqref{eq:Legtrandef} that
+    \[
+    G(\tau)=\tilde{F}^*(\tau),\quad \forall \tau\in \mathbb{R}.
+    \]
+    Now \cref{thm:Legendredual} implies \eqref{eq:Leginvpartdef}. Finally \eqref{eq:LegratQ} follows from the continuity of $F$.
+\end{proof}
+
+
+\begin{proposition}\label{prop:Legnonconvex}
+    Let $F\colon N\rightarrow [-\infty,\infty]$. Define $F^*\colon M\rightarrow [-\infty,\infty]$ by
+    \[
+    F^*(m)\coloneqq \sup_{n\in N} \left( \langle m,n \rangle -F(n) \right).
+    \]
+    Then
+    \[
+    F^*=(\cl \LCE F)^*.
+    \]
+\end{proposition}
+See \cite[Corollary~12.1.1]{Roc70}.
+
+\begin{definition}\label{def:subgrad}
+    Let $F\in \Conv(N)$ and $n\in N$. An element $m\in M$ is a \emph{subgradient}\index{subgradient} (in the sense of Alexandrov) of $F$ at $n$ if
+    \begin{equation}\label{eq:subgrad}
+    F(n')\geq F(n)+\langle n'-n,m \rangle,\quad \forall n'\in N.
+    \end{equation}
+
+    The set of subgradients of $F$ at $n$ is denoted by $\nabla F(n)$.
+
+    More generally, for any subset $E\subseteq N$, we write
+    \[
+        \nabla F(E)=\bigcup_{n\in E}\nabla F(n).
+    \]
+\end{definition}
+
+\begin{definition}\label{def:convexPorder}
+    Given $F,F'\in \Conv(N)$, we write $F\preceq_P F'$ if
+    \index{convex function!P-singularity type@$P$-singularity type}
+    \index{$F\preceq_P F'$}
+    \[
+        \overline{\nabla F(N)}\subseteq \overline{\nabla F'(N)}.
+    \]
+    We write $F\sim_P F'$ if $F\preceq_P F'$ and $F'\preceq_P F$.
+\end{definition}
+
+\begin{theorem}\label{thm:nablaF}
+    Suppose that $F\in \Conv^{\prop}(N)$. Then the following hold:
+    \begin{enumerate}
+        \item\label{itm:thm:nablaF:1} For any $n\not\in \Dom F$, $\nabla F(n)=\varnothing$;
+        \item\label{itm:thm:nablaF:2} for any $n\in \RelInt\Dom F$, $\nabla F(n)\neq \varnothing$; moreover, for any $n'\in N$, we have
+        \[
+            \partial_{n'} F(n)=\sup\left\{\langle n', m \rangle: m\in \nabla F(n)\right\};
+        \]
+        \item\label{itm:thm:nablaF:3} for $n\in N$, the set $\nabla F(n)$ is non-empty and bounded if and only if $n\in \Int \Dom F$.
+    \end{enumerate}
+\end{theorem}
+For the proof, we refer to \cite[Theorem~23.4]{Roc70}.
+
+\begin{proposition}\label{prop:gradDomFstar}
+    Let $F\in \Conv^{\prop}(N)$. Then
+    \[
+    \nabla F(N)\subseteq \Dom F^*.
+    \]
+    If moreover $F$ is closed, we have
+    \begin{equation}\label{eq:relintdomFstar}
+        \RelInt \Dom F^*\subseteq \nabla F(N).
+    \end{equation}
+    In particular, if $F$ is a proper closed convex function on $N$, then
+    \[
+    \overline{\nabla F(N)}=\overline{\Dom F^*}.
+    \]
+\end{proposition}
+\begin{proof}
+    Suppose that $m\in \nabla F(n)$ for some $n\in N$. Then \eqref{eq:subgrad} holds. In particular,
+    \[
+    \langle m,n'\rangle -F(n')\leq \langle m,n\rangle-F(n).
+    \]
+    It follows that
+    \[
+    F^*(m)\leq  \langle m,n\rangle-F(n)<\infty.
+    \]
+    \eqref{eq:relintdomFstar} is proved in \cite[Corollary~23.5.1]{Roc70}. For the last assertion, it suffices to observe that $\overline{\RelInt \Dom F^*}=\overline{\Dom F^*}$.
+\end{proof}
+
+\begin{proposition}\label{prop:Legendretranssup}
+    Let $\{F_i\}_{i\in I}$ be a non-empty family in $\Conv^{\prop}(N)$. Then
+    \[
+    \left(\bigwedge_{i\in I} F_i\right)^*=\bigvee_{i\in I} F_i^*,\quad \left(\bigvee_{i\in I} \cl F_i\right)^*=\cl \bigwedge_{i\in I} F_i^*.
+    \]
+    If $I$ is finite and $\overline{\Dom F_i}$ is independent of the choice of $i\in I$, then
+    \[
+    \left(\bigvee_{i\in I} F_i\right)^*=\bigwedge_{i\in I} F_i^*.
+    \]
+\end{proposition}
+Recall that $\wedge$ is defined in \cref{def:convwedge} and $\lor$ in \cref{def:convlor}. See \cite[Theorem~16.5]{Roc70} for the proof.
+
+\begin{proposition}\label{prop:sumLegendre}
+    Let $F_1,\ldots,F_r\in \Conv^{\prop}(N)$ ($r\in \mathbb{Z}_{>0}$). Assume that
+    \[
+        \bigcap_{i=1}^r\RelInt \Dom(F_i)\neq \varnothing,
+    \]
+    then for any $m\in M$,
+    \[
+    \left( \sum_{i=1}^r F_i \right)^*(m)=\inf\left\{\sum_{i=1}^r F_i^*(m_i):m_1,\ldots,m_r\in M, \sum_{i=1}^r m_i=m  \right\}.
+    \]
+\end{proposition}
+See \cite[Theorem~16.4]{Roc70} for the proof.
+
+\begin{proposition}\label{prop:Fsuppchar}
+    Let $P\subseteq M$ be a convex body\footnote{Here a convex body refers to a non-empty compact convex subset, not necessarily having non-empty interior.} and $F\in \Conv^{\prop}(N)$. The following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Fsuppchar:1} $F\preceq \Supp_P$;
+        \item\label{itm:prop:Fsuppchar:2} $\Dom F=N$ and $F^*|_{M\setminus P}\equiv \infty$;
+        \item\label{itm:prop:Fsuppchar:3} $\Dom F=N$ and $\nabla F(N)\subseteq P$.
+    \end{enumerate}
+    Moreover, under these conditions,
+    \begin{equation}\label{eq:Fsupequal}
+    F(n)-\Supp_P(n)\leq F(0),\quad \forall n\in N.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:Fsuppchar:1} $\implies$ \ref{itm:prop:Fsuppchar:2}. It is clear that $\Dom F=N$ since $\Dom \Supp_P=N$.
+    From $F\preceq \Supp_P$ and \cref{ex:suppfundual}, we know that
+    \[
+    \chi_P=\Supp_P^*\preceq F^*.
+    \]
+    So \ref{itm:prop:Fsuppchar:2} follows.
+
+    \ref{itm:prop:Fsuppchar:2} $\implies$ \ref{itm:prop:Fsuppchar:3}. This follows from \cref{prop:gradDomFstar}.
+
+    \ref{itm:prop:Fsuppchar:3} $\implies$ \ref{itm:prop:Fsuppchar:1}. The function $t\mapsto F(tn)$ is convex on $[0,1]$, hence absolutely continuous and differentiable almost everywhere. For almost every $t\in(0,1)$,
+    \[
+        \frac{\mathrm d}{\mathrm dt}F(tn)=\partial_n F(tn) \leq \Supp_P(n)
+    \]
+    by \cref{thm:nablaF} and the assumption $\nabla F(N)\subseteq P$. Integrating in $t$ gives
+    \[
+        F(n)-F(0)\leq \Supp_P(n).
+    \]
+    In particular, \eqref{eq:Fsupequal} also follows.
+\end{proof}
+
+
+\section{Classes of convex functions}
+\label{sec:convex_classes}
+Let $N$ be a real vector space of finite dimension and $M$ be the dual vector space.
+
+We shall fix a convex body $P\subseteq M$.
+
+
+The following classes are introduced in \cite{BB13}.
+\begin{definition}\label{def:convexPfunctions}
+    We define the set $\mathcal{P}(N,P)$ as the set of proper convex functions $F\in \Conv(N)$ such that $F\preceq \Supp_P$.
+    \index{$\mathcal{P}(N,P)$}
+
+    We define the set $\mathcal{E}^{\infty}(N,P)$ as the set of closed convex functions $F\in \Conv(N)$ such that $F\sim \Supp_P$.
+    \index{$\mathcal{E}^{\infty}(N,P)$}
+
+    We define the set $\mathcal{E}(N,P)$ as follows: Suppose that $\Int P=\varnothing$. Then $\mathcal{E}(N,P)\coloneqq \mathcal{P}(N,P)$; otherwise, let
+    \index{$\mathcal{E}(N,P)$}
+    \[
+    \mathcal{E}(N,P)=\left\{F\in \mathcal{P}(N,P) : P=\overline{\nabla F(N)} \right\}.
+    \]
+    We define the set $\mathcal{E}^1(N,P)$ as the subset of $\mathcal{E}(N,P)$ consisting of $F\in \mathcal{E}(N,P)$ with
+    \index{$\mathcal{E}^{1}(N,P)$}
+    \[
+    \int_P F^*\,\mathrm{d}\vol<\infty,
+    \]
+    where $\mathrm{d}\vol$ is any Lebesgue measure on $M$.
+\end{definition}
+Observe that for any $F\in \mathcal{P}(N,P)$, we have $\Dom F=N$ and $F$ is necessarily closed.
+
+\begin{proposition}\label{prop:convex:L415}
+We have
+\[
+\mathcal{E}^{\infty}(N,P)\subseteq \mathcal{E}^{1}(N,P)\subseteq \mathcal{E}(N,P) \subseteq \mathcal{P}(N,P).
+\]
+\end{proposition}
+\begin{proof}
+    When $\Int P=\varnothing$, the assertion is clear. We assume that $\Int P\neq \varnothing$. The second inclusion follows from the definition. We only handle the first inequality. Take $F\in \mathcal{E}^{\infty}(N,P)$. By definition, $F\sim \Supp_P$ and hence $F^*\sim \chi_P$. It follows that $P=\Dom F^*$.
+
+    By \cref{prop:Fsuppchar}, we already know that
+    \[
+    \nabla F(N)\subseteq P=\Dom F^*.
+    \]
+    On the other hand, by \cref{prop:gradDomFstar}, we have
+    \[
+    \Int P\subseteq \nabla F(N).
+    \]
+    So it follows that
+    \[
+    P=\overline{\nabla F(N)}.
+    \]
+    It is clear that $F^*\sim \chi_P$ is integrable.
+\end{proof}
+
+
+\begin{proposition}\label{prop:convex:L440}
+    For any $F\in \mathcal{E}^{\infty}(N,P)$, we have $F^*|_{M\setminus P}\equiv \infty$ and $F^*$ is bounded on $P$.
+\end{proposition}
+\begin{proof}
+    From $F\sim \Supp_P$, we take the Legendre transform to get $F^*\sim \Supp_P^*=\chi_P$, where we applied \cref{ex:suppfundual}.
+\end{proof}
+
+
+
+
+\begin{definition}\label{def:pointwiseconv}
+    We endow the topology of pointwise convergence on $\mathcal{P}(N,P)$.
+    \index{pointwise convergence}
+\end{definition}
+Note that this topology coincides with the compact-open topology. See \cite[Theorem~10.8]{Roc70}.
+
+\begin{proposition}\label{prop:regularizationconvex}
+    Let $F\in \mathcal{P}(N,P)$. Then there is a decreasing sequence $F_j\in \mathcal{E}^{\infty}(N,P)\cap C^{\infty}(N)$ converging to $F$.
+\end{proposition}
+See \cite[Lemma~2.2]{BB13}.
+
+We observe that the point $0\in N$ plays a special role since it does in the definition of the support function.
+\begin{proposition}\label{prop:convex:L462}
+    For any $F\in \mathcal{P}(N,P)$, we have
+    \[
+    \max_{N}(F-\Supp_P)=F(0).
+    \]
+\end{proposition}
+\begin{proof}
+    It follows from \eqref{eq:Fsupequal} that
+    \[
+    \sup_{N}(F-\Supp_P)\leq F(0).
+    \]
+    The equality is clearly obtained at $0\in N$.
+\end{proof}
+
+\begin{lemma}\label{lma:grad_img_sum}
+    Let $P'\subseteq M$ be another convex body. Then for any $F\in \mathcal{P}(N,P)$ and $F'\in \mathcal{P}(N,P')$, we have
+    \[
+    F+F'\in \mathcal{P}(N,P+P').
+    \]
+
+    Moreover, let $F$ and $F'$ be real-valued convex functions on $N$. Assume that $\Dom F^*$ is bounded. Then
+    \[
+    \overline{\nabla F(N)}+\overline{\nabla F'(N)}=\overline{\nabla (F+F')(N)}.
+    \]
+    In particular, if $F\in \mathcal{P}(N,P)$, $F'\in \mathcal{P}(N,P')$ and
+    \[
+    \overline{\nabla F(N)}=P,\quad \overline{\nabla F'(N)}=P',
+    \]
+    then $F+F'\in \mathcal{E}(N,P+P')$.
+\end{lemma}
+\begin{proof}
+    The former assertion follows immediately from the observation
+    \[
+    \Supp_{P+P'}=\Supp_P+\Supp_{P'}.
+    \]
+
+    We prove the gradient-image equality. In view of \cref{prop:gradDomFstar}, this means
+    \begin{equation}\label{eq:overlineDom_temp1}
+    \overline{\Dom (F+F')^*}=\overline{\Dom F^*}+\overline{\Dom F'{}^*}.
+    \end{equation}
+    It follows from \cref{prop:sumLegendre} that
+    \[
+    \Dom (F+F')^*=\Dom F^*+\Dom F'{}^*.
+    \]
+    Since $\overline{\Dom F^*}$ is compact, \eqref{eq:overlineDom_temp1} follows\footnote{In general, the Minkowski sum does not commute with the closure.}.
+
+    Finally, under the assumptions in the last assertion, the former assertion gives $F+F'\in\mathcal{P}(N,P+P')$. If $\Int(P+P')=\varnothing$, this is exactly the definition of $\mathcal{E}(N,P+P')$. Otherwise, the gradient-image equality gives
+    \[
+    \overline{\nabla (F+F')(N)}=P+P',
+    \]
+    so again $F+F'\in\mathcal{E}(N,P+P')$.
+\end{proof}
+
+
+\section{Monge--Amp\`ere measures}
+\label{sec:convex_MA}
+Let $N$ be a free Abelian group of finite rank $n$ (i.e., a lattice) and $M$ be its dual lattice. There is a canonical Lebesgue-type measure on $M_{\mathbb{R}}$, denoted by $\mathrm{d}\vol$, normalized so that the smallest cubes in $M$ have volume $1$. Similarly, the canonical measure on $N_{\mathbb{R}}$ is normalized in the same way and is denoted by $\mathrm{d}\vol$ as well.
+
+We will write
+\[
+N_{\mathbb{R}}=N\otimes_{\mathbb{Z}}\mathbb{R},\quad M_{\mathbb{R}}=M\otimes_{\mathbb{Z}}\mathbb{R}.
+\]
+
+\begin{definition}\label{def:realMA}
+    Let $F$ be a finite convex function on $N_{\mathbb{R}}$. We define the \emph{real Monge--Ampère measure}\index{real Monge--Ampère measure} $\MA_{\mathbb{R}}F$ as the Alexandrov measure on $N_{\mathbb{R}}$ given as follows: for each Borel measurable set $E\subseteq N_{\mathbb{R}}$, define
+    \begin{equation}\label{eq:MARFE}
+        \MA_{\mathbb{R}}F(E)\coloneqq n!\int_{\nabla F(E)} \mathrm{d}\vol.
+    \end{equation}
+    The measurability and countable additivity in this definition are standard properties of the subgradient map; see for example \cite[Section~2.1]{Fig17}.
+\end{definition}
+
+\begin{proposition}\label{prop:smoothMAreal}
+    Suppose that $F\in C^{1,1}(N_{\mathbb{R}})\cap \Conv(N_{\mathbb{R}})$. Fix an identification $N=\mathbb{Z}^n$. Then
+    \[
+    \MA_{\mathbb{R}}F=n!\cdot \det \nabla^2 F \,\mathrm{d}\vol.
+    \]
+\end{proposition}
+See \cite[Example~2.2]{Fig17}.
+
+\begin{proposition}\label{prop:convex:L541}
+    Let $P\subseteq M_{\mathbb{R}}$ be a convex body and $F\in \mathcal{P}(N_{\mathbb{R}},P)$. Then $F\in \mathcal{E}(N_{\mathbb{R}},P)$ if and only if
+    \begin{equation}\label{eq:cvxfullmass}
+    \int_{N_{\mathbb{R}}}\MA_{\mathbb{R}}F=n! \vol P.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+
+
+   Since $F\in\mathcal{P}(N_{\mathbb{R}},P)$, the function $F$ is closed and has domain $N_{\mathbb{R}}$. By \cref{prop:gradDomFstar}, $\overline{\nabla F(N_{\mathbb{R}})}=\overline{\Dom F^*}$, so this closure is convex. As $\nabla F(N_{\mathbb{R}})$ contains the relative interior of $\Dom F^*$, the definition of $\MA_{\mathbb{R}}$ shows that \eqref{eq:cvxfullmass} is equivalent to
+   \[
+   \vol \overline{\nabla F(N_{\mathbb{R}})}=\vol P.
+   \]
+
+   We first handle the case where $\Int P\neq \varnothing$.
+   By \cref{prop:Fsuppchar}, $\overline{\nabla F(N_{\mathbb{R}})}\subseteq P$. Hence the latter is equivalent to
+   \[
+   \overline{\nabla F(N_{\mathbb{R}})}=P.
+   \]
+   Indeed, a proper closed subset of the full-dimensional convex body $P$ has complement containing a non-empty relatively open subset of $P$, hence has strictly smaller volume.
+
+   Now assume that $\Int P=\varnothing$, then $\vol \overline{\nabla F(N_{\mathbb{R}})}=\vol P=0$ by \cref{prop:Fsuppchar}. The assertion is clear.
+\end{proof}
+
+
+\begin{theorem}\label{thm:realMAcont}
+    Let $F,F_j\in \mathcal{P}(N_{\mathbb{R}},P)$ ($j\in \mathbb{Z}_{>0}$). Assume that $F_j\to F$. Then
+    \[
+    \MA_{\mathbb{R}}(F_j)\rightharpoonup \MA_{\mathbb{R}}(F)
+    \]
+    weakly.
+\end{theorem}
+See \cite[Proposition~2.6]{Fig17}.
+
+There is a well-known comparison principle.
+\begin{theorem}\label{thm:convcomp}
+    Let $F,F'\in \mathcal{P}(N_{\mathbb{R}},P)$. Assume that $F\preceq F'$. Then
+    \[
+    \overline{\nabla F(N_{\mathbb{R}})}\subseteq \overline{\nabla F'(N_{\mathbb{R}})},\quad
+    \int_{N_{\mathbb{R}}} \MA_{\mathbb{R}}(F)\leq \int_{N_{\mathbb{R}}} \MA_{\mathbb{R}}(F').
+    \]
+\end{theorem}
+\begin{proof}
+    It suffices to observe that $F'{}^*\preceq F^*$, and hence the first assertion follows from \cref{prop:gradDomFstar}. By the definition of the real Monge--Ampère measure,
+    \[
+        \int_{N_{\mathbb R}}\MA_{\mathbb R}F=n!\vol\overline{\nabla F(N_{\mathbb R})}.
+    \]
+    So the second assertion follows from the first.
+\end{proof}
+
+\begin{lemma}\label{lma:realMA_Legendre_pushforward}
+    Let $F\in \mathcal{E}(N_{\mathbb{R}},P)$ and set $G=F^*$. Then the map $\nabla G$ pushes forward $n!\,\mathrm{d}\vol|_{P}$ to $\MA_{\mathbb R}(F)$. Equivalently, for every bounded Borel function $h$ on $N_{\mathbb R}$,
+    \[
+        \int_{N_{\mathbb R}} h\,\MA_{\mathbb R}(F)= n!\int_P h(\nabla G(m))\,\mathrm{d}\vol(m).
+    \]
+\end{lemma}
+\begin{proof}
+    If $\vol P=0$, the assertion is clear from \cref{prop:Fsuppchar} and the definition of $\MA_{\mathbb R}$. We may therefore assume that $P$ has non-empty interior.
+
+    Since $F\in \mathcal P(N_{\mathbb R},P)$, we have $\Dom G\subseteq P$ by \cref{prop:Fsuppchar}. On the other hand, by the definition of $\mathcal E(N_{\mathbb R},P)$ and \cref{prop:gradDomFstar},
+    \[
+        P=\overline{\nabla F(N_{\mathbb R})}\subseteq \overline{\Dom G}.
+    \]
+    Hence $\overline{\Dom G}=P$. Since $\Dom G$ is convex, $G$ is finite on $\Int P$ and is equal to $\infty$ outside $P$. Let $D$ be the set of points in $\Int P$ at which $G$ is differentiable. By \cite[Theorem~25.5]{Roc70}, $P\setminus D$ has measure zero. By \cite[Theorem~23.5]{Roc70}, $m\in\nabla F(n)$ if and only if $n\in\nabla G(m)$. Hence for any Borel set $E\subseteq N_{\mathbb R}$,
+    \[
+        \{m\in D:\nabla G(m)\in E\}=D\cap \nabla F(E).
+    \]
+    It follows from \cref{def:realMA} that
+    \[
+        n!\vol \{m\in P:\nabla G(m)\in E\}=n!\vol \nabla F(E)=\MA_{\mathbb R}(F)(E).
+    \]
+    Our assertions follow.
+\end{proof}
+
+Finally, let us recall a mixed version of the real Monge--Ampère measure:
+\begin{theorem}\label{thm:mixed_realMA}
+    There is a symmetric map assigning to every $n$-tuple of finite convex functions $F_1,\ldots,F_n$ on $N_{\mathbb R}$ a positive Radon measure
+    \[
+        \MA_{\mathbb R}(F_1,\ldots,F_n)
+    \]
+    on $N_{\mathbb R}$ with the following properties:
+    \begin{enumerate}
+        \item\label{itm:thm:mixed_realMA:1} For every $q\in \mathbb Z_{>0}$, finite convex functions $F_1,\ldots,F_q$ on $N_{\mathbb R}$, and $\lambda_1,\ldots,\lambda_q\geq 0$,
+        \[
+            \MA_{\mathbb R}(\lambda_1F_1+\cdots+\lambda_qF_q)
+            =\sum_{i_1,\ldots,i_n=1}^q
+            \lambda_{i_1}\cdots\lambda_{i_n}
+            \MA_{\mathbb R}(F_{i_1},\ldots,F_{i_n}).
+        \]
+        \item\label{itm:thm:mixed_realMA:2} For every finite convex function $F$ on $N_{\mathbb R}$,
+        \[
+            \MA_{\mathbb R}(F,\ldots,F)=\MA_{\mathbb R}(F).
+        \]
+        \item\label{itm:thm:mixed_realMA:3} The map $\MA_{\mathbb R}$ is additive and positively homogeneous of degree $1$ in each entry. In other words, for finite convex functions $F,G,F_2,\ldots,F_n$ on $N_{\mathbb R}$ and $\lambda,\mu\geq 0$,
+        \[
+            \MA_{\mathbb R}(\lambda F+\mu G,F_2,\ldots,F_n)
+            =\lambda\MA_{\mathbb R}(F,F_2,\ldots,F_n)
+            +\mu\MA_{\mathbb R}(G,F_2,\ldots,F_n).
+        \]
+    \end{enumerate}
+\end{theorem}
+This is \cite[Theorem~4.3(a),(b),(f)]{CLM22}, multiplied by $n!$ to match the normalization in \cref{def:realMA}. The positivity is part of the construction: it is the non-negativity of the mixed discriminant in the smooth case and follows in general by weak continuity. The mixed real Monge--Ampère measure was also studied in \cite{TW02,PR04}.
+
+\section{Several lemmata}
+\label{sec:convex_sep}
+
+\begin{lemma}\label{lma:polybdd}
+	Let $\alpha,\beta_1,\ldots,\beta_m\in \mathbb{Z}^n$. Let $\Delta$ be the polytope generated by $\beta_1,\ldots,\beta_m$. Then the following are equivalent:
+	\begin{enumerate}
+		\item\label{itm:lma:polybdd:1}
+		      \begin{equation}\label{eq:zalpha}
+			      |z^{\alpha}|^2\left(\sum_{i=1}^m |z^{\beta_i}|^2 \right)^{-1}
+		      \end{equation}
+		      is a bounded function on $\mathbb{C}^{*n}$.
+		\item\label{itm:lma:polybdd:2} $\alpha\in \Delta$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	\ref{itm:lma:polybdd:2} $\implies$ \ref{itm:lma:polybdd:1}. Write $\alpha=\sum_i t_i\beta_i$, where $t_i\in [0,1]$, $\sum_i t_i=1$. Then
+	\[
+ \begin{aligned}
+			|z^{\alpha}|^2\left(\sum_{i=1}^m |z^{\beta_i}|^2 \right)^{-1}
+            &=\prod_i |z^{\beta_i}|^{2t_i}\left(\sum_{i=1}^m |z^{\beta_i}|^2 \right)^{-1}\\
+            &\leq \prod_i\left(\sum_{j=1}^m |z^{\beta_j}|^2\right)^{t_i}
+            \left(\sum_{i=1}^m |z^{\beta_i}|^2 \right)^{-1}=1.
+	  \end{aligned}
+		\]
+
+		\ref{itm:lma:polybdd:1} $\implies$ \ref{itm:lma:polybdd:2}. Assume that $\alpha\not\in \Delta$. By the strict separation theorem, there is $a=(a_1,\ldots,a_n)\in\mathbb{R}^n$ such that
+        \[
+        a\cdot\alpha>\max_i a\cdot\beta_i.
+        \]
+        Set
+		\[
+			z(t)\coloneqq (t^{a_1},\ldots,t^{a_n}).
+		\]
+		Then \eqref{eq:zalpha} evaluated at $z(t)$ grows like
+        \[
+        \frac{t^{2a\cdot \alpha}}{\sum_i t^{2a\cdot\beta_i}}
+        \]
+        as $t\to\infty$, and hence is not bounded.
+\end{proof}
+\begin{lemma}\label{lma:polybdd2}
+	Let $\beta_1,\ldots,\beta_m\in \mathbb{N}^n$ and $\beta\in \mathbb{R}^n$. Then the following are equivalent:
+	\begin{enumerate}
+		\item\label{itm:lma:polybdd2:1} $\log \sum_{i=1}^m \mathrm{e}^{x\cdot\beta_i}-x\cdot\beta$ is bounded from below.
+		\item\label{itm:lma:polybdd2:2} $\beta$ is in the convex hull of the $\beta_i$'s.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+		If $\beta=\sum_i t_i\beta_i$ with $t_i\in[0,1]$ and $\sum_i t_i=1$, then by the weighted arithmetic--geometric mean inequality,
+        \[
+        x\cdot\beta=\sum_i t_i\,x\cdot\beta_i
+        \leq \log\sum_i t_i\mathrm{e}^{x\cdot\beta_i}
+        \leq \log\sum_i \mathrm{e}^{x\cdot\beta_i}.
+        \]
+        This proves that the function in \ref{itm:lma:polybdd2:1} is bounded from below.
+
+        Conversely, if $\beta$ does not lie in the convex hull of the $\beta_i$'s, choose $a\in\mathbb{R}^n$ such that
+        \[
+        a\cdot\beta>\max_i a\cdot\beta_i.
+        \]
+        Evaluating at $x=ta$ and letting $t\to\infty$, we find
+        \[
+        \log \sum_i \mathrm{e}^{t a\cdot\beta_i}-t\,a\cdot\beta\to-\infty,
+        \]
+        contradicting \ref{itm:lma:polybdd2:1}.
+\end{proof}
+
+\begin{lemma}\label{lma:conc_lim_der}
+    Let $I\subseteq \mathbb{R}$ be an open interval containing $0$. Let $(f_k\colon I\rightarrow \mathbb{R})_{k\geq 1}$ be a sequence of convex functions, and let $g\colon I\to \mathbb{R}$ be a function. Assume that
+    \[
+        \varlimsup_{k\to\infty} f_k(t)\leq g(t)\quad \text{for every } t\in I,
+    \]
+    and that
+    \[
+        \lim_{k\to\infty} f_k(0)=g(0).
+    \]
+    If each $f_k$ and $g$ is differentiable at $0$, then
+    \[
+        \lim_{k\to\infty} f_k'(0)=g'(0).
+    \]
+\end{lemma}
+\begin{proof}
+    Since $f_k$ is convex and differentiable at $0$, for every $t\in I$,
+    \[
+        f_k(t)\geq f_k(0)+t f_k'(0).
+    \]
+    Taking the upper limit as $k\to\infty$ and using the assumptions gives
+    \[
+        \varlimsup_{k\to\infty} t f_k'(0)
+        \leq g(t)-g(0).
+    \]
+
+    For $t>0$, this yields
+    \[
+        \varlimsup_{k\to\infty} f_k'(0)
+        \leq \frac{g(t)-g(0)}{t}.
+    \]
+    Letting $t\to 0+$ and using the differentiability of $g$ at $0$, we get
+    \[
+        \varlimsup_{k\to\infty} f_k'(0)\leq g'(0).
+    \]
+
+    For $t<0$, the same inequality gives
+    \[
+        \varliminf_{k\to\infty} f_k'(0)
+        \geq \frac{g(t)-g(0)}{t}.
+    \]
+    Letting $t\to 0-$ and again using the differentiability of $g$ at $0$, we obtain
+    \[
+        \varliminf_{k\to\infty} f_k'(0)\geq g'(0).
+    \]
+    Therefore
+    \[
+        \lim_{k\to\infty} f_k'(0)=g'(0),
+    \]
+    as claimed.
+\end{proof}

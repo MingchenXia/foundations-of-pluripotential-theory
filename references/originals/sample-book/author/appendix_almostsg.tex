@@ -1,0 +1,547 @@
+\chapter{Almost semigroups}
+\label[appendix]{chap:almostsg}
+
+This appendix develops the theory of \emph{almost semigroups} in $\mathbb{Z}^{n+1}$ that underpins the partial Okounkov body construction of \cref{chap:Okounkov}. Almost semigroups generalize the integral semigroups arising in the classical Lazarsfeld--Musta\c{t}\u{a} and Kaveh--Khovanskii constructions to the setting where the underlying graded family is no longer multiplicative. The main result is the construction of a convex body $\Delta(S)\subseteq \mathbb{R}^n$ out of an almost semigroup $S$. The corresponding statements were stated without proof in \cref{chap:Okounkov}; the proofs are given here.
+
+\section{Convex bodies}\label{sec:cb}
+
+Fix $n\in \mathbb{N}$.
+
+
+\begin{definition}\label{def:convbodies}
+    A \emph{convex body}\index{convex body} in $\mathbb{R}^n$ is a non-empty compact convex set.
+\end{definition}
+We allow a convex body to have empty interior.
+
+We write $\mathcal{K}_n$ for the set of convex bodies in $\mathbb{R}^n$.
+
+\begin{definition}\label{def:Hausdorffmetric}
+The \emph{Hausdorff metric}\index{Hausdorff metric}\index{$d_{\Haus}$} between $K_1,K_2\in \mathcal{K}_n$ is given by
+\[
+	d_{\Haus}(K_1,K_2)\coloneqq \max\left\{\adjustlimits\sup_{x_1\in K_1}\inf_{x_2\in K_2}|x_1-x_2|, \adjustlimits\sup_{x_2\in K_2}\inf_{x_1\in K_1}|x_1-x_2|\right\}.
+\]
+
+\end{definition}
+
+It is well-known that the metric space $(\mathcal{K}_n,d_{\Haus})$ is complete.
+We will need the following fundamental theorem:
+\begin{theorem}[Blaschke selection theorem]\label{thm:Blaschke}\index{theorem!Blaschke selection theorem}
+    The metric space $(\mathcal{K}_n,d_{\Haus})$ is locally compact.
+\end{theorem}
+We refer to \cite[Theorem~1.8.7]{Sch14} for details.
+
+\begin{theorem}\label{thm:contvol}
+	The Lebesgue volume $\vol\colon \mathcal{K}_n\rightarrow \mathbb{R}_{\geq 0}$ is continuous.
+\end{theorem}
+See \cite[Theorem~1.8.20]{Sch14}.
+
+\begin{theorem}\label{thm:Hausconvcond}
+	Let $K_i, K\in \mathcal{K}_n$ ($i\in \mathbb{N}$). Then $K_i\xrightarrow{d_{\Haus}}K$ if and only if the following conditions hold:
+	\begin{enumerate}
+		\item\label{itm:thm:Hausconvcond:1} each point $x\in K$ is the limit of a sequence $x_i\in K_i$, and
+		\item\label{itm:thm:Hausconvcond:2} the limit of any convergent sequence $(x_{i_j})_{j\in \mathbb{N}}$ with $x_{i_j}\in K_{i_j}$ lies in $K$, where $i_j$ is a strictly increasing sequence in $\mathbb{Z}_{>0}$.
+	\end{enumerate}
+\end{theorem}
+See \cite[Theorem~1.8.8]{Sch14}.
+
+
+For a convex body $K\subseteq \mathbb{R}^n$ and $\epsilon>0$, we write $K_\epsilon\coloneqq \{x\in K: B(x,\epsilon)\subseteq K\}$ for the \emph{inner $\epsilon$-shrinking} of $K$. (Compare with the outer thickening $K^\epsilon$ used in \cref{cor:DXmaintoric}; the two are different operations.)
+
+\begin{lemma}\label{lma:latcvb}
+		Let $K\in \mathcal{K}_n$ be a convex body with positive volume and $K'\in \mathcal{K}_n$. Assume that, for some $k\in \mathbb Z_{>0}$, $K'$ contains $K\cap(k^{-1}\mathbb Z)^n$. Then
+    \[
+        K'\supseteq K_{n^{1/2}/k}.
+    \]
+\end{lemma}
+\begin{proof}
+    Let $x\in K_{n^{1/2}k^{-1}}$. By assumption, the closed ball $B$ with center $x$ and radius $n^{1/2}k^{-1}$ is contained in $K$. Observe that $x$ can be written as a convex combination of points in $B\cap (k^{-1}\mathbb{Z})^n$, which are contained in $K'$ by assumption. It follows that $x\in K'$.
+\end{proof}
+
+
+Given a sequence of convex bodies $K_i$ ($i\in \mathbb{N}$), we set
+\[
+	\varliminf_{i\to\infty}K_i= \overline{\bigcup_{i=0}^{\infty}\bigcap_{j\geq i}K_j}.
+\]
+
+Suppose $K$ is the limit of a subsequence of $K_i$, we have
+\begin{equation}\label{eq:liminflimsup}
+	\varliminf_{i\to\infty}K_i\subseteq K.
+\end{equation}
+This is a simple consequence of \cref{thm:Hausconvcond}.
+
+\begin{lemma}\label{lma:Hausdorffconvslice}
+    Assume that $n>0$.
+    Let $K\subseteq \mathbb{R}^n$ be a convex body. Let
+    \[
+    t_{\min}\coloneqq \min \{t\in \mathbb{R}:\{x_1=t\}\cap K\neq \varnothing\},\quad t_{\max}\coloneqq \max \{t\in \mathbb{R}:\{x_1=t\}\cap K\neq \varnothing\}.
+    \]
+    Then for $t\in [t_{\min},t_{\max}]$, the map
+    \[
+    t\mapsto \{y\in \mathbb{R}^{n-1}:(t,y)\in K\}
+    \]
+    is continuous with respect to the Hausdorff metric.
+\end{lemma}
+Here $x_1$ denotes the first coordinate in $\mathbb{R}^n$.
+\begin{proof}
+We may assume that $t_{\min}<t_{\max}$ as otherwise there is nothing to prove.
+
+For each $t\in [t_{\min},t_{\max}]$, we write $K_t=\{y\in \mathbb{R}^{n-1}:(t,y)\in K\}$.
+Let $t_j\to t$ be a convergent sequence in $[t_{\min},t_{\max}]$, we want to show that $K_{t_j}$ converges to $K_t$ with respect to the Hausdorff metric. Recall that this amounts to the following two assertions:
+\begin{enumerate}
+    \item\label{itm:appendix-Okounkov:L87:1} For each convergent sequence $y_j\in K_{t_j}$ with limit $y$, we have $y\in K_t$;
+    \item\label{itm:appendix-Okounkov:L87:2} Given any $y\in K_t$, up to replacing $t_j$ by a subsequence, we can find $y_j\in K_{t_j}$ converging to $y$.
+\end{enumerate}
+The first assertion is obvious. Let us prove the second. Take $y\in K_t$. Up to replacing $t_j$ by a subsequence and taking the symmetry into account, we may assume that $t_j> t$ for all $j$. In particular, $t<t_{\max}$.
+
+We can find a point $z=(z^1,z')\in K$ such that $z^1>t$ (for example, there is always such a point with $z^1=t_{\max}$). Replacing $t_j$ by a subsequence, we may assume that $t_j\in (t,z^1)$ for all $j$. Then it suffices to take
+\[
+y_j=\frac{z^1-t_j}{z^1-t}y+\frac{t_j-t}{z^1-t}z'.
+\]
+This completes the proof.
+\end{proof}
+
+
+\begin{lemma}\label{lma:Hausdorffconvcoordbounds}
+    Assume that $n>0$. The maps $\mathcal{K}_n\rightarrow \mathbb{R}$ given by
+    \[
+        K\mapsto \min_{x\in K}x_1,\qquad K\mapsto \max_{x\in K}x_1
+    \]
+    are continuous with respect to the Hausdorff metric.
+\end{lemma}
+\begin{proof}
+    We prove the assertion for the maximum; the proof for the minimum is the same.
+    Let $K,L\in \mathcal{K}_n$ and set $\epsilon=d_{\Haus}(K,L)$.
+    For every $x\in K$, there exists $y\in L$ with $|x-y|\leq \epsilon$, hence
+    \[
+        x_1\leq y_1+\epsilon\leq \max_{z\in L}z_1+\epsilon.
+    \]
+    Taking the maximum over $x\in K$ gives
+    \[
+        \max_{x\in K}x_1\leq \max_{z\in L}z_1+\epsilon.
+    \]
+    Interchanging $K$ and $L$, we get
+    \[
+        \left|\max_{x\in K}x_1-\max_{z\in L}z_1\right|\leq d_{\Haus}(K,L).
+    \]
+    This proves the continuity.
+\end{proof}
+
+
+\begin{lemma}\label{lma:intconvexset}
+    Let $D_j\subseteq \mathbb{R}^n$ $(j\geq 1)$ be a decreasing sequence of bounded convex sets. Assume that $\vol \bigcap_j D_j>0$. Then
+    \[
+    \overline{\bigcap_{j=1}^{\infty}D_j}=\bigcap_{j=1}^{\infty}\overline{D_j}.
+    \]
+\end{lemma}
+\begin{proof}
+    The $\subseteq$ direction is clear. By convexity, it suffices to show that both sides have the same positive volume: indeed, a proper inclusion of closed convex sets with positive volume would cut off a non-empty relatively open convex piece by a separating hyperplane, hence would strictly decrease the volume. As the boundary of convex sets has zero Lebesgue measure, it follows that the volumes of both sides are equal to $\lim_{j\to\infty}\vol D_j$.
+\end{proof}
+
+
+\begin{definition}\label{def:almostsg:L138}
+    Let $K,K'\in \mathcal{K}_n$, their \emph{Minkowski sum}\index{Minkowski sum} is given by
+    \[
+    K+K'\coloneqq \{x+x': x\in K,x'\in K'\}.
+    \]
+\end{definition}
+\begin{proposition}
+    The Minkowski sum $\mathcal{K}_n\times \mathcal{K}_n\rightarrow \mathcal{K}_n$ is continuous.
+\end{proposition}
+See \cite[Page~139]{Sch14}.
+\begin{theorem}[Brunn--Minkowski]\label{thm:BrunnMin}\index{theorem!Brunn--Minkowski theorem}
+    Let $K,K'\in \mathcal{K}_n$. Then for any $t\in (0,1)$, we have
+    \[
+    \vol\bigl((1-t)K'+tK\bigr)\geq \bigl(\vol K'\bigr)^{1-t}\bigl(\vol K\bigr)^t.
+    \]
+\end{theorem}
+In other words, the volume is log concave. See \cite[Page~372]{Sch14}.
+
+
+
+
+\section{The Okounkov bodies of almost semigroups}\label{sec:clo}
+Fix an integer $n\geq 0$. Fix a closed convex cone $C\subseteq \mathbb{R}^{n}\times \mathbb{R}_{\geq 0}$ such that $C\cap \{x_{n+1}=0\}=\{0\}$. Here $x_{n+1}$ is the last coordinate of $\mathbb{R}^{n+1}$.
+\subsection{Generalities on semigroups}
+\label{subsec:asg_general}
+Write $\hat{\mathcal{S}}(C)$ for the set of subsets of $C\cap \mathbb{Z}^{n+1}$ and $\mathcal{S}(C)$ for the set of subsemigroups $S\subseteq C\cap \mathbb{Z}^{n+1}$. For each $k\in \mathbb{N}$ and $S\in \hat{\mathcal{S}}(C)$, we write
+\[
+S_k\coloneqq \left\{x\in \mathbb{Z}^n: (x,k)\in S \right\}.
+\]
+Note that $S_k$ is a finite set by our assumption on $C$.
+
+We introduce a pseudometric on $\hat{\mathcal{S}}(C)$ as follows:
+\begin{equation}\label{eq:dsgdefapp}
+d_{\sg}(S,S')\coloneqq \varlimsup_{k\to\infty} k^{-n} \left(|S_k|+|S'_k|-2|(S\cap S')_k|\right).
+\end{equation}
+Here $|\bullet|$ denotes the cardinality of a finite set.
+\begin{lemma}\label{lma:dpsapp}
+    The above defined $d_{\sg}$ is a pseudometric on $\hat{\mathcal{S}}(C)$.
+\end{lemma}
+\begin{proof}
+    Only the triangle inequality needs to be argued. Take $S,S',S''\in \hat{\mathcal{S}}(C)$. We claim that for any $k\in \mathbb{N}$,
+    \[
+    |S_k|+|S'_k|-2|S_k\cap S'_k|+|S''_k|+|S'_k|-2|S''_k\cap S'_k|\geq |S_k|+|S''_k|-2|S_k\cap S''_k|.
+    \]
+    From this the triangle inequality follows. To argue the claim, we rearrange it to the following form:
+    \[
+        |S'_k|-|S_k\cap S'_k| \geq |S'_k\cap S''_k|-|S_k\cap S''_k|,
+    \]
+    which is obvious.
+\end{proof}
+Given $S,S'\in \hat{\mathcal{S}}(C)$, we say $S$ is equivalent to $S'$ and write $S\sim S'$ if $d_{\sg}(S,S')=0$. This is an equivalence relation by \cref{lma:dpsapp}.
+
+\begin{lemma}\label{lma:dBilapp}
+    Given $S,S',S''\in \hat{\mathcal{S}}(C)$, we have
+    \[
+    d_{\sg}(S\cap S'',S'\cap S'')\leq d_{\sg}(S,S').
+    \]
+    In particular, if $S^i,S'^i\in \hat{\mathcal{S}}(C)$ ($i\in \mathbb{N}$) and $S^i\to S$, $S'^i\to S'$, then
+    \[
+    S^i\cap S'^i\to S\cap S'.
+    \]
+\end{lemma}
+\begin{proof}
+    Observe that for any $k\in \mathbb{N}$,
+    \[
+    |S_k\cap S_k''|-|S_k\cap S_k'\cap S_k''|\leq |S_k|-|S_k\cap S_k'|.
+    \]
+    The same holds if we interchange $S$ with $S'$. It follows that
+    \[
+    |S_k\cap S_k''|+|S_k'\cap S_k''|-2|S_k\cap S_k'\cap S_k''|\leq |S_k|+|S'_k|-2|S_k\cap S_k'|.
+    \]
+    The first assertion follows.
+
+    Next we compute
+    \[
+    \begin{split}
+    d_{\sg}(S^i\cap S'^i,S\cap S')\leq & d_{\sg}(S^i\cap S'^i,S^i\cap S')+d_{\sg}(S^i\cap S',S\cap S')\\
+    \leq & d_{\sg}(S'^i,S')+d_{\sg}(S^i,S)
+    \end{split}
+    \]
+    and the second assertion follows.
+\end{proof}
+
+The volume of $S\in \mathcal{S}(C)$ is defined as
+\[
+\vol S\coloneqq \lim_{k\to\infty} (ka)^{-n}|S_{ka}|=\varlimsup_{k\to\infty} k^{-n}|S_k|,
+\]
+where $a$ is a sufficiently divisible positive integer.
+The existence of the limit and its independence from $a$ both follow from the more precise result \cite[Theorem~2]{KK12}, a special case of which can be stated as follows:
+\begin{theorem}[Kaveh--Khovanskii]\label{thm:KK12growth}
+    Let $S\in \mathcal{S}(C)$. Then, for every sufficiently divisible positive integer $a$, the limit
+    \[
+        \lim_{k\to\infty}(ka)^{-n}|S_{ka}|
+    \]
+    exists, is independent of $a$, and is equal to $\varlimsup_{k\to\infty} k^{-n}|S_k|$.
+    If moreover $S$ generates $\mathbb{Z}^{n+1}$ as an Abelian group, and if $C(S)$ denotes the closed convex cone generated by $S\cup\{0\}$, then
+    \[
+        \lim_{k\to\infty} k^{-n}|S_k|
+        =
+        \vol \{x\in \mathbb{R}^n:(x,1)\in C(S)\}.
+    \]
+    In particular, for every convex body $K\subseteq \mathbb{R}^n$,
+    \[
+        \lim_{k\to\infty} k^{-n}\#\left(kK\cap \mathbb{Z}^n\right)=\vol K.
+    \]
+    The same assertion holds with $\mathbb{Z}^n$ replaced by any lattice, provided the Lebesgue measure is normalized by that lattice.
+\end{theorem}
+This is the part of \cite[Theorem~2]{KK12} used in this book.
+\begin{lemma}\label{lma:vollipapp}
+    Let $S,S'\in \mathcal{S}(C)$. Then
+    \[
+    |\vol S-\vol S'|\leq d_{\sg}(S,S').
+    \]
+\end{lemma}
+\begin{proof}
+    Choose a sufficiently divisible positive integer $a$. Taking the limsup in the definition of $d_{\sg}$ along $k=ma$ gives
+    \[
+        d_{\sg}(S,S')\geq \vol S+\vol S'-2\vol(S\cap S').
+    \]
+    It follows that $\vol S-\vol S'\leq d_{\sg}(S,S')$ and $\vol S'-\vol S\leq d_{\sg}(S,S')$.
+\end{proof}
+We define $\overline{\mathcal{S}}(C)$ as the closure of $\mathcal{S}(C)$ in $\hat{\mathcal{S}}(C)$ with respect to the topology defined by the pseudometric $d_{\sg}$.
+By \cref{lma:vollipapp}, $\vol\colon \mathcal{S}(C)\rightarrow \mathbb{R}$ admits a unique $1$-Lipschitz extension to
+\begin{equation}\label{eq:volexapp}
+\vol\colon \overline{\mathcal{S}}(C)\rightarrow \mathbb{R}.
+\end{equation}
+\begin{lemma}\label{lma:volcompaapp}
+    Suppose that $S,S'\in \overline{\mathcal{S}}(C)$ and $S\subseteq S'$. Then
+    \[
+    \vol S\leq \vol S'.
+    \]
+\end{lemma}
+\begin{proof}
+    Take sequences $S^j,S'^j$ in $\mathcal{S}(C)$ such that $S^j\to S$, $S'^j\to S'$. By \cref{lma:dBilapp}, after replacing $S^j$ by $S^j\cap S'^j$, we may assume that $S^j\subseteq S'^j$ for each $j$. Then our assertion follows easily.
+\end{proof}
+
+
+
+
+\subsection{Okounkov bodies of semigroups}
+\label{subsec:asg_okoun}
+Given $S\in \hat{\mathcal{S}}(C)$, we will write $C(S)\subseteq C$ for the closed convex cone generated by $S\cup \{0\}$. Moreover, for each $k\in \mathbb{Z}_{>0}$, we define
+\[
+\Delta_k(S)\coloneqq \Conv \left\{k^{-1}x\in \mathbb{R}^n:x\in S_k \right\}\subseteq \mathbb{R}^n.
+\]
+Here $\Conv$ denotes the convex hull.
+\begin{definition}\label{def:almostsg:L284}
+    Let $\mathcal{S}'(C)$ be the subset of $\mathcal{S}(C)$ consisting of semigroups $S$ such that $S$ generates $\mathbb{Z}^{n+1}$ (as an Abelian group).
+    \index{semigroup!$\mathcal{S}'(C)$}
+    \index{$\mathcal{S}'(C)$}
+\end{definition}
+Note that for any $S\in \mathcal{S}'(C)$, the cone $C(S)$ has full dimension (i.e., the topological interior is non-empty). Given a full-dimensional subcone $C'\subseteq C$, the semigroup $C'\cap \mathbb{Z}^{n+1}$ lies in $\mathcal{S}'(C)$.
+
+This class behaves well under intersections:
+\begin{lemma}\label{lma:intersecS'app}
+    Let $S,S'\in \mathcal{S}'(C)$. Assume that $\vol (S\cap S')>0$. Then $S\cap S'\in \mathcal{S}'(C)$, and
+    \[
+    C(S\cap S')=C(S)\cap C(S').
+    \]
+\end{lemma}
+The lemma obviously fails if $\vol (S\cap S')=0$.
+\begin{proof}
+    We first observe that the cone $C(S)\cap C(S')$ has full dimension since otherwise $\vol(S\cap S')=0$. Take a full-dimensional subcone $C'$ in $C(S)\cap C(S')$ such that $C'$ intersects the boundary of $C(S)\cap C(S')$ only at $0$. It follows from \cite[Theorem~1]{KK12} that there is an integer $N>0$ such that any $x\in \mathbb{Z}^{n+1}\cap C'$ with Euclidean norm at least $N$ lies in $S\cap S'$. Therefore, $S\cap S'\in \mathcal{S}'(C)$.
+    Since $C'$ can be chosen around any ray in the interior of $C(S)\cap C(S')$, the same argument also shows that
+    \[
+    C(S\cap S')=C(S)\cap C(S').
+    \]
+    This completes the proof.
+\end{proof}
+
+
+
+We recall the following definition from \cite{KK12}.
+\begin{definition}\label{def:Okokkapp}
+ Given $S\in \mathcal{S}'(C)$, its \emph{Okounkov body}\index{Okounkov body!Okounkov body of an almost semigroup} is defined as follows
+\[
+\Delta(S)\coloneqq \left\{x\in \mathbb{R}^n:(x,1)\in C(S) \right\}.
+\]
+\end{definition}
+
+\begin{theorem}\label{thm:HausOkounapp}
+	For each $S\in \mathcal{S}'(C)$, we have
+	\begin{equation}\label{eq:volWvolDeltaapp}
+		\vol S=\lim_{k\to\infty} k^{-n}|S_k|=\vol \Delta(S)>0.
+	\end{equation}
+    Moreover, as $k\to\infty$,
+	\begin{equation}\label{eq:HausconvDeltaGLSapp}
+		\Delta_{k}(S)\xrightarrow{d_{\Haus}}\Delta(S).
+	\end{equation}
+\end{theorem}
+This is essentially proved in \cite[Lemma~4.8]{WN14}, which itself follows from a theorem of Khovanskii \cite{Kho92}.
+\begin{proof}
+	The equalities \eqref{eq:volWvolDeltaapp} follow from \cref{thm:KK12growth}.
+
+    %For any $M\in \mathbb{Z}_{>0}$. Let $K\subseteq \Delta_M(S)$ be a compact subset contained in the interior. there is $C_K>0$ such that for any $\alpha\in K\cap (k^{-1}\mathbb{Z})^n$ satisfying $d_{\sg}(\alpha,\partial K)>k^{-1}C_K$, we have $\alpha\in \Delta_k(S)$.
+
+	%To see this claim, consider the semigroup $\Gamma$ generated by $(M\beta,M)$ for all $\beta\in S_M$ and some unit simplex in $\Gamma(W)$. We conclude by \cite[Lemma~2.3]{WN14}.
+
+	It remains to prove \eqref{eq:HausconvDeltaGLSapp}. By the argument of \cite[Lemma~4.8]{WN14}, for any compact set $K\subseteq \Int \Delta(S)$, there is $k_0>0$ such that for any $k\geq k_0$, $\alpha\in K\cap (k^{-1}\mathbb{Z})^n$ implies that $\alpha\in \Delta_k(S)$.
+
+	To conclude, fix $\epsilon>0$. Choose $\delta>0$ such that $K\coloneqq \Delta(S)_{\delta}$ has positive volume and $d_{\Haus}(K,\Delta(S))<\epsilon/2$. Applying \cref{lma:latcvb} to $K$, we find that $\Delta_k(S)$ contains $K_{n^{1/2}k^{-1}}$ for all large $k$. After increasing $k$, we may also assume that $d_{\Haus}(K,K_{n^{1/2}k^{-1}})<\epsilon/2$. Since $\Delta_k(S)\subseteq \Delta(S)$, this implies \eqref{eq:HausconvDeltaGLSapp}.
+\end{proof}
+\begin{corollary}\label{cor:distapp}
+    Let $S,S'\in \mathcal{S}'(C)$. Assume that $\vol (S\cap S')>0$. Then we have
+    \[
+    d_{\sg}(S,S')=\vol(S)+\vol(S')-2\vol(S\cap S').
+    \]
+\end{corollary}
+\begin{proof}
+    This is a direct consequence of \cref{lma:intersecS'app} and \eqref{eq:volWvolDeltaapp}.
+\end{proof}
+
+\begin{lemma}\label{lma:regularizatapp}
+    Given $S\in \mathcal{S}'(C)$, we have $S\sim \Reg(S)$.
+\end{lemma}
+Recall that the regularization $\Reg(S)$ of $S$ is defined as $C(S)\cap \mathbb{Z}^{n+1}$.
+\begin{proof}
+    Since $S$ and $\Reg(S)$ have the same Okounkov body,
+    we have $\vol S=\vol \Reg(S)$ by \cref{thm:HausOkounapp}. By \cref{cor:distapp} again,
+    \[
+    d_{\sg}(\Reg(S),S)=\vol \Reg(S)-\vol S=0.
+    \]
+    This completes the proof.
+\end{proof}
+
+
+\begin{lemma}\label{lma:Deltaindclassapp}
+	Let $S,S'\in \mathcal{S}'(C)$. Assume that $d_{\sg}(S,S')=0$. Then $\Delta(S)=\Delta(S')$.
+\end{lemma}
+\begin{proof}
+Observe that $\vol (S\cap S')>0$, as otherwise
+\[
+d_{\sg}(S,S')\geq \vol S+\vol S'>0,
+\]
+which is a contradiction.
+
+It follows from \cref{lma:intersecS'app} that $S\cap S'\in \mathcal{S}'(C)$. It suffices to show that $\Delta(S)=\Delta(S\cap S')$.
+In fact, suppose that this holds, since $\vol \Delta(S')=\vol S'=\vol S=\vol \Delta(S)$, the inclusion $\Delta(S')\supseteq \Delta(S\cap S')=\Delta(S)$ is an equality.
+
+After replacing $S'$ by $S\cap S'$, we still have $d_{\sg}(S,S')=0$ by \cref{lma:dBilapp}, and now $S'\subseteq S$.
+Hence \cref{cor:distapp} gives
+    \[
+        0=d_{\sg}(S,S')=\vol S-\vol S',
+    \]
+so $\vol S=\vol S'$. Therefore
+    \[
+        \vol\Delta(S)=\vol\Delta(S')>0
+    \]
+by \eqref{eq:volWvolDeltaapp}. Therefore, they are equal.
+\end{proof}
+
+\begin{lemma}\label{lma:Sprimeintapp}
+    Suppose that $S^i\in \mathcal{S}'(C)$ is a decreasing sequence such that
+    \[
+    \lim_{i\to\infty}\vol S^i>0.
+    \]
+    Then there is $S\in \mathcal{S}'(C)$ such that $S^i\to S$.
+\end{lemma}
+In general, one cannot simply take $S=\bigcap_i S^i$. For example, consider the sequence $S^i=S^1\cap \{x_{n+1}\geq i\}$.
+\begin{proof}
+    By \cref{lma:regularizatapp}, we may replace $S^i$ by its regularization and assume that $S^i=C(S^i)\cap \mathbb{Z}^{n+1}$. We define
+    \[
+    S=\left( \bigcap_{i=1}^{\infty}C(S^i) \right) \cap \mathbb{Z}^{n+1}.
+    \]
+    The convex bodies $\Delta(S^i)$ form a decreasing sequence and satisfy
+    \[
+    \lim_{i\to\infty}\vol\Delta(S^i)=\lim_{i\to\infty}\vol S^i>0.
+    \]
+    By continuity from above for Lebesgue measure,
+    \[
+    \vol\bigcap_i\Delta(S^i)=\lim_{i\to\infty}\vol\Delta(S^i)>0.
+    \]
+    Set
+    \[
+        K\coloneqq \bigcap_{i=1}^{\infty}C(S^i).
+    \]
+    The cone $K$ is full-dimensional. As noted above, $K\cap\mathbb Z^{n+1}$ generates $\mathbb Z^{n+1}$ as an Abelian group; hence $S=K\cap\mathbb Z^{n+1}$ lies in $\mathcal S'(C)$. Moreover, the closed convex cone generated by $S$ is exactly $K$. Therefore
+    \[
+        \Delta(S)=\{x:(x,1)\in K\}=\bigcap_{i=1}^{\infty}\{x:(x,1)\in C(S^i)\}=\bigcap_{i=1}^{\infty}\Delta(S^i).
+    \]
+    By \cref{cor:distapp} and \cref{thm:HausOkounapp}, we can compute the distance
+    \[
+    d_{\sg}(S,S^i)=\vol S^i-\vol S=\vol \Delta (S^i)-\vol \Delta (S),
+    \]
+    which tends to $0$ by construction.
+\end{proof}
+
+\subsection{Okounkov bodies of almost semigroups}\label{subsec:Okobalmosgapp}
+\begin{definition}\label{def:SpCbarapp}
+    We define $\overline{\mathcal{S}'(C)}_{>0}$ to be the set of elements in the closure of $\mathcal{S}'(C)$ in $\hat{\mathcal{S}}(C)$ with positive volume. An element in $\overline{\mathcal{S}'(C)}_{>0}$ is called an \emph{almost semigroup}\index{almost semigroup} in $C$.
+    \index{$\overline{\mathcal{S}'(C)}_{>0}$}
+\end{definition}
+Recall that the volume here is defined in \eqref{eq:volexapp}.
+
+Our goal is to prove the following theorem:
+\begin{theorem}\label{thm:Okocontapp}
+	The Okounkov body map $\Delta\colon \mathcal{S}'(C) \rightarrow \mathcal{K}_n$
+    as defined in \cref{def:Okokkapp} admits a unique continuous extension
+	\begin{equation}\label{eq:Deltagensgapp}
+		\Delta \colon \overline{\mathcal{S}'(C)}_{>0}\rightarrow \mathcal{K}_n.
+	\end{equation}
+     Moreover, for any $S\in \overline{\mathcal{S}'(C)}_{>0}$, we have
+	\begin{equation}\label{eq:volWfinalapp}
+		\vol S=\vol \Delta(S).
+	\end{equation}
+\end{theorem}
+
+
+
+\begin{proof}
+The uniqueness of the extension is clear once existence is known. Moreover, \eqref{eq:volWfinalapp} follows easily from \cref{thm:HausOkounapp} and \cref{thm:contvol} by continuity.
+It remains to argue the existence of the continuous extension. We first construct an extension and prove its continuity.
+
+\textbf{Step~1}. We construct the desired map \eqref{eq:Deltagensgapp}. Let $S\in \overline{\mathcal{S}'(C)}_{>0}$. We wish to construct a convex body $\Delta(S)\in \mathcal{K}_n$.
+
+    Let $S^i\in \mathcal{S}'(C)$ be a sequence that converges to $S$ such that
+    \[
+    d_{\sg}(S^i,S^{i+1})\leq 2^{-i}.
+    \]
+    For each $i,j\geq 0$, we introduce
+    \[
+    S^{i,j}=S^i\cap S^{i+1}\cap \cdots \cap S^{i+j}.
+    \]
+    Then by \cref{lma:dBilapp},
+    \[
+    d_{\sg}(S^{i,j},S^{i,j+1})\leq 2^{-i-j}.
+    \]
+    Take $i_0>0$ large enough so that, for $i\geq i_0$, we have $\vol S^i>2^{-1}\vol S$ and $2^{2-i}< \vol S$. Then
+    \[
+        \vol S^i-\vol S^{i,j}\leq d_{\sg}(S^{i,0},S^{i,1})+d_{\sg}(S^{i,1},S^{i,2})+\cdots+d_{\sg}(S^{i,j-1},S^{i,j})\leq 2^{1-i}.
+    \]
+    It follows that $\vol S^{i,j}> 2^{-1}\vol S-2^{1-i}>0$ whenever $i\geq i_0$. In particular, by \cref{lma:intersecS'app}, $S^{i,j}\in \mathcal{S}'(C)$ for $i\geq i_0$.
+
+    By \cref{lma:Sprimeintapp}, for $i\geq i_0$, there exists $T^i\in \mathcal{S}'(C)$ such that $S^{i,j}\to T^i$ as $j\to\infty$. Moreover,
+    \[
+    d_{\sg}(T^i,S)=\lim_{j\to\infty} d_{\sg}(S^{i,j},S)\leq \lim_{j\to\infty} d_{\sg}(S^{i,j},S^i)+d_{\sg}(S^i,S)\leq 2^{1-i}+d_{\sg}(S^i,S).
+    \]
+    Therefore, $T^i\to S$. We then define
+    \[
+    \Delta(S)\coloneqq \overline{\bigcup_{i=i_0}^{\infty} \Delta(T^i)}.
+    \]
+    In other words, we have defined
+    \[
+	\Delta(S)\coloneqq \varliminf_{i\to\infty}\Delta(S^i).
+    \]
+    Indeed, by the construction in the proof of \cref{lma:Sprimeintapp} and the cone equality in \cref{lma:intersecS'app},
+    \[
+    \Delta(T^i)=\bigcap_{j\geq 0}\Delta(S^{i,j})
+    =\bigcap_{j\geq i}\Delta(S^j).
+    \]
+    Thus the bodies $\Delta(T^i)$ are increasing in $i$ and are all contained in the compact slice $\{x\in \mathbb{R}^n:(x,1)\in C\}$. In particular, $\Delta(S)$ is a convex body and
+    \[
+    \vol\Delta(S)=\lim_{i\to\infty}\vol\Delta(T^i)=\lim_{i\to\infty}\vol T^i=\vol S.
+    \]
+    This is an honest limit: if $\Delta$ is the limit of a subsequence of $\Delta(S^i)$, then $\Delta(S)\subseteq \Delta$ by \eqref{eq:liminflimsup}. Moreover,
+    \[
+    \vol\Delta=\lim_{m\to\infty}\vol\Delta(S^{i_m})=\lim_{m\to\infty}\vol S^{i_m}=\vol S.
+    \]
+    Comparing the volumes, we find that equality holds. So by \cref{thm:Blaschke},
+    \begin{equation}\label{eq:deltawtempapp}
+	\Delta(S)=\lim_{i\to\infty}\Delta(S^i).
+    \end{equation}
+
+    Next we claim that $\Delta(S)$ as defined above does not depend on the choice of the sequence $S^i$. In fact, suppose that $S'^i\in \mathcal{S}'(C)$ is another sequence satisfying the same conditions as $S^i$.
+    By \cref{lma:dBilapp}, we have
+    \[
+        R^i=S^{i+1}\cap S'^{i+1}\longrightarrow S\cap S=S.
+    \]
+    Since $\vol S>0$ and the volume is continuous on $\overline{\mathcal S}(C)$, we have $\vol R^i>0$ for all large $i$. Thus $R^i\in\mathcal S'(C)$ by \cref{lma:intersecS'app}. Moreover,
+    \[
+        d_{\sg}(R^i,R^{i+1}) \leq d_{\sg}(S^{i+1},S^{i+2}) + d_{\sg}(S'^{i+1},S'^{i+2}).
+    \]
+    Passing simultaneously to subsequences of $S^i$ and $S'^i$, we may assume
+    \[
+        d_{\sg}(S^{i+1},S^{i+2})+d_{\sg}(S'^{i+1},S'^{i+2})\leq 2^{-i}.
+    \]
+    Then the construction above applies to $R^i=S^{i+1}\cap S'^{i+1}$. Since $R^i\subseteq S^{i+1}$ and $R^i\subseteq S'^{i+1}$, every Hausdorff limit of $\Delta(R^i)$ is contained in the corresponding limits of $\Delta(S^i)$ and $\Delta(S'^i)$. The volumes of all three limits are $\vol S$, hence the inclusions are equalities. The same is true with $S'^i$ in place of $S^i$. So we conclude that $\Delta(S)$ as in \eqref{eq:deltawtempapp} does not depend on the choices we made.
+
+    \textbf{Step~2}. It remains to prove the continuity of $\Delta$ defined in Step~1.
+    Suppose that $S^i\in \overline{\mathcal{S}'(C)}_{>0}$ is a sequence with limit $S\in \overline{\mathcal{S}'(C)}_{>0}$.
+    We want to show that
+	\begin{equation}\label{eq:temp5app}
+		\Delta(S^i)\xrightarrow{d_{\Haus}}\Delta(S).
+	\end{equation}
+
+    We first reduce to the case where $S^i\in \mathcal{S}'(C)$.
+    By \eqref{eq:deltawtempapp}, for each $i$, we can choose $T^i\in \mathcal{S}'(C)$ such that $d_{\sg}(S^i,T^i)<2^{-i}$ and $d_{\Haus}(\Delta(S^i),\Delta(T^i))<2^{-i}$. If we have shown $\Delta(T^i)\xrightarrow{d_{\Haus}}\Delta(S)$, then \eqref{eq:temp5app} follows immediately.
+
+    Next we reduce to the case where $d_{\sg}(S^i,S^{i+1})\leq 2^{-i}$. Thanks to \cref{thm:Blaschke}, in order to prove \eqref{eq:temp5app}, it suffices to show that each subsequence of $\Delta(S^i)$ admits a subsequence that converges to $\Delta(S)$. Hence, we may pass to a sufficiently fast subsequence and reduce to the required case.
+
+    After these reductions, \eqref{eq:temp5app} is nothing but \eqref{eq:deltawtempapp}.
+\end{proof}
+
+
+\begin{corollary}\label{cor:Okocompapp}
+    Suppose that $S,S'\in \overline{\mathcal{S}'(C)}_{>0}$ with $S\subseteq S'$. Then
+    \begin{equation}\label{eq:Deltacontainapp}
+    \Delta(S)\subseteq \Delta(S').
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    Let $S^j,S'^j\in \mathcal{S}'(C)$ be elements such that $S^j\to S$, $S'^j\to S'$. Then it follows from \cref{lma:dBilapp} that $S^j\cap S'^j \to S$. Since $\vol$ is continuous, for large $j$, $S^j\cap S'^j$ has positive volume and hence lies in $\mathcal{S}'(C)$ by \cref{lma:intersecS'app}. We may therefore replace $S^j$ by $S^j\cap S'^j$ and assume that $S^j\subseteq S'^j$. Hence, \eqref{eq:Deltacontainapp} follows from the continuity of $\Delta$ proved in \cref{thm:Okocontapp}.
+\end{proof}
+
+\begin{remark}\label{rmk:almostsg:L542}
+    The construction of $\Delta$ is independent of the choice of $C$ in the following sense. If $C'$ is another cone satisfying the same assumptions as $C$ and $C'\supseteq C$, then the Okounkov body map $\Delta \colon \overline{\mathcal{S}'(C')}_{>0}\rightarrow \mathcal{K}_n$ extends the corresponding map \eqref{eq:Deltagensgapp}. We will use this fact without further comment.
+\end{remark}

@@ -1,0 +1,2458 @@
+\motto{Politiques et scientifiques ont le sens des réalités, mais ce ne sont pas les mêmes. Il en résulte --- et ce sera là un principe que le général de Gaulle fera sien que l'activité de recherche ne peut être évaluée, quant à sa qualité propre, que par des hommes qui la pratiquent eux-mêmes.
+
+--- Pierre Lelong\footnote{Pierre Lelong (1912--2011) was the husband of another famous mathematician Jacqueline Ferrand. During their marriage (1947--1977), the latter published under the name of Jacqueline Lelong-Ferrand.}, 1999}
+\chapter{The envelope operators}
+\label{chap:envelopes}
+
+This chapter develops the envelope formalism that will be used throughout the rest of the book. There are two parallel constructions. The first is the $P$-envelope, which records the singularity type relevant to non-pluripolar Monge--Amp\`ere mass. The second is the $\mathcal I$-envelope, which records the singularity type detected by multiplier ideal sheaves. The distinction between these two envelopes is one of the main organizing principles of the book.
+
+The starting point is the rooftop operator. Given two singular potentials, the rooftop construction produces the largest potential lying below both, and it provides a flexible way to compare singularities. From this we define the $P$-envelope $P_\theta[\varphi]$. Its fixed points are the model potentials. Model potentials are the natural representatives of $P$-singularity types: they preserve non-pluripolar mass and satisfy strong contact-set properties. The first part of the chapter establishes the basic algebra of these envelopes, their behavior under monotone limits, and the domination and contact principles needed later.
+
+We then introduce the Monge--Amp\`ere energy relative to a model potential. This leads to the finite-energy classes $\mathcal E^1(X,\theta;\phi)$ and to stability results for rooftop envelopes. These results will be used in the metric theory of singularities and in the study of geodesic rays.
+
+The second part of the chapter develops the $\mathcal I$-envelope $P_\theta[\varphi]_{\mathcal I}$. This envelope is defined by imposing multiplier ideal conditions rather than ordinary singularity-type conditions. It is therefore sensitive to valuative data in a way that the ordinary $P$-envelope is not. We prove its basic functorial properties, its independence of the chosen representative of the cohomology class, its bimeromorphic behavior, and its compatibility with analytic singularities.
+
+The comparison between $P_\theta[\varphi]$ and $P_\theta[\varphi]_{\mathcal I}$ is delicate. They agree in important cases, for instance for analytic singularities, but they differ in general. Later chapters use this comparison to define $\mathcal I$-good singularities, trace operators, partial Okounkov bodies and non-Archimedean potentials. Thus the technical results of this chapter should be regarded as the basic calculus of singularity types used in the sequel.
+
+Several results about $P$-envelopes are developed by Darvas--Di Nezza--Lu in various papers and summarized in their survey \cite{DDNLsurv}. The reader is invited to read their survey for more details and further results.
+
+\section{The \texorpdfstring{$P$}{P}-envelope}\label{sec:Penv}
+In this section, $X$ will denote a connected compact Kähler manifold of dimension $n$.
+
+
+\subsection{Rooftop operator and the definition of the \texorpdfstring{$P$}{P}-envelope}
+\label{subsec:rooftop_Penv}
+
+Fix a smooth closed real $(1,1)$-form $\theta$ on $X$.
+
+
+\begin{definition}\label{def:rooftop}
+    Given $\varphi,\psi\in \PSH(X,\theta)$, we define their \emph{rooftop operator}\index{rooftop operator} as follows:
+    \begin{equation}\label{eq:rooftopdef1}
+    \varphi\land\psi=\sup\left\{\eta\in \PSH(X,\theta):\eta\leq \varphi,\eta\leq \psi\right\}.
+    \end{equation}
+    \index{$\varphi\land \psi$}
+    For simplicity of notation, we extend the definition to the case where $\varphi$ or $\psi$ is constantly $-\infty$, in which case we simply set
+    \[
+    \varphi\land \psi=-\infty.
+    \]
+\end{definition}
+When we want to be more specific, we may also write $\varphi\land_{\theta}\psi$. Note that it is possible that the set in \eqref{eq:rooftopdef1} is empty, in which case $\varphi\land \psi=-\infty$.
+
+
+\begin{proposition}\label{prop:land_well_def}
+    The operator $\land$ is a well-defined commutative, associative binary operator
+    \[
+    \bigl(\PSH(X,\theta)\cup\{-\infty\}\bigr)\times\bigl(\PSH(X,\theta)\cup\{-\infty\}\bigr)\rightarrow \PSH(X,\theta)\cup\{-\infty\}.
+    \]
+\end{proposition}
+\begin{proof}
+    We first show that the map is well-defined. For this purpose, take $\varphi,\psi\in \PSH(X,\theta)$. When the set in \eqref{eq:rooftopdef1} is empty, there is nothing to prove. So let us assume that the set is not empty.
+
+    Define
+    \[
+    \gamma=\uscsup \left\{\eta\in \PSH(X,\theta):\eta\leq \varphi,\eta\leq \psi\right\}.
+    \]
+    Then by \cref{prop:pshfunction_closedseq}, we find that $\gamma\in \PSH(X,\theta)$ and hence $\gamma$ is a candidate for the supremum in \eqref{eq:rooftopdef1}. Therefore, $\gamma\leq \varphi\land \psi$. The reverse inequality follows from the definition of $\gamma$, so
+    \[
+    \varphi\land \psi=\gamma\in \PSH(X,\theta).
+    \]
+    The commutativity and the associativity of $\land$ follow directly from the defining maximality property.
+\end{proof}
+Note that from the proof, we have
+\[
+\varphi\land \psi=P_{\theta}\Bigl( \min\{\varphi,\psi\} \Bigr).
+\]
+See \cref{def:Pthetaf} for the notation $P_{\theta}(\bullet)$.
+
+
+\begin{lemma}\label{lma:rooftopMA}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Assume that $\varphi\land\psi\in \PSH(X,\theta)$. Then
+    \begin{equation}\label{eq:rooftopMAineq1}
+    \theta_{\varphi\land \psi}^n\leq \mathds{1}_{\{\varphi\land\psi=\varphi\}}\, \theta_{\varphi}^n+\mathds{1}_{\{\varphi\land\psi=\psi\}} \,\theta_{\psi}^n.
+    \end{equation}
+\end{lemma}
+In particular, $\theta_{\varphi\land \psi}^n$ is carried by the union $\{\varphi\land \psi=\varphi\}\cup \{\varphi\land \psi=\psi\}$.
+
+\begin{proof}
+We first observe that as a consequence of \cref{lma:lorMAineqe}, we have
+\[
+\mathds{1}_{\{\varphi\land \psi=\varphi\}} \,\theta_{\varphi\land \psi}^n\leq \mathds{1}_{\{\varphi\land \psi=\varphi\}} \,\theta_{\varphi}^n,\quad \mathds{1}_{\{\varphi\land \psi=\psi\}} \,\theta_{\varphi\land \psi}^n\leq \mathds{1}_{\{\varphi\land \psi=\psi\}} \,\theta_{\psi}^n.
+\]
+Applying \cref{thm:concentration} to $\min\{\varphi,\psi\}$, we conclude that
+\[
+\theta_{\varphi\land \psi}^n\leq \mathds{1}_{\{\varphi\land \psi=\varphi\}} \,\theta_{\varphi\land \psi}^n+\mathds{1}_{\{\varphi\land \psi=\psi\}}\,\theta_{\varphi\land \psi}^n\leq \mathds{1}_{\{\varphi\land\psi=\varphi\}} \,\theta_{\varphi}^n+\mathds{1}_{\{\varphi\land\psi=\psi\}} \,\theta_{\psi}^n,
+\]
+and \eqref{eq:rooftopMAineq1} is established.
+\end{proof}
+
+
+
+We recall that the relations $\preceq$ and $\sim$ are introduced in \cref{def:parorder}.
+\begin{definition}\label{def:Penv}
+    Given $\varphi\in \PSH(X,\theta)$, we define its \emph{$P$-envelope}\index{envelope!P-envelope@$P$-envelope} as follows:
+    \begin{equation}\label{eq:Pthetavarphi}
+    P_{\theta}[\varphi]\coloneqq \uscsup \left\{ \psi\in \PSH(X,\theta): \psi\leq 0,\psi\preceq \varphi \right\}.
+    \end{equation}
+    \index{$P_{\theta}[\varphi]$}
+\end{definition}
+Note that $\varphi-\sup_X \varphi$ is always a candidate for the supremum. By \cref{prop:pshfunction_closedseq}, we have $P_{\theta}[\varphi]\in \PSH(X,\theta)$ and $P_{\theta}[\varphi]\leq 0$.
+Moreover, the definition can be equivalently described as
+\begin{equation}\label{eq:Penvsups}
+    P_{\theta}[\varphi]=\uscsup[C\in \mathbb{Z}_{>0}](\varphi+C)\land V_{\theta}.
+\end{equation}
+Recall that $V_{\theta}$ is introduced in \eqref{eq:Vtheta}. For any $C\in \mathbb{R}$, we have $(\varphi+C)\land V_{\theta}\in \PSH(X,\theta)$ and
+\[
+(\varphi+C)\land V_{\theta}\sim \varphi.
+\]
+In other words, in \eqref{eq:Pthetavarphi}, we may replace the condition $\psi\preceq \varphi$ by $\psi\sim \varphi$. Also note that as a consequence,
+\begin{equation}\label{eq:varphipreceqP}
+    \varphi\preceq P_{\theta}[\varphi].
+\end{equation}
+
+
+
+The idea lying behind the definition of $P_{\theta}[\varphi]$ is that we choose the least singular element out of all potentials with the same singularity type as $\varphi$. As we shall see in \cref{ex:loglogsing} below, $P_{\theta}[\varphi]$ does not necessarily have the same singularity type as $\varphi$. This forces us to define a rougher equivalence relation in \cref{def:Pmoresing}.
+
+The envelope depends on the choice of $\theta$, but the dependence is easy to understand:
+\begin{proposition}\label{prop:Penvindeptheta}
+    Let $\theta'=\theta+\ddc g$ for some $g\in C^{\infty}(X)$. Then for any $\varphi\in \PSH(X,\theta)$, we have $\varphi'\coloneqq \varphi-g\in \PSH(X,\theta')$ and
+    \[
+        P_{\theta}[\varphi]\sim P_{\theta'}[\varphi'].
+    \]
+\end{proposition}
+\begin{proof}
+    By symmetry, it suffices to show that
+    \[
+        P_{\theta}[\varphi]\preceq P_{\theta'}[\varphi'].
+    \]
+    We may assume that $g\geq 0$ (after replacing $g$ by $g+C$ with $C\geq -\inf_X g$, which leaves $\theta'$ unchanged and shifts $\varphi'$ by an additive constant).
+    Then for any $\psi\in \PSH(X,\theta)$ with $\psi\preceq \varphi$ and $\psi\leq 0$, we set $\psi'\coloneqq \psi-g\in \PSH(X,\theta')$. Then $\psi'\preceq \varphi'$ and $\psi'\leq 0$, so $\psi'\leq P_{\theta'}[\varphi']$. Since $\psi$ is arbitrary, it follows that
+    \[
+        P_{\theta}[\varphi]-\sup_X g\leq P_{\theta}[\varphi]-g\leq P_{\theta'}[\varphi'],
+    \]
+    which gives $P_{\theta}[\varphi]\preceq P_{\theta'}[\varphi']$.
+\end{proof}
+
+The $P$-envelope preserves the non-pluripolar masses:
+\begin{proposition}\label{prop:Ppresmass}
+Suppose that $\theta_1,\ldots,\theta_n$ are smooth closed real $(1,1)$-forms on $X$. Let $\varphi_i\in \PSH(X,\theta_i)$ for each $i=1,\ldots,n$. Then
+\begin{equation}\label{eq:Penvpremass}
+\int_X \theta_{1,P_{\theta_1}[\varphi_1]}\wedge \cdots \wedge \theta_{n,P_{\theta_n}[\varphi_n]}=\int_X \theta_{1,\varphi_1}\wedge \cdots\wedge \theta_{n,\varphi_n}.
+\end{equation}
+\end{proposition}
+This proposition together with \cref{thm:mono} will be combined to a common generalization in \cref{prop:mono2} after introducing the $P$-preorder.
+\begin{proof}
+For each $C\in \mathbb{Z}_{>0}$ and each $i=1,\ldots,n$, we have
+\[
+(\varphi_i+C)\land V_{\theta_i}\sim \varphi_i.
+\]
+It follows from the monotonicity theorem \cref{thm:mono} that
+\[
+\int_X \theta_{1,(\varphi_1+C)\land V_{\theta_1}}\wedge \cdots \wedge \theta_{n,(\varphi_n+C)\land V_{\theta_n}}=\int_X \theta_{1,\varphi_1}\wedge \cdots\wedge \theta_{n,\varphi_n}.
+\]
+So \eqref{eq:Penvpremass} follows from \eqref{eq:Penvsups} and \cref{cor:incseqnppcont}.
+\end{proof}
+
+Conversely, \cref{prop:Ppresmass} characterizes the $P$-envelope, as we will see in a moment in \cref{thm:Pvarphidiffdef}. We need some preparation for the proof. We first show that the $P$-envelope can be regarded as a concentration of the non-pluripolar mass:
+\begin{theorem}\label{thm:Pvarphisupport}
+    Let $\varphi\in \PSH(X,\theta)$. Then
+    \begin{equation}\label{eq:thetaPthetaphin}
+        \theta_{P_{\theta}[\varphi]}^n\leq \mathds{1}_{\{P_{\theta}[\varphi]=0\}}\,\theta^n.
+    \end{equation}
+\end{theorem}
+In fact, equality holds as we will see in \cref{prop:DNTenvelope2} below.
+\begin{proof}
+    Thanks to \cref{lma:rooftopMA}, for each $C>0$, we have
+    \[
+    \begin{aligned}
+    \theta_{(\varphi+C)\land V_{\theta}}^n\leq & \mathds{1}_{\{(\varphi+C)\land V_{\theta}=\varphi+C\} }\, \theta_{\varphi}^n+\mathds{1}_{\{(\varphi+C)\land V_{\theta}=V_{\theta}\} }\, \theta_{V_{\theta}}^n\\
+    \leq & \mathds{1}_{\{\varphi+C\leq V_{\theta}\} }\, \theta_{\varphi}^n+\mathds{1}_{\{P_{\theta}[\varphi]=V_{\theta}\} } \,\theta_{V_{\theta}}^n.
+    \end{aligned}
+    \]
+    We wish to let $C\to\infty$.
+    The dominated convergence theorem and the semicontinuity theorem \cref{cor:incseqnppcont} give, as $C\to\infty$,
+    \[
+    \mathds{1}_{\{\varphi+C\leq V_{\theta}\} } \theta_{\varphi}^n\rightharpoonup 0,\quad
+    \theta_{(\varphi+C)\land V_{\theta}}^n\rightharpoonup \theta_{P_{\theta}[\varphi]}^n.
+    \]
+    So we conclude that
+    \[
+    \theta_{P_{\theta}[\varphi]}^n\leq \mathds{1}_{\{P_{\theta}[\varphi]=V_{\theta}\}} \,\theta_{V_{\theta}}^n.
+    \]
+    Taking \cref{cor:DNTenvelope1} into consideration, we conclude \eqref{eq:thetaPthetaphin}.
+\end{proof}
+
+Using essentially the same proof, we arrive at the following conclusion:
+\begin{corollary}\label{cor:Pvarphisupport}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Let
+    \[
+    \eta\coloneqq \uscsup[C>0] (\varphi+C)\land \psi.\footnotemark
+    \]
+    \footnotetext{Using the terminology to be introduced in \cref{def:Pthetavarphif}, we can also write $\eta=P_{\theta}[\varphi](\psi)$.}
+    Assume that $\eta\not\equiv -\infty$ (for example when $\varphi\preceq \psi$).
+    Then
+    \[
+    \theta_{\eta}^n\leq \mathds{1}_{\{\eta=\psi\}}\,\theta_{\psi}^n.
+    \]
+\end{corollary}
+\begin{proof}
+    Thanks to \cref{lma:rooftopMA}, for each $C>0$, we have
+    \[
+    \begin{aligned}
+    \theta_{(\varphi+C)\land \psi}^n\leq & \mathds{1}_{\{(\varphi+C)\land \psi=\varphi+C\} }\, \theta_{\varphi}^n+\mathds{1}_{\{(\varphi+C)\land \psi=\psi\} }\, \theta_{\psi}^n\\
+    \leq & \mathds{1}_{\{\varphi+C\leq \psi\} }\, \theta_{\varphi}^n+\mathds{1}_{\{\eta=\psi\} } \,\theta_{\psi}^n.
+    \end{aligned}
+    \]
+    We wish to let $C\to\infty$.
+    The dominated convergence theorem and the semicontinuity theorem \cref{cor:incseqnppcont} give, as $C\to\infty$,
+    \[
+    \mathds{1}_{\{\varphi+C\leq \psi\} } \theta_{\varphi}^n\rightharpoonup 0,\quad
+    \theta_{(\varphi+C)\land \psi}^n\rightharpoonup \theta_{\eta}^n.
+    \]
+    So we conclude that
+    \[
+    \theta_{\eta}^n\leq \mathds{1}_{\{\eta=\psi\}} \,\theta_{\psi}^n.
+    \]
+    This completes the proof.
+\end{proof}
+
+
+\begin{theorem}\label{thm:Pvarphidiffdef}
+    Assume that $\varphi\in \PSH(X,\theta)_{>0}$. Then
+    \begin{equation}\label{eq:Penvdef}
+    P_{\theta}[\varphi]=\sup\left\{\psi\in \PSH(X,\theta): \psi\leq 0,\varphi\preceq \psi, \int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n\right\}.
+    \end{equation}
+    In particular, in this case,\footnote{Pang--Sun--Wang--Zhou \cite{PSWZ26} recently proved that, \eqref{eq:Penvprojop} continues to hold even when $\varphi$ has vanishing mass.}
+    \begin{equation}\label{eq:Penvprojop}
+    P_{\theta}\Bigl[P_{\theta}[\varphi]\Bigr]=P_{\theta}[\varphi].
+    \end{equation}
+\end{theorem}
+Note that in \eqref{eq:Penvdef} and \eqref{eq:Pthetavarphi}, the auxiliary function $\psi$ lies on different sides of $\varphi$.
+\begin{proof}
+     Let $\psi$ be a candidate of the right-hand side of \eqref{eq:Penvdef}. It follows from \cref{thm:Pvarphisupport} that
+     \[
+     \int_{\{P_{\theta}[\varphi]<\psi \}} \theta_{P_{\theta}[\varphi]}^n\leq \int_{\{P_{\theta}[\varphi]<\psi \}\cap \{P_{\theta}[\varphi]=0\} } \theta^n=0.
+     \]
+     On the other hand, we have
+    \[
+    P_{\theta}[\varphi]\preceq P_{\theta}[\psi],\quad \psi\preceq P_{\theta}[\psi]
+    \]
+    and all these potentials have the same mass due to \cref{prop:Ppresmass}. So the domination principle \cref{thm:dom_prin_1} is applicable and gives
+    \[
+    P_{\theta}[\varphi]\geq \psi.
+    \]
+    Hence we get the $\geq$ direction in \eqref{eq:Penvdef}.
+
+    On the other hand, $P_{\theta}[\varphi]$ itself is a candidate of the right-hand side of \eqref{eq:Penvdef}, as a consequence of \cref{prop:Ppresmass}. Therefore, \eqref{eq:Penvdef} follows.
+
+    As for \eqref{eq:Penvprojop}, the $\geq$ direction is trivial. For the other direction, let $\psi\in \PSH(X,\theta)$ be a potential satisfying
+    \[
+    \psi\leq 0,\quad P_{\theta}[\varphi]\preceq \psi,\quad \int_X \theta_{P_{\theta}[\varphi]}^n=\int_X \theta_{\psi}^n.
+    \]
+    Then it follows from \cref{prop:Ppresmass} that
+    \[
+    \psi\leq 0,\quad \varphi\preceq \psi,\quad \int_X \theta_{\varphi}^n=\int_X \theta_{\psi}^n.
+    \]
+    In view of \eqref{eq:Penvdef}, we conclude the $\leq$ direction of \eqref{eq:Penvprojop}.
+\end{proof}
+
+\begin{definition}\label{def:modelpot}
+    If $\varphi=P_{\theta}[\varphi]$ and $\int_X \theta_{\varphi}^n>0$, we say $\varphi$ is a \emph{model potential}.\index{potential!model potential}
+\end{definition}
+Recall that the notion of model potentials depends heavily on the choice of $\theta$. When there is a risk of confusion, we also say $\varphi$ is a model potential in $\PSH(X,\theta)$.
+
+\begin{remark}\label{rmk:envelopes:L267}
+\cref{def:modelpot} is different from the common definition in the literature: We impose the extra condition $\int_X \theta_{\varphi}^n>0$. The author believes that this is the only case where this notion is natural. We sometimes emphasize this point by saying $\varphi\in \PSH(X,\theta)_{>0}$ is a model potential.
+\end{remark}
+
+There are plenty of model potentials:
+\begin{corollary}\label{cor:Psendspotentialtomodel}
+    Let $\varphi\in \PSH(X,\theta)_{>0}$. Then $P_{\theta}[\varphi]$ is a model potential in $\PSH(X,\theta)$. Moreover,
+    \[
+        \int_X \theta_{P_{\theta}[\varphi]}^n=\int_X \theta_{\varphi}^n.
+    \]
+\end{corollary}
+\begin{proof}
+    This follows immediately from \cref{thm:Pvarphidiffdef} and \cref{prop:Ppresmass}.
+\end{proof}
+
+As we have already seen in the proof of \cref{lma:pathoenvelope}, we have the following interesting property:
+\begin{proposition}\label{prop:model_sup_prop}
+    Let $\varphi\in \PSH(X,\theta)$. Consider a model potential $\phi\in \PSH(X,\theta)_{>0}$. Assume that $\varphi\preceq \phi$. Then
+    \[
+    \sup_{\{\phi\neq -\infty\}} (\varphi-\phi)=\sup_X \varphi.
+    \]
+\end{proposition}
+In particular, for any $\varphi\in \PSH(X,\theta)$, $\varphi\preceq \phi$ and $\varphi\leq 0$ implies $\varphi\leq \phi$.
+
+\begin{proof}
+    Observe that $\phi\leq 0$, so on the set $\{\phi\neq -\infty\}$, we have
+    \[
+    \varphi-\phi\geq \varphi.
+    \]
+    So the $\geq$ direction follows from \cref{cor:diffsupinfindeppluripolar}.
+    Conversely, by assumption, we can find a constant $C>0$ so that
+    \[
+    \varphi-\sup_X \varphi\leq \min\{\phi+C,0 \}.
+    \]
+    It follows that $\varphi-\sup_X \varphi\leq P_{\theta}[\phi]=\phi$. Therefore, the reverse inequality follows.
+\end{proof}
+
+
+
+\begin{example}\label{ex:loglogsing}
+    We continue our favorite example \cref{ex:LPP1}. Let $X=\mathbb{P}^1$ and $\omega$ be the Fubini--Study metric. We define $\varphi\in \PSH(X,\omega)$ as follows: For $z\in \mathbb{C}$, we let
+    \[
+    \varphi(z)=
+    \begin{cases}
+        -\log \left(|z|^2+1\right)+\Bigl(-\log \left(-\log |z|^2\right)\Bigr) \lor \Bigl(2+\log |z|^2\Bigr),& \textup{if }|z|<1/\sqrt{2},\\
+        2+\log \frac{|z|^2}{|z|^2+1},& \textup{otherwise},
+    \end{cases}
+    \]
+    while $\varphi(\infty)=2$. Note that $\varphi$ is $\omega$-psh on $X=\mathbb{P}^1$ by the gluing lemma \cref{lma:gl}.
+The singularity of $\varphi$ only occurs at $z=0$, close to which, $\varphi$ is approximately $-\log \left(-\log |z|^2\right)$. This type of singularity is therefore called the \emph{log-log type singularity}.
+
+    We claim that
+    \begin{equation}\label{eq:Pomegavarphi0temp1}
+        P_{\omega}[\varphi]=0.
+    \end{equation}
+    In particular, we find that $\varphi$ and $P_{\omega}[\varphi]$ have different singularity types.
+
+    By \cref{thm:Pvarphidiffdef}, in order to verify \eqref{eq:Pomegavarphi0temp1}, it suffices to verify that
+    \begin{equation}\label{eq:Pomegavarphi0temp2}
+    \int_X \omega_{\varphi}^1=1.
+    \end{equation}
+    Here $\omega_{\varphi}^1$ is taken in the non-pluripolar sense. Since $\{0,\infty\}\subseteq \mathbb{P}^1$ is pluripolar, this reduces to showing that
+    \[
+    \int_{\mathbb{C}^*} \ddc \psi=\frac{1}{4\pi}\int_{\mathbb{C}^*} (\Delta \psi)\,\mathrm{d}\mu=1,
+    \]
+    where $\psi(z)=\varphi(z)+\log (|z|^2+1)$ and $\mu$ is the standard Lebesgue measure on $\mathbb{C}$.
+
+    Note that the Laplacian vanishes outside $\overline{B(0,0.7)}$ since $\psi(z)=2+\log |z|^2$ there, which is harmonic. Therefore,
+    \[
+    \int_{\mathbb{C}^*} \ddc \psi=\frac{1}{4\pi}\int_{|z|<1/\sqrt{2}} (\Delta \psi)(z)\,\mathrm{d}\mu.
+    \]
+    It is an elementary exercise to see that the right-hand side is exactly equal to $1$. If you are familiar with toric geometry, this is more or less trivial since
+    \[
+    \nabla_r \Bigl( \left(-\log (-r)\right)\lor (2+r) \Bigr)\bigl((-\infty,-\log 2)\bigr)= (0,1].
+    \]
+    Otherwise, just try to evaluate the integral using Green's identities. Therefore, \eqref{eq:Pomegavarphi0temp2} is proved and our assertion \eqref{eq:Pomegavarphi0temp1} follows.
+\end{example}
+
+
+Next we give a criterion on when the rooftop operator is not identically $-\infty$.
+\begin{proposition}\label{prop:landfinitecond1}
+    Assume that $\varphi,\psi\in \PSH(X,\theta)$ and
+    \begin{equation}\label{eq:varphimassppsimass_greater}
+        \int_X \theta_{\varphi}^n+\int_X \theta_{\psi}^n>\int_X \theta_{\varphi\lor\psi}^n.
+    \end{equation}
+    Then $\varphi\land \psi\in \PSH(X,\theta)$.
+\end{proposition}
+Thanks to the monotonicity theorem \cref{thm:mono}, we may also replace $\varphi\lor \psi$ on the right-hand side of \eqref{eq:varphimassppsimass_greater} by any $\gamma\in \PSH(X,\theta)$ such that $\varphi\lor \psi\preceq \gamma$.
+\begin{proof}
+    Without loss of generality, we may assume that $\varphi,\psi\leq 0$. For simplicity, we write
+    \[
+    \eta=P_{\theta}[\varphi\lor \psi].
+    \]
+    Note that due to our assumption \eqref{eq:varphimassppsimass_greater}, $\varphi,\psi\in \PSH(X,\theta)_{>0}$, and hence so is $\varphi\lor \psi$ thanks to the monotonicity theorem \cref{thm:mono}.
+    By \cref{cor:Psendspotentialtomodel}, $\eta$ is a model potential, and $\int_X\theta_\eta^n=\int_X\theta_{\varphi\lor\psi}^n>0$.
+
+    Take $C>0$ large enough, so that
+    \begin{equation}\label{eq:intsumintbiggerinttemp1}
+    \int_{\{\varphi>\eta-C\}} \theta_{\varphi}^n+\int_{\{\psi>\eta-C\}} \theta_{\psi}^n>\int_X \theta_{\eta}^n.
+    \end{equation}
+    This is possible thanks to \itemref{itm:prop:npp1:4}.
+    Fix $C'>C$.
+    Write
+    \[
+    \gamma_{C'}\coloneqq \Bigl(\varphi\lor (\eta-C')\Bigr)\land \Bigl(\psi\lor (\eta-C')\Bigr).
+    \]
+    Then observe that $\gamma_{C'}\sim \eta$, and
+    \[
+    \inf_{C'>C}\gamma_{C'}=\varphi\land \psi.
+    \]
+    Suppose, for contradiction, that $\varphi\land\psi\equiv -\infty$. Then
+    \[
+    \adjustlimits\lim_{C'\to \infty} \sup_X\gamma_{C'}=-\infty.
+    \]
+    Thanks to \cref{prop:model_sup_prop}, for each $C'>C$,
+    \[
+    \sup_{X} \gamma_{C'}=\sup_{\{\eta\neq -\infty\}} (\gamma_{C'}-\eta),
+    \]
+    since $\eta$ is a model potential.
+    It follows that
+    \begin{equation}\label{eq:limsupgammametatemp1}
+        \adjustlimits \lim_{C'\to \infty} \sup_{\{\eta\neq -\infty\}}  (\gamma_{C'}-\eta)=-\infty.
+    \end{equation}
+    In particular, we can take $C'$ large enough so that
+    \[
+    \gamma_{C'}\leq \eta-C.
+    \]
+    For such $C'$, we have
+    \[
+    \begin{aligned}
+        \int_X \theta_{\gamma_{C'}}^n=&\int_{\{\gamma_{C'}\leq \eta-C\}} \theta_{\gamma_{C'}}^n \\
+        \leq & \int_{\left\{\varphi\lor (\eta-C')\leq \eta-C\right\}} \theta_{\varphi\lor (\eta-C')}^n +\int_{\left\{\psi\lor (\eta-C')\leq \eta-C \right\}} \theta_{\psi\lor (\eta-C')}^n\\
+        =& 2\int_X \theta_{\eta}^n-\int_{\{\varphi>\eta-C\}}\theta_{\varphi}^n-\int_{\{\psi>\eta-C\}}\theta_{\psi}^n\\
+        <& \int_X \theta_{\eta}^n,
+    \end{aligned}
+    \]
+    where the second line follows from \cref{lma:rooftopMA}, the fourth line follows from \eqref{eq:intsumintbiggerinttemp1}. This contradicts the fact that $\gamma_{C'}\sim \eta$ in view of \cref{thm:mono}.
+\end{proof}
+
+\begin{proposition}\label{prop:landpresmodel}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Assume that
+    \begin{equation}\label{eq:varphipsimodel_landpsh}
+        \varphi=P_{\theta}[\varphi],\quad \psi=P_{\theta}[\psi],\quad \varphi\land \psi\not\equiv -\infty.
+    \end{equation}
+    Then
+    \begin{equation}\label{eq:Pthetaphilandpsi}
+        P_{\theta}[\varphi\land \psi]=\varphi\land \psi.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Observe that by \itemref{itm:prop:Pconc:3},
+    \[
+        P_{\theta}[\varphi\land \psi]\leq P_{\theta}[\varphi]=\varphi,\quad P_{\theta}[\varphi\land \psi]\leq P_{\theta}[\psi]=\psi.
+    \]
+    So the $\leq$ direction in \eqref{eq:Pthetaphilandpsi} holds. The reverse direction is trivial.
+\end{proof}
+
+\begin{lemma}\label{lma:landcorrectmass}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Assume that \eqref{eq:varphipsimodel_landpsh} holds and
+    \[
+    \int_X \theta_{\varphi\land \psi}^n>0.
+    \]
+    Suppose that $\gamma,\eta\in \PSH(X,\theta)$ and satisfy
+    \[
+    \gamma\preceq \varphi,\quad \eta\preceq \psi,\quad \int_X \theta_{\gamma}^n=\int_X \theta_{\varphi}^n,\quad \int_X \theta_{\eta}^n=\int_X \theta_{\psi}^n.
+    \]
+    Then $\gamma\land \eta\not\equiv -\infty$ and
+    \begin{equation}\label{eq:thetagammaeta_temp1}
+    \int_X \theta_{\gamma\land \eta}^n=\int_X \theta_{\varphi\land \psi}^n.
+    \end{equation}
+\end{lemma}
+Later on in \cref{chap:comp}, we shall reformulate and generalize this lemma in terms of the $P$-preorder, which is a more natural language to express the result. See \cref{prop:rooftopprePequiv}.
+\begin{proof}
+    Choose constants $A,B>0$ such that
+    \[
+        \gamma-A\leq \varphi,\quad \eta-B\leq \psi.
+    \]
+    Since
+    \[
+        (\gamma-A)\land(\eta-B)\sim \gamma\land\eta,
+    \]
+    the non-pluripolar masses of these two rooftop potentials are equal by the monotonicity theorem \cref{thm:mono}. Hence it suffices to prove the lemma after replacing $\gamma,\eta$ by $\gamma-A,\eta-B$. We can therefore assume that
+    \[
+        \gamma\leq \varphi,\quad \eta\leq \psi.
+    \]
+
+    \textbf{Step~1}. We first show that $\gamma\land \psi\not\equiv -\infty$ and
+    \begin{equation}\label{eq:theta_gammalandpsi_mass_temp1}
+    \int_X \theta_{\gamma\land \psi}^n=\int_X \theta_{\varphi\land \psi}^n.
+    \end{equation}
+
+    For any $a>1$, we define
+    \[
+    \gamma_a\coloneqq P_{\theta}\Bigl( a\gamma+(1-a)\varphi \Bigr).
+    \]
+    When $a=1$, we simply write $\gamma_1=\gamma$.
+
+    Thanks to \cref{cor:pathoenvelopeeqmass}, for any $a\geq 1$, we have $\gamma_a\leq \varphi$ and
+    \[
+    \int_X \theta_{\gamma_a}^n=\int_X \theta_{\varphi}^n.
+    \]
+    By our assumption, for any $a\geq 1$, we have
+    \[
+    \int_X \theta_{\gamma_a}^n+\int_X \theta_{\varphi\land \psi}^n> \int_X \theta_{\varphi}^n,\quad \gamma_a\preceq \varphi,\quad \varphi\land \psi\preceq \varphi.
+    \]
+    So \cref{prop:landfinitecond1} gives
+    \[
+    \gamma_a\land \varphi\land \psi=\gamma_a\land \psi\in \PSH(X,\theta).
+    \]
+    In particular, for $a=1$, we find $\gamma\land \psi\not\equiv -\infty$. It remains to verify \eqref{eq:theta_gammalandpsi_mass_temp1}.
+
+    For $a>1$, we have
+    \[
+    \gamma\geq a^{-1}\gamma_a+\left(1-a^{-1}\right)\varphi,
+    \]
+    thanks to the definition of $\gamma_a$ (cf. \eqref{eq:P_path_everywhere_ineq}). Hence
+    \[
+    \gamma\land \psi\geq a^{-1}\left( \gamma_a\land \psi\right)+\left(1-a^{-1}\right)\left(\varphi\land \psi\right).
+    \]
+    Therefore, by the monotonicity theorem \cref{thm:mono},
+    \[
+    \int_X \theta_{\gamma\land \psi}^n\geq \left(1-a^{-1}\right)^n \int_X \theta_{\varphi\land \psi}^n.
+    \]
+    Letting $a\to \infty$ and taking \cref{thm:mono} into account, \eqref{eq:theta_gammalandpsi_mass_temp1} follows.
+
+    \textbf{Step~2}. We complete the proof.
+
+    For any $a>1$, we let
+    \[
+    \eta_a\coloneqq P_{\theta}\Bigl( a\eta+(1-a)\psi \Bigr).
+    \]
+    When $a=1$, we set $\eta_1=\eta$.
+    Thanks to \cref{cor:pathoenvelopeeqmass}, for each $a\geq 1$, we have $\eta_a\leq \psi$ and
+    \[
+    \int_X \theta_{\eta_a}^n=\int_X \theta_{\psi}^n.
+    \]
+    From Step~1, we have
+    \[
+    \int_X \theta_{\gamma\land\psi}^n+\int_X \theta_{\eta_a}^n=\int_X \theta_{\varphi\land \psi}^n+\int_X \theta_{\psi}^n>\int_X \theta_{\psi}^n.
+    \]
+    Applying \cref{prop:landfinitecond1} again, we find
+    \[
+    \gamma\land\psi\land \eta_a =\gamma\land \eta_a\in \PSH(X,\theta).
+    \]
+    When $a=1$, we find $\gamma\land \eta\in \PSH(X,\theta)$. It remains to prove \eqref{eq:thetagammaeta_temp1}.
+
+    By definition of $\eta_a$, we have
+    \[
+    \eta\geq a^{-1}\eta_a+\left(1-a^{-1}\right)\psi.
+    \]
+    Therefore,
+    \[
+    \gamma\land \eta\geq a^{-1} (\gamma\land \eta_a)+\left(1-a^{-1}\right) \left( \gamma\land\psi \right).
+    \]
+    By the monotonicity theorem \cref{thm:mono},
+    \[
+    \int_X \theta_{\gamma\land \eta}^n\geq \left(1-a^{-1}\right)^n\int_X \theta_{\gamma\land \psi}^n.
+    \]
+    Letting $a\to \infty$ and applying \cref{thm:mono} again, we arrive at \eqref{eq:thetagammaeta_temp1}.
+\end{proof}
+
+There is an interesting diamond-like inequality regarding the non-pluripolar masses:
+\begin{theorem}\label{thm:diamond}
+    Assume that $\varphi,\psi\in \PSH(X,\theta)$ and $\varphi\land \psi\in \PSH(X,\theta)$. Then
+    \begin{equation}\label{eq:diamond}
+        \int_X \theta_{\varphi}^n+\int_X \theta_{\psi}^n\leq \int_X \theta_{\varphi\lor \psi}^n+\int_X \theta_{\varphi\land \psi}^n.
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    We may assume that $\varphi,\psi\in \PSH(X,\theta)_{>0}$, as otherwise \eqref{eq:diamond} follows immediately from the monotonicity theorem \cref{thm:mono}.
+
+    \textbf{Step~1}. We claim that it suffices to prove \eqref{eq:diamond} with $P_{\theta}[\varphi]$ and $P_{\theta}[\psi]$ in place of $\varphi$ and $\psi$.
+
+    In fact, as $\varphi\land \psi\not \equiv -\infty$, we also have $P_{\theta}[\varphi]\land P_{\theta}[\psi]\not\equiv -\infty$. Moreover,
+    \[
+    \int_X \theta_{P_{\theta}[\varphi]}^n=\int_X \theta_{\varphi}^n,\quad \int_X \theta_{P_{\theta}[\psi]}^n=\int_X \theta_{\psi}^n
+    \]
+    by \cref{prop:Ppresmass}. On the other hand, as $C\to \infty$, the potentials
+    \[
+        \Bigl( (\varphi+C)\land V_{\theta} \Bigr) \lor \Bigl( (\psi+C)\land V_{\theta} \Bigr)
+    \]
+    converge to $P_{\theta}[\varphi]\lor P_{\theta}[\psi]$ almost everywhere. Therefore, thanks to \cref{cor:incseqnppcont} and \cref{thm:mono},
+    \[
+    \int_X \theta_{P_{\theta}[\varphi]\lor P_{\theta}[\psi]}^n=\int_X \theta_{\varphi\lor \psi}^n.
+    \]
+    Finally, we have
+    \[
+    \int_X \theta_{P_{\theta}[\varphi]\land P_{\theta}[\psi]}^n= \int_X \theta_{\varphi\land\psi}^n
+    \]
+    as well. When the left-hand side vanishes, this follows from \cref{thm:mono}. Otherwise, it follows from \cref{lma:landcorrectmass}.
+
+    In particular, \eqref{eq:diamond} is equivalent to the corresponding result with $P_{\theta}[\varphi]$ and $P_{\theta}[\psi]$ in place of $\varphi$ and $\psi$.
+
+    \textbf{Step~2}. We shall assume that $\varphi$ and $\psi$ are model potentials in the sequel.
+
+    We write $\gamma=\varphi\lor \psi$ for simplicity. Note that $\gamma\leq 0$.
+
+    For each $C>0$, we introduce
+    \[
+    \varphi_C=\varphi\lor (\gamma-C),\quad \psi_C=\psi\lor (\gamma-C).
+    \]
+    Note that $\varphi_C\sim \psi_C\sim \gamma$. Observe that \[
+        \inf_{C>0} \varphi_C\land \psi_C=\varphi\land\psi.
+    \]
+    The $\geq$ direction is trivial, and the $\leq$ direction follows from the observation that the left-hand side is dominated by both $\varphi_C$ and $\psi_C$ for any $C>0$, and therefore by both $\varphi$ and $\psi$.
+
+    For $C>0$, we compute
+    \begin{equation}\label{eq:thetagammaminusvarphi_temp2}
+    \begin{aligned}
+    \theta_{\varphi_C}^n=& \mathds{1}_{\{\varphi>\gamma-C\}} \,\theta_{\varphi_C}^n+ \mathds{1}_{\{\varphi\leq \gamma-C\}} \,\theta_{\varphi_C}^n &\\
+    =& \mathds{1}_{\{\varphi>\gamma-C\}} \,\theta_{\varphi}^n+ \mathds{1}_{\{\varphi\leq \gamma-C\}} \,\theta_{\varphi_C}^n & \textup{by \itemref{itm:prop:npp1:1}}\\
+    =& \theta_{\varphi}^n+ \mathds{1}_{\{\varphi\leq \gamma-C\}} \,\theta_{\varphi_C}^n & \textup{by \cref{thm:Pvarphisupport}}.
+    \end{aligned}
+\end{equation}
+    In the last line we use that $\varphi$ is model, so $\theta_\varphi^n$ is carried by $\{\varphi=0\}\subseteq\{\varphi>\gamma-C\}$.
+    We also get a similar formula for $\theta_{\psi_C}^n$.
+
+    Therefore, taking the monotonicity theorem \cref{thm:mono} into consideration, we find
+    \begin{equation}\label{eq:intthetagammaminusvarphi_temp1}
+    \int_X \theta_{\gamma}^n-\int_X \theta_{\varphi}^n=\int_{\{\varphi\leq \gamma-C\}} \theta_{\varphi_C}^n,\quad \int_X \theta_{\gamma}^n-\int_X \theta_{\psi}^n=\int_{\{\psi\leq \gamma-C\}} \theta_{\psi_C}^n.
+    \end{equation}
+    On the other hand, using \cref{lma:rooftopMA} and \eqref{eq:thetagammaminusvarphi_temp2}, we find
+    \[
+    \begin{aligned}
+    \theta_{\varphi_C\land \psi_C}^n \leq & \mathds{1}_{\{\varphi_C\land \psi_C=\varphi_C\}} \,\theta_{\varphi_C}^n+\mathds{1}_{\{\varphi_C\land \psi_C=\psi_C\}} \,\theta_{\psi_C}^n \\
+    \leq & \mathds{1}_{\{\varphi_C\land \psi_C=\varphi_C=0\}}\,\theta_{\varphi}^n+\mathds{1}_{\{\varphi_C\land \psi_C=\psi_C=0\}}\,\theta_{\psi}^n+\mathds{1}_{\{\varphi\leq \gamma-C\}}\,\theta_{\varphi_C}^n\\
+    &+\mathds{1}_{\{\psi\leq \gamma-C\}}\,\theta_{\psi_C}^n.
+    \end{aligned}
+    \]
+    In particular,
+    \[
+    \mathds{1}_{\{ \varphi_C\land \psi_C<0 \}}\, \theta_{\varphi_C\land \psi_C}^n \leq \mathds{1}_{\{\varphi\leq \gamma-C\}}\,\theta_{\varphi_C}^n+\mathds{1}_{\{\psi\leq \gamma-C\}}\,\theta_{\psi_C}^n.
+    \]
+    Integrating, we find
+    \[
+    \begin{aligned}
+    \int_{\{ \varphi_C\land \psi_C=0 \}} \theta_{\varphi_C\land \psi_C}^n
+    \geq & \int_X \theta_{\gamma}^n-\int_{\{\varphi\leq \gamma-C\}} \theta_{\varphi_C}^n-\int_{\{\psi\leq \gamma-C\}} \theta_{\psi_C}^n\\
+    =& \int_X \theta_{\varphi}^n+\int_X \theta_{\psi}^n-\int_X \theta_{\gamma}^n,
+    \end{aligned}
+    \]
+    where on the first line we used the fact that $\varphi_C\land \psi_C\sim \gamma$, while on the second line, we used \eqref{eq:intthetagammaminusvarphi_temp1}.
+
+    Letting $C\to\infty$, and using \cref{cor:intcontlimsup}, we conclude \eqref{eq:diamond}.
+\end{proof}
+
+
+For later use, we also introduce a generalized envelope operator:
+\begin{definition}\label{def:Pthetavarphif}
+Given $\varphi\in\PSH(X,\theta)$ and a function $f\colon X\to[-\infty,\infty]$, we define
+\[
+P_\theta[\varphi](f)\coloneqq \uscsup \bigl\{\eta\in\PSH(X,\theta): \eta\leq f\textup{ quasi-everywhere},\ \eta\preceq\varphi\bigr\}.
+\]
+\index{$P_\theta[\varphi](f)$}
+\end{definition}
+In general, we cannot replace $\eta\leq f$ quasi-everywhere by everywhere.
+
+
+\begin{example}\label{ex:envelopes:L625}
+    When $f=0$, we have $P_\theta[\varphi](f)=P_{\theta}[\varphi]$.
+
+    When $\varphi=V_{\theta}$, we have $P_\theta[V_{\theta}](f)=P_{\theta}(f)$.
+
+    So \cref{def:Pthetavarphif} is a common generalization of \cref{def:Penv} and \cref{def:Pthetaf}.
+\end{example}
+
+
+\begin{proposition}\label{prop:DNTenvelope2}
+    Let $\varphi\in\PSH(X,\theta)$ and $f\in C^{1,\overline{1}}(X)$ with $\varphi\leq f$. Then
+    \[
+    \theta^n_{P_\theta[\varphi](f)} = \mathds{1}_{\left\{P_\theta[\varphi](f)=f\right\}}\,\theta^n_f.
+    \]
+    In particular,
+    \[
+    \theta^n_{P_\theta[\varphi]} = \mathds{1}_{\left\{P_\theta[\varphi]=0\right\}}\,\theta^n.
+    \]
+\end{proposition}
+This is a vast generalization of \cref{thm:Pvarphisupport}.
+\begin{proof}
+    By definition, we have
+    \[
+    P_\theta[\varphi](f)=P_\theta[\varphi]\Bigl(P_\theta(f)\Bigr)
+    \]
+    and $\varphi\leq P_\theta(f)$. By \cref{cor:Pvarphisupport} and \cref{cor:DNTenvelope1},
+    \[
+        \theta^n_{P_\theta[\varphi](f)} \leq \mathds{1}_{\left\{P_\theta[\varphi](f)=P_\theta(f)\right\}}\,\theta^n_{P_\theta(f)} = \mathds{1}_{\left\{P_\theta[\varphi](f)=f\right\}}\,\theta^n_f.
+    \]
+    The reverse inequality follows immediately from \cref{thm:DNTcontact}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:DNTenvelope3}
+    Let $\varphi\in\PSH(X,\theta)$ and $f\in C^{1,\overline{1}}(X)$ with $\varphi\leq f$. Then
+    \[
+    \begin{aligned}
+        \mathds{1}_{\left\{\varphi=P_\theta(f)\right\}}\,\theta^n_{P_\theta(f)} =& \mathds{1}_{\left\{\varphi=P_\theta(f)\right\}}\,\theta^n_\varphi, \\
+        \mathds{1}_{\left\{\varphi=P_\theta[\varphi](f)\right\}}\,\theta^n_{P_\theta[\varphi](f)} =& \mathds{1}_{\{\varphi=P_\theta[\varphi](f)\}}\,\theta^n_\varphi.
+    \end{aligned}
+    \]
+\end{proposition}
+\begin{proof}
+    By \cref{cor:DNTenvelope1} and \cref{thm:DNTcontact}, we have
+    \[
+        \mathds{1}_{\{\varphi=P_\theta(f)\}}\,\theta^n_{P_\theta(f)}=\mathds{1}_{\{\varphi=P_\theta(f)=f\}}\,\theta^n_{f}=\mathds{1}_{\{\varphi=P_\theta(f)=f\}}\,\theta^n_{\varphi}\leq \mathds{1}_{\{\varphi=P_\theta(f)\}}\,\theta^n_{\varphi}.
+    \]
+    The reverse inequality follows from \cref{lma:lorMAineqe}. The first equality follows.
+
+    As for the second, we compute using \cref{prop:DNTenvelope2} and \cref{thm:DNTcontact} that
+    \[
+    \begin{split}
+    \mathds{1}_{\left\{\varphi=P_\theta[\varphi](f)\right\}}\,\theta^n_{P_\theta[\varphi](f)}=\mathds{1}_{\left\{\varphi=P_\theta[\varphi](f)=f\right\}}\,\theta^n_{f}\\
+    =\mathds{1}_{\left\{\varphi=P_\theta[\varphi](f)=f\right\}}\,\theta_{\varphi}^n\leq \mathds{1}_{\{\varphi=P_\theta[\varphi](f)\}}\,\theta^n_\varphi.
+    \end{split}
+    \]
+    Since $\varphi\leq P_{\theta}[\varphi](f)$, \cref{lma:lorMAineqe} gives the opposite inequality. The second equality follows.
+\end{proof}
+
+\subsection{Properties of the \texorpdfstring{$P$}{P}-envelope}
+\label{subsec:Penv_prop}
+Let $\theta,\theta_1,\theta_2$ be smooth closed real $(1,1)$-forms on $X$.
+
+\begin{proposition}\label{prop:Penvbimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$ to $X$. Then for any $\varphi\in \PSH(X,\theta)$, we have
+    \[
+        P_{\pi^*\theta}[\pi^*\varphi]=\pi^*P_{\theta}[\varphi].
+    \]
+    In particular, a potential $\varphi\in \PSH(X,\theta)_{>0}$ is model if and only if $\pi^*\varphi\in \PSH(Y,\pi^*\theta)_{>0}$ is model.
+\end{proposition}
+\begin{proof}
+    By \cref{prop:PSHpullbij}, every $\chi\in\PSH(Y,\pi^*\theta)$ is of the form $\chi=\pi^*\psi$ for a unique $\psi\in\PSH(X,\theta)$. Since $\pi$ is surjective, $\chi\leq 0$ if and only if $\psi\leq 0$. Moreover,
+    \[
+        \chi\preceq \pi^*\varphi \Longleftrightarrow \psi\preceq \varphi.
+    \]
+    Thus the candidates defining $P_{\pi^*\theta}[\pi^*\varphi]$ are exactly the pull-backs of the candidates defining $P_\theta[\varphi]$, and hence
+    \[
+        P_{\pi^*\theta}[\pi^*\varphi]=\pi^*P_\theta[\varphi].
+    \]
+    Finally, the non-pluripolar mass is preserved under bimeromorphic pull-back by \cref{prop:nppmassinv}. Therefore $\varphi$ is model of positive mass if and only if $\pi^*\varphi$ is.
+\end{proof}
+
+We have the following concavity property of the $P$-envelope.
+\begin{proposition}\label{prop:Pconc}
+    \leavevmode
+    \begin{enumerate}
+        \item\label{itm:prop:Pconc:1} Suppose that $\varphi\in \PSH(X,\theta)$ and $\lambda\in \mathbb{R}_{>0}$. Then
+            \[
+                P_{\lambda\theta}[\lambda\varphi]=\lambda P_{\theta}[\varphi].
+            \]
+        \item\label{itm:prop:Pconc:2} Suppose that $\varphi_1\in \PSH(X,\theta_1)$ and $\varphi_2\in \PSH(X,\theta_2)$. Then
+            \[
+                P_{\theta_1+\theta_2}[\varphi_1+\varphi_2]\geq P_{\theta_1}[\varphi_1]+P_{\theta_2}[\varphi_2].
+            \]
+        \item\label{itm:prop:Pconc:3} Suppose that $\varphi,\psi\in \PSH(X,\theta)$ and $\varphi\preceq \psi$. Then
+            \[
+                P_{\theta}[\varphi]\leq P_{\theta}[\psi].
+            \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:Pconc:1} This follows by rescaling the candidates in the definition of the $P$-envelope.
+
+    \ref{itm:prop:Pconc:2} Suppose that $\psi_1\in \PSH(X,\theta_1)$ and $\psi_2\in \PSH(X,\theta_2)$ satisfy
+    \[
+        \psi_i\leq 0,\quad \psi_i\preceq \varphi_i
+    \]
+    for $i=1,2$. Then
+    \[
+        \psi_1+\psi_2\leq 0,\quad \psi_1+\psi_2\preceq \varphi_1+\varphi_2.
+    \]
+    It follows from \eqref{eq:Pthetavarphi} that
+    \[
+        \psi_1+\psi_2\leq P_{\theta_1+\theta_2}[\varphi_1+\varphi_2].
+    \]
+    Since $\psi_1$ and $\psi_2$ are arbitrary, we conclude.
+
+    \ref{itm:prop:Pconc:3} This follows by inclusion of the defining candidate sets.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\begin{proposition}\label{prop:decseqmodel}
+    Let $(\varphi_j)_{j\in I}$ be a decreasing net of potentials in $\PSH(X,\theta)$ satisfying $P_{\theta}[\varphi_j]=\varphi_j$ for each $j\in I$. Set $\varphi\coloneqq \inf_{j\in I} \varphi_j$. Then $P_{\theta}[\varphi]=\varphi$.
+\end{proposition}
+\begin{proof}
+    Since $P_{\theta}[\varphi_j]=\varphi_j$, we have $\sup_X\varphi_j=0$. By \cref{cor:decreasingnetL1conv}, we have $\varphi\in \PSH(X,\theta)$, and $\varphi\leq 0$. Therefore, for each $j\in I$,
+    \[
+        \varphi\leq P_{\theta}[\varphi]\leq P_{\theta}[\varphi_j] =\varphi_j.
+    \]
+    Therefore, $\varphi=P_{\theta}[\varphi]$.
+\end{proof}
+
+
+\begin{proposition}\label{prop:vol_limit_model}
+    Let $(\epsilon_i)_{i\in I}$ be a decreasing net in $\mathbb{R}_{\geq 0}$ with limit $0$. Take a Kähler form $\omega$ on $X$.
+    Consider a decreasing net $(\varphi_i)_{i\in I}$ with $\varphi_i\in \PSH(X,\theta+\epsilon_i \omega)$ satisfying
+    \begin{equation}\label{eq:Palmostmodeltemp}
+        P_{\theta+\epsilon_i\omega}\left[\varphi_i\right]=\varphi_i
+    \end{equation}
+    for every $i\in I$. Set $\varphi\coloneqq\inf_{i\in I}\varphi_i$. Then $P_{\theta}[\varphi]=\varphi$, and
+    \begin{equation}\label{eq:massmodeldec}
+    \lim_{i\in I}\int_X \left(\theta + \epsilon_i \omega\right)^n_{\varphi_i}=\int_X \theta_{\varphi}^n.
+    \end{equation}
+    Moreover, if $\int_X \theta_{\varphi}^n>0$, then for any prime divisor $E$ over $X$, we have
+    \begin{equation}\label{eq:Lelongcontdecseq}
+    \lim_{i\in I} \nu\left(\varphi_i,E\right)=\nu(\varphi,E).
+    \end{equation}
+\end{proposition}
+Note that both \eqref{eq:massmodeldec} and \eqref{eq:Lelongcontdecseq} fail without the assumption \eqref{eq:Palmostmodeltemp}.
+
+\begin{proof}
+        We first observe that $\varphi\in \PSH(X,\theta)$. In fact, for each $i_0\in I$, the tail $(\varphi_i)_{i\geq i_0}$ lies in $\PSH(X,\theta+\epsilon_{i_0}\omega)$ and decreases to $\varphi$. Since $\sup_X\varphi_i=0$ by \eqref{eq:Palmostmodeltemp}, the limit is not identically $-\infty$. Thus $\varphi\in \PSH(X,\theta+\epsilon_{i_0}\omega)$ for every $i_0\in I$. Since $\epsilon_{i_0}\to 0$, it follows that $\varphi\in \PSH(X,\theta)$.
+        For every $i\in I$ we have
+        \[
+        P_{\theta}[\varphi]\leq P_{\theta+\epsilon_i\omega}[\varphi]\leq P_{\theta+\epsilon_i\omega}[\varphi_i]=\varphi_i.
+        \]
+        Therefore, $P_{\theta}[\varphi]\leq \varphi$. The reverse inequality is trivial. Hence $P_{\theta}[\varphi]=\varphi$.
+
+        By the monotonicity theorem \cref{thm:mono} and the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6}, we have
+        \[
+            \varliminf_{i\in I} \int_X \left(\theta + \epsilon_i \omega\right)^n_{\varphi_i} \geq  \varliminf_{i\in I} \int_X \left(\theta + \epsilon_i \omega\right)^n_{\varphi}  = \int_X \theta_{\varphi}^n.
+        \]
+        We now argue the reverse inequality.
+
+        Fix $i_0\in I$. Since passing to the tail $i\geq i_0$ does not change the limsup, we have
+        \[
+            \begin{aligned}
+                \varlimsup_{i\in I} \int_X \left(\theta + \epsilon_i \omega\right)^n_{\varphi_i}=&\varlimsup_{i\geq i_0} \int_{\left\{\varphi_i =0\right\}} \left(\theta + \epsilon_i \omega\right)^n_{\varphi_i} \\
+                \leq & \varlimsup_{i\geq i_0} \int_{\left\{\varphi_i =0\right\}} \left(\theta + \epsilon_{i_0} \omega\right)^n_{\varphi_i}\\
+                \leq & \int_{\left\{\varphi =0\right\}} \left(\theta + \epsilon_{i_0} \omega\right)^n_{\varphi},
+            \end{aligned}
+        \]
+    where in the first line we used \eqref{eq:Palmostmodeltemp} and \cref{thm:Pvarphisupport}, and in the last line we used the fact that $\varphi_i \searrow \varphi$ on the tail $i\geq i_0$, and on this tail, $\varphi_i \to \varphi$ in $L^1$ as well by \cref{cor:decreasingnetL1conv}, and therefore, \cref{cor:intcontlimsup} is applicable. Taking the limit with respect to $i_0$, we arrive at the desired conclusion:
+    \[
+    \varlimsup_{i\in I} \int_{X} \left(\theta + \epsilon_i \omega \right)^n_{\varphi_i} \leq \varliminf_{i_0\in I}\int_{\{\varphi =0\}} \left(\theta + \epsilon_{i_0} \omega \right)^n_{\varphi}  =  \int_{\{\varphi =0\}} \theta^n_{\varphi} \leq \int_{X} \theta^n_{\varphi},
+    \]
+    where the equality follows from the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6} and the last inequality follows from \cref{thm:Pvarphisupport}.
+    This finishes the proof of \eqref{eq:massmodeldec}.
+
+    It remains to argue \eqref{eq:Lelongcontdecseq}.
+    Fix $i_0\in I$. By \cref{prop:Lelongnumberupperbound}, there is a constant $B>0$ such that
+    \[
+    \nu(\psi,E)\leq B,\quad \psi\in \PSH(X,\theta+\epsilon_{i_0}\omega).
+    \]
+    By \cref{lma:pathoenvelope} and \eqref{eq:massmodeldec}, for any $\delta \in (0,1)$ there exists $i_{\delta}\geq i_0$ such that for all $i\geq i_{\delta}$ there exists $\psi_i \in \PSH(X,\theta+\epsilon_i\omega)$ satisfying $(1-\delta) \varphi_i + \delta \psi_i \leq \varphi$. This implies that for $i\geq i_{\delta}$ we have
+    \[
+    (1-\delta)\nu(\varphi_i,E) + \delta\nu(\psi_i,E) \geq \nu(\varphi,E) \geq \nu(\varphi_i,E).
+    \]
+    Since $\psi_i\in \PSH(X,\theta+\epsilon_{i_0}\omega)$ for $i\geq i_{\delta}$, we get
+    \[
+        \varliminf_{i\in I}\nu(\varphi_i,E)\geq \frac{\nu(\varphi,E)-\delta B}{1-\delta}.
+    \]
+    Letting $\delta\searrow 0$ gives $\varliminf_{i\in I}\nu(\varphi_i,E)\geq \nu(\varphi,E)$. The reverse inequality follows from $\varphi\leq \varphi_i$, and hence we conclude \eqref{eq:Lelongcontdecseq}.
+\end{proof}
+
+
+
+
+
+
+
+
+\begin{corollary}\label{cor:varphiperturbtheta}
+    Let $\varphi\in \PSH(X,\theta)_{>0}$ be a model potential. Let $\omega$ be a Kähler form on $X$.
+    Then
+    \[
+    \varphi=\inf_{\epsilon>0} P_{\theta+\epsilon\omega}[\varphi].
+    \]
+\end{corollary}
+\begin{proof}
+    Set
+    \[
+        \eta\coloneqq\inf_{\epsilon>0}P_{\theta+\epsilon\omega}[\varphi].
+    \]
+    Since $\varphi$ is model, $\varphi=P_{\theta}[\varphi]\leq P_{\theta+\epsilon\omega}[\varphi]$ for every $\epsilon>0$, hence $\varphi\leq\eta\leq 0$.
+
+    Next we prove the reverse direction.
+    Applying \cref{prop:vol_limit_model} to the decreasing net $(P_{\theta+\epsilon\omega}[\varphi])_{\epsilon>0}$ and using \cref{prop:Ppresmass}, we get
+    \[
+        P_\theta[\eta]=\eta,\quad \int_X\theta_\eta^n=\int_X\theta_\varphi^n.
+    \]
+    Thus $\eta$ is a candidate in the characterization \cref{thm:Pvarphidiffdef} of $P_\theta[\varphi]$. Hence $\eta\leq P_\theta[\varphi]=\varphi$.
+\end{proof}
+
+\begin{proposition}\label{prop:incnetmodel}
+    Let $(\varphi_i)_{i\in I}$ be an increasing net of potentials in $\PSH(X,\theta)_{>0}$ uniformly bounded from above. Let $\varphi\coloneqq \uscsup[i\in I]\varphi_i$. Then
+    \[
+    \uscsup[i\in I] P_{\theta}[\varphi_i]=P_{\theta}[\varphi].
+    \]
+
+    In particular, if $\varphi_i$ is model for all $i\in I$, then so is $\varphi$.
+\end{proposition}
+\begin{proof}
+We may assume that $I$ is infinite since otherwise, there is nothing to prove.
+
+    We write
+    \[
+    \eta\coloneqq \uscsup[i\in I] P_{\theta}[\varphi_i].
+    \]
+    Then it is clear that $\eta\leq P_{\theta}[\varphi]$.
+
+    By \cref{cor:incseqnppcont}, we have
+    \[
+        \lim_{i\in I} \int_X\theta_{\varphi_i}^n=\int_X\theta_{\varphi}^n>0.
+    \]
+    We may assume that for each $i\in I$, $\int_X\theta_{\varphi_i}^n<\int_X\theta_{\varphi}^n$, since otherwise $P_{\theta}[\varphi_i]=P_{\theta}[\varphi]$ by \cref{thm:Pvarphidiffdef}, and the same holds for all $j\geq i$; in that case there is nothing to prove.
+
+    So by \cref{lma:pathoenvelope}, we can find a decreasing net $\epsilon_i\searrow 0$ ($i\in I$) with $\epsilon_i\in (0,1)$ and $\psi_i\in \PSH(X,\theta)$ ($i\in I$) such that for all $i\in I$,
+    \[
+        (1-\epsilon_i) \varphi+\epsilon_i\psi_i\leq \varphi_i.
+    \]
+    We may, for example, take
+    \begin{equation}\label{eq:epsilon_inetchoice}
+        \epsilon_i^{-1}=\frac{1}{2}\left( 1+\left(\frac{\int_X \theta_{\varphi}^n}{\int_X \theta_{\varphi}^n-\int_X \theta_{\varphi_i}^n}\right)^{1/n} \right).
+    \end{equation}
+
+
+    By the concavity property of the envelope \cref{prop:Pconc}, we have
+    \[
+        P_{\theta}[\varphi]+\epsilon_i P_{\theta}[\psi_i]\leq (1-\epsilon_i) P_{\theta}[\varphi]+\epsilon_i P_{\theta}[\psi_i]\leq P_{\theta}[\varphi_i]\leq\eta.
+    \]
+    Each $P_{\theta}[\psi_i]$ has supremum $0$, hence the family is bounded in $L^1$ by \cref{prop:L1compa}. Thus $\epsilon_iP_{\theta}[\psi_i]\to 0$ in $L^1$. The previous inequality then gives $P_{\theta}[\varphi]\leq \eta$ almost everywhere, and hence everywhere by \cref{prop:pshfuncdetdense}.
+\end{proof}
+
+
+
+
+\subsection{Relative full mass classes}\label{subsec:fullmass}
+Let $\theta$ be a smooth closed real $(1,1)$-form on $X$ representing a big cohomology class. Fix a model potential $\phi\in \PSH(X,\theta)_{>0}$.
+
+
+
+\begin{definition}\label{def:envelopes:L906}
+    We define
+    \[
+        \begin{aligned}
+        \PSH(X,\theta;\phi)\coloneqq &\left\{\eta\in \PSH(X,\theta): \eta\preceq \phi\right\},\\
+        \mathcal{E}^{\infty}(X,\theta;\phi)\coloneqq &\left\{\eta\in \PSH(X,\theta): \eta\sim \phi\right\},\\
+        \mathcal{E}(X,\theta;\phi)\coloneqq &\left\{\eta\in \PSH(X,\theta;\phi): \int_X \theta_{\eta}^n=\int_X \theta_{\phi}^n\right\},\\
+        \mathcal{E}^1(X,\theta;\phi)\coloneqq &\left\{\eta\in \mathcal{E}(X,\theta;\phi): \int_X |\phi-\eta|\,\theta_{\eta}^n<\infty\right\}.
+        \end{aligned}
+    \]
+    \index{$\PSH(X,\theta;\phi)$}\index{$\mathcal{E}^{\infty}(X,\theta;\phi)$}\index{$\mathcal{E}(X,\theta;\phi)$} \index{$\mathcal{E}^1(X,\theta;\phi)$}
+    Potentials in the last three classes are said to have \emph{relatively minimal singularities}\index{potential!potential with relatively minimal singularities}, \emph{full mass}\index{potential!potential with relative full mass} and \emph{finite energy}\index{potential!potential with relative finite energy} relative to $\phi$ respectively.
+\end{definition}
+We have the following inclusions:
+\begin{equation}\label{eq:energyclassinc}
+\mathcal{E}^{\infty}(X,\theta;\phi)\subseteq \mathcal{E}^1(X,\theta;\phi)\subseteq \mathcal{E}(X,\theta;\phi)\subseteq \PSH(X,\theta;\phi).
+\end{equation}
+The only non-trivial part is the first inclusion, which follows from the monotonicity theorem \cref{thm:mono}.
+
+\begin{remark}\label{rmk:intwelldef}
+    Note that this integral
+    \[
+    \int_X |\phi-\eta|\,\theta_{\eta}^n
+    \]
+    is defined: The locus where $\phi-\eta$ is undefined is a pluripolar set, while the product $\theta_{\eta}^n$ puts no mass on pluripolar sets (\cref{prop:npp1}).
+
+    Similar remarks apply when we talk about similar integrals in the sequel.
+\end{remark}
+
+
+When $\phi=V_{\theta}$, we usually write
+\[
+    \begin{aligned}
+        \mathcal{E}^{\infty}(X,\theta;V_{\theta})=& \mathcal{E}^{\infty}(X,\theta),\\
+        \mathcal{E}(X,\theta;V_{\theta})=& \mathcal{E}(X,\theta),\\
+        \mathcal{E}^{1}(X,\theta;V_{\theta})=& \mathcal{E}^{1}(X,\theta).
+    \end{aligned}
+\]
+Potentials in the three classes are said to have \emph{minimal singularities}\index{potential!potential with minimal singularities}, \emph{full mass}\index{potential!potential with full mass} and \emph{finite energy}\index{potential!potential with finite energy} respectively. The relation \eqref{eq:energyclassinc} can be written as
+\[
+\mathcal{E}^{\infty}(X,\theta)\subseteq \mathcal{E}^{1}(X,\theta) \subseteq \mathcal{E}(X,\theta)
+\]
+in this case.
+
+The $P$-envelope can be used to characterize the full mass classes:
+\begin{proposition}\label{prop:fullmassP}
+    Let $\varphi\in \PSH(X,\theta)$. Then the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:fullmassP:1} $\varphi\in \mathcal{E}(X,\theta;\phi)$;
+        \item\label{itm:prop:fullmassP:2} $P_{\theta}[\varphi]=\phi$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:fullmassP:2} $\implies$ \ref{itm:prop:fullmassP:1}. Assume \ref{itm:prop:fullmassP:2}. By \cref{prop:Ppresmass},
+    \[
+    \int_X\theta_\varphi^n=\int_X\theta_{P_\theta[\varphi]}^n=\int_X\theta_\phi^n.
+    \]
+    Moreover, since the mass is positive, \cref{thm:Pvarphidiffdef} implies that
+    \[
+        \varphi\preceq P_\theta[\varphi]=\phi.
+    \]
+    Thus $\varphi\in\mathcal E(X,\theta;\phi)$.
+
+    \ref{itm:prop:fullmassP:1} $\implies$ \ref{itm:prop:fullmassP:2}. Assume \ref{itm:prop:fullmassP:1}. Then $\varphi\in \PSH(X,\theta)_{>0}$.
+    Note that $\phi$ is a candidate of $P_{\theta}[\varphi]$ as in \eqref{eq:Penvdef}. So $P_{\theta}[\varphi]\geq \phi$. The reverse inequality is trivial.
+\end{proof}
+
+We have the following comparison principle.
+\begin{proposition}[Comparison principle]\label{prop:compa_princ}\index{theorem!comparison principle}
+    Fix $j\in \{0,\ldots,n\}$.
+    Let $\theta_1,\ldots,\theta_j$ be closed smooth real $(1,1)$-forms on $X$ and $\psi_i\in \PSH(X,\theta_i)$ for $i=1,\ldots,j$. Suppose that $\varphi,\psi\in \mathcal{E}(X,\theta;\phi)$. Then
+    \begin{equation}\label{eq:comp_princi1}
+    \int_{\{\varphi<\psi\}} \theta_{\varphi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\geq \int_{\{\varphi<\psi\}} \theta_{\psi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}.
+    \end{equation}
+    As a consequence, we also have
+    \begin{equation}\label{eq:comp_princi12}
+    \int_{\{\varphi\leq \psi\}} \theta_{\varphi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\geq \int_{\{\varphi\leq\psi\}} \theta_{\psi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Observe that $\varphi\lor \psi\in \mathcal{E}(X,\theta;\phi)$, as a consequence of the monotonicity theorem \cref{thm:mono}.
+    Using the plurifine locality of the non-pluripolar product \itemref{itm:prop:npp1:1}, we compute
+    \[
+    \begin{aligned}
+    &\int_X \theta_{\varphi\lor \psi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    \geq & \int_{\{\varphi>\psi\} } \theta_{\varphi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}+\int_{\{\varphi<\psi\} } \theta_{\psi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    =& \int_X  \theta_{\varphi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}-\int_{\{\varphi\leq \psi\} } \theta_{\varphi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    &+\int_{\{\varphi<\psi\} } \theta_{\psi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    =&\int_X  \theta_{\varphi\lor \psi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}-\int_{\{\varphi\leq \psi\} } \theta_{\varphi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    &+\int_{\{\varphi<\psi\} } \theta_{\psi}^{n-j}\wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j},
+    \end{aligned}
+    \]
+    where in the last step, we applied \cref{prop:Ppresmass} to $\varphi$ and $\varphi\lor \psi$. Therefore,
+    \[
+    \begin{aligned}
+    \int_{\{\varphi\leq \psi\}}& \theta_{\varphi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}\\
+    &\geq \int_{\{\varphi<\psi\}} \theta_{\psi}^{n-j} \wedge \theta_{1,\psi_1}\wedge \cdots \wedge \theta_{j,\psi_j}.
+    \end{aligned}
+    \]
+    Applying the preceding inequality to $\varphi+\epsilon$ in place of $\varphi$, and using $\theta_{\varphi+\epsilon}=\theta_\varphi$, we get
+    \[
+        \int_{\{\varphi+\epsilon\leq\psi\}}\theta_\varphi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j} \geq \int_{\{\varphi+\epsilon<\psi\}}\theta_\psi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j}.
+    \]
+    As $\epsilon\searrow 0$, by monotone convergence theorem, we obtain
+    \[
+    \int_{\{\varphi<\psi\}}\theta_\varphi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j} \geq \int_{\{\varphi<\psi\}}\theta_\psi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j},
+    \]
+    which proves \eqref{eq:comp_princi1}.
+
+    Finally, the \eqref{eq:comp_princi12} follows by subtracting \eqref{eq:comp_princi1} (with the role of $\varphi$ and $\psi$ switched) from the total mixed mass equality
+    \[
+        \int_X\theta_\varphi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j}= \int_X\theta_\psi^{n-j}\wedge \theta_{1,\psi_1}\wedge\cdots\wedge\theta_{j,\psi_j},
+    \]
+    which itself follows from \cref{prop:Ppresmass} and \cref{prop:fullmassP}.
+\end{proof}
+
+The full mass potentials are essential in resolving the Monge--Ampère equations. We recall the following two Aubin--Yau type theorems. Recall that a measure $\mu$ on $X$ is \emph{non-pluripolar}\index{non-pluripolar measure} if it is a Radon measure and $\mu(K)=0$ for each pluripolar set $K\subseteq X$.\footnote{Here we identify as usual a Radon measure with its completion.}
+\begin{theorem}\label{thm:Yau_rel}
+    Let $\mu$ be a non-pluripolar measure on $X$ with $\mu(X)=\int_X \theta_{\phi}^n$. Then there is a unique $\varphi\in \mathcal{E}(X,\theta;\phi)$ such that
+    \[
+    \theta_{\varphi}^n=\mu,\quad \sup_X \varphi=0.
+    \]
+\end{theorem}
+
+
+\begin{theorem}\label{thm:AY_rel}
+    Fix $\lambda>0$. Let $\mu$ be a non-pluripolar measure on $X$ with $\mu(X)>0$. Then there is a unique $\varphi\in \mathcal{E}(X,\theta;\phi)$ such that
+    \[
+    \theta_{\varphi}^n=\mathrm{e}^{\lambda\varphi}\mu.
+    \]
+    Furthermore, for any $\psi\in \mathcal{E}(X,\theta;\phi)$ satisfying
+    \[
+    \theta_{\psi}^n\geq \mathrm{e}^{\lambda\psi}\mu,
+    \]
+    we have $\varphi\geq \psi$.
+\end{theorem}
+The proofs are beyond the scope of this book; we refer to \cite{DDNL19log}.
+
+In order to handle the finite energy classes, it is convenient to introduce the following quantity:
+\begin{definition}\label{def:MAenergy}
+    We define the \emph{Monge--Amp\`ere energy}\index{Monge--Amp\`ere energy} $E^{\phi}_{\theta}\colon \mathcal{E}^{\infty}(X,\theta;\phi)\rightarrow \mathbb{R}$\index{$E^{\phi}_{\theta}$} as follows
+    \begin{equation}\label{eq:Edefbdd}
+        E^{\phi}_{\theta}(\varphi)\coloneqq \frac{1}{n+1}\sum_{j=0}^n \int_X (\varphi-\phi)\, \theta_{\varphi}^j\wedge \theta_{\phi}^{n-j}.
+    \end{equation}
+
+
+    More generally, we extend $E_{\theta}^{\phi}$ to a functional $E^{\phi}_{\theta}\colon \PSH(X,\theta;\phi)\rightarrow [-\infty,\infty)$ as follows
+    \begin{equation}\label{eq:Eextendgeneral}
+        E^{\phi}_{\theta}(\varphi)\coloneqq \inf\left\{E^{\phi}_{\theta}(\psi):\psi\in \mathcal{E}^{\infty}(X,\theta;\phi),\varphi\leq \psi\right\}.
+    \end{equation}
+
+     We write $E_{\theta}$\index{$E_{\theta}$} instead of $E_{\theta}^{\phi}$ when $\phi=V_{\theta}$.
+\end{definition}
+The set in \eqref{eq:Eextendgeneral} is non-empty, since $\phi+\sup_X \varphi$ is a candidate. Therefore, $E^{\phi}_{\theta}(\varphi)<\infty$.
+
+
+Note that
+\begin{equation}\label{eq:Ephiaddcst}
+E^{\phi}_{\theta}(\varphi+C)=E^{\phi}_{\theta}(\varphi)+C\int_X \theta_{\phi}^n
+\end{equation}
+for any $\varphi\in \PSH(X,\theta;\phi)$ and $C\in \mathbb{R}$.
+
+
+
+\begin{lemma}\label{lma:EmonoEinfty}
+    The functional $E_{\theta}^{\phi}\colon \mathcal{E}^{\infty}(X,\theta;\phi)\rightarrow \mathbb{R}$ is increasing. In particular, the extended definition \eqref{eq:Eextendgeneral} agrees with \eqref{eq:Edefbdd} on $\mathcal{E}^{\infty}(X,\theta;\phi)$, and is increasing as well.
+\end{lemma}
+\begin{proof}
+    Let $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$, we have
+    \[
+    \begin{aligned}
+    &(n+1)E^{\phi}_{\theta}(\varphi)-(n+1)E^{\phi}_{\theta}(\psi)-\sum_{j=0}^n \int_X (\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j} \\
+    =& \sum_{j=0}^n \int_X (\varphi-\phi)\, \theta_{\varphi}^j\wedge \theta_{\phi}^{n-j}-\sum_{j=0}^n \int_X (\psi-\phi)\, \theta_{\psi}^j\wedge \theta_{\phi}^{n-j}-\sum_{j=0}^n \int_X (\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}\\
+    =& \sum_{j=0}^n \int_X (\varphi-\psi)\,\left( \theta_{\varphi}^j\wedge \theta_{\phi}^{n-j}-\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j} \right)\\
+    &+\sum_{j=0}^n \int_X (\psi-\phi)\,\left( \theta_{\varphi}^j\wedge \theta_{\phi}^{n-j}-\theta_{\psi}^j\wedge \theta_{\phi}^{n-j} \right)\\
+    =& \sum_{\substack{j+a+b=n-1,\\ j,a,b\geq 0}} (n-j)\int_X (\psi-\phi)\,\left( \theta_{\phi}^a\wedge \theta_{\psi}^{b+1}\wedge \theta_{\varphi}^j- \theta_{\phi}^a\wedge \theta_{\psi}^{b}\wedge \theta_{\varphi}^{j+1}\right)\\
+    &+\sum_{\substack{j+a+b=n-1,\\ j,a,b\geq 0}} (n-j)\int_X (\psi-\phi)\,\left( \theta_{\phi}^j\wedge \theta_{\varphi}^{a+1}\wedge \theta_{\psi}^b- \theta_{\phi}^j\wedge \theta_{\varphi}^{a}\wedge \theta_{\psi}^{b+1}\right)\\
+    =&0,
+    \end{aligned}
+    \]
+    where the third equality follows from the integration by parts formula. See \cite{Xia19b, Lu21} for the proof in the context of non-pluripolar products.
+
+    In other words,
+    \begin{equation}\label{eq:int_by_part_E_temp1}
+    E^{\phi}_{\theta}(\varphi)-E^{\phi}_{\theta}(\psi)=\frac{1}{n+1}\sum_{j=0}^n \int_X(\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}.
+    \end{equation}
+    The monotonicity follows.
+\end{proof}
+
+
+\begin{lemma}\label{lma:comp_int_ene}
+    Let $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$. Then
+    \begin{equation}\label{eq:comp_int_ene}
+    \int_X (\varphi-\psi)\,\theta_{\psi}^n \geq E_{\theta}^{\phi}(\varphi)-E_{\theta}^{\phi}(\psi)\geq \int_X (\varphi-\psi)\,\theta_{\varphi}^n.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Thanks to \eqref{eq:Ephiaddcst}, we may assume that $\varphi\geq \psi$.
+
+       As we have seen in \eqref{eq:int_by_part_E_temp1}, the middle term can be written as
+       \[
+       \frac{1}{n+1}\sum_{j=0}^n \int_X(\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}.
+       \]
+       We claim that for each individual $j$, the inequality \eqref{eq:comp_int_ene} holds:
+       \[
+       \int_X (\varphi-\psi)\,\theta_{\psi}^n \geq \int_X(\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j} \geq \int_X (\varphi-\psi)\,\theta_{\varphi}^n.
+       \]
+       Thanks to \cref{prop:compa_princ}, we have
+       \[
+       \begin{aligned}
+       \int_X(\varphi-\psi)\,\theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}=&\int_0^{\infty} \int_{\{\varphi>\psi+t\}} \theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}\,\mathrm{d}t\\
+       \geq & \int_0^{\infty} \int_{\{\varphi>\psi+t\}} \theta_{\varphi}^n\,\mathrm{d}t \\
+       =& \int_X (\varphi-\psi)\,\theta_{\varphi}^n.
+       \end{aligned}
+       \]
+       The other inequality is similar.
+\end{proof}
+
+
+\begin{lemma}\label{lma:Econcave1}
+    The function $E^{\phi}_{\theta}\colon \mathcal{E}^{\infty}(X,\theta;\phi)\rightarrow \mathbb{R}$ is concave.
+\end{lemma}
+\begin{proof}
+    Let $\varphi_0,\varphi_1\in \mathcal{E}^{\infty}(X,\theta;\phi)$. We write $\varphi_t=t\varphi_1+(1-t)\varphi_0$ for each $t\in [0,1]$.
+
+    We claim that for each $t\in [0,1]$, we have
+    \begin{equation}\label{eq:ddtEphi_temp1}
+        \ddt E^{\phi}_{\theta}(\varphi_t) =\int_X \left(\varphi_1-\varphi_0\right)\,\theta_{\varphi_t}^n.
+    \end{equation}
+    At the boundary $t=0,1$, the derivative is understood as the one-sided derivative.
+
+    Since $\varphi_0,\varphi_1\in \mathcal{E}^{\infty}(X,\theta;\phi)$, the difference $\varphi_1-\varphi_0$ is quasi-everywhere bounded. Hence all mixed integrals below are finite. We compute the right derivative first. Fix $t\in [0,1)$ and take $s>0$ small enough so that $t+s\leq 1$. By the cocycle formula \eqref{eq:int_by_part_E_temp1},
+    \[
+        \begin{aligned}
+            \frac{E^{\phi}_{\theta}(\varphi_{t+s})-E^{\phi}_{\theta}(\varphi_t)}{s}
+            =&\frac{1}{(n+1)s}\sum_{j=0}^n
+            \int_X(\varphi_{t+s}-\varphi_t)\,
+            \theta_{\varphi_{t+s}}^j\wedge\theta_{\varphi_t}^{n-j}\\
+            =&\frac{1}{n+1}\sum_{j=0}^n
+            \int_X(\varphi_1-\varphi_0)\,
+            \theta_{\varphi_{t+s}}^j\wedge\theta_{\varphi_t}^{n-j}.
+        \end{aligned}
+    \]
+    For each fixed $j$, the last integral is a polynomial in $s$ by the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6}. Letting $s\to0+$, it converges to
+    \[
+        \int_X(\varphi_1-\varphi_0)\,\theta_{\varphi_t}^n.
+    \]
+    Thus the right derivative is given by the right-hand side of \eqref{eq:ddtEphi_temp1}. The proof for the left derivative is identical, using $s<0$ with $t+s\in[0,1]$. Hence the left and right derivatives agree for $t\in(0,1)$, and the endpoint derivatives are the corresponding one-sided derivatives.
+
+    Now it suffices to show that the derivative \eqref{eq:ddtEphi_temp1} is decreasing in $t$.
+    Take $0\leq s<t \leq 1$. We wish to show that
+    \[
+        \int_X (\varphi_1-\varphi_0)\,\theta_{\varphi_t}^n\leq \int_X (\varphi_1-\varphi_0)\,\theta_{\varphi_s}^n.
+    \]
+    This can be equivalently written as
+    \[
+    \int_X (\varphi_t-\varphi_s)\,\theta_{\varphi_t}^n\leq \int_X (\varphi_t-\varphi_s)\,\theta_{\varphi_s}^n.
+    \]
+    In particular, replacing $\varphi_0$ by $\varphi_s$ and $\varphi_1$ by $\varphi_t$, we are reduced to proving the following
+    \[
+        \int_X (\varphi_1-\varphi_0)\,\theta_{\varphi_1}^n\leq \int_X (\varphi_1-\varphi_0)\,\theta_{\varphi_0}^n.
+    \]
+    But this is just a consequence of \cref{lma:comp_int_ene}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:E_cont_decnet}
+    Let $(\varphi_i)_{i\in I}$ be a decreasing net in $\PSH(X,\theta;\phi)$ with
+    \[
+        \varphi=\inf_{i\in I}\varphi_i\not\equiv -\infty.
+    \]
+    Then
+    \begin{equation}\label{eq:E_cont_decnet}
+        \lim_{i\in I} E_{\theta}^{\phi}(\varphi_i)=E_{\theta}^{\phi}(\varphi).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We first handle the case where $I=\mathbb{Z}_{>0}$. Namely, $(\varphi_i)_i$ is a decreasing sequence.
+    Thanks to \cref{lma:EmonoEinfty}, we know that $E_{\theta}^{\phi}(\varphi_i)$ is decreasing in $i$. So the limit in \eqref{eq:E_cont_decnet} exists and the $\geq$ inequality holds. Conversely, let $\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$ and $\varphi\leq \psi$. We need to show that
+    \[
+    E_{\theta}^{\phi}(\psi)\geq \lim_{i\to\infty} E_{\theta}^{\phi}\left(\varphi_i\lor \psi\right).
+    \]
+    Replacing the sequence $(\varphi_i)_i$ by $(\varphi_i\lor\psi)_i$, we are reduced to proving the $\leq$ direction of \eqref{eq:E_cont_decnet} when $\varphi\in \mathcal{E}^{\infty}(X,\theta;\phi)$.
+
+    In this case, thanks to \cref{lma:comp_int_ene}, we have
+    \[
+    E_{\theta}^{\phi}(\varphi_i)-E_{\theta}^{\phi}(\varphi)\leq \int_X (\varphi_i-\varphi)\,\theta_{\varphi}^n.
+    \]
+    Our assertion follows from the monotone convergence theorem.
+
+    We now treat the general net case. By \cref{lma:EmonoEinfty}, the net $E_{\theta}^{\phi}(\varphi_i)$ is decreasing and bounded below by $E_{\theta}^{\phi}(\varphi)$. Thus
+    \[
+        L\coloneqq \lim_{i\in I}E_{\theta}^{\phi}(\varphi_i)
+    \]
+    exists and satisfies $L\geq E_{\theta}^{\phi}(\varphi)$. It remains to prove the reverse inequality.
+
+    Since $\varphi\leq \varphi_i$ for every $i\in I$, the hypotheses of \cref{cor:decreasingnetL1conv} are satisfied, and hence $\varphi_i\xrightarrow{L^1}\varphi$. For each $k\geq 1$, choose $a_k\in I$ such that
+    \[
+        \|\varphi_i-\varphi\|_{L^1}<k^{-1},\quad i\geq a_k.
+    \]
+    We can recursively choose an increasing sequence $(i_k)_{k\geq 1}$ in $I$ such that $i_k\geq a_k$ for all $k$. Then $(\varphi_{i_k})_k$ is a decreasing sequence and $\varphi_{i_k}\to\varphi$ in $L^1$. Its pointwise decreasing limit is therefore equal to $\varphi$ almost everywhere, hence everywhere by \cref{prop:pshfuncdetdense}. Applying the sequence case to $(\varphi_{i_k})_k$, we get
+    \[
+        \lim_{k\to\infty}E_{\theta}^{\phi}(\varphi_{i_k})=E_{\theta}^{\phi}(\varphi).
+    \]
+    Since $L\leq E_{\theta}^{\phi}(\varphi_{i_k})$ for every $k$, we conclude $L\leq E_{\theta}^{\phi}(\varphi)$.
+\end{proof}
+
+\begin{proposition}\label{prop:E1charac}
+    Let $\varphi\in \mathcal{E}(X,\theta;\phi)$. The following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:E1charac:1} $\varphi\in \mathcal{E}^1(X,\theta;\phi)$;
+        \item\label{itm:prop:E1charac:2} $E^{\phi}_{\theta}(\varphi)>-\infty$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    Fix $\varphi\in \mathcal{E}(X,\theta;\phi)$. Without loss of generality, we may assume that $\varphi\leq 0$. In particular, $\varphi\leq P_{\theta}[\varphi]\leq P_{\theta}[\phi]=\phi$.
+
+    \ref{itm:prop:E1charac:2} $\implies$ \ref{itm:prop:E1charac:1}.
+    Assume \ref{itm:prop:E1charac:2}. Using the plurifine locality of the non-pluripolar product \itemref{itm:prop:npp1:1}, we have that $\mathds{1}_{\{\varphi>\phi-C\}} \theta_{\varphi\lor (\phi-C)}^n=\mathds{1}_{\{\varphi>\phi-C\}} \theta_{\varphi}^n$ converges \emph{strongly}\footnote{Namely, the convergence holds after integrating against any $L^{\infty}$ function.} to $\theta_{\varphi}^n$ as $C\to \infty$ by the dominated convergence theorem. Therefore, for a fixed $D>0$,
+    \[
+    \begin{aligned}
+    \int_X \Bigl( \varphi\lor (\phi-D)-\phi \Bigr)\,\theta_{\varphi}^n=&\lim_{C\to\infty} \int_{\{\varphi>\phi-C\} } \Bigl( \varphi\lor (\phi-D)-\phi \Bigr)\,\theta_{\varphi\lor (\phi-C)}^n\\
+    \geq & \varlimsup_{C\to\infty} \int_{\{\varphi>\phi-C\} } \Bigl( \varphi\lor (\phi-C)-\phi \Bigr)\,\theta_{\varphi\lor (\phi-C)}^n\\
+    \geq & \varlimsup_{C\to\infty} \int_X \Bigl( \varphi\lor (\phi-C)-\phi \Bigr)\,\theta_{\varphi\lor (\phi-C)}^n\\
+    \geq & \varlimsup_{C\to\infty} (n+1)E_{\theta}^{\phi}\Bigl(\varphi \lor (\phi-C) \Bigr)\\
+    \geq & (n+1)E_{\theta}^{\phi}(\varphi).
+    \end{aligned}
+    \]
+    Here the last but one inequality follows from \eqref{eq:Edefbdd} and the fact that $\varphi\lor (\phi-C)\leq \phi$.
+    Letting $D\to\infty$, we conclude \ref{itm:prop:E1charac:1}.
+
+    \ref{itm:prop:E1charac:1} $\implies$ \ref{itm:prop:E1charac:2}. Assume \ref{itm:prop:E1charac:1}. Thanks to \cref{lma:comp_int_ene}, we know that for each $C>0$,
+    \[
+    \begin{aligned}
+    E_{\theta}^{\phi}\Bigl(\varphi\lor (\phi-C)\Bigr)\geq & \int_X \Bigl(\varphi\lor (\phi-C)-\phi \Bigr)\,\theta_{\varphi\lor (\phi-C)}^n\\
+    =& \int_{\left\{ \varphi>\phi-C \right\}} \Bigl(\varphi-\phi \Bigr)\,\theta_{\varphi \lor (\phi-C)}^n+ \int_{\left\{ \varphi\leq \phi-C \right\}} (-C)\,\theta_{\varphi\lor (\phi-C)}^n \\
+    =& \int_{\{\varphi+C>\phi\}} \left(\varphi+C-\phi \right)\,\theta_{\varphi}^n-C\int_X \theta_{\phi}^n\\
+    \geq & \int_X \left(\varphi+C-\phi \right)\,\theta_{\varphi}^n-C\int_X \theta_{\phi}^n\\
+    =& \int_X (\varphi-\phi)\,\theta_{\varphi}^n.
+    \end{aligned}
+    \]
+    Due to \cref{prop:E_cont_decnet}, we have
+    \[
+    \lim_{C\to\infty}E_{\theta}^{\phi}\Bigl(\varphi\lor (\phi-C)\Bigr)=E_{\theta}^{\phi}(\varphi),
+    \]
+    so \ref{itm:prop:E1charac:2} holds.
+\end{proof}
+
+\begin{corollary}\label{cor:E_concave2}
+    The function $E^{\phi}_{\theta}\colon \PSH(X,\theta;\phi)\rightarrow [-\infty,\infty)$ is concave.
+\end{corollary}
+\begin{proof}
+    Let $\varphi,\psi\in \PSH(X,\theta;\phi)$ and $t\in (0,1)$. We need to show that
+    \begin{equation}\label{eq:Econcave_temp1}
+    E^{\phi}_{\theta}\Bigl( t\varphi+(1-t)\psi \Bigr)\geq tE^{\phi}_{\theta}(\varphi)+(1-t)E^{\phi}_{\theta}(\psi).
+    \end{equation}
+
+    For this purpose, observe that when $C\to \infty$, we have
+    \[
+        t\Bigl(\varphi\lor (\phi-C)\Bigr)+(1-t)\Bigl(\psi\lor (\phi-C)\Bigr)\searrow t\varphi+(1-t)\psi.
+    \]
+    Observe that
+    \[
+        \varphi\lor (\phi-C),\psi\lor (\phi-C)\in \mathcal{E}^{\infty}(X,\theta;\phi).
+    \]
+    By \cref{lma:Econcave1}, for each $C>0$, we have
+    \[
+        E_{\theta}^{\phi}\Biggl( t\Bigl(\varphi\lor (\phi-C)\Bigr)+(1-t)\Bigl(\psi\lor (\phi-C)\Bigr) \Biggr)\geq tE_{\theta}^{\phi}\Bigl(\varphi\lor (\phi-C)\Bigr)+(1-t)E_{\theta}^{\phi}\Bigl(\psi\lor (\phi-C)\Bigr).
+    \]
+    Letting $C\to \infty$, we conclude \eqref{eq:Econcave_temp1} using \cref{prop:E_cont_decnet}.
+\end{proof}
+
+\begin{corollary}\label{cor:E_classes_convex}
+    The sets $\PSH(X,\theta;\phi)$, $\mathcal{E}(X,\theta;\phi)$, $\mathcal{E}^1(X,\theta;\phi)$, $\mathcal{E}^{\infty}(X,\theta;\phi)$ are all convex.
+\end{corollary}
+\begin{proof}
+    The sets $\PSH(X,\theta;\phi)$ and $\mathcal{E}^{\infty}(X,\theta;\phi)$ are trivially convex.
+
+    We next handle $\mathcal{E}(X,\theta;\phi)$. In this case, suppose that $\varphi,\psi \in \mathcal{E}(X,\theta;\phi)$ and $t\in (0,1)$. Then we compute
+    \[
+    \begin{split}
+        \int_X \theta_{t\varphi+(1-t)\psi}^n=\sum_{j=0}^n \binom{n}{j}t^j (1-t)^{n-j} \int_X \theta_{\varphi}^j\wedge \theta_{\psi}^{n-j}\\
+        =\sum_{j=0}^n \binom{n}{j}t^j (1-t)^{n-j} \int_X \theta_{\phi}^n=\int_X \theta_{\phi}^n,
+    \end{split}
+    \]
+    where we applied \cref{prop:Ppresmass} in the second equality. Therefore, $t\varphi+(1-t)\psi \in \mathcal{E}(X,\theta;\phi)$.
+
+    Finally, let us consider $\mathcal{E}^1(X,\theta;\phi)$. In this case, suppose that $\varphi,\psi \in \mathcal{E}^1(X,\theta;\phi)$ and $t\in (0,1)$. We have already shown that $t\varphi+(1-t)\psi \in \mathcal{E}(X,\theta;\phi)$. Furthermore, the energy of this potential is finite due to \cref{cor:E_concave2}. Therefore, $t\varphi+(1-t)\psi \in \mathcal{E}^1(X,\theta;\phi)$ in view of \cref{prop:E1charac}.
+\end{proof}
+
+
+\begin{lemma}\label{lma:intdom1}
+	Let $\varphi,\psi,\gamma\in \mathcal{E}(X,\theta;\phi)$. Assume that $\gamma\geq \varphi\lor\psi$.
+	Then
+	\[
+	\int_X (\gamma-\varphi)\,\theta_{\psi}^n\leq 2\int_X (\gamma-\varphi)\,\theta_{\varphi}^n+2\int_X (\gamma-\psi)\,\theta_{\psi}^n.
+	\]
+\end{lemma}
+\begin{proof}
+	Observe that
+	\begin{equation}\label{eq:gvp2}
+		\{\gamma>\varphi+2t\}\subseteq \{\gamma>\psi+t \}\cup \{\psi>\varphi+t\}\,.
+	\end{equation}
+	So
+	\[
+	\begin{aligned}
+		\int_X (\gamma-\varphi)\,\theta_{\psi}^n
+		=& 2\int_0^{\infty} \int_{\{\gamma>\varphi+2t\}}\,\theta_{\psi}^n\,\mathrm{d}t \\
+		\leq& 2\int_0^{\infty} \int_{\{\gamma>\psi+t\}}\,\theta_{\psi}^n\,\mathrm{d}t+
+		2\int_0^{\infty} \int_{\{\psi>\varphi+t\}}\,\theta_{\psi}^n\,\mathrm{d}t\\
+		\leq & 2\int_X (\gamma-\psi) \,\theta_{\psi}^n+2\int_0^{\infty} \int_{\{\psi>\varphi+t\}}\,\theta_{\varphi}^n\,\mathrm{d}t\\
+		\leq & 2\int_X (\gamma-\psi) \,\theta_{\psi}^n+2\int_0^{\infty} \int_{\{\gamma>\varphi+t\}}\,\theta_{\varphi}^n\,\mathrm{d}t\\
+		=&2\int_X (\gamma-\psi) \,\theta_{\psi}^n+2\int_X (\gamma-\varphi) \,\theta_{\varphi}^n,
+	\end{aligned}
+	\]
+    where the second line follows from \eqref{eq:gvp2}, while the third line follows from \cref{prop:compa_princ}.
+\end{proof}
+
+\begin{corollary}\label{cor:mix_MA_energy_finite}
+    Let $\varphi,\psi,\gamma_1,\ldots,\gamma_n\in \mathcal{E}^1(X,\theta;\phi)$. Then
+    \begin{equation}\label{eq:mix_MA_energy}
+        \int_X (\psi-\varphi)\,\theta_{\gamma_1}\wedge \cdots \wedge \theta_{\gamma_n}
+    \end{equation}
+    is well-defined and is in $\mathbb{R}$.
+\end{corollary}
+\begin{proof}
+    \textbf{Step~1}. We first consider the case $\psi=\phi$.
+
+    We can find $C>0$ so that $\varphi\leq \phi+C$. Therefore, $\phi-\varphi \geq -C$ almost everywhere with respect to $\theta_{\gamma_1}\wedge \cdots \wedge \theta_{\gamma_n}$. So the integral \eqref{eq:mix_MA_energy} is well-defined and takes value in $\mathbb{R}\cup \{\infty\}$. We show that the integral is finite. For this purpose, we may replace $\varphi$ by $\varphi-C$ and assume that $\varphi\leq \phi$. Put
+    \[
+        \eta=n^{-1}(\gamma_1+\cdots+\gamma_n).
+    \]
+    Then by the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6} and positivity, we have
+    \[
+        \int_X (\phi-\varphi)\,\theta_{\gamma_1}\wedge \cdots \wedge \theta_{\gamma_n}\leq n^n\int_X (\phi-\varphi)\,\theta_{\eta}^n.
+    \]
+    Thanks to \cref{cor:E_classes_convex}, $\eta\in \mathcal{E}^1(X,\theta;\phi)$. Choose $A>0$ so that $\eta\leq \phi+A$. Applying \cref{lma:intdom1} to $\varphi,\eta$ and $\phi+A$, we get
+    \[
+        \int_X(\phi+A-\varphi)\,\theta_{\eta}^n
+        \leq 2\int_X(\phi+A-\varphi)\,\theta_{\varphi}^n
+        +2\int_X(\phi+A-\eta)\,\theta_{\eta}^n<\infty.
+    \]
+    Hence $\int_X(\phi-\varphi)\,\theta_{\eta}^n<\infty$, and Step~1 follows.
+
+    \textbf{Step~2}. We handle the general case. Take $C>0$ so that
+    \[
+        \psi\leq \phi+C,\quad \varphi\leq \phi+C.
+    \]
+    Then
+    \[
+        (\psi-C)-\phi \leq \psi-\varphi\leq \phi-(\varphi-C).
+    \]
+    Step~1 applied to $\varphi-C$ and to $\psi-C$ shows that $\phi-(\varphi-C)$ and $\phi-(\psi-C)$ are integrable with respect to $\theta_{\gamma_1}\wedge \cdots \wedge \theta_{\gamma_n}$. Hence the positive and negative parts of $\psi-\varphi$ are both integrable, so \eqref{eq:mix_MA_energy} is well-defined and finite.
+\end{proof}
+
+\begin{proposition}\label{prop:cocycE1}
+    Given $\varphi,\psi\in \mathcal{E}^1(X,\theta;\phi)$, we have the following cocycle equality
+    \begin{equation}\label{eq:Ecocyc}
+        E^{\phi}_{\theta}(\psi)-E^{\phi}_{\theta}(\varphi)=\frac{1}{n+1}\sum_{j=0}^n \int_X (\psi-\varphi)\, \theta_{\psi}^j\wedge \theta_{\varphi}^{n-j}.
+    \end{equation}
+\end{proposition}
+As a consequence of \eqref{eq:Ecocyc}, for $\varphi\in \mathcal{E}^1(X,\theta;\phi)$, \eqref{eq:Edefbdd} continues to hold. Note that each term on the right-hand side of \eqref{eq:Ecocyc} is finite due to \cref{cor:mix_MA_energy_finite}.
+\begin{proof}
+    Since the conclusion is known when $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$ (see \eqref{eq:int_by_part_E_temp1}), it suffices to prove that for each $k=0,\ldots,n$, we have
+    \begin{equation}\label{eq:canonic_app_energy_conv}
+    \lim_{C\to\infty} \int_X \Bigl( \varphi\lor (\phi-C)-\psi\lor (\phi-C) \Bigr) \,\theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}=\int_X (\varphi-\psi)\,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}.
+    \end{equation}
+    For this purpose, we may assume that $\varphi,\psi\leq \phi$ and it suffices to establish the following:
+    \begin{equation}\label{eq:intvarphilorphimCmphi_temp1}
+        \lim_{C\to\infty} \int_X \Bigl( \varphi\lor (\phi-C)-\phi \Bigr) \,\theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}=\int_X (\varphi-\phi)\,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}.
+    \end{equation}
+    Fix $C>0$. We compute the difference as follows:
+    \[
+    \begin{aligned}
+    &\int_X \Bigl( \varphi\lor (\phi-C)-\phi \Bigr) \,\theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}-\int_X (\varphi-\phi)\,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}\\
+    =& \int_{\{\min\{\varphi,\psi\}>\phi-C\}}\left( \varphi-\phi \right) \,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}-\int_X (\varphi-\phi)\,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}\\
+    &+\int_{\{\min\{\varphi,\psi\}\leq \phi-C\}}\Bigl( \varphi\lor (\phi-C)-\phi \Bigr) \,\theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}\\
+    =& -\int_{\{\min\{\varphi,\psi\}\leq \phi-C\}}\left( \varphi-\phi \right) \,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}+\\
+     &+\int_{\{\min\{\varphi,\psi\}\leq \phi-C\}}\Bigl( \varphi\lor (\phi-C)-\phi \Bigr) \,\theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}
+    \end{aligned}
+    \]
+    We first handle the first term. In order to show that it converges to $0$ when $C\to \infty$, it suffices to show that
+    \[
+    \int_X\left( \phi-\varphi \right) \,\theta_{\varphi}^k\wedge \theta_{\psi}^{n-k}<\infty.
+    \]
+    For this purpose, it suffices to prove a stronger inequality:
+    \begin{equation}\label{eq:intXphimvarphifinite_temp1}
+    \int_X\left( \phi-\varphi \right) \,\theta_{(\varphi+\psi)/2}^n<\infty.
+    \end{equation}
+    From \cref{cor:E_classes_convex}, we know that $(\varphi+\psi)/2\in \mathcal{E}^1(X,\theta;\phi)$. Therefore, \eqref{eq:intXphimvarphifinite_temp1} follows from \cref{lma:intdom1}.
+
+
+    It remains to handle the second term. It then suffices to prove the following:
+    \begin{equation}\label{eq:limCCintvarphiphiC_temp1}
+    \begin{split}
+    \lim_{C\to\infty} C\int_{\{\varphi\leq \phi-C\}} \theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}=&0,\\
+    \lim_{C\to\infty} C\int_{\{\psi\leq \phi-C\}} \theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}=&0.
+    \end{split}
+    \end{equation}
+    By symmetry, it suffices to handle the first. Observe the following inclusions:
+    \[
+    \{\varphi\leq \phi-C\}\subseteq \left\{ \varphi\lor (\phi-C)\leq \frac{1}{2}\Bigl( \psi\lor (\phi-C)+\phi-C \Bigr) \right\}\subseteq \{\varphi\leq \phi-C/2\}.
+    \]
+    By \cref{prop:compa_princ}, we find
+    \[
+    \begin{aligned}
+        &C\int_{\{\varphi\leq \phi-C\}} \theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}\\
+        \leq & C\int_{\left\{\varphi\lor (\phi-C)\leq \frac{1}{2}\bigl(\psi\lor (\phi-C)+\phi-C\bigr)\right\}} \theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\psi\lor (\phi-C)}^{n-k}\\
+        \leq & 2^{n-k}C\int_{\left\{\varphi\lor (\phi-C)\leq \frac{1}{2}\bigl(\psi\lor (\phi-C)+\phi-C\bigr)\right\}} \theta_{\varphi\lor (\phi-C)}^k\wedge \theta_{\frac{1}{2}\bigl(\psi\lor (\phi-C)+\phi-C\bigr)}^{n-k}\\
+        \leq & 2^{n-k}C\int_{\{\varphi\lor (\phi-C)\leq \frac{1}{2}\bigl(\psi\lor (\phi-C)+\phi-C\bigr)\}} \theta_{\varphi\lor (\phi-C)}^n\\
+        \leq & 2^{n-k}C\int_{\{\varphi\leq \phi-C/2\}} \theta_{\varphi\lor (\phi-C)}^n\\
+        = & 2^{n-k}C\int_{\{\varphi\leq \phi-C/2\}} \theta_{\varphi}^n.
+    \end{aligned}
+    \]
+    Here on the final step, we have applied the following argument:
+    \[
+    \begin{aligned}
+    &\int_{\left\{\varphi\leq \phi-C/2 \right\}} \theta_{\varphi\lor (\phi-C)}^n &\\
+    = &\int_X \theta_{\varphi\lor (\phi-C)}^n-\int_{\left\{\varphi> \phi-C/2 \right\}} \theta_{\varphi\lor (\phi-C)}^n &\\
+    = & \int_X \theta_{\varphi}^n-\int_{\left\{\varphi> \phi-C/2 \right\}} \theta_{\varphi}^n & \textup{by \itemref{itm:prop:npp1:1}}\\
+    =& \int_{\left\{\varphi\leq \phi-C/2 \right\}} \theta_{\varphi}^n. &
+    \end{aligned}
+    \]
+
+    On the other hand,
+    \[
+    \varlimsup_{C\to\infty} C\int_{\{\varphi\leq \phi-C/2 \}} \theta_{\varphi}^n\leq 2 \varlimsup_{C\to\infty} \int_{\{\varphi\leq \phi-C \}}(\phi-\varphi)\, \theta_{\varphi}^n=0,
+    \]
+    since $\varphi\in \mathcal{E}^1(X,\theta;\phi)$. We conclude \eqref{eq:limCCintvarphiphiC_temp1}.
+\end{proof}
+\begin{proposition}\label{prop:Ediffbdd}
+Let $\varphi,\psi\in \mathcal{E}^1(X,\theta;\phi)$. Then
+    \begin{equation}
+        \int_X \left(\psi-\varphi\right)\theta^n_{\psi}\leq E_{\theta}^{\phi}(\psi)-E_{\theta}^{\phi}(\varphi)\leq \int_X \left(\psi-\varphi\right)\theta^n_{\varphi}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    Thanks to \eqref{eq:canonic_app_energy_conv}, this can be reduced to the case where $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$, which is established in \cref{lma:comp_int_ene}.
+\end{proof}
+
+
+\begin{proposition}\label{prop:Econt_mono}
+    Let $(\varphi_i)_{i\in I}$ be a net in $\mathcal{E}^1(X,\theta;\phi)$. Assume that $\varphi\in \mathcal{E}^1(X,\theta;\phi)$ and either one of the following conditions holds:
+    \begin{enumerate}
+        \item\label{itm:prop:Econt_mono:1} $(\varphi_i)_i$ is a decreasing net with $\varphi=\inf_{i\in I}\varphi_i$;
+        \item\label{itm:prop:Econt_mono:2} $(\varphi_i)_i$ is an increasing net with almost everywhere limit $\varphi$.
+    \end{enumerate}
+    Then
+    \begin{equation}\label{eq:Iconv_mono}
+    \lim_{i\in I} E_{\theta}^{\phi}(\varphi_i)=E_{\theta}^{\phi}(\varphi).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    The decreasing case is already proved in \cref{prop:E_cont_decnet}, so let us focus on the case where $(\varphi_i)_i$ is increasing.
+
+    We first handle the case where $I=\mathbb{Z}_{>0}$. Namely, $(\varphi_i)_i$ is an increasing sequence.
+
+    \textbf{Step~1}. We first prove the result when $\varphi_j,\varphi\in \mathcal{E}^{\infty}(X,\theta;\phi)$ for each $j\geq 1$.
+
+    Due to \cref{cor:incseqnppcont}, we have
+    \[
+        \lim_{j\to\infty} \int_X \theta_{\varphi}^k\wedge \theta_{\varphi_j}^{n-k}=\int_X \theta_{\varphi}^n
+    \]
+    for each $k=0,\ldots,n$.
+    By \eqref{eq:int_by_part_E_temp1}, we have
+    \[
+    \begin{aligned}
+    0\leq & E_{\theta}^{\phi}(\varphi)-E_{\theta}^{\phi}(\varphi_j)\\
+    =& \frac{1}{n+1}\sum_{k=0}^n \int_X(\varphi-\varphi_j)\,\theta_{\varphi}^k\wedge \theta_{\varphi_j}^{n-k}.
+    \end{aligned}
+    \]
+    We then apply \cref{thm:semicon} to conclude that the right-hand side converges to $0$.
+
+    \textbf{Step~2}. We prove the general case. The $\leq$ direction in \eqref{eq:Iconv_mono} follows from the monotonicity of $E_{\theta}^{\phi}$, as proved in \cref{lma:EmonoEinfty}. It remains to prove the $\geq$ direction.
+
+    After subtracting a constant from all $\varphi_j$ and from $\varphi$, which shifts all the energies by the same constant in view of \eqref{eq:Ephiaddcst}, we may assume that $\varphi\leq \phi$. For each $C>0$ and $j\geq 1$, we let
+    \[
+    \varphi_C\coloneqq \varphi\lor (\phi-C),\quad \varphi_{j,C}\coloneqq \varphi_j\lor (\phi-C).
+    \]
+    By Step~1, for each $C>0$, we have
+    \[
+    \lim_{j\to\infty} E_{\theta}^{\phi}(\varphi_{j,C})= E_{\theta}^{\phi}(\varphi_{C})\geq E_{\theta}^{\phi}(\varphi).
+    \]
+    It suffices therefore to show that
+    \begin{equation}\label{eq:limCCEphi_temp1}
+    \lim_{C\to \infty} E_{\theta}^{\phi}(\varphi_{j,C})-E_{\theta}^{\phi}(\varphi_{j})=0\quad \textup{uniformly for $j$ in a tail}.
+    \end{equation}
+    Fix $i\geq 1$.
+    For $j\geq i$, we compute
+    \[
+    \begin{aligned}
+        & E_{\theta}^{\phi}(\varphi_{j,C})-E_{\theta}^{\phi}(\varphi_{j})\\
+        \leq & \int_X \left( \varphi_{j,C}-\varphi_{j}\right)\,\theta_{\varphi_{j}}^n &\textup{by \cref{prop:Ediffbdd}}\\
+        \leq & \int_{\{\varphi_j\leq \phi-C\}} (\phi-C-\varphi_j)\,\theta_{\varphi_j}^n\\
+        =& \int_C^{\infty}\int_{\{\varphi_j\leq \phi-t\}} \theta_{\varphi_j}^n\,\mathrm{d}t\\
+        \leq & \int_C^{\infty}\int_{\{\varphi_i\leq (\varphi_j+\phi-t)/2\}} \theta_{\varphi_j}^n\,\mathrm{d}t\\
+        \leq & 2^n\int_C^{\infty}\int_{\{\varphi_i\leq (\varphi_j+\phi-t)/2\}} \theta_{(\varphi_j+\phi-t)/2}^n\,\mathrm{d}t\\
+        \leq & 2^n\int_C^{\infty}\int_{\{\varphi_i\leq (\varphi_j+\phi-t)/2\}} \theta_{\varphi_i}^n\,\mathrm{d}t & \textup{by \cref{prop:compa_princ}}\\
+        \leq &2^n\int_C^{\infty}\int_{\{\varphi_i\leq \phi-t/2\}} \theta_{\varphi_i}^n\,\mathrm{d}t\\
+        = & 2^{n+1}\int_{\{\varphi_i< \phi-C/2\}} (\phi-\varphi_i-C/2)\,\theta_{\varphi_i}^n\\
+        = & 2^{n+1}\int_{\{\varphi_i< \phi-C/2\}} (\phi-\varphi_i)\,\theta_{\varphi_i}^n-C 2^n\int_{\{\varphi_i< \phi-C/2\}}\theta_{\varphi_i}^n.
+    \end{aligned}
+    \]
+    As $C\to \infty$, the first term converges to $0$ since $\varphi_i\in \mathcal{E}^1(X,\theta;\phi)$. As for the second term,
+    \[
+    \lim_{C\to\infty}C\int_{\{\varphi_i< \phi-C/2 \}} \theta_{\varphi_i}^n\leq 2 \lim_{C\to\infty}\int_{\{\varphi_i< \phi-C/2 \}}(\phi-\varphi_i)\, \theta_{\varphi_i}^n = 0.
+    \]
+    We conclude \eqref{eq:limCCEphi_temp1}.
+
+    We now pass from sequences to nets. By \cref{lma:EmonoEinfty}, the net $(E_{\theta}^{\phi}(\varphi_i))_{i\in I}$ is increasing and bounded above by $E_{\theta}^{\phi}(\varphi)$. Let
+    \[
+        L\coloneqq \lim_{i\in I}E_{\theta}^{\phi}(\varphi_i).
+    \]
+    Then $L\leq E_{\theta}^{\phi}(\varphi)$.
+
+    By \cref{prop:pshfuncdetdense}, we have
+    \[
+        \varphi=\uscsup[i\in I]\varphi_i.
+    \]
+    Moreover, $\varphi_i\leq \varphi$ for all $i\in I$, so the family is locally uniformly bounded above.
+    Applying Choquet's lemma \cref{prop:Choquet}, we can find a countable subset $J\subseteq I$ such that
+    \[
+        \varphi=\uscsup[j\in J]\varphi_j.
+    \]
+    Enumerate $J=\{j_1,j_2,\ldots\}$, repeating elements if necessary. Since $I$ is directed, we can choose an increasing sequence $(i_k)_{k\geq 1}$ in $I$ such that $i_k$ dominates $j_1,\ldots,j_k$. It follows that $(\varphi_{i_k})_k$ increases almost everywhere to $\varphi$. Applying the sequence case to this sequence gives
+    \[
+        \lim_{k\to\infty}E_{\theta}^{\phi}(\varphi_{i_k})=E_{\theta}^{\phi}(\varphi).
+    \]
+    Since $E_{\theta}^{\phi}(\varphi_{i_k})\leq L$ for every $k$, we conclude $E_{\theta}^{\phi}(\varphi)\leq L$.
+\end{proof}
+
+Next we want to prove that $\mathcal{E}^1(X,\theta;\phi)$ is closed under the rooftop operator. For this purpose, we shall need a few preliminary results.
+
+We shall approximate the rooftop operator by solutions of certain Monge--Ampère equations.
+\begin{lemma}\label{lma:rooftop_MAequation}
+	Let $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$. Then there is $\gamma\in \mathcal{E}^{\infty}(X,\theta;\phi)$ such that
+	\begin{equation}\label{eq:solution_thetavarphiephiu}
+		\theta_{\gamma}^n=\mathrm{e}^{\gamma-\varphi}\,\theta_{\varphi}^n+\mathrm{e}^{\gamma-\psi}\,\theta_{\psi}^n.
+	\end{equation}
+\end{lemma}
+It is not clear if $\int_X\mathrm{e}^{-\varphi}\theta_{\varphi}^n<\infty$, hence we cannot say that $\mathrm{e}^{-\varphi}\theta_{\varphi}^n+\mathrm{e}^{-\psi}\theta_{\psi}^n$ is a Radon measure, so \cref{thm:AY_rel} is not directly applicable.
+\begin{proof}
+	For each $j\geq 1$, let $\varphi_j\coloneqq \varphi\lor(-j)$, $\psi_j\coloneqq \psi\lor(-j)$. These functions are not necessarily $\theta$-psh.
+	Let
+	\[
+	\mu_j=\mathrm{e}^{-\varphi_j}\theta_{\varphi}^n+\mathrm{e}^{-\psi_j}\theta_{\psi}^n.
+	\]
+	By \cref{thm:AY_rel}, we can find $\gamma_j\in \mathcal{E}(X,\theta;\phi)$ such that
+	\begin{equation}\label{eq:thetagammaj_temp1}
+		\theta_{\gamma_j}^n=\mathrm{e}^{\gamma_j}\mu_j=\mathrm{e}^{\gamma_j-\varphi_j}\theta_{\varphi}^n+\mathrm{e}^{\gamma_j-\psi_j}\theta_{\psi}^n.
+	\end{equation}
+	Take a constant $C>0$ so that $\psi-2C\leq \varphi\leq \psi+2C$.
+	Let
+	\[
+	\eta\coloneqq \frac{\varphi+\psi}{2}-C-n\log 2.
+	\]
+	Then $\eta\in \mathcal{E}^{\infty}(X,\theta;\phi)$ and we have the following inequalities:
+    \[
+    \begin{aligned}
+    \theta_{\eta}^n =& \theta_{(\varphi+\psi)/2}^n\\
+    \geq & 2^{-n}\theta_{\varphi}^n+2^{-n}\theta_{\psi}^n\\
+    \geq & 2^{-n}\mathrm{e}^{(\varphi+\psi)/2}\mathrm{e}^{-C}\left( \mathrm{e}^{-\varphi}\theta_{\varphi}^n+\mathrm{e}^{-\psi}\theta_{\psi}^n \right)\\
+    \geq & 2^{-n}\mathrm{e}^{(\varphi+\psi)/2}\mathrm{e}^{-C}\left( \mathrm{e}^{-\varphi_j}\theta_{\varphi}^n+\mathrm{e}^{-\psi_j}\theta_{\psi}^n \right)\\
+    = &
+    \mathrm{e}^{\eta}\mu_j.
+    \end{aligned}
+    \]
+	Hence, $\gamma_j\geq \eta$ by \cref{thm:AY_rel}. By \cref{thm:AY_rel} again, $\gamma_j$ is decreasing in $j$; let $\gamma=\inf_{j>0}\gamma_j$.
+	Then $\gamma\geq \eta$, hence $\gamma\in \mathcal{E}^{\infty}(X,\theta;\phi)$.
+
+    Now observe that
+    \[
+    \theta_{\gamma_j}^n\rightharpoonup \theta_{\gamma}^n
+    \]
+    as $j\to \infty$, by \cref{thm:semicon}.
+    Finally observe that there is a constant $C'>0$ so that
+    \[
+    \gamma_1\leq \varphi+C',\quad \gamma_1\leq \psi+C',
+    \]
+    since $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$.
+    Therefore, for each $j>0$,
+    \[
+    \gamma_j\leq \varphi_j+C',\quad \gamma_j\leq \psi_j+C'.
+    \]
+    Hence, \eqref{eq:solution_thetavarphiephiu} follows from \eqref{eq:thetagammaj_temp1} and the dominated convergence theorem by letting $j\to\infty$.
+\end{proof}
+
+
+We also need a few integral estimates.
+
+
+\begin{lemma}\label{lma:fundam_estimate}
+	Let $\varphi,\psi,\gamma\in \mathcal{E}(X,\theta;\phi)$. Assume that $\varphi\leq \psi\leq \gamma$. Then
+	\[
+	\int_X (\gamma-\psi)\,\theta_{\psi}^n\leq 2^{n+1}\int_X (\gamma-\varphi)\,\theta_{\varphi}^n.
+	\]
+\end{lemma}
+\begin{proof}
+	Observe that for any $t\geq 0$,
+	\begin{equation}\label{eq:ppgcomp}
+        \begin{split}
+		\{\gamma>\psi+2t\}\setminus \{\psi=-\infty\}\subseteq \left\{(\gamma+\psi)/2>\psi+t\right\}\\
+        \subseteq \left\{(\gamma+\psi)/2>\varphi+t\right\}\subseteq \{\gamma>\varphi+t\}.
+        \end{split}
+	\end{equation}
+	So
+	\[
+	\begin{aligned}
+		\int_X (\gamma-\psi)\,\theta_{\psi}^n
+		=& 2\int_0^{\infty}  \int_{\{\gamma-\psi>2t\}}\,\theta_{\psi}^n\,\mathrm{d}t &\\
+		\leq & 2\int_0^{\infty} \int_{\left\{(\gamma+\psi)/2>\psi+t\right\}}\,\theta_{\psi}^n\,\mathrm{d}t & \textup{by \eqref{eq:ppgcomp}}\\
+		\leq  & 2^{n+1}\int_0^{\infty} \int_{\left\{(\gamma+\psi)/2>\varphi+t\right\}}\,\theta_{(\gamma+\psi)/2}^n\,\mathrm{d}t &\\
+		\leq & 2^{n+1}\int_0^{\infty} \int_{\left\{(\gamma+\psi)/2>\varphi+t\right\}}\,\theta_{\varphi}^n\,\mathrm{d}t & \textup{by \cref{prop:compa_princ}}\\
+		\leq &2^{n+1}\int_0^{\infty} \int_{\left\{\gamma>\varphi+t\right\}}\,\theta_{\varphi}^n\,\mathrm{d}t &\textup{by \eqref{eq:ppgcomp}}\\
+		=& 2^{n+1} \int_X (\gamma-\varphi)\,\theta_{\varphi}^n &.
+	\end{aligned}
+	\]
+	This completes the proof.
+\end{proof}
+
+\begin{lemma}\label{lma:stab}
+	Let $\varphi_j\in \mathcal{E}(X,\theta;\phi)$ ($j\in \mathbb{Z}_{>0}$) and $\gamma\in \mathcal{E}(X,\theta;\phi)$. Assume that $\varphi_j\leq \gamma$ for each $j$ and that $\varphi_j$ converges to $\varphi\in \PSH(X,\theta)$ with respect to the $L^1$-topology.
+	Assume that there is a constant $A>0$ such that for any $j>0$,
+	\[
+	\int_X (\varphi_j-\gamma)\,\theta_{\varphi_j}^n\geq -A.
+	\]
+	Then $\varphi\in \mathcal{E}(X,\theta;\phi)$ and
+	\begin{equation}\label{eq:intvarphigammageqm2np3A}
+	    \int_X (\varphi-\gamma)\,\theta_{\varphi}^n\geq - 2^{n+3}A.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+    Replacing simultaneously $\gamma,\varphi_j,\varphi$ by $\gamma-B,\varphi_j-B,\varphi-B$ for $B\gg 1$, we may assume that $\gamma\leq 0$. The assumptions and the conclusion are invariant under this translation. Since $\gamma\in\mathcal E(X,\theta;\phi)$ and $P_\theta[\phi]=\phi$, we then have $\gamma\leq\phi$.
+
+	\textbf{Step~1}. Assume that $(\varphi_j)_j$ is decreasing. In this case, we prove
+	\begin{equation}\label{eq:intvarphigammageqm4A_temp1}
+	\int_X (\varphi-\gamma)\,\theta_{\varphi}^n\geq -4A.
+    \end{equation}
+	By \cref{lma:intdom1}, for any $j, k>0$,
+	\[
+	\int_X (\varphi_j-\gamma)\,\theta_{\varphi_k}^n\geq -4A.
+	\]
+	For any $C>0$,
+	\[
+	\int_X \Bigl(\varphi_j \lor (\gamma-C)-\gamma\Bigr)\,\theta_{\varphi_k}^n\geq \int_X (\varphi_j-\gamma) \,\theta_{\varphi_k}^n\geq -4A.
+	\]
+	Letting $k\to \infty$, by \cref{thm:semicon}, we find
+	\[
+	\int_X \Bigl(\varphi_j \lor (\gamma-C)-\gamma\Bigr)\,\theta_{\varphi}^n\geq -4A.
+	\]
+	Letting $j\to \infty$, by the monotone convergence theorem, we get
+	\[
+	\int_X \Bigl(\varphi \lor (\gamma-C)-\gamma\Bigr)\,\theta_{\varphi}^n\geq -4A.
+	\]
+	Then we let $C\to \infty$, again by the monotone convergence theorem, we conclude \eqref{eq:intvarphigammageqm4A_temp1}.
+
+	\textbf{Step~2}. In general, let
+    \[
+    \psi_j=\uscsup[k\geq j] \varphi_k.
+    \]
+    Then $\varphi=\inf_{j>0}\psi_j$ due to \cref{cor:L1limipp}.
+
+	For each $C>0$, let
+	\[
+	\psi_{j,C}=\psi_j \lor (\gamma-C),\quad \varphi_C=\varphi \lor (\gamma-C).
+	\]
+    Then $\psi_{j,C},\varphi_C\in \mathcal{E}(X,\theta;\phi)$ since $\gamma-C\in \mathcal{E}(X,\theta;\phi)$ thanks to the monotonicity theorem \cref{thm:mono}.
+	Observe that $\psi_{j,C}$ decreases to $\varphi_C$ as $j\to \infty$. Moreover,
+    \[
+    \gamma\geq \psi_{j,C} \geq \psi_j\geq \varphi_j.
+    \]
+	By \cref{lma:fundam_estimate},
+	\[
+	\int_X (\psi_{j,C}-\gamma)\,\theta_{\psi_{j,C}}^n\geq -2^{n+1}A.
+	\]
+	By Step~1,
+	\begin{equation}\label{eq:inproof1}
+		\int_X(\varphi_C-\gamma)\,\theta_{\varphi_C}^n\geq -2^{n+3}A.
+	\end{equation}
+	In particular, by the plurifine locality of the non-pluripolar product \itemref{itm:prop:npp1:1},
+	\[
+	    \int_{\{\varphi>\gamma-C\}}(\varphi-\gamma)\,\theta_{\varphi}^n\geq -2^{n+3}A.
+	\]
+	Letting $C\to \infty$, we conclude \eqref{eq:intvarphigammageqm2np3A}. As a consequence,
+    \[
+        \int_X (\gamma-\varphi)\,\theta_{\varphi}^n<\infty.
+    \]
+	We still have to prove that $\varphi\in \mathcal{E}(X,\theta;\phi)$. In fact, by \eqref{eq:inproof1}, for any $C>0$,
+	\[
+	\int_{\{\varphi\leq \gamma-C\}}\,\theta_{\varphi_C}^n\leq \frac{1}{C}\int_X (\gamma-\varphi_C)\,\theta_{\varphi_C}^n\leq 2^{n+3}C^{-1}A.
+	\]
+	Using the monotonicity theorem \cref{thm:mono} and the plurifine locality of the non-pluripolar product \itemref{itm:prop:npp1:1}, we find
+    \[
+    \int_X \theta_{\phi}^n=\int_X \theta_{\varphi_C}^n=\int_{\{\varphi\leq \gamma-C\}}\,\theta_{\varphi_C}^n+\int_{\{\varphi>\gamma-C\}}\,\theta_{\varphi}^n.
+    \]
+    Letting $C\to\infty$, we conclude that
+    \[
+    \int_X \theta_{\varphi}^n=\int_X \theta_{\phi}^n.
+    \]
+    This completes the proof.
+\end{proof}
+
+\begin{proposition}\label{prop:relrooftopclosed}
+    Assume that $\varphi,\psi\in \mathcal{E}(X,\theta;\phi)$ (resp. $\mathcal{E}^1(X,\theta;\phi)$, $\mathcal{E}^{\infty}(X,\theta;\phi)$), then so is $\varphi\land \psi$.
+\end{proposition}
+\begin{proof}
+    The case of $\mathcal{E}^{\infty}(X,\theta;\phi)$ is trivial.
+
+    We consider the case $\mathcal{E}(X,\theta;\phi)$. It follows from \cref{prop:landfinitecond1} that $\varphi\land \psi\in \PSH(X,\theta)$. By \cref{thm:diamond}, we have
+    \[
+        \int_X \theta_{\varphi\land\psi}^n\geq \int_X \theta_{\phi}^n.
+    \]
+    By the monotonicity theorem \cref{thm:mono}, equality holds. By \cref{thm:Pvarphidiffdef}, we conclude that
+    \[
+        P_{\theta}[\varphi\land \psi]=\phi.
+    \]
+
+    Finally, assume that $\varphi,\psi\in \mathcal{E}^1(X,\theta;\phi)$.
+    We may assume that $\varphi,\psi\leq \phi$. For each $j\geq 1$, consider the approximations:
+	\[
+	\varphi_j\coloneqq \varphi\lor(\phi-j)\,,\quad \psi_j\coloneqq \psi\lor(\phi-j).
+	\]
+	By \cref{lma:rooftop_MAequation}, we can take $\gamma_j\in \mathcal{E}^{\infty}(X,\theta;\phi)$ solving the following equation:
+	\[
+	\theta_{\gamma_j}^n=\mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n+\mathrm{e}^{\gamma_j-\psi_j}\,\theta_{\psi_j}^n.
+	\]
+    In particular,
+    \[
+        \theta_{\gamma_j}^n\geq \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n.
+    \]
+   We claim that this implies $\gamma_j\leq \varphi_j$. Indeed, by \cref{prop:compa_princ},
+    \[
+        \int_{\{\varphi_j<\gamma_j\}}\theta_{\varphi_j}^n
+        \geq
+        \int_{\{\varphi_j<\gamma_j\}}\theta_{\gamma_j}^n
+        \geq
+        \int_{\{\varphi_j<\gamma_j\}}\mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n.
+    \]
+    Hence
+    \[
+        \int_{\{\varphi_j<\gamma_j\}}\left(\mathrm{e}^{\gamma_j-\varphi_j}-1\right)\theta_{\varphi_j}^n=0.
+    \]
+    It follows that $\int_{\{\varphi_j<\gamma_j\}}\theta_{\varphi_j}^n=0$, and the domination principle \cref{thm:dom_prin_1} gives $\gamma_j\leq \varphi_j$. Similarly, $\gamma_j\leq \psi_j$. In particular, $\gamma_j\leq \varphi_j\land \psi_j$.
+	We claim that
+	\begin{equation}\label{eq:intgammajphi_unif_lower}
+		\int_X (\gamma_j-\phi)\,\theta_{\gamma_j}^n >-C
+	\end{equation}
+    for some $C$ independent of $j$.
+
+	Assume the claim is true for now.
+	We get immediately that
+    \[
+    \sup_{X}\gamma_j=\sup_{X\setminus \{\phi=-\infty\}}(\gamma_j-\phi)\geq -\frac{C}{\int_X \theta_{\phi}^n},
+    \]
+    where the first equality follows from \cref{prop:model_sup_prop}.
+    By \cref{prop:L1compa}, after possibly extracting a subsequence, we may assume that $\gamma_j\to \gamma\in \PSH(X,\theta)$ in $L^1$-topology.
+    Then $\gamma\in \mathcal{E}^1(X,\theta;\phi)$ by \cref{lma:stab} and \cref{prop:E1charac}. Since $\gamma\leq\varphi\land\psi\leq\phi$, the monotonicity theorem \cref{thm:mono} gives
+    \[
+        \int_X\theta_{\varphi\land\psi}^n=\int_X\theta_\phi^n.
+    \]
+    Moreover, by the monotonicity of $E^\phi_\theta$,
+    \[
+        E^\phi_\theta(\varphi\land\psi)\geq E^\phi_\theta(\gamma)>-\infty.
+    \]
+    Thus $\varphi\land\psi\in\mathcal E^1(X,\theta;\phi)$ by \cref{prop:E1charac}.
+
+
+	Now we prove the claim \eqref{eq:intgammajphi_unif_lower}.
+	By symmetry, it suffices to prove
+	\[
+	\int_X (\phi-\gamma_j) \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n\leq C.
+	\]
+	But note that
+	\[
+	\int_X (\phi-\gamma_j) \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n=\int_X (\phi-\varphi_j) \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n+\int_X (\varphi_j-\gamma_j) \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n.
+	\]
+	But $x \mathrm{e}^{-x}\leq \mathrm{e}^{-1}$ for $x\geq 0$ (with maximum at $x=1$), so the second term is bounded; it remains to prove
+	\[
+	\int_X (\phi-\varphi_j) \mathrm{e}^{\gamma_j-\varphi_j}\,\theta_{\varphi_j}^n\leq C.
+	\]
+	As $\gamma_j\leq \varphi_j$, it suffices to prove
+	\begin{equation}\label{eq:inproof2}
+		\int_X (\phi-\varphi_j)\,\theta_{\varphi_j}^n\leq C.
+	\end{equation}
+    We compute, using \eqref{eq:Edefbdd} and the fact that the $k<n$ terms
+    $\int_X(\varphi_j-\phi)\theta_{\varphi_j}^k\wedge\theta_\phi^{n-k}$ are all non-positive (since $\varphi_j\leq \phi$),
+    \[
+        \int_X (\varphi_j-\phi)\,\theta_{\varphi_j}^n\geq (n+1)E_{\theta}^{\phi}(\varphi_j).
+    \]
+	Since $\varphi_j\searrow\varphi$ and $E_\theta^{\phi}$ is continuous along decreasing sequences (\cref{prop:E_cont_decnet}), $E_\theta^{\phi}(\varphi_j)$ is bounded below uniformly in $j$. Thus, \eqref{eq:inproof2} follows.
+\end{proof}
+
+
+
+\begin{proposition}\label{prop:relativeEupperclosed}
+    Let $\varphi,\psi\in \PSH(X,\theta)$ be potentials such that $\varphi\preceq \psi \preceq \phi$. Assume that $\varphi\in \mathcal{E}(X,\theta;\phi)$ (resp. $\mathcal{E}^1(X,\theta;\phi)$, $\mathcal{E}^{\infty}(X,\theta;\phi)$), then so is $\psi$.
+\end{proposition}
+\begin{proof}
+    We may assume that $\varphi\leq \psi$.
+
+    The case $\mathcal{E}^{\infty}(X,\theta;\phi)$ is trivial. The case $\mathcal{E}(X,\theta;\phi)$ follows from \cref{thm:mono}. The case $\mathcal{E}^1(X,\theta;\phi)$ follows from the characterization of $\mathcal{E}^1(X,\theta;\phi)$ in \cref{prop:E1charac} and the monotonicity of $E_{\theta}^{\phi}$ proved in \cref{lma:EmonoEinfty}.
+\end{proof}
+
+\begin{proposition}\label{prop:supsEE1}
+    Let $(\varphi_i)_{i\in I}$ be a uniformly bounded from above non-empty family in $\mathcal{E}(X,\theta;\phi)$ (resp. $\mathcal{E}^1(X,\theta;\phi)$, $\mathcal{E}^{\infty}(X,\theta;\phi)$), then so is $\uscsup[i\in I]\varphi_i$.
+\end{proposition}
+\begin{proof}
+Thanks to \cref{prop:relativeEupperclosed}, it suffices to show that
+\[
+\uscsup[i\in I]\varphi_i\preceq \phi.
+\]
+Since $\phi$ is model and $\varphi_i\preceq \phi$, we know that
+\[
+\varphi_i-\sup_X \varphi_i \leq \phi
+\]
+for any $i\in I$.
+Since $(\varphi_i)_{i\in I}$ is uniformly bounded from above by assumption, our assertion follows.
+\end{proof}
+
+
+
+
+\begin{proposition}\label{prop:envrelfullmass}
+    Let $\varphi,\psi\in \mathcal{E}(X,\theta;\phi)$. Then
+    \[
+        P_{\theta}[\varphi](\psi)=\uscsup[C > 0] (\varphi+C)\land \psi=\psi.
+    \]
+\end{proposition}
+\begin{proof}
+    The first equality follows from the definition of $P_{\theta}[\varphi](\psi)$. We focus on the second equality.
+
+    Since for each $C\geq 0$,
+    \[
+        (\varphi\land \psi+C)\land \psi\leq (\varphi+C)\land \psi\leq \psi,
+    \]
+    we may replace $\varphi$ by $\varphi\land \psi$ (cf. \cref{prop:relrooftopclosed}) and assume that $\varphi\leq \psi$.
+
+    Let
+    \[
+        \gamma\coloneqq \uscsup[C > 0] (\varphi+C)\land \psi.
+    \]
+    Observe that $\gamma\leq \psi$, and $\gamma\in \mathcal{E}(X,\theta;\phi)$ due to \cref{prop:relrooftopclosed} and \cref{prop:supsEE1}.
+    Then \cref{cor:Pvarphisupport} guarantees that
+    \[
+    \int_{\{\gamma<\psi\} } \theta_{\gamma}^n=0.
+    \]
+    Therefore, we can apply the domination principle \cref{thm:dom_prin_1} to conclude that $\gamma=\psi$.
+\end{proof}
+
+
+\begin{lemma}\label{lma:Ediff}
+    Let $\varphi,\psi\in \mathcal{E}^{\infty}(X,\theta;\phi)$. Define
+    \[
+    \eta_t\coloneqq \Bigl( (1-t)\varphi+t\psi \Bigr)\land \psi,\quad t\in [0,1].
+    \]
+    Then $E_{\theta}^{\phi}(\eta_t)$ is differentiable for $t\in [0,1]$ and
+    \begin{equation}\label{eq:Iphit_diff}
+    \frac{\mathrm{d}}{\mathrm{d}t}E_{\theta}^{\phi}(\eta_t)=\int_{X} \Bigl( \psi-\min\{\varphi,\psi\} \Bigr)\,\theta_{\eta_t}^n.
+    \end{equation}
+\end{lemma}
+    The derivatives at $t=0$ or $1$ are understood as one-sided derivatives.
+\begin{proof}
+    Let us prove \eqref{eq:Iphit_diff} with right-derivative instead of derivative, and $t\in [0,1)$. The left-derivative case is completely parallel.
+
+    For each $t\in [0,1]$, we let
+    \[
+    f_t=\min \{ (1-t)\varphi+t\psi, \psi\}.
+    \]
+
+    Fix $t\in [0,1)$ and $s>0$ small enough so that $t+s<1$. Thanks to \cref{prop:Ediffbdd}, we have
+    \[
+    \begin{aligned}
+    E_{\theta}^{\phi}(\eta_{t+s})-E_{\theta}^{\phi}(\eta_{t})\leq & \int_X \left(\eta_{t+s}-\eta_t\right)\,\theta_{\eta_t}^n \\
+    =& \int_X \left(\eta_{t+s}-f_t\right)\,\theta_{\eta_t}^n &\textup{by \cref{lma:rooftopMA}}\\
+    \leq & \int_X \left(f_{t+s}-f_t \right)\,\theta_{\eta_t}^n\\
+    =& s\int_X  \Bigl(\psi-\min\{\varphi,\psi\}\Bigr)\,\theta_{\eta_t}^n.
+    \end{aligned}
+    \]
+    Similarly, we get
+    \[
+    E_{\theta}^{\phi}(\eta_{t+s})-E_{\theta}^{\phi}(\eta_{t})\geq s\int_X  \Bigl(\psi-\min\{\varphi,\psi\}\Bigr)\,\theta_{\eta_{t+s}}^n.
+    \]
+    Observe that $\eta_{t+s}$ converges in capacity (in fact, even uniformly) to $\eta_t$ as $s\to 0+$. The desired result \eqref{eq:Iphit_diff} is then just a consequence of \cref{thm:loc_conv_cap}.
+\end{proof}
+
+
+
+\begin{lemma}\label{lma:Eaffinediff}
+    Let $\varphi,\psi\in \mathcal{E}^{1}(X,\theta;\phi)$, and set
+    \[
+        \varphi_t\coloneqq (1-t)\varphi+t\psi,\qquad t\in[0,1].
+    \]
+    Then the function
+    \[
+        t\mapsto E_{\theta}^{\phi}(\varphi_t)
+    \]
+    is differentiable on $[0,1]$, where the derivative at the endpoints is understood as the one-sided derivative. Moreover,
+    \begin{equation}\label{eq:Eaffinediff}
+        \frac{\mathrm d}{\mathrm dt}E_{\theta}^{\phi}(\varphi_t)
+        =
+        \int_X(\psi-\varphi)\,\theta_{\varphi_t}^n.
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    By \cref{cor:E_classes_convex}, $\varphi_t\in \mathcal E^1(X,\theta;\phi)$ for all $t\in[0,1]$.
+    For $a=0,\ldots,n$, put
+    \[
+        M_a=\int_X(\psi-\varphi)\,\theta_{\psi}^a\wedge\theta_{\varphi}^{n-a}.
+    \]
+    Note that each $M_a$ is finite by \cref{cor:mix_MA_energy_finite}. By the multi-linearity of the non-pluripolar product \itemref{itm:prop:npp1:6}, the quantity
+    \[
+        \int_X(\psi-\varphi)\,\theta_{\varphi_t}^n
+    \]
+    is therefore a polynomial in $t$ with coefficients given by the $M_a$'s. In particular, the right-hand side of \eqref{eq:Eaffinediff} is finite and continuous in $t$.
+
+    We prove the formula for the right derivative at a point $t\in[0,1)$. Let $s>0$ be small enough so that $t+s\leq 1$. By the cocycle formula \cref{prop:cocycE1}, we have
+    \[
+    \begin{aligned}
+        \frac{E_{\theta}^{\phi}(\varphi_{t+s})-E_{\theta}^{\phi}(\varphi_t)}{s}
+        =&\frac{1}{(n+1)s}\sum_{j=0}^n
+        \int_X(\varphi_{t+s}-\varphi_t)\,
+        \theta_{\varphi_{t+s}}^j\wedge\theta_{\varphi_t}^{n-j} \\
+        =&\frac{1}{n+1}\sum_{j=0}^n
+        \int_X(\psi-\varphi)\,
+        \theta_{\varphi_{t+s}}^j\wedge\theta_{\varphi_t}^{n-j}.
+    \end{aligned}
+    \]
+    Again by \itemref{itm:prop:npp1:6}, for each fixed $j$ the last integral is a polynomial in $s$, expressed as a linear combination of the $M_a$'s with coefficients depending on $t$. Letting $s\to 0+$, it converges to
+    \[
+        \int_X(\psi-\varphi)\,\theta_{\varphi_t}^n.
+    \]
+    Therefore,
+    \[
+        \lim_{s\to0+}
+        \frac{E_{\theta}^{\phi}(\varphi_{t+s})-E_{\theta}^{\phi}(\varphi_t)}{s}
+        =
+        \int_X(\psi-\varphi)\,\theta_{\varphi_t}^n.
+    \]
+
+    The proof for the left derivative is identical, using $s<0$ with $t+s\in[0,1]$. Thus the left and right derivatives agree for $t\in(0,1)$, and the endpoint derivatives are given by the same formula.
+\end{proof}
+
+In particular, we have a diamond-like inequality.
+\begin{corollary}\label{cor:diam_E}
+    Let $\varphi,\psi\in \mathcal{E}^1(X,\theta;\phi)$. Then
+    \begin{equation}\label{eq:diam_E}
+    E_{\theta}^{\phi}(\varphi\lor \psi)+E_{\theta}^{\phi}(\varphi\land \psi)\geq E_{\theta}^{\phi}(\psi)+E_{\theta}^{\phi}(\varphi).
+    \end{equation}
+\end{corollary}
+\begin{proof}
+    \textbf{Step~1}. We first reduce to the case where $\varphi,\psi \in \mathcal{E}^{\infty}(X,\theta;\phi)$.
+
+    Assume that \eqref{eq:diam_E} is known in that case. For each $C>0$, we let
+    \[
+    \varphi_C=\varphi\lor (\phi-C),\quad \psi_C=\psi\lor (\phi-C).
+    \]
+    Then
+    \[
+    E_{\theta}^{\phi}(\varphi_C\lor \psi_C)+E_{\theta}^{\phi}(\varphi_C\land \psi_C)\geq E_{\theta}^{\phi}(\psi_C)+E_{\theta}^{\phi}(\varphi_C).
+    \]
+    As $C\to\infty$, we have
+    \[
+        \varphi_C\searrow\varphi,\quad \psi_C\searrow\psi,\quad \varphi_C\lor\psi_C\searrow\varphi\lor\psi,
+    \]
+    and, by the monotonicity and maximality of the rooftop,
+    \[
+        \varphi_C\land\psi_C\searrow\varphi\land\psi.
+    \]
+    Applying \cref{prop:E_cont_decnet} to these four decreasing sequences gives \eqref{eq:diam_E}.
+
+    \textbf{Step~2}. We assume that $\varphi,\psi \in \mathcal{E}^{\infty}(X,\theta;\phi)$.
+
+    Thanks to \cref{lma:Eaffinediff} and the plurifine locality of the non-pluripolar product \itemref{itm:prop:npp1:1}, we have
+    \[
+    \begin{aligned}
+    E_{\theta}^{\phi}(\varphi\lor \psi)-E_{\theta}^{\phi}(\varphi)=&\int_0^1\int_X (\varphi\lor \psi-\varphi)\,\theta_{(1-t)\varphi+t(\varphi\lor \psi)}^n\,\mathrm{d}t\\
+    =& \int_0^1 \int_{\{\psi>\varphi\}} (\psi-\varphi)\,\theta_{(1-t)\varphi+t\psi}^n\,\mathrm{d}t.
+    \end{aligned}
+    \]
+    On the other hand,
+    \[
+    \begin{aligned}
+        &E_{\theta}^{\phi}(\psi)-E_{\theta}^{\phi}(\varphi\land \psi)\\
+        =& \int_0^1 \int_X (\psi-\min\{\varphi,\psi\})\,\theta_{((1-t)\varphi+t\psi)\land \psi}^n\,\mathrm{d}t\\
+        \leq & \int_0^1 \int_{\{\varphi<\psi\}} (\psi-\varphi)\,\theta_{(1-t)\varphi+t\psi}^n\,\mathrm{d}t& \textup{by \cref{lma:rooftopMA}}.
+    \end{aligned}
+    \]
+    Adding these equations together, we conclude \eqref{eq:diam_E}.
+\end{proof}
+
+
+\section{The \texorpdfstring{$\mathcal{I}$}{I}-envelope}\label{sec:Ienv}
+From the algebraic point of view, a more natural envelope operator is given by the $\mathcal{I}$-envelope.
+
+In this section, $X$ will denote a connected compact Kähler manifold of dimension $n$.
+
+
+\subsection{\texorpdfstring{$\mathcal{I}$}{I}-equivalence}
+\label{subsec:Iequiv}
+
+\begin{proposition}\label{prop:Iequivchar}
+    Given $\varphi,\psi\in \QPSH(X)$, the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Iequivchar:1} For any $k\in \mathbb{Z}_{>0}$, we have
+        \[
+            \mathcal{I}(k\varphi)=\mathcal{I}(k\psi);
+        \]
+        \item\label{itm:prop:Iequivchar:2} for any $\lambda\in \mathbb{R}_{>0}$, we have
+            \[
+            \mathcal{I}(\lambda\varphi)=\mathcal{I}(\lambda\psi);
+            \]
+        \item\label{itm:prop:Iequivchar:3} for any modification $\pi\colon Y\rightarrow X$ and any $y\in Y$, we have
+            \[
+                \nu(\pi^*\varphi,y)=\nu(\pi^*\psi,y);
+            \]
+        \item\label{itm:prop:Iequivchar:4} for any proper bimeromorphic morphism $\pi\colon Y\rightarrow X$ from a Kähler manifold and any $y\in Y$, we have
+            \[
+                \nu(\pi^*\varphi,y)=\nu(\pi^*\psi,y);
+            \]
+        \item\label{itm:prop:Iequivchar:5} for any prime divisor $E$ over $X$, we have
+            \[
+                \nu(\varphi,E)=\nu(\psi,E).
+            \]
+    \end{enumerate}
+\end{proposition}
+See \cref{def:primdiv} for the definition of prime divisors over $X$. Recall that in the whole book, a \emph{modification} of a compact complex space means a finite composition of blow-ups with smooth centers. This terminology is highly non-standard.
+
+For simplicity, we usually write
+\[
+\nu(\varphi,y)=\nu(\pi^*\varphi,y)
+\]
+when $\pi$ is obvious from the context.
+
+\begin{proof}
+    \ref{itm:prop:Iequivchar:4} $\iff$ \ref{itm:prop:Iequivchar:5}. This follows from \cref{lma:blowupLelong}.
+
+    \ref{itm:prop:Iequivchar:3} $\iff$ \ref{itm:prop:Iequivchar:5}. This follows from \cref{cor:primerealization}.
+
+    \ref{itm:prop:Iequivchar:1} $\implies$ \ref{itm:prop:Iequivchar:5}. This follows from \cref{prop:Lelongnumfrommis}.
+
+    \ref{itm:prop:Iequivchar:5} $\implies$ \ref{itm:prop:Iequivchar:2}. This follows from \cref{thm:valuativemulti}.
+
+    \ref{itm:prop:Iequivchar:2} $\implies$ \ref{itm:prop:Iequivchar:1}. This is the restriction to positive integral values of $\lambda$.
+\end{proof}
+
+
+\begin{definition}\label{def:Iequiv}
+    Given $\varphi,\psi\in \QPSH(X)$, we say they are \emph{$\mathcal{I}$-equivalent}\index{I-equivalent@$\mathcal{I}$-equivalence} and write $\varphi\sim_{\mathcal{I}}\psi$\index{$\sim_{\mathcal{I}}$} if the equivalent conditions in \cref{prop:Iequivchar} are satisfied.
+\end{definition}
+Clearly, $\sim_{\mathcal{I}}$ is an equivalence relation on $\QPSH(X)$.
+
+\begin{proposition}\label{prop:Ienvbimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$ to $X$. For $\varphi,\psi\in \QPSH(X)$, the following are equivalent:
+    \begin{enumerate}
+        \item\label{itm:prop:Ienvbimero:1} $\varphi\sim_{\mathcal{I}}\psi$;
+        \item\label{itm:prop:Ienvbimero:2} $\pi^*\varphi\sim_{\mathcal{I}}\pi^*\psi$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:Ienvbimero:1} $\implies$ \ref{itm:prop:Ienvbimero:2}. This follows from \itemref{itm:prop:Iequivchar:4}.
+
+    \ref{itm:prop:Ienvbimero:2} $\implies$ \ref{itm:prop:Ienvbimero:1}. This follows from the simple fact that
+    \[
+        \mathcal{I}(k\varphi)=\pi_* \left( \omega_{Y/X}\otimes \mathcal{I}(k\pi^*\varphi)  \right),\quad \mathcal{I}(k\psi)=\pi_* \left( \omega_{Y/X}\otimes \mathcal{I}(k\pi^*\psi)  \right)
+    \]
+    for any $k\in \mathbb{Z}_{>0}$, where $\omega_{Y/X}$ is the relative dualizing sheaf. See \cite[Proposition~5.8]{Dem12}.
+\end{proof}
+
+\begin{proposition}\label{prop:Iequivmax}
+    Let $\varphi,\varphi',\psi,\psi'\in \QPSH(X)$ and $\lambda>0$. Assume that $\varphi\sim_{\mathcal{I}}\psi$ and $\varphi'\sim_{\mathcal{I}}\psi'$. Then
+    \[
+        \varphi\lor \varphi'\sim_{\mathcal{I}} \psi\lor\psi',\quad \varphi+\varphi'\sim_{\mathcal{I}} \psi+\psi',\quad \lambda\varphi\sim_{\mathcal{I}}\lambda\psi.
+    \]
+    Similarly, if $(\varphi_i)_{i\in I}$, $(\psi_i)_{i\in I}$ are two non-empty uniformly bounded from above families in $\PSH(X,\theta)$ for some closed smooth real $(1,1)$-form $\theta$ on $X$ such that $\varphi_i\sim_{\mathcal{I}}\psi_i$ for all $i\in I$, then
+    \[
+    \uscsup[i\in I] \varphi_i\sim_{\mathcal{I}}\uscsup[i\in I] \psi_i.
+    \]
+\end{proposition}
+\begin{proof}
+    This follows from \cref{prop:Lelongmax} and \cref{cor:supsLelong}.
+\end{proof}
+
+\subsection{The definition of the \texorpdfstring{$\mathcal{I}$}{I}-envelope}
+\label{subsec:Ienv_def}
+Fix a smooth closed real $(1,1)$-form $\theta$ on $X$.
+\begin{definition}\label{def:Ienv}
+    Given $\varphi\in \PSH(X,\theta)$, we define its \emph{$\mathcal{I}$-envelope}\index{envelope!I-envelope@$\mathcal{I}$-envelope} as follows:
+    \begin{equation}\label{eq:Ienvelopedef}
+        P_{\theta}[\varphi]_{\mathcal{I}}\coloneqq \uscsup\{\psi\in \PSH(X,\theta): \psi\leq 0,\psi\sim_{\mathcal{I}} \varphi\}.
+    \end{equation}
+    \index{$P_{\theta}[\varphi]_{\mathcal{I}}$}
+    If $\varphi=P_{\theta}[\varphi]_{\mathcal{I}}$, we say $\varphi$ is an \emph{$\mathcal{I}$-model potential}\index{potential!I-model potential@$\mathcal{I}$-model potential} (in $\PSH(X,\theta)$).
+\end{definition}
+Note that by \cref{prop:pshfunction_closedseq}, $P_{\theta}[\varphi]_{\mathcal{I}}\in \PSH(X,\theta)$.
+
+\begin{proposition}\label{prop:Ienvindeptheta}
+    Let $\theta'=\theta+\ddc g$ for some $g\in C^{\infty}(X)$. Then for any $\varphi\in \PSH(X,\theta)$, we have $\varphi'\coloneqq \varphi-g\in \PSH(X,\theta')$ and
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}\sim P_{\theta'}[\varphi']_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    By symmetry, it suffices to show that
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}\preceq P_{\theta'}[\varphi']_{\mathcal{I}}.
+    \]
+    After replacing $g$ by $g+C$ for a suitable constant $C$, which only changes $\varphi'$ by an additive constant, we may assume that $g\geq 0$.
+    Let $\psi\in \PSH(X,\theta)$ be such that $\psi\leq 0$ and $\psi\sim_{\mathcal{I}}\varphi$. Then $\psi'\coloneqq \psi-g$ lies in $\PSH(X,\theta')$, satisfies $\psi'\leq 0$, and is $\mathcal{I}$-equivalent to $\varphi'$ since adding a smooth function does not change multiplier ideals. Hence
+    \[
+        \psi-g=\psi'\leq P_{\theta'}[\varphi']_{\mathcal{I}}.
+    \]
+    It follows that
+    \[
+        \psi-\sup_X g\leq P_{\theta'}[\varphi']_{\mathcal{I}}.
+    \]
+    Taking the upper envelope over all such $\psi$ gives
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}-\sup_X g\leq P_{\theta'}[\varphi']_{\mathcal{I}},
+    \]
+    which proves the desired comparison.
+\end{proof}
+
+\begin{proposition}\label{prop:Ienvelopebimero}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$ to $X$. Then for $\varphi \in \PSH(X,\theta)$, we have
+    \[
+        P_{\pi^*\theta}[\pi^*\varphi]_{\mathcal{I}}=\pi^* P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+\end{proposition}
+\begin{proof}
+    Let
+    \[
+        \eta=P_{\pi^*\theta}[\pi^*\varphi]_{\mathcal{I}}.
+    \]
+    First take a candidate $\psi\in \PSH(X,\theta)$ in \eqref{eq:Ienvelopedef}, so that $\psi\leq 0$ and $\psi\sim_{\mathcal{I}}\varphi$. Then $\pi^*\psi\leq 0$ and $\pi^*\psi\sim_{\mathcal{I}}\pi^*\varphi$ by \cref{prop:Ienvbimero}; hence $\pi^*\psi\leq \eta$. Taking the upper envelope over all such $\psi$ gives
+    \[
+        \pi^* P_{\theta}[\varphi]_{\mathcal{I}}\leq \eta.
+    \]
+
+    Conversely, let $\chi\in \PSH(Y,\pi^*\theta)$ be a candidate in the definition of $\eta$, so that $\chi\leq 0$ and $\chi\sim_{\mathcal{I}}\pi^*\varphi$. By \cref{prop:PSHpullbij}, there is a unique $\psi\in \PSH(X,\theta)$ such that $\chi=\pi^*\psi$. Since $\pi$ is surjective, $\psi\leq 0$. By \cref{prop:Ienvbimero}, the relation $\chi\sim_{\mathcal{I}}\pi^*\varphi$ implies $\psi\sim_{\mathcal{I}}\varphi$. Thus $\psi\leq P_{\theta}[\varphi]_{\mathcal{I}}$, and hence
+    \[
+        \chi\leq \pi^* P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    Taking the upper envelope over all such $\chi$ gives the reverse inequality.
+\end{proof}
+
+\begin{proposition}\label{prop:Ienvprojection}
+    Let $\varphi\in \PSH(X,\theta)$. Then
+    \[
+        \varphi\sim_{\mathcal{I}}  P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    In particular,
+    \[
+        P_{\theta}\Bigl[ P_{\theta}[\varphi]_{\mathcal{I}} \Bigr]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}
+    \]
+    and the upper semicontinuous regularization in \eqref{eq:Ienvelopedef} is not necessary.
+\end{proposition}
+\begin{proof}
+    In view of \cref{prop:Iequivchar}, it suffices to show that for $k \in \mathbb{Z}_{>0}$, we have
+    \begin{equation}\label{eq:IenvelopepreservLelong}
+        \mathcal{I}(k\varphi)=\mathcal{I}(kP_{\theta}[\varphi]_{\mathcal{I}}).
+    \end{equation}
+
+    By \cref{prop:Choquet}, we can find $\psi_i\in \PSH(X,\theta)$ ($i\in \mathbb{Z}_{>0}$) such that $\psi_i\leq 0$, $\psi_i\sim_{\mathcal{I}}\varphi$ for all $i\geq 1$ and
+    \[
+        \uscsup[i>0]\psi_i=P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    By \cref{prop:Iequivmax}, we may replace $\psi_i$ by $\psi_1\lor\cdots\lor\psi_i$ and assume that the sequence $\psi_i$ is increasing. In this case, it follows from the strong openness theorem \cref{thm:strongopen} that for each $k\in \mathbb{Z}_{>0}$, we have
+    \[
+        \mathcal{I}(k\varphi)=\mathcal{I}(k\psi_j)=\mathcal{I} (kP_{\theta}[\varphi]_{\mathcal{I}})
+    \]
+    for $j$ large enough.
+\end{proof}
+
+
+
+
+\begin{definition}\label{def:volqpsh}
+    Let $\varphi\in \PSH(X,\theta)$, we define the \emph{volume}\index{volume}\footnote{We choose to call this quantity the \emph{volume} instead of the \emph{$\mathcal{I}$-volume} so that the terminology is consistent with the line bundle case.} $\vol(\theta,\varphi)$ as
+    \[
+        \vol(\theta,\varphi)=\int_X \Bigl(\theta+\ddc P_{\theta}[\varphi]_{\mathcal{I}}  \Bigr)^n.
+    \]
+    \index{$\vol(\theta,\varphi)$}
+\end{definition}
+
+\begin{proposition}\label{prop:voldeponlyoncurr}
+    Let $\theta'=\theta+\ddc g$ for some $g\in C^{\infty}(X)$. Then for any $\varphi\in \PSH(X,\theta)$, we have $\varphi'=\varphi-g\in \PSH(X,\theta')$ and
+    \[
+        \vol(\theta,\varphi)=  \vol\left(\theta',\varphi'\right).
+    \]
+\end{proposition}
+\begin{proof}
+    By \cref{prop:Ienvindeptheta}, the currents $\theta+\ddc P_\theta[\varphi]_{\mathcal I}$ and $\theta'+\ddc P_{\theta'}[\varphi']_{\mathcal I}$ have the same singularity type in the same cohomology class. Applying the monotonicity theorem \cref{thm:mono} gives equality of their non-pluripolar masses.
+\end{proof}
+
+In view of \cref{prop:voldeponlyoncurr}, the volume $\vol(\theta,\varphi)$ depends only on the current $\theta_{\varphi}$, and we may write
+\begin{equation}\label{eq:volcurrdef}
+    \vol \theta_{\varphi}=\vol(\theta,\varphi).
+\end{equation}
+\index{$\vol \theta_{\varphi}$}
+
+\begin{definition}\label{def:volcohclass}
+    Let $\alpha\in \mathrm{H}^{1,1}(X,\mathbb{R})$ be a pseudo-effective class. The \emph{volume}\index{volume!volume of a pseudo-effective class} $\vol \alpha$ of $\alpha$ is defined as
+    \[
+    \vol \alpha=\vol T_{\min},
+    \]
+    where $T_{\min}$ is a current with minimal singularities in $\alpha$. Note that $\vol \alpha$ is independent of the choice of $T_{\min}$, thanks to \cref{thm:mono}.
+\end{definition}
+
+Let us recall the following elementary result for later use.
+\begin{proposition}\label{prop:cones_modif2}
+    Let $\pi\colon Y\rightarrow X$ be a proper bimeromorphic morphism from a Kähler manifold $Y$.
+    \begin{enumerate}
+        \item\label{itm:prop:cones_modif2:1} For any big class $\alpha\in \mathrm{H}^{1,1}(X,\mathbb{R})$, $\pi^*\alpha$ is big. Moreover, $\vol \pi^*\alpha=\vol \alpha$.
+        \item\label{itm:prop:cones_modif2:2} For any big class $\beta\in \mathrm{H}^{1,1}(Y,\mathbb{R})$, $\pi_*\beta$ is big. Moreover, $\vol \pi_*\beta\geq \vol \beta$.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:cones_modif2:1} Take a current $T_{\min}$ with minimal singularities in $\alpha$. Then $\pi^*T_{\min}$ is a current with minimal singularities in $\pi^*\alpha$. Our assertion follows from \cref{prop:nppmassinv}.
+
+    \ref{itm:prop:cones_modif2:2} Let $S_{\min}$ be a current with minimal singularities in $\beta$. Then $\pi_*S_{\min}$ is a positive current in the cohomology class $\pi_*\beta$. A current with minimal singularities in $\pi_*\beta$ is less singular than $\pi_*S_{\min}$, hence by the monotonicity theorem \cref{thm:mono}
+    \[
+        \vol(\pi_*\beta)\geq \int_X\left(\pi_*S_{\min}\right)^n.
+    \]
+    By \cref{prop:nppmassinv},
+    \[
+        \int_X \left(\pi_*S_{\min}\right)^n\geq \int_Y S_{\min}^n=\vol\beta.
+    \]
+    We conclude $\vol \pi_*\beta\geq \vol \beta$.
+\end{proof}
+
+
+The $\mathcal{I}$-envelope and the $P$-envelope are related in a simple manner.
+\begin{proposition}\label{prop:PandPI}
+    Let $\varphi\in \PSH(X,\theta)$. Then
+    \[
+        P_{\theta}[\varphi]\leq P_{\theta}[\varphi]_{\mathcal{I}},\quad \varphi \sim_{\mathcal{I}}P_{\theta}[\varphi].
+    \]
+\end{proposition}
+As a consequence,
+\begin{equation}\label{eq:PthetaIP_comp}
+    P_{\theta}\Bigl[P_{\theta}[\varphi]\Bigr]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}.
+\end{equation}
+\begin{proof}
+    It suffices to show that $\varphi\sim_{\mathcal{I}} P_{\theta}[\varphi]$. Namely, for each $k\in \mathbb{Z}_{>0}$, we have
+    \begin{equation}\label{eq:IkvarphiIkP}
+        \mathcal{I}(k\varphi)=\mathcal{I}\Bigl(kP_{\theta}[\varphi]\Bigr).
+    \end{equation}
+    Fix $k$ for now.
+    It follows from \eqref{eq:Penvsups} and the strong openness theorem \cref{thm:strongopen} that
+    \[
+        \mathcal{I}\Bigl(kP_{\theta}[\varphi]\Bigr)=\mathcal{I}\Bigl((k\varphi+C)\land kV_{\theta}\Bigr),
+    \]
+    when $C$ is large enough. Since $(k\varphi+C)\land kV_{\theta}\sim k\varphi$, we have
+    \[
+        \mathcal{I}\Bigl((k\varphi+C)\land kV_{\theta}\Bigr)=\mathcal{I}(k\varphi)
+    \]
+    and \eqref{eq:IkvarphiIkP} follows.
+\end{proof}
+
+In particular, we obtain an interesting relation between the non-pluripolar mass and the volume.
+\begin{corollary}\label{cor:compnppmassandvol}
+    Let $\varphi\in \PSH(X,\theta)$. Then
+    \[
+        \int_X \theta_{\varphi}^n\leq \vol \theta_{\varphi}.
+    \]
+\end{corollary}
+The reverse inequality fails in general, see \cref{ex:BBJ}.
+\begin{proof}
+    This follows from \cref{prop:PandPI}, \cref{thm:mono} and \cref{prop:Ppresmass}.
+\end{proof}
+
+
+We note the following special case:
+\begin{proposition}\label{prop:analysingcompPandPI}
+    Let $\varphi\in \PSH(X,\theta)$. Assume that $\varphi$ has analytic singularities. Then
+    \begin{equation}\label{eq:ana_sing_phi_PI_eq}
+        \varphi\sim P_{\theta}[\varphi] \sim P_{\theta}[\varphi]_{\mathcal{I}}.
+    \end{equation}
+    Hence, $P_{\theta}[\varphi]$ and $P_{\theta}[\varphi]_{\mathcal{I}}$ both have analytic singularities.
+
+    In particular,
+    \begin{equation}\label{eq:ana_sing_mass_vol}
+        \int_X \theta_{\varphi}^n= \vol \theta_{\varphi}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    First observe that \eqref{eq:ana_sing_mass_vol} follows from \eqref{eq:ana_sing_phi_PI_eq} and \cref{thm:mono}. It remains to establish \eqref{eq:ana_sing_phi_PI_eq}.
+
+    In view of \cref{prop:PandPI}, it suffices to show that
+    \begin{equation}\label{eq:Pprecvarphitemp1}
+        P_{\theta}[\varphi]_{\mathcal{I}}\preceq \varphi.
+    \end{equation}
+    By \cref{prop:Ienvelopebimero,prop:Penvbimero} and \cref{thm:resolvelogsing}, after passing to a log resolution we may assume that $\varphi$ has log singularities along an effective $\mathbb Q$-divisor $D$. This reduction does not change the assertion, since both the $P$- and the $\mathcal I$-envelope are compatible with bimeromorphic pull-back.
+
+    After multiplying $\theta$ and $\varphi$ by a sufficiently divisible positive integer, and then dividing the final comparison by the same integer, we may assume that $D$ is integral. In this case the Bergman-type quasi-equisingular approximants of $\varphi$ associated to the ideals $\mathcal I(2^j\varphi)$ have the same singularity type as $\varphi$.
+
+    Since
+    \[
+        P_\theta[\varphi]_{\mathcal I}\sim_{\mathcal I}\varphi
+    \]
+    by \cref{prop:Ienvprojection}, we have
+    \[
+        \mathcal I(2^jP_\theta[\varphi]_{\mathcal I})=\mathcal I(2^j\varphi).
+    \]
+    Thus the quasi-equisingular approximants $\eta_j$ of $P_\theta[\varphi]_{\mathcal I}$ and $\varphi_j$ of $\varphi$ may be chosen with the same singularity type $(2^{-j},\mathcal I(2^j\varphi))$.
+    Consequently $\eta_j\sim\varphi_j\sim\varphi$ for $j\gg1$. Since $\eta_j\searrow P_\theta[\varphi]_{\mathcal I}$, choosing one such large $j$ gives
+    \[
+        P_\theta[\varphi]_{\mathcal I}\leq \eta_j\leq \varphi+C_j,
+    \]
+    and hence \eqref{eq:Pprecvarphitemp1} holds.
+\end{proof}
+
+
+
+\subsection{Properties of the \texorpdfstring{$\mathcal{I}$}{I}-envelope}
+\label{subsec:Ienv_prop}
+Let $\theta,\theta_1,\theta_2$ be smooth closed real $(1,1)$-forms on $X$.
+
+We have the following properties of the $\mathcal{I}$-envelope.
+\begin{proposition}\label{prop:PIconc}
+    \leavevmode
+    \begin{enumerate}
+        \item\label{itm:prop:PIconc:1} Suppose that $\varphi\in \PSH(X,\theta)$ and $\lambda\in \mathbb{R}_{>0}$. Then
+            \[
+                P_{\lambda\theta}[\lambda\varphi]_{\mathcal{I}}=\lambda P_{\theta}[\varphi]_{\mathcal{I}}.
+            \]
+        \item\label{itm:prop:PIconc:2} Suppose that $\varphi_1\in \PSH(X,\theta_1)$ and $\varphi_2\in \PSH(X,\theta_2)$. Then
+            \[
+                P_{\theta_1+\theta_2}[\varphi_1+\varphi_2]_{\mathcal{I}}\geq P_{\theta_1}[\varphi_1]_{\mathcal{I}}+P_{\theta_2}[\varphi_2]_{\mathcal{I}}.
+            \]
+        \item\label{itm:prop:PIconc:3}
+        Suppose that $\varphi_1\in \PSH(X,\theta_1)$ and $\varphi_2\in \PSH(X,\theta_2)$. Then
+            \[
+                P_{\theta_1+\theta_2}[\varphi_1+\varphi_2]_{\mathcal{I}}\sim_{\mathcal{I}} P_{\theta_1}[\varphi_1]_{\mathcal{I}}+P_{\theta_2}[\varphi_2]_{\mathcal{I}}.
+            \]
+        \item\label{itm:prop:PIconc:4}
+            Suppose that $\varphi_1,\varphi_2\in \PSH(X,\theta)$. Then
+                \[
+                    P_{\theta}[\varphi_1\lor \varphi_2]_{\mathcal{I}}\sim_{\mathcal{I}} P_{\theta}[\varphi_1]_{\mathcal{I}}\lor P_{\theta}[\varphi_2]_{\mathcal{I}}.
+                \]
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \ref{itm:prop:PIconc:1} This follows by rescaling the candidates in the definition of the $\mathcal{I}$-envelope.
+
+    \ref{itm:prop:PIconc:2} Suppose that $\psi_1\in \PSH(X,\theta_1)$ and $\psi_2\in \PSH(X,\theta_2)$ satisfy
+    \[
+        \psi_i\leq 0,\quad \psi_i \sim_{\mathcal{I}} \varphi_i
+    \]
+    for $i=1,2$. Then thanks to \cref{prop:Iequivmax},
+    \[
+        \psi_1+\psi_2\leq 0,\quad \psi_1+\psi_2 \sim_{\mathcal{I}} \varphi_1+\varphi_2.
+    \]
+    It follows that
+    \[
+        \psi_1+\psi_2\leq P_{\theta_1+\theta_2}[\varphi_1+\varphi_2]_{\mathcal{I}}.
+    \]
+    Since $\psi_1$ and $\psi_2$ are arbitrary, we conclude.
+
+    \ref{itm:prop:PIconc:3} and \ref{itm:prop:PIconc:4}: These follow easily from \cref{prop:Ienvprojection} and \cref{prop:Iequivmax}.
+\end{proof}
+
+\begin{lemma}\label{lma:PIenvmono1}
+    Let $\varphi,\psi\in \PSH(X,\theta)$. Assume that $\varphi\preceq \psi$. Then
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}\leq P_{\theta}[\psi]_{\mathcal{I}}.
+    \]
+\end{lemma}
+\begin{proof}
+    We may assume that $\psi\leq 0$.
+    Observe that $P_{\theta}[\varphi]_{\mathcal{I}}\lor \psi\sim_{\mathcal{I}} \psi$ as a consequence of \cref{prop:Lelongmax} and \cref{prop:Ienvprojection}. So
+    \[
+    P_{\theta}[\varphi]_{\mathcal{I}}\lor \psi\leq P_{\theta}[\psi]_{\mathcal{I}}.
+    \]
+    The desired inequality follows.
+\end{proof}
+
+\begin{proposition}\label{prop:decnetmodelPI}
+    Consider a decreasing net $(\varphi_i)_{i\in I}$ of model potentials, with $\varphi_i\in \PSH(X,\theta)_{>0}$ for all $i\in I$. Set
+    \[
+    \varphi\coloneqq \inf_{i\in I}\varphi_i.
+    \]
+    Suppose that $\varphi\not\equiv -\infty$ and $\int_X \theta_{\varphi}^n>0$. Then
+    \[
+        \inf_{i\in I} P_{\theta}[\varphi_i]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    In particular, if the $\varphi_i$'s are all $\mathcal{I}$-model, then so is $\varphi$.
+\end{proposition}
+\begin{proof}
+    Let $\eta=\inf_{i\in I} P_{\theta}[\varphi_i]_{\mathcal{I}}$. We have $\eta\geq P_{\theta}[\varphi]_{\mathcal{I}}$ as a consequence of \cref{lma:PIenvmono1}. In particular, $\eta\in \PSH(X,\theta)$.
+
+    By \cref{prop:vol_limit_model}, we have
+    \[
+        \lim_{i\in I} \int_X\theta_{\varphi_i}^n=\int_X\theta_{\varphi}^n>0.
+    \]
+    We may assume that for each $i\in I$, $\int_X\theta_{\varphi_i}^n>\int_X\theta_{\varphi}^n$, since otherwise $\varphi_i=\varphi$ by \cref{thm:Pvarphidiffdef}, and hence $P_{\theta}[\varphi_i]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}$ due to \eqref{eq:PthetaIP_comp}; the same holds for all $j\geq i$, and there is nothing to prove.
+
+    So by \cref{lma:pathoenvelope}, we can find a decreasing net $\epsilon_i\searrow 0$ ($i\in I$) with $\epsilon_i\in (0,1)$ and $\psi_i\in \PSH(X,\theta)$ such that for all $i\in I$,
+    \[
+        (1-\epsilon_i) \varphi_i+\epsilon_i\psi_i\leq \varphi.
+    \]
+    We can, for example, take
+    \[
+        \epsilon_i^{-1}=\frac{1}{2}\left( 1+\left(\frac{\int_X \theta_{\varphi_i}^n}{\int_X \theta_{\varphi_i}^n-\int_X \theta_{\varphi}^n}\right)^{1/n} \right).
+    \]
+
+    By \cref{prop:PIconc} and \cref{lma:PIenvmono1}, we have
+    \[
+        \eta+\epsilon_i P_{\theta}[\psi_i]_{\mathcal{I}}\leq (1-\epsilon_i) \eta+\epsilon_i P_{\theta}[\psi_i]_{\mathcal{I}}\leq (1-\epsilon_i) P_{\theta}[\varphi_i]_{\mathcal{I}}+\epsilon_i P_{\theta}[\psi_i]_{\mathcal{I}}\leq P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    Each $P_{\theta}[\psi_i]_{\mathcal{I}}$ has supremum $0$, so \cref{prop:L1compa} shows that the family is bounded in $L^1$. Hence $\epsilon_iP_{\theta}[\psi_i]_{\mathcal{I}}\to 0$ in $L^1$, and the preceding inequality gives $\eta\leq P_{\theta}[\varphi]_{\mathcal{I}}$ almost everywhere. By \cref{prop:pshfuncdetdense}, the inequality holds everywhere.
+\end{proof}
+
+\begin{proposition}\label{prop:incnetmodelPI}
+    Let $(\varphi_i)_{i\in I}$ be an increasing net in $\PSH(X,\theta)_{>0}$ uniformly bounded from above. Let $\varphi\coloneqq \uscsup[i\in I]\varphi_i$. Then
+    \[
+        \uscsup[i\in I] P_{\theta}[\varphi_i]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}.
+    \]
+    In particular, if the $\varphi_i$'s are all $\mathcal{I}$-model, then so is $\varphi$.
+\end{proposition}
+\begin{proof}
+    Let $\eta=\uscsup[i\in I] P_{\theta}[\varphi_i]_{\mathcal{I}}$. Then $\eta\leq P_{\theta}[\varphi]_{\mathcal{I}}$ as a consequence of \cref{lma:PIenvmono1}.
+
+    By \cref{cor:incseqnppcont}, we have
+    \[
+        \lim_{i\in I} \int_X\theta_{\varphi_i}^n=\int_X\theta_{\varphi}^n>0.
+    \]
+    We may assume that for each $i\in I$, $\int_X\theta_{\varphi_i}^n<\int_X\theta_{\varphi}^n$, since otherwise $P_{\theta}[\varphi_i]=P_{\theta}[\varphi]$ by \cref{thm:Pvarphidiffdef}, and hence $P_{\theta}[\varphi_i]_{\mathcal{I}}=P_{\theta}[\varphi]_{\mathcal{I}}$ due to \eqref{eq:PthetaIP_comp}; the same holds for all $j\geq i$, and there is nothing to prove.
+
+    So by \cref{lma:pathoenvelope}, we can find a decreasing net $\epsilon_i\searrow 0$ ($i\in I$) as in \eqref{eq:epsilon_inetchoice} with $\epsilon_i\in (0,1)$ and $\psi_i\in \PSH(X,\theta)$ such that for all $i\in I$,
+    \[
+        (1-\epsilon_i) \varphi+\epsilon_i\psi_i\leq \varphi_i.
+    \]
+    By \cref{prop:PIconc} and \cref{lma:PIenvmono1}, we have
+    \[
+        P_{\theta}[\varphi]_{\mathcal{I}}+\epsilon_i P_{\theta}[\psi_i]_{\mathcal{I}}\leq (1-\epsilon_i) P_{\theta}[\varphi]_{\mathcal{I}}+\epsilon_i P_{\theta}[\psi_i]_{\mathcal{I}}\leq P_{\theta}[\varphi_i]_{\mathcal{I}}\leq \eta.
+    \]
+    As above, $\epsilon_iP_{\theta}[\psi_i]_{\mathcal{I}}\to 0$ in $L^1$. It follows that $P_{\theta}[\varphi]_{\mathcal{I}}\leq \eta$ almost everywhere, hence everywhere by \cref{prop:pshfuncdetdense}.
+\end{proof}
+
+
+\begin{remark}\label{rmk:envelopes:L2443}
+    One could also define the following interpolation between the $\mathcal{I}$-envelope and the $P$-envelope: Suppose $\varphi\in \PSH(X,\theta)_{>0}$, $j\in \{0,\ldots,n\}$. Then we let
+    \[
+    \begin{split}
+    P_{\theta,j}[\varphi]\coloneqq \uscsup \left\{ \psi\in \PSH(X,\theta): \psi\leq 0,\varphi\preceq \psi, \int_X \theta_{\varphi}^j\wedge \theta_{P_{\theta}[\varphi]_{\mathcal{I}}}^{n-j}\right.\\
+    \left.=\int_X \theta_{\psi}^j\wedge \theta_{P_{\theta}[\psi]_{\mathcal{I}}}^{n-j} \right\}.
+    \end{split}
+    \]
+    Based on the techniques developed in \cref{chap:comp}, one could show that $P_{\theta,j}[\bullet]$ is a projection operator. The cases $j=0$ and $j=n$ recover the $\mathcal{I}$- and $P$-envelopes respectively; the intermediate operators $P_{\theta,j}$ have not, to our knowledge, been systematically studied in the literature.
+\end{remark}
+
+
+
+%\input{author/references}
