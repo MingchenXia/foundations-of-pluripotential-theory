@@ -35,9 +35,10 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q09-01` [second-read] Truncation construction, plurifine locality and extension by zero
 - `Q09-02` [second-read] Global finiteness, fibre products and scalar mixed mass bounds
 - `Q09-03` [second-read] Monotonicity with singularity type and bounded-perturbation invariance
-- `Q09-04` [drafting] Full mass, convergence and bigness from positive mass with exact hypotheses
+- `Q09-04` [second-read] Full mass and capacity convergence with exact hypotheses
 - `Q09-05` [second-read] Construct the spherical potential and prove zero Lelong numbers, trivial multiplier ideals and zero non-pluripolar mass for the diffuse polar measure
 - `Q09-06` [second-read] Non-pluripolar common-measure mixed and convex-combination lower bounds
+- `Q09-07` [second-read] Positive non-pluripolar mass and volume imply bigness
 
 ## Q10 — Envelopes and model potentials
 
