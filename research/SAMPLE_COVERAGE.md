@@ -1,6 +1,6 @@
 # Sample coverage and dependency audit queue
 
-The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 182 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray/good-singularity claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
+The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 184 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray/good-singularity claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
 
 | Sample input | Results inventoried | Natural homes | Review status |
 |---|---:|---|---|
@@ -8,7 +8,7 @@ The complete retained active root is `references/originals/sample-book/book.tex`
 | `appendix_convex.tex` | 47 | P04, Q16 | inventory-only; proof obligations pending |
 | `appendix_unibranch.tex` | 13 | A01 | inventory-only; proof obligations pending |
 | `chapter_Bergman.tex` | 36 | Q19 | inventory-only; proof obligations pending |
-| `chapter_Igood.tex` | 32 | Q13 | all 1066 lines read; twenty-seven core/mixed-volume/modification/log-concavity targets; five section/toric claims pending |
+| `chapter_Igood.tex` | 32 | Q13 | all 1066 lines read; twenty-nine core/mixed-volume/modification/log-concavity/strict-section targets; three general-section/line-volume/toric claims pending |
 | `chapter_NApotential.tex` | 71 | Q18 | inventory-only; proof obligations pending |
 | `chapter_Okounkov.tex` | 86 | Q17 | inventory-only; proof obligations pending |
 | `chapter_bdiv.tex` | 32 | Q18 | inventory-only; proof obligations pending |
