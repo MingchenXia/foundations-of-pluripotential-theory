@@ -339,3 +339,13 @@ I-model projection and terminal/base closure, semipositive enlarged-background p
 Published RWN14 Definitions 7.1–7.2 and complete Lemma 7.4 pp. 153–156 read; all four original pages inspected. An explicit parity filtration corrects its claimed critical all-degree pointwise limit. The separate below-critical pointwise all-degree assertion stays a source-scope audit; the curve/ray construction is fully proved. Thirteen full mappings give twenty-nine in Q15 and 215 overall. Earlier proof gates, remaining Q15 contact/slope/log-concavity/operations/convergence, Q14 and Q16–Q19, semantic source review and final polishing remain. 48/110 tasks verified. Both 0bb1d39 CI checks passed (37188901296 and 37188898250). Continue operations and convergence.
 
 Fresh source archive rebuilt in an empty directory with matching page text for this 447-page checkpoint.
+
+## 2026-10-04: test-curve operations and monotone limits
+
+Ten new saved statements/full proofs, transitions and history paragraph have two direct mathematical/editorial reads. All twenty-one first integrated selected images, six intermediate join-fit images and five final statement/proof-fit images inspected. Final draft 455 pages; zero audit errors, unresolved references/citations, overfull or underfull boxes. Review: research/reviews/2026-10-04-q15-operations.json.
+
+Closed terminal slopes and joint upper semicontinuity give raw supremal convolution and pointwise duality. The strict-interior raw replacement in the supplied proof changes polar values; a P1 example checks the exact correction while preserving the main statement. Positive P-order algebra supplies sums/associativity/background compatibility. Chords and scalar/Kiselman duality give joins and their closed pointwise hull. Directed suprema, general finite-join suprema and rational countable selection avoid mass log-concavity. A single positive interior mass controls decreasing model limits. The changing-base example distinguishes this from the radial-energy bound yielding fixed-base chordal convergence.
+
+All twenty-seven operation source claims now mapped: fifty-six full Q15 targets and 242 overall. Eight source claims remain, including the filtration's auxiliary pointwise scope, mass log-concavity, multiplier-ray integral, contact/initial-slope/twisted and Phong–Sturm interfaces. Earlier proof gates, Q14 and Q16–Q19, semantic source review and final polishing remain. 48/110 tasks verified. Both 826d0ca CI checks passed (37190267083 and 37190264434). Continue the multiplier-ray integral and remaining foundational interfaces.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 455-page checkpoint.
