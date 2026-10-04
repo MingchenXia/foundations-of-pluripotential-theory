@@ -137,3 +137,11 @@ Wrote and twice directly reviewed Q10 extrapolation, full relative domination, m
 Read the complete sample envelope opening through line 898 and DDNL model/dominance passages pp. 2062–2064. Published prescribed-density/Calabi–Yau inputs are not adopted. Linked 20 exact sample claims to internal labels with explicit scope notes; the rest of the semantic inventory remains unfinished. Both builds at 8d05525 passed (37162022001, 37162018899). Continue model-limit/background calculus and the remaining Q10 interfaces, then the energy chapter, with regular private pushes. Whole-book completion is not claimed.
 
 The Q10 model/rooftop source archive rebuilt in an empty directory; its 314-page PDF has matching extracted page text. Release evidence: research/reviews/logs/2026-10-03-q10-model-release.log.
+
+## 4 October 2026 — Envelope algebra and monotone/background limits
+
+Wrote and twice directly reviewed envelope algebra and I equivalences, increasing positive-mass envelope continuity, decreasing fixed-point mass/measure and divisorial continuity, decreasing model multiplier continuity, and varying-background model limits. Countable selections identify function limits without assuming cofinality. The varying-background statement permits a pseudo-effective boundary class with strictly positive perturbations. Evidence is in research/reviews/2026-10-04-q10-limits.json; the draft has 318 pages. Q10 remains drafting and earlier gates/48 verified obligations persist. Extended the partial semantic map from 20 to 28 source claims with exact scope restrictions.
+
+Independently identified and retained Pang–Sun–Wang–Zhou arXiv:2607.12797v1, checked Theorem 1.2 and read complete Section 5, pp. 37–42, including its relative prescribed-density dependency. It is not an adopted input. Sample envelope lines 1–898 and 1995–2458 are read; intervening energy remains the next source unit. Both CI runs at pushed 18d932b passed (37162998386 and 37162995429). Continue remaining envelope/capacity and energy foundations with regular private pushes and draft PR #5 updates. Whole-book writing and polishing remain unfinished.
+
+The 318-page source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-04-q10-limits-release.log.
