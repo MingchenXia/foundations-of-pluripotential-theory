@@ -329,3 +329,13 @@ Nonnegative increasing convex products supply the cutoff concavity. Mixed mass p
 All 1957 supplied source lines, including later I-model/filtration/operations proofs and dependencies, are now read. The published Proposition 6.7 integrand correction is implemented. Three further scoped source targets give 202 overall, sixteen in Q15. Mass log-concavity, full contact/slope equality, twisted bases, I-model/filtration/operations/convergence and earlier FN/coherence/bigness/equation gates remain, together with Q14 and Q16–Q19 and whole-book source/polishing work. 48/110 tasks verified. Both 884be5c CI checks passed (37188085003 and 37188082405). Continue the I-model and operations interfaces.
 
 Fresh source archive rebuild passed in an empty directory with matching page text for this 443-page checkpoint.
+
+## 2026-10-04: I-model curves and multiplicative section filtrations
+
+Ten new saved definitions/results/example, full proofs, transitions and two history paragraphs have two direct reads. All eighteen first selected integrated images and the final changed image inspected. Final draft: 447 pages, twenty active mathematical chapters; zero audit errors, unresolved references/citations, overfull or underfull boxes. Review: research/reviews/2026-10-04-q15-filtrations.json.
+
+I-model projection and terminal/base closure, semipositive enlarged-background projection, smooth cohomologous changes and smooth modification bijections preserve the stated classes. Exact mass functions give energy invariance. For a big line bundle, bounded multiplicative filtrations give bounded I-model curves and rays through canonical normalized section suprema. Internal section asymptotics first identify the negative tail and only then establish positive interior masses. The numerical critical-slope limit uses finite remainders; metric normalization is quadratic.
+
+Published RWN14 Definitions 7.1–7.2 and complete Lemma 7.4 pp. 153–156 read; all four original pages inspected. An explicit parity filtration corrects its claimed critical all-degree pointwise limit. The separate below-critical pointwise all-degree assertion stays a source-scope audit; the curve/ray construction is fully proved. Thirteen full mappings give twenty-nine in Q15 and 215 overall. Earlier proof gates, remaining Q15 contact/slope/log-concavity/operations/convergence, Q14 and Q16–Q19, semantic source review and final polishing remain. 48/110 tasks verified. Both 0bb1d39 CI checks passed (37188901296 and 37188898250). Continue operations and convergence.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 447-page checkpoint.

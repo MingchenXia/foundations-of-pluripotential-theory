@@ -73,7 +73,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 - `Q15-01` [drafting] Test curves, maximality, endpoint degenerations and energy
 - `Q15-02` [drafting] Legendre duality and Ross--Witt Nystrom correspondence
-- `Q15-03` [planned] I-model test curves, approximation and operations
+- `Q15-03` [drafting] I-model test curves, approximation and operations
 - `Q15-04` [planned] Pointwise and metric convergence under the exact hypotheses
 
 ## Q16 — Convex analysis and toric potentials
