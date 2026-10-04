@@ -140,7 +140,7 @@ Rearrangement is the claimed inequality.
 
 \section{Relative Monge--Amp\`ere energy}
 \label{sec:relative-monge-ampere-energy}
-Fix a smooth closed real $\theta$ with big class and a $\theta$-model potential $\phi$. Put $m=\int_X\mu_\phi>0$. The relative full-mass class $\mathcal E(X,\theta,\phi)$ was defined in \cref{def:full-nonpluripolar-mass}; all its mixed masses agree with those of $\phi$ by the envelope characterization.
+Fix a smooth closed real $\theta$ with big class and a $\theta$-model potential $\phi$. Put $m=\int_X\mu_\phi>0$ and write $E=E_\theta^\phi$. The relative full-mass class $\mathcal E(X,\theta,\phi)$ was defined in \cref{def:full-nonpluripolar-mass}; all its mixed masses agree with those of $\phi$ by the envelope characterization.
 
 \begin{definition}\label{def:relative-bounded-and-finite-energy-classes}
 Write
@@ -591,6 +591,22 @@ Cross-integrability makes every coefficient
 $\int_X(v-u)\langle\theta_v^a\wedge\theta_u^{n-a}\rangle$ finite. Multilinearity makes the asserted derivative a polynomial. Apply the finite-energy cocycle to $u_{t+s},u_t$, divide by $s\ne0$, and use $u_{t+s}-u_t=s(v-u)$. Each mixed integral is a polynomial in $s$ with those finite coefficients. At $s=0$ each of the $n+1$ terms equals $\int_X(v-u)\mu_{u_t}$. This proves both derivatives and their continuity, including the endpoints.
 \end{proof}
 
+\Needspace{15\baselineskip}
+\begin{lemma}\label{lem:relative-energy-tangent-and-order-bounds}
+For finite-energy $u,v$,
+\[
+ \int_X(v-u)\,\mu_v\leq E(v)-E(u)
+                                  \leq\int_X(v-u)\,\mu_u.
+\]
+If $u\leq v$, then additionally
+\[
+ \frac1{n+1}\int_X(v-u)\,\mu_u\leq E(v)-E(u).
+\]
+\end{lemma}
+\begin{proof}
+Concavity extends from bounded type to finite energy by taking decreasing endpoint truncations: each affine combination decreases to the corresponding finite-energy combination. Decreasing energy continuity passes the concavity inequalities. The finite-energy first-variation formula gives the derivatives at both endpoints, so the two supporting-line bounds give the first display. For the last inequality all terms of the finite-energy cocycle are nonnegative; retain its term with measure $\mu_u$.
+\end{proof}
+
 \begin{lemma}\label{lem:rooftop-affine-energy-derivative}
 For $u,v\in\mathcal E^\infty(X,\theta,\phi)$ set $q_t=(1-t)u+tv$ and $\eta_t=P_\theta(q_t,v)$. Then
 \[
@@ -659,6 +675,134 @@ Write $r=\log|z|^2$ and $F(r)=\log(e^r+\varepsilon)-\log(1+e^r)$. Radial integra
 \]
 Here $0\leq F'\leq1$. On $[\log\varepsilon,0]$, its difference from $1$ is at most $\varepsilon e^{-r}+e^r$, whose integral is at most $2$. On the left tail $F'\leq e^r/\varepsilon$, and on the right tail $F'\leq e^{-r}$; the squared tail integrals are uniformly bounded. These estimates justify the uniform $O(1)$. The curve energy formula therefore gives $E_\omega(u_a)\to-1/2$, whereas $E_\omega(0)=0$.
 \end{example}
+
+\section{Variational Monge--Amp\`ere equations}
+\label{sec:relative-variational-equations}
+Keep the big background $\theta$, the model reference $\phi$ and its positive mass $m$. The energy variation extends to continuous perturbations after projection onto psh potentials. This converts a maximizer into a solution. For measures with bounded density, normalized psh compactness controls the linear term and supplies the maximizer.
+
+\begin{definition}\label{def:nonpluripolar-radon-measure}
+A finite positive Radon measure $\nu$ is \emph{non-pluripolar} if it gives every pluripolar Borel set mass zero. Integrals against it use its completion, so subsets of pluripolar sets are also null.
+\end{definition}
+\index{measure!non-pluripolar}
+
+\begin{proposition}\label{prop:projected-energy-first-variation}
+For $u\in\mathcal E^1(X,\theta,\phi)$ and $f\in C(X,\mathbb R)$, put $u_t=P_\theta(u+tf)$, $t\in\mathbb R$. Then $u_t\sim u$, each $u_t$ has finite energy, and
+\[
+ \frac{\mathrm d}{\mathrm dt}E(u_t)=\int_Xf\,\mu_{u_t}.
+\]
+The derivative is continuous on $\mathbb R$.
+\end{proposition}
+\begin{proof}
+With $B=\|f\|_\infty$, the competitor $u-|t|B$ and the obstacle give
+$u-|t|B\leq u_t\leq u+|t|B$.
+The finite-energy characterization gives the asserted membership. Obstacle calculus gives
+$u_t-|s|B\leq u_{t+s}\leq u_t+|s|B$.
+Hence $u_{t+s}\to u_t$ in extended capacity as $s\to0$. These potentials have the same relative full mass, so \cref{cor:relative-full-mass-capacity-convergence} gives weak convergence of their measures. In particular $\int f\,\mu_{u_{t+s}}\to\int f\,\mu_{u_t}$.
+
+The obstacle $u+tf$ is quasi-continuous and bounded above. \Cref{thm:quasicontinuous-obstacle-contact} makes $\mu_{u_t}$ carried by its finite contact set. For $s>0$, \cref{lem:relative-energy-tangent-and-order-bounds} and the two contact sets give
+\[
+ s\int_Xf\,\mu_{u_{t+s}}
+ \leq E(u_{t+s})-E(u_t)
+ \leq s\int_Xf\,\mu_{u_t}.
+\]
+Indeed on the first contact set $u_{t+s}=u+(t+s)f$ while $u_t\leq u+tf$, giving the lower bound; on the second $u_t=u+tf$ while $u_{t+s}\leq u+(t+s)f$, giving the upper bound. The bounded differences are integrable and the poles have zero mass. Dividing by $s$ and taking its limit proves the right derivative. Applying the same inequalities to $t+s,t$ for $s<0$ proves the left derivative. The weak convergence already proved makes the derivative continuous.
+\end{proof}
+\index{Monge--Amp\`ere energy!projected first variation}
+
+\begin{theorem}\label{thm:relative-variational-characterization}
+Let $\nu$ be non-pluripolar with $\nu(X)=m$, and suppose
+$\mathcal D_\nu=\mathcal E^1(X,\theta,\phi)\cap L^1(\nu)$ is nonempty. Then $\phi\in L^1(\nu)$, and for
+\[
+ F_\nu(v)=E(v)-\int_X(v-\phi)\,\mathrm d\nu,
+                       \qquad v\in\mathcal D_\nu,
+\]
+a potential $u\in\mathcal D_\nu$ maximizes $F_\nu$ if and only if $\mu_u=\nu$.
+\end{theorem}
+\begin{proof}
+For $v\in\mathcal D_\nu$ one has $v\leq\phi+C$ and both potentials are bounded above. Thus the negative part of $\phi$ is bounded by that of $v$ plus a constant; its positive part is bounded. This proves $\phi\in L^1(\nu)$. If $\mu_u=\nu$, the tangent inequality gives
+\[
+ E(v)-E(u)\leq\int_X(v-u)\,\mathrm d\nu,
+\]
+so $F_\nu(v)\leq F_\nu(u)$.
+
+Conversely suppose $u$ is a maximizer. For continuous real $f$, the potentials $u_t=P_\theta(u+tf)$ have bounded difference from $u$, hence lie in $\mathcal D_\nu$. Since $u_t\leq u+tf$,
+\[
+ E(u_t)-E(u)-t\int_Xf\,\mathrm d\nu
+       \leq F_\nu(u_t)-F_\nu(u)\leq0.
+\]
+The expression on the left is zero at $t=0$ and differentiable there by the preceding proposition. Its derivative is therefore zero. Thus $\int f\,\mu_u=\int f\,\mathrm d\nu$ for every continuous real $f$. Uniqueness of Radon measures proves $\mu_u=\nu$.
+\end{proof}
+
+\Needspace{14\baselineskip}
+\begin{theorem}\label{thm:bounded-density-relative-prescribed-measure}
+Let $\mathrm dV$ be a smooth positive volume form. If $0\leq g\in L^\infty(\mathrm dV)$ and $\int_Xg\,\mathrm dV=m$, there is
+$u\in\mathcal E^1(X,\theta,\phi)$ with
+\[
+ \mu_u=g\,\mathrm dV,\qquad \sup_Xu=0.
+\]
+It maximizes $F_{g\,\mathrm dV}$.
+\end{theorem}
+\begin{proof}
+Every psh potential is integrable against $g\,\mathrm dV$, since its density is bounded. The functional is invariant under adding constants, by the energy shift formula and its measure's mass $m$. Normalize all competitors by $\sup_Xv=0$. Model normalization gives $v\leq\phi$ and hence $E(v)\leq0$. Global normalized compactness gives a common bound on $\int_X|v|\,\mathrm dV$. Since $\phi\in L^1(\mathrm dV)$,
+\[
+ 0\leq-\int_X(v-\phi)g\,\mathrm dV\leq C
+\]
+with $C$ independent of $v$. Consequently the supremum of $F$ lies in $[0,C]$, its value at $\phi$ being zero. A normalized maximizing sequence with $F\geq-1$ has $E\geq-C-1$. Compact energy sublevels give a convergent subsequence in $L^1$, with a normalized finite-energy limit $u$. The linear integral is $L^1$-continuous because $g$ is bounded; energy is upper semicontinuous. The limit therefore maximizes $F$. The preceding theorem gives the equation.
+\end{proof}
+\index{Monge--Amp\`ere equation!bounded density}
+
+\begin{proposition}\label{prop:relative-exponential-equation-domination}
+Let $\lambda>0$ and let $\nu$ be a finite positive non-pluripolar measure. If $u,v\in\mathcal E(X,\theta,\phi)$ satisfy
+\[
+ \mu_u=\mathrm e^{\lambda u}\nu,
+       \qquad \mu_v\geq\mathrm e^{\lambda v}\nu,
+\]
+then $u\geq v$. In particular a solution in this relative full-mass class is unique.
+\end{proposition}
+\begin{proof}
+On the comparison set $A=\{u<v\}$, \cref{prop:relative-mixed-comparison} gives
+\[
+ \int_A\mathrm e^{\lambda v}\,\mathrm d\nu
+   \leq\mu_v(A)\leq\mu_u(A)
+   =\int_A\mathrm e^{\lambda u}\,\mathrm d\nu.
+\]
+The potentials are finite $\nu$-almost everywhere and the exponential is strictly increasing. The nonnegative difference of the first and last integrands has zero integral, so $\nu(A)=0$. Hence $\mu_u(A)=0$, and \cref{thm:relative-full-mass-domination} gives $u\geq v$ everywhere. Applying the assertion in both directions proves uniqueness for two solutions.
+\end{proof}
+
+\begin{theorem}\label{thm:bounded-density-relative-exponential-equation}
+Let $\mathrm dV$ be a smooth positive volume form, let $0\leq g\in L^\infty(\mathrm dV)$ with $b=\int_Xg\,\mathrm dV>0$, and let $\lambda>0$. There is a unique
+$u\in\mathcal E^1(X,\theta,\phi)$ satisfying
+\[
+ \mu_u=\mathrm e^{\lambda u}g\,\mathrm dV.
+\]
+It maximizes
+$G(v)=E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}g\,\mathrm dV$
+on the relative finite-energy class. Its constant is determined by the equation.
+\end{theorem}
+\begin{proof}
+Put $\nu=g\,\mathrm dV$. For a competitor $v$ set $c=\sup_Xv$ and $w=v-c$. Model normalization gives $w\leq\phi$ and $E(w)\leq0$. Normalized psh compactness and bounded density give $\int_Xw\,\mathrm d\nu\geq-C$. Jensen's inequality for the probability measure $b^{-1}\nu$ implies
+\[
+ \int_X\mathrm e^{\lambda w}\,\mathrm d\nu
+   \geq b\exp\left(\frac\lambda b\int_Xw\,\mathrm d\nu\right)
+   \geq a:=b\mathrm e^{-\lambda C/b}>0.
+\]
+The energy shift formula now gives
+\[
+ G(v)\leq mc-\lambda^{-1}a\mathrm e^{\lambda c}.
+\]
+This upper bound tends to $-\infty$ at both ends of the real line. Since $G(\phi)$ is finite, a maximizing sequence with $G(v_j)\geq G(\phi)-1$ has bounded $c_j$. Also $E(v_j)\geq G(v_j)$, so $E(w_j)=E(v_j)-mc_j$ has a uniform lower bound. Compact energy sublevels and a subsequence with $c_j$ convergent give an $L^1$ limit $u$ of finite energy. Energy is upper semicontinuous. On the common upper range of the $v_j,u$, the exponential is Lipschitz; bounded density therefore makes its integral $L^1$-continuous. Thus $u$ maximizes $G$.
+
+For continuous real $f$ put $u_t=P_\theta(u+tf)$. The obstacle bound and maximality give
+\[
+ E(u_t)-E(u)-\lambda^{-1}
+      \int_X\left(\mathrm e^{\lambda(u+tf)}-\mathrm e^{\lambda u}\right)
+                         \,\mathrm d\nu\leq0.
+\]
+The left side is zero at $0$. Projected first variation differentiates its energy term. The integrand's derivative is dominated for $|t|\leq1$ by a constant times $\|f\|_\infty\mathrm e^{\lambda\sup_Xu}\mathrm e^{\lambda\|f\|_\infty}$, which is integrable against finite $\nu$. Differentiating at zero gives
+$\int_Xf\,\mu_u=\int_Xf\mathrm e^{\lambda u}\,\mathrm d\nu$.
+Radon uniqueness proves the equation. The preceding proposition gives uniqueness even in the full relative mass class.
+\end{proof}
+\index{Monge--Amp\`ere equation!positive exponential}
 
 \section{Subgeodesics and Perron segments}
 \label{sec:relative-weak-geodesics}
@@ -845,7 +989,7 @@ For finite-energy endpoints subtract a common constant to put them below $\phi$ 
 
 \section{The relative energy metric}
 \label{sec:relative-energy-metric}
-Fix the same big background and positive-mass model reference. Write $E=E_\theta^\phi$ for the rest of this chapter, specifying a different background in examples when needed. The rooftop records the part shared by two potentials; the two remaining energy increments will measure their distance.
+Fix the same big background and positive-mass model reference. The rooftop records the part shared by two potentials; the two remaining energy increments will measure their distance.
 
 \begin{definition}\label{def:relative-darvas-metric}
 For $u,v\in\mathcal E^1(X,\theta,\phi)$ set
@@ -856,22 +1000,6 @@ For $u,v\in\mathcal E^1(X,\theta,\phi)$ set
 The integral is finite by mixed finite-energy integrability. Common poles have zero measure and may be assigned difference zero. The rooftop has finite energy by \cref{prop:relative-finite-energy-rooftop-closure}.
 \end{definition}
 \index{Darvas metric!relative finite-energy space}
-
-\Needspace{15\baselineskip}
-\begin{lemma}\label{lem:relative-energy-tangent-and-order-bounds}
-For finite-energy $u,v$,
-\[
- \int_X(v-u)\,\mu_v\leq E(v)-E(u)
-                                  \leq\int_X(v-u)\,\mu_u.
-\]
-If $u\leq v$, then additionally
-\[
- \frac1{n+1}\int_X(v-u)\,\mu_u\leq E(v)-E(u).
-\]
-\end{lemma}
-\begin{proof}
-Concavity extends from bounded type to finite energy by taking decreasing endpoint truncations: each affine combination decreases to the corresponding finite-energy combination. Decreasing energy continuity passes the concavity inequalities. The finite-energy first-variation formula gives the derivatives at both endpoints, so the two supporting-line bounds give the first display. For the last inequality all terms of the finite-energy cocycle are nonnegative; retain its term with measure $\mu_u$.
-\end{proof}
 
 \begin{proposition}\label{prop:relative-rooftop-metric-contraction}
 The function $d_1$ is a metric. For finite-energy potentials,
