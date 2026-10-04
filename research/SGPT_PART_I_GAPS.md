@@ -107,3 +107,7 @@ Q08-10 closes fixed-measure continuity and the canonical moving-measure absolute
 ## Canonical capacity prerequisite
 
 Q08-11 closes local outer-capacity convergence and the finite-mass/total-variation estimate for bounded truncations of the canonical limit. It uses the earlier self-integral result and strict shifted comparison, with only second moments. The limiting boundary trace and equation still need the bounded-subsolution comparison. Review:research/reviews/2026-10-04-q08-grid-capacity.json. Current provisional64/98 verified,30 historical exclusions; mixed/uniqueness and earlier gates remain.
+
+## Compact-measure local equation prerequisite
+
+Q08-12 closes the limiting equation and zero boundary trace in the compact-support bounded-subsolution ball regime. It also proves the exact pointwise envelope, uniqueness and full canonical-sequence L1/capacity/self-integral convergence. Review:research/reviews/2026-10-04-q08-subsolution.json. Current provisional65/99 required tasks verified,30 historical exclusions. Mixed energy, general common-measure inequality, relative uniqueness and earlier book gates remain.

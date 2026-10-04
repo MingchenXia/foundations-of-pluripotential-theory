@@ -550,3 +550,11 @@ Final integrity/audit/build passed; the tracked-source archive rebuilt in an emp
 Two scoped reads; fourteen first images and all three second changes161–163 inspected; all451 pages rendered. Exact Dinewv1 Theorem2.3 statement/image checked; its quoted proof is not adopted. Temporary Cegrell2004 primary images concern future mixed-energy research only. Review:research/reviews/2026-10-04-q08-grid-capacity.json. Current64/98 provisional required tasks,30 excluded;128 total tasks,42 active inputs,112 originals. Integrity and fresh archive verification follow before push. Bounded-subsolution solvability, mixed inequality, relative uniqueness and earlier book gates remain.
 
 Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching451-page text. No whole-book completion claim.
+
+## 2026-10-04 — Compact-measure bounded-subsolution Dirichlet equation
+
+cf8189a exact-head verify checks111529604604 and111529594524 both succeeded. Q08-12 proves the compact-support bounded-subsolution ball equation, pointwise subsolution envelope/uniqueness and full canonical stability. Moving weights use a common capacity modulus; finite strict-barrier measures use fixed-measure energy convergence. Null levels for both measures pass comparison to the limit; canonical representative order, the barrier and total variation identify boundedness, boundary trace and equation. No external input or uniform approximant bound.
+
+Two scoped direct reads; fourteen first manuscript images and sole final changed image163 inspected; all455 pages rendered. Dinewv1 Definition2.4 and following p.5 paragraph/image checked, quoted theorem unadopted. Final log has no unresolved references/citations or bad boxes. Review:research/reviews/2026-10-04-q08-subsolution.json. Provisional65/99 required tasks verified,30 excluded;129 tasks,43 active inputs,112 originals. Integrity and fresh archive verification follow before regular push. Mixed energy/inequality, relative uniqueness and earlier FN/PDE/positivity/overlap/whole-prequel polishing gates remain.
+
+Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching455-page text. No whole-book completion claim.
