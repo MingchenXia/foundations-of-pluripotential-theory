@@ -425,3 +425,15 @@ Added internal weak chain-rule/zero-set locality, Euclidean bounded-Laplacian W2
 Exact DNT arXiv 1912.12720v1 independently found online, retained and completely read; original pp. 1,3–5,7 inspected. Its C1,bar1 means continuous with bounded metric Laplacian. The earlier bounded-complex-Hessian shorthand and proposed direct large-background shift for a general barrier were corrected in the current audit. General metric elliptic W2,p/determinant integrability, three envelope PDE scopes, arbitrary psh contact and boundary concentration remain Q10-02. No published-PDF read claimed; DOI identity checked independently. Immutable retained file count: 103. Continue remaining source overlap/dependency graphs and earlier global/FN/mixed/equation proof gates.
 
 The staged source archive rebuilt in an empty directory with page text matching the checked 421-page manuscript.
+
+## 2026-10-04: complete ray reading and consolidated envelope evidence
+
+All 1,610 ray source lines/48 environments directly read with displayed proofs, comments, motto and figure code. Record: research/reviews/2026-10-04-rays-source-audit.json. Prior contiguous envelope reads covering all 2,458 lines/77 environments consolidated from their saved Q10/Q11 records, not claimed as a fresh read: research/reviews/2026-10-04-envelope-source-read-consolidation.json. All five Part I chapters now have complete first-read evidence; exact target/dependency and overlap decisions remain open.
+
+Native ray/metric proofs generally belong in SGPT. The source's d1raycomplete is a metric theorem, not a chordal-completeness theorem. Arbitrary-base parallel isometry, finite-energy meet and complete-rooftop-ray extensions have no checked Part I use; their callers are in excluded Q12/Q15 or within the removable Q11 continuation/history. Proceed with a read/caller-checked pruning unit while preserving the broader draft. Infimum slopes, integration by parts and maximality-to-zero interfaces retain their internal foundational homes. Both 64ffd2a CI checks passed (37201263492, 37201261064); a6f0cfc checks were running when last inspected.
+
+## 4 October 2026 — scoped Q11 ray pruning
+
+Complete Part I ray source first read and full envelope read-evidence consolidation bring first-pass coverage to all five Part I chapters; result-level inclusion/dependency audit remains open. Removed the whole active ray continuation after caller checks, preserved the complete old Q11 privately and redirected the broader root. Retained the missing infimum proof and proved a quantitative Cs/T cutoff comparison, giving cofinal canonical bounded-type invariance and preorder monotonicity. Two complete scoped direct reads, 20 first inspected images and all-page rendered comparison: final 415-page build passes and all final images match. Q11-04 advances to second-read, with upstream gates unchanged; 54/87 provisionally required tasks verified. Fresh source-archive rebuild and push follow. Both full-SHA a6f0cfc CI runs passed: 37202219448 and 37202216957.
+
+The tracked source archive rebuilt in an empty directory with matching 415-page text for this ray-pruning checkpoint.
