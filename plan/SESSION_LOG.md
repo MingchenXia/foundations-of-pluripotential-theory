@@ -582,3 +582,11 @@ c484d63 exact-head verify checks111537826741 and111537813978 both succeeded. Q09
 Complete BEGZ1.11 p211 and DDNL4.29 pp2079–2080 proofs/original images checked. Byte-identical retained DDNL copies have their catalog read scopes consolidated without altering either original or manifest. Two scoped reads; twenty first PDF images and all final affected image matches checked; all465 pages rendered. Review:research/reviews/2026-10-04-q09-q11-uniqueness.json. Provisional67/103 required tasks verified,30 excluded;133 tasks,47 active inputs,113 originals. Integrity/fresh archive verification follow before regular push. Continue earlier FN/positivity/envelope PDE gates and final source-overlap/whole-prequel polishing work.
 
 Final integrity/audit/build passed; tracked-source archive rebuilt in an empty directory with matching465-page text. No whole-book completion claim.
+
+## 2026-10-04 — Holder-exponential strict potential extension
+
+4d244e2 exact-head verify checks111541116202 and111541105528 both succeeded. Q07-06 proves the omitted SGPT potential-extension theorem, with exact submanifold trace, strict ambient margin, Holder exponential and rational analytic singularities. The earlier normal-pole lemma, explicit block positivity, logarithmic-sum composition and Holder projection error give fixed-index finite maximum gluing; weak ordering handles common poles. Y=X and a point are included. Exact global-normal dependency Q07-05 is registered.
+
+Exact arXiv2309.07584v3 original retained/hash-registered; complete Section6 pp19–22 proofs/images and operator/analytic conventions checked. API/Crossref identity distinguishes v3 locators from publication metadata; publisher endpoint returned HTML. Two scoped manuscript/history reads;21 first images and all14 final changed images checked; all467 pages rendered. Review:research/reviews/2026-10-04-q07-potential-extension.json. Provisional67/103 required tasks verified,30 excluded;133 tasks,48 active inputs,114 originals. Integrity/fresh archive verification follow before regular push. Global Josefson, earlier FN/positivity/envelope PDE gates and whole-prequel source/polishing work remain.
+
+Final integrity/audit/build passed; tracked-source archive rebuilt in an empty directory with matching467-page text. No whole-book completion claim.

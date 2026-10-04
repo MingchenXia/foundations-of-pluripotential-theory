@@ -28,7 +28,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q07-04` [second-read] Non-Kahler and non-nef loci including the non-big boundary case
 - `Q07-05` [second-read] FS/generalized FS, global curvature and metric theory, compact positive-metric extension with uniform constants and compact Bergman approximation; quadratic metric convention is in Q06
 - `Q07-07` [planned] Prove global Josefson on compact complex manifolds with a quasi-psh pole
-- `Q07-06` [planned] Extend Holder-exponential strictly positive submanifold potentials, preserving analytic singularities
+- `Q07-06` [second-read] Extend Holder-exponential strictly positive submanifold potentials, preserving analytic singularities
 
 ## Q09 — Non-pluripolar products
 

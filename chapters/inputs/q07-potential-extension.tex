@@ -1,0 +1,96 @@
+\subsection{Extending strictly positive potentials}
+\label{sec:strict-positive-potential-extension}
+A potential on a submanifold can be pulled back by a local holomorphic projection, but different projections give different extensions. A small normal logarithmic pole makes their exponentials comparable near the submanifold. This comparison permits finite maximum gluing while keeping the prescribed restriction exactly.
+
+\begin{lemma}\label{lem:background-logarithmic-sum}
+If $a,b\in\PSH(U,\beta)$ for a smooth closed real background $\beta$, then
+\[
+ \log(\mathrm e^a+\mathrm e^b)\in\PSH(U,\beta),
+\]
+with value $-\infty$ at their common poles. Moreover
+$\max\{a,b\}\leq\log(\mathrm e^a+\mathrm e^b)\leq\max\{a,b\}+\log2$.
+\end{lemma}
+\begin{proof}
+On a coordinate ball add a smooth potential $s$ for $\beta$. The map $H(x,y)=\log(\mathrm e^x+\mathrm e^y)$ is increasing in each variable and convex: its Hessian is $p(1-p)\left(\begin{smallmatrix}1&-1\\-1&1\end{smallmatrix}\right)$, where $p=\mathrm e^x/(\mathrm e^x+\mathrm e^y)$. The smooth chain rule makes $H(a+s,b+s)$ psh for smooth psh inputs. Decreasing convolution approximations and decreasing psh continuity give the assertion for arbitrary inputs, since $H(a+s,b+s)=\log(\mathrm e^a+\mathrm e^b)+s$. The two inequalities follow by factoring out the larger exponential, including their extended values at common poles.
+\end{proof}
+
+\begin{theorem}\label{thm:holder-positive-potential-extension}
+Let $Y\subset X$ be a nonempty connected closed complex submanifold. Suppose $\varphi\in\PSH(Y,\omega|_Y)$ satisfies
+\[
+ \omega|_Y+\ddc\varphi\geq\delta\omega|_Y\quad(\delta>0),
+\]
+and $\mathrm e^\varphi$, defined as zero at poles, is H\"older continuous. There are $\widetilde\varphi\in\PSH(X,\omega)$ and $\varepsilon>0$ such that
+\[
+ \widetilde\varphi|_Y=\varphi,\qquad
+ \omega+\ddc\widetilde\varphi\geq\varepsilon\omega.
+\]
+The extension is continuous on $X\setminus Y$, and its exponential is H\"older continuous on $X$. If $\varphi$ has rational analytic singularities, then so does $\widetilde\varphi$.
+\end{theorem}
+\begin{proof}
+If $Y=X$, take $\widetilde\varphi=\varphi$. If $Y$ is a point, its potential has a finite value; the constant extension has all the stated properties. Thus suppose $0<\dim Y<n$. Choose $0<\varepsilon<\min\{\delta/4,1/4\}$ and an exponent $0<\alpha\leq1$ for $\mathrm e^\varphi$.
+
+Let $R=R_Y$ and $b$ be given by \cref{lem:global-normal-pole}. Choose a rational $c$ with $0<c<\alpha$ so small that
+\[
+ F=\frac c2\log R,\qquad
+ \omega+\ddc F\geq4\varepsilon\omega.
+\]
+This is possible because $cb/2<1-4\varepsilon$ can be imposed. The function $F$ is smooth off $Y$, has rational analytic singularities, and is $-\infty$ on $Y$. Near $Y$, with $r(x)=\operatorname{dist}(x,Y)$,
+\begin{equation}\label{eq:normal-exponential-lower-bound}
+ R\asymp r^2,\qquad \mathrm e^F=R^{c/2}\geq C^{-1}r^c.
+\end{equation}
+Its exponential is H\"older continuous, since $R$ is smooth and the map $t\mapsto t^{c/2}$ is H\"older on bounded nonnegative intervals.
+
+Take finitely many relatively compact submanifold coordinate products $W_j$, with holomorphic projections $\pi_j:W_j\to Y$, covering $Y$. Shrinking products makes these projections defined into their corresponding tangential charts. There is one $A>0$ such that, after further shrinking near $Y$,
+\[
+ a_j=\varphi\circ\pi_j+AR,\quad b_j=F+AR
+                  \in\PSH(W_j,(1-2\varepsilon)\omega).
+\]
+Here is the positivity check. Pullback of the assumed inequality gives
+$\ddc(\varphi\circ\pi_j)\geq-(1-4\varepsilon)\pi_j^*(\omega|_Y)$. At $Y$ the smooth form
+\[
+ (1-2\varepsilon)\omega
+       -(1-4\varepsilon)\pi_j^*(\omega|_Y)+A\ddc R
+\]
+has tangential block $2\varepsilon\omega|_Y$. The form $\ddc R$ has zero tangential and mixed blocks and a positive definite normal block. On the finite cover, increasing $A$ makes the Schur complement positive, and continuity keeps the form positive on smaller products. Also $\ddc R$ is semipositive at $Y$; shrink again so that $A\ddc R\geq-\varepsilon\omega$. The lower bound for $F$ then gives the assertion for $b_j$.
+
+By the logarithmic-sum lemma the local extensions
+\[
+ \varphi_j=\log(\mathrm e^{\varphi\circ\pi_j}+\mathrm e^F)+AR
+                  \in\PSH(W_j,(1-2\varepsilon)\omega)
+\]
+restrict to $\varphi$ on $Y$. They are continuous off $Y$, and their exponentials are H\"older continuous on smaller products. We claim that for every $p\in Y\cap W_i\cap W_j$ and every $\eta>0$, on a neighborhood of $p$,
+\begin{equation}\label{eq:holder-extension-overlap}
+ \varphi_i\leq\varphi_j+\eta.
+\end{equation}
+The projections agree on $Y$ and are smooth; in smaller common coordinates their distance is at most $Cr$. H\"older continuity gives
+\[
+ |\mathrm e^{\varphi\circ\pi_i}-\mathrm e^{\varphi\circ\pi_j}|
+                         \leq C_1r^\alpha.
+\]
+Since $c<\alpha$, \eqref{eq:normal-exponential-lower-bound} makes this at most $(\mathrm e^\eta-1)\mathrm e^F$ sufficiently near $p$. Adding $\mathrm e^F$ proves \eqref{eq:holder-extension-overlap}; the common $AR$ cancels. On $Y$ both restrictions coincide, including at poles, so the inequality holds there as well.
+
+Choose nested products $W'_j\Subset U_j\Subset T_j\Subset W_j$, with $\bigcup_jW'_j\supset Y$. Let $f_j\geq0$ be smooth, compactly supported in $W_j$, zero near $\overline{W'_j}$ and at least one near $\overline{T_j}\setminus U_j$. For a fixed sufficiently small $\eta>0$, arrange $\eta\ddc f_j\leq\varepsilon\omega$ for all $j$. Then
+\[
+ \widehat\varphi_j=\varphi_j-\eta f_j
+                  \in\PSH(W_j,(1-\varepsilon)\omega).
+\]
+On $W=\bigcup_jT_j$ define $\psi(x)=\max_{x\in T_j}\widehat\varphi_j(x)$. We verify that this is a locally fixed finite maximum near $Y$, despite the changing set of indices. For $p\in Y$ choose $j$ with $p\in W'_j$. On a small neighborhood of $p$, $f_j=0$. Every index $l$ with $p\in\partial T_l$ has $f_l\geq1$ nearby, and \eqref{eq:holder-extension-overlap} with tolerance $\eta/2$ gives
+\[
+ \widehat\varphi_l\leq\varphi_j-\eta/2\leq\varphi_j.
+\]
+These are extended-value inequalities and remain valid at common poles. Such boundary indices can therefore be discarded wherever they are present. Indices with $p\notin\overline{T_l}$ are absent nearby, while those with $p\in T_l$ are present throughout a smaller neighborhood. Thus $\psi$ is there the maximum over the fixed latter indices. It is $(1-\varepsilon)\omega$-psh, continuous off $Y$, and has H\"older continuous exponential. Every summand restricts to at most $\varphi$, and the chosen $j$ gives equality. Hence $\psi|_Y=\varphi$.
+
+Take a neighborhood $G$ of $Y$ whose closure lies inside the just-constructed neighborhood, with $\partial G$ disjoint from $Y$. Both $\psi$ and $F$ are finite and continuous near this compact boundary. Choose $K$ so that $F+K>\psi$ on a boundary neighborhood, and set
+\[
+ \widetilde\varphi=
+ \begin{cases}
+  \max\{\psi,F+K\},&\text{on }G,\\
+  F+K,&\text{on }X\setminus G.
+ \end{cases}
+\]
+The definitions agree near the boundary. Maximum gluing gives $\widetilde\varphi\in\PSH(X,(1-\varepsilon)\omega)$ and the required strict positivity. Since $F|_Y=-\infty$, the restriction remains exactly $\varphi$. Continuity off $Y$ and local H\"older continuity of the exponential follow from the construction; a finite compact cover gives a global H\"older exponent and bound.
+
+Finally suppose $\varphi$ has rational analytic singularities. Holomorphic projection preserves them, and $F$ has rational analytic type by its construction. The logarithmic-sum lemma places $\varphi_j$ within $\log2$ of the maximum of these two potentials plus $AR$. \Cref{prop:rational-analytic-operations} therefore gives its analytic singularities. Smooth penalties and the locally fixed finite maxima preserve that property. The final splice is locally another such maximum near $Y$ and is smooth outside $\overline G$, so $\widetilde\varphi$ has rational analytic singularities everywhere.
+\end{proof}
+\index{K\"ahler current!submanifold potential extension}
+\index{plurisubharmonic function!H\"older exponential extension}
