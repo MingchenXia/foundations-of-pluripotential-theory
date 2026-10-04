@@ -18,7 +18,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q06-03` [second-read] Nakamaye lem:patching and lem:regularization: c depends only on fixed (Z,omega_Z)
 - `Q06-04` [second-read] Local weighted Bergman kernels, generator lower bounds, overlap comparison and patching
 - `Q06-05` [second-read] Keep quantitative lower-bound regularization separate from analytic-singularity and monotone-sequence claims
-- `Q06-06` [planned] Prove analytic bounded-growth ideal coherence and the exact required integrability bridge
+- `Q06-06` [second-read] Prove analytic bounded-growth ideal coherence and the exact required integrability bridge
 
 ## Q07 — Global potentials and positive cohomology classes
 
