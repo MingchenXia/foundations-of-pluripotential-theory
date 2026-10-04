@@ -11,7 +11,7 @@ The book develops classical potential theory, then local and global pluripotenti
 
 The active draft retains the classical/local complex foundations, the global Q07 core, provisional Q09–Q11 foundations, the reviewed convex/ample toric Q16 chapter and the analytic-space appendix core. Q09–Q11 still require a result-level overlap audit. Source-native energy-metric applications and the broader ray continuation have been removed; their full private working drafts are preserved. Q16 supplies lattice counts, projective charts, the character section basis and the exact smooth positive Guillemin reference metric. Test curves, dS/I-good classification, traces, partial Okounkov bodies, b-divisors, non-Archimedean and partial Bergman applications are excluded. Prior broader drafts and review evidence remain in the private repository.
 
-The required task count is provisional until the Part I gap audit closes. Build success and historical statement mappings are not mathematical completion. FN, remaining local mixed/equation/contact/positivity interfaces, source audit and whole-prequel polishing remain as scoped obligations.
+The required task count is provisional until the Part I gap audit closes. Build success and historical statement mappings are not mathematical completion. Remaining envelope regularity/contact interfaces, source attribution and overlap decisions, and whole-prequel polishing remain scoped obligations. The general singular-space FN interface is outside the audited Part I scope; smooth-target psh descent and smooth-center divisor realization are proved internally.
 
 ```sh
 make check      # Source integrity, dependencies, labels and citations

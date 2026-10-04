@@ -55,11 +55,6 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q11-05` [second-read] Arbitrary-mass ceiling identity and singularity-envelope idempotence
 - `Q11-06` [second-read] Relative prescribed-measure uniqueness by one-set mass concentration
 
-## A01 — Complex spaces and modifications
-
-- `A01-04` [blocked] Connected fibers, common models, singular-space psh removal and descent
-  Concrete blocker: The exact Fornæss–Narasimhan disc criterion EI-FN is a checked external-input proposal awaiting author approval or a complete internal Stein-theoretic proof. Independent connected-fiber, model and codimension-two upper-bound proofs are drafted. Stronger domination of arbitrary proper models by smooth-center sequences remains a separate sample-coverage question; it is not inferred from resolution.
-
 ## H01 — Historical and bibliographical notes
 
 - `H01-01` [planned] Pinpoint attribution for every result, linked to body labels
