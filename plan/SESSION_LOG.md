@@ -504,3 +504,11 @@ Both db795db full-SHA CI checks succeeded:37219724141 and37219721142. Four new l
 Independently retained exact EGZ1007.0076v1 and Dinew0705.0974v1; originals112. Published metadata checked separately; publisher proofs not obtained and not credited. Source read scope and five original images are precise in the review. Eighteen first manuscript images and all15 all-page-render changes after the history fit inspected. Final draft433pages, no unresolved citations/references or bad boxes. Current59/92 provisional required tasks,30 historical exclusions. Final integrity and fresh tracked-source rebuild follow before regular push.
 
 Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching433-page text. No whole-book completion claim.
+
+## 2026-10-04: continuous-density ball Dirichlet foundation
+
+Both d266057 full-SHA CI checks succeeded:37222398076 and37222395098. Q08-07 now proves subsolution algebra, continuous-density ball solvability and exact envelope, root-density plus boundary-error stability, and local C1,1 for C2 data. Exact-center automorphisms retain the positive Jacobian root; quadratic correction, the earlier Taylor theorem and bounded comparison give an internal proof. No external input added; general measurable/common-measure approximation and unweighted prescribed-measure uniqueness remain open.
+
+Complete GZ printed143–149/PDF168–174 proof read, with original145/146/149 images inspected. C5-M16/M18 retain their earlier adjudications with this new scope appended; C5-M17/M19 are accepted against the original. Two scoped direct input/history reads, seventeen first images and five core final images inspected. Forced second build and all437-page rendering have no pixel changes; identical first images retain their visual review. Final437pages have no unresolved citations/references or bad boxes. Review:research/reviews/2026-10-04-q08-dirichlet.json. Current60/93 provisional required tasks,30 historical exclusions; originals112. Final integrity and fresh tracked-source rebuild follow before regular push. Earlier FN/PDE/positivity, exact PartI overlap and whole-prequel polishing obligations stay open.
+
+Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching437-page text. No whole-book completion claim.

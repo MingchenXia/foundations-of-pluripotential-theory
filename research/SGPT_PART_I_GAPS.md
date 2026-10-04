@@ -83,3 +83,7 @@ Q02-06 proves the exponential input from the earlier cutoff Riesz decomposition,
 ## Continuous-density prerequisite for the mixed inequality
 
 Q08-06 now supplies the positive-semidefinite matrix formulas, upper-test characterization, internally proved constant elliptic distributional bridge and bounded mixed lower bound for continuous Lebesgue densities. This is a recursive prerequisite to the delegated thm:Yau_rel uniqueness proof, not the general common-measure theorem itself. Exact EGZ/Dinew first preprints and published metadata were checked; no quoted local Dirichlet, energy or stability result is adopted. Review: research/reviews/2026-10-04-q08-mixed-continuous.json. Current provisional scope59/92 verified, with30 historical exclusions.
+
+## Continuous-density Dirichlet prerequisite
+
+Q08-07 proves the local ball equation for continuous nonnegative density and continuous boundary value, the bounded-subsolution envelope, root-density stability with the boundary error, and C1,1 regularity for C2 root/boundary data. Its proof uses exact-center automorphisms and the earlier internal linearization/Taylor foundations. Exact GZ printed143–149 was paired with C5-M16/M17/M18/M19; no Dirichlet result is imported. Two scoped reads and final437-page evidence: research/reviews/2026-10-04-q08-dirichlet.json. Current provisional scope60/93 verified, with30 historical exclusions. Measurable/common-measure approximation, unweighted relative uniqueness, earlier FN/PDE/positivity gates and the whole PartI overlap/polishing audit remain open.
