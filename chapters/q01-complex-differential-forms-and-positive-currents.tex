@@ -111,6 +111,46 @@ Given a complex $p$-plane, choose coordinates in which it is $z_{p+1}=\cdots=z_n
 
 For $(1,1)$-forms, weak and strong positivity coincide: writing the form as $\mathrm{i}\sum a_{j\bar k}\mathrm{d}z_j\wedge\mathrm{d}\bar z_k$, the plane criterion is positivity of its Hermitian matrix, and diagonalization expresses it as a sum of generators. In general the two notions differ. For example in dimension four, $\theta=\mathrm{d}z_1\wedge\mathrm{d}z_2+\mathrm{d}z_3\wedge\mathrm{d}z_4$ gives a weakly positive $\theta\wedge\bar\theta$ which is not strongly positive. A sum of decomposable rank-one Hermitian forms equal to this rank-one form would have every summand proportional to $\theta$; but $\theta\wedge\theta\ne0$, whereas a decomposable two-form has square zero.
 
+The wedge of positive $(1,1)$-forms also controls a quadratic form on all real $(1,1)$-forms. We first express it in matrices. For Hermitian $n\times n$ matrices define the \emph{mixed discriminant}\index{mixed discriminant} $D(A_1,\ldots,A_n)$ to be $1/n!$ times the coefficient of $t_1\cdots t_n$ in $\det(\sum_jt_jA_j)$. Expansion by columns shows that it is symmetric and real multilinear, with $D(A,\ldots,A)=\det A$. Writing $\omega_A=\mathrm{i}\sum_{j,k}A_{j\bar k}\mathrm{d}z_j\wedge\mathrm{d}\bar z_k$, expansion gives
+\[
+ \omega_{A_1}\wedge\cdots\wedge\omega_{A_n}
+                  =D(A_1,\ldots,A_n)\omega_I^n.
+\]
+Thus $D$ is nonnegative on semipositive matrices. It is positive on positive definite matrices: subtract a common $\varepsilon I$ from each matrix and expand, retaining the positive term $\varepsilon^nD(I,\ldots,I)$.
+
+\begin{lemma}\label{lem:mixed-discriminant-signature}
+For $n\geq2$ and positive definite $A_3,\ldots,A_n$, the real symmetric form
+\[
+ q(M,N)=D(M,N,A_3,\ldots,A_n)
+\]
+on the real vector space of Hermitian matrices has signature $(1,n^2-1)$. For every positive definite $H$, its restriction to $q(M,H)=0$ is negative definite.
+\end{lemma}
+\begin{proof}
+For $n=2$, expansion of the determinant gives
+$q(M,N)=(\operatorname{tr}M\operatorname{tr}N-\operatorname{tr}(MN))/2$.
+It is positive on the scalar matrices and negative definite on the trace-zero matrices, since $\operatorname{tr}(M^2)$ is the sum of the squares of the real eigenvalues.
+
+Suppose both assertions hold in dimension $n-1$, where $n\geq3$. Simultaneous congruence multiplies $D$ by $|\det C|^2$, by its determinant definition. Choose $C=A_n^{-1/2}$ to arrange $A_n=I$. For a kernel vector $M$, test $q(M,N)=0$ with the $i$th diagonal rank-one matrix $P_i$. Write $M^{(i)}$ for deletion of row and column $i$, and put
+\[
+ q_i(B,C)=D_{n-1}(B,C,A_3^{(i)},\ldots,A_{n-1}^{(i)}).
+\]
+All fixed matrices here remain positive definite. Cofactor expansion in the $P_i$ slot and then in the last $I$ slot gives
+\[
+ q(M,P_i)=\frac1nq_i(M^{(i)},I^{(i)}),\qquad
+ q(M,M)=\frac1n\sum_{i=1}^nq_i(M^{(i)},M^{(i)}).
+\]
+The factor $1/n$ is the ratio $(n-1)!/n!$ of the coefficient normalizations. Every $M^{(i)}$ is primitive for $I^{(i)}$. By induction each term in the second sum is nonpositive, with equality only when $M^{(i)}=0$. Since $q(M,M)=0$, all these submatrices vanish. For $n\geq3$ every entry occurs in one of them, so $M=0$.
+
+The space of positive definite fixed tuples is connected. Along its straight-line paths the coefficients of $q$ vary continuously; its eigenvalues cannot cross zero because the kernel was just shown to vanish. Its signature is therefore the signature when all fixed matrices equal $I$. At that tuple, determinant expansion gives
+\[
+ q(M,N)=\frac{\operatorname{tr}M\operatorname{tr}N-\operatorname{tr}(MN)}{n(n-1)},
+\]
+so the signature is $(1,n^2-1)$.
+
+Since $q(H,H)>0$, its orthogonal complement is nondegenerate: a vector in its kernel would be orthogonal to the whole space. The signature makes this complement negative definite, proving the primitive assertion in every dimension.
+\end{proof}
+\index{Hodge index theorem!pointwise mixed form}
+
 \begin{definition}\label{def:positive-current}
 A current $T$ of bidegree $(p,p)$ is positive if $T(\varphi)\ge0$ for every compactly supported smooth test form $\varphi$ which is strongly positive of bidegree $(n-p,n-p)$. Weak convergence means convergence on every smooth test form. In a coordinate chart, the trace measure is
 $\mu_T(\chi)=T(\chi\beta^{n-p})$.
