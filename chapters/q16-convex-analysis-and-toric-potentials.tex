@@ -306,3 +306,94 @@ For smooth entries define the mixed measure by $n!$ times their mixed Hessian di
 \]
 where the empty-sum measure is zero for $n>0$. Vague continuity of every diagonal term gives a unique weak limit of the smooth mixed measures. Their positivity gives a positive Radon limit. Multilinearity, symmetry and the diagonal identity pass from the smooth case to this limit. The same formula proves continuity and uniqueness. In dimension zero the empty mixed measure is unit mass on the point.
 \end{proof}
+
+\section{Lattice points and volume}
+\label{sec:lattice-points-and-volume}
+Counting characters of a torus leads to lattice points in a convex body. A criterion that determines those points only up to a bounded distance from the body still determines the leading asymptotic. The reason is that the boundary has zero ambient volume.
+
+Use coordinates of a basis of $M$ to identify $M_{\mathbb R}$ with $\mathbb R^n$, with its Euclidean norm and lattice-normalized volume. For a convex body $K$ and $\varepsilon>0$ put
+\[
+ K^\varepsilon=\{p:\operatorname{dist}(p,K)\leq\varepsilon\},
+ \qquad K_\varepsilon=\{p:p+\overline B_\varepsilon\subset K\}.
+\]
+The outer neighborhood is $K+\overline B_\varepsilon$. The inner set can be empty; it is empty whenever $K$ has smaller dimension and $n>0$.
+
+\begin{definition}\label{def:hausdorff-convex-body-distance}
+For convex bodies $K,L$ their Hausdorff distance is
+\[
+ d_{\mathrm H}(K,L)=\max\left\{\sup_{p\in K}\operatorname{dist}(p,L),
+                       \sup_{q\in L}\operatorname{dist}(q,K)\right\}.
+\]
+\end{definition}
+\index{Hausdorff metric!on convex bodies}
+
+\begin{proposition}\label{prop:convex-body-volume-continuity}
+For $n>0$,
+\[
+ d_{\mathrm H}(K,L)=\max_{|x|=1}|h_K(x)-h_L(x)|.
+\]
+If convex bodies $K_j$ converge to $K$ in this distance, their ambient volumes converge to that of $K$. In particular,
+\[
+ \lim_{\varepsilon\downarrow0}\operatorname{vol}(K^\varepsilon)
+ =\operatorname{vol}(K),\qquad
+ \lim_{\varepsilon\downarrow0}\operatorname{vol}(K_\varepsilon)
+ =\operatorname{vol}(K).
+\]
+In dimension zero the unique convex body has volume one and Hausdorff distance zero from itself.
+\end{proposition}
+\begin{proof}
+If $d_{\mathrm H}(K,L)\leq\varepsilon$, approximate each point of one body by a point of the other within $\varepsilon$. The pairing with a unit vector shows $|h_K-h_L|\leq\varepsilon$. Conversely this support-function bound implies $K\subset L+\overline B_\varepsilon$: a point outside the latter closed convex set would be strictly separated from it, whereas its support function is $h_L(x)+\varepsilon|x|$. Interchanging the bodies proves the equality. The support formula gives the triangle inequality; separation shows that equal support functions determine equal bodies. Thus $d_{\mathrm H}$ is a metric.
+
+Write $\varepsilon_j=d_{\mathrm H}(K_j,K)\to0$. All sufficiently late $K_j$ lie in one bounded set. A point outside $K$ has positive distance from it, and hence eventually lies outside $K_j$. If $p$ is an interior point of $K$, choose $r>0$ with $p+\overline B_r\subset K$. Then
+\[
+ h_{K_j}(x)\geq h_K(x)-\varepsilon_j
+          \geq\langle p,x\rangle+r-\varepsilon_j
+                         \qquad(|x|=1).
+\]
+For $\varepsilon_j<r$, separation forces $p\in K_j$. If $K$ has interior, its boundary has measure zero by \cref{lem:finite-dimensional-convex-separation}; thus the characteristic functions converge almost everywhere. If $K$ has smaller dimension, it is itself null and the same conclusion follows from the outside-point argument. Dominated convergence proves volume continuity.
+
+The outer neighborhoods decrease to the compact set $K$ and have finite volume, giving their limit also directly by measure continuity from above. The inner sets increase, as $\varepsilon$ decreases, to the interior of $K$ when $n>0$; adding the null boundary does not change its volume. In dimension zero both neighborhoods are the single point for every $\varepsilon$.
+\end{proof}
+\index{convex body!volume continuity}
+
+\begin{theorem}\label{thm:convex-body-lattice-riemann-sums}
+Let $K\subset M_{\mathbb R}$ be a convex body, $a_k\in M_{\mathbb R}$, and $r_k\geq0$ with $r_k/k\to0$. For every continuous function $f:M_{\mathbb R}\to\mathbb R$,
+\[
+ \lim_{k\to\infty}\frac1{k^n}
+       \sum_{m\in (kK)^{r_k}\cap(M+a_k)}f(m/k)
+                         =\int_K f(p)\,\mathrm dp.
+\]
+Here $(kK)^0=kK$. In particular $k^{-n}\#(kK\cap M)\to\operatorname{vol}(K)$. The measure and exponent use the ambient dimension, including when $K$ has smaller dimension. The estimates are independent of the lattice translations $a_k$.
+\end{theorem}
+\begin{proof}
+For $n=0$ there is one point in every set and both expressions are its function value. Suppose $n>0$ and let $Q=[0,1)^n$ be the half-open fundamental cube. The cells
+\[
+ \frac mk+\frac1k Q,\qquad m\in M+a_k,
+\]
+partition $M_{\mathbb R}$; each has volume $k^{-n}$ and its points are within $c/k$ of its anchor $m/k$, where $c=\sqrt n$. Let $U_k$ be the union of cells whose anchors occur in the sum. Then
+\[
+ K_{c/k}\subset U_k\subset K^{(r_k+c)/k}.
+\]
+For the left inclusion, the anchor of the cell containing $p\in K_{c/k}$ lies in $K$, and hence is selected. The right inclusion follows from the anchor's distance at most $r_k/k$ from $K$. The volume limits in \cref{prop:convex-body-volume-continuity} show that $\operatorname{vol}(U_k\mathbin\triangle K)\to0$ and that the cell volumes stay bounded. This also covers a lower-dimensional $K$, for which the outer bound tends to zero.
+
+The anchors and cells eventually lie in the fixed compact set $K^1$. Let $\omega_f$ be the modulus of continuity of $f$ there. Comparing the sum to its cell integrals gives
+\[
+ \left|k^{-n}\sum_m f(m/k)-\int_{U_k}f(p)\,\mathrm dp\right|
+            \leq\omega_f(c/k)\operatorname{vol}(U_k)\longrightarrow0.
+\]
+Boundedness of $f$ on that compact set and the symmetric-difference estimate give $\int_{U_k}f\to\int_Kf$. Taking $f=1$, $r_k=0$ and $a_k=0$ proves the count formula. Every bound used the cell diameter rather than its position, proving the stated translation uniformity.
+\end{proof}
+\index{lattice points!volume asymptotic}
+\index{Riemann sum!on a convex body}
+
+\begin{corollary}\label{cor:bounded-boundary-error-lattice-count}
+Suppose subsets $S_k\subset M$ satisfy
+\[
+ kK\cap M\subset S_k\subset(kK)^{r_k}\cap M,
+                         \qquad r_k\geq0,\quad r_k/k\to0.
+\]
+Then $k^{-n}\#S_k\to\operatorname{vol}(K)$. In particular a fixed boundary error has no effect on the leading count, even when the body has zero ambient volume.
+\end{corollary}
+\begin{proof}
+The lower and upper counts have the same limit by \cref{thm:convex-body-lattice-riemann-sums}; apply the two inequalities.
+\end{proof}

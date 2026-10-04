@@ -367,3 +367,13 @@ The complete convex unit and its changed preface/history seams have two direct m
 The complete source convex appendix and exact selected Hörmander proofs were checked; nine original pages inspected and Springer DOI metadata checked independently online. Real measures are constructed internally by inverse subgradients, with vague continuity, C1,1 determinant density and positive mixed polarization. Lower-dimensional full-mass addition and escaping mass receive explicit examples. Continue ample toric prerequisites and the exact Part I proof-gap/overlap audit, preserving earlier internal proof gates.
 
 Fresh source archive rebuilt in an empty directory with matching page text for this 401-page prequel checkpoint.
+
+## 2026-10-04: convex-body volumes and lattice counts
+
+The exact SGPT ample toric dimension proof identifies the convex-body lattice count and volume-continuity prerequisites. Four new saved definitions/results, complete proofs, preceding seam and convex history have two direct reads around build/visual checks. All 17 first selected integrated images and both final changed pages inspected; other selected final rendered images match the inspected first version. The count theorem statement is kept together. Final draft: 403 pages; zero audit errors, unresolved references/citations or overfull boxes. Review: research/reviews/2026-10-04-q16-lattice.json.
+
+Fundamental cells give weighted counts under arbitrary lattice translations and sublinear boundary errors, with lower-dimensional and dimension-zero cases explicit. No general semigroup input is needed. The published Kaveh–Khovanskii PDF was independently found online and retained; exact statements/Riemann-sum explanation p. 939 and introductory/title pages checked, all four original images inspected. This is not a full source proof audit. CLS11 metadata checked; its author's host returned HTTP 503, so no proof read is claimed. The exact source Guillemin metric and global character basis are confirmed remaining Q16-02 prerequisites.
+
+Q16-05 is verified with verified earlier prerequisites. The current scope has 51 verified obligations among 82 provisionally required and 29 excluded historical tasks; these are not an overall completion percentage. Both e354adc CI checks passed (37194323438 and 37194320828). Continue ample toric geometry/reference-metric proofs and the Part I gap/overlap audit, preserving earlier internal analytic/global proof gates.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 403-page checkpoint.

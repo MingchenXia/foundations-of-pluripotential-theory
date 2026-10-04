@@ -50,7 +50,7 @@ Next coherent writing unit: **Q16**.
 
 ## Q16 — Convex and ample toric foundations
 
-- `Q16-02` [planned] Ample toric geometric prerequisites and lattice-volume counting for SGPT Part I
+- `Q16-02` [planned] Ample toric geometric prerequisites for SGPT Part I, including projective charts, characters and the reference metric
 
 ## A01 — Complex spaces and modifications
 
