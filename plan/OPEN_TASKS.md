@@ -37,6 +37,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q09-03` [second-read] Monotonicity with singularity type and bounded-perturbation invariance
 - `Q09-04` [drafting] Full mass, convergence and bigness from positive mass with exact hypotheses
 - `Q09-05` [second-read] Construct the spherical potential and prove zero Lelong numbers, trivial multiplier ideals and zero non-pluripolar mass for the diffuse polar measure
+- `Q09-06` [second-read] Non-pluripolar common-measure mixed and convex-combination lower bounds
 
 ## Q10 — Envelopes and model potentials
 
@@ -51,6 +52,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q11-02` [drafting] Weak geodesics and subgeodesics on product domains and strips
 - `Q11-04` [second-read] Perron extremal slopes and bounded singularity-type cutoff stability
 - `Q11-05` [second-read] Arbitrary-mass ceiling identity and singularity-envelope idempotence
+- `Q11-06` [second-read] Relative prescribed-measure uniqueness by one-set mass concentration
 
 ## A01 — Complex spaces and modifications
 
