@@ -1,6 +1,6 @@
 # Sample coverage and dependency audit queue
 
-The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 173 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray/good-singularity claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
+The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 177 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray/good-singularity claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
 
 | Sample input | Results inventoried | Natural homes | Review status |
 |---|---:|---|---|
@@ -13,7 +13,7 @@ The complete retained active root is `references/originals/sample-book/book.tex`
 | `chapter_Okounkov.tex` | 86 | Q17 | inventory-only; proof obligations pending |
 | `chapter_bdiv.tex` | 32 | Q18 | inventory-only; proof obligations pending |
 | `chapter_bdiv_sec_11_3.tex` | 3 | Q18 | inventory-only; proof obligations pending |
-| `chapter_comp.tex` | 55 | Q12, Q10 | all 1810 lines read; preorders/mass/dS/completeness/mixed-background/operations/Lelong/multiplier scopes reconstructed; nearby-minimal/positive-volume scopes reconstructed; elementary definition now mapped; five wider I-criterion/roof/subgeodesic claims pending |
+| `chapter_comp.tex` | 55 | Q12, Q10 | all 1810 lines read; preorders/mass/dS/completeness/mixed-background/operations/Lelong/multiplier scopes reconstructed; nearby-minimal/positive-volume scopes reconstructed; elementary definition now mapped; roof/subgeodesic scopes reconstructed; fifty-four of fifty-five claims mapped; wider singular-modification/all-point I-criterion pending |
 | `chapter_envelopes.tex` | 77 | Q10, Q11 | complete source read, partial envelope/energy statement map; remaining claims and broader scopes pending |
 | `chapter_history.tex` | 1 | H01 | inventory-only; proof obligations pending |
 | `chapter_npp.tex` | 47 | Q08, Q09, Q10 | partial extrapolation/domination map; remaining claims and broader scopes pending |
