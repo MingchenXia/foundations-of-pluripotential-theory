@@ -115,3 +115,7 @@ Q08-12 closes the limiting equation and zero boundary trace in the compact-suppo
 ## Mixed truncation-energy prerequisite
 
 Q08-13 closes the bounded local mixed-energy estimate and energy-controlled mixed-product continuity with bounded limits. This supplies the canonical mixed-limit step for the general common-measure inequality required by SGPT PartI relative uniqueness. Review:research/reviews/2026-10-04-q08-mixed-energy.json. Provisional66/100 required tasks verified,30 historical exclusions; general mixed inequality/relative uniqueness and earlier book gates remain.
+
+## General local mixed inequality prerequisite
+
+Q08-14 closes the bounded common-Radon-measure mixed and sum inequalities, with all grid solvability/energy/stability inputs proved internally. This is the local input for the non-pluripolar relative uniqueness foundation. Review:research/reviews/2026-10-04-q08-common-measure.json. Provisional67/101 required tasks verified,30 exclusions; non-pluripolar extension, unweighted relative uniqueness and earlier book-wide gates remain.
