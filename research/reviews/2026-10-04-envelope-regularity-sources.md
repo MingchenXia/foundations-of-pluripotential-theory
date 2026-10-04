@@ -36,4 +36,4 @@ The primary SMF page confirms the English title, authors, 57 (2024), no.5, pp.13
 
 These sources use `i partial barpartial`; the book uses `dd^c = i/(2pi) partial barpartial`. Dividing source background forms by 2pi keeps the potential unchanged. Laplacian and volume constants must then be recalculated in the book's declared metric convention. No source estimate is copied without this conversion.
 
-All five fetched PDF versions are retained separately with URLs, dates, exact read scopes and SHA-256 entries. No existing original was overwritten. There are now 110 immutable retained files. The next dependency-ready proof task is Q05-02; the three envelope PDE scopes remain open.
+All five fetched PDF versions are retained separately with URLs, dates, exact read scopes and SHA-256 entries. No existing original was overwritten. There are now 110 immutable retained files. Q05-02's own task prerequisites are verified, but its enforced whole-chapter prerequisite A01 remains unfinished; the three envelope PDE scopes remain open.
