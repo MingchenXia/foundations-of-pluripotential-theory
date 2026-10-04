@@ -167,3 +167,11 @@ Activated Q11 and twice directly read every new statement/proof and its history 
 Read the sample envelope chapter contiguously through line 1490, including the complete finite-energy cocycle proof; later monotone continuity is the next source read. The exact Lu preprint provides the reconstructed IBP route, with earlier Xia attribution checked in its introduction. Twelve exact energy claims expand the partial semantic map to 44. Both GitHub builds at pushed 00e6a06 passed (37166310669/37166307982). Continue energy stability, geodesics, metric completeness and the remaining book; keep regular private pushes and draft PR #5 current. Whole-book writing and polishing remain unfinished.
 
 The 338-page source archive rebuilt in an empty directory with matching extracted page text; release log retained. This checkpoint is ready for the authorized regular private GitHub push.
+
+## 2026-10-04: energy continuity and rooftop stability
+
+Wrote and directly read twice the full new continuity/rooftop unit and revised energy history. Uniform tails prove increasing-net continuity; tail envelopes prove L1 upper semicontinuity and compact sublevels. Auxiliary bounded-type energy gives full-mass stability about any full-mass gamma, with (n+1)A bound. Rooftop contact measures give finite energy directly, without an equation input; affine/rooftop derivatives give the energy diamond. Added a smooth curve L1/energy counterexample. First 33 affected images and nine final changed images were inspected; final draft: 346 pages. Review: research/reviews/2026-10-04-q11-stability.json.
+
+Completed the direct source read of all 2458 lines of the sample envelope chapter. Ten additional claims make 54 scoped semantic targets. Independently retrieved exact DDNL preprint and published originals and read complete Section 3.1 of each; checked Xia's original introduction for attribution. Distinct reading scopes and versions are retained. Both ef07f7c GitHub builds passed (37167738435/37167736479). Continue geodesics, metric completeness and rays, then later chapters, with regular private pushes; relative equations and earlier gates remain unfinished, with 48/110 verified.
+
+The 346-page source archive rebuilt fresh with matching extracted page text; release evidence retained. Ready for the authorized regular private GitHub push.
