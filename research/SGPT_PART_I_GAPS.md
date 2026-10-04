@@ -103,3 +103,7 @@ Q08-09 closes the bounded-subsolution moment criterion and its preservation unde
 ## Canonical self-integral prerequisite
 
 Q08-10 closes fixed-measure continuity and the canonical moving-measure absolute self-integral convergence in the bounded-subsolution/compact-support regime. These are recursive prerequisites of local mixed inequalities and relative prescribed-measure uniqueness. No equation stability imported. Review:research/reviews/2026-10-04-q08-grid-convergence.json. Current provisional63/97 required tasks verified,30 historical exclusions. Capacity/limit-equation and the earlier book gates remain.
+
+## Canonical capacity prerequisite
+
+Q08-11 closes local outer-capacity convergence and the finite-mass/total-variation estimate for bounded truncations of the canonical limit. It uses the earlier self-integral result and strict shifted comparison, with only second moments. The limiting boundary trace and equation still need the bounded-subsolution comparison. Review:research/reviews/2026-10-04-q08-grid-capacity.json. Current provisional64/98 verified,30 historical exclusions; mixed/uniqueness and earlier gates remain.

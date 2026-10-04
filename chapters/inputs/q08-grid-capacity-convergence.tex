@@ -1,0 +1,110 @@
+\subsection{Capacity convergence and truncated measures}
+\label{sec:canonical-grid-capacity-convergence}
+The absolute energy error now replaces a common density bound in the comparison argument. Truncation controls the part of the measure carried by large negative values. All products in this argument still have bounded potentials.
+
+For finite positive measures $\alpha,\beta$ on $B$ we use the total variation distance
+\[
+ \|\alpha-\beta\|_{\mathrm{TV}}
+ =\sup\left\{\left|\int f\,\mathrm d(\alpha-\beta)\right|:
+                   f\text{ Borel and real},\ |f|\leq1\right\}.
+\]
+By \cref{prop:continuous-density}, the same supremum is obtained with $f\in C_c(B)$: approximate in $L^1(\alpha+\beta)$ and clamp to $[-1,1]$.
+
+\begin{lemma}\label{lem:zero-boundary-truncation-mass}
+For $\varphi\in\mathcal E_0(B)$ and $T>0$ put $\varphi_T=\max\{\varphi,-T\}$. Then $\varphi_T\in\mathcal E_0(B)$ and, for every $p\geq1$,
+\[
+ \int_B(\ddc\varphi_T)^n=\int_B(\ddc\varphi)^n,
+ \qquad e_p(\varphi_T)\leq e_p(\varphi),
+\]
+\begin{equation}\label{eq:zero-boundary-truncation-variation}
+ \|(\ddc\varphi_T)^n-(\ddc\varphi)^n\|_{\mathrm{TV}}
+                         \leq2e_p(\varphi)T^{-p}.
+\end{equation}
+For every Borel $E\subset B$,
+\begin{equation}\label{eq:energy-measure-capacity-modulus}
+ \int_E(\ddc\varphi)^n
+       \leq T^n\operatorname{Cap}_B(E)+e_p(\varphi)T^{-p}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+The two potentials agree on a boundary collar, so their difference has compact support in $B$. The truncated measure is finite: it agrees with the original measure on that collar, and is locally finite on the remaining compact set. Symmetry and the recursive definition give
+\[
+ (\ddc\varphi_T)^n-(\ddc\varphi)^n
+ =\ddc\left((\varphi_T-\varphi)
+       \sum_{k=0}^{n-1}(\ddc\varphi_T)^k
+                              \wedge(\ddc\varphi)^{n-1-k}\right).
+\]
+The current in parentheses has compact support. Test with a smooth cutoff equal to one near that support; its $\ddc$ vanishes there. Integration proves equality of the total masses. The zero boundary limit is preserved, giving membership in $\mathcal E_0(B)$.
+
+Maximum locality identifies the two measures on $\{\varphi>-T\}$. Equality of total mass therefore identifies their masses on $F_T=\{\varphi\leq-T\}$ as well. The truncated energy has weight $T^p$ on $F_T$, whereas the original weight is at least $T^p$. This proves the energy inequality. Both remaining measure masses are at most $e_p(\varphi)T^{-p}$, giving \eqref{eq:zero-boundary-truncation-variation}. Finally $(\varphi_T+T)/T$ is a capacity competitor. Split $E$ between $F_T$ and its complement, use maximum locality on the complement, and bound the mass on $F_T$ by its energy. This proves \eqref{eq:energy-measure-capacity-modulus}.
+\end{proof}
+\index{local energy!truncation mass and capacity}
+
+\begin{proposition}\label{prop:energy-controlled-local-capacity-tails}
+Let $\varphi_j\in\mathcal E_0(B)$ converge in $L^1_{\loc}(B)$ to a canonical nonpositive psh function $u$. Suppose $E_p=\sup_je_p(\varphi_j)<\infty$ for some $p\geq1$. For $T>0$,
+\[
+ \operatorname{Cap}_B(\{\varphi_j<-T\})
+             \leq2^{n+p}(n+1)!E_pT^{-(n+p)}.
+\]
+For every $K\Subset B$ there is $C_{K,p}$, independent of $j,u,T$, such that
+\begin{equation}\label{eq:energy-limit-capacity-tail}
+ \operatorname{Cap}_B^*(K\cap\{u<-T\})
+                \leq C_{K,p}E_p^{p/(n+p)}T^{-p}.
+\end{equation}
+In particular the pole set of $u$ has zero outer capacity locally.
+\end{proposition}
+\begin{proof}
+Fix a capacity competitor $0\leq h\leq1$. For the first estimate restrict $(\ddc h)^n$ to $\{\varphi_j<-T\}$. This measure is finite because the sublevel set is relatively compact, and it is dominated by the measure of the bounded subsolution $h$. The tail estimate in \cref{thm:bounded-subsolution-local-energy-moments}, whose energy coefficient is independent of the restricted mass, gives the asserted bound. Take the supremum over $h$. Since the sublevel set is open, this also bounds its outer capacity.
+
+For the limit estimate choose $K\subset U\Subset L^\circ\Subset B$, with $U$ open and $L$ compact. The bounded CLN estimate gives a uniform bound on $\int_L(\ddc h)^n$. Apply the moment estimate to the finite measure $\mathbf1_L(\ddc h)^n$ and the test $\varphi_j$. It gives
+\[
+ \int_L(-\varphi_j)^p(\ddc h)^n
+                         \leq C_{K,p}E_p^{p/(n+p)}.
+\]
+For fixed $S>0$ the bounded truncations $\max\{\varphi_j,-S\}$ converge in local volume $L^1$ to $\max\{u,-S\}$. By \cref{lem:bounded-psh-fixed-measure-continuity} they converge in $L^1$ of the fixed restricted measure. The $p$th power is Lipschitz on $[0,S]$, so its integral also converges. Let $S\to\infty$ by monotone convergence. This gives the same bound for $\int_L(-u)^p(\ddc h)^n$. Chebyshev's inequality and the supremum over $h$ bound the capacity of the open set $U\cap\{u<-T\}$, which covers the set in \eqref{eq:energy-limit-capacity-tail}. Finally let $T\to\infty$ on each compact set to treat the poles.
+\end{proof}
+
+\begin{theorem}\label{thm:canonical-grid-capacity-convergence}
+Under the hypotheses of \cref{thm:canonical-grid-self-integral-convergence}, the relabeled subsequence satisfies $U_j\to u$ locally in outer capacity. Put $E_2=\sup_je_2(U_j)$. Every bounded truncation $u_T=\max\{u,-T\}$ has finite total Monge--Amp\`ere mass at most $m$, and
+\begin{equation}\label{eq:canonical-grid-truncated-measure-limit}
+ \|(\ddc u_T)^n-\mu\|_{\mathrm{TV}}\leq2E_2T^{-2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Write $a_j=\max\{U_j,-T\}$ and $b=\max\{u,-T\}$, with $T$ fixed for the moment. They lie in $[-T,0]$ and $a_j\to b$ in local volume $L^1$. Put
+\[
+ \varepsilon_j=\int_B|U_j-u|\,\mathrm d\mu_j\longrightarrow0.
+\]
+For $\delta>0$, the set $\{a_j<b-\delta/2\}$ is relatively compact: $b\leq0$ and $a_j$ has zero boundary limit. Apply \cref{lem:local-comparison-capacity-sublevels} with $s=t=\delta/2$, then use the truncation lemma:
+\[
+ \begin{aligned}
+ \operatorname{Cap}_B(\{a_j<b-\delta\})
+ &\leq2^{n+1}\delta^{-(n+1)}
+                      \int_B(b-a_j)_+(\ddc a_j)^n\\
+ &\leq2^{n+1}\delta^{-(n+1)}
+                         \left(\varepsilon_j+\frac{2E_2}{T}\right).
+ \end{aligned}
+\]
+Indeed truncation does not increase $|U_j-u|$, the positive integrand is at most $T$, and the total variation error is at most $2E_2/T^2$.
+
+The upper difference has capacity tending to zero on every compact $L\Subset B$. Choose an open set $G$ of arbitrarily small capacity on whose complement $b$ is continuous. On $L\setminus G$, upper semicontinuity, Hartogs' lemma with a constant majorant and a finite cover give $a_j-b<\delta$ eventually. Thus $L\cap\{a_j>b+\delta\}\subset G$. Both bounded functions are quasi-continuous. With $K\Subset L^\circ$, \cref{lem:quasi-continuous-level-capacity} now turns the two ordinary level bounds into
+\[
+ \limsup_j\operatorname{Cap}_B^*(K\cap\{|a_j-b|>\delta\})
+                      \leq C_n\delta^{-(n+1)}E_2/T.
+\]
+The preceding tail proposition controls $\{U_j<-T\}$ uniformly and $K\cap\{u<-T\}$. Outside those two sets the truncated and original differences agree. First let $j\to\infty$, then $T\to\infty$; all three capacity bounds tend to zero. This proves the stated local outer-capacity convergence, including the null pole set of $u$.
+
+For each fixed $T$, truncation preserves this capacity convergence. Bounded-product continuity in \cref{thm:bt-capacity-continuity} gives
+\[
+ (\ddc a_j)^n\longrightarrow(\ddc u_T)^n
+                                    \quad\text{weakly on }B.
+\]
+\Needspace{6\baselineskip}
+The measures on the left have total mass $m$ by the truncation lemma. Testing with nonnegative compact cutoffs and exhausting $B$ proves that the limit has mass at most $m$. Also
+\[
+ \|(\ddc a_j)^n-\mu_j\|_{\mathrm{TV}}\leq2E_2/T^2.
+\]
+Pass to the limit against any real $f\in C_c(B)$ with $|f|\leq1$, using the weak convergence of $\mu_j$ to $\mu$. The resulting bound extends to bounded Borel tests by \cref{prop:continuous-density} for the finite measure $(\ddc u_T)^n+\mu$. Taking their supremum proves \eqref{eq:canonical-grid-truncated-measure-limit}.
+\end{proof}
+\index{convergence!capacity for energy-controlled potentials}
+\index{Monge--Amp\`ere measure!truncated canonical limit}

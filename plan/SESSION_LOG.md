@@ -542,3 +542,11 @@ Final integrity/audit/build passed; the tracked-source archive rebuilt in an emp
 Exact Dinewv1 Theorem2.2 pp.4–5 statements and both original images reread; Ce1/Ce2 bibliography metadata on12 consulted only. Two scoped input/history reads; fourteen first images, two second core images and all five final changed images inspected. All449 pages rendered for second/final comparisons. No unresolved citations/references or bad boxes. Review:research/reviews/2026-10-04-q08-grid-convergence.json. Current63/97 provisional required tasks,30 excluded;127 total tasks,41 active inputs,112 originals. Integrity and fresh archive verification follow before push.
 
 Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching449-page text. No whole-book completion claim.
+
+## 2026-10-04 — Canonical capacity and truncated measure limits
+
+8b336f4 exact-head verify check runs111526473112 and111526464861 both succeeded. Q08-11 closes local outer-capacity stability using the existing shifted comparison directly, with no T^n coefficient loss. Exact truncation mass and energy reduction yield total variation and a capacity modulus. Uniform moments give approximant/limit capacity tails. The j-first, T-second limit needs only second moments. Bounded truncations of the canonical limit have mass at most m and total variation distance at most2E2/T^2 from the prescribed measure. No unbounded product or limit boundary trace/equation is assumed.
+
+Two scoped reads; fourteen first images and all three second changes161–163 inspected; all451 pages rendered. Exact Dinewv1 Theorem2.3 statement/image checked; its quoted proof is not adopted. Temporary Cegrell2004 primary images concern future mixed-energy research only. Review:research/reviews/2026-10-04-q08-grid-capacity.json. Current64/98 provisional required tasks,30 excluded;128 total tasks,42 active inputs,112 originals. Integrity and fresh archive verification follow before push. Bounded-subsolution solvability, mixed inequality, relative uniqueness and earlier book gates remain.
+
+Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching451-page text. No whole-book completion claim.
