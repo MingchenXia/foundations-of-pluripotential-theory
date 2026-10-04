@@ -930,3 +930,203 @@ Since $P_\theta[u]\leq\psi$, subtraction on the common finite locus gives $P_\th
 If the two model envelopes agree, $M(u)=M(v)$ and equal-mass extrapolation gives $M(\eta')=M(u)$. Monotonicity yields $M(\eta)\geq M(u)$, whereas $P_\theta[\eta]\leq P_\theta[u]$ and envelope mass preservation give the reverse inequality. The equal positive masses and model maximum characterization now give $P_\theta[\eta]=P_\theta[u]$.
 \end{proof}
 \index{rooftop!quantitative extrapolation}
+
+\section{Comparison of relative capacities}
+\label{sec:global-relative-capacity-comparison}
+All backgrounds in this section are smooth and closed. We first work with a K\"ahler form $\kappa$, write $\Omega=\int_X\kappa^n$, and put
+$\operatorname{Cap}_\kappa=\operatorname{Cap}_{\kappa,0}$. In each argument $\mu_q$ and $M(q)$ use its indicated background; a subscript distinguishes masses when two backgrounds occur. The construction below uses increasing envelopes of smooth penalties vanishing on a compact set. It supplies the measure concentration needed for capacity comparison without assuming an extremal-function theorem.
+
+\begin{lemma}\label{lem:bounded-smooth-kahler-approximation}
+Every bounded $p\in\PSH(X,\kappa)$ has smooth $\kappa$-psh approximations $p_j\to p$ pointwise, with a common absolute bound. They need not be decreasing.
+\end{lemma}
+\begin{proof}
+Apply \cref{thm:gentle-quasi-equisingular-approximation}, using $\kappa$ as the auxiliary K\"ahler form. It gives $\Phi_j\downarrow p$ and
+$\kappa+\ddc\Phi_j\geq-\varepsilon_j\kappa$, $\varepsilon_j\downarrow0$.
+The ideal $\mathcal I(2^jp)$ is the unit ideal, since $p$ is bounded. The gentle exponential is smooth and has no zeros; thus $\Phi_j$ itself is smooth. Set $p_j=\Phi_j/(1+\varepsilon_j)$. Its current is
+$(\kappa+\varepsilon_j\kappa+\ddc\Phi_j)/(1+\varepsilon_j)\geq0$.
+The bounds $p\leq\Phi_j\leq\Phi_1$ give the common absolute bound and pointwise convergence. Subtracting $\sup_Xp_j$ also gives normalized approximations to a normalized $p$, by continuity of the supremum in \cref{prop:normalized-global-psh-compactness}.
+\end{proof}
+
+\begin{lemma}\label{lem:global-singular-weighted-cln}
+If $v\leq u\leq v+B$ are $\kappa$-psh, $B\geq0$, and $p\leq0$ is bounded $\kappa$-psh, then
+\begin{equation}\label{eq:global-singular-weighted-cln}
+ \int_Xp\,\mu_u\geq\int_Xp\,\mu_v-nB\Omega.
+\end{equation}
+There is a constant $C_\kappa$ such that, for every $\kappa$-model potential $\phi$, every $\phi-1\leq v\leq\phi$, and every normalized $p\in\PSH(X,\kappa)$,
+\begin{equation}\label{eq:model-strip-uniform-weighted-cln}
+ \int_X(-p)\,\mu_v\leq C_\kappa.
+\end{equation}
+The second assertion includes unbounded $p$.
+\end{lemma}
+\begin{proof}
+First assume $u,v$ agree on an open set containing a sufficiently deep common sublevel. Subtract a common constant to make them negative and put $u_l=\max\{u,-l\}$, $v_l=\max\{v,-l\}$. For large $l$, locality cancels the two truncated measures on that open set. On its complement the truncations equal $u,v$. Bounded integration by parts, \cref{lem:bounded-global-integration-by-parts}, gives
+\[
+ \begin{split}
+ \int_Xp(\mu_{u_l}-\mu_{v_l})
+  &=\sum_{j=0}^{n-1}\int_X(u_l-v_l)\,\ddc p
+                  \wedge\kappa_{u_l}^{j}\wedge\kappa_{v_l}^{n-1-j}\\
+  &\geq-nB\Omega,
+ \end{split}
+\]
+where $\kappa_q=\kappa+\ddc q$. The lower bound uses $0\leq u_l-v_l\leq B$, $\ddc p\geq-\kappa$ and bounded cohomological mass. Cancellation on the deep open set and bounded convergence against the non-pluripolar measures let $l\to\infty$.
+
+For general $u,v$, make them negative and put $v_a=av$, $u_a=\max\{u,av\}$ for $0<a<1$. Then $v_a\leq u_a\leq v_a+B$, and they agree on an open sufficiently deep sublevel of $v$. They decrease to $v,u$ as $a\uparrow1$. Their masses agree for each $a$, by bounded-type invariance. Multilinearity shows that $M(v_a)\to M(v)=M(u)$, so mass convergence and extended capacity convergence give weak convergence of both measures by \cref{thm:nonpluripolar-capacity-lower-limit}. For smooth $p$ we may therefore pass to the limit in the inequality already proved. For bounded $p$, use the preceding smooth approximation and dominated convergence against the two fixed finite measures. This proves \eqref{eq:global-singular-weighted-cln}.
+
+For a model $\phi$, the contact bound gives $\mu_\phi\leq\kappa^n$, since $V_\kappa=0$. Apply the first assertion to $\phi\leq v+1\leq\phi+1$. For bounded normalized $p$ it gives
+\[
+ \int_X(-p)\mu_v\leq\int_X(-p)\mu_\phi+n\Omega
+                       \leq\int_X(-p)\kappa^n+n\Omega.
+\]
+Normalized compactness uniformly bounds the last integral. For general normalized $p$, its truncations $\max\{p,-l\}$ have supremum zero and the same uniform bound. Monotone convergence proves \eqref{eq:model-strip-uniform-weighted-cln}.
+\end{proof}
+\index{Chern--Levine--Nirenberg estimate!global singular weighted form}
+
+\begin{lemma}\label{lem:penalized-compact-envelope}
+Suppose $\{\theta\}$ is big, $\phi$ is a $\theta$-model potential of mass $m>0$, and $K\subset X$ is compact and non-pluripolar. There is $S\in\PSH(X,\theta)$, with $L=\sup_XS\geq0$, such that
+\[
+ \begin{gathered}
+ \phi\leq S\leq\phi+L,\qquad S=\phi\text{ quasi-everywhere on }K,\\
+ M(S)=m,\qquad\mu_S(X\setminus K)=0.
+ \end{gathered}
+\]
+In particular,
+\begin{equation}\label{eq:penalized-capacity-lower-bound}
+ \operatorname{Cap}_{\theta,\phi}(K)
+                      \geq\frac{m}{\max\{1,L\}^{n}}.
+\end{equation}
+If $\theta=\kappa$ is K\"ahler, then also
+\begin{equation}\label{eq:penalized-capacity-upper-bound}
+ \operatorname{Cap}_{\kappa,\phi}(K)
+                      \leq\frac{C}{\max\{1,L\}},
+\end{equation}
+with $C$ depending only on $\kappa$.
+\end{lemma}
+\begin{proof}
+Choose smooth $g\geq0$ with zero set exactly $K$. To construct it, cover $X\setminus K$ by countably many relatively compact coordinate balls and choose nonnegative smooth bumps supported there, positive on smaller balls still covering the complement. Multiply the $j$th bump by a positive coefficient so small that its derivatives through order $j$ have norm at most $2^{-j}$. Their sum is smooth, positive off $K$ and zero on $K$.
+
+Put $q_j=P_\theta(\phi+jg)$. Then $\phi\leq q_j\leq\phi+j\|g\|_\infty$ and $q_j\sim\phi$. The upper semicontinuous obstacle bound is pointwise, so $q_j=\phi$ on $K$. As $\phi\leq0$, non-pluripolar compact normalization, \cref{cor:nonpluripolar-normalization}, bounds $\sup_Xq_j$ uniformly. The increasing canonical limit $S=(\sup_jq_j)^*$ is a potential. The model supremum identity gives $q_j\leq\phi+\sup_Xq_j$; continuity of the supremum gives $\phi\leq S\leq\phi+L$. Increasing-envelope regularization changes values only on a pluripolar set, so $S=\phi$ quasi-everywhere on $K$. Bounded-type invariance gives $M(S)=m$.
+
+Obstacle contact concentrates $\mu_{q_j}$ on $q_j=\phi+jg$. At finite points of this contact set, the preceding model bound gives $jg\leq L$. Thus these measures are carried by $\{g\leq L/j\}$. Increasing non-pluripolar continuity makes $\mu_{q_j}\to\mu_S$ weakly. Every compact subset of $X\setminus K$ has a neighborhood where $g$ has a strictly positive lower bound; continuous tests supported there have zero integral for all large $j$. Hence $\mu_S$ is carried by $K$.
+
+Set $t=1/\max\{1,L\}$ and $h=(1-t)\phi+tS-tL$. It lies between $\phi-1$ and $\phi$, while positive multilinearity gives $\mu_h\geq t^n\mu_S$. This proves \eqref{eq:penalized-capacity-lower-bound}. In the K\"ahler case use the normalized potential $p=S-L$ in \eqref{eq:model-strip-uniform-weighted-cln}. On $K$, $-p=L-\phi\geq L$ quasi-everywhere. Thus $L\mu_v(K)\leq C_\kappa$ for every strip test $v$. For $L\geq1$ this gives the desired upper bound; for $L\leq1$ use $\operatorname{Cap}_{\kappa,\phi}(X)=m\leq\Omega$. Increasing $C$ proves \eqref{eq:penalized-capacity-upper-bound}.
+\end{proof}
+
+\begin{proposition}\label{prop:kahler-model-capacity-powers}
+For a $\kappa$-model potential $\phi$ of mass $m>0$ there is $A\geq1$ such that, for every Borel $E\subset X$,
+\begin{equation}\label{eq:kahler-model-capacity-powers}
+ A^{-1}\operatorname{Cap}_\kappa(E)^n
+       \leq\operatorname{Cap}_{\kappa,\phi}(E)
+       \leq A\operatorname{Cap}_\kappa(E)^{1/n}.
+\end{equation}
+More generally, if $\theta\leq\kappa$, $\{\theta\}$ is big and $\phi$ is a $\theta$-model potential of mass $m>0$, then
+\begin{equation}\label{eq:big-model-capacity-lower-power}
+ \operatorname{Cap}_\kappa(E)^n
+                        \leq\frac{C^n}{m}\operatorname{Cap}_{\theta,\phi}(E),
+\end{equation}
+where $C$ depends only on $\kappa$.
+\end{proposition}
+\begin{proof}
+By inner regularity it suffices to treat compact $K$. If $K$ is pluripolar all capacities vanish. Otherwise use the same penalty $g$ for the preceding construction with $(\theta,\phi)$ and with $(\kappa,0)$, and denote the resulting suprema by $L_\phi,L_0$. Every competitor for the first envelope is $\kappa$-psh and at most $jg$, so $L_\phi\leq L_0$. The two estimates in the lemma give
+\[
+ \operatorname{Cap}_\kappa(K)^n
+    \leq\frac{C^n}{\max\{1,L_0\}^n}
+    \leq\frac{C^n}{m}\operatorname{Cap}_{\theta,\phi}(K).
+\]
+This proves \eqref{eq:big-model-capacity-lower-power} and the first inequality in \eqref{eq:kahler-model-capacity-powers}.
+
+For the upper bound let $\theta=\kappa$. Positive-mass extrapolation supplies $b>1$ with $\eta=P_\kappa(b\phi)\ne-\infty$. Write $c=1-b^{-1}>0$. For fixed $j$ and $\delta>0$, the potential
+\[
+ v_j=c\,P_\kappa(jg)+b^{-1}\eta-\delta
+\]
+is at most $\phi$ near $K$: the upper semicontinuous function $P_\kappa(jg)$ is zero on $K$, while $b^{-1}\eta\leq\phi$. Globally the difference $v_j-\phi$ has a finite upper bound. Away from that neighborhood $g$ has a positive minimum, so $v_j\leq\phi+lg$ for some sufficiently large integer $l$. It follows that $v_j\leq S_\phi$. Let $\delta\downarrow0$ and then $j\to\infty$. Canonical representatives give
+\[
+ cS_0+b^{-1}\eta\leq S_\phi.
+\]
+Choose a Borel set $G$ of positive smooth volume on which $b^{-1}\eta\geq-D$. Normalized compactness gives a uniform $B$ with $\int_X|S_0-L_0|\,\kappa^n\leq B$. Therefore
+$\sup_GS_0\geq L_0-B/\int_G\kappa^n$, and the displayed inequality gives
+$L_\phi\geq cL_0-D'$ with $D'\geq0$ independent of $K$. For $L_0\geq\max\{1,2D'/c\}$ this implies $L_\phi\geq cL_0/2$. The lemma consequently gives
+\[
+ \operatorname{Cap}_{\kappa,\phi}(K)\leq C'/L_0
+       \leq C'\Omega^{-1/n}\operatorname{Cap}_\kappa(K)^{1/n}.
+\]
+Here the last inequality uses the lower bound for the construction with reference zero. For the remaining bounded range of $L_0$, that lower bound puts $\operatorname{Cap}_\kappa(K)$ above a fixed positive constant; use $\operatorname{Cap}_{\kappa,\phi}(K)\leq m$ and enlarge $A$. All constants may depend on $\phi$ in this upper bound.
+\end{proof}
+
+\begin{lemma}\label{lem:full-mass-capacity-downward-comparison}
+Suppose $\{\theta\}$ is big, $\psi\leq\phi$ and $M(\psi)=M(\phi)>0$. There is a continuous nondecreasing $F:[0,\infty)\to[0,\infty)$ with $F(0)=0$ such that
+\[
+ \operatorname{Cap}_{\theta,\psi}(E)
+                      \leq F(\operatorname{Cap}_{\theta,\phi}(E))
+\]
+for every Borel $E$. The function may depend on $\psi,\phi$.
+\end{lemma}
+\begin{proof}
+For $\psi-1\leq u\leq\psi$ and $t\geq1$, put $u_t=\max\{u,\phi-2t\}$. Rescaling the strip of width $2t$ by a convex combination with $\phi$ and using locality gives
+\[
+ \mu_u(E\cap\{u>\phi-2t\})
+                       \leq(2t)^n\operatorname{Cap}_{\theta,\phi}(E).
+\]
+All these potentials have full mass relative to $\phi$. The midpoint $q=(u+\phi)/2$ does too: their $P_\theta$ envelopes agree, so all its mixed terms have the same mass by \cref{prop:p-envelope-calculus,prop:relative-envelope-full-mass-characterization}. On the remaining set,
+\[
+ \{u\leq\phi-2t\}\subset\{\psi-1\leq q-t\}
+                         \subset\{\psi\leq\phi-t+1\}.
+\]
+The non-strict full-mass comparison for $\psi-1,q-t$, together with $\mu_q\geq2^{-n}\mu_u$, bounds its $\mu_u$ mass by
+$2^n\mu_\psi(\{\psi\leq\phi-t+1\})$. Taking the supremum gives
+\begin{equation}\label{eq:full-mass-capacity-tail-bound}
+ \operatorname{Cap}_{\theta,\psi}(E)
+ \leq(2t)^n\operatorname{Cap}_{\theta,\phi}(E)
+                 +2^n\mu_\psi(\{\psi\leq\phi-t+1\}).
+\end{equation}
+The tail tends to zero, since $\psi,\phi$ are finite outside a $\mu_\psi$-null set.
+
+For completeness set $m=M(\psi)$ and let $H(s)$ be the minimum of $m$ and the infimum over $t\geq1$ of the right side with capacity replaced by $s$. It is nondecreasing and $H(s)\to0$ as $s\downarrow0$. Choose strictly decreasing $s_k\downarrow0$ with $H(s_k)\leq m2^{-k}$. Define $F(0)=0$, $F(s_k)=m2^{1-k}$, interpolate linearly on $[s_{k+1},s_k]$, and set $F=m$ for $s\geq s_1$. On each such interval $H(s)\leq H(s_k)\leq F(s_{k+1})\leq F(s)$. Thus $F$ is the required continuous nondecreasing majorant, and \eqref{eq:full-mass-capacity-tail-bound} proves the assertion.
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}\label{thm:global-relative-capacity-comparison}
+Suppose $\{\theta\}$ is big and $\psi\in\PSH(X,\theta)$ has positive mass. For a fixed K\"ahler form $\omega$ there are continuous nondecreasing functions $F,G:[0,\infty)\to[0,\infty)$, vanishing at zero, such that for all Borel $E\subset X$,
+\[
+ \operatorname{Cap}_{\theta,\psi}(E)\leq F(\operatorname{Cap}_\omega(E)),
+ \qquad \operatorname{Cap}_\omega(E)\leq G(\operatorname{Cap}_{\theta,\psi}(E)).
+\]
+Consequently any two such positive-mass relative capacities determine the same convergence and uniform absolute-continuity conditions on Borel sets.
+\end{theorem}
+\begin{proof}
+Choose $A\geq1$ with $\theta\leq\kappa=A\omega$. Positivity gives
+$\operatorname{Cap}_{\theta,\psi}\leq\operatorname{Cap}_{\kappa,\psi}$ and $M_\kappa(\psi)>0$. Normalize $\psi\leq0$, which does not change capacity. Set $\Phi=P_\kappa[\psi]$. Then $\psi\leq\Phi$ and their $\kappa$ masses agree. Downward full-mass comparison and the K\"ahler model powers bound $\operatorname{Cap}_{\kappa,\psi}$ by a continuous modulus of $\operatorname{Cap}_\kappa$. Strip rescaling gives
+\[
+ \operatorname{Cap}_\omega\leq\operatorname{Cap}_\kappa
+                              \leq A^n\operatorname{Cap}_\omega.
+\]
+This proves the first assertion with a suitable $F$.
+
+For the other direction use the different model $\phi=P_\theta[\psi]$. It is $\theta$-psh and has the same positive $\theta$ mass as $\psi$. The lower power estimate gives
+$\operatorname{Cap}_\kappa^n\leq C\operatorname{Cap}_{\theta,\phi}$. Equal-mass extrapolation gives
+$\eta=P_\theta(2\psi-\phi)$ of that same mass and $P_\theta[\eta]=\phi$. Put $u=(\eta+\phi)/2\leq\psi$. Mixed mass preservation gives $M(u)=M(\psi)$, so downward comparison bounds $\operatorname{Cap}_{\theta,u}$ by a continuous modulus of $\operatorname{Cap}_{\theta,\psi}$. For every strip test $\phi-1\leq v\leq\phi$, the midpoint $h=(v+\eta)/2$ is a strip test for $u$, and $\mu_h\geq2^{-n}\mu_v$. Thus
+\[
+ \operatorname{Cap}_{\theta,\phi}\leq2^n\operatorname{Cap}_{\theta,u}.
+\]
+Combining these inequalities gives $G$. Compositions, positive rescaling and the $n$th root preserve continuity, monotonicity and the value zero at the origin. Applying both comparisons through $\operatorname{Cap}_\omega$ proves the last assertion.
+\end{proof}
+\index{capacity!comparison of relative capacities}
+
+\begin{proposition}\label{prop:global-local-capacity-equivalence}
+On a finite coordinate cover of $X$, choose inner balls whose closures lie in larger coordinate balls and still cover $X$. The K\"ahler capacity $\operatorname{Cap}_\omega$ and the sum of the local Bedford--Taylor capacities on these inner balls bound each other by positive constants. Therefore the positive-mass relative capacities in \cref{thm:global-relative-capacity-comparison} vanish precisely on pluripolar Borel sets, and their capacity convergence agrees with the earlier local notion. Psh potentials are quasi-continuous for each of them.
+\end{proposition}
+\begin{proof}
+An $\omega$-psh strip test $-1\leq v\leq0$, after addition of a smooth local potential for $\omega$, is a bounded local psh function with a uniformly bounded oscillation. Rescale that oscillation to one. Its Hessian measure on the inner ball is bounded by a fixed multiple of local capacity. A finite cover bounds the global capacity by the sum of those local capacities.
+
+For the reverse inequality work in a ball $B(0,R)$ with inner radius $r<R$. Choose $L>0$ with $L(R^2-r^2)>1$, then $\delta>0$ so small that $\omega\geq\delta L\ddc|z|^2$ on the ball. Shrink $\delta$ further so that one can choose
+\[
+ \delta(1+Lr^2)<a<\delta LR^2,\qquad a\leq1.
+\]
+For a local psh test $-1\leq w\leq0$ put $q=\delta w-\delta L|z|^2$. It is $\omega$-psh on the ball. The function $v=\max\{q,-a\}$ there, extended as $-a$ outside, is global $\omega$-psh: on a fixed boundary collar $q<-a$. It lies in $[-1,0]$ and equals $q$ on the inner ball. There $\omega+\ddc v\geq\delta\ddc w$. Hence
+\[
+ \operatorname{Cap}_\omega(E)\geq\delta^n
+                 \operatorname{Cap}_{\mathrm{BT},B(0,R)}(E)
+                   \quad(E\subset B(0,r)).
+\]
+Taking a finite sum gives the reverse bound. The local zero-capacity characterization and quasi-continuity, \cref{thm:zero-capacity-pluripolar,thm:psh-capacity-quasicontinuity}, now prove the remaining assertions. In particular a finite union of local exceptional open sets has arbitrarily small global capacity; the comparison moduli transfer this statement to every positive-mass relative capacity.
+\end{proof}
+\index{capacity!global and local equivalence}

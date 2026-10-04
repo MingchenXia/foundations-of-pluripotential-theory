@@ -153,3 +153,9 @@ Wrote and twice directly reviewed constrained obstacle calculus and bounded cont
 Sample envelope energy lines 899–1390 and comparison Theorem pathoenvelope complete proof were read. Independently checked Lu's publisher metadata and found exact arXiv:2005.04264v1 through his actual publication page after the publisher download returned HTML. General capacity comparison is a proof lead, not an input. Both CI runs at pushed bfe6bfe passed (37164205808 and 37164201415). Continue capacity/energy foundations and later chapters, with regular private pushes and draft PR #5 updates. Whole-book writing/polishing remain unfinished.
 
 The 322-page source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-04-q10-relative-release.log.
+
+## 2026-10-04 — Global relative capacity comparison
+
+Wrote and twice directly reviewed bounded global integration by parts, bounded smooth Kahler approximation, global singular weighted CLN, compact penalized-envelope concentration/growth, model capacity powers, downward full-mass comparison with an explicit continuous modulus and two-way capacity/local topology comparison in big classes. Exact Lu arXiv v1 is retained after independent online identification; version-specific background and parameter findings are recorded. Review: research/reviews/2026-10-04-q10-capacity.json. First 44 affected images and final changed page 271 were inspected. Draft: 328 pages; whole-book gates and 48 verified obligations persist. Both prior f36e059 GitHub builds passed (37165287296/37165285584). Next: general bounded-difference IBP and Q11 relative energy.
+
+The 328-page source archive rebuilt fresh with matching extracted page text; release log retained. This checkpoint is ready for the authorized regular private GitHub push.
