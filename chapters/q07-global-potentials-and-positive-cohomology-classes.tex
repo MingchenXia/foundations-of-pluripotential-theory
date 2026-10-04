@@ -1007,6 +1007,24 @@ Indeed the rescaled integrand converges pointwise and is bounded by a constant t
 \end{proof}
 \index{Bergman kernel!positive leading term}
 
+
+\begin{proposition}\label{prop:compact-bergman-local-morse-upper}
+Let $L,T$ have arbitrary smooth metrics $h,h_T$ and let $\theta=c_1(L,h)$. For their section Bergman densities $B_k$ with volume $\mathrm dV$, put $X(\theta,0)=\{x:\theta(x)>0\}$. Then
+\[
+ \begin{gathered}
+ \limsup_{k\to\infty}k^{-n}B_k(x)
+ \leq\mathbf1_{X(\theta,0)}(x)\frac{\theta^n/n!}{\mathrm dV}(x),
+ \\
+ \limsup_k\frac{n!}{k^n}h^0(X,L^k\otimes T)
+       \leq\int_{X(\theta,0)}\theta^n.
+ \end{gathered}
+\]
+\end{proposition}
+\begin{proof}
+Repeat the local upper calculation of \cref{thm:positive-line-bergman-leading-term}. The frame normalization and diagonalization now give real eigenvalues $\lambda_l$, including zero and negative values. For every fixed $R$, product radial Gaussian orthogonality still gives the bound $1/(\rho(0)I_R)$ on the pointwise upper limit. If any $\lambda_l\leq0$, its integral over the radius-$R$ disc tends to infinity, while each other factor has a positive lower bound for $R\geq1$. Letting $R\to\infty$ therefore gives zero. If every $\lambda_l>0$, the calculation gives exactly the density stated. The uniform bound of \cref{lem:compact-section-growth-bound} and Fatou applied to $C-k^{-n}B_k$ give the integrated upper inequality. This is a limiting statement; it imposes no finite-$k$ vanishing on the nonpositive curvature locus.
+\end{proof}
+\index{holomorphic Morse inequality!local upper bound}
+
 A line bundle is \emph{positive}\index{line bundle!positive} if it admits a smooth metric of strictly positive curvature. It is \emph{very ample}\index{line bundle!very ample} if its full space of sections defines a holomorphic embedding into a projective space. A compact complex manifold is \emph{projective}\index{projective manifold} if it admits such an embedding. The next argument establishes this analytic embedding property.
 
 \begin{theorem}\label{thm:positive-line-projective-embedding}
@@ -1041,6 +1059,19 @@ is its projective bundle, of complex dimension $N-1$. The derivative condition a
 That zero set is nonempty. A nowhere-zero section would trivialize $A$, making the curvature of a positive metric a global $\ddc$ of a smooth function. Stokes would give $\int_Xc_1(A)^n=0$, contrary to strict positivity. Every zero is simple, so the set is the stated smooth divisor. Its compactness gives finitely many components, including finitely many points when $n=1$.
 \end{proof}
 
+For a line bundle $A$, the complete linear system $|A|$ consists of its nonzero sections modulo scalars, identified with their zero divisors.
+
+\begin{lemma}\label{lem:fixed-divisor-section-loss}
+Let $A$ be positive and very ample, fix a smooth divisor $D\in|A|$, and let $L,T$ be fixed holomorphic line bundles. There is $C$ independent of the integers $k,\ell\geq0$ such that
+\begin{equation}\label{eq:nef-section-small-twist-loss}
+ 0\leq h^0(X,L^k\otimes A^\ell\otimes T)-h^0(X,L^k\otimes T)
+       \leq C\ell(k+\ell+1)^{n-1}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix smooth metrics on $L,A,T$. Multiplication by the section of $D$ injects the section space with $A^j$ into that with $A^{j+1}$. Its quotient maps injectively into $H^0(D,(L^k\otimes A^{j+1}\otimes T)|_D)$: zero restriction means local divisibility by the simple defining equation, and these quotients glue. The fixed-data polynomial bound on $D$, component by component, bounds this dimension by $C(k+j+2)^{n-1}$. Summing for $0\leq j<\ell$ proves the estimate. For $n=1$ the dimension-zero clause of \cref{lem:compact-section-growth-bound} applies.
+\end{proof}
+
 \begin{theorem}\label{thm:projective-nef-section-asymptotic}
 Suppose $X$ admits a positive line bundle. If $L$ is a holomorphic line bundle with nef class $\alpha=c_1(L)$ and $T$ is any fixed holomorphic line bundle, then
 \begin{equation}\label{eq:projective-nef-section-asymptotic}
@@ -1049,19 +1080,13 @@ Suppose $X$ admits a positive line bundle. If $L$ is a holomorphic line bundle w
 \end{equation}
 \end{theorem}
 \begin{proof}
-Choose a positive very ample $A$ by \cref{thm:positive-line-projective-embedding}. Its complete linear system $|A|$ consists of its nonzero sections modulo scalars, identified with their zero divisors. Choose a smooth $D\in|A|$ by the preceding lemma. Fix smooth metrics on $L,A,T$, and put $a=c_1(A)$. Multiplication by the defining section of $D$ injects $H^0(X,L^k\otimes A^j\otimes T)$ into the space with $j+1$ in place of $j$. The quotient maps injectively into
-$H^0(D,(L^k\otimes A^{j+1}\otimes T)|_D)$: a section with zero restriction is locally divisible by the simple defining equation, and the quotients glue to the previous bundle. Apply \cref{lem:compact-section-growth-bound} on the fixed smooth $D$, component by component. There is one $C$ independent of $k,j$ such that, for all integers $\ell\geq0$,
-\begin{equation}\label{eq:nef-section-small-twist-loss}
- 0\leq h^0(X,L^k\otimes A^\ell\otimes T)-h^0(X,L^k\otimes T)
-       \leq C\ell(k+\ell+1)^{n-1}.
-\end{equation}
-For $n=1$ the lemma's dimension-zero assertion supplies exactly this estimate.
+Choose positive very ample $A$ and smooth $D\in|A|$ by the preceding results. Fix a positive metric $h_A$ and put $a=c_1(A)$. The loss constant in \eqref{eq:nef-section-small-twist-loss} is fixed.
 
-Fix an integer $q\geq1$. Nefness supplies a smooth representative of $\alpha$ bounded below by $-c_1(A,h_A)/(2q)$: compare this positive form with $\omega$ in the nef definition. Thus $q\alpha+a$ is K\"ahler. The global $\ddc$ lemma changes a smooth metric on $L^q\otimes A$ into one of positive curvature. Write $k=q\ell+s$ with $0\leq s<q$. The positively twisted space in \eqref{eq:nef-section-small-twist-loss} is
+For an integer $q\geq1$, nefness supplies a smooth representative of $\alpha$ bounded below by $-c_1(A,h_A)/(2q)$, by comparison with $\omega$. Thus $q\alpha+a$ is K\"ahler, and the global $\ddc$ lemma gives $L^q\otimes A$ a positive metric. Write $k=q\ell+s$, $0\leq s<q$. The twisted space is
 \[
  H^0\bigl(X,(L^q\otimes A)^\ell\otimes L^s\otimes T\bigr).
 \]
-Apply \cref{thm:positive-line-bergman-leading-term} to each of the finitely many fixed twists $L^s\otimes T$. Since $\ell/k\to1/q$, the normalized dimension tends, along every residue class and hence along all integers, to $\int_X(\alpha+a/q)^n$. For $\ell=\lfloor k/q\rfloor$, the loss in \eqref{eq:nef-section-small-twist-loss}, multiplied by $n!/k^n$, has upper limit at most $C'/q$, where $C'$ is independent of $q$. Indeed $\ell\leq k/q$ and $k+\ell+1\leq2k+1$; the original metrics and divisor in that estimate stayed fixed. Therefore
+By \cref{thm:positive-line-bergman-leading-term}, its normalized dimension tends to $\int_X(\alpha+a/q)^n$ on each of the finitely many residues. Since $\ell\leq k/q$ and $k+\ell+1\leq2k+1$, the normalized loss has upper limit at most $C'/q$, with $C'$ independent of $q$. Therefore
 \[
  \begin{aligned}
  \liminf_k\frac{n!h^0(X,L^k\otimes T)}{k^n}
