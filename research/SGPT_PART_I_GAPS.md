@@ -87,3 +87,7 @@ Q08-06 now supplies the positive-semidefinite matrix formulas, upper-test charac
 ## Continuous-density Dirichlet prerequisite
 
 Q08-07 proves the local ball equation for continuous nonnegative density and continuous boundary value, the bounded-subsolution envelope, root-density stability with the boundary error, and C1,1 regularity for C2 root/boundary data. Its proof uses exact-center automorphisms and the earlier internal linearization/Taylor foundations. Exact GZ printed143–149 was paired with C5-M16/M17/M18/M19; no Dirichlet result is imported. Two scoped reads and final437-page evidence: research/reviews/2026-10-04-q08-dirichlet.json. Current provisional scope60/93 verified, with30 historical exclusions. Measurable/common-measure approximation, unweighted relative uniqueness, earlier FN/PDE/positivity gates and the whole PartI overlap/polishing audit remain open.
+
+## Bounded-measurable Dirichlet prerequisite
+
+Q08-08 supplies the bounded-measurable local ball equation, exact envelope/uniqueness and common-bound L1/local-capacity stability. This closes the bounded-density existence prerequisite of the general canonical-measure approximation, whose nonuniform energy/stability estimates remain required. Exact GZ5.17/5.18 proofs and original printed150–151 images checked. Review:research/reviews/2026-10-04-q08-measurable.json. Current provisional61/94 verified,30 historical exclusions; general common-measure mixed inequalities, relative uniqueness and earlier FN/PDE/positivity/overlap/polishing gates remain open.

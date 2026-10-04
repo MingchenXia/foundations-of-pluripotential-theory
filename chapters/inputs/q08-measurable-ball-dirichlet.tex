@@ -1,0 +1,87 @@
+\section{Bounded measurable densities}
+\label{sec:bt-measurable-ball-dirichlet}
+
+Uniform convergence of densities is too restrictive for approximation by local averages. A common bound on their densities instead controls one side of the difference between solutions by capacity. Hartogs' lemma and quasi-continuity control the other side, so bounded-product continuity still identifies the limit.
+
+\begin{lemma}\label{lem:local-comparison-capacity-sublevels}
+Let $D\subset\mathbb C^n$ be a bounded domain and let $u,v$ be bounded plurisubharmonic functions on $D$. If $s,t>0$ and $\{u<v-s\}\Subset D$, then
+\[
+ t^n\operatorname{Cap}_D(\{u<v-s-t\})
+ \le\int_{\{u<v-s\}}(\ddc u)^n.
+\]
+Here $E\Subset D$ means that its closure is a compact subset of $D$.
+\end{lemma}
+\begin{proof}
+For $w\in\PSH(D)$ with $-1\le w\le0$,
+\[
+ \{u<v-s-t\}\subset\{u<v-s+tw\}\subset\{u<v-s\}.
+\]
+The middle comparison set is relatively compact. Positivity and expansion of the bounded products give
+$\bigl(\ddc(v-s+tw)\bigr)^n\ge t^n(\ddc w)^n$.
+Apply \cref{thm:bt-comparison} to $u$ and $v-s+tw$, and take the supremum over $w$. Translating these tests by $1$ gives exactly the capacity tests in \cref{def:monge-ampere-capacity}.
+\end{proof}
+
+\begin{theorem}\label{thm:bounded-density-ball-dirichlet}
+Let $B=B(a,R)\subset\mathbb C^n$, $n\ge1$, let $0\le f\in L^\infty(B)$, and let $\varphi\in C(\partial B)$ be real. There is a unique bounded $U_{f,\varphi}\in\PSH(B)$ such that
+\[
+ (\ddc U_{f,\varphi})^n=f\eta^n,
+ \qquad\lim_{B\ni z\to x}U_{f,\varphi}(z)=\varphi(x)
+       \quad(x\in\partial B).
+\]
+It is the pointwise envelope of bounded plurisubharmonic subsolutions with upper boundary limits at most $\varphi$. The stability estimate \eqref{eq:ball-dirichlet-root-stability} holds also for these bounded measurable densities.
+
+If $0\le f_j\le M$ almost everywhere for a fixed finite $M$, $f_j\to f$ in $L^1(B)$ and $\varphi_j\to\varphi$ uniformly on $\partial B$, then
+\[
+ U_{f_j,\varphi_j}\longrightarrow U_{f,\varphi}
+ \quad\hbox{in }L^1(B)\hbox{ and locally in capacity}.
+\]
+\end{theorem}
+\begin{proof}
+\emph{Step 1. Bounded approximations and their boundary barriers.}
+Extend $f$ by zero outside $B$ and convolve with nonnegative kernels. The resulting smooth $f_j$ satisfy $0\le f_j\le M=\|f\|_\infty$ and $f_j\to f$ in $L^1(B)$, by \cref{lem:mollifier-density}. Solve the continuous-density problems by \cref{thm:continuous-density-ball-dirichlet}, with the fixed boundary value $\varphi$, and call their solutions $u_j$. Comparison gives
+\[
+ H_{M,\varphi}\le u_j\le H_{0,\varphi}.
+\]
+For example, to justify either ordering, add $\varepsilon(|z-a|^2-R^2)$ to the proposed smaller function. Positivity of mixed products raises its measure by at least $\varepsilon^n\eta^n$. Comparison makes the strict reversed-order set Lebesgue null; canonical representatives give the pointwise ordering as in \cref{thm:bt-comparison}, and then $\varepsilon\downarrow0$. Both displayed barriers are continuous on $\overline B$ and equal $\varphi$ on its boundary.
+
+By \cref{thm:psh-compactness-hartogs}, a subsequence converges in $L^1_{\loc}(B)$ to a bounded plurisubharmonic $U$. The uniform bounds exclude collapse to $-\infty$. Canonical representatives preserve the barrier inequalities, so $U$ has the required boundary limits. Uniform boundedness also promotes convergence to $L^1(B)$: first discard a boundary collar of small volume, then use the local convergence on its complement.
+
+\emph{Step 2. Capacity convergence.}
+Fix $K\Subset B$ and $\delta,\varepsilon>0$. Quasi-continuity gives an open $G\subset B$ with $\operatorname{Cap}_B(G)<\varepsilon$ such that $U$ is continuous on $B\setminus G$. On the compact $K\setminus G$, Hartogs' lemma gives $u_j-U<\delta$ for all sufficiently large $j$. Indeed upper semicontinuity bounds $U$ above near each point by its value there plus $\delta/4$; continuity on $K\setminus G$ bounds its values below there by that value minus $\delta/4$. Apply Hartogs' lemma with a constant majorant on a smaller closed ball and use a finite cover. Thus
+\[
+ \limsup_j\operatorname{Cap}_B(K\cap\{u_j>U+\delta\})
+ \le\varepsilon.
+\]
+Let $\varepsilon\downarrow0$.
+
+The two continuous boundary barriers show that $\{u_j<U-\delta\}$ lies in a fixed relatively compact subset of $B$, independently of $j$. With $s=t=\delta$, \cref{lem:local-comparison-capacity-sublevels} gives
+\[
+ \begin{split}
+ \delta^n\operatorname{Cap}_B(\{u_j<U-2\delta\})
+ &\le\int_{\{u_j<U-\delta\}}f_j\eta^n\\
+ &\le \frac M\delta\int_B(U-u_j)_+\eta^n\longrightarrow0.
+ \end{split}
+\]
+Here $\eta^n=n!\pi^{-n}\,\mathrm dV$. Both difference sets therefore have vanishing capacity on $K$.
+
+\emph{Step 3. The equation, envelope and uniqueness.}
+Capacity continuity in \cref{thm:bt-capacity-continuity} gives $(\ddc U)^n=f\eta^n$. Let $v$ be any bounded subsolution with upper boundary limits at most $\varphi$, and put $v_\varepsilon=v+\varepsilon(|z-a|^2-R^2)$. Positivity of mixed products gives
+\[
+ (\ddc v_\varepsilon)^n\ge f\eta^n+\varepsilon^n\eta^n.
+\]
+Comparison with $U$ makes $\{U<v_\varepsilon\}$ Lebesgue null. The integrals of $f\eta^n$ are finite, so their cancellation is legitimate. Canonical representatives give $U\ge v_\varepsilon$ pointwise. Letting $\varepsilon\downarrow0$ proves $U\ge v$. The solution itself is a subsolution, which identifies the pointwise envelope. Interchanging two bounded solutions proves uniqueness.
+
+\emph{Step 4. Stability under a common density bound.}
+For any sequence of bounded measurable $f_j$ with the stated common bound and fixed boundary value $\varphi$, the same barriers give $L^1$ subsequential compactness. Steps 2 and 3 apply unchanged, since their only density estimate was $(\ddc u_j)^n\le M\eta^n$. Every subsequential limit solves the equation for $f$, and hence equals $U_{f,\varphi}$. Every subsequence has such a further subsequence, proving convergence of the whole sequence in $L^1(B)$ and locally in capacity.
+
+For fixed density, comparison and addition of constants give
+\[
+ \|U_{f,\varphi}-U_{f,\chi}\|_\infty
+ \le\|\varphi-\chi\|_\infty.
+\]
+Apply this with $f=f_j$ to reduce varying boundary data to the fixed-boundary assertion. Uniformly vanishing differences also vanish locally in capacity, since compact subsets have finite capacity.
+
+Finally take two bounded measurable densities $f,g$. Extend their nonnegative roots by zero and convolve with the same kernels. The smooth roots $F_j,G_j$ satisfy
+$\|F_j-G_j\|_\infty\le\|f^{1/n}-g^{1/n}\|_\infty$, and their powers converge to $f,g$ in $L^1(B)$ with a common bound. The continuous-density stability estimate applies to the two approximating solutions. Step 4 gives $L^1$ limits; choose a common almost-everywhere convergent subsequence and pass the estimate to the limit. Each resulting inequality holds pointwise by uniqueness of canonical plurisubharmonic representatives after addition of its constant. This proves \eqref{eq:ball-dirichlet-root-stability} in the measurable case as well.
+\end{proof}
+\index{Dirichlet problem!bounded measurable density}
