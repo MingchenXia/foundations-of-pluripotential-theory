@@ -57,7 +57,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 ## Q13 — I-good singularities and volume
 
-- `Q13-01` [planned] I-good and algebraic singularity types, characterization and permanence
+- `Q13-01` [drafting] I-good and algebraic singularity types, characterization and permanence
 - `Q13-02` [planned] Mixed volumes, generalized Darvas--Xia theorem and Hermitian pseudo-effective line bundles
 - `Q13-03` [planned] Fujita approximation and volume comparisons with exact twisting conventions
 - `Q13-04` [planned] Applications differentiated from reusable foundational inputs
