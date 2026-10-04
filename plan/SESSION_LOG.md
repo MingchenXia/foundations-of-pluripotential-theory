@@ -558,3 +558,11 @@ cf8189a exact-head verify checks111529604604 and111529594524 both succeeded. Q08
 Two scoped direct reads; fourteen first manuscript images and sole final changed image163 inspected; all455 pages rendered. Dinewv1 Definition2.4 and following p.5 paragraph/image checked, quoted theorem unadopted. Final log has no unresolved references/citations or bad boxes. Review:research/reviews/2026-10-04-q08-subsolution.json. Provisional65/99 required tasks verified,30 excluded;129 tasks,43 active inputs,112 originals. Integrity and fresh archive verification follow before regular push. Mixed energy/inequality, relative uniqueness and earlier FN/PDE/positivity/overlap/whole-prequel polishing gates remain.
 
 Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching455-page text. No whole-book completion claim.
+
+## 2026-10-04 — Bounded mixed energy and mixed-product limits
+
+d95567a exact-head verify checks111532197924 and111532188931 both succeeded. Q08-13 proves the coarse bounded E0 mixed-energy estimate by quadratic collars, Stokes/Cauchy–Schwarz, finite multiplicity maximization and comparison-controlled uniform maximum approximants. Zero energies and n=1 retained. Weighted capacity continuity applies to discontinuous limits. Uniform first energies bound original/truncated mixed mass on deep sets, including ties, and give bounded-limit mixed continuity without a common approximant supremum bound.
+
+Cegrell2004 published primary PDF retained/hash-registered; complete Lemma5.4/Theorem5.5 printed168–170 proofs and images read/reread. No full-paper or exact operator-normalization read claimed. Two scoped manuscript/history reads; eighteen first images, including all seven index pages, and six second changed images166–171 inspected; all461 pages rendered. No unresolved references/citations or bad boxes. Review:research/reviews/2026-10-04-q08-mixed-energy.json. Provisional66/100 required verified,30 excluded;130 tasks,44 active inputs,113 originals. Integrity/fresh archive verification follow before regular push. General mixed/relative uniqueness and earlier book-wide gates remain.
+
+Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching461-page text. No whole-book completion claim.

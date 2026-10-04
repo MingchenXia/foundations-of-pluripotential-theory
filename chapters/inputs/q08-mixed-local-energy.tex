@@ -1,0 +1,111 @@
+\subsection{Mixed energy and truncation}
+\label{sec:mixed-local-energy}
+Canonical approximants have controlled energies but need not have a common bound as functions. Mixed products must therefore be compared with their bounded truncations before continuity can be used. A mixed energy estimate makes the discarded sets uniformly small for both products.
+
+\begin{theorem}\label{thm:bounded-mixed-local-energy}
+For $u_0,\ldots,u_n\in\mathcal E_0(B)$,
+\begin{equation}\label{eq:bounded-mixed-local-energy}
+ \int_B(-u_0)\,\ddc u_1\wedge\cdots\wedge\ddc u_n
+ \leq C_n\prod_{l=0}^n e_1(u_l)^{1/(n+1)},
+ \qquad C_n=2^{n+2}.
+\end{equation}
+In particular the integral is finite, also when some energy is zero.
+\end{theorem}
+\begin{proof}
+Write $B=B(a,R)$ and $\rho=|z-a|^2-R^2$. We first prove the inequality with constant one for potentials which equal positive multiples of $\rho$ on boundary collars. We then approximate arbitrary members of $\mathcal E_0(B)$ by such potentials, retaining an explicit bound for their energies.
+
+\emph{Step 1. The collar case.}
+For this step assume that each $u_l=c_l\rho$ near $\partial B$, with $c_l>0$. All mixed products have finite total mass: their measures are smooth on a common collar and locally finite in the remaining compact interior. Put
+\[
+ I(u_0,\ldots,u_n)
+       =\int_B(-u_0)\,\ddc u_1\wedge\cdots\wedge\ddc u_n.
+\]
+For smooth potentials with zero boundary values and
+$S=\ddc u_2\wedge\cdots\wedge\ddc u_n$, Stokes' formula gives
+\[
+ I(u_0,u_1,u_2,\ldots,u_n)
+          =\int_B\mathrm du_0\wedge\mathrm d^cu_1\wedge S.
+\]
+The boundary term vanishes because $u_0=0$ there. In dimension one $S=1$. Since $S$ is positive of type $(n-1,n-1)$, the real bilinear form
+\[
+ (b,c)\longmapsto\int_B\mathrm db\wedge\mathrm d^cc\wedge S
+\]
+is symmetric and nonnegative on the diagonal. Indeed its $(1,1)$ factor is
+$(\mathrm i/(4\pi))(\partial b\wedge\bar\partial c+
+\partial c\wedge\bar\partial b)$, and positivity applies when $b=c$. Applying nonnegativity to $b+tc$, $t\in\mathbb R$, proves Cauchy--Schwarz, including a zero diagonal term. Consequently
+\begin{equation}\label{eq:mixed-local-energy-two-slot}
+ I(b,c,u_2,\ldots,u_n)^2
+ \leq I(b,b,u_2,\ldots,u_n)I(c,c,u_2,\ldots,u_n).
+\end{equation}
+The same symmetry interchanges the first two slots. Symmetry of the Hessian factors interchanges the remaining slots, so $I$ is symmetric in all $n+1$ slots.
+
+These assertions also hold for bounded collar potentials. Extend each $u_l$ across the boundary using $c_l\rho$ and convolve with the same smooth radial kernel of radius $\varepsilon$. For a constant $\kappa>0$ determined by that kernel,
+\[
+ u_{l,\varepsilon}=u_l*\rho_\varepsilon-c_l\kappa\varepsilon^2
+\]
+equals $c_l\rho$ on a smaller fixed collar. It is smooth and psh on a neighborhood of $\overline B$, has zero boundary values, and is nonpositive by the maximum principle. The raw radial convolutions decrease to $u_l$. Their weighted products converge on compact tests by \cref{thm:bt-decreasing-continuity}; the subtracted constants change weighted integrals by terms tending to zero, by the local mass bounds. On the fixed collar the corrected potentials and their products already equal their limiting quadratic expressions. A compact cutoff for the interior therefore gives convergence of all the displayed global integrals. Passing to the limit proves full symmetry and \eqref{eq:mixed-local-energy-two-slot}. The corrected smoothings themselves need not decrease.
+
+Every $e_1(u_l)$ is positive, because its collar integral is positive. Multiply $u_l$ by $e_1(u_l)^{-1/(n+1)}$ to normalize each energy to one. Consider the finitely many ordered $(n+1)$-tuples whose entries are drawn from these normalized potentials. Let $F$ be the largest value of $I$ on those tuples, and among the maximizing tuples choose one for which the sum of the squares of the entry multiplicities is largest. Diagonal tuples have value one, so $F\geq1$.
+
+If the chosen tuple contains two different entries $b,c$, symmetry puts them in the first two slots. Both quantities on the right of \eqref{eq:mixed-local-energy-two-slot} are at most $F$. Since its left side is $F^2$, both replacements also maximize $I$. If $b,c$ have multiplicities $r,s$, replacing one $c$ by $b$ changes the sum of squares by $2(r-s)+2$; the opposite replacement changes it by $2(s-r)+2$. At least one change is positive, contradicting the choice of tuple. Thus the maximizing tuple is diagonal and $F=1$. Undoing the normalization proves the constant-one estimate in the collar case.
+
+\emph{Step 2. Approximation with controlled energy.}
+Fix $u\in\mathcal E_0(B)$ and let
+\[
+ \delta_j=j^{-n-1},\qquad v_j=\max\{u-\delta_j,j\rho\},
+ \qquad m_\rho=\int_B(\ddc\rho)^n.
+\]
+The positive shift below $u$ makes $v_j=j\rho$ on a boundary collar: $u-\delta_j\leq-\delta_j$, whereas $j\rho> -\delta_j$ sufficiently near the boundary. Thus $v_j\in\mathcal E_0(B)$ and the compact-support current identity gives
+\[
+ \int_B(\ddc v_j)^n=j^n m_\rho.
+\]
+Moreover $v_j\to u$ uniformly on $B$. To check this, fix $s>0$. On a sufficiently thin boundary collar, $-s<u\leq0$ and $u-\delta_j\leq v_j\leq0$. On its compact complement, $j\rho<u-\delta_j$ for all large $j$, because $u$ is bounded. The uniform error is therefore at most $s+\delta_j$.
+
+For $t>4\delta_j$ the two inclusions
+\[
+ \{v_j<-t\}\subset\{u<v_j/2-t/4\}
+                       \subset\{u<-t/4\}
+\]
+follow from $u\leq v_j+\delta_j$ and $v_j\leq0$. The middle set is relatively compact, since the boundary limits of $u$ and $v_j/2-t/4$ are $0$ and $-t/4$. Bounded comparison gives
+\[
+ \int_{\{v_j<-t\}}(\ddc v_j)^n
+       \leq2^n\int_{\{u<-t/4\}}(\ddc u)^n.
+\]
+Layer integration, using the total mass bound for $0<t\leq4\delta_j$, yields
+\begin{equation}\label{eq:quadratic-collar-energy-approximation}
+ e_1(v_j)\leq4\delta_j j^n m_\rho+2^{n+2}e_1(u)
+                 =4m_\rho/j+C_ne_1(u).
+\end{equation}
+
+Apply this construction to every $u_l$. Their approximants are uniformly bounded, converge uniformly, and hence converge locally in capacity to their possibly discontinuous limits. Weighted capacity continuity, \cref{thm:bt-capacity-continuity}, gives convergence of $I$ on compact cutoffs with values in $[0,1]$. The collar estimate and \eqref{eq:quadratic-collar-energy-approximation} bound those tested integrals by
+\[
+ \prod_{l=0}^n(4m_\rho/j+C_ne_1(u_l))^{1/(n+1)}.
+\]
+Let $j\to\infty$ and exhaust $B$ by nonnegative compact cutoffs increasing to one. This proves \eqref{eq:bounded-mixed-local-energy}. The same limiting argument covers zero energies without normalizing them.
+\end{proof}
+\index{local energy!mixed inequality}
+
+\Needspace{12\baselineskip}
+\begin{corollary}\label{cor:mixed-products-energy-capacity-continuity}
+For $1\leq l\leq n$ let $u_{l,j}\in\mathcal E_0(B)$, with $e_1(u_{l,j})\leq E<\infty$. Suppose $u_{l,j}\to u_l$ locally in capacity, where each $u_l$ is bounded, nonpositive and psh. Then
+\[
+ \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{n,j}
+          \longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_n
+\]
+weakly on $B$.
+\end{corollary}
+\begin{proof}
+For $T>0$ write $a_{l,j,T}=\max\{u_{l,j},-T\}$, and denote the original and truncated mixed measures by $R_j$ and $R_{j,T}$. The truncation lemma gives $e_1(a_{l,j,T})\leq E$. Apply the theorem with extra weight $-u_{l,j}$ to $R_j$, and with extra weight $-a_{l,j,T}$ to $R_{j,T}$. Each resulting integral is at most $C_nE$.
+
+Let $D_{j,T}=\bigcup_{l=1}^n\{u_{l,j}\leq-T\}$. On its $l$-th constituent both extra weights are at least $T$, so
+\[
+ R_j(D_{j,T}),\ R_{j,T}(D_{j,T})\leq nC_nE/T.
+\]
+Iterated strict maximum locality gives $R_j=R_{j,T}$ on the complement, where every $u_{l,j}>-T$. Thus for each compactly supported continuous $\chi$,
+\[
+ \left|\int_B\chi\,(R_j-R_{j,T})\right|
+                    \leq2nC_nE\|\chi\|_\infty/T.
+\]
+The tie sets were included in $D_{j,T}$. For fixed $T>\max_l\|u_l\|_\infty$, the truncated potentials converge locally in capacity to $u_l$ and have a common bound. Bounded capacity continuity identifies the weak limit of $R_{j,T}$ with the stated limiting mixed product. First let $j\to\infty$ at fixed $T$, then let $T\to\infty$ in the error estimate.
+\end{proof}
+\index{Bedford--Taylor product!energy-controlled continuity}

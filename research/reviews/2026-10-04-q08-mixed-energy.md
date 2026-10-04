@@ -1,0 +1,13 @@
+# Bounded mixed energy: scoped proof review
+
+The complete new input was directly read twice around the first build and eighteen-page visual inspection. The changed history paragraph and active input seams were read. Exact earlier conventions, Stokes/product, capacity, comparison and truncation interfaces were consulted; no fresh whole-chapter review is claimed.
+
+Smooth zero-boundary Stokes gives full weighted-slot symmetry and gradient Cauchy–Schwarz. Positive quadratic collars permit global weighted-product convergence from decreasing raw radial convolutions; constant-corrected smoothings are not claimed decreasing. After normalizing positive energies, maximize over the finite collection of all tuples, using the sum of squared multiplicities to break ties. Cauchy–Schwarz forces a duplicate replacement to remain maximal and increase that sum unless the tuple is diagonal. This proves the sharp bound in the collar class.
+
+For a general bounded zero-boundary potential, max(u-delta_j,j rho), delta_j=j^(-n-1), has an exact quadratic collar and total mass j^n m_rho. It converges uniformly even when u is discontinuous. Strict sublevel comparison bounds the deep mass by2^n times the original mass at one quarter of the level; layer integration gives4m_rho/j+2^(n+2)e1(u). Weighted capacity continuity, rather than the continuous-limit uniform theorem, applies to these approximants. Compact cutoffs are explicitly bounded by one. The resulting coarse bound covers zero energies without normalization.
+
+Each mixed product and its truncation have deep-union mass at most nC_nE/T. Strict maximum locality identifies their complement and the tie sets remain in the discarded union. The2nC_nE/T compact-test error permits bounded capacity continuity at fixed T followed by T tending to infinity. No assertion of a uniform supremum bound for the original sequence or a product of unbounded limits is needed.
+
+Exact Cegrell published primary Lemma5.4/Theorem5.5 printed168–170 statements and complete proofs were read from original images and reread here. The fixed-weight1/n theorem is distinguished from Dinew's quoted n+1 energy formula. The source operator is not inferred: our homogeneous inequality uses internally computed constants. The new PDF is retained and hash-registered; no unbounded source theorem is imported.
+
+Eighteen first manuscript images and all six changed second-build images166–171 were inspected; all461 pages were rendered for comparison. The corollary statement is now kept together. All seven index pages, including terminal entries, are checked without compressing the index further. Final log has no unresolved references/citations or bad boxes. Integrity and fresh tracked-source rebuild follow registration.

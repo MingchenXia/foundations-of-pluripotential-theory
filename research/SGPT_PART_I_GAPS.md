@@ -111,3 +111,7 @@ Q08-11 closes local outer-capacity convergence and the finite-mass/total-variati
 ## Compact-measure local equation prerequisite
 
 Q08-12 closes the limiting equation and zero boundary trace in the compact-support bounded-subsolution ball regime. It also proves the exact pointwise envelope, uniqueness and full canonical-sequence L1/capacity/self-integral convergence. Review:research/reviews/2026-10-04-q08-subsolution.json. Current provisional65/99 required tasks verified,30 historical exclusions. Mixed energy, general common-measure inequality, relative uniqueness and earlier book gates remain.
+
+## Mixed truncation-energy prerequisite
+
+Q08-13 closes the bounded local mixed-energy estimate and energy-controlled mixed-product continuity with bounded limits. This supplies the canonical mixed-limit step for the general common-measure inequality required by SGPT PartI relative uniqueness. Review:research/reviews/2026-10-04-q08-mixed-energy.json. Provisional66/100 required tasks verified,30 historical exclusions; general mixed inequality/relative uniqueness and earlier book gates remain.
