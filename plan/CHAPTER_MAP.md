@@ -11,7 +11,7 @@ Required units form the current prequel; excluded units preserve historical work
 | P03 | I | required | Subharmonic functions | P02 | [chapters/p03-subharmonic-functions.tex](../chapters/p03-subharmonic-functions.tex) |
 | P04 | I | required | Riesz potentials, energy and capacity | P03 | [chapters/p04-riesz-potentials-energy-and-capacity.tex](../chapters/p04-riesz-potentials-energy-and-capacity.tex) |
 | P05 | I | required | Fine topology and balayage | P04 | [chapters/p05-fine-topology-and-balayage.tex](../chapters/p05-fine-topology-and-balayage.tex) |
-| P06 | I | required | Fourier energy and incidence of complex lines | P04 | [chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex](../chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex) |
+| P06 | I | required | Fourier analysis and incidence of complex lines | P04 | [chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex](../chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex) |
 | Q01 | II | required | Complex differential forms and positive currents | P03 | [chapters/q01-complex-differential-forms-and-positive-currents.tex](../chapters/q01-complex-differential-forms-and-positive-currents.tex) |
 | Q02 | II | required | Plurisubharmonic functions | P06, Q01 | [chapters/q02-plurisubharmonic-functions.tex](../chapters/q02-plurisubharmonic-functions.tex) |
 | Q08 | II | required | Bedford–Taylor products and local capacity | Q02 | [chapters/q08-bedford-taylor-products.tex](../chapters/q08-bedford-taylor-products.tex) |
