@@ -1,2 +1,165 @@
 \chapter{Test curves and geodesic rays}
 \label{chap:q15}
+
+Let $X$ be a connected compact K\"ahler manifold of dimension $n\geq1$, let $\theta$ be a smooth closed real $(1,1)$-form representing a big class, and fix a normalized model potential $\phi$ of mass $m>0$. A geodesic ray records a potential at each time. Taking its infimum after subtracting a linear slope instead records a singularity type at each slope. Kiselman's minimum principle keeps these infima plurisubharmonic; the model-envelope condition recovers the maximality of the original ray. The one-variable duality behind this construction is proved below in the precise half-line form required here.
+
+\section{Concave families of model potentials}
+\label{sec:model-test-curves}
+Write $M(q)=\int_X\langle(\theta+\ddc q)^n\rangle$ in the fixed background. The normalization of model potentials supplies a common upper bound, even when their singularities vary with the parameter.
+
+\begin{definition}\label{def:model-test-curve}
+A model test curve based at $\phi$ is a real number $b$ and a decreasing, pointwise concave family $\Gamma_\tau\in\PSH(X,\theta)$, $\tau<b$, such that
+\[
+ P_\theta[\Gamma_\tau]=\Gamma_\tau,\qquad
+             (\sup_{\tau<b}\Gamma_\tau)^*=\phi.
+\]
+We call $b$ its terminal slope and write $\operatorname{TC}(X,\theta,\phi)$ for these curves. A curve is bounded if $\Gamma_\tau=\phi$ for all sufficiently negative $\tau$; write $\operatorname{TC}^\infty$ for this subclass. Extend a curve by
+\[
+ \Gamma_b=\inf_{\tau<b}\Gamma_\tau,\qquad
+                \Gamma_\tau=-\infty\quad(\tau>b).
+\]
+The terminal value is allowed to have zero mass.
+\end{definition}
+\index{test curve!model}\index{test curve!bounded}\index{test curve!terminal slope}
+
+\Needspace{10\baselineskip}
+\begin{proposition}\label{prop:test-curve-parameter-continuity}
+Every interior value has positive mass. The terminal value is a noncollapsed fixed point of $P_\theta$, and $\sup_X\Gamma_\tau=0$ for $\tau\leq b$. For $\tau<b$,
+\[
+ \Gamma_\tau=\inf_{s<\tau}\Gamma_s
+                   =(\sup_{\tau<s<b}\Gamma_s)^*.
+\]
+The extended scalar function $\tau\mapsto\Gamma_\tau(x)$ is upper semicontinuous and concave for every $x$. The mass function decreases, tends to $m$ as $\tau\to-\infty$, and is continuous on $(-\infty,b]$ from the interior, with the corresponding one-sided interpretation at $b$.
+\end{proposition}
+\begin{proof}
+Fixed points have supremum zero. Their decreasing terminal limit is a potential and a fixed point by \cref{prop:decreasing-model-mass-continuity}. Outside its pluripolar pole set, all the scalar functions are finite on $(-\infty,b)$ and therefore continuous there by the elementary chord inequalities for concave functions. The first displayed limit is a decreasing potential limit; the second is a canonical increasing envelope. They agree almost everywhere with $\Gamma_\tau$, hence everywhere by canonical representatives. The first equality, together with decreasing order, proves scalar upper semicontinuity at interior parameters. The definition gives it at $b$, and beyond $b$ it is immediate. Concavity survives the extension by $-\infty$.
+
+Increasing non-pluripolar continuity gives $M(\Gamma_s)\to m$ as $s\to-\infty$. Given $\tau<b$, choose $s<\tau$ with positive mass and $r\in(\tau,b)$. Write $\tau=(1-t)r+ts$, with $0<t<1$. Concavity, mass monotonicity and positive multilinearity give
+\[
+ M(\Gamma_\tau)\geq M((1-t)\Gamma_r+t\Gamma_s)
+                                \geq t^nM(\Gamma_s)>0.
+\]
+Mass monotonicity gives decreasing order. The first parameter limit has convergence of masses by decreasing model continuity; the second by increasing continuity. This proves interior continuity and the terminal assertion.
+\end{proof}
+
+\begin{example}\label{ex:constant-and-associated-test-curves}
+The constant curve $\Gamma_\tau=\phi$ for $\tau\leq b$, extended by $-\infty$ afterwards, has terminal slope $b$. More generally, for $u\in\PSH(X,\theta)$ with $u\leq\phi$ define a bounded curve with terminal slope zero by
+\[
+ \Gamma_\tau=
+ \begin{cases}
+ \phi,&\tau\leq-1,\\
+ P_\theta[(1+\tau)u-\tau\phi],&-1<\tau<0.
+ \end{cases}
+\]
+The inner family is constant and then decreasing affine; since $u\leq\phi$, its chord slopes also decrease across the join at $-1$. Envelope concavity in \cref{prop:two-envelope-algebra} gives concavity of its projections. The coefficient of $\phi$ is positive at every interior parameter, so positive multilinearity and mass preservation give positive mass and the model property. The value at $-\infty$ is $\phi$. At zero its limit may have zero mass.
+\end{example}
+\index{test curve!associated with a potential}
+
+\section{The half-line Legendre transform}
+\label{sec:half-line-legendre-duality}
+The transforms use positive times and all real slopes. Their pointwise form matters at polar points, where a spatial upper envelope can change a raw supremum.
+
+\begin{lemma}\label{lem:half-line-scalar-legendre-duality}
+Let $q:\mathbb R\to[-\infty,C]$ be upper semicontinuous, decreasing and concave, with $q=-\infty$ above a finite $b$. For $t>0$ put
+\[
+ g(t)=\sup_{\tau\in\mathbb R}(q(\tau)+t\tau).
+\]
+Then
+\[
+ q(\tau)=\inf_{t>0}(g(t)-t\tau).
+\]
+Conversely, if $g$ is finite and convex on $(0,\infty)$ and $g(t)\leq C+bt$, then, for $q(\tau)=\inf_{t>0}(g(t)-t\tau)$,
+\[
+ g(t)=\sup_{\tau<b}(q(\tau)+t\tau).
+\]
+The identically $-\infty$ case has both transforms identically $-\infty$.
+\end{lemma}
+\begin{proof}
+For the first assertion, suppose $q$ is not identically $-\infty$. Its finite domain is an interval unbounded to the left. At an interior finite point, the chord slopes give a supporting affine upper line of slope $s\leq0$. If $s<0$, choosing $t=-s$ gives equality in the inverse formula. If $s=0$, the value is the global supremum of $q$; as $t\downarrow0$, $g(t)$ tends to that supremum. Indeed its upper bound is $\sup q+tb$ and each fixed finite value gives the reverse lower limit.
+
+Let $a\leq b$ be the right endpoint of the finite domain. At $\tau>a$, the bound $g(t)\leq C+ta$ gives the inverse value $-\infty$ as $t\to\infty$. At $a$, upper semicontinuity gives, for each finite $L>q(a)$, an interval $(a-\delta,a]$ where $q<L$. Splitting the supremum there and on $(-\infty,a-\delta]$ gives
+$g(t)-ta\leq\max\{L,C-t\delta\}$.
+Letting $t\to\infty$ and then $L\downarrow q(a)$ proves equality, including $q(a)=-\infty$. The opposite inverse bound always follows from the defining supremum.
+
+For the converse, the convex chord inequalities give a supporting affine lower line at every $t>0$. Its slope $\tau$ is at most $b$, by comparing the line with $C+bs$ as $s\to\infty$. If $\tau<b$, that line gives $q(\tau)=g(t)-t\tau$. If $\tau=b$, let $\tau_j\uparrow b$. The functions $g(s)-s\tau_j$ decrease to $g(s)-sb$, and the two infima over $s,j$ commute. Thus $q(\tau_j)\downarrow q(b)$, which again gives equality using slopes below $b$. Every defining infimum gives the reverse inequality. The infinite-value case follows directly from the formulas.
+\end{proof}
+
+\begin{definition}\label{def:test-curve-legendre-transform}
+For $\Gamma\in\operatorname{TC}(X,\theta,\phi)$ set
+\[
+ \check\Gamma_t(x)=\sup_{\tau<b}(\Gamma_\tau(x)+t\tau),\quad t>0,
+                           \qquad\check\Gamma_0=\phi.
+\]
+For a ray $\ell$ based at $\phi$ set
+\[
+ \widehat\ell_\tau(x)=\inf_{t>0}(\ell_t(x)-t\tau).
+\]
+The first formula is a raw supremum. Its value at zero is specified separately, since the raw initial supremum may differ from $\phi$ on a pluripolar set.
+\end{definition}
+\index{Legendre transform!of a test curve}\index{Legendre transform!of a geodesic ray}
+
+\Needspace{10\baselineskip}
+\begin{proposition}\label{prop:test-curve-legendre-subgeodesic}
+The raw transform is jointly upper semicontinuous on $X\times(0,\infty)$ and defines a subgeodesic ray starting at $\phi$. For every $t>0$,
+\[
+ \check\Gamma_t\in\mathcal E(X,\theta,\phi),\qquad
+ \sup_X\check\Gamma_t=bt,\qquad
+ \Gamma_\tau=\inf_{t>0}(\check\Gamma_t-t\tau).
+\]
+The inverse formula holds for every real $\tau$. Also $\check\Gamma_t-bt$ decreases with $t$.
+\end{proposition}
+\begin{proof}
+Write $F_t$ for the raw transform and $G$ for the canonical upper envelope of its product complexifications. Each $\Gamma_\tau+t\tau$ is a subgeodesic. The bound $F_t\leq\phi+bt$ and a fixed competitor give a noncollapsed, locally bounded-above envelope, so $G$ is $p^*\theta$-psh on the right half-plane. Imaginary-translation invariance is preserved. The raw and canonical envelopes agree almost everywhere on the product. Fubini and continuity of finite convex fibres show that $F_t=G_t$ for all positive times at almost every point of $X$. Here the terminal pole set can be removed to make $F_t$ finite at every positive time.
+
+For $\tau<b$ put $\chi_\tau=\inf_{t>0}(G_t-t\tau)$. Kiselman's minimum principle makes it $\theta$-psh or identically $-\infty$. The scalar lemma gives $\chi_\tau\geq\Gamma_\tau$, so it is a potential; the preceding almost-everywhere equality gives $\chi_\tau=\Gamma_\tau$ almost everywhere, hence everywhere. At $b$, commuting the decreasing infima gives $\chi_b=\Gamma_b$; for $\tau>b$ both are identically $-\infty$ by $G_t\leq\phi+bt$. Applying the converse scalar lemma to each fibre of $G$ now gives $G_t=F_t$ everywhere. A finite fibre has the required convexity and upper linear bound; an identically $-\infty$ fibre is covered by the last case of the lemma. This proves the asserted upper semicontinuity and inverse formula.
+
+We have $F_t\geq\Gamma_\tau+t\tau$ for every fixed $\tau<b$. Hence mass monotonicity gives $M(F_t)\geq M(\Gamma_\tau)$, and letting $\tau\to-\infty$ gives $M(F_t)\geq m$. The upper bound $F_t\leq\phi+bt$ gives the opposite mass bound and the relative order condition. Thus $F_t$ has relative full mass. The supremum is at most $bt$; it is at least $t\tau$ since $\sup_X\Gamma_\tau=0$. Letting $\tau\uparrow b$ proves equality. The formula
+$F_t-bt=\sup_{\tau<b}(\Gamma_\tau-t(b-\tau))$
+gives decreasing order.
+
+Normalized compactness and $\sup_XF_t=bt$ give potential cluster limits as $t\downarrow0$. The upper bound puts each below $\phi$, while every fixed lower competitor puts it above $\Gamma_\tau$. Their canonical supremum is $\phi$, so the limit is $\phi$ in $L^1$. Interior continuity follows from the subgeodesic fibre argument in \cref{prop:subgeodesic-convexity-and-continuity}; the same integrable lower and upper bounds apply on every compact time interval. Thus the initial extension is a subgeodesic ray.
+\end{proof}
+
+\section{Model curves and weak geodesic rays}
+\label{sec:model-test-curve-ray-correspondence}
+A replacement of a ray segment changes each dual potential by a bounded amount. The model condition therefore prevents any increase of that segment.
+
+\begin{theorem}\label{thm:model-test-curve-geodesic-ray-correspondence}
+The two transforms give inverse bijections
+\[
+ \operatorname{TC}(X,\theta,\phi)
+                  \longleftrightarrow\mathcal R(X,\theta,\phi).
+\]
+They restrict to a bijection between $\operatorname{TC}^\infty$ and $\mathcal R^\infty$. The terminal slope is $\sup_X\ell_1$.
+\end{theorem}
+\begin{proof}
+\enlargethispage{3\baselineskip}
+Let $F=\check\Gamma$. Replace its segment on $[a,d]$, $0\leq a<d$, by the Perron segment between its endpoints, and call the resulting subgeodesic ray $H$. Full-mass Perron existence and \cref{lem:subgeodesic-operations-and-pasting} apply, and $H\geq F$. Convexity bounds $H_t\leq bt$ throughout the replaced interval and this bound already holds elsewhere. Put $\chi_\tau=\inf_{t>0}(H_t-t\tau)$. For $\tau<b$, Kiselman's principle and $\chi_\tau\geq\Gamma_\tau$ make it a potential. Letting $t\downarrow0$ in the upper bound gives $\chi_\tau\leq0$.
+
+Since $F_t-bt$ decreases, for $a\leq s\leq d$,
+\[
+ F_d-d\tau\leq F_s-s\tau+(d-a)(b-\tau).
+\]
+Outside that interval $H_s=F_s$, while $\chi_\tau\leq H_d-d\tau=F_d-d\tau$. Taking the infimum over all $s>0$ therefore gives
+\[
+ \Gamma_\tau\leq\chi_\tau
+                  \leq\Gamma_\tau+(d-a)(b-\tau).
+\]
+The upper bound and $\chi_\tau\leq0$ make $\chi_\tau$ a competitor for the model envelope $P_\theta[\Gamma_\tau]=\Gamma_\tau$. Hence equality holds. Scalar duality gives $H=F$ everywhere. Every segment is therefore Perron, so $F$ is a weak ray.
+
+Conversely let $\ell\in\mathcal R(X,\theta,\phi)$ and $b=\sup_X\ell_1$. \Cref{prop:relative-ray-growth-and-energy} gives $\ell_t\leq\phi+bt$ and $\sup_X\ell_t=bt$. Convexity makes $\ell_t-bt$ decrease: a convex fibre bounded above on the half-line has no positive chord slope. The decreasing family has supremum zero, so its infimum $\widehat\ell_b$ is a noncollapsed potential by \cref{cor:global-decreasing-nets}. Kiselman's principle and $\widehat\ell_\tau\geq\widehat\ell_b$ give potentials for $\tau<b$; for $\tau>b$ the upper linear bound gives the identically $-\infty$ value. The dual family is decreasing and concave. Letting $t\downarrow0$ in its defining bound shows $\widehat\ell_\tau\leq0$.
+
+Fix $\tau<b$ and $C>0$, and put
+$q=P_\theta(\widehat\ell_\tau+C,V_\theta)$.
+Since $\widehat\ell_\tau\leq\ell_1-\tau\preceq\phi$, we have $q\leq\widehat\ell_\tau+C\preceq\phi$. As $q\leq0$, it is a competitor for $P_\theta[\phi]=\phi$, so $q\leq\phi$. The affine curve $q-Cs$ on $0\leq s\leq1$ lies below the endpoints of the Perron segment $\ell_{sT}-sT\tau$, for every $T>0$. Thus
+\[
+ q-Cs\leq\ell_{sT}-sT\tau.
+\]
+For fixed $s>0$, take the infimum over $T>0$ to obtain $q-Cs\leq\widehat\ell_\tau$; then let $s\downarrow0$. The reverse rooftop bound follows from $\widehat\ell_\tau\leq0$, so $q=\widehat\ell_\tau$. Letting $C\to\infty$ proves $P_\theta[\widehat\ell_\tau]=\widehat\ell_\tau$.
+
+On a common full-measure set, the finite convex fibres of $\ell$ have initial limit $\phi$. Supporting lines at times decreasing to zero give
+$\sup_{\tau<b}\widehat\ell_\tau=\phi$ there. Canonical upper envelopes give this equality everywhere after regularization. Thus $\widehat\ell$ is a model test curve based at $\phi$. Scalar duality gives the inverse identities for positive times and all slopes.
+
+If $\Gamma_\tau=\phi$ for $\tau\leq c$, then $\phi+ct\leq\check\Gamma_t\leq\phi+bt$. Conversely \cref{prop:relative-ray-growth-and-energy} bounds a bounded-type ray below by $\phi+ct$. This gives $\widehat\ell_\tau\geq\phi$ for $\tau\leq c$; the initial limit gives equality.
+\end{proof}
+\index{Ross--Witt Nystr\"om correspondence}\index{geodesic ray!model test curve}

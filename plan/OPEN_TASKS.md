@@ -71,8 +71,8 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 ## Q15 — Test curves and geodesic rays
 
-- `Q15-01` [planned] Test curves, maximality, endpoint degenerations and energy
-- `Q15-02` [planned] Legendre duality and Ross--Witt Nystrom correspondence
+- `Q15-01` [drafting] Test curves, maximality, endpoint degenerations and energy
+- `Q15-02` [drafting] Legendre duality and Ross--Witt Nystrom correspondence
 - `Q15-03` [planned] I-model test curves, approximation and operations
 - `Q15-04` [planned] Pointwise and metric convergence under the exact hypotheses
 
