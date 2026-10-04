@@ -678,7 +678,7 @@ Here $0\leq F'\leq1$. On $[\log\varepsilon,0]$, its difference from $1$ is at mo
 
 \section{Variational Monge--Amp\`ere equations}
 \label{sec:relative-variational-equations}
-Keep the big background $\theta$, the model reference $\phi$ and its positive mass $m$. The energy variation extends to continuous perturbations after projection onto psh potentials. This converts a maximizer into a solution. For measures with bounded density, normalized psh compactness controls the linear term and supplies the maximizer.
+Keep the big background $\theta$, the model reference $\phi$ and its positive mass $m$. The energy variation extends to continuous perturbations after projection onto psh potentials. This converts a maximizer into a solution. Bounded densities first give compactness for the linear term. Exponential integrals then supply compactness for every non-pluripolar measure, and the vanishing-parameter limit gives prescribed-measure existence.
 
 \begin{definition}\label{def:nonpluripolar-radon-measure}
 A finite positive Radon measure $\nu$ is \emph{non-pluripolar} if it gives every pluripolar Borel set mass zero. Integrals against it use its completion, so subsets of pluripolar sets are also null.
@@ -803,6 +803,114 @@ $\int_Xf\,\mu_u=\int_Xf\mathrm e^{\lambda u}\,\mathrm d\nu$.
 Radon uniqueness proves the equation. The preceding proposition gives uniqueness even in the full relative mass class.
 \end{proof}
 \index{Monge--Amp\`ere equation!positive exponential}
+
+\begin{lemma}\label{lem:psh-lone-quasieverywhere-limsup}
+If $q_j\to q$ in volume $L^1$ for a fixed smooth closed real $(1,1)$ background, then
+$\limsup_jq_j=q$ quasi-everywhere.
+\end{lemma}
+\begin{proof}
+The sequence has a common upper bound by Hartogs' lemma. Its tail envelopes $a_j=(\sup_{k\geq j}q_k)^*$ decrease to $q$. Indeed an almost-everywhere convergent subsequence gives $a_j\geq q$; local Hartogs bounds on neighborhoods where the upper semicontinuous limit is below $q(x)+\varepsilon$ give $\inf_ja_j(x)\leq q(x)+\varepsilon$. At a pole use every finite negative upper bound. These inequalities prove the pointwise limit. For each $j$, \cref{cor:psh-pluripolar-discrepancy}, after adding local smooth background potentials, gives $a_j=\sup_{k\geq j}q_k$ outside a pluripolar set. Their countable union is pluripolar, and outside it the decreasing limit is exactly $\limsup_jq_j$.
+\end{proof}
+
+\begin{lemma}\label{lem:bounded-psh-nonpluripolar-measure-continuity}
+Let $\nu$ be a finite non-pluripolar measure. Suppose $q_j,q$ have one fixed smooth psh background, $|q_j|,|q|\leq B$, and $q_j\to q$ in volume $L^1$. Then $q_j\to q$ in $L^1(\nu)$.
+\end{lemma}
+\begin{proof}
+The sequence is bounded in the real Hilbert space $L^2(\nu)$. By \cref{prop:hilbert-weak-sequences}, every subsequence has a further weakly convergent subsequence, say with limit $h$. This limit lies in the norm closure of each convex tail. To see this, if its distance to that closed convex tail were positive, let $p$ be its closest point. Minimizing along every segment from $p$ gives
+$\langle h-p,z-p\rangle\leq0$ for every point $z$ of the tail. Weak convergence with $z=q_j$ would give $\|h-p\|^2\leq0$, a contradiction. Existence of $p$ is \cref{prop:hilbert-projection-representation}.
+
+Choose finite convex combinations $r_l$ of terms of that subsequence beyond index $l$ with $\|r_l-h\|_{L^2(\nu)}\to0$. They are potentials in the same background, remain bounded by $B$, and tend to $q$ in volume $L^1$. A further subsequence tends to $h$ $\nu$-almost everywhere. The preceding lemma makes its pointwise upper limit equal to $q$ quasi-everywhere; non-pluripolarity gives $h=q$ $\nu$-almost everywhere. Thus every weak cluster limit is $q$, and the full sequence converges weakly to $q$ in $L^2(\nu)$. In particular its integrals converge.
+
+Also $\limsup q_j=q$ $\nu$-almost everywhere. Hence $(q_j-q)_+\to0$ almost everywhere and in integral by bounded convergence. Since
+$\int(q-q_j)_+=\int(q_j-q)_+-\int(q_j-q)$,
+the negative part tends to zero in integral as well. This proves the asserted $L^1(\nu)$ convergence.
+\end{proof}
+
+\begin{corollary}\label{cor:exponential-psh-measure-continuity}
+For $q_j\to q$ in volume $L^1$ in a fixed smooth psh background, every $\lambda>0$ and every finite non-pluripolar $\nu$ satisfy
+\[
+ \mathrm e^{\lambda q_j}\longrightarrow\mathrm e^{\lambda q}
+                                  \quad\text{in }L^1(\nu).
+\]
+\end{corollary}
+\begin{proof}
+Hartogs' lemma gives $q_j,q\leq C$. The exponentials take values in $[0,\mathrm e^{\lambda C}]$ and have a common smooth K\"ahler lower background. Here is the curvature check. On a chart with local background potential $h$, regularize $q_j+h$ by decreasing radial convolution and subtract $h$. The resulting smooth functions tend to $q_j$, have upper bound $C+1$ on a smaller chart, and their Hessians are bounded below by $-C_0\omega$, with $C_0$ fixed by the smooth background and chart. The chain rule gives
+\[
+ \ddc\mathrm e^{\lambda q_{j,\delta}}
+   =\lambda\mathrm e^{\lambda q_{j,\delta}}\ddc q_{j,\delta}
+      +\lambda^2\mathrm e^{\lambda q_{j,\delta}}
+             \mathrm dq_{j,\delta}\wedge\mathrm d^{\mathrm c}q_{j,\delta}
+   \geq-\lambda C_0\mathrm e^{\lambda(C+1)}\omega.
+\]
+A finite chart cover gives one constant. Decreasing local passage shows that the displayed pointwise exponentials are potentials for this common lower background, also with value zero at poles. The exponential is Lipschitz on $(-\infty,C]$, so they converge in volume $L^1$. Apply the preceding bounded-potential lemma.
+\end{proof}
+
+\begin{theorem}\label{thm:nonpluripolar-relative-exponential-equation}
+For every finite positive non-pluripolar measure $\nu$ with $\nu(X)>0$ and every $\lambda>0$, there is a unique
+$u\in\mathcal E(X,\theta,\phi)$ satisfying
+\[
+ \mu_u=\mathrm e^{\lambda u}\nu.
+\]
+This solution belongs to $\mathcal E^1(X,\theta,\phi)$ and maximizes
+$E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}\,\mathrm d\nu$
+on the relative finite-energy class.
+\end{theorem}
+\begin{proof}
+The set
+$K=\{w\in\PSH(X,\theta):w\leq\phi,\ \sup_Xw=0\}$
+is compact in volume $L^1$: \cref{prop:normalized-global-psh-compactness}, continuity of the supremum and closedness of the order bound give this assertion. It is nonempty because it contains $\phi$. The preceding corollary makes $w\mapsto\int\mathrm e^{\lambda w}\,\mathrm d\nu$ continuous on $K$. Its value is positive at every member, because all psh poles are $\nu$-null and $\nu(X)>0$. Compactness gives a positive minimum $a$.
+
+For any finite-energy $v$, write $v=w+c$ with $c=\sup_Xv$ and $w\in K$. Energy normalization and the minimum give
+\[
+ E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}\,\mathrm d\nu
+                       \leq mc-\lambda^{-1}a\mathrm e^{\lambda c}.
+\]
+Thus a maximizing sequence has bounded constants and a uniform lower energy bound, exactly as in the bounded-density proof. \Cref{cor:relative-energy-compact-sublevels} gives a finite-energy $L^1$ limit. Energy is upper semicontinuous, and the exponential integral is continuous by the corollary. The limit is a maximizer. Projected first variation and dominated differentiation against finite $\nu$, as in \cref{thm:bounded-density-relative-exponential-equation}, give its equation. \Cref{prop:relative-exponential-equation-domination} proves uniqueness in the entire relative full-mass class.
+\end{proof}
+\index{Monge--Amp\`ere equation!non-pluripolar exponential measure}
+
+\begin{lemma}\label{lem:nonpluripolar-measure-lower-bound-lone-limit}
+Suppose $q_j\to q$ in volume $L^1$ in the big background $\theta$. Let $\nu$ be finite and non-pluripolar, and suppose
+$\mu_{q_j}\geq f_j\nu$ with measurable $f_j\geq0$ and $f_j\to f$ $\nu$-almost everywhere. Then $\mu_q\geq f\nu$.
+\end{lemma}
+\begin{proof}
+Put $g_j=\inf_{k\geq j}f_k$, so $g_j\uparrow f$ almost everywhere. A finite maximum of the potentials $q_k$, $k\geq j$, has measure at least $g_j\nu$. For two terms this follows from \cref{lem:ordered-potential-contact-measure} on the disjoint sets where the first is at least the second and where the second is larger; the common poles are $\nu$-null. Induction proves the finite case. \Cref{cor:nonpluripolar-increasing-continuity} then gives
+\[
+ \mu_{a_j}\geq g_j\nu,\qquad
+              a_j=(\sup_{k\geq j}q_k)^*.
+\]
+The tail envelopes decrease to $q$ by the first lemma.
+
+Fix $C>0$ and $j_0$. The truncations
+$a_j^C=\max\{a_j,V_\theta-C\}$ have uniformly bounded difference from $V_\theta$: their common upper bound follows from Hartogs' lemma and minimality. They decrease to $q^C=\max\{q,V_\theta-C\}$, with full-mass limit of bounded minimal type. \Cref{cor:relative-full-mass-capacity-convergence} therefore gives weak convergence of their measures. On the fixed Borel set $A_C=\{q>V_\theta-C\}$, locality gives
+$\mu_{a_j^C}\geq\mathbf1_{A_C}g_{j_0}\nu$ for $j\geq j_0$. This is a fixed finite lower measure, so weak passage preserves the inequality. Restrict to $A_C$ and use locality again to obtain
+$\mu_q\geq\mathbf1_{A_C}g_{j_0}\nu$.
+Let $j_0\to\infty$ and $C\to\infty$. The sets $A_C$ exhaust all points where $q,V_\theta$ are finite, hence a set of full $\nu$ measure. Monotone convergence proves the assertion.
+\end{proof}
+
+\Needspace{15\baselineskip}
+\begin{theorem}\label{thm:nonpluripolar-relative-prescribed-measure-existence}
+Every finite positive non-pluripolar $\nu$ with $\nu(X)=m$ admits a normalized solution
+\[
+ u\in\mathcal E(X,\theta,\phi),\qquad
+                \mu_u=\nu,\quad\sup_Xu=0.
+\]
+\end{theorem}
+\begin{proof}
+For $\lambda_j\downarrow0$, solve the preceding exponential equation and write its solution as $u_j=w_j+c_j$, where $\sup_Xw_j=0$. Then $w_j\in K$, the compact normalized set in that proof. On $K$, the continuous functions
+\[
+ H_j(w)=\int_X\mathrm e^{\lambda_jw}\,\mathrm d\nu
+\]
+increase pointwise to the constant $m$, since $w\leq0$ and its poles are $\nu$-null. The convergence is uniform. Indeed, for any $\varepsilon>0$ the compact sets $\{w\in K:m-H_j(w)\geq\varepsilon\}$ decrease with empty intersection; the finite-intersection property makes them eventually empty.
+
+Comparing total masses in the equation gives
+\[
+ \mathrm e^{\lambda_jc_j}=\frac m{H_j(w_j)}\longrightarrow1.
+\]
+Also $\int_X|1-\mathrm e^{\lambda_jw_j}|\,\mathrm d\nu=m-H_j(w_j)\to0$. Hence
+$r_j=\mathrm e^{\lambda_ju_j}\to1$ in $L^1(\nu)$, and $\mu_{w_j}=r_j\nu$. Choose a subsequence with $r_j\to1$ almost everywhere and, by compactness, a further subsequence with $w_j\to u$ in volume $L^1$. Its limit remains in $K$. The lower-bound lemma gives $\mu_u\geq\nu$. Since $u\leq\phi$, mass monotonicity gives $\mu_u(X)\leq m=\nu(X)$. Thus the measures agree and $u$ has relative full mass. Its membership in $K$ supplies the normalization.
+\end{proof}
+\index{Monge--Amp\`ere equation!non-pluripolar prescribed measure}
 
 \section{Subgeodesics and Perron segments}
 \label{sec:relative-weak-geodesics}

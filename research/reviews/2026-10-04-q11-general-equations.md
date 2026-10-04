@@ -1,0 +1,11 @@
+# Non-pluripolar relative equations
+
+All six new saved statements and full proofs, section and adjoining seams and revised/new history paragraphs have two direct mathematical/editorial reads. This is scoped authoring-agent review, not independent certification. All 23 first selected affected images and seven final changed images inspected.
+
+Bounded potentials are bounded in L2 of the fixed non-pluripolar measure. A weak Hilbert cluster lies in every norm-closed convex tail, by nearest-point projection; convex combinations identify it with the volume L1 limit quasi-everywhere. The upper-limit lemma then converts weak convergence to strong L1 measure convergence. Exponentials have one bounded quasi-psh background by direct local curvature calculation. Their integral is continuous on the compact normalized psh set and has a positive minimum. Together with relative energy compactness this gives a variational exponential solution for every finite non-pluripolar measure, with uniqueness from earlier comparison/domination.
+
+For the zero-parameter limit, the normalized exponential integrals increase uniformly to total mass on the compact normalized set. The resulting densities converge in L1 and along a subsequence almost everywhere. Tail maxima preserve a common lower density. Minimal-type truncations then preserve a fixed restricted lower measure under weak passage; restriction/locality and exhaustion give the full lower bound. Mass monotonicity forces equality for the normalized limit. No potential uniqueness for the unweighted equation is asserted.
+
+Complete BBGZ Theorem 3.10 proof and DDNL v3 Lemma 2.8/Theorem 4.7 proof read at exact locators; six original source pages inspected. The book uses a bounded Hilbert argument and an exponential limit instead of importing their functional-analytic or general-measure existence inputs. Exact operator normalization preserved. Supplied general exponential claim gains one full mapping, now 185; prescribed-measure existence stays a partial target pending uniqueness.
+
+Final draft 433 pages, zero audit errors, unresolved references/citations or overfull boxes. Fresh source archive rebuilt in an empty directory with matching page text for the 433-page draft. Relative bounds, uniqueness, earlier gates, later chapters and whole-book source/polishing work remain.
