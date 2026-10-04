@@ -1,2 +1,308 @@
 \chapter{Convex analysis and toric potentials}
 \label{chap:q16}
+A potential invariant under coordinate rotations is described on the open complex torus by a convex function of logarithmic radii. Its slopes encode growth at the boundary, and their volume measures its Monge--Amp\`ere mass. The passage from a function to its slope set requires more than the one-variable duality used for rays: boundary values of the conjugate and the measure carried by a multivalued subgradient must also be controlled.
+
+Fix a real vector space $N_{\mathbb R}$ of dimension $n$ and its dual $M_{\mathbb R}$, with pairing $\langle p,x\rangle$. Auxiliary Euclidean norms may be chosen for estimates. When measures are used, fix a lattice $N\subset N_{\mathbb R}$ and its dual $M$; Lebesgue measures in dual lattice coordinates give a fundamental parallelepiped volume one. A convex body means a nonempty compact convex set, possibly of smaller dimension. In dimension zero both spaces are a point and this Lebesgue measure has mass one.
+
+\section{Closed convex functions and supporting slopes}
+\label{sec:closed-convex-functions}
+The values $+\infty$ record a restricted effective domain. Lower semicontinuity is needed when a limiting slope reaches its boundary.
+
+\begin{definition}\label{def:proper-convex-function}
+A proper convex function is a function $F:N_{\mathbb R}\to\mathbb R\cup\{+\infty\}$ with nonempty effective domain $\operatorname{dom}F=\{F<+\infty\}$ and convex epigraph
+\[
+ \operatorname{epi}F=\{(x,r):r\geq F(x)\}.
+\]
+It is closed if it is lower semicontinuous. The relative interior of a convex set is its interior in its affine span. For $x\in\operatorname{dom}F$, its subgradient set is
+\[
+ \partial F(x)=\{p:F(y)\geq F(x)+\langle p,y-x\rangle
+                                      \text{ for every }y\}.
+\]
+Set $\partial F(x)=\varnothing$ outside the effective domain and $\partial F(E)=\bigcup_{x\in E}\partial F(x)$.
+\end{definition}
+\index{convex function!proper}\index{convex function!closed}\index{epigraph}\index{subgradient}\index{relative interior}
+
+\begin{lemma}\label{lem:finite-dimensional-convex-separation}
+A point outside a nonempty closed convex set can be strictly separated from it by an affine functional. A boundary point of a closed convex set has a supporting hyperplane in the ambient space. Every point of a convex hull is a convex combination of at most $n+1$ points in an $n$-dimensional space. A nonempty convex set $C$ has nonempty relative interior, and
+\[
+ \overline{\operatorname{ri}C}=\overline C,\qquad
+ \operatorname{ri}C=\operatorname{ri}\overline C.
+\]
+Its relative boundary has Lebesgue measure zero in its affine span.
+\end{lemma}
+\begin{proof}
+For a point $z$ outside a closed convex set, minimize the Euclidean distance on that set. A minimizing sequence is bounded and has a convergent subsequence, so the minimum occurs at $y$. Comparing with $y+t(w-y)$ and differentiating the squared distance at $t=0$ gives
+$\langle z-y,w-y\rangle\leq0$.
+This strictly separates $z$, since $|z-y|>0$. For a boundary point, apply this construction to exterior points tending to it. Normalize the separating normals and take a convergent subsequence; its unit limit supports the set at that point. If the set has smaller affine span, any hyperplane containing that span supports it; the exterior-point argument above is needed for the full-dimensional case.
+
+If a convex combination uses more than $n+1$ points, their augmented vectors $(x_i,1)$ are linearly dependent. Subtract a multiple of that dependence from its nonnegative coefficients until one coefficient becomes zero. Both the sum of coefficients and their barycenter are preserved. Repetition proves the asserted bound.
+
+Choose an affine basis from $C$. Its simplex has a relative interior ball centered at some $x_0$. For $y\in\overline C$ and $0\leq t<1$, the point $(1-t)x_0+ty$ lies in $\operatorname{ri}C$. To see this also when $y$ is only a limit point, approximate $y$ by points of $C$; the corresponding balls have the common radius $(1-t)r$, so a smaller ball about the limit still belongs to $C$. This proves density. If $x\in\operatorname{ri}\overline C$, choose a small simplex in $\overline C$ surrounding $x$ and approximate its vertices by points of $C$. The perturbed simplex still surrounds $x$, proving the relative-interior equality. In positive affine dimension, place $x_0$ at the origin. Along each radial half-line the boundary of the closed convex set has at most one point, since an initial ball is inside. Polar coordinates and Fubini give boundary measure zero. Dimension zero has empty relative boundary.
+\end{proof}
+
+\begin{proposition}\label{prop:convex-local-regularity-and-subgradients}
+A proper convex function is locally Lipschitz on the relative interior of its domain. There its subgradient is nonempty. For a finite convex function on an open convex set, the subgradient sets are locally bounded and have closed graph, and
+\[
+ F'(x;v)=\lim_{t\downarrow0}\frac{F(x+tv)-F(x)}t
+                 =\max_{p\in\partial F(x)}\langle p,v\rangle.
+\]
+Such a function is differentiable almost everywhere. It is differentiable at $x$ exactly when $\partial F(x)$ is a singleton.
+\end{proposition}
+\begin{proof}
+Work first in the affine span of the domain. A small cube about an interior point has vertices in the domain. Convexity bounds $F$ above on the cube by its finitely many vertex values. Reflection about its center gives a lower bound on a smaller cube. Comparing the chord through two points of a still smaller cube with its continuation to the larger cube gives a Lipschitz bound, with constant controlled by the oscillation divided by the distance to the boundary.
+
+Take the closure of the epigraph in this affine span times $\mathbb R$. Continuity near an interior point $x$ makes $(x,F(x))$ a boundary point of that closure. Its supporting functional has positive vertical coefficient: that coefficient is nonnegative because the epigraph extends upward, and a zero coefficient would support the domain at an interior point. Divide by it to obtain an affine minorant touching $F$ at $x$. Extend its linear part to the original ambient space; outside the domain's affine span the convex inequality has infinite left side. Thus $\partial F(x)$ is nonempty.
+
+On an open full-dimensional domain, comparison with $x\pm re_i$ bounds each coordinate of every subgradient on a smaller cube. Passing the defining inequalities to a limit proves closed graph. The chord quotients in the display decrease as $t\downarrow0$ and are bounded by local Lipschitz continuity. A subgradient at $x$ gives their lower bound. Choose a subgradient at $x+tv$; it gives the reverse upper bound. Local compactness and closed graph identify its cluster limits with subgradients at $x$, proving the formula.
+
+On a coordinate line, the left and right derivatives differ only at discontinuities of a monotone derivative, a countable set. The difference quotients are measurable, so Fubini shows that all coordinate derivatives exist at almost every point. At such a point every subgradient has the same coordinate values, and hence is unique. If $\partial F(x)=\{p\}$, local boundedness and closed graph imply that all subgradients at points tending to $x$ tend to $p$. The two subgradient inequalities then bound
+$F(x+h)-F(x)-\langle p,h\rangle$
+by $o(|h|)$, giving differentiability. Differentiability forces the defining inequalities to have slope equal to the differential, proving the converse.
+\end{proof}
+
+\begin{proposition}\label{prop:convex-closure-and-dense-convergence}
+The lower semicontinuous regularization $\overline F$ of a proper convex function is proper and convex. It agrees with $F$ on the relative interior of the domain; a closed proper convex function is determined by its values there. If finite convex functions on an open convex set converge to finite values on a dense subset, they converge locally uniformly to a finite convex function.
+\end{proposition}
+\begin{proof}
+An affine minorant from the preceding proposition bounds the entire epigraph from below. Its closure therefore has no downward infinite vertical fibre and is the epigraph of a proper convex function. This is exactly the lower semicontinuous regularization. Interior agreement follows from local continuity. For a closed function and $x_0$ in the relative interior, lower semicontinuity and convexity give
+\[
+ F(x)=\lim_{t\uparrow1}F((1-t)x_0+tx)
+                           \qquad(x\in\overline{\operatorname{dom}F}),
+\]
+including infinite boundary values. Outside the closed domain the value is infinite. This proves the determination assertion.
+
+For the sequence assertion, choose vertices in the dense set whose convex hull contains a neighborhood of a given compact ball. Their convergent values give a common upper bound there. One additional dense point in an interior ball and reflection give a common lower bound on a smaller ball. The chord estimate in the preceding proof gives uniform local Lipschitz constants. Finite nets from the dense set then make the functions uniformly Cauchy on each smaller compact ball. Their limit is finite and continuous, and convex inequalities pass to it. Covering compact sets by finitely many such balls proves local uniform convergence.
+\end{proof}
+\index{convex function!local uniform convergence}
+
+\section{Legendre duality and convex envelopes}
+\label{sec:finite-dimensional-legendre-duality}
+\begin{definition}\label{def:convex-legendre-transform}
+For a proper convex function put
+\[
+ F^*(p)=\sup_x(\langle p,x\rangle-F(x)).
+\]
+The indicator of a nonempty set $C$ is $\chi_C=0$ on $C$ and $+\infty$ elsewhere. For a convex body $P\subset M_{\mathbb R}$ its support function is
+\[
+ h_P(x)=\sup_{p\in P}\langle p,x\rangle.
+\]
+\end{definition}
+\index{Legendre transform!of a convex function}\index{support function}\index{indicator function!convex set}
+
+\begin{theorem}\label{thm:finite-dimensional-fenchel-duality}
+The conjugate $F^*$ is closed and proper, and
+\[
+ F^{**}=\overline F,\qquad(\overline F)^*=F^*.
+\]
+For closed proper $F$, the following conditions are equivalent:
+\[
+ p\in\partial F(x),\qquad x\in\partial F^*(p),\qquad
+                     F(x)+F^*(p)=\langle p,x\rangle.
+\]
+Moreover
+\[
+ \operatorname{ri}(\operatorname{dom}F^*)\subset\partial F(N_{\mathbb R})
+       \subset\operatorname{dom}F^*,\qquad
+ \overline{\partial F(N_{\mathbb R})}
+                         =\overline{\operatorname{dom}F^*}.
+\]
+For every nonempty closed convex $P$, support and indicator functions are conjugate.
+\end{theorem}
+\begin{proof}
+The conjugate is a supremum of continuous affine functions, hence closed and convex. An affine minorant of $F$ gives a finite conjugate value; a finite value of $F$ bounds the conjugate below at each $p$. Thus it is proper. The defining inequality gives $F^{**}\leq F$.
+
+Suppose first $F$ is closed. Separate $(x,r)$ with $r<F(x)$ strictly from its epigraph, writing the separating inequality as
+\[
+ \langle a,y\rangle+cs\geq\langle a,x\rangle+cr+\delta,
+                  \qquad s\geq F(y),\quad\delta>0.
+\]
+Here $c\geq0$. If $c>0$, division yields an affine minorant whose value at $x$ exceeds $r$. If $c=0$, choose an existing affine minorant $L_0$. The functions
+\[
+ L_0(y)+k\bigl(\langle a,x\rangle+\delta/2-\langle a,y\rangle\bigr)
+\]
+are still minorants on the effective domain and tend to infinity at $x$. Thus in either case the supremum of affine minorants is $F(x)$. This supremum is $F^{**}$, proving duality. Affine minorants of $F$ and of $\overline F$ coincide, so their conjugates agree and the general assertion follows.
+
+The subgradient inequality says exactly that the supremum defining $F^*(p)$ is attained at $x$ with the displayed value. Interchange the functions and use duality to get all three equivalences. Apply subgradient existence to $F^*$ at its relative interior to obtain the first inclusion; attainment gives the second. Relative-interior density gives the equality of closures. Finally $\chi_P^*=h_P$ by definition and $h_P^*=\chi_P$ by duality.
+\end{proof}
+
+\begin{proposition}\label{prop:convex-envelope-algebra}
+Suprema of convex functions are convex. A decreasing net of convex functions has convex infimum, possibly improper. For a nonempty family of proper convex functions $F_i$, the largest convex minorant of $\inf_iF_i$ is the finite-combination envelope
+\[
+ H(x)=\inf\left\{\sum_{j=1}^q\lambda_jF_{i_j}(x_j):
+       \lambda_j>0,\ \sum_j\lambda_j=1,\ \sum_j\lambda_jx_j=x\right\},
+\]
+where each $x_j$ has finite value. Its conjugate is $\sup_iF_i^*$. Whenever $H$ has an affine minorant, its closure is the largest closed convex minorant and equals $(\sup_iF_i^*)^*$. For proper convex $F,G$, their infimal convolution is
+\[
+ (F\mathbin\square G)(x)=\inf_{y+z=x}(F(y)+G(z)),
+ \qquad(F\mathbin\square G)^*=F^*+G^*.
+\]
+For finite convex $F,G$ on the whole space,
+\[
+ (F+G)^*(p)=\min_{q+r=p}(F^*(q)+G^*(r))
+\]
+when the value is finite, and it is $+\infty$ when no finite split exists.
+\end{proposition}
+\begin{proof}
+Suprema intersect epigraphs. For a decreasing directed net, choose a common index making both endpoint values as close to their infima as desired and apply the chord inequality. This works also for a negative infinite endpoint by letting its finite upper approximation tend downward.
+
+Combining two finite combinations proves convexity of $H$. Pure combinations show $H\leq F_i$, while the convex inequality for any common minorant shows it lies below $H$. In computing its conjugate, the supremum over combinations is at most $\sup_iF_i^*$, and pure combinations give equality. If an affine minorant exists, closure and duality prove the asserted closed formula. An affine minorant of an arbitrary function depends only on its closed convex envelope for the same reason.
+
+The approximate minimizing splits prove convolution convexity. Commuting the two independent suprema over $y,z$ proves its conjugate identity. For the final assertion let $J(p)$ denote the infimum on the right. Each conjugate is bounded below by minus its value at zero. Also, for every $R>0$,
+\[
+ F^*(q)\geq R|q|-\max_{|x|\leq R}F(x),
+\]
+and the analogous bound holds for $G^*$. Consequently bounded-cost splits of bounded $p$ remain bounded. Lower semicontinuity then proves attainment and closedness of $J$. It is convex, bounded below and proper, the latter by choosing one subgradient of each function at zero. The convolution identity gives $J^*=F+G$, so duality proves $J=(F+G)^*$.
+\end{proof}
+\index{infimal convolution}\index{convex envelope}
+
+\section{Slope bodies and bounded growth}
+\label{sec:convex-slope-bodies}
+\begin{definition}\label{def:convex-growth-classes}
+For finite convex $F,G$, write $F\preceq G$ if $F\leq G+C$ for a constant and $F\sim G$ if both orders hold. Fix a convex body $P$. Let $\mathcal P(N_{\mathbb R},P)$ consist of finite convex functions with $F\preceq h_P$, and set
+\[
+ K_F=\overline{\operatorname{dom}F^*}.
+\]
+Its bounded class $\mathcal E^\infty(N_{\mathbb R},P)$ consists of $F\sim h_P$. If $P$ has interior, its full-mass class $\mathcal E(N_{\mathbb R},P)$ consists of $K_F=P$; if it has empty interior, set $\mathcal E=\mathcal P$. Finally $\mathcal E^1$ consists of $F\in\mathcal E$ with $\int_PF^*\,\mathrm dp<+\infty$. The conjugate is bounded below by $-F(0)$, so this integral is well-defined.
+\end{definition}
+\index{convex function!slope body}\index{convex function!bounded growth}\index{convex function!finite energy}
+
+\begin{proposition}\label{prop:convex-support-growth-characterization}
+For finite convex $F$, the following are equivalent:
+\[
+ F\preceq h_P,\qquad\operatorname{dom}F^*\subset P,
+                       \qquad\partial F(N_{\mathbb R})\subset P.
+\]
+They imply $\max_x(F(x)-h_P(x))=F(0)$ and a global Lipschitz constant $\max_{p\in P}|p|$. Also $F\sim h_P$ exactly when $F^*$ is bounded on $P$ and infinite outside it, and
+\[
+ \mathcal E^\infty\subset\mathcal E^1\subset\mathcal E\subset\mathcal P.
+\]
+For finite $F,G$ with $K_F$ compact,
+\[
+ K_{F+G}=K_F+K_G.
+\]
+For another convex body $P'$, if $K_F=P$ and $K_G=P'$, their sum has full mass for $P+P'$.
+\end{proposition}
+\begin{proof}
+Conjugation of $F\leq h_P+C$ gives $F^*\geq\chi_P-C$, hence the domain inclusion. A subgradient belongs to the conjugate domain, giving the next implication. If all slopes lie in $P$, a subgradient at $x$ gives
+$F(x)-F(0)\leq\langle p,x\rangle\leq h_P(x)$.
+The bound is attained at zero. Apply subgradients at each endpoint of a chord to obtain the Lipschitz estimate.
+
+Two-sided bounded order is reversed by conjugation, proving the bounded-conjugate criterion. In that case the conjugate domain is $P$, giving full mass when $P$ has interior, and its integral is finite. In smaller dimension every integral with the ambient Lebesgue measure is zero. This proves all inclusions, with the stated convention for that case.
+
+The attained split formula gives
+$\operatorname{dom}(F+G)^*=\operatorname{dom}F^*+\operatorname{dom}G^*$.
+Compactness of $K_F$ permits passage to closure in the Minkowski sum: for a convergent sequence of sums, the first summands have a convergent subsequence, and the second summands then converge too. Approximate summands prove the reverse inclusion. This proves the displayed equality and its full-mass consequence. The slope-body hypotheses matter for lower-dimensional reference bodies, as the example below shows.
+\end{proof}
+
+\begin{proposition}\label{prop:convex-decreasing-smooth-growth-approximation}
+Every $F\in\mathcal P(N_{\mathbb R},P)$ is the decreasing limit of smooth functions $F_j\in\mathcal E^\infty(N_{\mathbb R},P)$. Pointwise convergence within $\mathcal P$ is equivalent to local uniform convergence. For the decreasing approximation, $F_j^*\uparrow F^*$ pointwise.
+\end{proposition}
+\begin{proof}
+Let $A_j=\max\{F,h_P-j\}$ and let $\rho$ be a smooth nonnegative even mollifier of integral one. Choose $\varepsilon_j\downarrow0$ and put $F_j=A_j*\rho_{\varepsilon_j}$. Convolution preserves convexity. The average of $A(x-\varepsilon y)$ against an even measure is an even convex function of $\varepsilon$, so is nondecreasing for $\varepsilon\geq0$. Since $A_j\geq A_{j+1}$, both changes of index make $F_j$ decrease. Jensen's inequality gives $F_j\geq F$. The common Lipschitz constant bounds convolution error by $C\varepsilon_j$, while $A_j\to F$ locally uniformly. The support function has the same Lipschitz bound, so each $F_j$ differs from it by a bounded amount. This proves smooth bounded-type approximation. The convergence equivalence follows from \cref{prop:convex-closure-and-dense-convergence}. Finally commuting the increasing suprema over $j$ and $x$ in the conjugate formula gives $\sup_jF_j^*=F^*$.
+\end{proof}
+
+\begin{example}\label{ex:convex-degenerate-full-mass-sum}
+The empty-interior convention does not force a function to use every slope in its reference body. In $\mathbb R^2$ let $P=[0,1]\times\{0\}$ and $P'=\{0\}\times[0,1]$. The zero function is full mass for each body because both ambient volumes vanish. Their sum is still zero and has slope body $\{0\}$, whereas $P+P'=[0,1]^2$ has positive area. The extra slope-body hypothesis in the sum assertion is therefore necessary.
+\end{example}
+
+\begin{lemma}\label{lem:monomial-growth-convex-hull}
+For $m\geq1$, $\beta_1,\ldots,\beta_m\in M_{\mathbb R}$ and $\alpha\in M_{\mathbb R}$,
+\[
+ \log\sum_{i=1}^m\mathrm e^{\langle\beta_i,x\rangle}
+                         -\langle\alpha,x\rangle
+\]
+is bounded below on $N_{\mathbb R}$ exactly when $\alpha$ belongs to the convex hull of the $\beta_i$. If all exponents are integral, this is equivalent to boundedness on $(\mathbb C^*)^n$ of
+\[
+ \frac{|z^\alpha|^2}{\sum_i|z^{\beta_i}|^2},
+          \qquad x_j=\log|z_j|^2.
+\]
+\end{lemma}
+\begin{proof}
+If $\alpha=\sum_i\lambda_i\beta_i$ is a convex combination, then
+$\langle\alpha,x\rangle\leq\max_i\langle\beta_i,x\rangle$
+and the logarithmic sum is at least that maximum. Conversely strict separation from the compact convex hull gives $v$ with
+$\langle\alpha,v\rangle>\max_i\langle\beta_i,v\rangle$.
+At $x=tv$ the displayed difference tends to $-\infty$, since the logarithmic sum differs from its maximum by a number in $[0,\log m]$. The change to logarithmic radii proves the last assertion, including negative integral exponents on the open torus.
+\end{proof}
+\index{monomial!convex-hull growth criterion}
+
+\section{The real Monge--Amp\`ere measure}
+\label{sec:real-monge-ampere-measure}
+A subgradient image can fail to be Borel. Almost-everywhere single-valuedness of the inverse subgradient gives both its measurable volume and countable additivity.
+
+\begin{theorem}\label{thm:alexandrov-measure-construction}
+For a finite convex function $F$ on $N_{\mathbb R}$ there is a positive Radon measure defined on Borel sets by
+\[
+ \operatorname{MA}_{\mathbb R}(F)(E)=n!\operatorname{vol}(\partial F(E)).
+\]
+The subgradient image is measurable for completed Lebesgue measure. If $G=F^*$ and $D$ is the set of differentiability points of $G$ in the interior of its domain, this measure is
+\[
+ \operatorname{MA}_{\mathbb R}(F)
+                  =(\nabla G)_*(n!\mathbf1_D\,\mathrm dp).
+\]
+If the conjugate domain has empty interior and $n>0$, the measure is zero. In every case
+\[
+ \operatorname{MA}_{\mathbb R}(F)(N_{\mathbb R})
+                        =n!\operatorname{vol}(K_F).
+\]
+\end{theorem}
+\begin{proof}
+The conjugate domain is convex. Its difference from its interior has measure zero, either by the boundary assertion in \cref{lem:finite-dimensional-convex-separation} or because it lies in a proper affine subspace. Local regularity makes its nondifferentiability set null. The differentiability set and gradient are Borel: equality of coordinate left and right difference-quotient limits describes the former, and those limits give the latter. At a point of $D$, duality says
+\[
+ p\in\partial F(E)\quad\Longleftrightarrow\quad\nabla G(p)\in E.
+\]
+Every subgradient lies in $\operatorname{dom}G$. Thus its image differs from this Borel inverse image by a subset of a fixed null set. This proves completed measurability and the pushforward formula, which gives countable additivity.
+
+On a compact set, subgradients are bounded by comparison with finitely many neighboring point values. Their graph is closed, so the image of a compact set is compact. The measure is therefore locally finite and is Radon by \cref{prop:borel-regularity}. Its total mass is $n!\operatorname{vol}(\operatorname{dom}G)$, equal to the volume of its closure since only the convex boundary is added. In dimension zero $F$ is a constant, $D$ is the single point and the formula gives unit mass, with $0!=1$.
+\end{proof}
+\index{real Monge--Amp\`ere measure}\index{Alexandrov measure}
+
+\begin{theorem}\label{thm:real-monge-ampere-vague-continuity}
+If finite convex functions $F_j$ converge locally uniformly to $F$, their real Monge--Amp\`ere measures converge against every continuous compactly supported function. For $F\in\mathcal P(N_{\mathbb R},P)$, full mass is equivalent to
+\[
+ \operatorname{MA}_{\mathbb R}(F)(N_{\mathbb R})=n!\operatorname{vol}(P).
+\]
+If also $F\preceq H$, then $K_F\subset K_H$ and the total mass of $F$ is at most that of $H$.
+\end{theorem}
+\begin{proof}
+Local uniform convergence gives common subgradient bounds above each compact set. If $x_j\to x$ and $p_j\in\partial F_j(x_j)$ converge to $p$, passing the defining inequalities to the limit gives $p\in\partial F(x)$. Consequently, for compact $K$ and every $\varepsilon>0$, all sufficiently late $\partial F_j(K)$ lie in the $\varepsilon$-neighborhood of the compact set $\partial F(K)$. Continuity from above of finite Lebesgue measure gives
+\[
+ \limsup_j\operatorname{MA}_{\mathbb R}(F_j)(K)
+                           \leq\operatorname{MA}_{\mathbb R}(F)(K).
+\]
+
+For open $U$, almost every $p\in\partial F(U)$ has a unique inverse point $x=\nabla F^*(p)\in U$. Choose a closed ball centered at $x$ inside $U$. The function $F(y)-\langle p,y\rangle$ has its unique minimum at $x$, so its boundary values exceed that minimum by a positive amount. Local uniform convergence makes a minimum of $F_j(y)-\langle p,y\rangle$ on the ball occur in its interior. A local minimum of a convex function is global: comparison along a segment from that point excludes a smaller value elsewhere. Hence $p\in\partial F_j(U)$ eventually. Fatou, first on bounded slope sets and then on their union, gives the reverse lower inequality for open sets. Local mass bounds and these two inequalities imply convergence of compactly supported continuous integrals: apply them to level sets of a nonnegative test function, whose exceptional levels with positive boundary mass are countable, and integrate the level measures. Positive and negative parts handle a general test.
+
+For full mass, $K_F\subset P$ by the support characterization. If $P$ has interior, a proper closed convex subset of it misses a ball in its interior: choose a missing point and then a nearby interior point still outside that closed subset. Its volume is therefore strictly smaller. This proves the equivalence. If $P$ has empty interior, both masses vanish and the convention gives the same result. Finally $F\leq H+C$ implies $F^*\geq H^*-C$, hence the conjugate-domain inclusion and the claimed mass inequality.
+\end{proof}
+
+\begin{example}\label{ex:real-mass-escaping-to-infinity}
+Compactly supported testing cannot be replaced by testing all bounded continuous functions without a further tightness condition. In one dimension,
+\[
+ F_j(x)=\max\{0,x-j\}\longrightarrow0,
+       \qquad\operatorname{MA}_{\mathbb R}(F_j)=\delta_j.
+\]
+All functions have slopes in $[0,1]$ and convergence is locally uniform. The measures converge vaguely to zero, while their total masses stay one. If all functions and the limit have full mass for one fixed body, their masses coincide; the preceding compact/open inequalities then give tightness and convergence for bounded continuous tests as well.
+\end{example}
+
+\begin{proposition}\label{prop:smooth-and-mixed-real-monge-ampere}
+For a convex $C^{1,1}$ function,
+\[
+ \operatorname{MA}_{\mathbb R}(F)
+                    =n!\det(D^2F)\,\mathrm dx,
+\]
+where the distributional Hessian is a locally bounded matrix, defined almost everywhere. There is a unique symmetric positive Radon measure $\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)$ for finite convex functions, multilinear under nonnegative linear combinations, with diagonal value $\operatorname{MA}_{\mathbb R}(F)$. It is continuous under local uniform convergence of each entry.
+\end{proposition}
+\begin{proof}
+For smooth $F$ with positive definite Hessian, its gradient is injective by integrating the Hessian along a chord and is a local diffeomorphism. Change of variables gives the formula. For a smooth semidefinite Hessian apply this result to $F+\varepsilon|x|^2/2$ and pass to the limit using vague continuity and local uniform determinant convergence.
+
+For $C^{1,1}$, each gradient component is Lipschitz. Its restriction to almost every coordinate line is absolutely continuous with bounded derivative. Fubini and one-dimensional integration by parts show that these derivatives represent its distributional derivatives. The resulting Hessian matrix is symmetric and positive semidefinite almost everywhere, since its quadratic forms are nonnegative distributions by convexity. Smooth convolution has uniformly bounded Hessian on compact sets and converges to that matrix at its Lebesgue points. Dominated convergence for the determinants and vague measure continuity prove the formula.
+
+For smooth entries define the mixed measure by $n!$ times their mixed Hessian discriminant, using the mixed-discriminant formula in \cref{sec:positive-currents}. It is positive and multilinear. For general entries use their smooth convex convolutions. The polarization identity expresses the mixed measure as
+\[
+ \frac1{n!}\sum_{J\subset\{1,\ldots,n\}}
+          (-1)^{n-|J|}\operatorname{MA}_{\mathbb R}
+                                 \left(\sum_{j\in J}F_j\right),
+\]
+where the empty-sum measure is zero for $n>0$. Vague continuity of every diagonal term gives a unique weak limit of the smooth mixed measures. Their positivity gives a positive Radon limit. Multilinearity, symmetry and the diagonal identity pass from the smooth case to this limit. The same formula proves continuity and uniqueness. In dimension zero the empty mixed measure is unit mass on the point.
+\end{proof}

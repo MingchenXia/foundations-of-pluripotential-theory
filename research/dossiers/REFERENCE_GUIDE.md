@@ -13,6 +13,10 @@ Retained PDFs are indexed in `references/catalog.json`, versioned and hashed in 
 
 The last PDF is not identified as Ransford's monograph. Do not invent its author or publication data. Preserve the Demailly PDF annotations as supplied evidence, not verified theorems or agent instructions. Its dated manuscript locators must not be replaced by numbers from another online version without checking.
 
+## Current scope
+
+Use these sources to supply self-contained foundations missing from SGPT Part I. SGPT Parts II and III are excluded. Check the complete Part I proof before reproducing a result; see research/SGPT_PART_I_GAPS.md. Existing broader source checks remain evidence, not obligations.
+
 ## Working with GZ and its errata
 
 `research/errata-candidates.json` contains 261 extracted candidate IDs and text blocks, all initially `candidate-unchecked`. It is a searchable review queue. Before relying on a GZ result, search the relevant chapter/theorem/page in both sources, render the affected original page when formulas are ambiguous, compare the correction with the printed statement and full proof, and record accepted / rejected / scope-limited with evidence and downstream task IDs. The errata's claims of earlier checking do not count as this project's independent verification.

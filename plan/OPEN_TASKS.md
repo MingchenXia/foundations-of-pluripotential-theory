@@ -1,8 +1,8 @@
 # Unfinished proof and writing obligations
 
-These are missing work in this book; they are not claims that the results are open in the literature.
+Required SGPT Part I foundations only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
 
-No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.
+Next coherent writing unit: **Q16**.
 
 ## Q05 — Lelong numbers and multiplier ideals
 
@@ -48,61 +48,9 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q11-03` [drafting] d1 metrics, completeness and geodesic distances with reference potential fixed
 - `Q11-04` [drafting] Geodesic rays, radial energy and ray metric convergence
 
-## Q12 — Singularity preorders and the dS pseudometric
+## Q16 — Convex and ample toric foundations
 
-- `Q12-01` [drafting] Ordinary, P and I preorders and equivalence relations; prove bounded-growth ideal coherence required by the sample
-- `Q12-02` [drafting] dS construction, zero-distance criterion and completeness after the appropriate quotient
-- `Q12-03` [drafting] Mixed mass, Lelong and background-independent convergence of nets
-- `Q12-04` [drafting] Almost-metric and projection estimates, with all constants and references
-
-## Q13 — I-good singularities and volume
-
-- `Q13-01` [drafting] I-good and algebraic singularity types, characterization and permanence
-- `Q13-02` [drafting] Mixed volumes, generalized Darvas--Xia theorem and Hermitian pseudo-effective line bundles
-- `Q13-03` [drafting] Fujita approximation and volume comparisons with exact twisting conventions
-- `Q13-04` [planned] Applications differentiated from reusable foundational inputs
-
-## Q14 — Trace operators and restricted volumes
-
-- `Q14-01` [planned] Trace construction, admissible restrictions and approximation independence
-- `Q14-02` [planned] Trace versus multiplier-ideal restriction; numerical restricted-volume formulas
-- `Q14-03` [planned] Birational behavior, algebraic restricted volumes and analytic Bertini
-- `Q14-04` [planned] Foundational interfaces needed by the supplied Nakamaye manuscript; its full main theorem remains an optional application
-
-## Q15 — Test curves and geodesic rays
-
-- `Q15-01` [drafting] Test curves, maximality, endpoint degenerations and energy
-- `Q15-02` [drafting] Legendre duality and Ross--Witt Nystrom correspondence
-- `Q15-03` [drafting] I-model test curves, approximation and operations
-- `Q15-04` [drafting] Pointwise and metric convergence under the exact hypotheses
-
-## Q16 — Convex analysis and toric potentials
-
-- `Q16-01` [planned] Convex bodies, Legendre transforms and real Monge--Ampere measures
-- `Q16-02` [planned] Ample/big toric geometry, invariant metrics and normalizations
-- `Q16-03` [planned] Toric singularities, envelopes, energies and toric partial Okounkov bodies
-- `Q16-04` [planned] Prove required convex foundations; do not assume all of the sample convex appendix
-
-## Q17 — Graded series, valuations and Okounkov bodies
-
-- `Q17-01` [planned] Graded series, flags, valuations and lattice conventions
-- `Q17-02` [planned] Semigroups and almost semigroups, counting and volume limits
-- `Q17-03` [planned] Partial algebraic and transcendental Okounkov bodies, Hausdorff convergence
-- `Q17-04` [planned] Lelong recovery, finite twists, Fujita/section asymptotics and exact external-input boundaries
-
-## Q18 — b-divisors and non-Archimedean potentials
-
-- `Q18-01` [planned] Models, divisorial valuations, b-divisors and nef intersection products
-- `Q18-02` [planned] b-divisors of currents and functoriality
-- `Q18-03` [planned] Non-Archimedean metrics, operations and Duistermaat--Heckman measures
-- `Q18-04` [planned] Berkovich and algebraic background: identify required cases, reconstruct or record approved long inputs
-
-## Q19 — Bergman kernels and equilibrium measures
-
-- `Q19-01` [planned] Partial envelopes and equilibrium measures
-- `Q19-02` [planned] Weighted Bergman kernels, quantitative local estimates and global quantization
-- `Q19-03` [planned] Weak convergence and mass statements without conflating pointwise and measure convergence
-- `Q19-04` [planned] Toric and singular examples linking all foundational mechanisms
+- `Q16-02` [planned] Ample toric geometric prerequisites and lattice-volume counting for SGPT Part I
 
 ## A01 — Complex spaces and modifications
 
