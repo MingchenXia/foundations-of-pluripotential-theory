@@ -95,3 +95,7 @@ Q08-08 supplies the bounded-measurable local ball equation, exact envelope/uniqu
 ## Author-requested addition: arbitrary-mass ceiling identity
 
 The complete proof of Theorem1.2 of exact arXiv:2607.12797v1 is now a separate required task, Q11-05. It follows internal bounded-density variational existence in Chapter17. A single perturbation family, a uniform normalized mixed tail bound, rooftop contact and full-mass comparison prove convergence even at zero mass. A direct ceiling-competitor argument and envelope monotonicity then prove both requested identities. No ceiling regularization calculus or general-measure uniqueness is imported; the paper's other results and broader SGPT comparison/dS chapters remain excluded. Earlier Q09/Q10/Q11 verification gates remain. Scoped review:research/reviews/2026-10-04-q11-ceiling.json.
+
+## Canonical grid energy prerequisite
+
+Q08-09 closes the bounded-subsolution moment criterion and its preservation under cube averages for the local mixed/uniqueness prerequisite. It gives uniform solution energy moments and full-ball L1 subsequential compactness. Self-integral convergence, capacity convergence and the limiting equation remain open. Review:research/reviews/2026-10-04-q08-energy-moments.json. Current provisional scope62/96 verified,30 historical exclusions.
