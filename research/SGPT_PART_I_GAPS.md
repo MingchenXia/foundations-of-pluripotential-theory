@@ -21,8 +21,13 @@ Include a result if Part I uses it without a complete proof, or if it is needed 
 | Non-pluripolar mass and positivity interfaces | Existing Q09 reads and source evidence retained; local density and positive-mass bigness remain open | Audit Q09 result by result; keep missing foundations and compress/exclude SGPT-native arguments |
 | Relative envelopes, finite energy, equations and geodesic metrics | Existing Q10–Q11 scoped reads retained; contact equalities, prescribed-measure uniqueness/relative bounds remain open | Complete source proof-gap/overlap audit before final inclusion; retain only required foundational proof chains |
 | Analytic spaces used by Part I | Existing A01 core reads retained; the all-point FN disc criterion remains unproved internally | Required only at exact Part I uses; no implicit approval of a new external input |
+| Compact complex-manifold Josefson | complete psh chapter first pass, line 224: delegated to Vu19; the existing proof is Euclidean | New Q07-07; retain the arbitrary compact complex scope until the source proof is checked |
+| Analytic bounded-growth ideal coherence | complete psh proof at lines 1494–1511 replaces the sheaf by a proper direct image without a coherence argument | New Q06-06; only this missing foundation returns from the old Q12 obligation |
+| Strict potential extension from a submanifold | psh theorem line 1550 delegates the Hölder-exponential and analytic-preserving potential extension to DRWNXZ | New Q07-06; existing OT section extension is a separate result |
 
 The source convex appendix's general relative-domain sum-duality and several improper-function algebra assertions are broader than the first new finite-primal unit. They remain scoped audit items; no complete-paper or complete-appendix proof claim is made.
+
+All 1,987 saved lines of the psh chapter, including its 123 statement environments and complete displayed proofs, have now received a complete first source read. The scoped record is research/reviews/2026-10-04-psh-source-audit.json. This does not close every target-proof or overlap decision. Its codimension-two direction-projection step and its Lelong-additivity argument need foundational justifications; Q02/A01 and Q05 already contain independent mechanisms at their recorded scopes. The finite analytic multiplier criterion must include strict transforms, as the existing Q05 example checks. The plurifine section mostly supplies its own proofs and must not be duplicated wholesale. The three newly confirmed omissions bring the provisional required count to 85, with 52 reviewed obligations verified.
 
 ## Excluded work and preservation
 

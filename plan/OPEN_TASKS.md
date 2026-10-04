@@ -18,6 +18,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q06-03` [second-read] Nakamaye lem:patching and lem:regularization: c depends only on fixed (Z,omega_Z)
 - `Q06-04` [second-read] Local weighted Bergman kernels, generator lower bounds, overlap comparison and patching
 - `Q06-05` [second-read] Keep quantitative lower-bound regularization separate from analytic-singularity and monotone-sequence claims
+- `Q06-06` [planned] Prove analytic bounded-growth ideal coherence and the exact required integrability bridge
 
 ## Q07 — Global potentials and positive cohomology classes
 
@@ -26,6 +27,8 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q07-03` [second-read] Pseudo-effective, nef, big and modified nef cones; Siu decomposition
 - `Q07-04` [second-read] Non-Kahler and non-nef loci including the non-big boundary case
 - `Q07-05` [second-read] FS/generalized FS, global curvature and metric theory, compact positive-metric extension with uniform constants and compact Bergman approximation; quadratic metric convention is in Q06
+- `Q07-07` [planned] Prove global Josefson on compact complex manifolds with a quasi-psh pole
+- `Q07-06` [planned] Extend Holder-exponential strictly positive submanifold potentials, preserving analytic singularities
 
 ## Q09 — Non-pluripolar products
 
