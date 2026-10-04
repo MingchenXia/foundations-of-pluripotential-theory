@@ -22,7 +22,7 @@ Required units form the current prequel; excluded units preserve historical work
 | Q07 | II | required | Global potentials and positive cohomology classes | Q06 | [chapters/q07-global-potentials-and-positive-cohomology-classes.tex](../chapters/q07-global-potentials-and-positive-cohomology-classes.tex) |
 | Q09 | II | required | Non-pluripolar products | Q08, Q03, Q07 | [chapters/q09-non-pluripolar-products.tex](../chapters/q09-non-pluripolar-products.tex) |
 | Q10 | II | required | Envelopes and model potentials | Q09, Q05 | [chapters/q10-envelopes-and-model-potentials.tex](../chapters/q10-envelopes-and-model-potentials.tex) |
-| Q11 | II | required | Energy, geodesics and metric spaces | Q10 | [chapters/q11-energy-geodesics-and-metric-spaces.tex](../chapters/q11-energy-geodesics-and-metric-spaces.tex) |
+| Q11 | II | required | Relative energy and Perron segments | Q10 | [chapters/q11-energy-geodesics-and-metric-spaces.tex](../chapters/q11-energy-geodesics-and-metric-spaces.tex) |
 | Q12 | II | excluded | Singularity preorders and the dS pseudometric | Q11, Q06 | [chapters/q12-singularity-preorders-and-the-ds-pseudometric.tex](../chapters/q12-singularity-preorders-and-the-ds-pseudometric.tex) |
 | Q13 | II | excluded | I-good singularities and volume | Q12 | [chapters/q13-i-good-singularities-and-volume.tex](../chapters/q13-i-good-singularities-and-volume.tex) |
 | Q14 | II | excluded | Trace operators and restricted volumes | Q13, A01 | [chapters/q14-trace-operators-and-restricted-volumes.tex](../chapters/q14-trace-operators-and-restricted-volumes.tex) |

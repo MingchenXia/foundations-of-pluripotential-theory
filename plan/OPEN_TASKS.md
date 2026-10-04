@@ -44,11 +44,10 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q10-03` [drafting] Model potentials, prescribed singularities and mass inequalities
 - `Q10-04` [drafting] Relative capacities, bigness criteria and the quantitative rooftop theorem used by Nakamaye
 
-## Q11 — Energy, geodesics and metric spaces
+## Q11 — Relative energy and Perron segments
 
 - `Q11-01` [drafting] Relative finite-energy classes, energy monotonicity and integration by parts
 - `Q11-02` [drafting] Weak geodesics and subgeodesics on product domains and strips
-- `Q11-03` [drafting] d1 metrics, completeness and geodesic distances with reference potential fixed
 - `Q11-04` [second-read] Perron extremal slopes and bounded singularity-type cutoff stability
 
 ## A01 — Complex spaces and modifications

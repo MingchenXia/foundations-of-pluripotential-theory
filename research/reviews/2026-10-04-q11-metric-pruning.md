@@ -1,0 +1,9 @@
+# Source-native energy-metric overlap pruning
+
+SGPT Part I supplies complete native proofs of contraction, metric separation/triangle, I1 comparison, abstract/finite-energy completeness, monotone brackets, strong topology and distance convexity. Their missing upstream density input is already an independent Q10-02 contact/PDE obligation. Repeating the entire metric chain is unnecessary for the retained prequel foundations.
+
+The exact recursive active caller graph was checked for all fifteen deleted labels. Their only external active callers were the removed H01 section. At task level only excluded Q12-01 and Q15-01 depend on Q11-03. The complete prior Q11 is retained in the private broader working draft; shared energy tangent bounds and all variational equations remain under required Q11-01. The active chapter is now titled Relative energy and Perron segments. Q11-03 becomes excluded rather than verified.
+
+The complete changed energy-linearity/extremal-slope seam, recursive cutoff input and adjoining history were directly read twice around first build and visual inspection; Q11/Q16 openings were included. Historical complete source reads retain their exact scope. This is authoring-agent review, not independent certification or a new whole-chapter review.
+
+The first integrated 407-page build passes integrity/audit with no unresolved references/citations or bad boxes. All 24 selected images were inspected: contents, renamed chapter opening, surviving Q11 end/Q16 transition, history, index and references. The cutoff proof now fits on a single page. The final build passes; every final page was rendered and all 407 images match the first version exactly, carrying the selected-page inspection forward. The fresh tracked-archive rebuild is recorded in the paired JSON after completion. The remaining source-overlap and proof gates stay open; 54 of 86 provisionally required tasks are verified.
