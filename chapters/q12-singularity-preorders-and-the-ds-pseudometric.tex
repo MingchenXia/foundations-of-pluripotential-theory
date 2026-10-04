@@ -1,2 +1,243 @@
-\chapter{Singularity preorders and the dS pseudometric}
+\chapter{Singularity preorders and the \texorpdfstring{$d_S$}{dS} pseudometric}
 \label{chap:q12}
+Let $X$ be a connected compact K\"ahler manifold of dimension $n\geq1$. Ordinary singularity comparison retains every unbounded difference between potentials. Model envelopes and multiplier ideals give two coarser comparisons. The rays constructed in the preceding chapter turn the first comparison into a distance on its equivalence classes. Sources are discussed in \cref{sec:history-singularity-types}.
+
+\section{Background-independent preorders}
+\label{sec:singularity-preorders}
+Continue to write $u\preceq v$ when $u\leq v+C$ for some constant, and $u\sim v$ when both orders hold. The multiplier order $\preceq_{\mathcal I}$ is defined in \cref{prop:multiplier-singularity-order}. For the model order we first check the dependence on the background. Write $M_\theta(u)=\int_X\langle\theta_u^n\rangle$.
+
+\begin{lemma}\label{lem:p-envelope-maximum-identity}
+In a big background, if $M_\theta(u),M_\theta(v)>0$, then
+\[
+ P_\theta[\max\{u,v\}]
+      =P_\theta[\max\{P_\theta[u],P_\theta[v]\}].
+\]
+\end{lemma}
+\begin{proof}
+Normalize $u,v\leq0$. They lie below their model envelopes, so monotonicity gives the $\leq$ inequality. Conversely put $w=P_\theta[\max\{u,v\}]$. Monotonicity gives $w\geq P_\theta[u],P_\theta[v]$. Its mass is positive and it is model by \cref{thm:positive-mass-model-characterization}. Applying $P_\theta$ to the last maximum therefore gives at most $P_\theta[w]=w$.
+\end{proof}
+
+\begin{lemma}\label{lem:p-order-background-addition}
+Let $\{\theta\}$ be big and let $u,v\in\PSH(X,\theta)$ have positive mass. For every K\"ahler form $\omega$,
+\[
+ P_\theta[u]\leq P_\theta[v]
+ \quad\Longleftrightarrow\quad
+ P_{\theta+\omega}[u]\leq P_{\theta+\omega}[v].
+\]
+Moreover $P_{\theta+\omega}[P_\theta[u]]=P_{\theta+\omega}[u]$.
+\end{lemma}
+\begin{proof}
+Put $a=P_\theta[u]$. Background monotonicity and the reference competitor give
+$u\preceq a\leq P_{\theta+\omega}[u]$. Apply $P_{\theta+\omega}$ and its positive-mass idempotence to squeeze $P_{\theta+\omega}[a]$ between $P_{\theta+\omega}[u]$ and itself. This proves the last identity. The same identity for $v$ gives the forward order implication.
+
+For the reverse implication replace $u,v$ by $a=P_\theta[u],b=P_\theta[v]$ using that identity, and put $w=\max\{a,b\}$. The maximum identity gives $P_{\theta+\omega}[w]=P_{\theta+\omega}[b]$. Apply the forward implication already proved with background $\theta+\omega$ to get
+$P_{\theta+C\omega}[w]=P_{\theta+C\omega}[b]$ for every $C\geq1$. Their masses agree by \cref{prop:p-envelope-calculus}. Positive multilinearity makes these masses polynomials in $C$, so equality on $[1,\infty)$ implies equality at zero. Thus $M_\theta(w)=M_\theta(b)>0$. Since $b\leq w\leq0$, the maximum characterization of $P_\theta[b]=b$ gives $w\leq b$. Hence $a\leq b$.
+\end{proof}
+
+\begin{definition}\label{def:global-p-singularity-order}
+For quasi-psh $u,v$, choose a sufficiently large K\"ahler form $\kappa$ such that $\kappa_u,\kappa_v\geq\omega$ for a fixed K\"ahler form $\omega$. Define
+\[
+ u\preceq_P v\quad\Longleftrightarrow\quad
+ P_\kappa[u]\leq P_\kappa[v].
+\]
+Write $u\sim_P v$ when both orders hold. An equivalence class is a \emph{$P$-singularity type}.
+\end{definition}
+\index{singularity order!model $P$-order}\index{singularity type!$P$-singularity type}
+
+The positive margin makes both masses positive: the top product contains $\omega^n$. Two choices of $\kappa$, or two big backgrounds in which both potentials have positive mass, can be compared to one sufficiently large multiple of $\omega$; its difference from either background is K\"ahler. \Cref{lem:p-order-background-addition} proves independence of every such choice. Reflexivity and transitivity follow by using one common large background for finitely many potentials. Thus this defines a preorder on all quasi-psh potentials, including those with zero mass in a smaller background.
+
+\begin{proposition}\label{prop:singularity-order-chain-and-joins}
+For quasi-psh potentials,
+\[
+ u\preceq v\ \Longrightarrow\ u\preceq_P v
+                      \ \Longrightarrow\ u\preceq_{\mathcal I}v.
+\]
+For either $P$ or $\mathcal I$, one has $u\preceq_E v$ if and only if $\max\{u,v\}\sim_E v$. At positive mass in a big background, $u\sim_P P_\theta[u]$; for every nonempty potential class, $u\sim_{\mathcal I}P_\theta[u]_{\mathcal I}$. In a fixed background,
+\[
+ u\preceq_{\mathcal I}v
+ \quad\Longleftrightarrow\quad
+ P_\theta[u]_{\mathcal I}\leq P_\theta[v]_{\mathcal I}.
+\]
+\end{proposition}
+\begin{proof}
+Ordinary envelope monotonicity gives the first implication. In a common large background the multiplier projection theorem gives
+$u\sim_{\mathcal I}P_\kappa[u]\leq P_\kappa[v]\sim_{\mathcal I}v$, proving the second. The $P$ maximum identity identifies $P_\kappa[\max\{u,v\}]$ with $P_\kappa[v]$ exactly when $P_\kappa[u]\leq P_\kappa[v]$. For $\mathcal I$, each divisor's maximum Lelong number is the minimum of the two numbers; it equals the number of $v$ exactly when $\nu(u,E)\geq\nu(v,E)$ for every tested divisor. Apply \cref{prop:multiplier-singularity-order}.
+
+Positive-mass idempotence gives the $P$ equivalence. \Cref{prop:multiplier-envelope-projection} gives the multiplier equivalence and ordered competitor description. That description proves forward envelope order. Reverse order follows by replacing the envelopes with their equivalent original potentials.
+\end{proof}
+
+\Needspace{12\baselineskip}
+\begin{proposition}\label{prop:p-equivalence-positive-mass}
+In a big background, for positive-mass $u,v$ with $u\preceq_P v$, the following are equivalent: $u\sim_P v$; $M_\theta(u)=M_\theta(v)$. Without an order assumption, $u\sim_P v$ if and only if they belong to a common relative full-mass class about a model potential.
+\end{proposition}
+\begin{proof}
+Put $a=P_\theta[u]\leq b=P_\theta[v]$. The envelopes preserve mass. If the masses are equal, $b$ is admissible for the positive-mass maximum characterization of $P_\theta[a]=a$. Hence $b\leq a$ and equality follows. Conversely equal envelopes have equal masses. Equal envelopes also make both potentials members of the relative full-mass class about that common model. The converse follows from \cref{prop:relative-envelope-full-mass-characterization}.
+\end{proof}
+
+\begin{proposition}\label{prop:preorders-algebra-and-envelopes}
+Both preorders are preserved by positive scaling, addition, and canonical upper envelopes of nonempty uniformly upper bounded families in a common background. They are unchanged by adding a smooth function to either potential. Multiplier order is preserved and reflected by pullback under a proper bimeromorphic morphism between connected compact K\"ahler manifolds. For $P$-order the same holds when a common big background with positive masses has big pullback.
+\end{proposition}
+\begin{proof}
+For $\mathcal I$, divisorial Lelong numbers scale, add, and take their family infimum under upper envelopes, by \cref{lem:divisorial-envelope-closure}. Smooth terms have zero Lelong number. Common resolutions identify all divisorial tests before and after pullback, as in \cref{prop:envelopes-change-background-modification}.
+
+For $P$, scaling follows from \cref{prop:two-envelope-algebra}. In a common sufficiently large background $\kappa$, let $a=P_\kappa[u],a'=P_\kappa[u']$. Ordinary order gives $u+u'\preceq a+a'$. Every mixed term in the top product in background $2\kappa$ is preserved by replacing $u,u'$ by $a,a'$, by \cref{prop:p-envelope-calculus}. Thus these sums have the same positive mass and are $P$-equivalent by the preceding proposition. If also $u\preceq_P v$ and $u'\preceq_P v'$, their model representatives are ordered; adding those inequalities proves sum order.
+
+For finite maxima, the maximum identity and envelope monotonicity prove the assertion. For increasing nets, increasing envelope continuity from \cref{prop:increasing-two-envelope-continuity} passes model order to the limit. Enlarge the common background by a K\"ahler form first so that all masses are positive. For an arbitrary pair of indexed families, countable selection chooses one countable subset with both canonical envelopes. Increasing finite maxima reduce the assertion to the preceding two cases.
+
+Smooth terms are bounded on $X$, so they preserve ordinary singularity type. For pullback use the common big background specified in the statement. Modification invariance preserves its positive masses, and its pullback is big by hypothesis. The commuting-envelope identity in \cref{prop:envelopes-change-background-modification}, together with surjectivity, preserves and reflects envelope order.
+\end{proof}
+
+\Needspace{22\baselineskip}
+\section{Mixed masses and model order}
+\label{sec:p-order-mixed-masses}
+The model order controls every mixed mass, even when the potentials have zero top mass in their original backgrounds.
+
+\begin{theorem}\label{thm:p-order-mixed-mass-monotonicity}
+If $u_j,v_j\in\PSH(X,\theta_j)$ and $u_j\preceq_P v_j$ for $1\leq j\leq n$, then
+\[
+ \int_X\left\langle\bigwedge_{j=1}^n(\theta_j+\ddc u_j)\right\rangle
+ \leq
+ \int_X\left\langle\bigwedge_{j=1}^n(\theta_j+\ddc v_j)\right\rangle.
+\]
+\end{theorem}
+\begin{proof}
+Replace every background by $\theta_j+\varepsilon\omega$, $\varepsilon>0$. Its class is big because the positive current gains a K\"ahler margin, and both potentials have positive mass. Background independence orders their model envelopes. Ordinary mixed-mass monotonicity and envelope mass preservation give the inequality for these perturbed backgrounds. Positive multilinearity makes both sides polynomials in $\varepsilon$; their limits at zero are the displayed masses.
+\end{proof}
+
+Fix henceforth a big background $\theta$, and put $V=V_\theta$ and $m=M_\theta(V)>0$. For $u\in\PSH(X,\theta)$ write
+\[
+ A_j(u)=\int_X\langle\theta_u^j\wedge\theta_V^{n-j}\rangle,
+                          \qquad0\leq j\leq n.
+\]
+Thus $A_0(u)=m$ and $0\leq A_j(u)\leq m$.
+
+\begin{theorem}\label{thm:p-equivalence-mixed-mass-criterion}
+If $u\preceq_P v$, then $u\sim_P v$ if and only if $A_j(u)=A_j(v)$ for every $j$. At positive top mass it suffices to check $A_n(u)=A_n(v)$.
+\end{theorem}
+\begin{proof}
+$P$-equivalence makes each mixed mass equal by applying the preceding theorem in both directions. Suppose conversely that all the displayed masses agree, and put $w=\max\{u,v\}$. The maximum criterion gives $w\sim_P v$, so $A_j(w)=A_j(v)=A_j(u)$. Normalize $u,w\leq0$; they then lie below $V$.
+
+For $0<t<1$ put $a_t=tu+(1-t)V$, $b_t=tw+(1-t)V$. They are ordered and have equal top masses by the binomial formula. Those masses are at least $(1-t)^n m>0$. The positive-mass criterion gives $a_t\sim_P b_t$. Choose a large K\"ahler background $\kappa$ with a positive margin for $u,w,V$. Background independence and mass preservation give $M_\kappa(a_t)=M_\kappa(b_t)$ for every $0<t<1$. Both sides are polynomials in $t$, by positive multilinearity of their three currents. Equality therefore holds at $t=1$. Now $u\leq w$ have the same positive mass in background $\kappa$, so $u\sim_P w\sim_P v$. The final positive-mass assertion is \cref{prop:p-equivalence-positive-mass}.
+\end{proof}
+
+\begin{corollary}\label{cor:p-envelope-ordered-competitors}
+If $M_\theta(u)>0$, then $P_\theta[u]$ is the largest nonpositive $\theta$-psh potential $v$ with $v\preceq_P u$. The same largest potential results from imposing $v\sim_P u$.
+\end{corollary}
+\begin{proof}
+Put $a=P_\theta[u]$ and $w=\max\{v,a\}$. The maximum criterion gives $w\sim_P u$, since $a\sim_P u$ and $v\preceq_P u$. Mixed-mass monotonicity gives $M_\theta(w)=M_\theta(a)>0$. Since $a\leq w\leq0$, the positive-mass maximum characterization gives $w\leq a$, hence $v\leq a$. The potential $a$ itself satisfies both constraints.
+\end{proof}
+
+\begin{example}\label{ex:ordinary-and-model-types-differ}
+The log-log potential of \cref{ex:loglog-full-mass-envelope} on $\mathbb P^1$ is unbounded below but has $P_\omega[u]=0$. Thus $u\sim_P0$ and $u\sim_{\mathcal I}0$, while $u\not\sim0$. A positive logarithmic pole has nonzero Lelong number, so it is not multiplier-ideal equivalent to zero by \cref{prop:multiplier-singularity-order}.
+\end{example}
+
+\begin{example}\label{ex:multiplier-and-model-types-differ}
+There is an $\omega$-psh potential $q$ on $\mathbb P^1$ whose Lelong numbers all vanish and whose non-pluripolar mass is zero. Thus $q\sim_{\mathcal I}0$ but $q\not\sim_P0$.
+
+Here is a construction of the polar compact set needed for this example. Put $a_k=\mathrm e^{-4^k}$ and
+\[
+ K=\left\{\sum_{k=1}^\infty\varepsilon_k a_k:
+                                      \varepsilon_k\in\{0,1\}\right\}.
+\]
+It is compact and lies in $[0,1/10]$. The tail after $k$ is at most $2a_{k+1}$, and $a_k>2\sum_{j>k}a_j$, so distinct binary prefixes give disjoint compact pieces. Let $s_\sigma=\sum_{j\leq k}\sigma_j a_j$ for $\sigma\in\{0,1\}^k$, and on the unit disc put
+\[
+ p_k(z)=2^{-k}\sum_{\sigma\in\{0,1\}^k}\log|z-s_\sigma|^2,
+ \qquad h(z)=\sum_{k=1}^\infty2^{-k}(p_k(z)-\log4).
+\]
+Each summand is nonpositive and subharmonic. At $z=\mathrm i/2$ one has $p_k(z)-\log4\geq-\log16$, so the decreasing partial sums have a finite value there. They define a subharmonic function by decreasing-limit stability. For $x\in K$ one center is within $2a_{k+1}$, while all other logarithms are nonpositive. Hence
+\[
+ 2^{-k}(p_k(x)-\log4)
+      \leq4^{-k}(\log4-2\cdot4^{k+1})-2^{-k}\log4\leq-7.
+\]
+Thus $h=-\infty$ on $K$, proving that $K$ is polar.
+
+Assign mass $2^{-k}$ to every piece with a specified binary prefix of length $k$. Concretely, push Lebesgue measure on $[0,1]$ forward by the Borel map that sends its binary digits to $\sum\varepsilon_k a_k$; the dyadic ambiguity is a null set. This gives a probability measure $\mu$ supported on $K$. Prefix disjointness gives $\mu\{x\}\leq2^{-k}$ for every $k$, so it has no atoms.
+
+For the unit-mass Fubini--Study form define in the affine chart
+\[
+ q(z)=\int_K\log\frac{|z-a|^2}{(1+|z|^2)(1+|a|^2)}\,\mathrm d\mu(a).
+\]
+The kernel is nonpositive and finite uniformly at $\mathrm i/2$. Its local logarithmic potentials are locally integrable, uniformly for $a\in K$; Fubini and the submean inequality make $q$ the canonical $\omega$-psh potential, with $\omega+\ddc q=\mu$. At infinity use $w=1/z$ to write the kernel as $\log|1-aw|^2-\log(1+|w|^2)-\log(1+|a|^2)$; this extends the same potential across that point. The first-degree Lelong formula gives $\nu(q,x)=\mu\{x\}=0$. Every smooth modification of a smooth curve is an isomorphism: its degree is one, and the local positive mapping multiplicities over each point sum to that degree. Thus all divisorial tests are these point tests, and the multiplier-order criterion gives $q\sim_{\mathcal I}0$.
+
+By \cref{prop:nonpluripolar-degree-one-restriction}, the non-pluripolar current is bounded above by $\mu$. It gives polar sets zero mass by its construction. Since $\mu$ is supported on the polar set $K$, that current is zero. On the other hand zero has mass one. Since $q\leq0$, the mixed-mass criterion gives $q\not\sim_P0$.
+\end{example}
+\index{singularity type!multiplier and model types}\index{polar set!Cantor example}
+
+\section{The singularity pseudometric}
+\label{sec:singularity-pseudometric}
+Use the singularity-associated ray of \cref{thm:relative-singularity-associated-ray} with reference $V$. For an arbitrary $u$ subtract a constant to make $u\leq V$. Bounded-shift invariance makes the associated ray $\ell^u$ independent of this choice.
+
+\begin{definition}\label{def:singularity-pseudometric}
+For $u,v\in\PSH(X,\theta)$ set
+\[
+ d_{S,\theta}(u,v)=d_1^{\rm c}(\ell^u,\ell^v).
+\]
+Write $d_S$ when the background is fixed. This is a finite pseudometric because it is the pullback of the chordal metric. It descends to ordinary bounded singularity types.
+\end{definition}
+\index{singularity pseudometric@$d_S$ singularity pseudometric}\index{singularity type!distance}
+
+\begin{lemma}\label{lem:associated-ray-maximum-identity}
+For $w=\max\{u,v\}$ one has $\ell^w=\ell^u\vee\ell^v$. Consequently, with $C_n=3\cdot2^{n+2}(n+1)$,
+\[
+ d_S(u,v)\leq d_S(u,w)+d_S(v,w)\leq C_n d_S(u,v).
+\]
+\end{lemma}
+\begin{proof}
+Normalize both potentials below $V$. Associated-ray order gives $\ell^u,\ell^v\leq\ell^w$. The maximum subgeodesic used in their construction also gives
+$\ell_t^u\geq\max\{u,V-t\}$ and the analogous inequality for $v$. Hence any weak ray $r$ above both satisfies $r_T\geq\max\{w,V-T\}$. Its segment on $[0,T]$ dominates the segment from $V$ to that last cutoff. Let $T\to\infty$ at fixed time to get $r\geq\ell^w$. This proves the least-upper-ray assertion. Apply \cref{cor:relative-ray-rooftop-contraction-and-limits} for the inequalities.
+\end{proof}
+
+\begin{theorem}\label{thm:singularity-zero-distance-and-order}
+One has $d_S(u,v)=0$ if and only if $u\sim_P v$. Thus $d_S$ is a metric on $P$-singularity types. If $u\preceq_P v$, then
+\[
+ d_S(u,v)=\frac1{n+1}\sum_{j=0}^n(A_j(v)-A_j(u)).
+\]
+For $u\preceq_P v\preceq_P w$ the distances add:
+$d_S(u,w)=d_S(u,v)+d_S(v,w)$.
+\end{theorem}
+\begin{proof}
+First suppose $u\leq v$. Their rays are ordered, so the ordered chordal identity and associated-ray energy formula give the displayed mass sum. Its terms are nonnegative. It vanishes exactly when all $A_j$ agree, which is equivalent to $u\sim_P v$ by \cref{thm:p-equivalence-mixed-mass-criterion}.
+
+For general $u,v$ put $z=\max\{u,v\}$. The preceding lemma makes $d_S(u,v)=0$ equivalent to both $d_S(u,z)=0$ and $d_S(v,z)=0$. The ordered case and maximum criterion make these conditions equivalent to $u\sim_P v$. In particular $P$-equivalent potentials have identical associated rays, so their distances to any third potential agree. If $u\preceq_P v$, the maximum criterion gives $z\sim_P v$; replacing $v$ by $z$ in the ordered mass formula proves the general displayed formula. Add its two consecutive sums to prove the last assertion.
+\end{proof}
+
+\Needspace{18\baselineskip}
+\begin{corollary}\label{cor:singularity-distance-mass-comparison}
+Put $w=\max\{u,v\}$ and
+\[
+ B(u,v)=\frac1{n+1}\sum_{j=0}^n(2A_j(w)-A_j(u)-A_j(v)).
+\]
+Then $d_S(u,v)\leq B(u,v)\leq C_n d_S(u,v)$ and
+\[
+ |A_j(u)-A_j(v)|\leq(n+1)C_n d_S(u,v)\qquad(0\leq j\leq n).
+\]
+In particular every $A_j$ is Lipschitz for $d_S$.
+\end{corollary}
+\begin{proof}
+The ordered formula identifies $B$ with $d_S(u,w)+d_S(v,w)$, and the maximum inequality gives both bounds. Mass monotonicity gives
+\[
+ |A_j(u)-A_j(v)|\leq(A_j(w)-A_j(u))+(A_j(w)-A_j(v))
+                                      \leq(n+1)B(u,v),
+\]
+which proves the last bound.
+\end{proof}
+
+\begin{corollary}\label{cor:singularity-distance-increasing-and-ordered-limits}
+An increasing uniformly upper bounded net converges in $d_S$ to its canonical upper limit. More generally, for an ordered net $u_i\preceq_P u$ or $u\preceq_P u_i$, convergence to $u$ in $d_S$ is equivalent to $A_j(u_i)\to A_j(u)$ for every $j$.
+\end{corollary}
+\begin{proof}
+For an increasing net, mixed increasing continuity in \cref{cor:nonpluripolar-increasing-continuity}, with the earlier countable selection, gives every mass limit. The general ordered formula expresses distance as the sum of their nonnegative differences. That sum tends to zero exactly when each of its finitely many terms does.
+\end{proof}
+
+\begin{corollary}\label{cor:singularity-distance-modification-invariance}
+If $\pi:Y\to X$ is a proper bimeromorphic morphism between connected compact K\"ahler manifolds and $\{\pi^*\theta\}$ is big, then
+\[
+ C_n^{-1}d_{S,\theta}(u,v)
+ \leq d_{S,\pi^*\theta}(\pi^*u,\pi^*v)
+ \leq C_n d_{S,\theta}(u,v).
+\]
+Thus pullback preserves and reflects $d_S$ convergence of nets.
+\end{corollary}
+\begin{proof}
+The minimal potential pulls back to $V_{\pi^*\theta}=\pi^*V_\theta$ by the envelope pullback theorem. Modification invariance preserves each mixed number $A_j$, including those of the maximum. Hence $B$ is unchanged. Its two comparisons with $d_S$ give the displayed bounds, and then the convergence assertion.
+\end{proof}

@@ -1,6 +1,6 @@
 # Sample coverage and dependency audit queue
 
-The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 102 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
+The complete retained active root is `references/originals/sample-book/book.tex`; `book2.tex` is retained as an alternate. The nested b-divisor input is inventoried separately. Every source file and result is recorded in `sample-inventory.json`. The table is a structural coverage plan. A first partial statement-level map now links 129 envelope/non-pluripolar/comparison/energy/geodesic/metric/ray claims to checked internal interfaces; its explicit big-class restrictions and unfinished prerequisites remain recorded. The remaining statement-level audit is pending.
 
 | Sample input | Results inventoried | Natural homes | Review status |
 |---|---:|---|---|
@@ -13,7 +13,7 @@ The complete retained active root is `references/originals/sample-book/book.tex`
 | `chapter_Okounkov.tex` | 86 | Q17 | inventory-only; proof obligations pending |
 | `chapter_bdiv.tex` | 32 | Q18 | inventory-only; proof obligations pending |
 | `chapter_bdiv_sec_11_3.tex` | 3 | Q18 | inventory-only; proof obligations pending |
-| `chapter_comp.tex` | 55 | Q12, Q10 | partial quantitative rooftop map; remaining claims and broader scopes pending |
+| `chapter_comp.tex` | 55 | Q12, Q10 | lines 1–940 read; preorder/mixed-mass/dS core and quantitative rooftop scoped; later claims and wider scopes pending |
 | `chapter_envelopes.tex` | 77 | Q10, Q11 | complete source read, partial envelope/energy statement map; remaining claims and broader scopes pending |
 | `chapter_history.tex` | 1 | H01 | inventory-only; proof obligations pending |
 | `chapter_npp.tex` | 47 | Q08, Q09, Q10 | partial extrapolation/domination map; remaining claims and broader scopes pending |

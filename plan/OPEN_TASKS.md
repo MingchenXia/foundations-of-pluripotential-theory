@@ -50,10 +50,10 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 ## Q12 — Singularity preorders and the dS pseudometric
 
-- `Q12-01` [planned] Ordinary, P and I preorders and equivalence relations; prove bounded-growth ideal coherence required by the sample
-- `Q12-02` [planned] dS construction, zero-distance criterion and completeness after the appropriate quotient
-- `Q12-03` [planned] Mixed mass, Lelong and background-independent convergence of nets
-- `Q12-04` [planned] Almost-metric and projection estimates, with all constants and references
+- `Q12-01` [drafting] Ordinary, P and I preorders and equivalence relations; prove bounded-growth ideal coherence required by the sample
+- `Q12-02` [drafting] dS construction, zero-distance criterion and completeness after the appropriate quotient
+- `Q12-03` [drafting] Mixed mass, Lelong and background-independent convergence of nets
+- `Q12-04` [drafting] Almost-metric and projection estimates, with all constants and references
 
 ## Q13 — I-good singularities and volume
 
