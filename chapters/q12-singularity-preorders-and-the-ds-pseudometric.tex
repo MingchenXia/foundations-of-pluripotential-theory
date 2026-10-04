@@ -241,3 +241,245 @@ Thus pullback preserves and reflects $d_S$ convergence of nets.
 \begin{proof}
 The minimal potential pulls back to $V_{\pi^*\theta}=\pi^*V_\theta$ by the envelope pullback theorem. Modification invariance preserves each mixed number $A_j$, including those of the maximum. Hence $B$ is unchanged. Its two comparisons with $d_S$ give the displayed bounds, and then the convergence assertion.
 \end{proof}
+
+\section{Completeness at positive mass}
+\label{sec:singularity-positive-mass-completeness}
+A positive lower bound for the top mass turns a small top-mass deficit into a small deficit of every mixed mass. Decreasing model envelopes then supply limits for Cauchy sequences. Continue to use the fixed big background, $m=M_\theta(V)$, and $C_n$ from the preceding section.
+
+\begin{proposition}\label{prop:ordered-mass-distance-modulus}
+Suppose $u\preceq_P v$ and $0<M_\theta(u)\leq M_\theta(v)$. Put $d=M_\theta(v)-M_\theta(u)$. If $2d<M_\theta(v)$, then
+\[
+ d_S(u,v)\leq\frac{nm}{2}
+              \left(\frac{2d}{M_\theta(v)}\right)^{1/n}.
+\]
+Consequently, for a net $u\preceq_P v_i$ with $M_\theta(u)>0$, one has $d_S(v_i,u)\to0$ if and only if $M_\theta(v_i)\to M_\theta(u)$.
+\end{proposition}
+\begin{proof}
+If $d=0$, positive-mass equivalence gives zero distance. Otherwise set $\varepsilon=(2d/M_\theta(v))^{1/n}\in(0,1)$. Background independence and \cref{thm:model-order-rooftop-extrapolation}, with $a=\varepsilon^{-1}$, supply $\eta\in\PSH(X,\theta)$ such that
+\[
+ \varepsilon\eta+(1-\varepsilon)v\leq u.
+\]
+Indeed $a^nd=M_\theta(v)/2<M_\theta(v)$. Mixed-mass monotonicity and positive multilinearity give
+\[
+ (1-\varepsilon)^jA_j(v)\leq A_j(u)\leq A_j(v).
+\]
+Thus $0\leq A_j(v)-A_j(u)\leq jm\varepsilon$. Sum this inequality and use the ordered distance formula; $\sum_{j=0}^n j=n(n+1)/2$. For the net, top-mass convergence eventually permits the displayed bound and sends its right side to zero. The converse is the mass Lipschitz bound.
+\end{proof}
+\index{singularity type!positive-mass distance modulus}
+
+\begin{corollary}\label{cor:singularity-decreasing-positive-model-limits}
+Suppose $v_i$ decreases in $P$-order, $u\preceq_P v_i$, and $M_\theta(u)>0$. Then
+\[
+ d_S(v_i,u)\to0\quad\Longleftrightarrow\quad
+                         M_\theta(v_i)\to M_\theta(u).
+\]
+When these conditions hold, $\inf_iP_\theta[v_i]=P_\theta[u]$.
+More generally any decreasing net of model potentials with $M_\theta(v_i)\geq\delta>0$ converges pointwise and in $d_S$ to a model potential of mass at least $\delta$.
+\end{corollary}
+\begin{proof}
+The equivalence is the preceding proposition. For the projection assertion put $b_i=P_\theta[v_i]$. Background independence makes these models decrease, and $b_i\geq P_\theta[u]$. Their infimum $b$ is a model potential, and decreasing model mass continuity gives
+$M_\theta(b)=\inf_iM_\theta(v_i)=M_\theta(u)>0$. Since $P_\theta[u]\leq b$, positive-mass equivalence and the equality of their model projections give $b=P_\theta[u]$.
+
+For the last assertion \cref{prop:decreasing-model-mass-continuity} gives the pointwise model limit $v$, its positive mass and mass convergence. Apply the preceding proposition with $v\leq v_i$ to obtain distance convergence.
+\end{proof}
+
+\begin{lemma}\label{lem:singularity-fast-upper-envelopes}
+Let $u_j\in\PSH(X,\theta)$, $u_j\leq0$, and suppose
+$\sum_{j=1}^\infty C_n^j d_S(u_j,u_{j+1})<\infty$. Put
+\[
+ w_j=(\sup_{k\geq j}u_k)^*,\qquad
+ e_j=\sum_{k\geq j}C_n^{k-j+1}d_S(u_k,u_{k+1}).
+\]
+Then $w_j$ decreases, $w_j\geq u_j$, $d_S(u_j,w_j)\leq e_j$, and $e_j\to0$.
+\end{lemma}
+\begin{proof}
+Write $w_j^N=\max\{u_j,\ldots,u_N\}$. The maximum inequality and triangle inequality give
+\[
+ d_S(u_j,w_j^N)
+ \leq C_n d_S(u_j,w_{j+1}^N)
+ \leq C_n d_S(u_j,u_{j+1})+C_n d_S(u_{j+1},w_{j+1}^N).
+\]
+Iteration, ending at $w_N^N=u_N$, gives the finite sum defining $e_j$. At fixed $j$ the finite maxima increase to $w_j$ in $d_S$, by \cref{cor:singularity-distance-increasing-and-ordered-limits}. The triangle inequality passes the estimate to $w_j$. The other potential inequalities follow from the tail families. Finally $e_j=C_n^{1-j}\sum_{k\geq j}C_n^k d_S(u_k,u_{k+1})$ tends to zero.
+\end{proof}
+
+\Needspace{12\baselineskip}
+\begin{theorem}\label{thm:positive-mass-singularity-completeness}
+For $0<\delta\leq m$, the metric space
+\[
+ \mathcal S_\delta(X,\theta)
+    =\{[u]_P:u\in\PSH(X,\theta),\ M_\theta(u)\geq\delta\},
+                  \qquad d_S,
+\]
+is complete. Every Cauchy net of potentials with masses at least $\delta$ therefore has a $d_S$ limit of mass at least $\delta$. Every net decreasing in $P$-order with this mass bound has such a limit.
+\end{theorem}
+\begin{proof}
+Mass is constant on $P$-types, so the displayed set is well defined. For a Cauchy sequence, pass to a subsequence whose consecutive distances are at most $C_n^{-2j}$, and replace its members by $a_j=P_\theta[u_j]$. These are nonpositive model potentials with the same distances and masses. The preceding lemma gives decreasing $w_j\geq a_j$ with $d_S(a_j,w_j)\to0$. Set $b_j=P_\theta[w_j]$. Their masses are at least $\delta$, they decrease, and $d_S(b_j,w_j)=0$. The preceding corollary supplies a model limit $b$, with mass at least $\delta$, and $d_S(b_j,b)\to0$. The triangle inequality gives $d_S(a_j,b)\to0$. A Cauchy sequence with a convergent subsequence converges to the same point: on a tail compare each member with one sufficiently late member of that subsequence. This proves sequential completeness.
+
+For a Cauchy net choose increasing indices $i_k$ such that the diameter of the tail after $i_k$ is below $2^{-k}$. The sequence at those indices is Cauchy and has a limit $b$. For any index $i\geq i_k$, its distance to the member at $i_k$ is below $2^{-k}$. Comparing with $b$ proves convergence of the whole net. The mass Lipschitz bound preserves the mass bound at its limit.
+
+Finally, for a net decreasing in $P$-order, each $A_j$ decreases and is bounded below. Its ordered distance formula shows that the distance between two comparable late members is small. For arbitrary two late indices, choose a common upper index and use the triangle inequality. The net is therefore Cauchy, and the completeness just proved applies.
+\end{proof}
+\index{singularity type!complete positive-mass space}
+
+\begin{proposition}\label{prop:singularity-monotone-model-brackets}
+Let $u_j$ be model potentials with masses at least $\delta>0$, and suppose they form a $d_S$-Cauchy sequence. After passing to a subsequence there are model potentials $p_j\downarrow p$ and $q_j\uparrow p$ canonically such that
+\[
+ q_j\leq u_j\leq p_j,
+ \qquad d_S(q_j,p),d_S(u_j,p),d_S(p_j,p)\longrightarrow0.
+\]
+The limit has mass at least $\delta$. If the original sequence converges to $u$ in $d_S$, then $p=P_\theta[u]$.
+\end{proposition}
+\begin{proof}
+Write $C=C_n$, $L=(n+1)C$ and $\alpha=\delta/(16L)$. Select a subsequence with
+\[
+ d_S(u_j,u_{j+1})\leq\alpha\,2^{-j}C^{-2j}.
+\]
+For its tail envelopes $w_j$ the preceding lemma gives $d_S(u_j,w_j)\leq e_j\leq2\alpha2^{-j}$: the geometric ratio in the defining sum is $1/(2C)$. Put $p_j=P_\theta[w_j]$. They decrease to a model $p$ of mass at least $\delta$, and $d_S(u_j,p)\to0$ by the preceding proof. For integers $a\geq2$, mass monotonicity and the Lipschitz bound give
+\[
+ 0\leq M_\theta(p_{a-1})-M_\theta(u_a)
+ \leq L(e_{a-1}+d_S(u_{a-1},u_a))
+ \leq6L\alpha2^{-a}\leq\delta2^{-a}.
+\]
+
+For fixed $j$ let $q_j^N=P_\theta(u_j,\ldots,u_N)$, initially $q_j^j=u_j$. Inductively suppose it exists through $N-1$ and has mass at least
+$M_\theta(u_j)-\sum_{a=j+1}^{N-1}\delta2^{-a}$. The maximum of $q_j^{N-1}$ and $u_N$ lies below $p_{N-1}$. Moreover
+\[
+ M_\theta(q_j^{N-1})+M_\theta(u_N)-M_\theta(p_{N-1})
+ \geq M_\theta(u_j)-\sum_{a=j+1}^{N}\delta2^{-a}>0.
+\]
+The rooftop existence criterion therefore supplies $q_j^N$. The mass diamond gives
+\[
+ M_\theta(q_j^N)\geq
+                 M_\theta(u_j)-\sum_{a=j+1}^{N}\delta2^{-a}.
+\]
+Finite rooftops of models are fixed points by \cref{prop:model-rooftop-fixed-point}. Their masses remain positive, so decreasing model continuity yields a model limit $q_j=\inf_{N\geq j}q_j^N$, with
+\[
+ M_\theta(u_j)-\delta2^{-j}\leq M_\theta(q_j)\leq M_\theta(u_j).
+\]
+Removing the first rooftop constraint shows $q_j\leq q_{j+1}$. For every $j,k$, one has $q_j\leq p_k$: if $j\geq k$ use $q_j\leq u_j\leq w_k\leq p_k$; if $j<k$ use $q_j\leq q_k\leq p_k$.
+
+Thus $q=(\sup_jq_j)^*\leq p$ is a model. Increasing mass continuity and the displayed bounds give $M_\theta(q)=\lim_jM_\theta(u_j)=M_\theta(p)$; the last equality uses $d_S(u_j,p)\to0$ and mass continuity. Positive-mass equivalence gives $q=p$. Increasing and decreasing model distance continuity give the limits for $q_j,p_j$. If the sequence converges to $u$, uniqueness in the metric quotient gives $u\sim_Pp$, hence $p=P_\theta[u]$.
+\end{proof}
+\index{singularity type!monotone brackets}
+
+\section{Mixed masses and changes of background}
+\label{sec:singularity-mixed-mass-convergence}
+Interpolation with the minimal potential gives positive mass without changing the limiting singularity type in $d_S$. This permits mixed-mass continuity at zero mass as well. The resulting polynomial identities compare the distances defined in different backgrounds.
+
+\begin{lemma}\label{lem:singularity-minimal-interpolation}
+For $0\leq t\leq1$ set $u_t=(1-t)u+tV$, using $u_1=V$. Then
+\[
+ d_S(u_t,v_t)\leq(n+1)C_n d_S(u,v),\qquad
+ d_S(u_t,u)\leq\frac{nm}{2}t.
+\]
+In particular $u_t\to u$ in $d_S$ as $t\downarrow0$, uniformly over $u$.
+\end{lemma}
+\begin{proof}
+Let $w=\max\{u,v\}$ and put $D_j=2A_j(w)-A_j(u)-A_j(v)\geq0$. Since $\max\{u_t,v_t\}=w_t$, the binomial formula gives
+\[
+ 2A_j(w_t)-A_j(u_t)-A_j(v_t)
+  =\sum_{k=0}^j\binom jk(1-t)^k t^{j-k}D_k.
+\]
+The coefficients sum to one, so each such difference is at most $\sum_kD_k=(n+1)B(u,v)$. Summing in $j$ and dividing by $n+1$ gives $B(u_t,v_t)\leq(n+1)B(u,v)$. The two comparisons with $d_S$ prove the first bound.
+
+Subtract a constant to arrange $u\leq V$; this changes neither distance nor mixed masses. The interpolant lies above $u$. In its binomial expansion the $k=j$ term is $(1-t)^jA_j(u)$ and all other masses are at most $m$. Thus
+$0\leq A_j(u_t)-A_j(u)\leq m(1-(1-t)^j)\leq jmt$. The ordered formula proves the second bound.
+\end{proof}
+
+\begin{theorem}\label{thm:singularity-mixed-mass-continuity}
+Let $\{\theta_j\}$ be big for $1\leq j\leq n$. If nets $u_{j,i}\in\PSH(X,\theta_j)$ converge in $d_{S,\theta_j}$ to $u_j$, then
+\[
+ \int_X\left\langle\bigwedge_{j=1}^n(\theta_j+\ddc u_{j,i})\right\rangle
+ \longrightarrow
+ \int_X\left\langle\bigwedge_{j=1}^n(\theta_j+\ddc u_j)\right\rangle.
+\]
+No positive-mass assumption on the limits is required.
+\end{theorem}
+\begin{proof}
+First consider sequences with positive limit masses. Mass continuity gives a common positive lower bound on a tail. Replacing each potential by its model envelope preserves both the distances and every mixed mass. Starting from any subsequence, select a further subsequence on which the monotone brackets of \cref{prop:singularity-monotone-model-brackets} apply simultaneously to all $n$ entries. Write them as $q_{j,k}\uparrow a_j$, $p_{j,k}\downarrow a_j$, where $a_j=P_{\theta_j}[u_j]$.
+
+The mixed masses of the lower brackets converge to the mixed mass of the limits by increasing mixed continuity. For the upper brackets, decreasing model continuity gives convergence of each top mass. Quantitative extrapolation supplies $\varepsilon_{j,k}\downarrow0$ along a further selection, and $\eta_{j,k}\in\PSH(X,\theta_j)$, with
+\[
+ \varepsilon_{j,k}\eta_{j,k}+(1-\varepsilon_{j,k})p_{j,k}\leq a_j.
+\]
+Indeed, choose coefficients tending to zero for which
+$\varepsilon_{j,k}^{-n}(M_{\theta_j}(p_{j,k})-M_{\theta_j}(a_j))<M_{\theta_j}(p_{j,k})$; equality of the masses allows any positive coefficient. Mixed monotonicity and positive multilinearity now bound the upper mixed mass $R_k$ by
+\[
+ \left(\prod_{j=1}^n(1-\varepsilon_{j,k})\right)R_k
+       \leq R\leq R_k,
+ \qquad
+ R=\int_X\left\langle\bigwedge_j(\theta_j+\ddc a_j)\right\rangle.
+\]
+Thus $R_k\to R$. Mixed monotonicity places the original mixed mass between the lower and upper bracket masses, so it converges along this further subsequence. If the whole scalar sequence failed to converge to $R$, a subsequence with a fixed positive discrepancy would contradict this conclusion. This proves the positive-mass case.
+
+For arbitrary masses fix $0<t<1$ and replace every entry by
+$(1-t)u_{j,i}+tV_{\theta_j}$. The preceding lemma preserves distance convergence, and each top mass is at least $t^nM_{\theta_j}(V_{\theta_j})>0$. The positive-mass case therefore gives convergence of the mixed masses at each such $t$. For fixed $i$ this mass is a polynomial $R_i(t)$ of degree at most $n$; the limit mass is a polynomial $R(t)$ of the same degree. Choose $n+1$ distinct values in $(0,1)$. Lagrange interpolation expresses $R_i(0)-R(0)$ as a fixed linear combination of the differences at those values. They tend to zero, proving convergence at zero.
+
+Finally, if a net violated the assertion, choose increasing indices on which its scalar discrepancy stays above a fixed positive number and each of the finitely many input distances is below $1/k$. That sequence contradicts the assertion just proved. This gives the net statement.
+\end{proof}
+\index{Monge--Ampere mass!singularity-distance continuity}
+
+\begin{corollary}\label{cor:singularity-distance-background-independence}
+Let $\{\theta\}$ and $\{\theta'\}$ be big, and let $u_i,u$ belong to both potential classes. Then
+\[
+ d_{S,\theta}(u_i,u)\to0
+       \quad\Longleftrightarrow\quad d_{S,\theta'}(u_i,u)\to0.
+\]
+For $c>0$, scaling also preserves and reflects convergence between background $\theta$ and background $c\theta$.
+\end{corollary}
+\begin{proof}
+Choose a sufficiently large K\"ahler form $\kappa$ so that $\Omega=\kappa-\theta$ is K\"ahler. Put $w_i=\max\{u_i,u\}$. Suppose first that $u_i\to u$ in $d_{S,\theta}$. The maximum comparison gives $w_i\to u$ in that distance too. Expand each mixed mass in background $\kappa$ using
+$\kappa_{u_i}=\theta_{u_i}+\Omega$. Every term is a mixed mass with the varying $\theta$-potential and fixed positive currents $\Omega$ and $\kappa_{V_\kappa}$. The preceding theorem gives its convergence, both for $u_i$ and for $w_i$. Hence $B_\kappa(u_i,u)\to0$, which gives $d_{S,\kappa}(u_i,u)\to0$.
+
+Conversely, from convergence in $d_{S,\kappa}$ the maximum comparison gives the same convergence for $w_i$. Expand each $\theta$ mixed mass using
+$\theta_{u_i}=\kappa_{u_i}-\Omega$. Positive multilinearity, applied first to $\kappa_{u_i}=\theta_{u_i}+\Omega$, gives this finite signed binomial identity. Each resulting term involves the varying positive $\kappa$-current and fixed positive currents $\Omega$ and $\theta_{V_\theta}$. Their backgrounds are big. The preceding theorem therefore gives every term's limit. This yields $B_\theta(u_i,u)\to0$ and hence convergence in $d_{S,\theta}$.
+
+Choose one $\kappa$ dominating both $\theta$ and $\theta'$ to prove the displayed equivalence. For scaling, $V_{c\theta}=cV_\theta$ and every mixed mass scales by $c^n$. Thus $B_{c\theta}(cu_i,cu)=c^nB_\theta(u_i,u)$; the two distance comparisons prove the last assertion.
+\end{proof}
+\index{singularity type!background-independent convergence}
+
+\begin{corollary}\label{cor:singularity-convergence-criteria}
+For a net $u_i\in\PSH(X,\theta)$, convergence to $u$ in $d_S$ is equivalent to
+\[
+ A_j(u_i)\to A_j(u),\qquad A_j(\max\{u_i,u\})\to A_j(u)
+                                      \quad(0\leq j\leq n).
+\]
+If $a_i\preceq_P u_i\preceq_P b_i$ and both bounding nets converge to $u$ in $d_S$, then so does $u_i$. Every affine path $(1-t)u+tv$ is continuous in $d_S$ on $[0,1]$.
+\end{corollary}
+\begin{proof}
+The two mass comparisons and the maximum estimate prove the displayed criterion in both directions. For the sandwich assertion, mixed monotonicity places $A_j(u_i)$ between the two bounding masses, which converge to $A_j(u)$. Maximum preservation of $P$-order likewise places $A_j(\max\{u_i,u\})$ between the masses of $\max\{a_i,u\}$ and $\max\{b_i,u\}$. The maximum estimate gives convergence of both these bounding potentials to $u$. Their masses therefore have the required limit. Apply the criterion.
+
+For $u_t=(1-t)u+tv$, positive multilinearity gives $A_j(u_t)\to A_j(u)$ as $t\downarrow0$. Also
+$\max\{u_t,u\}=(1-t)u+t\max\{v,u\}$, so its masses have the same limit. The criterion proves continuity at zero; symmetry proves it at one. At an interior parameter $s$, for $t>s$ express $u_t$ as the affine path from $u_s$ toward $v$, with coefficient $(t-s)/(1-s)$. For $t<s$ use the path from $u_s$ toward $u$, with coefficient $(s-t)/s$. Both coefficients tend to zero, proving continuity there.
+\end{proof}
+\index{singularity type!sandwich convergence}
+
+\begin{proposition}\label{prop:singularity-projection-and-lelong-continuity}
+If $u_i\to u$ in $d_S$ and $M_\theta(u)>0$, then
+\[
+ P_\theta[u_i]\longrightarrow P_\theta[u]\text{ in }L^1(X),
+ \qquad
+ \nu(u_i,E)\longrightarrow\nu(u,E)
+\]
+for every fixed prime divisor $E$ on a compact K\"ahler modification. Moreover
+\[
+ P_\theta[u_i]_{\mathcal I}\longrightarrow
+ P_\theta[u]_{\mathcal I}\text{ in }L^1(X)\text{ and in }d_S.
+\]
+\end{proposition}
+\begin{proof}
+Start with a sequence. Its masses are positive and uniformly bounded below on a tail. For any subsequence, select a further subsequence of its model projections with brackets $q_j\uparrow p$, $p_j\downarrow p$, where $p=P_\theta[u]$. The inequality $q_j\leq P_\theta[u_j]\leq p_j$ implies $L^1$ convergence along that selection: both bounds converge almost everywhere to $p$, and the fixed integrable bounds $q_1,p_1$ allow dominated convergence.
+
+Divisorial envelope closure gives $\nu(q_j,E)\downarrow\nu(p,E)$; positive decreasing model continuity gives $\nu(p_j,E)\uparrow\nu(p,E)$. Order squeezes the middle Lelong number between these two bounds. The ordinary model projection preserves divisorial numbers, so this is the required convergence for the original potentials.
+
+Apply the multiplier envelope to the same brackets. Increasing envelope continuity and positive decreasing model multiplier continuity give respectively
+\[
+ (\sup_jP_\theta[q_j]_{\mathcal I})^*
+     =P_\theta[p]_{\mathcal I}
+     =\inf_jP_\theta[p_j]_{\mathcal I}.
+\]
+These bounding envelopes have positive mass and are model potentials, by \cref{prop:multiplier-envelope-projection}. Their increasing and decreasing distance continuity therefore gives convergence in $d_S$ to the common limit. Their $L^1$ limits also agree; the same domination argument handles the intermediate multiplier envelopes. For distance, ordered additivity bounds their distance to the upper envelope by the distance between the two bounding envelopes, which tends to zero. The triangle inequality then gives the claimed limit. Finally $P_\theta[p]_{\mathcal I}=P_\theta[u]_{\mathcal I}$ by the iterated projection identity.
+
+If any asserted convergence failed for the original sequence, a subsequence with fixed discrepancy would contradict its further selection just constructed. For nets the same increasing-index selection as in the preceding theorem reduces a fixed discrepancy to such a sequence. This proves all the assertions.
+\end{proof}
+\index{Lelong number!singularity-distance continuity}\index{envelope!singularity-distance continuity}
