@@ -10,6 +10,8 @@ The unit of coverage is a missing proof or foundational dependency in SGPT Part 
 
 The Example 6.1.3 exception supplies an atom-free probability measure on a polar Cantor set, its global logarithmic potential on the projective line, the Lelong/atom identity, zero-Lelong exponential integrability and the first-degree non-pluripolar mass calculation. Its homes are P04, Q05 and Q09. Do not reactivate the excluded comparison chapter, singularity pseudometric or later applications.
 
+The author also requests the complete proof of Theorem 1.2 of Pang--Sun--Wang--Zhou, exact arXiv:2607.12797v1: the ceiling equals the singularity envelope in a big class, including zero Monge--Ampere mass, and the envelope is idempotent. Q11-05 places this argument after the internal bounded-density variational existence theorem. Use one positive-mass perturbation family and a uniform normalized tail estimate; do not import the paper's ceiling calculus, general prescribed-measure uniqueness or its other results. This addition does not restore excluded dS or comparison chapters.
+
 ## Reader and mathematical architecture
 
 Assume undergraduate real analysis, including integration and convergence theorems, linear algebra, point-set topology and elementary one-variable complex analysis. Supply the measure regularity, distributions, functional analysis, complex differential geometry and several-variable tools actually used. Complex geometry and convex analysis are developed rather than treated as additional prerequisites.

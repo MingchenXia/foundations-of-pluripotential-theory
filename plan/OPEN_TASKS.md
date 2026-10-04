@@ -1,6 +1,6 @@
 # Unfinished proof and writing obligations
 
-Required SGPT Part I foundations and the explicitly requested Example 6.1.3 foundations only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
+Required SGPT Part I foundations, the explicitly requested Example 6.1.3 foundations and Theorem 1.2 of arXiv:2607.12797 only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
 
 No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.
 
@@ -50,6 +50,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q11-01` [drafting] Relative finite-energy classes, energy monotonicity and integration by parts
 - `Q11-02` [drafting] Weak geodesics and subgeodesics on product domains and strips
 - `Q11-04` [second-read] Perron extremal slopes and bounded singularity-type cutoff stability
+- `Q11-05` [second-read] Arbitrary-mass ceiling identity and singularity-envelope idempotence
 
 ## A01 — Complex spaces and modifications
 
