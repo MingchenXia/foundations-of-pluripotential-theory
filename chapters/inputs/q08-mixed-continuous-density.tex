@@ -1,0 +1,93 @@
+\section{Density lower bounds and mixed products}
+\label{sec:bt-density-lower-bounds}
+
+Let $\Omega\subset\mathbb C^n$ be open, with $n\ge1$, and put $\eta=\ddc|z|^2=\beta/\pi$. Thus $\eta^n=n!\pi^{-n}\,\mathrm dV_{2n}$ by \eqref{eq:bt-determinant-normalization}. A lower bound for a Monge--Amp\`ere density can be tested against smooth functions touching the potential from above. A matrix formula then turns these tests into linear differential inequalities, which survive convolution. This permits the smooth mixed determinant inequality to pass to locally bounded potentials.
+
+\begin{lemma}\label{lem:determinant-linearization-mixed}
+For a positive semidefinite Hermitian $n\times n$ matrix $A$,
+\[
+ (\det A)^{1/n}=\inf_{B>0,\,\det B=1}\frac{\operatorname{tr}(BA)}n.
+\]
+For positive semidefinite $A,C$, define $M_k(A,C)$ by
+\[
+ \det(tA+sC)=\sum_{k=0}^n\binom nk M_k(A,C)t^ks^{n-k}.
+\]
+For $1\le k\le n-1$,
+\[
+ M_k(A,C)\ge(\det A)^{k/n}(\det C)^{(n-k)/n}.
+\]
+The endpoint coefficients are $M_n(A,C)=\det A$ and $M_0(A,C)=\det C$.
+\end{lemma}
+\begin{proof}
+If $A>0$, apply the arithmetic--geometric mean inequality to the eigenvalues of $B^{1/2}AB^{1/2}$. Equality is attained at $B=(\det A)^{1/n}A^{-1}$. If $A$ is singular, use this choice for $A+\varepsilon I$; its trace against $A$ is at most $n\det(A+\varepsilon I)^{1/n}$ and tends to zero. All the traces are nonnegative, proving the first assertion.
+
+Suppose first that $A,C>0$ and let $\lambda_1,\ldots,\lambda_n$ be the eigenvalues of $A^{-1/2}CA^{-1/2}$. Coefficient comparison gives
+\[
+ M_k(A,C)=\frac{\det A}{\binom nk}
+ \sum_{|J|=n-k}\prod_{j\in J}\lambda_j.
+\]
+Each eigenvalue occurs in $\binom{n-1}{n-k-1}$ of these products. Their geometric mean is therefore $(\lambda_1\cdots\lambda_n)^{(n-k)/n}$. The arithmetic--geometric mean inequality gives the stated bound since $\prod_j\lambda_j=\det C/\det A$. Replace both matrices by their sums with $\varepsilon I$ and let $\varepsilon\downarrow0$ to include the semidefinite case.
+\end{proof}
+
+\begin{lemma}\label{lem:constant-elliptic-upper-tests}
+Let $L=\sum_{a,b=1}^d a_{ab}\partial_a\partial_b$, where $(a_{ab})$ is a real symmetric positive definite constant matrix. Let $w$ be a locally bounded upper semicontinuous function on an open subset of $\mathbb R^d$, and let $F$ be continuous. Suppose every $C^2$ function $q$ touching $w$ from above at $x$ satisfies $Lq(x)\ge F(x)$. Then $Lw\ge F$ distributionally.
+\end{lemma}
+\begin{proof}
+A real linear change of variables makes $L$ the ordinary Laplacian. If $F=0$, the upper-test condition implies harmonic comparison on every relatively compact ball $B(y,r)$. Indeed, let $h$ be harmonic on that ball, continuous on its closure, and at least $w$ on the boundary. If $w-h$ is positive somewhere inside, choose $\varepsilon>0$ so small that
+$w-h-\varepsilon(r^2-|x-y|^2)$ still has a positive value there. Its positive maximum is attained inside, since its boundary upper limits are nonpositive. Adding this maximum to $h+\varepsilon(r^2-|x-y|^2)$ gives an upper test with strictly negative Laplacian, a contradiction. Decreasing continuous majorants of $w|_{\partial B}$ and their Poisson extensions gives the sphere submean inequality, as in \cref{thm:subharmonic-comparison}. Consequently \cref{thm:subharmonic-distribution} gives $\Delta w\ge0$.
+
+For general $F$, work on a smaller ball and choose smooth $F_j\le F$ converging uniformly to $F$ there. Such functions result from convolution on a larger neighborhood followed by subtraction of its uniform approximation error. Multiply $F_j$ by a smooth cutoff equal to one near the smaller ball. Convolution with the fundamental solution in \cref{prop:laplacian-fundamental-solution} gives a smooth $h_j$ with $\Delta h_j=F_j$ on that ball: derivatives may be placed on the compactly supported smooth factor. Every upper test for $w-h_j$ has nonnegative Laplacian, so the first case gives $\Delta w\ge F_j$ distributionally. Uniform convergence gives $\Delta w\ge F$. Returning to the original coordinates proves the lemma.
+\end{proof}
+
+For a real $C^2$ function $q$ write $H(q)=(q_{j\bar k})$. For a positive definite Hermitian $B$ with $\det B=1$, put $L_Bq=\operatorname{tr}(BH(q))$. This is a constant real elliptic operator: diagonalizing $B$ by a unitary coordinate change expresses it as a positive weighted sum of the planar Laplacians, each with factor $1/4$.
+
+\begin{proposition}\label{prop:bounded-monge-ampere-linear-density}
+Let $u$ be locally bounded and plurisubharmonic on $\Omega$, and let $f\ge0$ be continuous. The following conditions are equivalent:
+\begin{enumerate}
+\item $(\ddc u)^n\ge f\eta^n$ as measures;
+\item every real $C^2$ function $q$ touching $u$ from above at $x$ satisfies $\det H(q)(x)\ge f(x)$;
+\item $L_Bu\ge n f^{1/n}$ distributionally for every positive definite Hermitian $B$ with $\det B=1$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The complex Hessian of any upper test $q$ is positive semidefinite at the contact point. Restrict to a complex line through that point and use the submean inequality for $u$; the circle mean of $q$ is at least its center value. The second-order expansion gives nonnegativity of $H(q)$ on every complex direction.
+
+Assume (1), and normalize a test by $q(x)=u(x)$ and $q\ge u$ near $x$. If $\det H(q)(x)<f(x)$, choose $\delta>0$ so small that $q_\delta=q+\delta|z-x|^2$ has positive definite complex Hessian at $x$ and still has determinant below $f(x)$. On a sufficiently small closed ball $\overline{B(x,r)}$, it is strictly plurisubharmonic and $\det H(q_\delta)<f$. Set $b=q_\delta-\delta r^2/2$. On the sphere $b>u$, whereas $b(x)<u(x)$. The Borel set $S=\{b<u\}\cap B(x,r)$ has positive Lebesgue measure. Otherwise $u\le b$ almost everywhere on the ball, and uniqueness of the plurisubharmonic representative in \cref{thm:psh-distribution-representative}, applied to $\max\{u,b\}$, would imply $u\le b$ everywhere. Bounded comparison in \cref{thm:bt-comparison} now gives
+\[
+ \int_S f\eta^n\le\int_S(\ddc u)^n
+ \le\int_S(\ddc b)^n
+ =\int_S\det H(q_\delta)\eta^n,
+\]
+contradicting the strict density inequality. The measures here are finite since the ball is relatively compact in the neighborhood where the potentials are bounded. Thus (2) holds.
+
+Assume (2). The first formula of \cref{lem:determinant-linearization-mixed} gives $L_Bq(x)\ge n f(x)^{1/n}$ for every upper test and each fixed admissible $B$. Apply \cref{lem:constant-elliptic-upper-tests} with the continuous function $n f^{1/n}$ to obtain (3).
+
+Finally assume (3). Choose the nonnegative radial regularizing kernels used in \cref{thm:psh-distribution-representative}, so that $u_\varepsilon=u*\rho_\varepsilon\downarrow u$ on smaller open sets. Convolving each distributional inequality gives
+\[
+ \operatorname{tr}(BH(u_\varepsilon))\ge n(f^{1/n}*\rho_\varepsilon)
+ \qquad(B>0,\ \det B=1).
+\]
+These are pointwise inequalities between smooth functions. The matrix infimum formula therefore gives $\det H(u_\varepsilon)\ge(f^{1/n}*\rho_\varepsilon)^n$. The right side tends locally uniformly to $f$. The determinant normalization and the weak decreasing continuity of \cref{thm:bt-decreasing-continuity} give (1). This argument includes vanishing densities and singular Hessians.
+\end{proof}
+\index{Monge--Amp\`ere measure!density lower bound}
+
+\begin{corollary}\label{cor:bounded-mixed-continuous-density}
+Let $u,v$ be locally bounded plurisubharmonic functions on $\Omega$, and let $f,g\ge0$ be continuous with $(\ddc u)^n\ge f\eta^n$ and $(\ddc v)^n\ge g\eta^n$. For $1\le k\le n-1$,
+\[
+ (\ddc u)^k\wedge(\ddc v)^{n-k}
+ \ge f^{k/n}g^{(n-k)/n}\eta^n.
+\]
+For $k=0,n$ the corresponding assertions are the given pure-measure bounds.
+\end{corollary}
+\begin{proof}
+Use the same radial kernels for both potentials. The proof of \cref{prop:bounded-monge-ampere-linear-density} gives
+\[
+ \det H(u_\varepsilon)\ge(f^{1/n}*\rho_\varepsilon)^n,
+ \qquad
+ \det H(v_\varepsilon)\ge(g^{1/n}*\rho_\varepsilon)^n.
+\]
+Expand $(t\ddc u_\varepsilon+s\ddc v_\varepsilon)^n$ and its smooth determinant density. The coefficient of $\binom nk t^ks^{n-k}$ is $M_k(H(u_\varepsilon),H(v_\varepsilon))\eta^n$. The second assertion of \cref{lem:determinant-linearization-mixed} bounds this below by
+$(f^{1/n}*\rho_\varepsilon)^k(g^{1/n}*\rho_\varepsilon)^{n-k}\eta^n$.
+The continuous density converges locally uniformly to $f^{k/n}g^{(n-k)/n}$. Mixed decreasing continuity in \cref{thm:bt-decreasing-continuity} passes the measure inequality to the limit.
+\end{proof}
+\index{Bedford--Taylor product!mixed density inequality}
