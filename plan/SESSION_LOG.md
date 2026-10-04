@@ -145,3 +145,11 @@ Wrote and twice directly reviewed envelope algebra and I equivalences, increasin
 Independently identified and retained Pang–Sun–Wang–Zhou arXiv:2607.12797v1, checked Theorem 1.2 and read complete Section 5, pp. 37–42, including its relative prescribed-density dependency. It is not an adopted input. Sample envelope lines 1–898 and 1995–2458 are read; intervening energy remains the next source unit. Both CI runs at pushed 18d932b passed (37162998386 and 37162995429). Continue remaining envelope/capacity and energy foundations with regular private pushes and draft PR #5 updates. Whole-book writing and polishing remain unfinished.
 
 The 318-page source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-04-q10-limits-release.log.
+
+## 4 October 2026 — Relative envelopes, capacities and quantitative rooftops
+
+Wrote and twice directly reviewed constrained obstacle calculus and bounded contact/orthogonality, relative mixed comparison with defect, relative capacity basics/sublevels and quantitative rooftop extrapolation under model-envelope order. The latter reconstructs the exact margin used in Nakamaye, in a big class, and checks a global upper bound even when the obstacle is unbounded. Review: research/reviews/2026-10-04-q10-relative.json. The draft has 322 pages; Q10-04 moves to drafting, earlier gates/48 verified persist, and the partial source map has 32 claims.
+
+Sample envelope energy lines 899–1390 and comparison Theorem pathoenvelope complete proof were read. Independently checked Lu's publisher metadata and found exact arXiv:2005.04264v1 through his actual publication page after the publisher download returned HTML. General capacity comparison is a proof lead, not an input. Both CI runs at pushed bfe6bfe passed (37164205808 and 37164201415). Continue capacity/energy foundations and later chapters, with regular private pushes and draft PR #5 updates. Whole-book writing/polishing remain unfinished.
+
+The 322-page source archive rebuilt in an empty directory with matching extracted page text. Release evidence: research/reviews/logs/2026-10-04-q10-relative-release.log.
