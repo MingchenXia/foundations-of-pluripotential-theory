@@ -1,0 +1,11 @@
+# Ray integrals and multiplier ideals
+
+Four saved statements and complete proofs, transitions and the historical paragraph have two complete direct reads surrounding the first integrated build and visual inspection. This is scoped authoring-agent review, not independent certification. The final 457-page draft has zero audit errors, unresolved references/citations, fatal errors, overfull or underfull boxes. All 29 first selected integrated images and 16 changed fit images were inspected, followed by the final theorem/proof fit image. The short remark prefix was corrected after the retained initial audit failure. Several definitions and statements now stay together.
+
+Concavity and mixed strong openness give a common right-open slope for finitely many stalk generators. Inverse duality and decreasing terminal-normalized ray values give the full exponential-tail lower estimate, uniformly in the spatial point. Tonelli needs no measurable selection of the approximate minimizing time. The larger slope gives the converse integrable exponential upper bound. The resulting local germ spaces at all positive coefficients recover exactly the ideal-model projection. Negative raw times are classified pointwise.
+
+Both source versions independently found online and retained without replacing originals. Exact v1 (7 November 2023; PDF dated 8 November), 13 pages: complete Section 3.1/Lemma 3.1 pp. 6–7 and title/conventions pp. 1–2 read; all four original page images inspected. Exact v6 (posted 29 September 2026; PDF dated 30 September), 56 pages: complete Theorem 2.4 pp. 10–11 plus title/notation pp. 1, 7–8 read; all five original images inspected. Metadata identifies Yan He, Johannes Testorf and Xu Wang. Both use the book's operator and multiplier weight. The v6 tail estimate supplies the sharper constant; other extension, Bergman and convex-body material is not adopted or claimed read.
+
+Two further full scoped sample targets give 58 in Q15 and 244 overall. Six Q15 source scopes remain. Both preceding 9ed5074 CI checks passed (37191218982 and 37191216506). Earlier chapter gates, later planned chapters and final whole-book work remain.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 457-page checkpoint.

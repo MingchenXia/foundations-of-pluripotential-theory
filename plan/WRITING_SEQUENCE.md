@@ -191,3 +191,11 @@ Closed terminal slopes and joint upper semicontinuity give raw supremal convolut
 All twenty-seven operation source claims now mapped: fifty-six full Q15 targets and 242 overall. Eight source claims remain, including the filtration's auxiliary pointwise scope, mass log-concavity, multiplier-ray integral, contact/initial-slope/twisted and Phong–Sturm interfaces. Earlier proof gates, Q14 and Q16–Q19, semantic source review and final polishing remain. 48/110 tasks verified. Both 826d0ca CI checks passed (37190267083 and 37190264434). Continue the multiplier-ray integral and remaining foundational interfaces.
 
 Fresh source archive rebuilt in an empty directory with matching page text for this 455-page checkpoint.
+
+## 2026-10-04: local ray integrals and multiplier ideals
+
+Four saved statements/full proofs, transitions and historical paragraph have two complete direct reads. All 29 first integrated selected images, 16 changed fit images and final theorem/proof fit inspected. Final 457-page draft has zero audit errors, unresolved references/citations, overfull or underfull boxes. Review: research/reviews/2026-10-04-q15-multiplier-rays.json.
+
+Concavity and mixed strong openness give a common slope parameter for finite stalk generators. The complete exponential tail gives the uniform lower estimate; the larger slope gives the upper bound. Local time-integral germ spaces at all coefficients determine the ideal-model projection. Negative times are classified pointwise. Exact 2023 v1 and September 2026 v6 independently located online, retained and checked through the complete relevant proofs and conventions; all nine selected original page images inspected. Two further full scoped mappings give 58 Q15 and 244 overall. Six source scopes, earlier proof gates, Q14/Q16–Q19 and whole-book audit/polish remain. Both 9ed5074 CI checks passed (37191218982 and 37191216506). 48/110 obligations verified. Continue the earliest dependency-ready foundational unit.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 457-page checkpoint.

@@ -98,6 +98,10 @@ The first formula is a raw supremum. Its value at zero is specified separately, 
 \end{definition}
 \index{Legendre transform!of a test curve}\index{Legendre transform!of a geodesic ray}
 
+\begin{remark}\label{rem:test-curve-negative-times}
+At a negative time the raw transform is $+\infty$ wherever one slope value is finite, and $-\infty$ wherever every slope value is $-\infty$. Indeed, if $\Gamma_r(x)$ is finite, decreasingness gives $\Gamma_\tau(x)\geq\Gamma_r(x)$ for $\tau<r$, while $t\tau\to+\infty$ as $\tau\to-\infty$. This explains the positive-time domain of the transform.
+\end{remark}
+
 \Needspace{10\baselineskip}
 \begin{proposition}\label{prop:test-curve-legendre-subgeodesic}
 The raw transform is jointly upper semicontinuous on $X\times(0,\infty)$ and defines a subgeodesic ray starting at $\phi$. For every $t>0$,
@@ -288,6 +292,7 @@ give the displayed energy formula. The integral follows by $j$ integrations by p
 \label{sec:i-model-test-curves}
 The Legendre correspondence keeps ordinary model singularities at each slope. Requiring those models to be determined by multiplier ideals gives a smaller class, stable under the natural projection and functorial operations.
 
+\Needspace{10\baselineskip}
 \begin{definition}\label{def:i-model-test-curve}
 A model test curve is $\mathcal I$-model if
 \[
@@ -367,6 +372,7 @@ A weak geodesic ray is $\mathcal I$-model if its inverse Legendre curve is $\mat
 \label{sec:section-filtration-test-curves}
 A multiplicative filtration gives a singularity curve by taking normalized section weights. The section asymptotic formula identifies its negative-slope tail and supplies its positive interior masses.
 
+\Needspace{20\baselineskip}
 \begin{definition}\label{def:multiplicative-section-filtration}
 Let $L$ have a smooth quadratic Hermitian metric $h$ with curvature $\theta$, and assume $\{\theta\}$ is big. Its section ring is
 $R(X,L)=\bigoplus_{k\geq0}H^0(X,L^k)$, with the product of sections. A bounded multiplicative filtration consists of subspaces $\mathcal F_k^\lambda\subseteq H^0(X,L^k)$, decreasing and left-continuous in $\lambda$, such that
@@ -486,6 +492,7 @@ Parameter substitutions give concavity, order and the indicated bases and termin
 \end{proof}
 \index{test curve!translation}\index{test curve!scaling}
 
+\Needspace{18\baselineskip}
 \begin{lemma}\label{lem:test-curve-closed-sup-convolution}
 For $\Gamma\in\operatorname{TC}(X,\theta,\phi)$ and
 $\Gamma'\in\operatorname{TC}(X,\theta',\phi')$, use their closed terminal extensions and put, for $\tau<b+b'$,
@@ -512,6 +519,7 @@ Extend $\eta$ by its closed value $\Gamma_b+\Gamma'_{b'}$ at $b+b'$ and by $-\in
 \end{proof}
 \index{test curve!supremal convolution}
 
+\Needspace{20\baselineskip}
 \begin{theorem}\label{thm:test-curve-sum}
 The sum of two curves is defined by
 \[
@@ -655,4 +663,74 @@ For an increasing sequence the supremum theorem constructs its slope curve with 
                =\inf_j\inf_{t>0}(\check\Gamma^j_t-t\tau).
 \]
 The right side is $\inf_j\Gamma^j_\tau$, identifying every interior value and its fixed-base curve. Finally the energy functional is Lipschitz for $d_1$; divide that bound by time and use the curve/radial energy identity to get energy convergence in the chordal metric.
+\end{proof}
+
+\section{Multiplier ideals from time integrals}
+\label{sec:ray-multiplier-integrals}
+Local weighted integrability along the whole ray recovers the multiplier ideal of a single dual slope. The parameter openness needed for this statement follows from concavity and the already established mixed form of strong openness.
+
+\begin{lemma}\label{lem:test-curve-multiplier-parameter-openness}
+For $a>0$, $\tau<b$ and $x\in X$, there is $\varepsilon>0$ with $\tau+\varepsilon<b$ such that
+\[
+ \mathcal I(a\Gamma_{\tau+s})_x=\mathcal I(a\Gamma_\tau)_x
+                                     \qquad(0\leq s\leq\varepsilon).
+\]
+\end{lemma}
+\begin{proof}
+Fix $\sigma\in(\tau,b)$ and finite generators of $\mathcal I(a\Gamma_\tau)_x$. Add a smooth local potential for $\theta$ to make the two weights psh. The mixed strong-openness assertion in \cref{cor:strong-openness} gives one $d>0$ for which every generator is integrable with weight $a\Gamma_\tau+da\Gamma_\sigma$ on a smaller neighborhood. The added smooth terms are bounded there and do not affect integrability. Shrink $d$ to be less than one. As the curve values are nonpositive, parameter concavity gives, for $0<s\leq d$,
+\[
+ a\Gamma_{(1-s)\tau+s\sigma}
+    \geq(1-s)a\Gamma_\tau+sa\Gamma_\sigma
+    \geq a\Gamma_\tau+sa\Gamma_\sigma.
+\]
+Every generator belongs to the ideal on the left. Its stalk therefore contains $\mathcal I(a\Gamma_\tau)_x$, while decreasingness gives the reverse inclusion. Take $\varepsilon=d(\sigma-\tau)$.
+\end{proof}
+
+\enlargethispage{3\baselineskip}
+\begin{theorem}\label{thm:ray-multiplier-integral-criterion}
+Let $\ell=\check\Gamma$ be a weak ray with terminal dual slope $b$. For $a>0$ and $\tau<b$ set
+\[
+ B^a_\tau(x)=\int_0^\infty
+                         \mathrm e^{-a\ell_t(x)+at\tau}\,\mathrm dt.
+\]
+For every holomorphic germ $f$ at $x$,
+\[
+ f\in\mathcal I(a\Gamma_\tau)_x
+ \quad\Longleftrightarrow\quad
+             |f|^2B^a_\tau\text{ is integrable near }x.
+\]
+Any smooth positive coordinate volume may be used. The nonnegative integral is understood in the extended sense, with the zero germ included. Pointwise on the finite locus of $\Gamma_\tau$,
+\[
+ B^a_\tau\geq\frac{\mathrm e^{-a}}{a(b-\tau)}
+                                      \mathrm e^{-a\Gamma_\tau}.
+\]
+\end{theorem}
+\begin{proof}
+The product ray is upper semicontinuous and hence measurable. Tonelli's theorem defines the measurable extended function $B^a_\tau$ and permits integration first in time or in space.
+
+Fix a point where $\Gamma_\tau$ is finite. Inverse duality gives $t_0>0$ with
+$\ell_{t_0}-t_0\tau\leq\Gamma_\tau+1$.
+The function $\ell_t-bt$ decreases, so for $t\geq t_0$,
+\[
+ \ell_t-t\tau
+             \leq\Gamma_\tau+1+(t-t_0)(b-\tau).
+\]
+Exponentiate and integrate this bound from $t_0$ to infinity. The exponential tail integral is $1/(a(b-\tau))$, giving the stated lower bound. The pole set has coordinate volume zero. Thus integrability of $|f|^2B^a_\tau$ implies integrability of $|f|^2\mathrm e^{-a\Gamma_\tau}$ and proves one direction. No measurable choice of $t_0$ is required: the resulting bound has the same constant at every point.
+
+Conversely, let $f\in\mathcal I(a\Gamma_\tau)_x$. The parameter-openness lemma gives $\varepsilon>0$ with $f\in\mathcal I(a\Gamma_{\tau+\varepsilon})_x$. At every positive time duality gives
+$\ell_t\geq\Gamma_{\tau+\varepsilon}+t(\tau+\varepsilon)$.
+Hence
+\[
+ B^a_\tau\leq\frac1{a\varepsilon}
+                                  \mathrm e^{-a\Gamma_{\tau+\varepsilon}}.
+\]
+The right side multiplied by $|f|^2$ is integrable on a sufficiently small neighborhood, proving the converse. Comparable smooth local volume densities give the asserted volume independence.
+\end{proof}
+\index{multiplier ideal!time-integral criterion}\index{geodesic ray!multiplier-ideal data}
+
+\begin{corollary}\label{cor:ray-integrals-determine-ideal-projection}
+For two curves in the same background and with the same terminal slope, their levelwise $\mathcal I$-model projections agree if and only if the local holomorphic germs integrable against $B^a_\tau$ agree at every point, for all $a>0$ and interior slopes $\tau$. In particular these time-integral spaces determine an $\mathcal I$-model curve and its ray.
+\end{corollary}
+\begin{proof}
+The theorem identifies the spaces with the multiplier-ideal stalks at all positive coefficients. Their equality is exactly multiplier-ideal equivalence at each slope, which is preserved by, and determines, the multiplier envelope in \cref{prop:multiplier-envelope-projection}. Equality of all interior projected values gives equality of their initial canonical suprema and terminal decreasing limits. Ideal-model curves are fixed by this projection, and the Legendre correspondence determines their rays.
 \end{proof}
