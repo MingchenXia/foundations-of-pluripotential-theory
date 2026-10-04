@@ -2,7 +2,7 @@
 
 Required SGPT Part I foundations only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
 
-Next coherent writing unit: **Q16**.
+No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.
 
 ## Q05 — Lelong numbers and multiplier ideals
 
@@ -47,10 +47,6 @@ Next coherent writing unit: **Q16**.
 - `Q11-02` [drafting] Weak geodesics and subgeodesics on product domains and strips
 - `Q11-03` [drafting] d1 metrics, completeness and geodesic distances with reference potential fixed
 - `Q11-04` [drafting] Geodesic rays, radial energy and ray metric convergence
-
-## Q16 — Convex and ample toric foundations
-
-- `Q16-02` [planned] Ample toric geometric prerequisites for SGPT Part I, including projective charts, characters and the reference metric
 
 ## A01 — Complex spaces and modifications
 

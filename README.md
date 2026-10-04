@@ -9,9 +9,9 @@ The book develops classical potential theory, then local and global pluripotenti
 - [Progress](plan/PROGRESS.md), [open tasks](plan/OPEN_TASKS.md) and [chapter map](plan/CHAPTER_MAP.md): generated from JSON, with excluded old tasks distinguished.
 - [Source inventory](research/SAMPLE_COVERAGE.md), [references](references/README.md) and [scoped reviews](research/reviews): evidence and actual reading scope.
 
-The active draft retains the classical/local complex foundations, the global Q07 core, provisional Q09–Q11 foundations, the reviewed convex Q16 unit and the analytic-space appendix core. Q09–Q11 still require a result-level overlap audit. Ample toric geometric and lattice-counting prerequisites remain to be written. Test curves, dS/I-good classification, traces, partial Okounkov bodies, b-divisors, non-Archimedean and partial Bergman applications are excluded. Prior broader drafts and review evidence remain in the private repository.
+The active draft retains the classical/local complex foundations, the global Q07 core, provisional Q09–Q11 foundations, the reviewed convex/ample toric Q16 chapter and the analytic-space appendix core. Q09–Q11 still require a result-level overlap audit. Q16 supplies lattice counts, projective charts, the character section basis and the exact smooth positive Guillemin reference metric. Test curves, dS/I-good classification, traces, partial Okounkov bodies, b-divisors, non-Archimedean and partial Bergman applications are excluded. Prior broader drafts and review evidence remain in the private repository.
 
-The required task count is provisional until the Part I gap audit closes. Build success and historical statement mappings are not mathematical completion. FN, remaining local mixed/equation/contact/positivity interfaces, ample toric prerequisites, source audit and whole-prequel polishing remain as scoped obligations.
+The required task count is provisional until the Part I gap audit closes. Build success and historical statement mappings are not mathematical completion. FN, remaining local mixed/equation/contact/positivity interfaces, source audit and whole-prequel polishing remain as scoped obligations.
 
 ```sh
 make check      # Source integrity, dependencies, labels and citations

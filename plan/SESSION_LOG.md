@@ -377,3 +377,15 @@ Fundamental cells give weighted counts under arbitrary lattice translations and 
 Q16-05 is verified with verified earlier prerequisites. The current scope has 51 verified obligations among 82 provisionally required and 29 excluded historical tasks; these are not an overall completion percentage. Both e354adc CI checks passed (37194323438 and 37194320828). Continue ample toric geometry/reference-metric proofs and the Part I gap/overlap audit, preserving earlier internal analytic/global proof gates.
 
 Fresh source archive rebuilt in an empty directory with matching page text for this 403-page checkpoint.
+
+## 2026-10-04: elementary ample toric geometry and the exact reference metric
+
+Seven new saved statements with complete proofs, recursive input and adjoining lattice/history seams have two direct mathematical/editorial reads around the first build and visual review. All 25 first selected integrated images and all 26 selected final images inspected. Every final page was rendered for comparison; the seven differing pages were inspected. Split statements, the entropy display and an isolated two-line last page were repaired. Final draft: 413 pages; no integrity/audit errors, unresolved references/citations or overfull/underfull boxes. Review: research/reviews/2026-10-04-q16-toric.json.
+
+Integral facets and tangent cones give projective monomial charts directly. The normal fan, face orbits, boundary divisor orders and global character section basis follow from these charts and Laurent/Taylor coefficients. Exact Guillemin entropy/Legendre equations give smooth positive quadratic weights at arbitrary faces and corners, with compact-torus invariance and Chern normalization. Dimension zero and degree zero are explicit. No general toric classification, symplectic reduction, Kodaira embedding, Chow theorem or new external input is used.
+
+Exact CDG arXiv math/0310243v1 independently found online and retained; complete selected coordinate/Legendre proofs pp. 7–10 read and all five selected original images inspected. Its normalization and date-footer anomaly are recorded. General symplectic inputs are unaudited. CLS11 full-text access failed, so only its DOI identity is claimed. Immutable source count: 101.
+
+Q16-02 and the four-required-task Q16 chapter are verified; Q16-03 stays excluded. Current scope: 52 verified obligations among 82 provisionally required, with 29 historical exclusions. This is not overall book completion. Both f27ced3 CI checks passed (37195216673 and 37195214213). Continue the exact five-chapter Part I proof-gap/overlap audit, earlier internal analytic/global proof gates and whole-prequel integration/polishing.
+
+Fresh source archive rebuilt in an empty directory with matching page text for this 413-page checkpoint. All 26 selected current rendered pages match the inspected final images.
