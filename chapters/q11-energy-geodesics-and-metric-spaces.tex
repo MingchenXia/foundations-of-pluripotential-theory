@@ -659,3 +659,185 @@ Write $r=\log|z|^2$ and $F(r)=\log(e^r+\varepsilon)-\log(1+e^r)$. Radial integra
 \]
 Here $0\leq F'\leq1$. On $[\log\varepsilon,0]$, its difference from $1$ is at most $\varepsilon e^{-r}+e^r$, whose integral is at most $2$. On the left tail $F'\leq e^r/\varepsilon$, and on the right tail $F'\leq e^{-r}$; the squared tail integrals are uniformly bounded. These estimates justify the uniform $O(1)$. The curve energy formula therefore gives $E_\omega(u_a)\to-1/2$, whereas $E_\omega(0)=0$.
 \end{example}
+
+\section{Subgeodesics and Perron segments}
+\label{sec:relative-weak-geodesics}
+Write $S=\{\zeta\in\mathbb C:0<\Real\zeta<1\}$ and let $p:X\times S\to X$ be the projection. The background $p^*\theta$ has no component in the strip direction. Consequently a curve of potentials must satisfy more than convexity in its real parameter to define a plurisubharmonic function on the product.
+
+\begin{definition}\label{def:relative-subgeodesic}
+A subgeodesic with endpoints $u_0,u_1\in\PSH(X,\theta)$ is a curve $(u_t)_{0<t<1}$ whose complexification
+\[
+ U(x,\zeta)=u_{\Real\zeta}(x)
+\]
+is $p^*\theta$-psh and whose endpoint limits are $u_0,u_1$ in $L^1(X)$. Curves on $[a,b]$, $a<b$, are defined by the affine change $t\mapsto a+(b-a)t$. A curve on a one-point interval consists of its given potential.
+\end{definition}
+\index{subgeodesic}\index{complexification!of a curve of potentials}
+
+\begin{proposition}\label{prop:subgeodesic-convexity-and-continuity}
+For a subgeodesic, every fibre $t\mapsto u_t(x)$ is convex on $(0,1)$, possibly identically $-\infty$, and
+\[
+ u_t\leq(1-t)u_0+tu_1.
+\]
+The minimum $w=\inf_{0<t<1}u_t$ is a $\theta$-psh potential and satisfies $w\leq P_\theta(u_0,u_1)$. The curve is continuous in $L^1$ on $[0,1]$, and relatively compact there. Its endpoint limits equal the specified endpoints quasi-everywhere and are at most them pointwise.
+\end{proposition}
+\begin{proof}
+An imaginary-translation-invariant subharmonic function of one complex variable is convex in its real part: its smooth convolutions have nonnegative second derivative in that variable, and their decreasing limit preserves convexity. Each fibre is subharmonic or identically $-\infty$. Choose endpoint sequences converging almost everywhere to $u_0,u_1$. Convexity between those interior times gives the displayed upper bound almost everywhere for a fixed $t$. Both sides have canonical quasi-psh representatives, so it holds everywhere.
+
+Kiselman's product-tube principle makes $w$ locally $\theta$-psh or identically $-\infty$. Almost every fibre is a finite convex function, by Fubini applied to the locally integrable complexification. It has a supporting affine lower bound on the bounded interval: slopes between any three interior points supply such a bound. Thus its infimum is finite. The minus-infinite alternative is excluded, and the local potentials patch. The convex upper bound gives $w\leq u_0,u_1$ almost everywhere by letting $t$ tend to either endpoint, hence everywhere. This proves the rooftop assertion.
+
+On the common finite locus, $w$ and the convex upper bound provide integrable lower and upper bounds for all slices. Convex fibre continuity and dominated convergence give interior $L^1$ continuity; endpoint continuity is part of the definition. The same bounds, or the resulting continuous image of $[0,1]$, give relative compactness. The fibre endpoint limits exist by convexity and lie below the endpoint values by the displayed bound. They equal them almost everywhere by the assumed $L^1$ convergence.
+
+For quasi-everywhere equality at zero, fix $s\in(0,1)$ and take $t_j\downarrow0$ with $t_j<s$. The chord slopes
+\[
+ a_j=\frac{u_{t_j}-(t_j/s)u_s}{1-t_j/s}
+\]
+increase pointwise on the common finite locus, by convexity, and tend almost everywhere to $u_0$. Add the fixed potential $u_s$. Indeed
+$a_j+u_s=(u_{t_j}+u_s(1-2t_j/s))/(1-t_j/s)$ is a positive combination for $t_j<s/2$, with coefficient sum two. These functions are $2\theta$-psh. Their canonical increasing limit is $u_0+u_s$. The pluripolar discrepancy theorem gives equality quasi-everywhere. Removing their countably many pole sets proves the endpoint assertion. Reflecting the parameter proves it at one.
+\end{proof}
+
+\begin{lemma}\label{lem:subgeodesic-operations-and-pasting}
+Subgeodesics are preserved by restriction to a subinterval, addition of an affine function of $t$, and smooth change of background $\theta'=\theta+\ddc g$, $u'_t=u_t-g$. If a subgeodesic on $[a,b]\subset[0,1]$ dominates a given one there and has its same endpoint values, replacing that segment gives a subgeodesic on $[0,1]$.
+\end{lemma}
+\begin{proof}
+Restriction uses the $L^1$ continuity just proved. Affine functions of $\Real\zeta$ are pluriharmonic; the background change cancels $\ddc g$, proving those assertions. For pasting, let $V$ be the replacement complexification and $U$ the original one. The replacement has joint upper boundary limit at most $U$ along the two interior seams. Indeed any sequence of real times approaching a seam has $L^1$ limit equal to the seam potential. Hartogs' lemma, including moving spatial points as in \cref{prop:normalized-global-psh-compactness}, bounds its joint upper limit by that potential. Max-pasting therefore gives a $p^*\theta$-psh function. Near the outer endpoints it has the old $L^1$ limits, or the matching replacement limits if a seam is an outer endpoint. This proves the assertion.
+\end{proof}
+
+\begin{lemma}\label{lem:subgeodesic-family-upper-envelope}
+For a nonempty family of subgeodesics with uniformly bounded-above endpoint potentials, the canonical upper envelope of the complexifications has slices equal to the canonical upper envelopes of the slices. It is a subgeodesic with endpoint potentials equal to the canonical upper envelopes of the endpoints.
+\end{lemma}
+\begin{proof}
+The convex upper bounds uniformly bound the complexifications. Their product envelope $U$ is $p^*\theta$-psh and invariant under imaginary translations. A chosen curve gives a noncollapsed lower bound, so no slice is identically $-\infty$. Let $v_t$ be the spatially regularized slice supremum. Then $v_t\leq U_t$, and product-envelope equality almost everywhere gives equality for almost every $t$ by Fubini and canonical representatives. For $a<t<b$, spatial regularization preserves
+$v_t\leq\frac{b-t}{b-a}v_a+\frac{t-a}{b-a}v_b$.
+Thus $v_t$ is pointwise convex. The minimum of the chosen lower curve and the uniform convex endpoint bound make both $v_t$ and $U_t$ finite for all $t$ on one full-measure set. Fubini gives equality at almost every parameter for almost every point of that set. Convex continuity therefore gives equality at every interior parameter almost everywhere in $x$, hence everywhere by canonical representatives.
+
+Select countably many curves preserving both the product envelope and the two endpoint envelopes, using \cref{thm:psh-upper-envelopes}. Every chosen curve lies below $U$. Fibre endpoint limits therefore dominate all its endpoint limits quasi-everywhere, outside one countable polar union. The convex upper bound by the endpoint envelopes gives the reverse inequality. The minimum of one chosen curve is an integrable common lower bound, and the endpoint envelopes are integrable upper bounds. Dominated convergence proves the required $L^1$ endpoint limits.
+\end{proof}
+
+\begin{definition}\label{def:relative-perron-geodesic}
+The Perron segment between $u_0,u_1\in\PSH(X,\theta)$ is the canonical upper envelope of all subgeodesics whose endpoints are at most $u_0,u_1$. An empty envelope is $-\infty$. When its endpoint limits are $u_0,u_1$ in $L^1$, it is called their weak geodesic. We write its slices as $G_t(u_0,u_1)$.
+\end{definition}
+\index{geodesic!weak Perron segment}
+
+\Needspace{19\baselineskip}
+\begin{theorem}\label{thm:relative-full-mass-perron-geodesic}
+If $u_0,u_1\in\mathcal E(X,\theta,\phi)$, the Perron segment is a subgeodesic with those endpoints, and
+\[
+ P_\theta(u_0,u_1)\leq G_t(u_0,u_1)
+                         \leq(1-t)u_0+tu_1.
+\]
+Every slice has relative full mass. Finite-energy endpoints give finite-energy slices, and bounded-type endpoints give bounded-type slices. Every restriction to a subinterval is the weak geodesic between its endpoint slices.
+\end{theorem}
+\begin{proof}
+The common rooftop $w=P_\theta(u_0,u_1)$ has relative full mass, and the constant curve at $w$ is a competitor. The preceding envelope lemma gives a noncollapsed subgeodesic, initially with endpoint envelopes $a_0\leq u_0$, $a_1\leq u_1$, and proves the two displayed bounds. Each slice lies below $\phi+C$ by model normalization and above $w$, so mass monotonicity puts it in the relative full-mass class.
+
+For $k\geq1$ put $q_k=P_\theta(u_0,u_1+k)$. Then $q_k-kt$ is a competing affine subgeodesic: its initial value is at most $u_0$ and its final value at most $u_1$. Thus the initial endpoint envelope dominates $q_k$. The mutual singularity-envelope identity gives $(\sup_kq_k)^*=P_\theta[u_1](u_0)=u_0$. Hence $a_0=u_0$. Interchanging the endpoints proves $a_1=u_1$.
+
+For a subinterval, the restriction is a subgeodesic. Its Perron segment dominates it and has the same endpoints by the part already proved. Paste that larger segment into the original curve using the pasting lemma. The resulting global subgeodesic is a competitor for the original Perron segment, so it cannot be larger. Equality proves the restriction assertion. Finally finite-energy rooftop closure and energy upper closure give finite-energy slices. In the bounded-type case the rooftop supplies a common lower bound $\phi-C$, and the convex upper bound supplies $\phi+C$.
+\end{proof}
+
+\Needspace{16\baselineskip}
+\begin{proposition}\label{prop:perron-geodesic-order-and-limits}
+Weak geodesics in the relative full-mass class increase with either endpoint. They commute with simultaneous affine endpoint shifts, with reversal of the parameter, and with decreasing endpoint limits in that class. If $u_1\leq u_0$, their slices decrease with $t$. If $|u_1-u_0|\leq C$ quasi-everywhere, then
+\[
+ |G_t(u_0,u_1)-u_0|\leq Ct,\qquad
+ |G_t(u_0,u_1)-u_1|\leq C(1-t)
+\]
+as bounded differences. In particular affine shifts of one potential form its weak geodesics.
+\end{proposition}
+\begin{proof}
+Endpoint order follows by inclusion of competitors. Affine shifts and reversal give bijections of competitor families. For decreasing endpoints, their geodesics decrease and dominate the limit geodesic. The product limit is psh and noncollapsed by that lower bound. The convex upper bounds and the lower limit geodesic give the correct $L^1$ endpoint limits by dominated convergence. It is therefore a competitor for the limit Perron segment, proving equality.
+
+If $u_1\leq u_0$ and $0<r<s<1$, put $\delta=(s-r)/(1-r)$. The reparametrized curve $G_{\delta+(1-\delta)t}$ has initial value at most $u_0$ by convexity and final value $u_1$. It is a competitor for the original segment. At $t=r$ this gives $G_s\leq G_r$. The endpoint cases follow from the convex upper bound and the affine lower competitor at $u_1$. For bounded differences, $u_0-Ct$ and $u_1-C(1-t)$ are affine competitors. Combine these lower bounds with the convex upper bound to obtain the two stated inequalities. If $u_1=u_0+c$, that upper bound is itself an affine competitor, proving the last assertion.
+\end{proof}
+
+\begin{proposition}\label{prop:perron-rooftop-legendre-formula}
+For relative full-mass endpoints and $0<t<1$,
+\[
+ G_t(u_0,u_1)
+   =\left(\sup_{s\in\mathbb R}
+                    \{P_\theta(u_0,u_1-s)+ts\}\right)^*.
+\]
+The regularization may be taken on the product strip; its slices equal the spatial regularizations displayed here.
+\end{proposition}
+\begin{proof}
+Every expression on the right is an affine competing subgeodesic, so their envelope is at most $G$. For any competing subgeodesic $v_t$, Kiselman's principle makes
+$q_s=\inf_{0<t<1}(v_t-ts)$ a $\theta$-psh potential. Noncollapse follows as in the convexity proposition: almost every finite convex fibre has a finite supporting lower bound on the bounded interval. Its endpoint bounds give $q_s\leq u_0,u_1-s$, hence $q_s\leq P_\theta(u_0,u_1-s)$. Every finite convex fibre equals the supremum of its supporting affine functions, so $v_t=\sup_s(q_s+ts)$ there. The identically minus-infinite fibres satisfy the same inequality trivially. Thus $v_t$ is at most the right-hand envelope. Taking the envelope over competitors proves equality. The product/slice assertion is the envelope lemma.
+\end{proof}
+
+\section{Energy along weak geodesics}
+\label{sec:geodesic-energy-linearity}
+The local measure in the product has one more complex dimension than the fibres. A compact extension permits global integration by parts, while a local balayage argument removes its horizontal top-degree measure.
+
+\begin{lemma}\label{lem:unbounded-maximal-nonpluripolar-zero}
+If $h$ is a maximal plurisubharmonic function on a domain in $\mathbb C^d$, $d\geq1$, its top-degree non-pluripolar measure exists locally and vanishes. No local boundedness assumption on $h$ is needed.
+\end{lemma}
+\begin{proof}
+Fix a ball $B$ compactly contained in the domain. Set $h_j=\max\{h,-j\}$ and take its canonical homogeneous balayage $\widehat h_j$ on $B$, supplied by \cref{cor:homogeneous-psh-balayage}. These locally bounded functions decrease, dominate $h$, equal $h_j$ off $B$ and have zero top-degree measure in $B$. Their decreasing limit $v$ is psh, since it dominates the nontrivial $h$, and equals $h$ off $B$. Maximality gives $v=h$.
+
+Fix $C,\varepsilon>0$ and put $z_j=\max\{\widehat h_j,-C\}$ and $a_j=(z_j+C)/(z_j+C+\varepsilon)$. The bounded truncations decrease in capacity to $z=\max\{h,-C\}$, and their bounded quasi-continuous weights converge in capacity to $a=(z+C)/(z+C+\varepsilon)$. Locality in $B$ gives
+\[
+ a_j(\ddc z_j)^d=a_j(\ddc\widehat h_j)^d=0.
+\]
+\Cref{thm:bt-capacity-continuity} gives $a(\ddc z)^d=0$ there. Since $a>0$ precisely on $\{h>-C\}$, the restricted measure $\mathbf1_{\{h>-C\}}(\ddc\max\{h,-C\})^d$ is zero in $B$. Taking all integer $C$ shows that the defining non-pluripolar limit is zero; in particular it is finite. A ball cover proves the assertion.
+\end{proof}
+\index{maximal plurisubharmonic function!vanishing non-pluripolar measure}
+
+\begin{lemma}\label{lem:perron-complexification-maximal}
+The local psh potentials of a relative full-mass weak geodesic complexification are maximal on $X\times S$, or on the equivalent annulus $e^{-1}<|z|<1$, where $t=-\log|z|$.
+\end{lemma}
+\begin{proof}
+Use the annulus. In a coordinate domain add a smooth local potential $a$ of $p^*\theta$, so $h=U+a$ is psh. A psh competitor $v$ equal to or below $h$ off a compact subset can be max-pasted there: it gives a global $p^*\theta$-psh function $\widetilde U\geq U$ which equals $U$ off that compact subset. Its canonical upper envelope under rotations of the annulus is radial, psh and dominates $\widetilde U$. The rotation-saturation of the compact set stays away from both boundary circles, so this envelope equals $U$ near them and has the same $L^1$ endpoint limits. It defines a competing subgeodesic. Perron maximality bounds it by $U$, hence $v\leq h$. This is precisely local maximality in the sense of \cref{def:maximal-plurisubharmonic}.
+\end{proof}
+
+\Needspace{19\baselineskip}
+\begin{theorem}\label{thm:relative-geodesic-energy-affine}
+For $u_0,u_1\in\mathcal E^1(X,\theta,\phi)$,
+\[
+ E_\theta^\phi(G_t(u_0,u_1))
+             =(1-t)E_\theta^\phi(u_0)+tE_\theta^\phi(u_1),
+                   \qquad0\leq t\leq1.
+\]
+\end{theorem}
+\begin{proof}
+First suppose the endpoints have bounded difference from $\phi$. On the annulus $A=\{e^{-1}<|z|<1\}$, the complexification $U$ satisfies $\phi-C\leq U\leq\phi+C$. Fix smaller concentric annuli $A_0\Subset A_1\Subset A$. On $Y=X\times\mathbb P^1$ let $\beta$ be the pullback of the unit-mass Fubini--Study form and set
+\[
+ \Theta=p_1^*\theta+B\beta,\qquad\Phi=p_1^*\phi.
+\]
+Choose a smooth radial function $q$ on $\mathbb P^1$ below $-C-1$ on $A_0$ and above $C+1$ near $\partial A_1$. Such a function is obtained by smooth cutoffs on the disjoint compact radial regions. Increase $B>0$ so that $B\omega_{\rm FS}+\ddc q\geq0$. Paste $W=\max\{U,\Phi+q\}$ on $X\times A_1$ to $\Phi+q$ outside. Collar agreement makes it $\Theta$-psh, of bounded type $\Phi$, and equal to $U$ on $X\times A_0$.
+
+The background $\Theta$ is big by adding $B\beta$ to the pullback of a strict current in $\{\theta\}$. The potential $\Phi$ is model: a normalized competitor of its type restricts on each fibre either to a normalized $\theta$-psh competitor for $\phi$, or to $-\infty$. It therefore lies below $\Phi$, while $\Phi$ itself is a competitor. Multilinearity and fibre integration give
+\[
+ \int_Y\langle(\Theta+\ddc\Phi)^{n+1}\rangle=(n+1)Bm>0.
+\]
+Write $T=\Theta+\ddc W$, $R=\Theta+\ddc\Phi$, and define an order-zero current on $\mathbb P^1$ by
+\[
+ H=\frac1{n+1}(p_2)_*
+       \left((W-\Phi)\sum_{j=0}^n\langle T^j\wedge R^{n-j}\rangle\right).
+\]
+For a smooth test function on $\mathbb P^1$, bounded-difference integration by parts swaps its Hessian with that of $W-\Phi$. The latter is the difference of the positive factors $T,R$. Telescoping the mixed sum yields
+\begin{equation}\label{eq:relative-geodesic-energy-current-curvature}
+ \ddc H=\frac1{n+1}(p_2)_*
+                         (\langle T^{n+1}\rangle-\langle R^{n+1}\rangle).
+\end{equation}
+The compact fibre formula \cref{cor:compact-nonpluripolar-fibre-fubini} identifies $H$ on $A_0$ almost everywhere with $z\mapsto E_\theta^\phi(G_{-\log|z|})$; a top-degree base test annihilates all vertical factors in its defining mixed sum.
+
+On $X\times A_0$, let $L=p_1^*\theta+\ddc U\geq0$. Locally $T=L+B\beta$. The non-pluripolar expansion gives
+\[
+ \langle T^{n+1}\rangle
+       =\langle L^{n+1}\rangle+(n+1)B\beta\wedge\langle L^n\rangle,
+             \qquad\beta\wedge\langle T^n\rangle
+                         =\beta\wedge\langle L^n\rangle.
+\]
+These local products are finite: add a bounded smooth potential of $B\beta$ to a local psh potential of $L$. Their level sets differ by a fixed shift, so their cofinal restricted truncations give the same expansions. At each level all summands are positive and $\beta^2=0$; their limits are bounded by the finite products of $T$. This justifies the expansion before using it. By local maximality and the preceding vanishing lemma, $\langle L^{n+1}\rangle=0$.
+
+Every fibre $W_z$ has bounded type $\phi$. Fibre integration therefore gives
+$(p_2)_*(\beta\wedge\langle T^n\rangle)=m\omega_{\rm FS}$, while multilinearity gives
+$(p_2)_*\langle R^{n+1}\rangle=(n+1)Bm\omega_{\rm FS}$.
+Their restrictions to $A_0$ cancel in \eqref{eq:relative-geodesic-energy-current-curvature}, so $H$ is harmonic there.
+
+The energy representative is continuous on every smaller annulus. Indeed the convex functions $G_t(x)-\phi(x)$ are uniformly bounded on the common finite locus and hence uniformly Lipschitz on compact interior parameter intervals, by their chord-slope bounds. The resulting potential inequalities hold everywhere by canonical representatives. Energy monotonicity and the constant-shift formula give the same local Lipschitz bound for the energy. It is therefore the harmonic representative of $H$. A radial harmonic function on an annulus is affine in $-\log|z|$, by the radial Laplacian calculation. The annulus $A_0$ was arbitrary, so the energy is affine on $(0,1)$. The bounded-difference endpoint barriers in the preceding proposition give energy convergence at both endpoints and identify this affine function.
+
+\Needspace{9\baselineskip}
+For finite-energy endpoints subtract a common constant to put them below $\phi$ and set $u_{j,k}=\max\{u_j,\phi-k\}$, $j=0,1$. Decreasing endpoint continuity gives $G_t(u_{0,k},u_{1,k})\downarrow G_t(u_0,u_1)$. Every slice limit has finite energy. Decreasing energy continuity at the endpoints and each interior slice passes the bounded-type affine identity to the limit. Restoring the common constant shifts both sides by $mC$, proving the theorem.
+\end{proof}
+\index{Monge--Amp\`ere energy!affine along weak geodesics}

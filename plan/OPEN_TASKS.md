@@ -44,7 +44,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 ## Q11 — Energy, geodesics and metric spaces
 
 - `Q11-01` [drafting] Relative finite-energy classes, energy monotonicity and integration by parts
-- `Q11-02` [planned] Weak geodesics and subgeodesics on product domains and strips
+- `Q11-02` [drafting] Weak geodesics and subgeodesics on product domains and strips
 - `Q11-03` [planned] d1 metrics, completeness and geodesic distances with reference potential fixed
 - `Q11-04` [planned] Geodesic rays, radial energy and ray metric convergence
 
