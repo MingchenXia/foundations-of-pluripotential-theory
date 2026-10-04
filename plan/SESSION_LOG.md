@@ -479,3 +479,13 @@ Both full-SHA 1aafb7ed CI runs passed: 37209038754 and 37209035464. Added the SG
 Seven new results and their seams/history have two scoped direct reads. All 28 first pages, all 17 intermediate rendered changes and all 9 final spacing/display changes directly inspected. Final 421 pages, clean final build without unresolved references/citations or bad boxes. Q02-05 verified under verified prerequisites; Q07/Q11 gates preserved. Counts: 56/88 provisional required tasks, 30 historical exclusions. The author-requested projected eighteen-chapter contents is saved in plan/CONTENTS_OUTLOOK.md. Fresh archive rebuild and regular push follow; continue plain-Lp capacity domination, unweighted uniqueness/local mixed foundations, FN/PDE/positivity interfaces and exact overlap/integration work.
 
 The tracked source archive rebuilt in an empty directory with matching 421-page text. Final integrity, audit and build passed; GitHub CI will be checked at the pushed full SHA.
+
+## 2026-10-04: author-requested Example 6.1.3 foundations
+
+SGPT ex:BBJ is Example 6.1.3 under the original separate example counter, in Part II. The author explicitly adds its foundations. Scope plans, live instructions and the ledger record this narrow exception without restoring Q12 or broader later applications. The eighteen chapter titles stay unchanged.
+
+P04 gives a compact binary Cantor set and its atom-free probability measure whose own logarithmic potential is minus infinity on its entire support. P05 reuses that construction and proves the higher-dimensional lift by Fubini. Q05 supplies all-real-scale trivial ideals at zero Lelong number. Q09 constructs the unit-mass spherical potential, identifies Lelong numbers with atoms and calculates zero first-degree non-pluripolar mass. Four new foundational results and the rewritten fine-topology example have two scoped direct reads, with original source and exact counter checks. Carleson p.31 was not obtained or silently imported. Review: research/reviews/2026-10-04-example613.json.
+
+Final draft427pages; no unresolved references/citations or bad boxes. All23 first selected images, all 26 second rendered changes plus six navigation pages, and the final two changed pages inspected. P04-05 is verified; Q09-05 retains earlier dependency gates at second-read. Current provisional scope: 57 verified among 90 required, with 30 historical exclusions. Prior 1157675 CI runs 37215113992 and 37215110927 both succeeded. Remaining book proof gates, the Part I overlap audit and two whole-prequel polishing reads stay open.
+
+Fresh tracked-source archive rebuilt in an empty directory; all427pages match the checked manuscript's extracted page text. Integrity and house audit passed both locally and in the rebuild.

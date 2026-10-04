@@ -1,6 +1,6 @@
 # Writing sequence and completion gates
 
-The author’s current scope is a systematic self-contained prequel to **SGPT Part I only**, with limited necessary overlap. This supersedes the old 27-unit broad plan. Read plan/BLUEPRINT.md and research/SGPT_PART_I_GAPS.md before choosing further work. Parts II/III tasks are retained privately with `prequel_scope: excluded`; they do not count toward completion.
+The author’s current scope is a systematic self-contained prequel to **SGPT Part I only**, with limited necessary overlap. This supersedes the old 27-unit broad plan. Read plan/BLUEPRINT.md and research/SGPT_PART_I_GAPS.md before choosing further work. The author additionally requests the polar-Cantor foundations of Example 6.1.3, placed in P04/Q05/Q09. This does not reinstate the comparison chapter. Broader Parts II/III tasks are retained privately with `prequel_scope: excluded`; they do not count toward completion.
 
 ## Coherent writing route
 

@@ -1,6 +1,6 @@
 # Unfinished proof and writing obligations
 
-Required SGPT Part I foundations only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
+Required SGPT Part I foundations and the explicitly requested Example 6.1.3 foundations only. These are missing work in this book; they are not claims that the results are open in the literature. See research/SGPT_PART_I_GAPS.md for the missing-proof and overlap audit.
 
 No unfinished writing unit has verified chapter prerequisites. Continue independent work according to WRITING_SEQUENCE.md while preserving the recorded dependency gates.
 
@@ -36,6 +36,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 - `Q09-02` [drafting] Global finiteness, mixed products and cohomological mass bounds
 - `Q09-03` [second-read] Monotonicity with singularity type and bounded-perturbation invariance
 - `Q09-04` [drafting] Full mass, convergence and bigness from positive mass with exact hypotheses
+- `Q09-05` [second-read] Construct the spherical potential and prove zero Lelong numbers, trivial multiplier ideals and zero non-pluripolar mass for the diffuse polar measure
 
 ## Q10 — Envelopes and model potentials
 

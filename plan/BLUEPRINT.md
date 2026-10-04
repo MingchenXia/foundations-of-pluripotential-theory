@@ -2,11 +2,13 @@
 
 ## Purpose and exact scope
 
-Write a systematic, self-contained prequel to **Part I of Singularities in global pluripotential theory (SGPT)**. The author's 4 October 2026 clarification supersedes the earlier plan to develop all later SGPT subjects. SGPT Parts II and III are outside this book's scope. Substantial repetition of SGPT is not a goal; a small amount of overlap is permitted where a complete foundational argument or a coherent transition requires it.
+Write a systematic, self-contained prequel to **Part I of Singularities in global pluripotential theory (SGPT)**. The author's 4 October 2026 clarification supersedes the earlier plan to develop all later SGPT subjects. SGPT Parts II and III are outside this book's scope, except for the author's later explicit request to include the foundations of Example 6.1.3 (ex:BBJ). Substantial repetition of SGPT is not a goal; a small amount of overlap is permitted where a complete foundational argument or a coherent transition requires it.
 
 The retained SGPT root actually places five chapters in Part I: `chapter_pshfunctions.tex`, `chapter_npp.tex`, `chapter_envelopes.tex`, `chapter_rays.tex` and `chapter_toric_ample.tex`, after `part_prel.tex`. Thus geodesic and ample toric prerequisites belong to the audit. Test curves, dS/I-good classification, traces, partial Okounkov bodies, b-divisors, big toric theory, non-Archimedean potentials and partial Bergman applications belong to Parts II/III and must not drive this prequel.
 
 The unit of coverage is a missing proof or foundational dependency in SGPT Part I, not every SGPT statement. Check the complete source proof before deciding that a result needs inclusion. Distinguish a proof delegated to a reference, a missing intermediate argument, a definition requiring a construction, and a result already completely proved in SGPT. Give complete internal proofs of the first three and their prerequisite chains. Leave the fourth in SGPT, except for the limited overlap needed for a connected exposition. Automated proof-environment detection is triage, not a judgment of mathematical completeness.
+
+The Example 6.1.3 exception supplies an atom-free probability measure on a polar Cantor set, its global logarithmic potential on the projective line, the Lelong/atom identity, zero-Lelong exponential integrability and the first-degree non-pluripolar mass calculation. Its homes are P04, Q05 and Q09. Do not reactivate the excluded comparison chapter, singularity pseudometric or later applications.
 
 ## Reader and mathematical architecture
 
