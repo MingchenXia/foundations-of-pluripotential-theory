@@ -534,3 +534,11 @@ Both2133fec exact-head GitHub checks succeeded (37227067302 and37227065276). Q08
 Two scoped direct reads, eighteen first manuscript images and all445-page forced-second-build rendering checked. All rendered pages are unchanged; no unresolved citations/references or bad boxes. The index hook is repaired and all six index pages checked, including previously omitted terminal entries. Dinewv1 pp.3–5 statements and all three original images checked; its quoted conclusions remain unadopted. Review:research/reviews/2026-10-04-q08-energy-moments.json. Current62/96 provisional required tasks,30 excluded;126 total tasks,40 active inputs,112 immutable originals. Integrity and fresh archive verification follow before regular push. Earlier FN/positivity/envelope PDE/overlap and whole-prequel polishing remain.
 
 Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching445-page text. No whole-book completion claim.
+
+## 2026-10-04 — Canonical self-integral convergence
+
+652e382 exact-head verify check runs111522613219 and111522600894 both succeeded. Q08-10 proves bounded fixed-measure continuity by minimum-norm finite convex tail combinations, keeping the functional analysis earlier than its use. Uniform second moments and truncations give L2 integrability and fixed-measure convergence. Shifted local psh cell estimates, Hartogs and Cauchy–Schwarz give the signed and positive moving-measure errors, hence absolute self-integral convergence. No external input, unbounded product or capacity/equation stability theorem is adopted.
+
+Exact Dinewv1 Theorem2.2 pp.4–5 statements and both original images reread; Ce1/Ce2 bibliography metadata on12 consulted only. Two scoped input/history reads; fourteen first images, two second core images and all five final changed images inspected. All449 pages rendered for second/final comparisons. No unresolved citations/references or bad boxes. Review:research/reviews/2026-10-04-q08-grid-convergence.json. Current63/97 provisional required tasks,30 excluded;127 total tasks,41 active inputs,112 originals. Integrity and fresh archive verification follow before push.
+
+Final integrity/audit/build passed; the tracked-source archive rebuilt in an empty directory with matching449-page text. No whole-book completion claim.

@@ -99,3 +99,7 @@ The complete proof of Theorem1.2 of exact arXiv:2607.12797v1 is now a separate r
 ## Canonical grid energy prerequisite
 
 Q08-09 closes the bounded-subsolution moment criterion and its preservation under cube averages for the local mixed/uniqueness prerequisite. It gives uniform solution energy moments and full-ball L1 subsequential compactness. Self-integral convergence, capacity convergence and the limiting equation remain open. Review:research/reviews/2026-10-04-q08-energy-moments.json. Current provisional scope62/96 verified,30 historical exclusions.
+
+## Canonical self-integral prerequisite
+
+Q08-10 closes fixed-measure continuity and the canonical moving-measure absolute self-integral convergence in the bounded-subsolution/compact-support regime. These are recursive prerequisites of local mixed inequalities and relative prescribed-measure uniqueness. No equation stability imported. Review:research/reviews/2026-10-04-q08-grid-convergence.json. Current provisional63/97 required tasks verified,30 historical exclusions. Capacity/limit-equation and the earlier book gates remain.
