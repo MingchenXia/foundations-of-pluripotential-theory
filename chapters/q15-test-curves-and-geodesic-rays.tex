@@ -163,3 +163,123 @@ $\sup_{\tau<b}\widehat\ell_\tau=\phi$ there. Canonical upper envelopes give this
 If $\Gamma_\tau=\phi$ for $\tau\leq c$, then $\phi+ct\leq\check\Gamma_t\leq\phi+bt$. Conversely \cref{prop:relative-ray-growth-and-energy} bounds a bounded-type ray below by $\phi+ct$. This gives $\widehat\ell_\tau\geq\phi$ for $\tau\leq c$; the initial limit gives equality.
 \end{proof}
 \index{Ross--Witt Nystr\"om correspondence}\index{geodesic ray!model test curve}
+
+\section{Energy as an integral of model masses}
+\label{sec:test-curve-energy}
+A singularity curve measures how much mass is lost at each slope. Integrating that loss gives the energy per unit time of its geodesic ray. Monotonicity of the masses suffices for the integral argument.
+
+\begin{definition}\label{def:test-curve-finite-energy}
+For a model test curve of terminal slope $b$ put
+\[
+ \mathbf E^\phi(\Gamma)
+       =bm+\int_{-\infty}^b\bigl(M(\Gamma_\tau)-m\bigr)\,\mathrm d\tau
+                                      \in[-\infty,bm].
+\]
+The integral is the negative of a nonnegative Lebesgue integral. A test curve has finite energy if this value exceeds $-\infty$; write $\operatorname{TC}^1(X,\theta,\phi)$ for these curves. Every bounded test curve has finite energy; its initial slope is $\sup\{\tau\leq b:\Gamma_\tau=\phi\}$.
+\end{definition}
+\index{test curve!finite energy}\index{Monge--Amp\`ere energy!of a test curve}
+
+\begin{lemma}\label{lem:bounded-test-curve-decreasing-approximation}
+Suppose $\Gamma$ has terminal slope zero. For $\varepsilon>0$ set
+\[
+ \Gamma^\varepsilon_\tau=
+ \begin{cases}
+ \phi,&\tau\leq-\varepsilon^{-1},\\
+ P_\theta[(1+\varepsilon\tau)\Gamma_\tau
+                         -\varepsilon\tau\phi],&-\varepsilon^{-1}<\tau<0.
+ \end{cases}
+\]
+These are bounded model test curves based at $\phi$. As $\varepsilon\downarrow0$, their potentials and masses decrease to those of $\Gamma$ at every interior slope, their positive-time transforms decrease pointwise to $\check\Gamma$, and
+\[
+ \mathbf E^\phi(\Gamma^\varepsilon)\downarrow
+                                             \mathbf E^\phi(\Gamma).
+\]
+\end{lemma}
+\begin{proof}
+\enlargethispage{2\baselineskip}
+On the common finite locus put $A_\tau=\phi-\Gamma_\tau$. It is nonnegative, increasing and convex. The product of two such scalar convex functions is convex: their chord upper bounds multiply, and the difference between the chord of the product and that product of chords is
+$s(1-s)(A_c-A_a)(B_c-B_a)\geq0$.
+Apply this to $A_\tau$ and $B_\tau=\max\{1+\varepsilon\tau,0\}$. Thus the unprojected family $\phi-B_\tau A_\tau$ is decreasing and concave, including across the join. Canonical representatives extend these inequalities everywhere. Envelope concavity preserves them. The positive coefficient of $\phi$ in each interior affine combination gives positive mass; its envelope is therefore model. The constant tail gives the required base.
+
+The inner potentials decrease to $\Gamma_\tau$ as $\varepsilon\downarrow0$, and so do their envelopes, initially to a fixed point $q\geq\Gamma_\tau$. For a fixed interior slope, positive multilinearity shows that the masses of the inner potentials tend to $M(\Gamma_\tau)$. Mass preservation and decreasing model continuity give $M(q)=M(\Gamma_\tau)>0$. The normalized maximum characterization in \cref{thm:positive-mass-model-characterization} forces $q=\Gamma_\tau$. This proves the slope and mass limits. Monotone convergence of $m-M(\Gamma^\varepsilon_\tau)$ proves the energy limit.
+
+Their rays decrease and dominate $\check\Gamma$, while each is at most $\phi$. The product limit is noncollapsed, has relative full-mass slices, and has initial $L^1$ limit $\phi$ by this sandwich. On every finite interval, decreasing endpoint continuity in \cref{prop:perron-geodesic-order-and-limits} makes the limit a weak ray $L$. Commuting the infima over time and $\varepsilon$ gives
+\[
+ \widehat L_\tau
+   =\inf_{\varepsilon>0}\inf_{t>0}
+                     (\check\Gamma^\varepsilon_t-t\tau)
+   =\inf_{\varepsilon>0}\Gamma^\varepsilon_\tau=\Gamma_\tau
+                                  \qquad(\tau<0).
+\]
+The inverse correspondence therefore gives $L=\check\Gamma$ pointwise.
+\end{proof}
+
+\Needspace{12\baselineskip}
+\begin{theorem}\label{thm:test-curve-ray-energy-identity}
+For every model test curve, including those of infinite negative energy,
+\[
+ E_\theta^\phi(\check\Gamma_t)=t\mathbf E^\phi(\Gamma)
+                                        \qquad(t>0).
+\]
+Consequently the Legendre correspondence restricts to inverse bijections
+\[
+ \operatorname{TC}^1(X,\theta,\phi)
+                   \longleftrightarrow\mathcal R^1(X,\theta,\phi),
+\]
+and it preserves radial energy.
+\end{theorem}
+\begin{proof}
+Replacing $\Gamma_\tau$ by $\Gamma_{\tau+b}$ makes its terminal slope zero, subtracts $bt$ from its transform and subtracts $bm$ from its curve energy. The energy shift formula therefore reduces the proof to $b=0$.
+
+First suppose $\Gamma_\tau=\phi$ for $\tau\leq c<0$. Fix $t>0$, $\delta=2^{-N}$ and $K=\lfloor c/\delta\rfloor$. For $K\leq j\leq0$ put
+\[
+ F_j=\max_{K\leq k\leq j}(\Gamma_{k\delta}+tk\delta).
+\]
+Every $F_j$ lies between $\phi+tK\delta$ and $\phi$, hence has bounded relative type. We claim
+\begin{equation}\label{eq:test-curve-grid-energy-increment}
+ t\delta M(\Gamma_{j\delta})
+       \leq E(F_j)-E(F_{j-1})
+       \leq t\delta M(\Gamma_{(j-1)\delta})
+                                \qquad(K<j\leq0),
+\end{equation}
+where $E=E_\theta^\phi$.
+
+Let $U=\{F_j>F_{j-1}\}$ off the common poles. Concavity of the sampled scalar function $\Gamma_\tau+t\tau$ shows that on $U$ its last increment is positive, and all preceding increments are at least as large. Thus on $U$,
+\[
+ F_j=\Gamma_{j\delta}+tj\delta,\quad
+ F_{j-1}=\Gamma_{(j-1)\delta}+t(j-1)\delta,\quad
+                  0<F_j-F_{j-1}\leq t\delta.
+\]
+The set is plurifinely open. Locality identifies its two measures with those of the corresponding model values. The measure of $\Gamma_{j\delta}$ is carried by its zero set, by \cref{prop:p-envelope-contact-concentration}; this includes the terminal value. On that set every earlier model value is zero, so it lies in $U$ and the increment is exactly $t\delta$. The lower tangent-energy bound in \cref{lem:relative-energy-tangent-and-order-bounds} therefore gives the lower bound in \eqref{eq:test-curve-grid-energy-increment}. For the upper bound, the upper tangent bound, locality on $U$ and the displayed increment bound give at most $t\delta M(\Gamma_{(j-1)\delta})$. The omitted poles have zero measure.
+
+Since $F_K=\phi+tK\delta$, summing gives
+\[
+ t\delta\sum_{j=K+1}^0\bigl(M(\Gamma_{j\delta})-m\bigr)
+       \leq E(F_0)
+       \leq t\delta\sum_{j=K}^{-1}\bigl(M(\Gamma_{j\delta})-m\bigr).
+\]
+These are lower and upper sums for the bounded monotone mass function on $[K\delta,0]$. Their difference is at most $tm\delta$. That function equals $m$ below $c$, so both sums tend to $t\int_{-\infty}^0(M(\Gamma_\tau)-m)\,\mathrm d\tau$. No concavity of its logarithm is required.
+
+The same $F_0$ is the maximum over all grid points $k\delta\leq0$, since the constant tail makes earlier values smaller. Dyadic refinement therefore increases $F_0$ to the raw transform: interior scalar continuity approximates every slope, and the terminal value contributes no larger value. Increasing energy continuity in \cref{prop:relative-energy-increasing-continuity} proves the desired identity for bounded curves.
+
+For an arbitrary curve use the bounded approximations of the preceding lemma. Their transforms decrease to $\check\Gamma_t$, and their curve energies decrease to $\mathbf E^\phi(\Gamma)$. Extended decreasing energy continuity in \cref{prop:relative-energy-decreasing-continuity} passes the bounded identity to the limit, even when the value is $-\infty$. The finite-energy characterization and \cref{prop:relative-ray-growth-and-energy} now give the asserted restriction and radial equality.
+\end{proof}
+
+\begin{corollary}\label{cor:associated-test-curve-ray}
+The bounded curve associated with $u\leq\phi$ in \cref{ex:constant-and-associated-test-curves} transforms into the singularity-associated ray $\ell^u$ of \cref{thm:relative-singularity-associated-ray}. Its energy is
+\[
+ \mathbf E^\phi(\Gamma)
+ =\frac1{n+1}\sum_{j=0}^n
+       \int_X\left\langle\theta_u^j\wedge\theta_\phi^{n-j}\right\rangle-m.
+\]
+\end{corollary}
+\begin{proof}
+Each long segment defining $\ell^u$ dominates the constant competitor $u$ and the affine competitor $\phi-t$. Their limit therefore dominates $\max\{u,\phi-t\}$. Its inverse potentials dominate $(1+\tau)u-\tau\phi$ for $-1<\tau<0$, and dominate $\phi$ for $\tau\leq-1$. This also forces its terminal slope to be zero. Those inverse potentials are model, so they dominate the projected curve $\Gamma$. Duality gives $\ell^u\geq\check\Gamma$.
+
+Mass preservation, positive multilinearity and the elementary integral
+\[
+ \int_0^1 a^j(1-a)^{n-j}\,\mathrm da
+                      =\frac{j!(n-j)!}{(n+1)!}
+\]
+give the displayed energy formula. The integral follows by $j$ integrations by parts followed by integration of $(1-a)^n$. It equals the radial energy of $\ell^u$ computed in \cref{thm:relative-singularity-associated-ray}. Both rays have bounded type; their ordered chordal distance is their radial energy difference, by \cref{thm:relative-chordal-ray-completeness}. That difference is zero, so the rays coincide.
+\end{proof}
