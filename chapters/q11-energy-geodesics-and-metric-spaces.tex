@@ -841,3 +841,309 @@ The energy representative is continuous on every smaller annulus. Indeed the con
 For finite-energy endpoints subtract a common constant to put them below $\phi$ and set $u_{j,k}=\max\{u_j,\phi-k\}$, $j=0,1$. Decreasing endpoint continuity gives $G_t(u_{0,k},u_{1,k})\downarrow G_t(u_0,u_1)$. Every slice limit has finite energy. Decreasing energy continuity at the endpoints and each interior slice passes the bounded-type affine identity to the limit. Restoring the common constant shifts both sides by $mC$, proving the theorem.
 \end{proof}
 \index{Monge--Amp\`ere energy!affine along weak geodesics}
+
+\section{The relative energy metric}
+\label{sec:relative-energy-metric}
+Fix the same big background and positive-mass model reference. Write $E=E_\theta^\phi$ for the rest of this chapter, specifying a different background in examples when needed. The rooftop records the part shared by two potentials; the two remaining energy increments will measure their distance.
+
+\begin{definition}\label{def:relative-darvas-metric}
+For $u,v\in\mathcal E^1(X,\theta,\phi)$ set
+\[
+ d_1(u,v)=E(u)+E(v)-2E(P_\theta(u,v)),\qquad
+ I_1(u,v)=\int_X|u-v|(\mu_u+\mu_v).
+\]
+The integral is finite by mixed finite-energy integrability. Common poles have zero measure and may be assigned difference zero. The rooftop has finite energy by \cref{prop:relative-finite-energy-rooftop-closure}.
+\end{definition}
+\index{Darvas metric!relative finite-energy space}
+
+\Needspace{15\baselineskip}
+\begin{lemma}\label{lem:relative-energy-tangent-and-order-bounds}
+For finite-energy $u,v$,
+\[
+ \int_X(v-u)\,\mu_v\leq E(v)-E(u)
+                                  \leq\int_X(v-u)\,\mu_u.
+\]
+If $u\leq v$, then additionally
+\[
+ \frac1{n+1}\int_X(v-u)\,\mu_u\leq E(v)-E(u).
+\]
+\end{lemma}
+\begin{proof}
+Concavity extends from bounded type to finite energy by taking decreasing endpoint truncations: each affine combination decreases to the corresponding finite-energy combination. Decreasing energy continuity passes the concavity inequalities. The finite-energy first-variation formula gives the derivatives at both endpoints, so the two supporting-line bounds give the first display. For the last inequality all terms of the finite-energy cocycle are nonnegative; retain its term with measure $\mu_u$.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-rooftop-metric-contraction}
+The function $d_1$ is a metric. For finite-energy potentials,
+\[
+ \begin{aligned}
+ d_1(u,v)&=d_1(u,P_\theta(u,v))+d_1(v,P_\theta(u,v)),\\
+ d_1(u,v)&=E(v)-E(u)\quad\hbox{if }u\leq v,\\
+ d_1(P_\theta(u,w),P_\theta(v,w))&\leq d_1(u,v).
+ \end{aligned}
+\]
+Also $|E(u)-E(v)|\leq d_1(u,v)$, and
+\[
+ d_1(P_\theta(u,v),P_\theta(u',v'))
+                       \leq d_1(u,u')+d_1(v,v').
+\]
+\end{proposition}
+\begin{proof}
+The first two identities follow from the definition and rooftop associativity. Positivity and symmetry follow from energy monotonicity. If $u\leq v$ and their distance is zero, the finite-energy cocycle gives $\int_X(v-u)\mu_u=0$. Relative full-mass domination implies $v\leq u$, hence equality. The first identity reduces general separation to this ordered case.
+
+For contraction first assume $v\leq u$, and put $a=P_\theta(u,w)$ and $b=P_\theta(v,w)=P_\theta(a,v)$. Since $\max\{a,v\}\leq u$, the energy diamond gives
+\[
+ E(u)-E(v)\geq E(\max\{a,v\})-E(v)
+                                      \geq E(a)-E(b).
+\]
+For general $u,v$, apply this ordered estimate to $u,P_\theta(u,v)$ and $v,P_\theta(u,v)$ with common obstacle $w$. Add the estimates and use associativity to obtain contraction.
+
+For the triangle inequality put $r=P_\theta(u,v)$, $a=P_\theta(u,w)$ and $b=P_\theta(v,w)$. Ordered contraction gives
+\[
+ E(w)-E(b)\geq E(a)-E(P_\theta(u,v,w))
+                                         \geq E(a)-E(r).
+\]
+Rearranging is exactly $d_1(u,v)\leq d_1(u,w)+d_1(w,v)$. Thus $d_1$ is a metric. The first identity and the triangle inequality on the real energy increments give its energy Lipschitz bound. Apply contraction once in each rooftop argument and then the triangle inequality for the final estimate.
+\end{proof}
+\index{rooftop envelope!metric contraction}
+
+\Needspace{16\baselineskip}
+\begin{theorem}\label{thm:relative-darvas-integral-comparison}
+With $C_n=3\cdot2^{n+2}(n+1)$,
+\[
+ C_n^{-1}I_1(u,v)\leq d_1(u,v)\leq I_1(u,v),
+                              \qquad u,v\in\mathcal E^1(X,\theta,\phi).
+\]
+For $h=(u+v)/2$, one also has
+\[
+ d_1(u,h)\leq\frac{3(n+1)}2d_1(u,v),\qquad
+ d_1(u,\max\{u,v\})\leq C_n d_1(u,v).
+\]
+\end{theorem}
+\begin{proof}
+Put $w=P_\theta(u,v)$. The tangent bound and the contact-measure inequality give
+\[
+ E(u)-E(w)\leq\int_X(u-w)\mu_w
+                    \leq\int_{\{w=v\}}(u-v)\mu_v
+                    \leq\int_X|u-v|\mu_v.
+\]
+The other contact contribution vanishes because its weight is zero where $w=u$. Integrate first bounded positive truncations of the weight if necessary, then use monotone convergence. Interchange $u,v$ and add to prove the upper distance bound.
+
+Since $w\leq P_\theta(u,h)$, the ordered identities and tangent bounds yield
+\[
+ \begin{aligned}
+ d_1(u,h)&\leq E(u)+E(h)-2E(w)\\
+ &\leq\tfrac32\int_X(u-w)\mu_w
+                       +\tfrac12\int_X(v-w)\mu_w\\
+ &\leq\tfrac{3(n+1)}2d_1(u,w)
+                         +\tfrac{n+1}2d_1(v,w)
+ \leq\tfrac{3(n+1)}2d_1(u,v).
+ \end{aligned}
+\]
+The penultimate inequality is the ordered cocycle bound just proved. This establishes the midpoint estimate without using the integral comparison.
+
+Set $r=P_\theta(u,h)$ and $D=d_1(u,h)$. The lower tangent bound for each ordered pair gives
+\[
+ \int_{\{u>v\}}(u-v)\mu_u\leq2\int_X(u-r)\mu_u\leq2D.
+\]
+Positive multilinearity gives $\mu_h\geq2^{-n}\mu_u$, so
+\[
+ \int_{\{u<v\}}(v-u)\mu_u
+                   \leq2^{n+1}\int_X(h-r)\mu_h\leq2^{n+1}D.
+\]
+Adding and using $n\geq1$ gives
+$\int_X|u-v|\mu_u\leq2^{n+2}D\leq3\cdot2^{n+1}(n+1)d_1(u,v)$.
+The symmetric estimate gives the stated lower distance bound.
+
+Finally locality on the two strict comparison sets gives
+\[
+ I_1(u,v)=I_1(u,\max\{u,v\})+I_1(v,\max\{u,v\}).
+\]
+The equal-value locus has zero difference weight. The two distance bounds therefore imply the asserted maximum estimate.
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{lemma}\label{lem:normalized-potentials-fixed-measure-tail}
+For a fixed smooth background $\theta$ with $\PSH(X,\theta)\ne\varnothing$, there is $A>0$ such that
+\[
+ \operatorname{Cap}_\omega(\{q<-T\})\leq A/T,
+       \qquad q\in\PSH(X,\theta),\quad\sup_Xq=0,\quad T\geq1.
+\]
+If $\nu$ is any finite positive Borel measure giving pluripolar sets zero mass, then
+\[
+ \sup_{\sup_Xq=0}\nu(\{q<-T\})\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+The normalized compactness theorem gives a uniform volume $L^1$ bound for $q$. On a finite cover by inner coordinate balls, add fixed smooth local potentials of $\theta$ and subtract a fixed upper bound to get negative psh functions with uniform $L^1$ bounds on the larger balls. \Cref{prop:bt-poles-zero-capacity} bounds each inner-ball sublevel capacity by a constant divided by $T$, after the fixed shift in the threshold. The local/global capacity comparison \cref{prop:global-local-capacity-equivalence} gives the displayed estimate for large $T$; enlarge $A$ to include the remaining bounded range.
+
+Such a $\nu$ is absolutely continuous with respect to capacity in the following uniform sense: $\operatorname{Cap}_\omega(E_j)\to0$ implies $\nu(E_j)\to0$. Otherwise select Borel $E_j$ with capacity at most $2^{-j}$ and mass at least a fixed $\varepsilon>0$. The decreasing tail unions have capacity tending to zero, so their intersection $\limsup_jE_j$ is pluripolar. Continuity from above of the finite measure gives it mass at least $\varepsilon$, a contradiction. Apply this assertion and the displayed uniform bound to prove the last claim.
+\end{proof}
+
+\begin{corollary}\label{cor:relative-darvas-supremum-control}
+There are $A,B>0$, depending only on $X,\theta,\phi$, such that
+\[
+ -m\sup_Xu\leq d_1(u,\phi),\qquad
+ \sup_Xu\leq A d_1(u,\phi)+B
+                       \quad(u\in\mathcal E^1(X,\theta,\phi)).
+\]
+\end{corollary}
+\begin{proof}
+Write $s=\sup_Xu$. If $s<0$, model normalization gives $u\leq\phi+s$. Hence $d_1(u,\phi)=-E(u)\geq-ms$. If $s\geq0$ this lower inequality follows from nonnegativity of the metric.
+
+Apply the preceding lemma to $\nu=\mu_\phi$ and choose $T\geq1$ so that every normalized $q$ has $\mu_\phi(\{q<-T\})\leq m/2$. For $q=u-s$ and $s\geq T$, on the complementary set $u-\phi\geq s-T$, since $\phi\leq0$. Thus
+\[
+ C_n d_1(u,\phi)\geq I_1(u,\phi)
+                 \geq\tfrac m2(s-T).
+\]
+It follows that $s\leq2C_n d_1(u,\phi)/m+T$. The same upper bound holds for $s<T$. No density bound for $\mu_\phi$ is needed.
+\end{proof}
+
+\Needspace{14\baselineskip}
+\section{Completeness and strong convergence}
+\label{sec:relative-metric-completeness}
+The contraction of the rooftop reduces a general Cauchy sequence to two monotone limits. We first isolate this metric argument.
+
+\begin{definition}\label{def:rooftop-metric-space}
+A rooftop metric space is a metric space $(F,d)$ with a commutative, associative, idempotent operation $x\wedge y$ such that
+$d(x\wedge z,y\wedge z)\leq d(x,y)$.
+The relation $x\leq y$ means $x\wedge y=x$. These algebraic identities make it a partial order.
+\end{definition}
+\index{rooftop metric space}
+
+\begin{proposition}\label{prop:rooftop-metric-monotone-completeness}
+A rooftop metric space is complete if and only if every increasing Cauchy sequence and every decreasing Cauchy sequence converges.
+\end{proposition}
+\begin{proof}
+Contraction and the triangle inequality give
+$d(x\wedge y,x'\wedge y')\leq d(x,x')+d(y,y')$.
+Thus the operation is continuous and its order relation is closed. The forward implication follows from completeness.
+
+For the converse take a Cauchy sequence, extract and relabel a subsequence with $d(x_j,x_{j+1})\leq2^{-j}$, and put
+$r_{j,k}=x_j\wedge\cdots\wedge x_k$ for $k\geq j$.
+Contraction with the common factor $r_{j,k}$ gives
+\[
+ d(r_{j,k},r_{j,k+1})
+   =d(r_{j,k}\wedge x_k,r_{j,k}\wedge x_{k+1})
+                          \leq d(x_k,x_{k+1})\leq2^{-k}.
+\]
+For fixed $j$ these form a decreasing Cauchy sequence, so they converge to $r_j$. The finite identities $r_{j,k}=x_j\wedge r_{j+1,k}$ and $r_{j,k}\leq r_{j+1,k}$ pass to their limits. Hence $r_j\leq r_{j+1}$. Since $r_{j+1,k}\leq x_{j+1}$, contraction also gives
+\[
+ d(r_j,r_{j+1})\leq d(x_j,x_{j+1}),\qquad
+ d(r_j,x_j)\leq\sum_{k=j}^\infty2^{-k}=2^{1-j}.
+\]
+The increasing sequence $r_j$ is Cauchy, so it converges to some $r$. The last estimate gives $x_j\to r$ along the selected subsequence. The original Cauchy sequence then has the same limit.
+\end{proof}
+
+\begin{theorem}\label{thm:relative-darvas-completeness}
+The metric space $(\mathcal E^1(X,\theta,\phi),d_1)$ is complete. For a monotone Cauchy sequence its metric limit is its canonical monotone potential limit: the pointwise infimum in the decreasing case and the canonical supremum in the increasing case.
+\end{theorem}
+\begin{proof}
+The rooftop identities and contraction make it a rooftop metric space. Let $u_j$ be an increasing Cauchy sequence. The triangle inequality bounds $d_1(u_j,\phi)$ uniformly, so the supremum-control corollary uniformly bounds $\sup_Xu_j$. Family upper closure gives $u=(\sup_ju_j)^*\in\mathcal E^1$. Increasing energy continuity gives
+$d_1(u_j,u)=E(u)-E(u_j)\to0$.
+
+If $u_j$ decreases, its energies have a finite lower bound because
+$|E(u_j)-E(u_k)|\leq d_1(u_j,u_k)$.
+Choose $C$ with $u_1\leq\phi+C$. Then $v_j=u_j-C\leq\phi$ lie in one compact energy sublevel from \cref{cor:relative-energy-compact-sublevels}. The decreasing psh limit cannot be identically $-\infty$, since this compact set supplies an $L^1$-convergent subsequence with finite-energy limit. Thus $u=\inf_ju_j$ is that limit plus $C$, belongs to $\mathcal E^1$, and is the $L^1$ limit of the whole monotone sequence. Decreasing energy continuity gives $d_1(u_j,u)=E(u_j)-E(u)\to0$. The abstract proposition now proves completeness.
+\end{proof}
+\index{Darvas metric!completeness}
+
+\Needspace{13\baselineskip}
+\begin{lemma}\label{lem:relative-darvas-monotone-brackets}
+From every sequence $u_j\to u$ in $d_1$ one may extract and relabel a subsequence with potentials $a_j,b_j\in\mathcal E^1$ such that
+\[
+ a_j\leq u_j\leq b_j,\qquad
+ a_j\uparrow u\ \hbox{almost everywhere},\qquad b_j\downarrow u\ \hbox{pointwise},
+\]
+and both brackets converge to $u$ in $d_1$.
+\end{lemma}
+\begin{proof}
+Choose the subsequence with
+$d_1(u_j,u_{j+1})\leq\min\{2^{-j},C_n^{-2j}\}$.
+The supremum-control corollary bounds $\sup_Xu_j$ uniformly. Define
+\[
+ b_j=(\sup_{k\geq j}u_k)^*,\qquad
+ a_j=\lim_{k\to\infty}P_\theta(u_j,\ldots,u_k).
+\]
+Family upper closure gives $b_j\in\mathcal E^1$. For the finite maximum $b_{j,k}=\max\{u_j,\ldots,u_k\}$ the maximum estimate, applied recursively to
+$b_{j,k}=\max\{u_j,b_{j+1,k}\}$, gives
+\[
+ d_1(u_j,b_{j,k})\leq\sum_{r=j}^{k-1}C_n^{r-j+1}d_1(u_r,u_{r+1})
+                           \leq\frac{C_n^{1-2j}}{1-C_n^{-1}}.
+\]
+Increasing energy continuity passes this bound to $b_j$, since $u_j\leq b_{j,k}\uparrow b_j$ canonically. Thus $b_j\to u$ in $d_1$.
+
+The finite roofs decrease, and the contraction calculation in the abstract completeness proof gives
+$d_1(u_j,P_\theta(u_j,\ldots,u_k))\leq2^{1-j}$.
+Their energies therefore have a common finite lower bound. The decreasing argument in the completeness theorem gives $a_j\in\mathcal E^1$ and the same distance bound for the limit. Associativity gives $a_j\leq a_{j+1}\leq u_{j+1}$, while $a_j\leq u_j$. Hence $a_j\to u$ in $d_1$. The brackets are monotone Cauchy sequences; the monotone-limit assertion in that theorem identifies their potential limits with $u$. Increasing canonical limits differ from their raw suprema only on a pluripolar set, giving the stated almost-everywhere limit.
+\end{proof}
+
+\begin{theorem}\label{thm:relative-darvas-strong-topology}
+For $u_j,u\in\mathcal E^1(X,\theta,\phi)$,
+\[
+ d_1(u_j,u)\to0
+ \quad\Longleftrightarrow\quad
+ u_j\to u\text{ in }L^1(X)\ \hbox{and}\ E(u_j)\to E(u).
+\]
+Metric convergence also implies capacity convergence in the sense of \cref{def:extended-psh-capacity-convergence} and weak convergence $\mu_{u_j}\to\mu_u$.
+\end{theorem}
+\begin{proof}
+Metric convergence gives energy convergence by its Lipschitz bound. From any subsequence choose the monotone brackets above. They both converge to $u$ in $L^1$, and $a_j\leq u,u_j\leq b_j$ almost everywhere. Therefore
+$\int_X|u_j-u|\,\mathrm dV\leq\int_X(b_j-a_j)\,\mathrm dV\to0$.
+The subsequence criterion proves $L^1$ convergence of the full sequence.
+
+Conversely, $L^1$ convergence of $\theta$-psh potentials gives a uniform upper bound by Hartogs' lemma. Their tail envelopes
+$v_j=(\sup_{k\geq j}u_k)^*$ decrease pointwise to $u$, as in \cref{prop:relative-energy-lone-upper-semicontinuity}. Upper closure gives finite energy for $v_j$, and decreasing continuity gives $E(v_j)\to E(u)$. Since $u_j,u\leq v_j$,
+\[
+ d_1(u_j,u)\leq d_1(u_j,v_j)+d_1(v_j,u)
+                          =2E(v_j)-E(u_j)-E(u)\longrightarrow0.
+\]
+
+For capacity convergence, monotone psh limits with a common finite lower potential converge locally in capacity. To verify this, add a smooth local potential of $\theta$ and truncate at $-K$. The bounded increasing or decreasing capacity theorem applies to these truncations. The discrepancy between original and truncated comparisons is contained in a fixed lower potential's sublevel $\{q<-K\}$, whose capacity tends to zero by \cref{prop:bt-poles-zero-capacity}. First pass to the sequence limit and then let $K$ increase. Apply this argument to the brackets (the lower sequence has lower bound $a_1$, the upper one lower bound $u$). Their order squeezes $u_j$ to $u$ in capacity along each selected subsequence, hence along the full sequence. All potentials have relative full mass, so \cref{cor:relative-full-mass-capacity-convergence} gives the weak measure convergence.
+\end{proof}
+\index{Darvas metric!strong topology}
+
+\section{Metric geodesics}
+\label{sec:relative-metric-geodesics}
+The weak geodesic constructed on the product is a geodesic for the energy metric. The same order argument controls two such segments simultaneously.
+
+\begin{theorem}\label{thm:relative-weak-geodesic-metric-distance}
+For finite-energy endpoints and $0\leq s,t\leq1$,
+\[
+ d_1(G_s(u_0,u_1),G_t(u_0,u_1))=|t-s|d_1(u_0,u_1).
+\]
+For two pairs of finite-energy endpoints,
+\[
+ \begin{aligned}
+ d_1(G_t(u_0,u_1),G_t(v_0,v_1))
+      \leq(1-t)d_1(u_0,v_0)+t d_1(u_1,v_1).
+ \end{aligned}
+\]
+Thus each slice depends continuously on its endpoints in $d_1$.
+\end{theorem}
+\begin{proof}
+Put $w=P_\theta(u_0,u_1)$, $g_t=G_t(u_0,u_1)$ and $h_t=G_t(u_0,w)$. Endpoint order gives $h_t\leq g_t,u_0$, hence $h_t\leq P_\theta(g_t,u_0)$. Affine geodesic energy gives
+\[
+ \begin{aligned}
+ d_1(u_0,g_t)&\leq E(u_0)+E(g_t)-2E(h_t)\\
+ &=t(E(u_0)+E(u_1)-2E(w))=t d_1(u_0,u_1).
+ \end{aligned}
+\]
+Reversal gives $d_1(g_t,u_1)\leq(1-t)d_1(u_0,u_1)$. The triangle inequality makes both bounds equalities. Apply this conclusion to each restricted segment, using the restriction property of weak geodesics, to get the first display for arbitrary $s,t$.
+
+For the second assertion set $w_j=P_\theta(u_j,v_j)$, $j=0,1$. The segment $G_t(w_0,w_1)$ lies below both compared segments by endpoint order, so it lies below their rooftop. Apply energy monotonicity and the affine energy identity to all three segments; the resulting energy difference is exactly the asserted right-hand side. This also proves endpoint continuity.
+\end{proof}
+\index{geodesic!metric distance}\index{geodesic!convex distance estimate}
+
+\Needspace{15\baselineskip}
+\begin{example}\label{ex:relative-metric-geodesics-not-unique}
+The metric can have geodesics other than the Perron segment. On $\mathbb P^1$ with unit-mass $\omega$ and reference zero, write $E=E_\omega^0$ and choose a smooth, strictly negative, nonconstant $f$ with $\omega+\ddc f>0$. Such an $f$ is a sufficiently small nonconstant smooth perturbation of $-1$. Put
+\[
+ A=\int_Xf\omega<0,\qquad B=\int_X\mathrm df\wedge\mathrm d^{\mathrm c}f>0.
+\]
+The curve energy formula gives $E(sf)=As-Bs^2/2$. The function
+$\tau(s)=E(sf)/E(f)$ is strictly increasing from zero to one and strictly convex. Its inverse $s(\tau)$ is strictly concave. The ordered curve $v_\tau=s(\tau)f$ therefore satisfies
+$d_1(v_\sigma,v_\tau)=|\tau-\sigma|(-E(f))$.
+It is a metric geodesic.
+
+At a minimum point of $f$, however, $\mathrm df=0$ and $s''(\tau)f>0$. Its product complexification has positive definite Hessian there: the horizontal block is $\omega+s\ddc f>0$, the vertical block is a positive multiple of $s''f$, and the mixed block vanishes. Its top product is consequently positive nearby. A Perron complexification has zero non-pluripolar top product by \cref{lem:perron-complexification-maximal,lem:unbounded-maximal-nonpluripolar-zero}. Hence this metric geodesic is different from the weak geodesic. The convex distance estimate above concerns the specified Perron segments.
+\end{example}
