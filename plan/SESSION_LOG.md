@@ -471,3 +471,11 @@ Q05-02 has verified task prerequisites but an unfinished enforced chapter prereq
 Both full-SHA0909e564 source-checkpoint CI runs passed:37208275437 and37208272509. Fresh tracked-source archive rebuild and regular push follow. Continue the internal FN/analytic-space prerequisite and exact Part I gap/overlap decisions, retaining the distinct envelope PDE scopes.
 
 The tracked source archive rebuilt in an empty directory with matching417-page text for this scoped coherence checkpoint. All integrity/audit/build/release checks pass with the original chapter gate preserved.
+
+## 4 October 2026 — local Lp and relative capacity boundedness
+
+Both full-SHA 1aafb7ed CI runs passed: 37209038754 and 37209035464. Added the SGPT-delegated finite-p local foundation with a cutoff-Riesz/coordinate-integration proof and Holder convergence; normalized compactness gives uniform global norms. Relative comparison plus summable geometric capacity steps give bounded relative type, residual-measure absorption and explicit moment/energy constants. The density corollary retains its capacity hypothesis. Exact GZ 30–32 finite-p proof paired with C1-M19; exact DDNL v3 Theorem 3.3 independently reobtained online and fully read at pp. 14–15. No new external input.
+
+Seven new results and their seams/history have two scoped direct reads. All 28 first pages, all 17 intermediate rendered changes and all 9 final spacing/display changes directly inspected. Final 421 pages, clean final build without unresolved references/citations or bad boxes. Q02-05 verified under verified prerequisites; Q07/Q11 gates preserved. Counts: 56/88 provisional required tasks, 30 historical exclusions. The author-requested projected eighteen-chapter contents is saved in plan/CONTENTS_OUTLOOK.md. Fresh archive rebuild and regular push follow; continue plain-Lp capacity domination, unweighted uniqueness/local mixed foundations, FN/PDE/positivity interfaces and exact overlap/integration work.
+
+The tracked source archive rebuilt in an empty directory with matching 421-page text. Final integrity, audit and build passed; GitHub CI will be checked at the pushed full SHA.
