@@ -340,3 +340,91 @@ Symmetry and additivity give the polarization identity
 \]
 The empty sum is zero. Expansion cancels every monomial omitting an index; the monomials using every index occur $n!$ times. Apply pure-volume modification invariance from \cref{cor:multiplier-envelope-volume-bounds} to each finite sum, and use linearity of pullback in the same formula on $Y$.
 \end{proof}
+
+\section{Analytic approximation on modifications}
+\label{sec:analytic-volume-approximation}
+Gentle approximation has a numerical interpretation on a resolution. Its logarithmic divisor accounts for the singularities, while the remaining current is smooth and semipositive. A small exceptional correction makes this residual class K\"ahler. The resulting intersection numbers approximate the multiplier volume; for minimal singularities they approximate the volume of the class.
+
+\begin{lemma}\label{lem:exceptional-kahler-correction}
+Let $\pi:Y\to X$ be a finite composition of blowups with smooth centers. For a K\"ahler form $\omega$ on $X$, there is an effective rational exceptional divisor $F$ such that $\pi^*\{\omega\}-\{F\}$ has a K\"ahler representative $\gamma$. If $S$ is smooth and $S\geq\delta\pi^*\omega$ for $\delta>0$, then
+\[
+ S_t=S+t(\gamma-\pi^*\omega)
+\]
+is K\"ahler for $0<t\leq\delta$, and $\{S_t\}=\{S\}-t\{F\}$.
+\end{lemma}
+\begin{proof}
+For one blowup, \cref{prop:kahler-smooth-center-blowup} constructs a K\"ahler form in $\pi^*\{\omega\}-q\{E\}$ for all sufficiently small $q>0$. Choose $q$ rational. Inductively pull back the effective rational divisor already chosen and add a small positive rational multiple of the new exceptional divisor. This gives an effective rational exceptional divisor at every stage. A codimension-one blowup is an isomorphism and adds nothing. In the identity case take $F=0$ and $\gamma=\omega$.
+
+The displayed form is at least $(\delta-t)\pi^*\omega+t\gamma$, which is positive for $0<t\leq\delta$. It is closed, and its class has the stated value. For any finite family $S_i\geq\delta_i\pi^*\omega$, the same correction works simultaneously when $t\leq\min_i\delta_i$. Their smooth mixed integrals tend to the original integrals as $t\downarrow0$, by expansion of the finite polynomial in $t$.
+\end{proof}
+
+\begin{theorem}\label{thm:analytic-fujita-multiplier-volume}
+Let $T=\theta+\ddc u\geq0$ in a big class, with $\operatorname{vol}_{\mathcal I}(T)>0$. There are gentle analytic K\"ahler currents $T_k=\theta+\ddc a_k$, finite smooth-center modifications $\pi_k:Y_k\to X$, smooth K\"ahler forms $\kappa_k$ and effective rational divisors $D_k$ on $Y_k$ such that
+\[
+ a_k\longrightarrow P_\theta[u]_{\mathcal I}\quad\text{in }d_{S,\theta},
+ \qquad \pi_k^*\{T\}=\{\kappa_k\}+\{D_k\},
+ \qquad \int_{Y_k}\kappa_k^n\longrightarrow\operatorname{vol}_{\mathcal I}(T).
+\]
+For every $\lambda'>\lambda>0$, their ideals eventually satisfy
+\[
+ \mathcal I(\lambda u)\subseteq\mathcal I(\lambda a_k),\qquad
+ \mathcal I(\lambda'a_k)\subseteq\mathcal I(\lambda u).
+\]
+\end{theorem}
+\begin{proof}
+Put $p=P_\theta[u]_{\mathcal I}$. It is a good model potential of positive mass. In the analytic-closure proof, choose a strict minorant $v\leq p$ and the increasing strict potentials $z_k=(1-k^{-1})p+k^{-1}v$. Their multiplier envelopes increase canonically to $p$ and converge in distance. Apply the gentle approximation theorem to each $z_k$ with a background decreased by its strict margin. The analytic regularization limit proposition makes these gentle strict currents approach $P_\theta[z_k]_{\mathcal I}$. A diagonal choice gives $a_k\to p$ in the stated distance. Mass continuity gives $M_\theta(a_k)\to M_\theta(p)=\operatorname{vol}_{\mathcal I}(T)$.
+
+Resolve the specified gentle ideal type of $a_k$ by a finite smooth-center modification. Upstairs the current splits as
+\[
+ \pi_k^*T_k=S_k+[B_k],
+\]
+where $B_k$ is effective rational and $S_k$ is smooth. On the complement of the divisor, strict positivity gives $S_k\geq\delta_k\pi_k^*\omega$ for some $\delta_k>0$. Smoothness extends this inequality to all of $Y_k$. In particular $\{S_k\}$ is nef, and locality and modification invariance give
+\[
+ M_\theta(a_k)=\int_{Y_k}S_k^n.
+\]
+Indeed the divisor is removed in the non-pluripolar restriction, while the smooth top product charges none of its components.
+
+Use the exceptional correction lemma, choosing a positive rational $t_k\leq\delta_k$ so small that
+$|\int_{Y_k}S_{k,t_k}^n-\int_{Y_k}S_k^n|<1/k$.
+Set $\kappa_k=S_{k,t_k}$ and $D_k=B_k+t_kF_k$. Their classes add to $\pi_k^*\{T\}$, and the desired intersection limit follows. Finally paired multiplier stability applies to $a_k\to p$, and $p\sim_{\mathcal I}u$, proving both inclusions. No constant or coefficient in the resolution is asserted uniform in $k$.
+\end{proof}
+\index{Fujita approximation!multiplier volume}\index{analytic singularities!smooth residual on a resolution}
+
+\begin{corollary}\label{cor:transcendental-fujita-volume}
+For every big class $\alpha$,
+\[
+ \operatorname{vol}(\alpha)
+ =\sup\left\{\int_Y\kappa^n:
+       \pi^*\alpha=\{\kappa\}+\{D\},\quad
+       \kappa\text{ K\"ahler},\quad D\text{ effective rational}\right\},
+\]
+where $\pi:Y\to X$ ranges over proper bimeromorphic morphisms from connected compact K\"ahler manifolds. Finite smooth-center modifications suffice for the supremum.
+\end{corollary}
+\begin{proof}
+Apply the theorem to the minimal current $\theta+\ddc V_\theta$, which is good and has multiplier volume $\operatorname{vol}(\alpha)$. This gives the lower bound for the supremum using finite smooth-center modifications.
+
+For any displayed decomposition, the positive current $\pi_*(\kappa+[D])$ lies in $\alpha$. Pushforward commutes with $\ddc$, and $\pi_*\pi^*\theta=\theta$ for a smooth representative: test on the complement of the exceptional image, where $\pi$ is an isomorphism, and use that smooth top forms give analytic subsets zero mass. This identifies its class. On that same complement its non-pluripolar top product is the transform of $\kappa^n$, after removing the divisor. The exceptional image and the divisors are pluripolar downstairs and upstairs, while the smooth top product gives them zero mass. Locality therefore identifies the total mass with $\int_Y\kappa^n$. The class mass bound makes this at most $\operatorname{vol}(\alpha)$, proving the upper bound.
+\end{proof}
+\index{volume!Fujita approximation of a big class}
+
+\Needspace{13\baselineskip}
+\begin{theorem}\label{thm:mixed-fujita-boundary-approximation}
+For arbitrary closed positive currents $T_i\in\alpha_i$, $1\leq i\leq n$, fix a K\"ahler form $\omega$ and positive rational $\varepsilon_k\downarrow0$. There are finite smooth-center modifications $\pi_k:Y_k\to X$, smooth K\"ahler forms $\kappa_{i,k}$ and effective rational divisors $D_{i,k}$ with
+\[
+ \pi_k^*(\alpha_i+\varepsilon_k\{\omega\})
+               =\{\kappa_{i,k}\}+\{D_{i,k}\}
+\]
+and
+\[
+ \int_{Y_k}\kappa_{1,k}\wedge\cdots\wedge\kappa_{n,k}
+                     \longrightarrow\operatorname{vol}_{\mathcal I}(T_1,\ldots,T_n).
+\]
+\end{theorem}
+\begin{proof}
+For fixed $k$, all currents $T_i+\varepsilon_k\omega$ are strict in big classes and have positive multiplier volume. Apply the gentle analytic diagonal construction of the preceding theorem to their multiplier envelopes, in these fixed backgrounds. Mixed-mass distance continuity lets us choose one analytic current for each $i$ whose mixed mass differs from their mixed multiplier volume by less than $1/k$.
+
+Principalize the finitely many ideal types successively, retaining each existing boundary divisor. This gives a common finite smooth-center resolution on which all currents split as $S_{i,k}+[B_{i,k}]$. Smooth pullback preserves gentleness at later steps. Every $S_{i,k}$ is at least $\delta_{i,k}\pi_k^*\omega$ for some $\delta_{i,k}>0$. Locality and modification invariance identify their smooth mixed integral with the chosen downstairs mixed mass.
+
+Apply one exceptional correction on this common resolution. Choose a positive rational $t_k\leq\min_i\delta_{i,k}$ so small that the corrected mixed integral differs by less than $1/k$. Put $\kappa_{i,k}=S_{i,k}+t_k(\gamma_k-\pi_k^*\omega)$ and $D_{i,k}=B_{i,k}+t_kF_k$. These are the required forms and divisors. The total discrepancy from the perturbed mixed volume is below $2/k$. Its difference from the unperturbed volume tends to zero by the class-uniform perturbation bound, proving the assertion at every mass.
+\end{proof}
+\index{Fujita approximation!mixed boundary volumes}

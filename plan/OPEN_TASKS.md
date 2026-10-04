@@ -59,7 +59,7 @@ No unfinished writing unit has verified chapter prerequisites. Continue independ
 
 - `Q13-01` [drafting] I-good and algebraic singularity types, characterization and permanence
 - `Q13-02` [drafting] Mixed volumes, generalized Darvas--Xia theorem and Hermitian pseudo-effective line bundles
-- `Q13-03` [planned] Fujita approximation and volume comparisons with exact twisting conventions
+- `Q13-03` [drafting] Fujita approximation and volume comparisons with exact twisting conventions
 - `Q13-04` [planned] Applications differentiated from reusable foundational inputs
 
 ## Q14 — Trace operators and restricted volumes
