@@ -742,3 +742,11 @@ Five full mathematical chapters, the frontmatter and main style/input files have
 The exact16October2010 Tao differentiation HTML is retained as the122nd immutable original and cited at Section2, Theorems32/36, Exercise38 and Lemma39. That complete extracted higher-dimensional passage was directly read, including its covering and maximal proofs. The book writes out density/localization and explains the cube covering constant. Final H01 attribution/version/normalization obligations remain open. The preceding24076d0 exact-head CI37267492978/37267489416 passed.
 
 The staged tracked-source archive rebuilt in an empty directory with all502 page texts matching the current draft. Integrity reports122 immutable originals,59 active TeX inputs and139 tasks; the house audit reports zero errors.
+
+## 2026-10-05 — Whole-prequel first read through the pointwise complex foundations
+
+Chapters1–8 and their active inputs have complete fresh first-read evidence. Q08's625-line parent and six inputs are also directly read; the remaining six inputs prevent a whole-Q08 completion claim. The current scoped correction writes out the passage from inner to ordered outer capacity in bounded measurable Dirichlet stability, using quasi-continuity and the earlier level-set lemma. Two complete changed-step reads, passing first/final builds and physical PDF153–155/154 inspections are recorded in research/reviews/2026-10-05-q08-outer-capacity.json. The502-page selected rasters are identical. All earlier Q08-08 complete proof/source evidence is retained separately; no new external input or second whole-unit/book certification is inferred.
+
+The preceding e0e66af3ee068d120410a484851bfb31de9c652e push passed exact-head CI37269007708/37269003743. All318 PartI source dispositions remain closed; final H01 and both complete whole-prequel reads remain outstanding.
+
+The staged tracked-source archive rebuilt in an empty directory with all502 page texts matching. The remaining Q08 inputs are not counted as complete in this checkpoint.
