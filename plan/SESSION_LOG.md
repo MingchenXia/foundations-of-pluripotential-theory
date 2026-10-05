@@ -772,3 +772,9 @@ The complete first read now covers Chapter 15 and both inputs, including gradien
 All 318 Part I dispositions remain closed. The 502-page draft still needs the remaining first-read chapters, H01 obligations and the entire second whole-book read. The preceding documentation-only checkpoint is 670009733d40899617f407668875144a553e3650.
 
 The staged tracked-source archive rebuilt in an empty directory, with every page text matching the current 502-page draft. The paired correction builds pass with no unresolved references/citations or fatal errors.
+
+## 2026-10-05 — First whole-prequel read through all eighteen main chapters
+
+Chapters 16–18 and their active inputs have complete fresh first-read evidence. The read covers general obstacle/model/capacity proofs, singular energy integration by parts and variational equations, positive-mass bigness, independent-factor mixed-mass concavity, Perron product/fibre energy and cutoff stability, full convex/toric chart/character/metric foundations. The requested arXiv:2607.12797 Theorem 1.2 proof is fully reread in its 156-line ceiling input, including normalized tails as masses tend to zero and arbitrary-mass idempotence. No new mathematical gap was identified in these chapters beyond the previously recorded trace-citation repair.
+
+This checkpoint updates documentation only. The analytic-space appendix and H01 still need their first whole-prequel read; final attribution/version/normalization adjudication, whole-book build/visual review and the entire second actual whole-book read remain. Earlier scoped proof reviews do not count as either whole-book pass. The preceding b90ad972155fe9482d3674b94a578535ef4a3b14 passed exact-head CI 37273169504 and 37273163941.
