@@ -1,0 +1,54 @@
+\subsection{Several independent factors}
+\label{sec:bt-multifactor-density}
+Two-factor inequalities allow repeated copies of two Hessians. To treat several independent Hessians, we use the signature of the mixed discriminant. The resulting matrix inequality passes to bounded potentials by the same linearization.
+
+\Needspace{10\baselineskip}
+\begin{lemma}\label{lem:multifactor-mixed-discriminant}
+For positive semidefinite Hermitian $n\times n$ matrices $A_1,\ldots,A_n$, $n\geq1$,
+\[
+ D(A_1,\ldots,A_n)\geq\prod_{i=1}^n(\det A_i)^{1/n},
+\]
+where $D$ is the normalized mixed discriminant of \cref{lem:mixed-discriminant-signature}, so that $D(A,\ldots,A)=\det A$.
+\end{lemma}
+\begin{proof}
+For $n=1$ this is equality. Suppose $n\geq2$ and all matrices are positive definite. With any fixed positive definite last $n-2$ slots, write
+\[
+ q(A,B)=D(A,B,A_3,\ldots,A_n).
+\]
+Set $c=q(A,B)/q(B,B)$ and $M=A-cB$. Then $q(M,B)=0$. The signature lemma gives $q(M,M)\leq0$, whence
+\begin{equation}\label{eq:mixed-discriminant-reverse-cauchy}
+ q(A,B)^2\geq q(A,A)q(B,B).
+\end{equation}
+All these discriminants are positive: write each positive matrix as a semipositive matrix plus a common $\varepsilon I$ and expand by multilinearity. Wedge positivity makes every term nonnegative, and the term $\varepsilon^nD(I,\ldots,I)$ is positive.
+
+Normalize each $A_i$ by multiplying it by $(\det A_i)^{-1/n}$. Among the finitely many ordered $n$-tuples drawn from these normalized matrices, let $F>0$ be the smallest mixed discriminant. Among the tuples attaining $F$, choose one whose sum of squared entry multiplicities is largest. A diagonal tuple has discriminant one, so $F\leq1$. If a minimizing tuple has two different entries $A,B$, symmetry places them in the first two slots. Both discriminants obtained by replacing these slots by $A,A$ and by $B,B$ are at least $F$. Equation \eqref{eq:mixed-discriminant-reverse-cauchy} shows that their product is at most $F^2$. Thus both also equal $F$.
+
+If $A,B$ have multiplicities $r,s$, the first replacement increases the sum of squares by $2(r-s)+2$, and the second by $2(s-r)+2$. At least one increase is positive, a contradiction. The chosen tuple is therefore diagonal, giving $F=1$. In particular the tuple containing the original $n$ normalized matrices has discriminant at least one. Multilinearity undoes the normalization and proves the inequality. Finally replace every $A_i$ by $A_i+\varepsilon I$ and let $\varepsilon\downarrow0$. Polynomial continuity of $D$ and continuity of the nonnegative determinant roots give the semidefinite assertion.
+\end{proof}
+\index{mixed discriminant!geometric-mean inequality}
+
+\begin{corollary}\label{cor:bounded-multifactor-continuous-density}
+Let $u_1,\ldots,u_n$ be locally bounded plurisubharmonic functions on $\Omega\subset\mathbb C^n$, $n\geq1$. If $f_i\geq0$ are continuous and
+\[
+ (\ddc u_i)^n\geq f_i\eta^n\quad(1\leq i\leq n),
+ \qquad\eta=\ddc|z|^2,
+\]
+then
+\[
+ \ddc u_1\wedge\cdots\wedge\ddc u_n
+                  \geq\left(\prod_{i=1}^n f_i^{1/n}\right)\eta^n.
+\]
+The assertion permits repeated potentials and vanishing densities.
+\end{corollary}
+\begin{proof}
+Use common nonnegative radial kernels and work on smaller open sets. The pure linearization in \cref{prop:bounded-monge-ampere-linear-density} gives
+\[
+ \det H(u_i*\rho_\varepsilon)
+                    \geq(f_i^{1/n}*\rho_\varepsilon)^n.
+\]
+Polarization of the smooth determinant normalization identifies the mixed measure of these smoothings with
+$D(H(u_1*\rho_\varepsilon),\ldots,H(u_n*\rho_\varepsilon))\eta^n$.
+The lemma bounds this below by
+$\prod_i(f_i^{1/n}*\rho_\varepsilon)\eta^n$.
+This density tends locally uniformly to $\prod_i f_i^{1/n}$. Each smoothing decreases to its canonical psh potential, so mixed decreasing continuity passes the measure inequality to the limit. For $n=1$ the statement is the given pure bound.
+\end{proof}
