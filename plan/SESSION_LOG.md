@@ -750,3 +750,11 @@ Chapters1–8 and their active inputs have complete fresh first-read evidence. Q
 The preceding e0e66af3ee068d120410a484851bfb31de9c652e push passed exact-head CI37269007708/37269003743. All318 PartI source dispositions remain closed; final H01 and both complete whole-prequel reads remain outstanding.
 
 The staged tracked-source archive rebuilt in an empty directory with all502 page texts matching. The remaining Q08 inputs are not counted as complete in this checkpoint.
+
+## 2026-10-05 — General Radon domination and the complete first BT read
+
+All twelve Q08 inputs and its625-line parent have been read directly for the first whole-prequel pass, which now covers Chapters1–9. The current-gradient argument exposed a missing general Radon domination interface: the existing density lemma was only stated for Lebesgue measure. Its dyadic L2 proof now works for arbitrary positive Radon references, including null cells, charged boundaries and finite-cube uniqueness/gluing. The exact signed/complex coefficient-part application is explicit. P01-01/Q08-04 retain earlier full scoped evidence plus the new paired changed-unit review; no new task or external theorem is introduced.
+
+Tao's exact RN notes are retained as the123rd immutable original, with complete finite-measure Theorem2/Corollary1 proof passages read. The visible4January2009 date is distinguished from the5January UTC metadata timestamp. Two complete changed-unit/history/entry reads, passing builds and thirteen first/six final affected images are recorded in research/reviews/2026-10-05-dominated-density.json. All matching rasters agree. The502-page book remains a draft: later first-read chapters, H01 obligations and the complete second read remain.
+
+The staged tracked-source archive rebuilt in an empty directory with all502 page texts matching. The preceding16fc9b146e734b558b1f3b337c35fefe70e70197 passed exact-head CI37269879768/37269876503.
