@@ -796,3 +796,9 @@ Auxiliary attribution in these two chapters is semantically tied to exact histor
 The complete 243-line P03 second read now covers canonical representative/Riesz proofs, compactness/Hartogs, completed measurable envelopes and polar removal/connectivity; no new gap identified. The live second-pass record has seven fully read inputs and 52 pending inputs, with attribution adjudication alongside the actual reads.
 
 The staged tracked-source archive rebuilt in an empty directory with all 502 page texts matching. Both classical correction units have passing paired builds and actual affected-page inspection.
+
+## 2026-10-05 — Capacity and fine-topology second read
+
+Complete P04 and pre-edit P05 second source reads extend the live pass through Chapters 1–5. P04 revealed no new gap. Two P05 example proofs now cite the exact smooth-lifting/decreasing-limit interfaces and use the full interior of the closed swept obstacle. Complete paired changed-unit reads, builds and physical PDF 71/75/76 inspections are recorded in research/reviews/2026-10-05-p05-example-interfaces.json; comparable rasters agree and the draft remains 502 pages. No whole post-edit chapter reread or independent review is inferred.
+
+Auxiliary/direct attribution for these chapters has been semantically adjudicated alongside the actual manuscript reads; final H01 source/errata/status obligations remain. The second source pass has nine read inputs and 50 pending. The preceding 19a98746ab29b6b456711e20d0d33268e657ea54 passed exact-head CI 37280011487 and 37280007054. The staged tracked-source archive rebuilt in an empty directory; every page text matches the checked 502-page draft.
