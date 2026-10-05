@@ -1,0 +1,1219 @@
+\chapter{Relative energy and Perron segments}
+\label{chap:q11}
+Let $(X,\omega)$ be a connected compact K\"ahler manifold of dimension $n\geq1$. A potential may be unbounded even when its difference from a reference potential is bounded. Non-pluripolar products remove the common poles, but bounded global Stokes cannot be applied directly to the two singular functions. Relative capacity comparison supplies the uniform control needed to pass from bounded truncations. The resulting integration-by-parts identity makes the Monge--Amp\`ere measure the first variation of a scalar energy. Sources are discussed in \cref{sec:history-energy}.
+
+\section{Integration by parts for bounded differences}
+\label{sec:singular-bounded-difference-integration}
+For a fixed background $\theta$ write $\theta_q=\theta+\ddc q$ and $\mu_q=\langle\theta_q^n\rangle$, indicating another background when needed. A \emph{bounded quasi-psh difference} is a bounded Borel function equal quasi-everywhere to $a=\varphi_1-\varphi_2$, where $\varphi_1,\varphi_2$ are quasi-psh. Thus $\varphi_1\sim\varphi_2$. Values on the common pole set do not enter any integral against a non-pluripolar measure.
+
+For closed positive currents $T_1,\ldots,T_{n-1}$ and $R=\langle T_1\wedge\cdots\wedge T_{n-1}\rangle$, define
+\begin{equation}\label{eq:bounded-difference-hessian-product}
+ \begin{aligned}
+ \ddc a\wedge R
+   &=\left\langle(\kappa+\ddc\varphi_1)\wedge T_1\wedge\cdots\wedge T_{n-1}\right\rangle\\
+    &\quad-\left\langle(\kappa+\ddc\varphi_2)\wedge T_1\wedge\cdots\wedge T_{n-1}\right\rangle,
+ \end{aligned}
+\end{equation}
+where $\kappa$ is any sufficiently large multiple of a fixed K\"ahler form making both displayed factors positive. This is a finite signed measure. For $n=1$, $R=1$ and the same definition uses the first-degree non-pluripolar product.
+
+This definition is independent of $\kappa$ by positive multilinearity: an added common smooth positive form cancels from the two terms. It is also independent of the presentation of $a$. Indeed, for another presentation $\psi_1-\psi_2$, enlarge $\kappa$ to accommodate all four potentials. The equality
+$\varphi_1+\psi_2=\varphi_2+\psi_1$ holds almost everywhere, hence their currents agree. Multilinearity of their positive sums then identifies the two differences in \eqref{eq:bounded-difference-hessian-product}. More generally any smooth closed background making both currents positive gives the same difference, by comparison through a larger common K\"ahler form. We extend the notation linearly to finite sums of mixed products.
+\index{quasi-plurisubharmonic function!bounded difference}
+
+\begin{lemma}\label{lem:global-capacity-weighted-measure-convergence}
+Suppose positive measures $\nu_j\to\nu$ weakly have uniformly bounded masses, and $\nu_j,\nu$ are uniformly absolutely continuous with respect to $\operatorname{Cap}_\omega$. If uniformly bounded quasi-continuous Borel functions $f_j,f$ satisfy $f_j\to f$ in capacity, then
+\[
+ \int_Xf_j\,\nu_j\longrightarrow\int_Xf\,\nu.
+\]
+Uniform absolute continuity means that the supremum of their masses on Borel sets of capacity at most $\delta$ tends to zero as $\delta\downarrow0$.
+\end{lemma}
+\begin{proof}
+For $|f_j|,|f|\leq B$, split the integral of $|f_j-f|$ into the set where it exceeds $\varepsilon$ and its complement. The first part is at most $2B$ times a uniformly small measure mass, by capacity convergence; the second is at most $\varepsilon$ times the common total-mass bound. Thus it tends to zero as $j\to\infty$ and then $\varepsilon\downarrow0$.
+
+For the fixed weight $f$, remove an open set $G$ of arbitrarily small capacity so that $f$ is continuous on $X\setminus G$. The bounded continuous-extension construction in \cref{thm:psh-capacity-quasicontinuity} extends that restriction to a continuous function on $X$ with the same bound. Weak convergence applies to the extension; replacing it by $f$ changes both integrals by at most $2B$ times the measure mass of $G$. Uniform absolute continuity lets this error tend to zero. These two assertions give the result.
+\end{proof}
+
+\begin{lemma}\label{lem:singular-monge-ampere-difference-identity}
+For a smooth closed real background $\theta$, suppose
+$\varphi_1\sim\varphi_2$ and $\psi_1\sim\psi_2$ are $\theta$-psh. Put $a=\varphi_1-\varphi_2$, $b=\psi_1-\psi_2$, and
+\[
+ S_j=\sum_{k=0}^{n-1}
+       \left\langle\theta_{\varphi_j}\wedge\theta_{\psi_1}^{k}
+                                      \wedge\theta_{\psi_2}^{n-1-k}\right\rangle,
+       \qquad j=1,2.
+\]
+Then
+\begin{equation}\label{eq:singular-monge-ampere-difference-identity}
+ \int_Xa(\mu_{\psi_1}-\mu_{\psi_2})
+                         =\int_Xb(S_1-S_2).
+\end{equation}
+No positive-mass assumption on the four original potentials is required.
+\end{lemma}
+\begin{proof}
+First let $\theta=\kappa$ be K\"ahler and suppose all four potentials are $\lambda\kappa$-psh for a common $0<\lambda<1$. Subtract constants to make them negative. Bounded-type mixed mass invariance permits further shifts making
+\[
+ \varphi_1\leq\varphi_2\leq\varphi_1+B,
+                 \qquad\psi_1\leq\psi_2\leq\psi_1+B
+\]
+with $B\geq1$: the measure differences in \eqref{eq:singular-monge-ampere-difference-identity} have total mass zero, so constant shifts of $a,b$ do not affect the assertion.
+
+Assume first that each pair agrees on an ordinary open set containing its common sufficiently deep sublevel. Truncate all four functions at $-l$. Bounded integration by parts gives \eqref{eq:singular-monge-ampere-difference-identity} for these truncations, by expanding the difference of the two powers. The first measure difference vanishes on the deep open set for the $\psi$ pair, and its weight vanishes on the deep open set for the $\varphi$ pair. On the right, the roles are reversed. Outside these two open sets all four potentials have a common finite lower bound. For large $l$ every remaining weighted term therefore equals the corresponding original non-pluripolar term by locality. The bounded identity is exactly the desired identity.
+
+To remove the agreement assumption take a sequence $\varepsilon\downarrow0$ with $\lambda(1+\varepsilon)<1$ and put
+\[
+ \varphi_{2,\varepsilon}=\max\{\varphi_1,(1+\varepsilon)\varphi_2\},
+ \qquad\psi_{2,\varepsilon}=\max\{\psi_1,(1+\varepsilon)\psi_2\}.
+\]
+Each function is $\kappa$-psh, stays within $B$ of its first partner and agrees with it on a sufficiently deep ordinary open sublevel. For example $\varphi_1<-B-B/\varepsilon$ implies
+$(1+\varepsilon)\varphi_2\leq\varphi_1+B+\varepsilon(\varphi_1+B)<\varphi_1$.
+The first case applies to these pairs. As $\varepsilon\downarrow0$ the second partners increase to $\varphi_2,\psi_2$ quasi-everywhere. All their mixed measures converge weakly by increasing continuity.
+
+We need uniform control for the varying bounded weights. Set
+\[
+ \chi=\tfrac15(\varphi_1+\varphi_2+\psi_1+\psi_2)-B,
+ \qquad
+ \zeta_\varepsilon=\tfrac15
+              (\varphi_1+\varphi_{2,\varepsilon}+\psi_1+\psi_{2,\varepsilon}).
+\]
+Then $\chi\leq\zeta_\varepsilon\leq\chi+B$, including the limiting $\zeta_0$. Moreover
+$\kappa+\ddc\chi\geq(1-4\lambda/5)\kappa$, so $M_\kappa(\chi)>0$. Expanding
+\[
+ 5\kappa_{\zeta_\varepsilon}
+    =\kappa_{\varphi_1}+\kappa_{\varphi_{2,\varepsilon}}
+                        +\kappa_{\psi_1}+\kappa_{\psi_{2,\varepsilon}}+\kappa
+\]
+shows that every mixed measure in the identity is bounded by a fixed multiple of $\mu_{\zeta_\varepsilon}$. Strip rescaling bounds this measure on each Borel $E$ by
+$B^n\operatorname{Cap}_{\kappa,\chi}(E)$: the potential
+$B^{-1}\zeta_\varepsilon+(1-B^{-1})\chi-1$ is a strip test for $\chi$.
+The same bounds hold for all limiting measures. The capacity comparison theorem now gives uniform absolute continuity with respect to $\operatorname{Cap}_\omega$.
+
+The differences $\varphi_1-\varphi_{2,\varepsilon}$ and $\psi_1-\psi_{2,\varepsilon}$ are uniformly bounded and quasi-continuous, and converge in capacity to $a,b$. Indeed remove an open set of arbitrarily small capacity containing the poles and making the original four potentials finite and continuous on its compact complement. They are bounded there, so the displayed maxima converge uniformly there. The weighted convergence lemma therefore passes the identity to the limit.
+
+Finally let $\theta$ be arbitrary. For all sufficiently large $s$, $\kappa_s=\theta+s\omega$ is K\"ahler and all four potentials are $\tfrac12\kappa_s$-psh: use $s\omega\geq\theta$. The case already proved gives the identity in background $\kappa_s$. Each side is a polynomial in $s$, by expanding the positive factors $\theta_q+s\omega$ using non-pluripolar multilinearity. Equality for all large $s$ identifies their constant coefficients, which are precisely the two sides of \eqref{eq:singular-monge-ampere-difference-identity} in background $\theta$.
+\end{proof}
+
+\Needspace{17\baselineskip}
+\begin{theorem}\label{thm:nonpluripolar-bounded-difference-integration-by-parts}
+For bounded quasi-psh differences $a,b$ and arbitrary closed positive $(1,1)$-currents $T_1,\ldots,T_{n-1}$,
+\begin{equation}\label{eq:nonpluripolar-bounded-difference-integration-by-parts}
+ \int_Xa\,\ddc b\wedge\langle T_1\wedge\cdots\wedge T_{n-1}\rangle
+       =\int_Xb\,\ddc a\wedge\langle T_1\wedge\cdots\wedge T_{n-1}\rangle.
+\end{equation}
+The Hessian factors have the meaning of \eqref{eq:bounded-difference-hessian-product}.
+\end{theorem}
+\begin{proof}
+First suppose the presentations of $a,b$ and a potential $\eta$ all use one background $\theta$. Replace $\psi_j$ in the preceding lemma by
+$(1-t)\eta+t\psi_j$. Its bounded difference is $tb$. Differentiate the resulting polynomial identity at $t=0$. The derivative of the left side is
+$n\int_Xa\,\ddc b\wedge\langle\theta_\eta^{n-1}\rangle$;
+the derivative of the right side is
+$n\int_Xb\,\ddc a\wedge\langle\theta_\eta^{n-1}\rangle$.
+This proves the identity for a repeated current and common background. For $n=1$ it already proves the assertion by choosing a large K\"ahler background and $\eta=0$.
+
+For $n>1$ write $T_j=\theta_j+\ddc\eta_j$. For positive $r_j$ with $\sum_jr_j=1$, put
+$\theta_r=\sum_jr_j\theta_j$, $\eta_r=\sum_jr_j\eta_j$.
+For all sufficiently large $s$, the presentations of $a,b$ and $\eta_r$ are $\theta_r+s\omega$-psh. Apply the common-background identity to the repeated current
+$\sum_jr_jT_j+s\omega$. Presentation independence lets its Hessian factors use one fixed positive background. Expanding the remaining repeated current in $s$ and taking the constant coefficient proves the identity with $\langle(\sum_jr_jT_j)^{n-1}\rangle$. It is a homogeneous polynomial identity in the $r_j$, so validity on the positive simplex implies validity on the entire positive cone by scaling. The coefficient of $r_1\cdots r_{n-1}$, after cancellation of $(n-1)!$, is \eqref{eq:nonpluripolar-bounded-difference-integration-by-parts}. Presentation independence was proved above.
+\end{proof}
+\index{integration by parts!non-pluripolar products}
+
+\begin{lemma}\label{lem:bounded-difference-negative-hessian-energy}
+Suppose $u\sim v$ are $\theta$-psh and $R=\langle T_1\wedge\cdots\wedge T_{n-1}\rangle$. Then
+\[
+ \int_X(u-v)\,\ddc(u-v)\wedge R\leq0.
+\]
+\end{lemma}
+\begin{proof}
+The two measures $\lambda_u=\langle\theta_u\wedge T_1\wedge\cdots\wedge T_{n-1}\rangle$ and $\lambda_v$ have equal total mass by bounded-type mixed mass invariance. Subtract a constant from $u$ to make $u\leq v$; this leaves the integral unchanged. For $t\geq0$ and $\varepsilon>0$, the maximum $q=\max\{u,v-t-\varepsilon\}$ has their same bounded type and mixed mass. Locality on its two strict comparison sets therefore gives
+\[
+ \lambda_v(\{u<v-t-\varepsilon\})
+    \leq\lambda_u(\{u\leq v-t-\varepsilon\})
+    \leq\lambda_u(\{u<v-t\}).
+\]
+Let $\varepsilon\downarrow0$. For every $t\geq0$ this proves
+\[
+ \lambda_v(\{u<v-t\})\leq\lambda_u(\{u<v-t\}).
+\]
+Integrate this inequality in $t$. The bounded nonnegative function $v-u$ is the integral of these level indicators, so Tonelli gives
+$\int_X(v-u)\lambda_v\leq\int_X(v-u)\lambda_u$.
+Rearrangement is the claimed inequality.
+\end{proof}
+
+\section{Relative Monge--Amp\`ere energy}
+\label{sec:relative-monge-ampere-energy}
+Fix a smooth closed real $\theta$ with big class and a $\theta$-model potential $\phi$. Put $m=\int_X\mu_\phi>0$ and write $E=E_\theta^\phi$. The relative full-mass class $\mathcal E(X,\theta,\phi)$ was defined in \cref{def:full-nonpluripolar-mass}; all its mixed masses agree with those of $\phi$ by the envelope characterization.
+
+\begin{definition}\label{def:relative-bounded-and-finite-energy-classes}
+Write
+\[
+ \begin{aligned}
+ \mathcal E^\infty(X,\theta,\phi)
+       &=\{u\in\PSH(X,\theta):u\sim\phi\},\\
+ \mathcal E^1(X,\theta,\phi)
+       &=\left\{u\in\mathcal E(X,\theta,\phi):
+                         \int_X|u-\phi|\,\mu_u<\infty\right\}.
+ \end{aligned}
+\]
+The first class has bounded difference from $\phi$; it need not consist of bounded functions. The second is the \emph{relative finite-energy class}. Polar sets are discarded in the differences. Bounded-type mass invariance gives
+$\mathcal E^\infty\subset\mathcal E^1\subset\mathcal E$.
+For $\phi=V_\theta$ we omit the reference from these notations.
+\end{definition}
+\index{finite energy!relative class}\index{relative singularity type!bounded difference}
+
+\begin{definition}\label{def:relative-monge-ampere-energy}
+For $u\in\mathcal E^\infty(X,\theta,\phi)$ define
+\begin{equation}\label{eq:relative-energy-bounded-type}
+ E_\theta^\phi(u)=\frac1{n+1}\sum_{j=0}^n
+                  \int_X(u-\phi)\,
+                        \langle\theta_u^j\wedge\theta_\phi^{n-j}\rangle.
+\end{equation}
+All these integrals are finite: the difference is bounded and every mixed measure has total mass $m$. For $\phi=V_\theta$ write $E_\theta$.
+\end{definition}
+\index{Monge--Ampere energy!relative reference}
+
+\begin{proposition}\label{prop:bounded-type-energy-variation-and-cocycle}
+For $u,v\in\mathcal E^\infty(X,\theta,\phi)$, put $u_t=(1-t)u+tv$. Then
+\begin{equation}\label{eq:bounded-type-energy-first-variation}
+ \frac{\mathrm d}{\mathrm dt}E_\theta^\phi(u_t)
+                                   =\int_X(v-u)\,\mu_{u_t}
+\end{equation}
+with one-sided derivatives at the endpoints, and
+\begin{equation}\label{eq:bounded-type-energy-cocycle}
+ E_\theta^\phi(v)-E_\theta^\phi(u)
+       =\frac1{n+1}\sum_{j=0}^n\int_X(v-u)
+                              \langle\theta_v^j\wedge\theta_u^{n-j}\rangle.
+\end{equation}
+In particular energy is increasing and satisfies
+$E_\theta^\phi(u+C)=E_\theta^\phi(u)+Cm$.
+\end{proposition}
+\begin{proof}
+For $w\sim\phi$, positive multilinearity and the elementary beta integral
+$\binom nj\int_0^1r^j(1-r)^{n-j}\,\mathrm dr=1/(n+1)$ give
+\[
+ E_\theta^\phi(w)=\int_0^1\int_X(w-\phi)
+                              \mu_{\phi+r(w-\phi)}\,\mathrm dr.
+\]
+The beta integral follows by repeated integration by parts on the polynomial integrand. All potentials in these mixtures have bounded type $\phi$, so the weights are bounded and all mixed terms finite.
+
+Write $h=v-u$, $q_{r,t}=\phi+r(u_t-\phi)$. The expression for $E_\theta^\phi(u_t)$ is a polynomial in $t$. Differentiating it and applying the integration-by-parts theorem to $u_t-\phi,h$ gives
+\[
+ \begin{split}
+ \frac{\mathrm d}{\mathrm dt}E_\theta^\phi(u_t)
+  &=\int_0^1\left[\int_Xh\,\mu_{q_{r,t}}
+       +nr\int_X(u_t-\phi)\,\ddc h\wedge
+                                      \langle\theta_{q_{r,t}}^{n-1}\rangle\right]\mathrm dr\\
+  &=\int_0^1\frac{\mathrm d}{\mathrm dr}
+                         \left[r\int_Xh\,\mu_{q_{r,t}}\right]\mathrm dr
+   =\int_Xh\,\mu_{u_t}.
+ \end{split}
+\]
+Polynomial differentiation here means differentiation of a finite multilinear expansion; it does not interchange an uncontrolled limit with a singular measure. Integrate from $t=0$ to $1$ and use the same beta integral to obtain \eqref{eq:bounded-type-energy-cocycle}. Positivity proves monotonicity. Every mixed term has mass $m$, so substituting $v=u+C$ gives the shift formula.
+\end{proof}
+
+\begin{proposition}\label{prop:bounded-type-energy-concavity}
+The energy is concave on $\mathcal E^\infty(X,\theta,\phi)$ and
+\begin{equation}\label{eq:bounded-type-energy-tangent-bounds}
+ \int_X(v-u)\,\mu_v
+       \leq E_\theta^\phi(v)-E_\theta^\phi(u)
+       \leq\int_X(v-u)\,\mu_u.
+\end{equation}
+It is Lipschitz for the uniform norm on differences, with constant $m$. For any other bounded-type reference $\psi\sim\phi$, the same formula defines an energy with
+\[
+ E_\theta^\psi(u)=E_\theta^\phi(u)-E_\theta^\phi(\psi).
+\]
+\end{proposition}
+\begin{proof}
+Differentiate the first variation once more. With $h=v-u$,
+\[
+ \frac{\mathrm d^2}{\mathrm dt^2}E_\theta^\phi(u_t)
+         =n\int_Xh\,\ddc h\wedge
+                               \langle\theta_{u_t}^{n-1}\rangle\leq0
+\]
+by \cref{lem:bounded-difference-negative-hessian-energy}. Thus the derivative decreases; integrating it gives the two tangent bounds. The first variation and $M(u_t)=m$ give
+$|E_\theta^\phi(v)-E_\theta^\phi(u)|\leq m\|v-u\|_\infty$, where the norm ignores the polar set. Finally apply the cocycle formula with $u=\psi$ to identify the energy based at $\psi$.
+\end{proof}
+
+\begin{definition}\label{def:extended-relative-energy}
+For $u\in\PSH(X,\theta)$ with $u\preceq\phi$, extend energy by
+\[
+ E_\theta^\phi(u)=\inf\{E_\theta^\phi(w):w\in\mathcal E^\infty(X,\theta,\phi),\ u\leq w\}.
+\]
+The value lies in $[-\infty,\infty)$, since $\phi+C$ is a majorant for sufficiently large $C$. Monotonicity shows that this agrees with \eqref{eq:relative-energy-bounded-type} on bounded type.
+\end{definition}
+
+\Needspace{16\baselineskip}
+\begin{proposition}\label{prop:relative-energy-canonical-truncations}
+The extended energy is increasing, has the same constant-shift formula, and satisfies
+\[
+ E_\theta^\phi(u)=\lim_{k\to\infty}
+                       E_\theta^\phi(\max\{u,\phi-k\}).
+\]
+In particular the limit exists, allowing $-\infty$.
+\end{proposition}
+\begin{proof}
+Monotonicity follows by inclusion of the majorant families; translating a majorant by a constant proves the shift identity. Write $u_k=\max\{u,\phi-k\}$. They are decreasing bounded-type majorants of $u$, so their energies decrease and bound $E_\theta^\phi(u)$ above. For any other bounded-type majorant $w$, choose $C$ with $w\geq\phi-C$. For $k\geq C$, both $u$ and $\phi-k$ are at most $w$, so $u_k\leq w$ and $E_\theta^\phi(u_k)\leq E_\theta^\phi(w)$. Taking the limit and then the infimum over $w$ gives the reverse inequality.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-energy-decreasing-continuity}
+For a decreasing net $u_i\in\PSH(X,\theta)$ with $u_i\preceq\phi$ and potential limit $u=\inf_i u_i$,
+\[
+ E_\theta^\phi(u_i)\downarrow E_\theta^\phi(u).
+\]
+Consequently the extended energy is concave. Its finite locus is convex.
+\end{proposition}
+\begin{proof}
+First consider a sequence. Monotonicity gives a limit $L\geq E_\theta^\phi(u)$. For any bounded-type majorant $w\geq u$, put $v_i=\max\{u_i,w\}$. Then $v_i\downarrow w$ and all $v_i$ have a common bounded difference from $w$: use $u_i\leq u_1\leq\phi+C$ and $w\sim\phi$. The tangent bound gives
+\[
+ 0\leq E_\theta^\phi(v_i)-E_\theta^\phi(w)
+                         \leq\int_X(v_i-w)\,\mu_w\longrightarrow0
+\]
+by bounded convergence. Since $E_\theta^\phi(u_i)\leq E_\theta^\phi(v_i)$, taking the infimum over $w$ gives $L\leq E_\theta^\phi(u)$.
+
+For a net, global decreasing compactness gives $L^1$ convergence to $u$. Choose increasing indices $i_k$ with $\|u_{i_k}-u\|_{L^1}<1/k$. Their decreasing pointwise limit is a potential equal to $u$ almost everywhere, hence everywhere. The sequence case gives $E_\theta^\phi(u_{i_k})\to E_\theta^\phi(u)$. The infimum of the full energy net is no greater than this selected limit, proving equality; no countable cofinality is asserted.
+
+For concavity use the bounded-type mixtures of the canonical truncations of $u,v$. They decrease to $(1-t)u+tv$ for $0<t<1$. Bounded-type concavity and decreasing continuity give
+\[
+ E_\theta^\phi((1-t)u+tv)
+                    \geq(1-t)E_\theta^\phi(u)+tE_\theta^\phi(v).
+\]
+This also proves convexity of the finite locus. The assertion is automatic if either energy on the right is $-\infty$.
+\end{proof}
+
+\Needspace{21\baselineskip}
+\begin{theorem}\label{thm:relative-finite-energy-characterization}
+For $u\preceq\phi$,
+\[
+ E_\theta^\phi(u)>-\infty
+                    \quad\Longleftrightarrow\quad
+                          u\in\mathcal E^1(X,\theta,\phi).
+\]
+In particular finite extended energy forces relative full mass. For $u\leq\phi$ in this class,
+\begin{equation}\label{eq:relative-energy-integrability-bounds}
+ \frac1{n+1}\int_X(\phi-u)\,\mu_u
+       \leq -E_\theta^\phi(u)
+       \leq\int_X(\phi-u)\,\mu_u.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Subtract a constant to make $u\leq\phi$; both conditions are invariant under this operation. Put $u_k=\max\{u,\phi-k\}$ and $A_k=\{u>\phi-k\}$. These potentials have mass $m$. The energy definition and nonpositive weights give
+\[
+ \int_X(\phi-u_k)\mu_{u_k}\leq(n+1)(-E_\theta^\phi(u_k)).
+\]
+If $E_\theta^\phi(u)>-\infty$, the right side is bounded by a fixed $C$. On $X\setminus A_k$ the weight is $k$ outside a polar set; hence
+\[
+ m-\mu_u(A_k)=\mu_{u_k}(X\setminus A_k)\leq C/k.
+\]
+Locality gives the equality. The sets $A_k$ increase to the common finite locus, so $M(u)=m$. The same estimate and locality give
+$\int_{A_k}(\phi-u)\mu_u\leq C$; monotone convergence proves finite self-integrability and the first inequality in \eqref{eq:relative-energy-integrability-bounds}.
+
+Conversely suppose $u\in\mathcal E^1$ and let $I=\int_X(\phi-u)\mu_u<\infty$. Equality of masses and locality yield
+$\mu_{u_k}(X\setminus A_k)=\mu_u(X\setminus A_k)$. Thus
+\[
+ \int_X(\phi-u_k)\mu_{u_k}
+      =\int_X\min\{\phi-u,k\}\,\mu_u\leq I.
+\]
+The lower tangent bound for $u_k,\phi$ gives $E_\theta^\phi(u_k)\geq-I$. Passing to the canonical energy limit proves finite energy and the second inequality. The first inequality follows by the same finite-level estimate already proved.
+\end{proof}
+\index{finite energy!characterization by extended energy}
+
+\begin{example}\label{ex:curve-dirichlet-and-loglog-energy}
+On a compact K\"ahler curve with reference zero, a smooth $\omega$-psh potential has
+\[
+ E_\omega(u)=\int_Xu\,\omega-\tfrac12
+                         \int_X\mathrm du\wedge\mathrm d^{\mathrm c}u.
+\]
+Indeed the two terms in the energy definition are $\int u\omega$ and $\int u(\omega+\ddc u)$, and bounded integration by parts gives the formula. Thus in dimension one the relative energy contains the ordinary Dirichlet energy.
+
+The unbounded full-mass potential on $\mathbb P^1$ in \cref{ex:loglog-full-mass-envelope} also lies in $\mathcal E^1(\mathbb P^1,\omega,0)$. Near its only pole, write $r=\log|z|^2$. There $F(r)=-\log(-r)$, $F''(r)=r^{-2}$, and the radial pushforward of $\mu_u=\ddc F(\log|z|^2)$ is $F''(r)\,\mathrm dr$, by the normalization in \cref{thm:euclidean-jensen-lelong}. The smooth correction in $u$ is bounded there, so for $A>1$ its self-integrability reduces to
+\[
+ \int_A^\infty\frac{\log t}{t^2}\,\mathrm dt
+                         =\frac{\log A+1}{A}<\infty.
+\]
+Away from the pole $u$ is bounded and the measure finite. Hence this is a finite-energy potential with unbounded difference from its model reference zero.
+\end{example}
+\index{finite energy!log-log example}\index{Dirichlet energy!Monge--Ampere energy on curves}
+
+\Needspace{14\baselineskip}
+\begin{corollary}\label{cor:relative-energy-classes-convex}
+The classes $\mathcal E^\infty$, $\mathcal E^1$ and $\mathcal E$ relative to $\phi$ are convex. If $u\in\mathcal E^1$ and $u\leq v\preceq\phi$, then $v\in\mathcal E^1$.
+\end{corollary}
+\begin{proof}
+Bounded type is preserved by convex combinations. Finite energy is preserved by concavity, and the characterization proves the assertion for $\mathcal E^1$. For $u,v\in\mathcal E$, their $P_\theta$ representatives equal $\phi$. Hence every mixed mass in the expansion of $\mu_{(1-t)u+tv}$ is $m$, by mixed envelope mass preservation. The total mass is $m$, proving the assertion for $\mathcal E$. Monotonicity of extended energy proves the last claim.
+\end{proof}
+
+\begin{lemma}\label{lem:relative-cross-energy-estimate}
+If $u,v,\gamma\in\mathcal E(X,\theta,\phi)$ and $\gamma\geq\max\{u,v\}$, then, allowing infinite values,
+\[
+ \int_X(\gamma-u)\mu_v
+       \leq2\int_X(\gamma-u)\mu_u
+                          +2\int_X(\gamma-v)\mu_v.
+\]
+Consequently for $u,v,w_1,\ldots,w_n\in\mathcal E^1(X,\theta,\phi)$,
+\[
+ \int_X|u-v|\,\langle\theta_{w_1}\wedge\cdots\wedge\theta_{w_n}\rangle<\infty.
+\]
+\end{lemma}
+\begin{proof}
+For $t\geq0$,
+\[
+ \{\gamma>u+2t\}\subset
+                     \{\gamma>v+t\}\cup\{v>u+t\}.
+\]
+Layer integration and the full-mass comparison on the second set give
+\[
+ \begin{split}
+ \int_X(\gamma-u)\mu_v
+  &\leq2\int_0^\infty\mu_v(\{\gamma>v+t\})\,\mathrm dt
+          +2\int_0^\infty\mu_u(\{v>u+t\})\,\mathrm dt\\
+  &\leq2\int_X(\gamma-v)\mu_v+2\int_X(\gamma-u)\mu_u.
+ \end{split}
+\]
+All weights are nonnegative, so Tonelli applies without an integrability assumption.
+
+For the second claim shift $u,v$ below $\phi$ and put $w=n^{-1}\sum_jw_j\in\mathcal E^1$. Positive multilinearity bounds the mixed measure by $n^n\mu_w$. Choose $C$ with $w\leq\phi+C$ and apply the first claim to $u,w,\phi+C$. Its right side is finite by self-integrability of $u,w$. Hence $\phi-u$ is integrable for the mixed measure. Apply the same argument to $v$ and use $|u-v|\leq(\phi-u)+(\phi-v)$ after the shifts; restoring constants adds only a finite multiple of $m$.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-finite-energy-cocycle}
+For $u,v\in\mathcal E^1(X,\theta,\phi)$, the cocycle formula \eqref{eq:bounded-type-energy-cocycle} and tangent bounds \eqref{eq:bounded-type-energy-tangent-bounds} remain valid. In particular \eqref{eq:relative-energy-bounded-type} computes extended energy throughout $\mathcal E^1$.
+\end{proposition}
+\begin{proof}
+Shift $u,v$ below $\phi$ and put $u_k=\max\{u,\phi-k\}$, $v_k=\max\{v,\phi-k\}$. Fix $0\leq j\leq n$ and write
+$\lambda_k=\langle\theta_{u_k}^j\wedge\theta_{v_k}^{n-j}\rangle$ and $\lambda=\langle\theta_u^j\wedge\theta_v^{n-j}\rangle$.
+On $A_k=\{u>\phi-k\}\cap\{v>\phi-k\}$ they agree and $u_k-v_k=u-v$. The preceding lemma makes $|u-v|$ integrable for $\lambda$, so its integral on $X\setminus A_k$ tends to zero. It remains to bound the truncated tail.
+
+For either $z=u,v$ and $D_k(z)=\{z\leq\phi-k\}$ we claim
+\begin{equation}\label{eq:finite-energy-mixed-truncation-tail}
+ k\lambda_k(D_k(z))\leq
+                         2^n k\mu_z(\{z\leq\phi-k/2\})\longrightarrow0.
+\end{equation}
+For $z=u$, put $q=(v_k+\phi-k)/2$. On $D_k(u)$,
+$u_k\leq q\leq\phi-k/2$. Positive multilinearity bounds
+$\lambda_k\leq2^{n-j}\langle\theta_{u_k}^j\wedge\theta_q^{n-j}\rangle$.
+The non-strict mixed full-mass comparison for $q,u_k$, with $\theta_{u_k}^j$ as the fixed factors, therefore gives
+\[
+ \lambda_k(D_k(u))
+   \leq2^{n-j}\mu_{u_k}(\{u_k\leq q\})
+   \leq2^{n-j}\mu_{u_k}(\{u\leq\phi-k/2\}).
+\]
+For $j=n$ the same bound follows directly, with no comparison factors. Total-mass equality and locality on $\{u>\phi-k/2\}$ identify the last mass with $\mu_u(\{u\leq\phi-k/2\})$. The argument with $u,v$ interchanged proves the other case. Finally
+$k\mu_z(\{z\leq\phi-k/2\})\leq2\int_{\{z\leq\phi-k/2\}}(\phi-z)\mu_z\to0$
+by self-integrability, proving \eqref{eq:finite-energy-mixed-truncation-tail}.
+
+Both $u_k-\phi$ and $v_k-\phi$ lie in $[-k,0]$. Thus $|u_k-v_k|\leq k$, and the tail bound proves
+\[
+ \int_X(u_k-v_k)\lambda_k\longrightarrow\int_X(u-v)\lambda.
+\]
+Pass to the limit in the bounded-type cocycle, using decreasing energy continuity. The same argument with $j=n$ and $j=0$ passes its tangent bounds. Restore the constants using equality of mixed masses. Taking $v=\phi$ gives the energy formula.
+\end{proof}
+
+\Needspace{23\baselineskip}
+\section{Continuity and rooftop stability}
+\label{sec:relative-energy-stability}
+The reference $\phi$ remains fixed. Increasing limits require control of the truncation error, while $L^1$ limits are naturally handled by decreasing upper envelopes. Both arguments will also be useful for the metric topology.
+
+\begin{lemma}\label{lem:ordered-relative-self-integral-estimate}
+If $u\leq v\leq\gamma$ belong to $\mathcal E(X,\theta,\phi)$, then, allowing infinite values,
+\[
+ \int_X(\gamma-v)\,\mu_v
+                 \leq2^{n+1}\int_X(\gamma-u)\,\mu_u.
+\]
+\end{lemma}
+\begin{proof}
+Put $q=(\gamma+v)/2$. This has relative full mass by convexity. For $t>0$, outside the common polar exceptional set,
+\[
+ \{\gamma>v+2t\}=\{q>v+t\}
+       \subseteq\{q>u+t\}\subseteq\{\gamma>u+t\}.
+\]
+Positive multilinearity gives $\mu_v\leq2^n\mu_q$. Apply relative comparison to $u$ and $q-t$ on the middle set, then integrate its mass bound over $t\in(0,\infty)$. The layer formula for the left side has the additional factor $2$. Tonelli's theorem proves the assertion without any preliminary integrability assumption.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-energy-increasing-continuity}
+Let $(u_i)_{i\in I}$ be an increasing net in $\mathcal E^1(X,\theta,\phi)$ with a common upper bound on $X$. Then its canonical envelope $u=(\sup_i u_i)^*$ belongs to $\mathcal E^1(X,\theta,\phi)$ and
+\[
+ E_\theta^\phi(u_i)\uparrow E_\theta^\phi(u).
+\]
+\end{proposition}
+\begin{proof}
+Model normalization, \cref{lem:model-normalized-supremum}, gives a common bound $u_i\leq\phi+C$. The same holds for $u$. It dominates any fixed member of the family, so monotonicity and the finite-energy characterization put it in $\mathcal E^1$.
+
+First consider an increasing sequence, and subtract a common constant so that $u_j\leq u\leq\phi$. If all functions lie between $\phi-C$ and $\phi$, with $C\geq1$, then
+$\mu_{u_j}\leq C^n\operatorname{Cap}_{\theta,\phi}$ as set functions, by the strip rescaling used earlier. The same holds for $\mu_u$. Capacity comparison gives uniform absolute continuity with respect to $\operatorname{Cap}_\omega$. Increasing continuity gives weak convergence of the measures. The bounded quasi-continuous differences $u-u_j$ tend to zero in capacity: use local extended-capacity convergence and remove an open set of arbitrarily small capacity containing the poles and making $\phi$ finite and continuous on the remaining compact set. There the common lower bound $\phi-C$ is finite and bounded, so all the differences are ordinary bounded differences. The weighted convergence lemma and the tangent bound yield
+\[
+ 0\leq E_\theta^\phi(u)-E_\theta^\phi(u_j)
+                  \leq\int_X(u-u_j)\,\mu_{u_j}\longrightarrow0.
+\]
+
+For the general sequence fix its first member $u_1$, and set $u_{j,k}=\max\{u_j,\phi-k\}$ and $u_k=\max\{u,\phi-k\}$. For fixed $k$ the preceding case gives $E_\theta^\phi(u_{j,k})\to E_\theta^\phi(u_k)$. The finite-energy tangent bound gives
+\[
+ 0\leq E_\theta^\phi(u_{j,k})-E_\theta^\phi(u_j)
+       \leq\int_k^\infty\mu_{u_j}\{u_j<\phi-t\}\,\mathrm dt.
+\]
+For $q_t=(u_j+\phi-t)/2$, the set on the right is contained in $\{u_1<q_t\}$. Multilinearity and relative comparison show
+\[
+ \mu_{u_j}\{u_j<\phi-t\}
+ \leq2^n\mu_{q_t}\{u_1<q_t\}
+ \leq2^n\mu_{u_1}\{u_1<q_t\}
+ \leq2^n\mu_{u_1}\{u_1<\phi-t/2\}.
+\]
+Consequently
+\begin{equation}\label{eq:relative-energy-uniform-truncation-error}
+ \begin{aligned}
+ 0&\leq E_\theta^\phi(u_{j,k})-E_\theta^\phi(u_j)\\
+  &\leq2^{n+1}\int_X(\phi-u_1-k/2)_+\,\mu_{u_1}\longrightarrow0
+ \end{aligned}
+\end{equation}
+uniformly in $j$. Self-integrability justifies the last limit. Let $j\to\infty$ and then $k\to\infty$, using canonical energy truncation, to obtain the sequence assertion.
+
+For a net, choose a countable subfamily with the same canonical upper envelope by \cref{thm:psh-upper-envelopes}. Directedness supplies increasing indices $i_k$ dominating its first $k$ indices and one fixed initial index. The selected sequence has canonical envelope $u$ and tends to it quasi-everywhere by \cref{cor:psh-pluripolar-discrepancy}. Its energies tend to $E_\theta^\phi(u)$. Every one of those energies is at most the supremum of the full net, while monotonicity bounds that supremum by $E_\theta^\phi(u)$. This proves equality; no countable cofinality is asserted.
+\end{proof}
+\index{Monge--Amp\`ere energy!increasing continuity}
+
+\begin{proposition}\label{prop:relative-energy-lone-upper-semicontinuity}
+The set $\{u\in\PSH(X,\theta):u\preceq\phi\}$ is closed in the $L^1$ topology of potentials, and $E_\theta^\phi$ is upper semicontinuous there, with values in $[-\infty,\infty)$. Thus if $u_j\to u$ in $L^1$, then
+\[
+ E_\theta^\phi(u)\geq\limsup_j E_\theta^\phi(u_j).
+\]
+\end{proposition}
+\begin{proof}
+Continuity of the supremum in \cref{prop:normalized-global-psh-compactness} and model normalization give a common bound $u_j\leq\phi+C$. Almost-everywhere subsequence convergence, followed by uniqueness of the canonical representative, gives $u\leq\phi+C$.
+
+Set $v_j=(\sup_{k\geq j}u_k)^*$. These are potentials with $v_j\leq\phi+C$, and they decrease to $u$. To check the last assertion directly, almost-everywhere subsequence convergence gives $u\leq v_j$. For a finite value $u(x)$ and $\varepsilon>0$, choose a neighborhood where $u<u(x)+\varepsilon$. The continuous-majorant version of Hartogs' lemma, after adding a smooth local background potential, bounds all sufficiently late $u_k$ by $u(x)+\varepsilon$ on a smaller neighborhood. Their regularized tail envelope obeys the same bound at $x$. At a pole use any finite upper bound in place of $u(x)+\varepsilon$. Thus $\inf_jv_j=u$ pointwise. Decreasing energy continuity now gives
+\[
+ \limsup_j E_\theta^\phi(u_j)
+       \leq\lim_jE_\theta^\phi(v_j)=E_\theta^\phi(u).
+\]
+Sequential upper semicontinuity is upper semicontinuity because $L^1$ is a metric topology.
+\end{proof}
+
+\begin{corollary}\label{cor:relative-energy-compact-sublevels}
+For $B\geq0$, the set
+\[
+ \{u\in\PSH(X,\theta):u\leq\phi,\quad E_\theta^\phi(u)\geq-B\}
+\]
+is compact in $L^1$ and lies in $\mathcal E^1(X,\theta,\phi)$.
+\end{corollary}
+\begin{proof}
+Model normalization gives $u\leq\phi+\sup_Xu$, hence
+$E_\theta^\phi(u)\leq m\sup_Xu$. Every member therefore satisfies $-B/m\leq\sup_Xu\leq0$. Global compactness supplies subsequential potential limits. The order bound persists in $L^1$, and upper semicontinuity preserves the lower energy bound. The finite-energy characterization gives membership in $\mathcal E^1$. Closedness inside the compact supremum interval proves compactness.
+\end{proof}
+\index{finite energy!compact energy sublevels}
+
+\Needspace{19\baselineskip}
+\begin{lemma}\label{lem:relative-self-integral-lone-stability}
+Suppose $\gamma,u_j\in\mathcal E(X,\theta,\phi)$, $u_j\leq\gamma$, and $u_j\to u\in\PSH(X,\theta)$ in $L^1$. If
+\[
+ \int_X(\gamma-u_j)\,\mu_{u_j}\leq A
+\]
+for all $j$, then $u\in\mathcal E(X,\theta,\phi)$ and
+\[
+ \int_X(\gamma-u)\,\mu_u\leq(n+1)A.
+\]
+The reference $\gamma$ need not have finite energy relative to $\phi$.
+\end{lemma}
+\begin{proof}
+The order bound passes to $u$. On potentials $w\sim\gamma$ define the auxiliary bounded-type energy
+\[
+ F_\gamma(w)=\frac1{n+1}\sum_{a=0}^n
+       \int_X(w-\gamma)
+           \left\langle\theta_w^a\wedge\theta_\gamma^{n-a}\right\rangle.
+\]
+The proofs of \cref{prop:bounded-type-energy-variation-and-cocycle,prop:bounded-type-energy-concavity} apply to this formula: their polynomial calculation uses only integration by parts and equality of bounded-type mixed masses, not the model property of the reference. In particular $F_\gamma(\gamma)=0$, and
+\[
+ F_\gamma(w)\geq-\int_X(\gamma-w)\,\mu_w
+                       \qquad(w\leq\gamma).
+\]
+For potentials between $\gamma-k$ and $\gamma$, this energy is $L^1$ upper semicontinuous. Indeed regularized tail suprema decrease to the $L^1$ limit by the Hartogs argument above, stay in the same interval, and monotonicity bounds the original energies by their energies. For a decreasing sequence $z_l\downarrow z$ in that interval, the tangent bound gives
+\[
+ 0\leq F_\gamma(z_l)-F_\gamma(z)
+                       \leq\int_X(z_l-z)\,\mu_z\longrightarrow0
+\]
+by dominated convergence. This proves the asserted upper semicontinuity on the interval.
+
+Put $u_{j,k}=\max\{u_j,\gamma-k\}$ and $u_k=\max\{u,\gamma-k\}$. The former have mass $m$ by bounded-type invariance. Since $u_j$ also has mass $m$, locality on $\{u_j>\gamma-k\}$ and subtraction from the equal total masses give
+\[
+ \int_X(\gamma-u_{j,k})\,\mu_{u_{j,k}}
+       =\int_X\min\{\gamma-u_j,k\}\,\mu_{u_j}\leq A.
+\]
+They tend in $L^1$ to $u_k$, since taking a maximum with the fixed almost-everywhere finite $\gamma-k$ is Lipschitz for $L^1$ differences. Thus $F_\gamma(u_k)\geq-A$. All terms of its definition are nonpositive, so
+\[
+ \int_X(\gamma-u_k)\,\mu_{u_k}\leq(n+1)A.
+\]
+On the discarded set $\{u\leq\gamma-k\}$ the weight is $k$. Locality on its complement therefore gives
+\[
+ 0\leq m-\mu_u\{u>\gamma-k\}\leq(n+1)A/k.
+\]
+Let $k\to\infty$. All poles have zero non-pluripolar mass, so $\mu_u(X)=m$. The same locality and monotone convergence pass the integral bound to $\int_X(\gamma-u)\,\mu_u$. Finally $u\leq\gamma\preceq\phi$, which proves its relative full-mass membership.
+\end{proof}
+
+\begin{proposition}\label{prop:relative-energy-family-supremum}
+A nonempty family in $\mathcal E(X,\theta,\phi)$, $\mathcal E^1(X,\theta,\phi)$ or $\mathcal E^\infty(X,\theta,\phi)$ with a common upper bound has its canonical supremum in the same class.
+\end{proposition}
+\begin{proof}
+Model normalization bounds every member by $\phi+C$ with a common $C$. The canonical supremum obeys that bound and dominates a chosen member. Mass monotonicity proves the full-mass assertion; energy monotonicity and the characterization prove the finite-energy assertion. In the bounded-type case the chosen member supplies a lower bound $\phi-C'$, proving the last assertion.
+\end{proof}
+
+\Needspace{14\baselineskip}
+\begin{proposition}\label{prop:relative-finite-energy-rooftop-closure}
+For $u,v\in\mathcal E^1(X,\theta,\phi)$, their rooftop $w=P_\theta(u,v)$ belongs to $\mathcal E^1(X,\theta,\phi)$. If $u,v\leq\phi$, then
+\[
+ \int_X(\phi-w)\,\mu_w
+     \leq\int_X(\phi-u)\,\mu_u+\int_X(\phi-v)\,\mu_v.
+\]
+\end{proposition}
+\begin{proof}
+\Cref{prop:positive-mass-rooftop-existence,thm:rooftop-mass-diamond} prove that $w$ exists and has mass $m$: $\max\{u,v\}$ has mass $m$, so the existence margin is $2m>m$, and the diamond and mass monotonicity give $M(w)=m$. Subtract a common constant so that $u,v\leq\phi$. The contact inequality gives
+\[
+ \mu_w\leq\mathbf1_{\{w=u\}}\mu_u
+                      +\mathbf1_{\{w=v\}}\mu_v.
+\]
+Multiply by the nonnegative weight $\phi-w$. On the first contact set it equals $\phi-u$, and on the second it equals $\phi-v$. Approximation by bounded weights proves the displayed bound; polar sets have zero mass. Both right-hand terms are finite. The energy characterization proves $w\in\mathcal E^1$, and constant-shift invariance restores the original potentials.
+\end{proof}
+\index{rooftop envelope!finite-energy closure}
+
+\begin{corollary}\label{cor:mutual-full-mass-singularity-envelopes}
+For $u,v\in\mathcal E(X,\theta,\phi)$ one has $P_\theta[u](v)=v$.
+\end{corollary}
+\begin{proof}
+Their rooftop $w=P_\theta(u,v)$ has relative full mass by the preceding mass argument. Since $w\leq v$ and $M(w)=M(v)>0$, \cref{prop:relative-envelope-full-mass-characterization} gives $P_\theta[w](v)=v$. Every competitor of singularity type at most $w$ has type at most $u$, so
+$v=P_\theta[w](v)\leq P_\theta[u](v)\leq v$.
+\end{proof}
+
+\Needspace{16\baselineskip}
+\begin{proposition}\label{prop:finite-energy-affine-first-variation}
+For $u,v\in\mathcal E^1(X,\theta,\phi)$ and $u_t=(1-t)u+tv$, the energy is continuously differentiable on $[0,1]$, with one-sided derivatives at the endpoints, and
+\[
+ \frac{\mathrm d}{\mathrm dt}E_\theta^\phi(u_t)
+                                  =\int_X(v-u)\,\mu_{u_t}.
+\]
+The derivative is a polynomial in $t$.
+\end{proposition}
+\begin{proof}
+Cross-integrability makes every coefficient
+$\int_X(v-u)\langle\theta_v^a\wedge\theta_u^{n-a}\rangle$ finite. Multilinearity makes the asserted derivative a polynomial. Apply the finite-energy cocycle to $u_{t+s},u_t$, divide by $s\ne0$, and use $u_{t+s}-u_t=s(v-u)$. Each mixed integral is a polynomial in $s$ with those finite coefficients. At $s=0$ each of the $n+1$ terms equals $\int_X(v-u)\mu_{u_t}$. This proves both derivatives and their continuity, including the endpoints.
+\end{proof}
+
+\Needspace{15\baselineskip}
+\begin{lemma}\label{lem:relative-energy-tangent-and-order-bounds}
+For finite-energy $u,v$,
+\[
+ \int_X(v-u)\,\mu_v\leq E(v)-E(u)
+                                  \leq\int_X(v-u)\,\mu_u.
+\]
+If $u\leq v$, then additionally
+\[
+ \frac1{n+1}\int_X(v-u)\,\mu_u\leq E(v)-E(u).
+\]
+\end{lemma}
+\begin{proof}
+Concavity extends from bounded type to finite energy by taking decreasing endpoint truncations: each affine combination decreases to the corresponding finite-energy combination. Decreasing energy continuity passes the concavity inequalities. The finite-energy first-variation formula gives the derivatives at both endpoints, so the two supporting-line bounds give the first display. For the last inequality all terms of the finite-energy cocycle are nonnegative; retain its term with measure $\mu_u$.
+\end{proof}
+
+\begin{lemma}\label{lem:rooftop-affine-energy-derivative}
+For $u,v\in\mathcal E^\infty(X,\theta,\phi)$ set $q_t=(1-t)u+tv$ and $\eta_t=P_\theta(q_t,v)$. Then
+\[
+ \frac{\mathrm d}{\mathrm dt}E_\theta^\phi(\eta_t)
+                   =\int_X(v-u)_+\,\mu_{\eta_t},\qquad0\leq t\leq1,
+\]
+with one-sided endpoint derivatives. The energy is continuously differentiable.
+\end{lemma}
+\begin{proof}
+The obstacle $f_t=\min\{q_t,v\}$ satisfies
+$f_{t+s}-f_t=s(v-u)_+$ whenever both parameters lie in $[0,1]$, outside the common pole set. The obstacle calculus implies
+$\|\eta_{t+s}-\eta_t\|_\infty\leq |s|\|u-v\|_\infty$ in the sense of bounded quasi-psh differences. All rooftops stay in one bounded-type interval about $\phi$.
+
+For $s>0$, tangent bounds and contact concentration give
+\[
+ \begin{aligned}
+ s\int_X(v-u)_+\,\mu_{\eta_{t+s}}
+ &\leq E_\theta^\phi(\eta_{t+s})-E_\theta^\phi(\eta_t)\\
+ &\leq s\int_X(v-u)_+\,\mu_{\eta_t}.
+ \end{aligned}
+\]
+For example, on the lower-bound contact set $\eta_{t+s}=f_{t+s}$ and $\eta_t\leq f_t$; on the upper-bound contact set $\eta_t=f_t$ and $\eta_{t+s}\leq f_{t+s}$. Uniform difference convergence gives capacity convergence and hence weak measure convergence by the relative full-mass theorem. Strip rescaling and capacity comparison give uniform absolute continuity for these measures. The fixed bounded quasi-continuous weight $(v-u)_+$ therefore passes to the limit by the weighted convergence lemma. Divide the display by $s$ and let $s\downarrow0$. Interchanging $t$ and $t+s$ proves the left derivative. The same weighted convergence proves continuity of the derivative.
+\end{proof}
+
+\Needspace{16\baselineskip}
+\begin{theorem}\label{thm:relative-energy-diamond}
+For $u,v\in\mathcal E^1(X,\theta,\phi)$,
+\begin{equation}\label{eq:relative-energy-diamond}
+ E_\theta^\phi(\max\{u,v\})+E_\theta^\phi(P_\theta(u,v))
+                      \geq E_\theta^\phi(u)+E_\theta^\phi(v).
+\end{equation}
+\end{theorem}
+\begin{proof}
+First let $u,v$ have bounded difference from $\phi$, and use the preceding $q_t,\eta_t$. Put $h=(v-u)_+$. For $t<1$, on $\{u<v\}$ one has $q_t<v$, so $\eta_t\leq q_t<v$. The rooftop contact inequality therefore gives
+\[
+ \int_Xh\,\mu_{\eta_t}
+                   \leq\int_{\{u<v\}}(v-u)\,\mu_{q_t}.
+\]
+On the same plurifine open set, $(1-t)u+t\max\{u,v\}=q_t$. Affine variation and locality give
+\[
+ \begin{aligned}
+ E_\theta^\phi(\max\{u,v\})-E_\theta^\phi(u)
+  &=\int_0^1\int_{\{u<v\}}(v-u)\,\mu_{q_t}\,\mathrm dt\\
+  &\geq E_\theta^\phi(v)-E_\theta^\phi(P_\theta(u,v)).
+ \end{aligned}
+\]
+The possible endpoint $t=1$ does not affect the integral. This is the bounded-type inequality.
+
+For finite-energy $u,v$, subtract a common constant to put them below $\phi$ and truncate both at $\phi-k$. Their maxima decrease to $\max\{u,v\}$, and their rooftops decrease to $P_\theta(u,v)$ by decreasing obstacle calculus. All four limits have finite energy by upper closure and rooftop closure. Decreasing energy continuity passes the bounded-type inequality to the limit. Restoring the common constant adds the same $2mC$ to both sides.
+\end{proof}
+\index{Monge--Amp\`ere energy!diamond inequality}
+
+\begin{example}\label{ex:lone-convergence-energy-drop}
+Energy need not be continuous for $L^1$ convergence, even for smooth potentials on $\mathbb P^1$. Let $\omega=\ddc\log(1+|z|^2)$, of mass one, and take $a\downarrow0$, $\varepsilon_a=\exp(-a^{-2})$ and
+\[
+ u_a(z)=a\log\frac{|z|^2+\varepsilon_a}{1+|z|^2}.
+\]
+These functions extend smoothly across infinity, and
+$\omega+\ddc u_a=(1-a)\omega+a\ddc\log(|z|^2+\varepsilon_a)>0$ for $0<a<1$. They tend to zero in $L^1$: they lie between zero and the integrable function $a\log(|z|^2/(1+|z|^2))$.
+
+Write $r=\log|z|^2$ and $F(r)=\log(e^r+\varepsilon)-\log(1+e^r)$. Radial integration with the normalization of \cref{thm:euclidean-jensen-lelong}, followed by Stokes and integration by parts in $r$, gives
+\[
+ \int_X\mathrm du_a\wedge\mathrm d^{\mathrm c}u_a
+             =a^2\int_{-\infty}^\infty F'(r)^2\,\mathrm dr
+             =a^2(-\log\varepsilon_a+O(1))\longrightarrow1.
+\]
+Here $0\leq F'\leq1$. On $[\log\varepsilon,0]$, its difference from $1$ is at most $\varepsilon e^{-r}+e^r$, whose integral is at most $2$. On the left tail $F'\leq e^r/\varepsilon$, and on the right tail $F'\leq e^{-r}$; the squared tail integrals are uniformly bounded. These estimates justify the uniform $O(1)$. The curve energy formula therefore gives $E_\omega(u_a)\to-1/2$, whereas $E_\omega(0)=0$.
+\end{example}
+
+\section{Variational Monge--Amp\`ere equations}
+\label{sec:relative-variational-equations}
+Keep the big background $\theta$, the model reference $\phi$ and its positive mass $m$. The energy variation extends to continuous perturbations after projection onto psh potentials. This converts a maximizer into a solution. Bounded densities first give compactness for the linear term. Exponential integrals then supply compactness for every non-pluripolar measure, and the vanishing-parameter limit gives prescribed-measure existence.
+
+\begin{definition}\label{def:nonpluripolar-radon-measure}
+A finite positive Radon measure $\nu$ is \emph{non-pluripolar} if it gives every pluripolar Borel set mass zero. Integrals against it use its completion, so subsets of pluripolar sets are also null.
+\end{definition}
+\index{measure!non-pluripolar}
+
+\begin{proposition}\label{prop:projected-energy-first-variation}
+For $u\in\mathcal E^1(X,\theta,\phi)$ and $f\in C(X,\mathbb R)$, put $u_t=P_\theta(u+tf)$, $t\in\mathbb R$. Then $u_t\sim u$, each $u_t$ has finite energy, and
+\[
+ \frac{\mathrm d}{\mathrm dt}E(u_t)=\int_Xf\,\mu_{u_t}.
+\]
+The derivative is continuous on $\mathbb R$.
+\end{proposition}
+\begin{proof}
+With $B=\|f\|_\infty$, the competitor $u-|t|B$ and the obstacle give
+$u-|t|B\leq u_t\leq u+|t|B$.
+The finite-energy characterization gives the asserted membership. Obstacle calculus gives
+$u_t-|s|B\leq u_{t+s}\leq u_t+|s|B$.
+Hence $u_{t+s}\to u_t$ in extended capacity as $s\to0$. These potentials have the same relative full mass, so \cref{cor:relative-full-mass-capacity-convergence} gives weak convergence of their measures. In particular $\int f\,\mu_{u_{t+s}}\to\int f\,\mu_{u_t}$.
+
+The obstacle $u+tf$ is quasi-continuous and bounded above. \Cref{thm:quasicontinuous-obstacle-contact} makes $\mu_{u_t}$ carried by its finite contact set. For $s>0$, \cref{lem:relative-energy-tangent-and-order-bounds} and the two contact sets give
+\[
+ s\int_Xf\,\mu_{u_{t+s}}
+ \leq E(u_{t+s})-E(u_t)
+ \leq s\int_Xf\,\mu_{u_t}.
+\]
+Indeed on the first contact set $u_{t+s}=u+(t+s)f$ while $u_t\leq u+tf$, giving the lower bound; on the second $u_t=u+tf$ while $u_{t+s}\leq u+(t+s)f$, giving the upper bound. The bounded differences are integrable and the poles have zero mass. Dividing by $s$ and taking its limit proves the right derivative. Applying the same inequalities to $t+s,t$ for $s<0$ proves the left derivative. The weak convergence already proved makes the derivative continuous.
+\end{proof}
+\index{Monge--Amp\`ere energy!projected first variation}
+
+\begin{theorem}\label{thm:relative-variational-characterization}
+Let $\nu$ be non-pluripolar with $\nu(X)=m$, and suppose
+$\mathcal D_\nu=\mathcal E^1(X,\theta,\phi)\cap L^1(\nu)$ is nonempty. Then $\phi\in L^1(\nu)$, and for
+\[
+ F_\nu(v)=E(v)-\int_X(v-\phi)\,\mathrm d\nu,
+                       \qquad v\in\mathcal D_\nu,
+\]
+a potential $u\in\mathcal D_\nu$ maximizes $F_\nu$ if and only if $\mu_u=\nu$.
+\end{theorem}
+\begin{proof}
+For $v\in\mathcal D_\nu$ one has $v\leq\phi+C$ and both potentials are bounded above. Thus the negative part of $\phi$ is bounded by that of $v$ plus a constant; its positive part is bounded. This proves $\phi\in L^1(\nu)$. If $\mu_u=\nu$, the tangent inequality gives
+\[
+ E(v)-E(u)\leq\int_X(v-u)\,\mathrm d\nu,
+\]
+so $F_\nu(v)\leq F_\nu(u)$.
+
+Conversely suppose $u$ is a maximizer. For continuous real $f$, the potentials $u_t=P_\theta(u+tf)$ have bounded difference from $u$, hence lie in $\mathcal D_\nu$. Since $u_t\leq u+tf$,
+\[
+ E(u_t)-E(u)-t\int_Xf\,\mathrm d\nu
+       \leq F_\nu(u_t)-F_\nu(u)\leq0.
+\]
+The expression on the left is zero at $t=0$ and differentiable there by the preceding proposition. Its derivative is therefore zero. Thus $\int f\,\mu_u=\int f\,\mathrm d\nu$ for every continuous real $f$. Uniqueness of Radon measures proves $\mu_u=\nu$.
+\end{proof}
+
+\Needspace{14\baselineskip}
+\begin{theorem}\label{thm:bounded-density-relative-prescribed-measure}
+Let $\mathrm dV$ be a smooth positive volume form. If $0\leq g\in L^\infty(\mathrm dV)$ and $\int_Xg\,\mathrm dV=m$, there is
+$u\in\mathcal E^1(X,\theta,\phi)$ with
+\[
+ \mu_u=g\,\mathrm dV,\qquad \sup_Xu=0.
+\]
+It maximizes $F_{g\,\mathrm dV}$.
+\end{theorem}
+\begin{proof}
+Every psh potential is integrable against $g\,\mathrm dV$, since its density is bounded. The functional is invariant under adding constants, by the energy shift formula and its measure's mass $m$. Normalize all competitors by $\sup_Xv=0$. Model normalization gives $v\leq\phi$ and hence $E(v)\leq0$. Global normalized compactness gives a common bound on $\int_X|v|\,\mathrm dV$. Since $\phi\in L^1(\mathrm dV)$,
+\[
+ 0\leq-\int_X(v-\phi)g\,\mathrm dV\leq C
+\]
+with $C$ independent of $v$. Consequently the supremum of $F$ lies in $[0,C]$, its value at $\phi$ being zero. A normalized maximizing sequence with $F\geq-1$ has $E\geq-C-1$. Compact energy sublevels give a convergent subsequence in $L^1$, with a normalized finite-energy limit $u$. The linear integral is $L^1$-continuous because $g$ is bounded; energy is upper semicontinuous. The limit therefore maximizes $F$. The preceding theorem gives the equation.
+\end{proof}
+\index{Monge--Amp\`ere equation!bounded density}
+
+\begin{proposition}\label{prop:relative-exponential-equation-domination}
+Let $\lambda>0$ and let $\nu$ be a finite positive non-pluripolar measure. If $u,v\in\mathcal E(X,\theta,\phi)$ satisfy
+\[
+ \mu_u=\mathrm e^{\lambda u}\nu,
+       \qquad \mu_v\geq\mathrm e^{\lambda v}\nu,
+\]
+then $u\geq v$. In particular a solution in this relative full-mass class is unique.
+\end{proposition}
+\begin{proof}
+On the comparison set $A=\{u<v\}$, \cref{prop:relative-mixed-comparison} gives
+\[
+ \int_A\mathrm e^{\lambda v}\,\mathrm d\nu
+   \leq\mu_v(A)\leq\mu_u(A)
+   =\int_A\mathrm e^{\lambda u}\,\mathrm d\nu.
+\]
+The potentials are finite $\nu$-almost everywhere and the exponential is strictly increasing. The nonnegative difference of the first and last integrands has zero integral, so $\nu(A)=0$. Hence $\mu_u(A)=0$, and \cref{thm:relative-full-mass-domination} gives $u\geq v$ everywhere. Applying the assertion in both directions proves uniqueness for two solutions.
+\end{proof}
+
+\begin{theorem}\label{thm:bounded-density-relative-exponential-equation}
+Let $\mathrm dV$ be a smooth positive volume form, let $0\leq g\in L^\infty(\mathrm dV)$ with $b=\int_Xg\,\mathrm dV>0$, and let $\lambda>0$. There is a unique
+$u\in\mathcal E^1(X,\theta,\phi)$ satisfying
+\[
+ \mu_u=\mathrm e^{\lambda u}g\,\mathrm dV.
+\]
+It maximizes
+$G(v)=E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}g\,\mathrm dV$
+on the relative finite-energy class. Its constant is determined by the equation.
+\end{theorem}
+\begin{proof}
+Put $\nu=g\,\mathrm dV$. For a competitor $v$ set $c=\sup_Xv$ and $w=v-c$. Model normalization gives $w\leq\phi$ and $E(w)\leq0$. Normalized psh compactness and bounded density give $\int_Xw\,\mathrm d\nu\geq-C$. Jensen's inequality for the probability measure $b^{-1}\nu$ implies
+\[
+ \int_X\mathrm e^{\lambda w}\,\mathrm d\nu
+   \geq b\exp\left(\frac\lambda b\int_Xw\,\mathrm d\nu\right)
+   \geq a:=b\mathrm e^{-\lambda C/b}>0.
+\]
+The energy shift formula now gives
+\[
+ G(v)\leq mc-\lambda^{-1}a\mathrm e^{\lambda c}.
+\]
+This upper bound tends to $-\infty$ at both ends of the real line. Since $G(\phi)$ is finite, a maximizing sequence with $G(v_j)\geq G(\phi)-1$ has bounded $c_j$. Also $E(v_j)\geq G(v_j)$, so $E(w_j)=E(v_j)-mc_j$ has a uniform lower bound. Compact energy sublevels and a subsequence with $c_j$ convergent give an $L^1$ limit $u$ of finite energy. Energy is upper semicontinuous. On the common upper range of the $v_j,u$, the exponential is Lipschitz; bounded density therefore makes its integral $L^1$-continuous. Thus $u$ maximizes $G$.
+
+For continuous real $f$ put $u_t=P_\theta(u+tf)$. The obstacle bound and maximality give
+\[
+ E(u_t)-E(u)-\lambda^{-1}
+      \int_X\left(\mathrm e^{\lambda(u+tf)}-\mathrm e^{\lambda u}\right)
+                         \,\mathrm d\nu\leq0.
+\]
+The left side is zero at $0$. Projected first variation differentiates its energy term. The integrand's derivative is dominated for $|t|\leq1$ by a constant times $\|f\|_\infty\mathrm e^{\lambda\sup_Xu}\mathrm e^{\lambda\|f\|_\infty}$, which is integrable against finite $\nu$. Differentiating at zero gives
+$\int_Xf\,\mu_u=\int_Xf\mathrm e^{\lambda u}\,\mathrm d\nu$.
+Radon uniqueness proves the equation. The preceding proposition gives uniqueness even in the full relative mass class.
+\end{proof}
+\index{Monge--Amp\`ere equation!positive exponential}
+
+\begin{lemma}\label{lem:psh-lone-quasieverywhere-limsup}
+If $q_j\to q$ in volume $L^1$ for a fixed smooth closed real $(1,1)$ background, then
+$\limsup_jq_j=q$ quasi-everywhere.
+\end{lemma}
+\begin{proof}
+The sequence has a common upper bound by Hartogs' lemma. Its tail envelopes $a_j=(\sup_{k\geq j}q_k)^*$ decrease to $q$. Indeed an almost-everywhere convergent subsequence gives $a_j\geq q$; local Hartogs bounds on neighborhoods where the upper semicontinuous limit is below $q(x)+\varepsilon$ give $\inf_ja_j(x)\leq q(x)+\varepsilon$. At a pole use every finite negative upper bound. These inequalities prove the pointwise limit. For each $j$, \cref{cor:psh-pluripolar-discrepancy}, after adding local smooth background potentials, gives $a_j=\sup_{k\geq j}q_k$ outside a pluripolar set. Their countable union is pluripolar, and outside it the decreasing limit is exactly $\limsup_jq_j$.
+\end{proof}
+
+\begin{lemma}\label{lem:bounded-psh-nonpluripolar-measure-continuity}
+Let $\nu$ be a finite non-pluripolar measure. Suppose $q_j,q$ have one fixed smooth psh background, $|q_j|,|q|\leq B$, and $q_j\to q$ in volume $L^1$. Then $q_j\to q$ in $L^1(\nu)$.
+\end{lemma}
+\begin{proof}
+The sequence is bounded in the real Hilbert space $L^2(\nu)$. By \cref{prop:hilbert-weak-sequences}, every subsequence has a further weakly convergent subsequence, say with limit $h$. This limit lies in the norm closure of each convex tail. To see this, if its distance to that closed convex tail were positive, let $p$ be its closest point. Minimizing along every segment from $p$ gives
+$\langle h-p,z-p\rangle\leq0$ for every point $z$ of the tail. Weak convergence with $z=q_j$ would give $\|h-p\|^2\leq0$, a contradiction. Existence of $p$ is \cref{prop:hilbert-projection-representation}.
+
+Choose finite convex combinations $r_l$ of terms of that subsequence beyond index $l$ with $\|r_l-h\|_{L^2(\nu)}\to0$. They are potentials in the same background, remain bounded by $B$, and tend to $q$ in volume $L^1$. A further subsequence tends to $h$ $\nu$-almost everywhere. The preceding lemma makes its pointwise upper limit equal to $q$ quasi-everywhere; non-pluripolarity gives $h=q$ $\nu$-almost everywhere. Thus every weak cluster limit is $q$, and the full sequence converges weakly to $q$ in $L^2(\nu)$. In particular its integrals converge.
+
+Also $\limsup q_j=q$ $\nu$-almost everywhere. Hence $(q_j-q)_+\to0$ almost everywhere and in integral by bounded convergence. Since
+$\int(q-q_j)_+=\int(q_j-q)_+-\int(q_j-q)$,
+the negative part tends to zero in integral as well. This proves the asserted $L^1(\nu)$ convergence.
+\end{proof}
+
+\begin{corollary}\label{cor:exponential-psh-measure-continuity}
+For $q_j\to q$ in volume $L^1$ in a fixed smooth psh background, every $\lambda>0$ and every finite non-pluripolar $\nu$ satisfy
+\[
+ \mathrm e^{\lambda q_j}\longrightarrow\mathrm e^{\lambda q}
+                                  \quad\text{in }L^1(\nu).
+\]
+\end{corollary}
+\begin{proof}
+Hartogs' lemma gives $q_j,q\leq C$. The exponentials take values in $[0,\mathrm e^{\lambda C}]$ and have a common smooth K\"ahler lower background. Here is the curvature check. On a chart with local background potential $h$, regularize $q_j+h$ by decreasing radial convolution and subtract $h$. The resulting smooth functions tend to $q_j$, have upper bound $C+1$ on a smaller chart, and their Hessians are bounded below by $-C_0\omega$, with $C_0$ fixed by the smooth background and chart. The chain rule gives
+\[
+ \ddc\mathrm e^{\lambda q_{j,\delta}}
+   =\lambda\mathrm e^{\lambda q_{j,\delta}}\ddc q_{j,\delta}
+      +\lambda^2\mathrm e^{\lambda q_{j,\delta}}
+             \mathrm dq_{j,\delta}\wedge\mathrm d^{\mathrm c}q_{j,\delta}
+   \geq-\lambda C_0\mathrm e^{\lambda(C+1)}\omega.
+\]
+A finite chart cover gives one constant. Decreasing local passage shows that the displayed pointwise exponentials are potentials for this common lower background, also with value zero at poles. The exponential is Lipschitz on $(-\infty,C]$, so they converge in volume $L^1$. Apply the preceding bounded-potential lemma.
+\end{proof}
+
+\begin{theorem}\label{thm:nonpluripolar-relative-exponential-equation}
+For every finite positive non-pluripolar measure $\nu$ with $\nu(X)>0$ and every $\lambda>0$, there is a unique
+$u\in\mathcal E(X,\theta,\phi)$ satisfying
+\[
+ \mu_u=\mathrm e^{\lambda u}\nu.
+\]
+This solution belongs to $\mathcal E^1(X,\theta,\phi)$ and maximizes
+$E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}\,\mathrm d\nu$
+on the relative finite-energy class.
+\end{theorem}
+\begin{proof}
+The set
+$K=\{w\in\PSH(X,\theta):w\leq\phi,\ \sup_Xw=0\}$
+is compact in volume $L^1$: \cref{prop:normalized-global-psh-compactness}, continuity of the supremum and closedness of the order bound give this assertion. It is nonempty because it contains $\phi$. The preceding corollary makes $w\mapsto\int\mathrm e^{\lambda w}\,\mathrm d\nu$ continuous on $K$. Its value is positive at every member, because all psh poles are $\nu$-null and $\nu(X)>0$. Compactness gives a positive minimum $a$.
+
+For any finite-energy $v$, write $v=w+c$ with $c=\sup_Xv$ and $w\in K$. Energy normalization and the minimum give
+\[
+ E(v)-\lambda^{-1}\int_X\mathrm e^{\lambda v}\,\mathrm d\nu
+                       \leq mc-\lambda^{-1}a\mathrm e^{\lambda c}.
+\]
+Thus a maximizing sequence has bounded constants and a uniform lower energy bound, exactly as in the bounded-density proof. \Cref{cor:relative-energy-compact-sublevels} gives a finite-energy $L^1$ limit. Energy is upper semicontinuous, and the exponential integral is continuous by the corollary. The limit is a maximizer. Projected first variation and dominated differentiation against finite $\nu$, as in \cref{thm:bounded-density-relative-exponential-equation}, give its equation. \Cref{prop:relative-exponential-equation-domination} proves uniqueness in the entire relative full-mass class.
+\end{proof}
+\index{Monge--Amp\`ere equation!non-pluripolar exponential measure}
+
+\begin{lemma}\label{lem:nonpluripolar-measure-lower-bound-lone-limit}
+Suppose $q_j\to q$ in volume $L^1$ in the big background $\theta$. Let $\nu$ be finite and non-pluripolar, and suppose
+$\mu_{q_j}\geq f_j\nu$ with measurable $f_j\geq0$ and $f_j\to f$ $\nu$-almost everywhere. Then $\mu_q\geq f\nu$.
+\end{lemma}
+\begin{proof}
+Put $g_j=\inf_{k\geq j}f_k$, so $g_j\uparrow f$ almost everywhere. A finite maximum of the potentials $q_k$, $k\geq j$, has measure at least $g_j\nu$. For two terms this follows from \cref{lem:ordered-potential-contact-measure} on the disjoint sets where the first is at least the second and where the second is larger; the common poles are $\nu$-null. Induction proves the finite case. \Cref{cor:nonpluripolar-increasing-continuity} then gives
+\[
+ \mu_{a_j}\geq g_j\nu,\qquad
+              a_j=(\sup_{k\geq j}q_k)^*.
+\]
+The tail envelopes decrease to $q$ by the first lemma.
+
+Fix $C>0$ and $j_0$. The truncations
+$a_j^C=\max\{a_j,V_\theta-C\}$ have uniformly bounded difference from $V_\theta$: their common upper bound follows from Hartogs' lemma and minimality. They decrease to $q^C=\max\{q,V_\theta-C\}$, with full-mass limit of bounded minimal type. \Cref{cor:relative-full-mass-capacity-convergence} therefore gives weak convergence of their measures. On the fixed Borel set $A_C=\{q>V_\theta-C\}$, locality gives
+$\mu_{a_j^C}\geq\mathbf1_{A_C}g_{j_0}\nu$ for $j\geq j_0$. This is a fixed finite lower measure, so weak passage preserves the inequality. Restrict to $A_C$ and use locality again to obtain
+$\mu_q\geq\mathbf1_{A_C}g_{j_0}\nu$.
+Let $j_0\to\infty$ and $C\to\infty$. The sets $A_C$ exhaust all points where $q,V_\theta$ are finite, hence a set of full $\nu$ measure. Monotone convergence proves the assertion.
+\end{proof}
+
+\Needspace{15\baselineskip}
+\begin{theorem}\label{thm:nonpluripolar-relative-prescribed-measure-existence}
+Every finite positive non-pluripolar $\nu$ with $\nu(X)=m$ admits a normalized solution
+\[
+ u\in\mathcal E(X,\theta,\phi),\qquad
+                \mu_u=\nu,\quad\sup_Xu=0.
+\]
+\end{theorem}
+\begin{proof}
+For $\lambda_j\downarrow0$, solve the preceding exponential equation and write its solution as $u_j=w_j+c_j$, where $\sup_Xw_j=0$. Then $w_j\in K$, the compact normalized set in that proof. On $K$, the continuous functions
+\[
+ H_j(w)=\int_X\mathrm e^{\lambda_jw}\,\mathrm d\nu
+\]
+increase pointwise to the constant $m$, since $w\leq0$ and its poles are $\nu$-null. The convergence is uniform. Indeed, for any $\varepsilon>0$ the compact sets $\{w\in K:m-H_j(w)\geq\varepsilon\}$ decrease with empty intersection; the finite-intersection property makes them eventually empty.
+
+Comparing total masses in the equation gives
+\[
+ \mathrm e^{\lambda_jc_j}=\frac m{H_j(w_j)}\longrightarrow1.
+\]
+Also $\int_X|1-\mathrm e^{\lambda_jw_j}|\,\mathrm d\nu=m-H_j(w_j)\to0$. Hence
+$r_j=\mathrm e^{\lambda_ju_j}\to1$ in $L^1(\nu)$, and $\mu_{w_j}=r_j\nu$. Choose a subsequence with $r_j\to1$ almost everywhere and, by compactness, a further subsequence with $w_j\to u$ in volume $L^1$. Its limit remains in $K$. The lower-bound lemma gives $\mu_u\geq\nu$. Since $u\leq\phi$, mass monotonicity gives $\mu_u(X)\leq m=\nu(X)$. Thus the measures agree and $u$ has relative full mass. Its membership in $K$ supplies the normalization.
+\end{proof}
+\index{Monge--Amp\`ere equation!non-pluripolar prescribed measure}
+
+\input{chapters/inputs/q11-prescribed-measure-uniqueness}
+
+\input{chapters/inputs/q11-capacity-boundedness}
+
+A bounded difference from the reference does not control the integrals of $\mathrm e^{-u}$ against $\mu_u$. The next equation therefore uses bounded truncations of its coefficient measures, while comparison supplies a lower bound for its solutions.
+
+\begin{theorem}\label{thm:relative-two-obstacle-exponential-equation}
+For $u,v\in\mathcal E^\infty(X,\theta,\phi)$ and $\lambda>0$, there is a unique $\gamma_\lambda\in\mathcal E(X,\theta,\phi)$ satisfying
+\begin{equation}\label{eq:relative-two-obstacle-exponential-equation}
+ \mu_{\gamma_\lambda}
+   =\mathrm e^{\lambda(\gamma_\lambda-u)}\mu_u
+       +\mathrm e^{\lambda(\gamma_\lambda-v)}\mu_v.
+\end{equation}
+It has bounded relative type and lies below $P_\theta(u,v)$. Moreover, if $h\in\mathcal E(X,\theta,\phi)$ satisfies
+\[
+ \mu_h\geq\mathrm e^{\lambda(h-u)}\mu_u
+                    +\mathrm e^{\lambda(h-v)}\mu_v,
+\]
+then $\gamma_\lambda\geq h$. Exponent differences are taken off the common polar exceptional sets.
+\end{theorem}
+\begin{proof}
+Set $u^{(j)}=\max\{u,-j\}$ and $v^{(j)}=\max\{v,-j\}$. These are coefficient truncations, not asserted to be $\theta$-psh. The finite non-pluripolar measures
+\[
+ \nu_j=\mathrm e^{-\lambda u^{(j)}}\mu_u
+                          +\mathrm e^{-\lambda v^{(j)}}\mu_v
+\]
+increase with $j$. \Cref{thm:nonpluripolar-relative-exponential-equation} gives solutions $\gamma_j$, and \cref{prop:relative-exponential-equation-domination} makes them decrease.
+
+Choose $B\geq0$ with $|u-v|\leq2B$ off the poles, and put
+\[
+ \eta=\tfrac12(u+v)-B-\frac{n\log2}{\lambda}.
+\]
+Positive multilinearity gives $\mu_\eta\geq2^{-n}(\mu_u+\mu_v)$, while $\eta\leq u-n\log2/\lambda$ and the same bound holds with $v$. Hence $\mu_\eta\geq\mathrm e^{\lambda\eta}\nu_j$. Comparison gives $\gamma_j\geq\eta$. Since $\gamma_1\preceq\phi$ and $\eta\sim\phi$, all these solutions have uniformly bounded difference from $\phi$. Their decreasing limit $\gamma$ therefore has bounded relative type. Its measures converge weakly by \cref{cor:relative-full-mass-capacity-convergence}. Also $\gamma_1\leq u+C$ and $\gamma_1\leq v+C$ for some fixed $C$. Thus the two right-hand densities of the truncated equation are bounded by $\mathrm e^{\lambda C}$ and converge pointwise almost everywhere for the fixed measures $\mu_u,\mu_v$. Dominated convergence proves \eqref{eq:relative-two-obstacle-exponential-equation} for $\gamma$.
+
+On $A=\{u<\gamma\}$, \cref{prop:relative-mixed-comparison} and the equation give
+\[
+ \int_A\mathrm e^{\lambda(\gamma-u)}\,\mu_u
+                 \leq\mu_\gamma(A)\leq\mu_u(A).
+\]
+Strict increase of the exponential forces $\mu_u(A)=0$. \Cref{thm:relative-full-mass-domination} gives $u\geq\gamma$; the same argument gives $v\geq\gamma$. Hence $\gamma\leq P_\theta(u,v)$.
+
+For the stated supersolution let $A=\{\gamma<h\}$. Relative comparison now gives
+\[
+ \begin{aligned}
+ \mu_h(A)&\leq\mu_\gamma(A)\\
+  &\leq\int_A\bigl(\mathrm e^{\lambda(h-u)}\,\mu_u
+                          +\mathrm e^{\lambda(h-v)}\,\mu_v\bigr)
+   \leq\mu_h(A).
+ \end{aligned}
+\]
+The middle difference is nonnegative and strictly positive for either coefficient measure at finite points of $A$. Consequently $\mu_u(A)=\mu_v(A)=0$ and the equation gives $\mu_\gamma(A)=0$. Domination gives $\gamma\geq h$. All displayed integrals are finite because they are bounded by the finite Monge--Amp\`ere masses, even if the untruncated coefficient measure has infinite total mass. Applying this comparison in both directions proves uniqueness among full-mass solutions.
+\end{proof}
+\index{Monge--Amp\`ere equation!two obstacles}
+
+\begin{theorem}\label{thm:rooftop-exponential-approximation}
+Let $u,v\in\mathcal E^\infty(X,\theta,\phi)$ and $w=P_\theta(u,v)$. The solutions in the preceding theorem increase with $\lambda$ and tend to $w$. More precisely, choose $D\geq0$ with
+$0\leq(u+v)/2-w\leq D$ off the poles. For $0<t\leq1$,
+\[
+ 0\leq w-\gamma_\lambda
+           \leq tD+\frac n\lambda\log\frac2t
+                 \quad\text{quasi-everywhere}.
+\]
+In particular the differences converge uniformly off the poles as $\lambda\to\infty$; the energies and Monge--Amp\`ere measures converge to those of $w$.
+\end{theorem}
+\begin{proof}
+The rooftop has bounded relative type, so such a $D$ exists. Since $\gamma_{\lambda_1}\leq u,v$, its equation makes it a supersolution for parameter $\lambda_2\geq\lambda_1$. The preceding comparison gives $\gamma_{\lambda_1}\leq\gamma_{\lambda_2}$.
+
+Put $r=(u+v)/2$ and
+\[
+ b=(1-t)w+tr-tD-\frac n\lambda\log\frac2t.
+\]
+It has bounded relative type and is at most $w-n\log(2/t)/\lambda$, hence at most both obstacles minus that constant. Positive multilinearity gives
+\[
+ \mu_b\geq t^n\mu_r
+       \geq(t/2)^n(\mu_u+\mu_v)
+       \geq\mathrm e^{\lambda(b-u)}\mu_u
+                         +\mathrm e^{\lambda(b-v)}\mu_v.
+\]
+Thus $b\leq\gamma_\lambda\leq w$. Since $r\geq w$, this gives the asserted bound. For $\lambda\geq1$, choose $t=1/\lambda$ to obtain
+\[
+ 0\leq w-\gamma_\lambda
+                \leq\frac{D+n\log(2\lambda)}{\lambda}
+                       =:\varepsilon_\lambda\longrightarrow0.
+\]
+Canonical representatives extend the inequalities
+$w-\varepsilon_\lambda\leq\gamma_\lambda\leq w$ everywhere. Energy monotonicity and translation then give
+$0\leq E(w)-E(\gamma_\lambda)\leq m\varepsilon_\lambda$.
+The uniform difference bound gives extended-capacity convergence, and \cref{cor:relative-full-mass-capacity-convergence} gives weak convergence of the measures.
+\end{proof}
+\index{rooftop envelope!exponential approximation}
+
+\input{chapters/inputs/q11-positive-mass-bigness}
+
+\input{chapters/inputs/q11-ceiling-envelope}
+
+\section{Subgeodesics and Perron segments}
+\label{sec:relative-weak-geodesics}
+Fix again a positive-mass model reference $\phi$. On $S=\{\zeta\in\mathbb C:0<\Real\zeta<1\}$ let $p:X\times S\to X$ be the projection. Since $p^*\theta$ has no strip component, convexity alone does not imply plurisubharmonicity on the product.
+
+\Needspace{7\baselineskip}
+\begin{definition}\label{def:relative-subgeodesic}
+A subgeodesic with endpoints $u_0,u_1\in\PSH(X,\theta)$ is a curve $(u_t)_{0<t<1}$ whose complexification
+\[
+ U(x,\zeta)=u_{\Real\zeta}(x)
+\]
+is $p^*\theta$-psh and whose endpoint limits are $u_0,u_1$ in $L^1(X)$.
+\end{definition}
+Curves on $[a,b]$, $a<b$, are defined by the affine change $t\mapsto a+(b-a)t$. A curve on a one-point interval consists of its given potential.
+The endpoints are unique because an $L^1$ class has a unique canonical psh representative. The holomorphic covering $z=e^{-\zeta}$ gives the equivalent annulus complexification $U(x,z)=u_{-\log|z|}(x)$ on $e^{-1}<|z|<1$: imaginary-translation invariance makes it descend, and local biholomorphic invariance preserves the psh condition.
+\index{subgeodesic}\index{complexification!of a curve of potentials}
+
+\begin{proposition}\label{prop:subgeodesic-convexity-and-continuity}
+For a subgeodesic, every fibre $t\mapsto u_t(x)$ is convex on $(0,1)$, possibly identically $-\infty$, and
+\[
+ u_t\leq(1-t)u_0+tu_1.
+\]
+The minimum $w=\inf_{0<t<1}u_t$ is a $\theta$-psh potential and satisfies $w\leq P_\theta(u_0,u_1)$. The curve is continuous in $L^1$ on $[0,1]$, and relatively compact there. Its endpoint limits equal the specified endpoints quasi-everywhere and are at most them pointwise.
+\end{proposition}
+\begin{proof}
+An imaginary-translation-invariant subharmonic function of one complex variable is convex in its real part: its smooth convolutions have nonnegative second derivative in that variable, and their decreasing limit preserves convexity. Each fibre is subharmonic or identically $-\infty$. Choose endpoint sequences converging almost everywhere to $u_0,u_1$. Convexity between those interior times gives the displayed upper bound almost everywhere for a fixed $t$. Both sides have canonical quasi-psh representatives, so it holds everywhere.
+
+Kiselman's product-tube principle makes $w$ locally $\theta$-psh or identically $-\infty$. Almost every fibre is a finite convex function, by Fubini applied to the locally integrable complexification. It has a supporting affine lower bound on the bounded interval: slopes between any three interior points supply such a bound. Thus its infimum is finite. The minus-infinite alternative is excluded, and the local potentials patch. The convex upper bound gives $w\leq u_0,u_1$ almost everywhere by letting $t$ tend to either endpoint, hence everywhere. This proves the rooftop assertion.
+
+On the common finite locus, $w$ and the convex upper bound provide integrable lower and upper bounds for all slices. Convex fibre continuity and dominated convergence give interior $L^1$ continuity; endpoint continuity is part of the definition. The same bounds, or the resulting continuous image of $[0,1]$, give relative compactness. The fibre endpoint limits exist by convexity and lie below the endpoint values by the displayed bound. They equal them almost everywhere by the assumed $L^1$ convergence.
+
+For quasi-everywhere equality at zero, fix $s\in(0,1)$ and take $t_j\downarrow0$ with $t_j<s$. The chord slopes
+\[
+ a_j=\frac{u_{t_j}-(t_j/s)u_s}{1-t_j/s}
+\]
+increase pointwise on the common finite locus, by convexity, and tend almost everywhere to $u_0$. Add the fixed potential $u_s$. Indeed
+$a_j+u_s=(u_{t_j}+u_s(1-2t_j/s))/(1-t_j/s)$ is a positive combination for $t_j<s/2$, with coefficient sum two. These functions are $2\theta$-psh. Their canonical increasing limit is $u_0+u_s$. The pluripolar discrepancy theorem gives equality quasi-everywhere. Removing their countably many pole sets proves the endpoint assertion. Reflecting the parameter proves it at one.
+\end{proof}
+
+\begin{lemma}\label{lem:subgeodesic-operations-and-pasting}
+Subgeodesics are preserved by restriction to a subinterval, addition of an affine function of $t$, and smooth change of background $\theta'=\theta+\ddc g$, $u'_t=u_t-g$. If a subgeodesic on $[a,b]\subset[0,1]$ dominates a given one there and has its same endpoint values, replacing that segment gives a subgeodesic on $[0,1]$.
+\end{lemma}
+\begin{proof}
+Restriction uses the $L^1$ continuity just proved. Affine functions of $\Real\zeta$ are pluriharmonic; the background change cancels $\ddc g$, proving those assertions. For pasting, let $V$ be the replacement complexification and $U$ the original one. The replacement has joint upper boundary limit at most $U$ along the two interior seams. Indeed any sequence of real times approaching a seam has $L^1$ limit equal to the seam potential. Hartogs' lemma, including moving spatial points as in \cref{prop:normalized-global-psh-compactness}, bounds its joint upper limit by that potential. Max-pasting therefore gives a $p^*\theta$-psh function. Near the outer endpoints it has the old $L^1$ limits, or the matching replacement limits if a seam is an outer endpoint. This proves the assertion.
+\end{proof}
+
+\begin{lemma}\label{lem:subgeodesic-family-upper-envelope}
+For a nonempty family of subgeodesics with uniformly bounded-above endpoint potentials, the canonical upper envelope of the complexifications has slices equal to the canonical upper envelopes of the slices. It is a subgeodesic with endpoint potentials equal to the canonical upper envelopes of the endpoints.
+\end{lemma}
+\begin{proof}
+The convex upper bounds uniformly bound the complexifications. Their product envelope $U$ is $p^*\theta$-psh and invariant under imaginary translations. A chosen curve gives a noncollapsed lower bound, so no slice is identically $-\infty$. Let $v_t$ be the spatially regularized slice supremum. Then $v_t\leq U_t$, and product-envelope equality almost everywhere gives equality for almost every $t$ by Fubini and canonical representatives. For $a<t<b$, spatial regularization preserves
+$v_t\leq\frac{b-t}{b-a}v_a+\frac{t-a}{b-a}v_b$.
+Thus $v_t$ is pointwise convex. The minimum of the chosen lower curve and the uniform convex endpoint bound make both $v_t$ and $U_t$ finite for all $t$ on one full-measure set. Fubini gives equality at almost every parameter for almost every point of that set. Convex continuity therefore gives equality at every interior parameter almost everywhere in $x$, hence everywhere by canonical representatives.
+
+Select countably many curves preserving both the product envelope and the two endpoint envelopes, using \cref{thm:psh-upper-envelopes}. Every chosen curve lies below $U$. Fibre endpoint limits therefore dominate all its endpoint limits quasi-everywhere, outside one countable polar union. The convex upper bound by the endpoint envelopes gives the reverse inequality. The minimum of one chosen curve is an integrable common lower bound, and the endpoint envelopes are integrable upper bounds. Dominated convergence proves the required $L^1$ endpoint limits.
+\end{proof}
+
+\begin{definition}\label{def:relative-perron-geodesic}
+The Perron segment between $u_0,u_1\in\PSH(X,\theta)$ is the canonical upper envelope of all subgeodesics whose endpoints are at most $u_0,u_1$. An empty envelope is $-\infty$. When its endpoint limits are $u_0,u_1$ in $L^1$, it is called their weak geodesic. We write its slices as $G_t(u_0,u_1)$.
+\end{definition}
+\index{geodesic!weak Perron segment}
+
+\Needspace{19\baselineskip}
+\begin{theorem}\label{thm:relative-full-mass-perron-geodesic}
+If $u_0,u_1\in\mathcal E(X,\theta,\phi)$, the Perron segment is a subgeodesic with those endpoints, and
+\[
+ P_\theta(u_0,u_1)\leq G_t(u_0,u_1)
+                         \leq(1-t)u_0+tu_1.
+\]
+Every slice has relative full mass. Finite-energy endpoints give finite-energy slices, and bounded-type endpoints give bounded-type slices. Every restriction to a subinterval is the weak geodesic between its endpoint slices.
+\end{theorem}
+\begin{proof}
+The common rooftop $w=P_\theta(u_0,u_1)$ has relative full mass, and the constant curve at $w$ is a competitor. The preceding envelope lemma gives a noncollapsed subgeodesic, initially with endpoint envelopes $a_0\leq u_0$, $a_1\leq u_1$, and proves the two displayed bounds. Each slice lies below $\phi+C$ by model normalization and above $w$, so mass monotonicity puts it in the relative full-mass class.
+
+For $k\geq1$ put $q_k=P_\theta(u_0,u_1+k)$. Then $q_k-kt$ is a competing affine subgeodesic: its initial value is at most $u_0$ and its final value at most $u_1$. Thus the initial endpoint envelope dominates $q_k$. The mutual singularity-envelope identity gives $(\sup_kq_k)^*=P_\theta[u_1](u_0)=u_0$. Hence $a_0=u_0$. Interchanging the endpoints proves $a_1=u_1$.
+
+For a subinterval, the restriction is a subgeodesic. Its Perron segment dominates it and has the same endpoints by the part already proved. Paste that larger segment into the original curve using the pasting lemma. The resulting global subgeodesic is a competitor for the original Perron segment, so it cannot be larger. Equality proves the restriction assertion. Finally finite-energy rooftop closure and energy upper closure give finite-energy slices. In the bounded-type case the rooftop supplies a common lower bound $\phi-C$, and the convex upper bound supplies $\phi+C$.
+\end{proof}
+
+\Needspace{16\baselineskip}
+\begin{proposition}\label{prop:perron-geodesic-order-and-limits}
+Weak geodesics in the relative full-mass class increase with either endpoint. They commute with simultaneous affine endpoint shifts, with reversal of the parameter, and with decreasing endpoint limits in that class. If $u_1\leq u_0$, their slices decrease with $t$. If $|u_1-u_0|\leq C$ quasi-everywhere, then
+\[
+ |G_t(u_0,u_1)-u_0|\leq Ct,\qquad
+ |G_t(u_0,u_1)-u_1|\leq C(1-t)
+\]
+as bounded differences. In particular affine shifts of one potential form its weak geodesics.
+\end{proposition}
+\begin{proof}
+Endpoint order follows by inclusion of competitors. Affine shifts and reversal give bijections of competitor families. For decreasing endpoints, their geodesics decrease and dominate the limit geodesic. The product limit is psh and noncollapsed by that lower bound. The convex upper bounds and the lower limit geodesic give the correct $L^1$ endpoint limits by dominated convergence. It is therefore a competitor for the limit Perron segment, proving equality.
+
+If $u_1\leq u_0$ and $0<r<s<1$, put $\delta=(s-r)/(1-r)$. The reparametrized curve $G_{\delta+(1-\delta)t}$ has initial value at most $u_0$ by convexity and final value $u_1$. It is a competitor for the original segment. At $t=r$ this gives $G_s\leq G_r$. The endpoint cases follow from the convex upper bound and the affine lower competitor at $u_1$. For bounded differences, $u_0-Ct$ and $u_1-C(1-t)$ are affine competitors. Combine these lower bounds with the convex upper bound to obtain the two stated inequalities. If $u_1=u_0+c$, that upper bound is itself an affine competitor, proving the last assertion.
+\end{proof}
+
+\begin{proposition}\label{prop:perron-rooftop-legendre-formula}
+For relative full-mass endpoints and $0<t<1$,
+\[
+ G_t(u_0,u_1)
+   =\left(\sup_{s\in\mathbb R}
+                    \{P_\theta(u_0,u_1-s)+ts\}\right)^*.
+\]
+The regularization may be taken on the product strip; its slices equal the spatial regularizations displayed here.
+\end{proposition}
+\begin{proof}
+Every expression on the right is an affine competing subgeodesic, so their envelope is at most $G$. For any competing subgeodesic $v_t$, Kiselman's principle makes
+$q_s=\inf_{0<t<1}(v_t-ts)$ a $\theta$-psh potential. Noncollapse follows as in the convexity proposition: almost every finite convex fibre has a finite supporting lower bound on the bounded interval. Its endpoint bounds give $q_s\leq u_0,u_1-s$, hence $q_s\leq P_\theta(u_0,u_1-s)$. Every finite convex fibre equals the supremum of its supporting affine functions, so $v_t=\sup_s(q_s+ts)$ there. The identically minus-infinite fibres satisfy the same inequality trivially. Thus $v_t$ is at most the right-hand envelope. Taking the envelope over competitors proves equality. The product/slice assertion is the envelope lemma.
+\end{proof}
+
+\section{Energy along weak geodesics}
+\label{sec:geodesic-energy-linearity}
+The local measure in the product has one more complex dimension than the fibres. A compact extension permits global integration by parts, while a local balayage argument removes its horizontal top-degree measure.
+
+\begin{lemma}\label{lem:unbounded-maximal-nonpluripolar-zero}
+If $h$ is a maximal plurisubharmonic function on a domain in $\mathbb C^d$, $d\geq1$, its top-degree non-pluripolar measure exists locally and vanishes. No local boundedness assumption on $h$ is needed.
+\end{lemma}
+\begin{proof}
+Fix a ball $B$ compactly contained in the domain. Set $h_j=\max\{h,-j\}$ and take its canonical homogeneous balayage $\widehat h_j$ on $B$, supplied by \cref{cor:homogeneous-psh-balayage}. These locally bounded functions decrease, dominate $h$, equal $h_j$ off $B$ and have zero top-degree measure in $B$. Their decreasing limit $v$ is psh, since it dominates the nontrivial $h$, and equals $h$ off $B$. Maximality gives $v=h$.
+
+Fix $C,\varepsilon>0$ and put $z_j=\max\{\widehat h_j,-C\}$ and $a_j=(z_j+C)/(z_j+C+\varepsilon)$. The bounded truncations decrease in capacity to $z=\max\{h,-C\}$, and their bounded quasi-continuous weights converge in capacity to $a=(z+C)/(z+C+\varepsilon)$. Locality in $B$ gives
+\[
+ a_j(\ddc z_j)^d=a_j(\ddc\widehat h_j)^d=0.
+\]
+\Cref{thm:bt-capacity-continuity} gives $a(\ddc z)^d=0$ there. Since $a>0$ precisely on $\{h>-C\}$, the restricted measure $\mathbf1_{\{h>-C\}}(\ddc\max\{h,-C\})^d$ is zero in $B$. Taking all integer $C$ shows that the defining non-pluripolar limit is zero; in particular it is finite. A ball cover proves the assertion.
+\end{proof}
+\index{maximal plurisubharmonic function!vanishing non-pluripolar measure}
+
+\begin{lemma}\label{lem:perron-complexification-maximal}
+The local psh potentials of a relative full-mass weak geodesic complexification are maximal on $X\times S$, or on the equivalent annulus $e^{-1}<|z|<1$, where $t=-\log|z|$.
+\end{lemma}
+\begin{proof}
+Use the annulus. In a coordinate domain add a smooth local potential $a$ of $p^*\theta$, so $h=U+a$ is psh. A psh competitor $v$ equal to or below $h$ off a compact subset can be max-pasted there: it gives a global $p^*\theta$-psh function $\widetilde U\geq U$ which equals $U$ off that compact subset. Its canonical upper envelope under rotations of the annulus is radial, psh and dominates $\widetilde U$. The rotation-saturation of the compact set stays away from both boundary circles, so this envelope equals $U$ near them and has the same $L^1$ endpoint limits. It defines a competing subgeodesic. Perron maximality bounds it by $U$, hence $v\leq h$. This is precisely local maximality in the sense of \cref{def:maximal-plurisubharmonic}.
+\end{proof}
+
+\Needspace{19\baselineskip}
+\begin{theorem}\label{thm:relative-geodesic-energy-affine}
+For $u_0,u_1\in\mathcal E^1(X,\theta,\phi)$,
+\[
+ E_\theta^\phi(G_t(u_0,u_1))
+             =(1-t)E_\theta^\phi(u_0)+tE_\theta^\phi(u_1),
+                   \qquad0\leq t\leq1.
+\]
+\end{theorem}
+\begin{proof}
+First suppose the endpoints have bounded difference from $\phi$. On the annulus $A=\{e^{-1}<|z|<1\}$, the complexification $U$ satisfies $\phi-C\leq U\leq\phi+C$. Fix smaller concentric annuli $A_0\Subset A_1\Subset A$. On $Y=X\times\mathbb P^1$ let $\beta$ be the pullback of the unit-mass Fubini--Study form and set
+\[
+ \Theta=p_1^*\theta+B\beta,\qquad\Phi=p_1^*\phi.
+\]
+Choose a smooth radial function $q$ on $\mathbb P^1$ below $-C-1$ on $A_0$ and above $C+1$ near $\partial A_1$. Such a function is obtained by smooth cutoffs on the disjoint compact radial regions. Increase $B>0$ so that $B\omega_{\rm FS}+\ddc q\geq0$. Paste $W=\max\{U,\Phi+q\}$ on $X\times A_1$ to $\Phi+q$ outside. Collar agreement makes it $\Theta$-psh, of bounded type $\Phi$, and equal to $U$ on $X\times A_0$.
+
+The background $\Theta$ is big by adding $B\beta$ to the pullback of a strict current in $\{\theta\}$. The potential $\Phi$ is model: a normalized competitor of its type restricts on each fibre either to a normalized $\theta$-psh competitor for $\phi$, or to $-\infty$. It therefore lies below $\Phi$, while $\Phi$ itself is a competitor. Multilinearity and fibre integration give
+\[
+ \int_Y\langle(\Theta+\ddc\Phi)^{n+1}\rangle=(n+1)Bm>0.
+\]
+Write $T=\Theta+\ddc W$, $R=\Theta+\ddc\Phi$, and define an order-zero current on $\mathbb P^1$ by
+\[
+ H=\frac1{n+1}(p_2)_*
+       \left((W-\Phi)\sum_{j=0}^n\langle T^j\wedge R^{n-j}\rangle\right).
+\]
+For a smooth test function on $\mathbb P^1$, bounded-difference integration by parts swaps its Hessian with that of $W-\Phi$. The latter is the difference of the positive factors $T,R$. Telescoping the mixed sum yields
+\begin{equation}\label{eq:relative-geodesic-energy-current-curvature}
+ \ddc H=\frac1{n+1}(p_2)_*
+                         (\langle T^{n+1}\rangle-\langle R^{n+1}\rangle).
+\end{equation}
+The compact fibre formula \cref{cor:compact-nonpluripolar-fibre-fubini} identifies $H$ on $A_0$ almost everywhere with $z\mapsto E_\theta^\phi(G_{-\log|z|})$; a top-degree base test annihilates all vertical factors in its defining mixed sum.
+
+On $X\times A_0$, let $L=p_1^*\theta+\ddc U\geq0$. Locally $T=L+B\beta$. The non-pluripolar expansion gives
+\[
+ \langle T^{n+1}\rangle
+       =\langle L^{n+1}\rangle+(n+1)B\beta\wedge\langle L^n\rangle,
+             \qquad\beta\wedge\langle T^n\rangle
+                         =\beta\wedge\langle L^n\rangle.
+\]
+These local products are finite: add a bounded smooth potential of $B\beta$ to a local psh potential of $L$. Their level sets differ by a fixed shift, so their cofinal restricted truncations give the same expansions. At each level all summands are positive and $\beta^2=0$; their limits are bounded by the finite products of $T$. This justifies the expansion before using it. By local maximality and the preceding vanishing lemma, $\langle L^{n+1}\rangle=0$.
+
+Every fibre $W_z$ has bounded type $\phi$. Fibre integration therefore gives
+$(p_2)_*(\beta\wedge\langle T^n\rangle)=m\omega_{\rm FS}$, while multilinearity gives
+$(p_2)_*\langle R^{n+1}\rangle=(n+1)Bm\omega_{\rm FS}$.
+Their restrictions to $A_0$ cancel in \eqref{eq:relative-geodesic-energy-current-curvature}, so $H$ is harmonic there.
+
+The energy representative is continuous on every smaller annulus. Indeed the convex functions $G_t(x)-\phi(x)$ are uniformly bounded on the common finite locus and hence uniformly Lipschitz on compact interior parameter intervals, by their chord-slope bounds. The resulting potential inequalities hold everywhere by canonical representatives. Energy monotonicity and the constant-shift formula give the same local Lipschitz bound for the energy. It is therefore the harmonic representative of $H$. A radial harmonic function on an annulus is affine in $-\log|z|$, by the radial Laplacian calculation. The annulus $A_0$ was arbitrary, so the energy is affine on $(0,1)$. The bounded-difference endpoint barriers in the preceding proposition give energy convergence at both endpoints and identify this affine function.
+
+\Needspace{9\baselineskip}
+For finite-energy endpoints subtract a common constant to put them below $\phi$ and set $u_{j,k}=\max\{u_j,\phi-k\}$, $j=0,1$. Decreasing endpoint continuity gives $G_t(u_{0,k},u_{1,k})\downarrow G_t(u_0,u_1)$. Every slice limit has finite energy. Decreasing energy continuity at the endpoints and each interior slice passes the bounded-type affine identity to the limit. Restoring the common constant shifts both sides by $mC$, proving the theorem.
+\end{proof}
+\index{Monge--Amp\`ere energy!affine along weak geodesics}
+
+\Needspace{12\baselineskip}
+\section{Extremal slopes and long Perron segments}
+\label{sec:perron-extremal-slopes-and-cutoffs}
+For a Perron segment, the extremal endpoint differences determine extremal slice differences. A bounded change of the terminal potential also becomes smaller at a fixed time when the segment becomes longer. This controls singularity cutoffs without a metric on the space of rays.
+
+\begin{proposition}\label{prop:geodesic-extremal-difference-slopes}
+If $v\preceq u$ are relative full-mass potentials and $C=\operatorname*{ess\,sup}_X(v-u)$, then $C$ is finite and
+\[
+ \operatorname*{ess\,sup}_X(G_t(u,v)-u)=tC,\qquad0\leq t\leq1.
+\]
+For bounded-type endpoints, with $c=\operatorname*{ess\,inf}_X(v-u)$, one also has
+$\operatorname*{ess\,inf}_X(G_t(u,v)-u)=tc$.
+The essential extrema equal the extrema on the common finite locus. Removing a pluripolar set does not change them.
+\end{proposition}
+\begin{proof}
+For two quasi-psh potentials, an almost-everywhere inequality $v\leq u+C$ holds everywhere by canonical representatives. Conversely any finite-value violation persists as an almost-everywhere violation: if $v(x)>u(x)+C$ at a common finite point, then $\max\{v,u+C\}$ and $u+C$ cannot have the same almost-everywhere representative. Thus the finite-locus supremum equals the essential supremum. The same argument with the reversed inequality treats an infimum. Removing a pluripolar set removes a null set and leaves these extrema unchanged.
+
+The convex upper bound gives $G_t-u\leq tC$. The affine competitor $v-C(1-t)$ gives $v-G_t\leq(1-t)C$. On the common finite locus, $v-u=(v-G_t)+(G_t-u)$. Taking essential suprema gives
+$C\leq(1-t)C+\operatorname*{ess\,sup}(G_t-u)$, proving equality. In the bounded-type case the affine competitor $u+ct$ gives $G_t-u\geq ct$. Apply the supremum equality to the reversed segment to obtain
+$\operatorname*{ess\,inf}(v-G_t)=(1-t)c$.
+Taking essential infima in the same sum gives
+$c\geq\operatorname*{ess\,inf}(G_t-u)+(1-t)c$, proving the opposite bound.
+\end{proof}
+
+\input{chapters/inputs/q11-perron-cutoff-stability}
