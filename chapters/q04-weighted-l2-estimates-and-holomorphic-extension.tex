@@ -1,12 +1,14 @@
 \chapter{Weighted \texorpdfstring{$L^2$}{L2} estimates and holomorphic extension}
 \label{chap:q04}
 
-A local holomorphic function multiplied by a cutoff acquires a $\bar\partial$ error. Solving that error with a weighted norm produces a global holomorphic function. A logarithmic pole in the weight can force the correction to vanish at a specified point; an additional bounded change of weight gives the estimate needed to extend from a hyperplane. The operator domains matter in both constructions. We establish their density by interior cutoffs before passing to singular weights.
+A smooth partition of unity does not preserve holomorphicity. Multiplying a local function by a smooth cutoff gives a global smooth function, but introduces a $\bar\partial$ error. If that error can be solved with a controlled weighted norm, subtracting the solution recovers a holomorphic function. The weight must do more than ensure solvability: it must also control the size of the correction and, in interpolation problems, force that correction to vanish where a value has been prescribed.
+
+The basic estimate comes from an integration-by-parts identity whose curvature term is the complex Hessian of the weight. We first supply the Hilbert-space argument that turns this estimate into a solution and the interior approximation that makes it valid on the operator domains. Pseudoconvexity supplies the exhaustions needed to avoid boundary regularity assumptions. Passing to singular weights then allows a logarithmic pole to impose a point value. For extension from a hyperplane, a bounded change of weight produces a stronger estimate in the normal direction; an explicit logarithmic calculation completes the Ohsawa--Takegoshi argument. Its point and germ consequences are the analytic inputs for the multiplier ideals and Bergman approximations of the following chapters. All weights use $\mathrm e^{-\varphi}$, in the normalization fixed for this book.
 
 \section{Hilbert spaces and closed operator complexes}
 \label{sec:hilbert-operator-complexes}
 
-A complex Hilbert space is a complete inner-product space; our inner products are linear in the first variable. Weighted $L^2$ spaces use the inner product $\langle f,g\rangle=\int f\bar g\,\mathrm d\mu$. Their completeness follows directly from integration. Indeed, from any Cauchy sequence select a subsequence whose successive norms have summable bounds. The triangle inequality and monotone convergence show that the sum of their absolute differences belongs to $L^2$. Thus the subsequence converges almost everywhere and in $L^2$; the Cauchy property gives convergence of the entire sequence. This also proves completeness for a finite tuple of coefficients.
+A complex Hilbert space is a complete inner-product space; our inner products are linear in the first variable. For a positive measure $\mu$, weighted $L^2$ spaces use the inner product $\langle f,g\rangle=\int f\bar g\,\mathrm d\mu$. Their completeness follows directly from integration. Indeed, from any Cauchy sequence select a subsequence whose successive norms have summable bounds. The triangle inequality and monotone convergence show that the sum of their absolute differences belongs to $L^2$. Thus the subsequence converges almost everywhere and in $L^2$; the Cauchy property gives convergence of the entire sequence. This also proves completeness for a finite tuple of coefficients.
 
 \begin{proposition}\label{prop:hilbert-projection-representation}
 Every nonempty closed convex subset of a Hilbert space has a unique point of smallest distance to a given point. For a closed linear subspace $M$, this gives $H=M\oplus M^\perp$. Every bounded linear functional is $x\mapsto\langle x,y\rangle$ for a unique $y\in H$, with norm $\|y\|$.
@@ -73,7 +75,7 @@ Consequently $T^*f\mapsto\langle g,f\rangle$ is a well-defined bounded conjugate
 \label{sec:pseudoconvex-distance}
 
 \begin{definition}\label{def:pseudoconvex-domain}
-An open set $\Omega\subset\mathbb C^n$ is pseudoconvex if it has a finite continuous plurisubharmonic exhaustion: a function $\rho$ for which every $\{\rho\le c\}$ is compact in $\Omega$. The definition is applied componentwise when needed. A continuous plurisubharmonic function is strictly plurisubharmonic if locally subtracting some positive multiple of $|z|^2$ leaves a plurisubharmonic function.
+For $n\ge1$, an open set $\Omega\subset\mathbb C^n$ is pseudoconvex if it has a finite continuous plurisubharmonic exhaustion: a function $\rho$ for which every $\{\rho\le c\}$ is compact in $\Omega$. The definition is applied componentwise when needed. A continuous plurisubharmonic function is strictly plurisubharmonic if locally subtracting some positive multiple of $|z|^2$ leaves a plurisubharmonic function.
 \end{definition}
 \index{pseudoconvex domain}\index{plurisubharmonic function!strict}
 
@@ -81,14 +83,14 @@ An open set $\Omega\subset\mathbb C^n$ is pseudoconvex if it has a finite contin
 An upper semicontinuous locally bounded-above function satisfies the plurisubharmonic submean inequalities if, on every affine closed complex disc, comparison at its center holds with every harmonic function of the form $\Real P$, where $P$ is a polynomial, which bounds it above on the circle.
 \end{lemma}
 \begin{proof}
-Approximate the upper semicontinuous circle data from above by continuous functions using \cref{lem:usc-majorants}. A continuous real circle function is uniformly approximated by real trigonometric polynomials: convolve with
+Approximate the upper semicontinuous circle data from above by continuous functions using \cref{lem:usc-majorants}. A continuous real circle function is uniformly approximated by real trigonometric polynomials: convolve, with respect to normalized circle measure $\mathrm d\theta/(2\pi)$, with
 $N^{-1}|\sum_{k=0}^{N-1}\mathrm e^{\mathrm i k\theta}|^2$.
-This kernel has normalized integral one and tends uniformly to zero off every neighborhood of zero; uniform continuity proves uniform approximation. Each resulting real trigonometric polynomial is the circle restriction of $\Real P$. Add the uniform approximation error to make it an upper bound. Its center value is its circle average. Comparison and decreasing integration of the original majorants give the circle submean inequality, including an integral equal to $-\infty$. This is the required criterion on every line.
+For integers $N\ge1$, this kernel has normalized integral one and tends uniformly to zero off every neighborhood of zero; uniform continuity proves uniform approximation. Each resulting real trigonometric polynomial is the circle restriction of $\Real P$. Add the uniform approximation error to make it an upper bound. Its center value is its circle average. Comparison and decreasing integration of the original majorants give the circle submean inequality, including an integral equal to $-\infty$. This is the required criterion on every line.
 \end{proof}
 
 \Needspace{8\baselineskip}
 \begin{lemma}[Richberg]\label{lem:richberg-euclidean}
-If $u$ is continuous on $\Omega\subset\mathbb C^n$ and $u-a|z|^2$ is plurisubharmonic for some $a>0$, then for every positive continuous $\varepsilon$ there is a smooth $v$ with
+If $u$ is continuous on an open $\Omega\subset\mathbb C^n$ and $u-a|z|^2$ is plurisubharmonic for some $a>0$, then for every positive continuous $\varepsilon$ there is a smooth $v$ with
 \[
  u\le v\le u+\varepsilon,\qquad v-\tfrac a2|z|^2\in\PSH(\Omega).
 \]
@@ -101,7 +103,7 @@ Choose a countable locally finite family of balls $B_i=B(c_i,r_i)\Subset\Omega$ 
 \]
 There is $\eta_i>0$, as small as required, such that the quadratic addition is above $2\eta_i$ on the inner ball and below $-2\eta_i$ on the outer sphere. Choose $h_i$ sufficiently small that $0\le u*\rho_{h_i}-u<\eta_i$ near $\overline B_i$. Then $u_i>u+\eta_i$ on the inner ball and $u_i<u-\eta_i$ near the outer sphere. Also $u_i+\eta_i\le u+\varepsilon$ on $B_i$, and each complex Hessian is at least $a/2$ times the identity.
 
-For finitely many real variables define the smooth maximum
+For an integer $p\ge1$ and $t=(t_1,\ldots,t_p)\in\mathbb R^p$, define the smooth maximum
 \[
  M_\eta(t)=\int_{\mathbb R^p}\max_i(t_i+\eta_i x_i)
                          \prod_i\theta(x_i)\,\mathrm dx,
@@ -112,11 +114,12 @@ At $z$ use the finitely many $u_i$ for which $z\in B_i$. Near a boundary point o
 \end{proof}
 \index{Richberg smoothing}
 
+\Needspace{6\baselineskip}
 \begin{theorem}\label{thm:oka-boundary-distance}
 For a proper pseudoconvex $\Omega\subset\mathbb C^n$, the function $-\log d(z,\mathbb C^n\setminus\Omega)$ is continuous plurisubharmonic. Conversely this property of the boundary distance implies pseudoconvexity. Every pseudoconvex open set has a nonnegative smooth strictly plurisubharmonic exhaustion.
 \end{theorem}
 \begin{proof}
-Write
+Put $\Delta_r=\{t\in\mathbb C:|t|<r\}$ for $r>0$ and $\Delta=\Delta_1$. For $z\in\Omega$ and $\xi\in\mathbb C^n$, write
 \[
  \delta(z,\xi)=\sup\{r>0:z+\xi\Delta_r\subset\Omega\}.
 \]
@@ -142,7 +145,7 @@ The sum of two nonnegative exhaustions exhausts the product. On $\{s<c\}$ use $|
 \end{proof}
 
 \begin{corollary}\label{cor:kiselman-pseudoconvex-tube}
-The conclusion of \cref{thm:kiselman-invariant-exhaustion} holds for every pseudoconvex domain invariant under imaginary tube translations and having convex real fibers, with no separately specified invariant exhaustion.
+The conclusion of \cref{thm:kiselman-invariant-exhaustion} holds for every pseudoconvex domain $\Omega\subset\mathbb C^m\times\mathbb C^k$, $m,k\ge1$, invariant under imaginary tube translations and having convex real fibers, with no separately specified invariant exhaustion.
 \end{corollary}
 \begin{proof}
 For a proper such domain its boundary distance is invariant under those translations. By \cref{thm:oka-boundary-distance},
@@ -174,7 +177,7 @@ Testing the adjoint against compactly supported functions gives, for every $f\in
 For a compactly supported smooth $f$ this formula also proves membership in the adjoint domain by integration by parts. A formal expression alone is not a characterization of the adjoint on an arbitrary domain: testing only compact supports can omit boundary conditions.
 
 \begin{lemma}\label{lem:three-weight-density}
-Suppose $\psi$ is smooth and there are $\chi_\nu\in C_c^\infty(\Omega)$, $0\le\chi_\nu\le1$, eventually equal to one near every compact set, with $|\bar\partial\chi_\nu|^2\le\mathrm e^\psi$. If $\varphi_k=\varphi+(k-3)\psi$, then compactly supported smooth $(0,1)$-forms are dense in $\operatorname{Dom}T^*\cap\operatorname{Dom}S$ for the norm
+Suppose $\varphi,\psi$ are real and smooth on the open set $\Omega$ and there are $\chi_\nu\in C_c^\infty(\Omega)$, $0\le\chi_\nu\le1$, eventually equal to one near every compact set, with $|\bar\partial\chi_\nu|^2\le\mathrm e^\psi$. If $\varphi_k=\varphi+(k-3)\psi$, $k=1,2,3$, then compactly supported smooth $(0,1)$-forms are dense in $\operatorname{Dom}T^*\cap\operatorname{Dom}S$ for the norm
 $\|f\|_{H_1}+\|T^*f\|_{H_0}+\|Sf\|_{H_2}$.
 \end{lemma}
 \begin{proof}
@@ -222,7 +225,8 @@ The first term has squared norm $\|T^*f\|_{H_0}^2$, since $\varphi_1=\varphi-2\p
 \end{proof}
 \index{Bochner--Kodaira identity!interior scalar form}
 
-For a semipositive Hermitian matrix $A$, write $A[b]=\sum_{j,k}A_{j\bar k}b_j\bar b_k$ and define its dual coefficient energy by
+\Needspace{10\baselineskip}
+For a semipositive Hermitian $n\times n$ matrix $A$ and $b,\alpha\in\mathbb C^n$, write $A[b]=\sum_{j,k}A_{j\bar k}b_j\bar b_k$ and define its dual coefficient energy by
 \[
  |\alpha|_{A^{-1}}^2
    =\sup_{b\ne0}\frac{|\sum_j\alpha_j\bar b_j|^2}
@@ -270,7 +274,7 @@ Apply \cref{prop:hilbert-weak-sequences} on each fixed compact sublevel and sele
 \index{H\"ormander estimate!smooth weight}
 
 \begin{theorem}\label{thm:hormander-singular-lower-bound}
-Let $p\in\PSH(\Omega)$ on a pseudoconvex open set, and let $q$ be smooth with semipositive complex Hessian $A$. If $\bar\partial\alpha=0$, $\alpha\in L^2_{\loc,(0,1)}$ and
+Let $p\in\PSH(\Omega)$ on a pseudoconvex open set, and let $q$ be real and smooth with semipositive complex Hessian $A$. If $\bar\partial\alpha=0$, $\alpha\in L^2_{\loc,(0,1)}$ and
 \[
  M=\int_\Omega|\alpha|_{A^{-1}}^2\mathrm e^{-p-q}\,\mathrm dV<\infty,
 \]
@@ -286,13 +290,13 @@ The smooth theorem supplies $u_j$ on $\Omega_j$. On each compact subset the $\va
 \end{proof}
 \index{H\"ormander estimate!singular weight}
 
-A weight $p+q$ here is locally bounded above and finite almost everywhere. Its weighted $L^2$ space is a Hilbert space, even if the weight is not locally integrable: the measure is sigma-finite, by restricting to compact sets where the weight is bounded. Weighted convergence implies local unweighted convergence. Consequently a nonempty weighted solution class is a closed affine subspace and has the minimal solution characterized by orthogonality to its holomorphic kernel. A distribution with $\bar\partial h=0$ is holomorphic: $\Delta h=4\sum_j\partial_{z_j}\partial_{\bar z_j}h=0$, so Weyl's lemma makes it smooth, and its Cauchy--Riemann equations give holomorphicity. These observations justify minimal solutions for the singular weights as well.
+A weight $p+q$ here is locally bounded above and finite almost everywhere. Its weighted $L^2$ space is a Hilbert space, even if the density $\mathrm e^{-p-q}$ is not locally integrable: the measure is sigma-finite, by restricting to compact sets where the weight is bounded. Weighted convergence implies local unweighted convergence. Consequently a nonempty weighted solution class is a closed affine subspace and has the minimal solution characterized by orthogonality to its holomorphic kernel. A distribution with $\bar\partial h=0$ is holomorphic: $\Delta h=4\sum_j\partial_{z_j}\partial_{\bar z_j}h=0$, so Weyl's lemma makes it smooth, and its Cauchy--Riemann equations give holomorphicity. These observations justify minimal solutions for the singular weights as well.
 
 \section{Interpolation and extension across a hyperplane}
 \label{sec:weighted-interpolation-extension}
 
 \begin{proposition}\label{prop:logarithmic-point-interpolation}
-Let $\Omega$ be a bounded pseudoconvex domain of diameter at most $L$, let $B(a,2r)\Subset\Omega$, and let $p\in\PSH(\Omega)$. If $h$ is holomorphic on that ball and $\int_{B(a,2r)}|h|^2\mathrm e^{-p}<\infty$, there is $F\in\mathcal O(\Omega)$ such that
+Let $r,L>0$, let $\Omega\subset\mathbb C^n$ be a bounded pseudoconvex domain of diameter at most $L$, and let $B(a,2r)\Subset\Omega$. Let $p\in\PSH(\Omega)$. If $h$ is holomorphic on that ball and $\int_{B(a,2r)}|h|^2\mathrm e^{-p}<\infty$, there is $F\in\mathcal O(\Omega)$ such that
 \[
  F(a)=h(a),\qquad
  \int_\Omega|F|^2\mathrm e^{-p}\le C(n,r,L)
@@ -312,9 +316,9 @@ Near $a$, $u$ is holomorphic. The local upper bound of $p$ bounds $\mathrm e^{-p
 \index{interpolation!logarithmic pole}
 
 \begin{lemma}\label{lem:bounded-weight-twist}
-Let $\Omega$ be bounded and pseudoconvex, $p\in\PSH(\Omega)$, and let $\psi$ be a smooth bounded plurisubharmonic function. Put $A=H_\psi$ and $h=|\bar\partial\psi|_{A^{-1}}^2$. Suppose $h<1$ everywhere. For a closed $\alpha\in L^2_{\loc,(0,1)}\cap L^2_{(0,1)}(\mathrm e^{-p})$, assume $h\le a<1$ on its essential support and
+Let $\Omega$ be bounded and pseudoconvex, $p\in\PSH(\Omega)$, and let $\psi$ be a smooth bounded plurisubharmonic function. Put $A=H_\psi$ and $h=|\bar\partial\psi|_{A^{-1}}^2$. Suppose $h<1$ everywhere. For a closed $\alpha\in L^2_{\loc,(0,1)}\cap L^2_{(0,1)}(\mathrm e^{-p})$, assume $h\le a$ almost everywhere on $\{\alpha\ne0\}$ for some $0\le a<1$ and
 $E=\int|\alpha|_{A^{-1}}^2\mathrm e^{\psi-p}<\infty$.
-Then there is a solution with
+Then $\bar\partial u=\alpha$ has a solution with
 \[
  \int_\Omega(1-h)|u|^2\mathrm e^{\psi-p}
       \le\frac{1+\sqrt a}{1-\sqrt a}\,E.
@@ -374,7 +378,7 @@ $A/B\le bD/(\eta(1-b))\le2/s$, proving the second estimate. In the stated annulu
 
 \Needspace{17\baselineskip}
 \begin{theorem}[Ohsawa--Takegoshi]\label{thm:local-ot-extension}
-Let $\Omega\subset\mathbb C^{n-1}\times\Delta_R$ be pseudoconvex, put $\Omega_0=\Omega\cap\{z_n=0\}$, and let $p\in\PSH(\Omega)$. Every holomorphic $f$ on $\Omega_0$ with
+Let $n\ge1$ and $R>0$, and let $\Omega\subset\mathbb C^{n-1}\times\Delta_R$ be pseudoconvex. Put $\Omega_0=\Omega\cap\{z_n=0\}$ and let $p\in\PSH(\Omega)$. Every holomorphic $f$ on $\Omega_0$ with
 \[
  I=\int_{\Omega_0}|f|^2\mathrm e^{-p}\,\mathrm dV_{2n-2}<\infty
 \]
@@ -419,12 +423,12 @@ For the original weight and domain choose bounded increasing pseudoconvex $D_j\S
 \index{Ohsawa--Takegoshi theorem!local extension}
 
 \begin{corollary}\label{cor:ot-point-value-bound}
-For a bounded pseudoconvex domain $\Omega\subset\mathbb C^n$ of diameter at most $L$, $p\in\PSH(\Omega)$, and $p(a)>-\infty$, there is $F\in\mathcal O(\Omega)$ such that
+For a bounded pseudoconvex domain $\Omega\subset\mathbb C^n$ of diameter at most $L>0$, $p\in\PSH(\Omega)$, and $a\in\Omega$ with $p(a)>-\infty$, there is $F\in\mathcal O(\Omega)$ such that
 \[
  F(a)=1,\qquad\int_\Omega|F|^2\mathrm e^{-p}
                        \le C^n L^{2n}\mathrm e^{-p(a)}.
 \]
-Extension from any affine complex subspace of codimension $r$ has the corresponding bound $C^rL^{2r}$ times its slice norm.
+Extension from any affine complex subspace of integer codimension $0\le r\le n$ has the corresponding bound $C^rL^{2r}$ times its slice norm.
 \end{corollary}
 \begin{proof}
 Choose a unitary affine flag through the given subspace, and apply the theorem one normal coordinate at a time. Each slice is pseudoconvex: restrict a finite continuous exhaustion of $\Omega$, whose sublevels remain compact on the closed slice. Every normal coordinate has range within a disc of radius $L$ centered at a point of the smallest slice. Restriction of $p$ is plurisubharmonic or identically $-\infty$ on each component. The latter components have zero data whenever the weighted norm is finite and use the zero extension. Iteration multiplies the estimates. Starting with the value one on the singleton $\{a\}$ proves the first assertion. In dimension zero the initial norm is exactly $\mathrm e^{-p(a)}$ and there is no extension step.
