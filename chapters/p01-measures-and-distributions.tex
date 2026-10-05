@@ -4,7 +4,7 @@ Let $\Omega$ be an open subset of $\mathbb R^d$, with $d\geq1$. Test functions d
 
 \section{Radon measures and integration}
 \label{sec:radon-measures}
-All measures in this chapter are positive unless another qualification is given. We use the Lebesgue integral, defined first for simple functions and then for nonnegative measurable functions by taking a supremum. The Borel sets of $\Omega$ form the smallest $\sigma$-algebra containing its open sets. We write $C_c(\Omega)$ for the real or complex continuous functions with compact support, specifying real scalars when positivity is at issue. The support is the closure in $\Omega$ of the set where the function is nonzero.
+All measures in this chapter are positive unless another qualification is given. We use the Lebesgue integral, defined first for simple functions and then for nonnegative measurable functions by taking a supremum. Lebesgue measure on $\mathbb R^d$ is denoted by $\mathrm dx$, and the Lebesgue measure of a measurable set $E$ by $|E|$. The Borel sets of $\Omega$ form the smallest $\sigma$-algebra containing its open sets. A measure is $\sigma$-finite if the space is a countable union of measurable sets of finite measure. We write $C_c(\Omega)$ for the real or complex continuous functions with compact support, specifying real scalars when positivity is at issue. The support is the closure in $\Omega$ of the set where the function is nonzero; $\Supp f$ denotes it, and $\Int E$ denotes the interior of a set $E$ in its ambient space.
 
 \begin{definition}\label{def:radon-measure}
 A Radon measure\index{Radon measure} on $\Omega$ is a Borel measure $\mu$ which is finite on compact sets and satisfies, for every Borel set $E$,
@@ -15,7 +15,7 @@ A Radon measure\index{Radon measure} on $\Omega$ is a Borel measure $\mu$ which 
 The two equalities are outer and inner regularity\index{measure!regularity}. A function is locally integrable with respect to $\mu$ if its absolute value has finite integral on every compact subset of $\Omega$.
 \end{definition}
 
-We will repeatedly use compact sets $K_j$ such that $K_j\subset\Int K_{j+1}$ and $\bigcup_j\Int K_j=\Omega$. They can be constructed recursively from
+We will repeatedly use compact sets $K_j$, $j\geq1$, such that $K_j\subset\Int K_{j+1}$ and $\bigcup_j\Int K_j=\Omega$. They can be constructed recursively from
 \[
  \{x\in\Omega:|x|\leq j,\ \operatorname{dist}(x,\mathbb R^d\setminus\Omega)\geq j^{-1}\}.
 \]
@@ -37,11 +37,11 @@ For a locally finite measure, choose relatively compact open sets $V_j$ which ex
 \end{proof}
 
 \begin{proposition}\label{prop:integral-limits}
-Let $(X,\mu)$ be a measure space. If $0\leq f_j\uparrow f$, then $\int f_j\,\mathrm d\mu\uparrow\int f\,\mathrm d\mu$. For nonnegative measurable $f_j$,
+Let $(X,\mu)$ be a measure space. For nonnegative measurable functions $f_j$ with $f_j\uparrow f$, we have $\int f_j\,\mathrm d\mu\uparrow\int f\,\mathrm d\mu$. For nonnegative measurable $f_j$,
 \[
  \int\liminf_j f_j\,\mathrm d\mu\leq\liminf_j\int f_j\,\mathrm d\mu.
 \]
-If $f_j\to f$ almost everywhere and $|f_j|\leq g$ for an integrable $g$, then $f$ is integrable and $\int|f_j-f|\,\mathrm d\mu\to0$.
+If measurable real or complex functions $f_j$ converge almost everywhere to a measurable $f$ and $|f_j|\leq g$ for an integrable $g$, then $f$ is integrable and $\int|f_j-f|\,\mathrm d\mu\to0$.
 \end{proposition}
 \begin{proof}
 For a nonnegative simple function $s\leq f$ and $0<t<1$, the sets $\{f_j\geq ts\}$ increase to a set containing $\{s>0\}$. Continuity from below on the finitely many level sets of $s$ gives $\lim_j\int f_j\geq t\int s$. Taking the supremum over $s$ and then letting $t\uparrow1$ proves the first assertion, including infinite integrals. Apply it to $\inf_{k\geq j}f_k$ to obtain the second assertion. For the last one, $|f|\leq g$ almost everywhere; apply the second assertion to $2g-|f_j-f|$ and subtract the finite integral of $2g$.
@@ -107,7 +107,7 @@ This function is countably subadditive on open sets. Indeed, if $\Supp f\subset\
 
 Define $m^*(A)=\inf_{U\supset A}m(U)$, where $U$ is open in $\Omega$. Choosing open approximations with summable errors proves countable subadditivity; if one of the individual outer measures is infinite there is nothing to prove. Thus $m^*$ is an outer measure and $m^*(U)=m(U)$ for open $U$. If $A$ and $B$ have positive distance, every open neighborhood of their union contains disjoint open neighborhoods of $A$ and $B$, obtained by intersecting it with sufficiently small distance neighborhoods. Additivity on disjoint opens proves the separation identity of \cref{lem:metric-outer-measure}. We obtain a Borel measure $\mu$ with $\mu(U)=m(U)$. If $V$ is relatively compact, a cutoff equal to $1$ on $\overline V$ bounds $m(V)$ by \eqref{eq:positive-functional-bound}. Thus $\mu$ is locally finite and Radon by \cref{prop:borel-regularity}.
 
-We identify its integrals. Let $0\leq f\in C_c(\Omega)$, let $M=\|f\|_\infty>0$, and set $\delta=M/N$. For $U_k=\{f>k\delta\}$ and arbitrary admissible $h_k$ in $U_k$, the pointwise inequality $\delta\sum_{k=1}^Nh_k\leq f$ gives
+We identify its integrals. Let $0\leq f\in C_c(\Omega)$, let $M=\|f\|_\infty>0$, choose an integer $N\geq1$, and set $\delta=M/N$. For $U_k=\{f>k\delta\}$ and arbitrary admissible $h_k$ in $U_k$, the pointwise inequality $\delta\sum_{k=1}^Nh_k\leq f$ gives
 \[
  \delta\sum_{k=1}^N\mu(U_k)\leq L(f).
 \]
@@ -115,7 +115,7 @@ On the other hand, set $g_k=\min\{1,\max\{0,f/\delta-(k-1)\}\}$ for $1\leq k\leq
 \[
  L(f)\leq\delta L(\eta)+\delta\sum_{k=2}^N\mu(\{f>(k-2)\delta\}).
 \]
-The difference between the upper and lower sums is bounded by $\delta(L(\eta)+2\mu(\{f>0\}))$, which tends to zero. The lower simple functions $\delta\sum_{k=1}^N\mathbf1_{\{f>k\delta\}}$ differ from $f$ by at most $\delta$ on its compact support, so their integrals tend to $\int f\,\mathrm d\mu$. This proves $L(f)=\int f\,\mathrm d\mu$. The case $M=0$ and general real $f$ follow by linearity.
+The difference between the upper and lower sums is bounded by $\delta(L(\eta)+2\mu(\{f>0\}))$, which tends to zero as $N\to\infty$. The lower simple functions $\delta\sum_{k=1}^N\mathbf1_{\{f>k\delta\}}$ differ from $f$ by at most $\delta$ on its compact support, so their integrals tend to $\int f\,\mathrm d\mu$. This proves $L(f)=\int f\,\mathrm d\mu$. The case $M=0$ and general real $f$ follow by linearity.
 
 Finally, for any Radon measure and any open $U$, compact inner approximation and cutoffs give
 \begin{equation}\label{eq:measure-open-tests}
@@ -238,7 +238,7 @@ If $\mu_i\to\mu$ vaguely, then for every open $U$ and compact $K$,
  \mu(U)\leq\liminf_i\mu_i(U),\qquad
  \limsup_i\mu_i(K)\leq\mu(K).
 \]
-For nets, $\liminf_i a_i=\sup_{i_0}\inf_{i\geq i_0}a_i$ and $\limsup_i a_i=\inf_{i_0}\sup_{i\geq i_0}a_i$. If $E$ is a relatively compact Borel set and $\mu(\partial_\Omega E)=0$, then $\mu_i(E)\to\mu(E)$.
+For nets, $\liminf_i a_i=\sup_{i_0}\inf_{i\geq i_0}a_i$ and $\limsup_i a_i=\inf_{i_0}\sup_{i\geq i_0}a_i$. If $E$ is a relatively compact Borel set and $\mu(\partial_\Omega E)=0$, then $\mu_i(E)\to\mu(E)$. Here $\partial_\Omega E$ is the boundary of $E$ in $\Omega$.
 \end{proposition}
 \begin{proof}
 For $0\leq f\leq1$ supported in $U$, convergence gives $\int f\,\mathrm d\mu\leq\liminf_i\mu_i(U)$. Take the supremum using \eqref{eq:measure-open-tests}. For $K$, outer regularity gives a relatively compact open $V\supset K$ with $\mu(V)<\mu(K)+\varepsilon$. A cutoff equal to $1$ on $K$ and supported in $V$ gives $\limsup_i\mu_i(K)\leq\int\eta\,\mathrm d\mu\leq\mu(V)$. Let $\varepsilon\downarrow0$. Apply these inequalities to $\Int E$ and $\overline E$, whose measures both equal $\mu(E)$ under the boundary hypothesis.
@@ -325,7 +325,7 @@ Let $K$ be a compact metric space. Every equicontinuous uniformly bounded family
 An estimate by a positive measure supplies a bounded density relative to that measure. For Lebesgue measure, differentiation of integrals also identifies the density at almost every point. These facts will distinguish a distributional Hessian from a pointwise second-order expansion and describe coefficients of singular positive currents.
 
 \begin{lemma}\label{lem:dominated-measure-density}
-Let $\mu,\nu$ be positive Radon measures on an open subset of $\mathbb R^d$. If $\mu(E)\le C\nu(E)$ for every Borel $E$, with a finite $C\ge0$, then $\mu=g\nu$ for a Borel function $0\le g\le C$ almost everywhere with respect to $\nu$. The density is unique up to $\nu$-null sets. The analogous local assertion holds with locally bounded constants. In particular, $\mu(E)\le C|E|$ gives $\mu=g\,\mathrm dx$ with $0\le g\le C$.
+Let $\mu,\nu$ be positive Radon measures on an open subset of $\mathbb R^d$. If $\mu(E)\le C\nu(E)$ for every Borel $E$, with a finite $C\ge0$, then $\mu=g\nu$ for a Borel function $0\le g\le C$ almost everywhere with respect to $\nu$. The density is unique up to $\nu$-null sets. If each relatively compact open set $U$ admits a finite constant $C_U\geq0$ with $\mu(E)\leq C_U\nu(E)$ for every Borel $E\subset U$, the analogous conclusion holds with a locally essentially bounded density $g$. In particular, $\mu(E)\le C|E|$ gives $\mu=g\,\mathrm dx$ with $0\le g\le C$.
 \end{lemma}
 \begin{proof}
 Work on a half-open cube $Q$ with closure in the domain and subdivide it into half-open dyadic cubes. On each cube $Q'$ of generation $k$ put $g_k=\mu(Q')/\nu(Q')$ if $\nu(Q')>0$, and put $g_k=0$ otherwise; domination also gives $\mu(Q')=0$ in the latter case. Thus $0\le g_k\le C$. For $l\ge k$, the $\nu$-integral of $g_l$ on each generation-$k$ cube is its $\mu$-mass, which also equals the $\nu$-integral of $g_k$ there. Expansion in $L^2(Q,\nu)$ gives
