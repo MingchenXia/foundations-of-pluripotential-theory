@@ -28,7 +28,7 @@ This is the projected reader-facing structure of the English prequel to SGPT Par
 
 ## End matter
 
-- **Appendix. Complex spaces and modifications.** Local analytic algebra; reduced spaces and normalization; finite maps and curve slices; blowups and the permitted resolution/principalization interface; connected fibers; singular-space psh removal and descent.
+- **Appendix. Complex spaces and modifications.** Local analytic algebra; reduced spaces and normalization; finite maps and curve slices; blowups and the permitted resolution/principalization interface; connected fibers; smooth-target psh descent and smooth-center divisor realization.
 - **Historical and bibliographical notes.** Attribution linked to body results, exact versions and locators, normalization conversions and adjudicated source errors.
 - **Subject index.**
 - **References.**
