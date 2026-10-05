@@ -810,3 +810,9 @@ The complete P06 chapter and Hessian input, Q01 current chapter, and Q02 chapter
 The live pass has 15 fully read inputs, through Chapters 1–8, and 44 pending inputs. This checkpoint changes documentation only; the prior 502-page builds/release and immutable originals are unchanged. H01 source/errata/status adjudication, remaining second reads and the final complete-book build/image release remain open. The preceding pushed manuscript checkpoint is aef2d8a79348d9fd0b3e47be5993316d467d417e.
 
 The preceding manuscript checkpoint passed exact-full-head CI 37282270005 and 37282264947. This documentation-only checkpoint retains those mathematical build/release checks; it adds actual source-read and semantic attribution evidence.
+
+## 2026-10-05 — Bounded products and plurifine second reads
+
+The complete 625-line Q08 chapter and all twelve recursive inputs now have fresh second proof/editorial reads, covering weighted monotone/capacity limits, exact-center Dirichlet proofs, canonical grid moments/self-integrals/truncated total variation, compact bounded-subsolution comparison, mixed E0 energy and the full n-factor common-measure inequality, weak contact Hessians and singular-current gradient chain rule. The complete Q03 read covers relative-extremal mass, zero-capacity poles, the integrable Josefson sum, fine locality with completed measures and common-pole quasi-extrema. No new gap was identified. Their auxiliary/direct historical attribution is semantically adjudicated separately from original-source proof scope.
+
+The live pass has 29 complete input reads through Chapters 1–10 and 30 pending inputs. This checkpoint changes documentation only and retains the prior 502-page manuscript/release checks. The preceding 5741bd4551bbcfff4df42fc3ef3ab85d42615610 passed exact-full-head CI 37283022540 and 37283017916. Final H01 source/errata/status adjudication, remaining second reads and the final complete-book build/image release remain open.
