@@ -6,7 +6,7 @@ Next coherent writing unit: **H01**.
 
 ## H01 — Historical and bibliographical notes
 
-- `H01-01` [drafting] Pinpoint attribution for every result, linked to body labels
-- `H01-02` [planned] Check exact source versions, metadata, errata and source-normalization conversions
-- `H01-03` [planned] Separate attribution, statement checking and complete proof checking
+- `H01-01` [proof-review] Pinpoint attribution for every result, linked to body labels
+- `H01-02` [drafting] Check exact source versions, metadata, errata and source-normalization conversions
+- `H01-03` [drafting] Separate attribution, statement checking and complete proof checking
 
