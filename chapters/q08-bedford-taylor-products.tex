@@ -1,12 +1,16 @@
 \chapter{Bedford--Taylor products and local capacity}
 \label{chap:q08}
 
-On a domain in $\mathbb{C}^n$, two currents with measure coefficients cannot in general be multiplied. A locally bounded plurisubharmonic potential can be multiplied by a measure, however. Applying $\ddc$ to that product gives a positive closed current. Iterating this construction produces the local Monge--Amp\`ere operator. Its continuity along decreasing potentials supplies the symmetry which is absent from the recursive definition, and its measures lead to a capacity adapted to complex poles.
+The complex Hessian of a plurisubharmonic function is a positive current. To measure several complex directions at once, we would like to take its exterior powers. For smooth functions this is a determinant calculation; for general potentials it would require multiplying measure coefficients, an operation with no general meaning. Local boundedness supplies a different construction: multiply the potential by the current already defined, then apply $\ddc$. The first task of this chapter is to prove that the resulting products are symmetric and continuous under decreasing approximation.
+
+These products define a capacity adapted to complex singularities. Capacity makes bounded potentials continuous outside small exceptional sets and gives a convergence criterion strong enough to pass their products to the limit. The homogeneous Dirichlet problem then relates vanishing Monge--Amp\`ere measure to maximality. These results will let the next chapter characterize pluripolar sets by relative extremal functions.
+
+The remaining sections build the local estimates needed when the prescribed measure is singular. We first solve the ball equation for continuous and bounded measurable densities. A bounded subsolution gives energy and capacity control for cube approximations, which allows us to solve the compactly supported measure equation and prove the mixed-product inequality for a common positive measure. We finish with Hessian locality on contact sets and gradient estimates against positive currents. Every nonlinear product in this chapter has locally bounded potentials; the estimates prepare the truncation and envelope arguments on compact manifolds.
 
 \section{Bounded potentials and recursive products}
 \label{sec:bt-construction}
 
-Let $\Omega\subset\mathbb{C}^n$, $n\ge1$, be open, and let $T$ be a positive closed current of bidimension $(r,r)$, $0\le r\le n$. Thus its bidegree is $(n-r,n-r)$. Put $\beta=(\mathrm{i}/2)\sum_j\mathrm{d}z_j\wedge\mathrm{d}\bar z_j$, as in \cref{chap:complex-currents}, and write
+Let $\Omega\subset\mathbb{C}^n$, $n\ge1$, be open, and let $T$ be a positive closed current of bidimension $(r,r)$, with integer $0\le r\le n$. Thus its bidegree is $(n-r,n-r)$. Put $\beta=(\mathrm{i}/2)\sum_j\mathrm{d}z_j\wedge\mathrm{d}\bar z_j$, as in \cref{chap:complex-currents}, and write
 \[
  \|T\|_K=\int_KT\wedge\frac{\beta^r}{r!}
 \]
@@ -17,12 +21,12 @@ For a locally bounded plurisubharmonic $u$ and $r\ge1$, define
 \[
  \ddc u\wedge T=\ddc(uT).
 \]
-Here $uT$ means multiplication of the coefficient measures by the bounded Borel representative $u$. For $q\le r$, define recursively
+Here $uT$ means multiplication of the coefficient measures by the bounded Borel representative $u$. For each integer $1\le q\le r$, define recursively
 \[
  \ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T
  =\ddc\bigl(u_1\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge T\bigr).
 \]
-The empty product is $T$. With $T=1$ and $q=n$, the resulting top-degree current is the Monge--Amp\`ere measure $(\ddc u)^n$.
+The empty product is $T$. With $T=1$, $q=n$ and $u_1=\cdots=u_n=u$, the resulting top-degree current is the Monge--Amp\`ere measure $(\ddc u)^n$.
 \end{definition}
 \index{Bedford--Taylor product}\index{Monge--Amp\`ere measure!locally bounded potentials}
 
@@ -46,7 +50,7 @@ For $u\in C^2$, determinant expansion and $\mathrm{i}\,\mathrm{d}z_j\wedge\mathr
 In particular $\ddc|z|^2=\beta/\pi$. In dimension zero the empty product is $1$, and integration uses counting measure; there is no positive-degree product.
 
 \begin{theorem}[Chern--Levine--Nirenberg]\label{thm:cln-bounded}
-For $K\Subset L^\circ\subset L\Subset\Omega$ and $q\le r$, there is a constant depending only on these sets, the dimension and $q$ such that
+Let $K,L$ be compact sets with $K\Subset\Int L\subset L\Subset\Omega$, and let $0\le q\le r$ be an integer. There is a constant depending only on these sets, the dimension and $q$ such that
 \[
  \|\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T\|_K
  \le C_{K,L,q}\|T\|_L\prod_{j=1}^q\|u_j\|_{L^\infty(L)}.
@@ -54,7 +58,7 @@ For $K\Subset L^\circ\subset L\Subset\Omega$ and $q\le r$, there is a constant d
 The bounded norms refer to the specified pointwise representatives.
 \end{theorem}
 \begin{proof}
-For $q=1$, take a nonnegative smooth cutoff $\chi$ supported in $L^\circ$ and equal to one near $K$. Positivity, followed by distributional integration by parts, gives
+For $q=0$, the estimate follows from $K\subset L$. For $q=1$, take a nonnegative smooth cutoff $\chi$ supported in $\Int L$ and equal to one near $K$. Positivity, followed by distributional integration by parts, gives
 \[
  \begin{aligned}
  \int_K\ddc u\wedge T\wedge\beta^{r-1}
@@ -63,7 +67,7 @@ For $q=1$, take a nonnegative smooth cutoff $\chi$ supported in $L^\circ$ and eq
  \le C\|u\|_{L^\infty(L)}\|T\|_L.
  \end{aligned}
 \]
-The last bound uses the coefficient variations controlled by the trace; the signed form $\ddc\chi$ need not be positive. Such a cutoff is supplied by \cref{prop:continuous-density}. For $q>1$, choose $q-1$ intermediate compact neighborhoods between $K$ and $L^\circ$ and apply this estimate successively to the positive closed recursive products. The factorials in the trace norms are absorbed into the stated constant.
+The last bound uses the coefficient variations controlled by the trace; the signed form $\ddc\chi$ need not be positive. Such a cutoff is supplied by \cref{prop:continuous-density}. For $q>1$, choose $q-1$ intermediate compact neighborhoods between $K$ and $\Int L$ and apply this estimate successively to the positive closed recursive products. The factorials in the trace norms are absorbed into the stated constant.
 \end{proof}
 \index{Chern--Levine--Nirenberg inequality}
 
@@ -79,6 +83,7 @@ Induct on the number of Hessian factors. Their local masses are bounded by \cref
 The mass bounds control the first, second and fourth terms. For fixed $\varepsilon$ the third tends weakly to zero. First let $k$ increase and then $\varepsilon$ decrease. Applying $\ddc$ proves the next unweighted assertion. Smooth approximation of a continuous function follows from \cref{prop:continuous-density} in coordinate neighborhoods.
 \end{proof}
 
+\Needspace{10\baselineskip}
 \section{Decreasing continuity and symmetry}
 \label{sec:bt-monotone}
 
@@ -91,7 +96,7 @@ Let $B$ be a ball whose closure lies in the domain of a positive closed current 
 \[
  \int_B a\,\ddc b\wedge R=\int_B b\,\ddc a\wedge R.
 \]
-The assertion also applies after wedging $R$ with any smooth closed complementary form that preserves positivity.
+In particular one may take $R=S\wedge\gamma$ whenever $S$ is positive and closed, $\gamma$ is smooth and closed, and their product is positive of bidimension $(1,1)$.
 \end{lemma}
 \begin{proof}
 Write $a=\rho+\alpha$ and $b=\rho+h$, with $\alpha$ smooth and $h$ bounded, both compactly supported inside $B$. The current $\ddc(hR)=\ddc b\wedge R-\ddc\rho\wedge R$ has measure coefficients. Distributional integration by parts, tested with cutoffs equal to one near the compact supports, gives
@@ -170,7 +175,7 @@ Along the subsequence defining $\Theta$, the common collar makes $I_j\to\int_B\T
 In \cref{thm:bt-decreasing-continuity}, one may replace the single weight by any real polynomial in finitely many bounded plurisubharmonic potentials, each approximated by a decreasing sequence with its bounded limit. The common-collar identity of \cref{lem:bt-common-collar} also holds when both $a$ and $b$ are bounded plurisubharmonic.
 \end{corollary}
 \begin{proof}
-Shift the potentials by constants to make them nonnegative on a compact neighborhood of the test support. Every monomial is a linear combination of powers of their nonnegative sums, by
+Shift the potentials by constants to make them nonnegative on a compact neighborhood of the test support. For an integer $N\ge1$, every degree-$N$ monomial is a linear combination of powers of their nonnegative sums, by
 \[
  \prod_{l=1}^N a_l=\frac{1}{N!}
    \sum_{I\subset\{1,\ldots,N\}}(-1)^{N-|I|}
@@ -182,7 +187,7 @@ For the collar identity, radially smooth $a$ and $b$ with the same radius. Near 
 \end{proof}
 
 \begin{proposition}\label{prop:bt-maximum-locality}
-For locally bounded plurisubharmonic $u,v$ and $p\le r$,
+For locally bounded plurisubharmonic $u,v$ and an integer $0\le p\le r$,
 \[
  \mathbf{1}_{\{u>v\}}(\ddc\max\{u,v\})^p\wedge T
  =\mathbf{1}_{\{u>v\}}(\ddc u)^p\wedge T.
@@ -201,7 +206,7 @@ Multiply its coefficient measures by $1/(f+\varepsilon)$, then let $\varepsilon\
 \index{Bedford--Taylor product!maximum locality}
 
 \begin{theorem}\label{thm:bt-comparison}
-Let $D\subset\mathbb{C}^n$ be bounded and let $u,v$ be bounded plurisubharmonic functions on $D$. If $\liminf_{D\ni z\to x}(u(z)-v(z))\ge0$ for every $x\in\partial D$, then
+Let $D\subset\mathbb{C}^n$ be bounded and open, and let $u,v$ be bounded plurisubharmonic functions on $D$. If $\liminf_{D\ni z\to x}(u(z)-v(z))\ge0$ for every $x\in\partial D$, then
 \[
  \int_{\{u<v\}}(\ddc v)^n\le\int_{\{u<v\}}(\ddc u)^n.
 \]
@@ -261,7 +266,7 @@ The last equality follows from $A\subset\{v<u\}$. Thus $u_{\varepsilon,\delta}\l
 A capacity takes the largest mass assigned to a set by a normalized class of Monge--Amp\`ere measures. Uniform integral estimates for that entire class are therefore needed before exceptional sets can be controlled.
 
 \begin{theorem}\label{thm:cln-weighted}
-For $K\Subset L^\circ\subset L\Subset\Omega$, $V\in\PSH(\Omega)$, and locally bounded plurisubharmonic $u_1,\ldots,u_q$, $0\le q\le n$,
+For compact sets $K,L$ with $K\Subset\Int L\subset L\Subset\Omega$, $V\in\PSH(\Omega)$, and locally bounded plurisubharmonic $u_1,\ldots,u_q$, with integer $0\le q\le n$,
 \[
  \int_K |V|\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}
  \le C_{K,L,q}\|V\|_{L^1(L)}
@@ -270,7 +275,7 @@ For $K\Subset L^\circ\subset L\Subset\Omega$, $V\in\PSH(\Omega)$, and locally bo
 In particular the specified pointwise $V$ is integrable against every bounded-potential product trace. The base current here is $1$; an arbitrary singular $T$ is not covered by this $L^1$ estimate.
 \end{theorem}
 \begin{proof}
-For $q=0$ this is the Lebesgue integral, up to a dimension constant. Otherwise cover $K$ by finitely many smaller balls inside balls with closure in $L^\circ$. If some bounded norm is zero, that potential is zero on the larger neighborhood and the local product vanishes. Divide the other potentials by twice their norms and subtract $3/2$, so they lie in $[-2,-1]$. The Hessians acquire only the product of those scaling constants. It suffices to prove a uniform estimate for the normalized functions on one smaller ball.
+For $q=0$ this is the Lebesgue integral, up to a dimension constant. Otherwise cover $K$ by finitely many smaller balls inside balls with closure in $\Int L$. If some bounded norm is zero, that potential is zero on the larger neighborhood and the local product vanishes. Divide the other potentials by twice their norms and subtract $3/2$, so they lie in $[-2,-1]$. The Hessians acquire only the product of those scaling constants. It suffices to prove a uniform estimate for the normalized functions on one smaller ball.
 
 Use the common-collar modification from \cref{thm:bt-decreasing-continuity} on $B$, leaving the potentials unchanged near the smaller ball. Denote their product by $S$, put $\psi=|z-a|^2-R^2$ and $b=\ddc\psi=\beta/\pi$. There are $A,\tau>0$, depending only on the chosen balls, such that $S=A^q b^q$ on $B\setminus B_\tau$, where $B_\tau=\{\psi<-\tau\}$ contains the smaller ball. Choose a nonnegative smooth cutoff $\chi$ supported in $B$ and equal to $-\psi$ on a neighborhood of $\overline{B_\tau}$.
 
@@ -310,7 +315,7 @@ In local assertions we use relatively compact bounded coordinate domains, in par
 \begin{proposition}\label{prop:bt-capacity-basic}
 These capacities are increasing and countably subadditive. Capacity is finite on compact subsets of $D$, and for Borel $E$
 $\operatorname{Cap}_D(E)=\sup_{K\subset E,\ K\text{ compact}}\operatorname{Cap}_D(K)$.
-It is continuous on increasing Borel sequences. On each compact neighborhood Lebesgue measure is bounded by a constant times capacity. For a ball $B\Subset D$ and $K\Subset B$, there is a constant such that, for every Borel $E\subset K$,
+It is continuous on increasing Borel sequences. On each compact neighborhood Lebesgue measure is bounded by a constant times capacity. For a ball $B\Subset D$ and a compact $K\Subset B$, there is a constant such that, for every Borel $E\subset K$,
 \[
  \operatorname{Cap}_D(E)\le\operatorname{Cap}_B(E)
                               \le C\operatorname{Cap}_D(E).
@@ -326,7 +331,7 @@ A biholomorphism bijects the capacity competitors by composition, by \cref{prop:
 \end{proof}
 
 \begin{proposition}\label{prop:bt-poles-zero-capacity}
-For $K\Subset L^\circ\subset L\Subset D$ and $V\in\PSH(D)$,
+For compact sets $K,L$ with $K\Subset\Int L\subset L\Subset D$ and $V\in\PSH(D)$,
 \[
  \operatorname{Cap}_D^*(K\cap\{V<-s\})
                  \le\frac{C_{K,L}}{s}\|V\|_{L^1(L)},\qquad s>0.
@@ -334,7 +339,7 @@ For $K\Subset L^\circ\subset L\Subset D$ and $V\in\PSH(D)$,
 Consequently a locally contained plurisubharmonic pole set has zero outer capacity on compact subsets of any containing bounded domain. Each bounded-potential Monge--Amp\`ere measure gives that set zero mass.
 \end{proposition}
 \begin{proof}
-Choose an open neighborhood $U$ of $K$ with compact closure in $L^\circ$. For every capacity competitor $v$, \cref{thm:cln-weighted} gives
+Choose an open neighborhood $U$ of $K$ with compact closure in $\Int L$. For every capacity competitor $v$, \cref{thm:cln-weighted} gives
 $\int_{U\cap\{V<-s\}}(\ddc v)^n\le s^{-1}\int_{\overline U}|V|(\ddc v)^n
 \le C s^{-1}\|V\|_{L^1(L)}$.
 The sublevel set intersected with $U$ is open, so this bounds its outer capacity as well and proves the displayed estimate. Let $s$ increase to infinity. For local pole sets, a countable cover by compact neighborhoods of their local defining functions, domain restriction, and outer subadditivity give the result. The weighted CLN theorem also shows directly that a bounded-product measure cannot charge a pole where its defining $V$ would fail to be integrable.
@@ -386,22 +391,22 @@ Here the set is understood inside $B$ and extended by the empty set outside. It 
 
 Choose increasing indices $j_l$ so that the open sets $G_l=\{g_{j_l}-g>2^{-l}\}$ have capacities below $\varepsilon2^{-l-1}$. Outside their union the continuous $g_{j_l}$ converge uniformly to $g$. Its restriction there is continuous. A finite ball cover and a division of the capacity budget prove the bounded case on any compact set.
 
-For an arbitrary $u$, \cref{prop:bt-poles-zero-capacity} gives an open sublevel neighborhood $G_1$ of capacity below $\varepsilon/2$ containing all poles on the chosen compact neighborhood. Choose its level $-s$ and apply the bounded case to $\max\{u,-s\}$, with budget $\varepsilon/2$. Outside the union of the two exceptional sets this truncation equals $u$ and is finite and continuous. Finally exhaust $D$ by compact neighborhoods $K_l$ with $K_l\subset K_{l+1}^\circ$ and distribute a total budget below $\varepsilon$ over them. The union of the resulting open sets has the stated capacity. Each point of its complement lies in the interior of some $K_l$, where the relative continuity has been proved. The union also contains every pole.
+For an arbitrary $u$, \cref{prop:bt-poles-zero-capacity} gives an open sublevel neighborhood $G_1$ of capacity below $\varepsilon/2$ containing all poles on the chosen compact neighborhood. Choose its level $-s$ and apply the bounded case to $\max\{u,-s\}$, with budget $\varepsilon/2$. Outside the union of the two exceptional sets this truncation equals $u$ and is finite and continuous. Finally exhaust $D$ by compact neighborhoods $K_l$ with $K_l\subset\Int K_{l+1}$ and distribute a total budget below $\varepsilon$ over them. The union of the resulting open sets has the stated capacity. Each point of its complement lies in the interior of some $K_l$, where the relative continuity has been proved. The union also contains every pole.
 \end{proof}
 
-We need a continuous extension only from a compact set. If $f$ is continuous on a compact $F\subset\mathbb{R}^d$, it has a bounded continuous extension to $\mathbb{R}^d$ with the same bound. Here is a direct construction. If $|f|\le a$, the clamped functions
+We need a continuous extension only from a compact set. If $f$ is real and continuous on a compact $F\subset\mathbb{R}^d$, it has a bounded continuous extension to $\mathbb{R}^d$ with the same bound. Here is a direct construction. If $|f|\le a$ with $a\ge0$, the clamped functions, indexed by $L>0$,
 $\max\{-a,\min\{a,\inf_{y\in F}(f(y)+L|x-y|)\}\}$
 are Lipschitz and converge uniformly to $f$ on $F$ as $L\to\infty$. Uniform continuity proves this: near $x\in F$ the values of $f$ differ little, while points at a fixed positive distance are excluded from the infimum when $L$ is large. Choose such an approximation with error at most $a/2$, repeat for its residual on $F$, and sum the bounded extensions of these residual approximations. The bounds form a geometric series, so the sum converges uniformly and equals $f$ on $F$. Clamping that sum to $[-a,a]$ preserves its values on $F$ and gives the desired bound. The empty $F$ and $a=0$ use the zero extension.
 
 \begin{lemma}\label{lem:quasi-continuous-level-capacity}
-If $L\Subset D$ is compact, $f$ is bounded and quasi-continuous on a neighborhood of $L$, and $K\Subset L^\circ$, then, for $\delta>0$,
+If $K,L$ are compact with $K\Subset\Int L\subset L\Subset D$ and $f$ is real, bounded and quasi-continuous on a neighborhood of $L$, then, for $\delta>0$,
 \[
  \operatorname{Cap}_D^*(K\cap\{|f|>\delta\})
        \le\operatorname{Cap}_D(L\cap\{|f|>\delta/2\}).
 \]
 \end{lemma}
 \begin{proof}
-Choose open $G$ of capacity below $\eta$ making $f$ continuous on $L\setminus G$, and extend that restriction continuously with the same bounded norm by the preceding construction. Write the extension as $g$. If $K\subset U\Subset L^\circ$, the open set
+Choose open $G$ of capacity below $\eta$ making $f$ continuous on $L\setminus G$, and extend that restriction continuously with the same bounded norm by the preceding construction. Write the extension as $g$. If $K\subset U\Subset \Int L$, the open set
 $G\cup(U\cap\{|g|>\delta/2\})$ covers the set on the left. Its portion outside $G$ lies in $L\cap\{|f|>\delta/2\}$. Subadditivity bounds its capacity by the right side plus $2\eta$. Let $\eta\downarrow0$.
 \end{proof}
 
@@ -416,24 +421,25 @@ Addition of a finite constant preserves either infinite value in these ordered c
 \end{definition}
 \index{convergence!Monge--Amp\`ere capacity}
 
+\Needspace{8\baselineskip}
 \begin{proposition}\label{prop:psh-decreasing-capacity}
-If $u_j\downarrow u$ are locally bounded plurisubharmonic functions with locally bounded limit, then $u_j\to u$ locally in capacity. Locally uniformly bounded functions converging in capacity also converge in $L^1_{\loc}$.
+If $u_j\downarrow u$ are locally bounded plurisubharmonic functions with locally bounded limit, then $u_j\to u$ locally in capacity. A locally uniformly bounded net of real Borel functions converging in capacity to a locally bounded real Borel function also converges in $L^1_{\loc}$.
 \end{proposition}
 \begin{proof}
 Modify the decreasing functions on a ball to have the common collar and agree with their original values on a compact neighborhood of the test set. Put $w_j=u_j-u\ge0$ there. Each $w_j$ is bounded and quasi-continuous, since it is a difference of two such functions. The B\l{}ocki estimate bounds the inner capacity of its positive superlevel sets by
 $C\delta^{-n-1}\int_B w_j(\ddc u)^n$, which tends to zero by bounded convergence. \Cref{lem:quasi-continuous-level-capacity} turns this into the required outer-capacity bound on the smaller compact set, with threshold $\delta/2$. A finite cover proves the local assertion.
 
-For the $L^1$ implication, if $|f_j|,|f|\le M$ near a compact $K$, split the integral into $\{|f_j-f|>\delta\}$ and its complement. The volume bound from \cref{prop:bt-capacity-basic} gives
+For the $L^1$ implication, the estimate is independent of the net index. If $|f_a|,|f|\le M$ near a compact $K$, split the integral into $\{|f_a-f|>\delta\}$ and its complement. The volume bound from \cref{prop:bt-capacity-basic} gives
 \[
- \int_K|f_j-f|\,\mathrm{d}V
- \le 2MC_K\operatorname{Cap}_D^*(K\cap\{|f_j-f|>\delta\})
+ \int_K|f_a-f|\,\mathrm{d}V
+ \le 2MC_K\operatorname{Cap}_D^*(K\cap\{|f_a-f|>\delta\})
           +\delta|K|.
 \]
-Let $j$ increase and then $\delta$ decrease.
+Take the net limit and then let $\delta$ decrease.
 \end{proof}
 
 \begin{lemma}\label{lem:bounded-product-capacity-domination}
-On a ball $B$, the trace measures of products of locally uniformly bounded plurisubharmonic potentials are uniformly dominated on smaller compact sets by a constant times $\operatorname{Cap}_B$. Their coefficient variations have the same bound. If such measures $\mu_j\to\mu$ weakly, then $f_j\mu_j\to f\mu$ weakly whenever the real Borel $f_j$ are locally uniformly bounded, converge in capacity to a bounded quasi-continuous $f$, and all products have the indicated common bounds. This includes a fixed quasi-continuous weight $f_j=f$.
+On a ball $B$, the trace measures of products of locally uniformly bounded plurisubharmonic potentials are uniformly dominated on smaller compact sets by a constant times $\operatorname{Cap}_B$. Their coefficient variations have the same bound. If such measures $\mu_j\to\mu$ weakly, then $f_j\mu_j\to f\mu$ weakly whenever the real Borel $f_j$ are locally uniformly bounded, converge in capacity to a locally bounded real Borel quasi-continuous $f$, and all products have the indicated common bounds. This includes a fixed quasi-continuous weight $f_j=f$.
 \end{lemma}
 \begin{proof}
 Restrict to a slightly smaller ball on which every potential has the same finite bound and normalize them to $0\le v_l\le1$. Also normalize the quadratic function $\phi=|z-a|^2/R^2$ on that ball. The function
@@ -451,10 +457,10 @@ If $u_{l,j}\to u_l$ locally in capacity for locally uniformly bounded plurisubha
  \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}
              \longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_q
 \]
-weakly, for $q\le n$. One may also insert locally uniformly bounded Borel weights $f_j\to f$ in capacity when $f$ is quasi-continuous. The base current in this assertion is $1$.
+weakly, for each integer $0\le q\le n$. One may also insert locally uniformly bounded real Borel weights $f_j\to f$ in capacity when $f$ is real Borel, locally bounded and quasi-continuous. The base current in this assertion is $1$.
 \end{theorem}
 \begin{proof}
-Capacity convergence gives $L^1$ convergence by \cref{prop:psh-decreasing-capacity}, so the one-factor Hessians converge distributionally. For the induction step, the $(q-1)$-factor products converge weakly and their coefficient variations have uniform capacity bounds by \cref{lem:bounded-product-capacity-domination}. That lemma passes multiplication by $u_{1,j}$ to multiplication by $u_1$. Apply $\ddc$ to obtain the $q$-factor assertion. The same lemma then proves the additional-weight assertion. All estimates are local on a bounded ball; the domain comparison makes the capacity hypotheses valid there.
+For $q=0$ the unweighted product is $1$; its weighted assertion follows from the capacity-domination lemma. For $q\ge1$, capacity convergence gives $L^1$ convergence by \cref{prop:psh-decreasing-capacity}, so the one-factor Hessians converge distributionally. For the induction step, the $(q-1)$-factor products converge weakly and their coefficient variations have uniform capacity bounds by \cref{lem:bounded-product-capacity-domination}. That lemma passes multiplication by $u_{1,j}$ to multiplication by $u_1$. Apply $\ddc$ to obtain the $q$-factor assertion. The same lemma then proves the additional-weight assertion. All estimates are local on a bounded ball; the domain comparison makes the capacity hypotheses valid there.
 \end{proof}
 
 \section{Increasing limits and exceptional envelopes}
