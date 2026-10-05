@@ -1,0 +1,9 @@
+# Big-class envelope regularity — scoped review
+
+Two complete direct saved-source mathematical/editorial reads cover the entire new input, history paragraph, bibliography entries and adjacent transitions. The first read preceded the first build; the second followed inspection of53 selected pages. All510 first/final pages were rendered and compared; all28 changed final images and the five listed full-size final pages were inspected. This is an authoring-agent unit review, not independent or whole-prequel certification.
+
+The proof keeps the actual fixed measuring metric. Finite Chern fiber jets and explicit weight integration reconstruct the joint smoothing estimate, including its mixed terms. The fixed quadratic correction ensures logarithmic-radius monotonicity. A penalty proves the constrained minimum at its variable upper endpoint. Divisor coordinates turn local variable coefficients into uniform bounds; successive linear and quadratic smoothing errors give bounded metric Laplacian on the ample locus. The distributional adjoint generator identifies that metric Laplacian. Earlier internal Hessian multipliers and Morrey give local W2p and C1,gamma consequences. A full real C1,1 bound in a big class is not asserted.
+
+The author-hosted20-page Demailly file was independently retrieved, retained and read throughp16; complete calculation passagespp5–6,8–12,12–16 and source images8,10,11,15 were inspected. Exact DNT2110.14314v3 was completely read, including the finite-obstacle proof; source images14,17 were inspected. The final publisher sample was read only atprintedpp1347–1349. The bibliography and history distinguish these versions and normalizations. No new external mathematical input is added; the prior accepted resolution/principalization policy is unchanged.
+
+The JSON records precise page lists, build logs and release evidence. Final SGPT coverage/overlap/attribution audit and two whole-prequel polishing reads remain.
