@@ -1,0 +1,3 @@
+# Invariant psh finiteness and convexity
+
+The complete new input, activation seam and new attribution paragraph receive two direct saved reads, with a passing build and affected-page inspection after each. The direct Hessian/L1 proof supplies the exact source finiteness lemma, separately from Kiselman. No circle-mean theorem is imported. The logarithmic covering fixes the log|z|^2 convention. All500 first/final rasters coincide at the same scale. Eighteen first and four final pages are inspected. Earlier supporting results retain their scoped review evidence; no whole-chapter or whole-prequel certification is claimed. See the companion JSON for exact scope and logs.
