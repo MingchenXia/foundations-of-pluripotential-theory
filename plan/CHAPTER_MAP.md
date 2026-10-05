@@ -27,7 +27,7 @@ Required units form the current prequel; excluded units preserve historical work
 | Q13 | II | excluded | I-good singularities and volume | Q12 | [chapters/q13-i-good-singularities-and-volume.tex](../chapters/q13-i-good-singularities-and-volume.tex) |
 | Q14 | II | excluded | Trace operators and restricted volumes | Q13, A01 | [chapters/q14-trace-operators-and-restricted-volumes.tex](../chapters/q14-trace-operators-and-restricted-volumes.tex) |
 | Q15 | II | excluded | Test curves and geodesic rays | Q11, Q12 | [chapters/q15-test-curves-and-geodesic-rays.tex](../chapters/q15-test-curves-and-geodesic-rays.tex) |
-| Q16 | II | required | Convex and ample toric foundations | P01, Q01 | [chapters/q16-convex-analysis-and-toric-potentials.tex](../chapters/q16-convex-analysis-and-toric-potentials.tex) |
+| Q16 | II | required | Convex analysis and toric potentials | P01, Q01 | [chapters/q16-convex-analysis-and-toric-potentials.tex](../chapters/q16-convex-analysis-and-toric-potentials.tex) |
 | Q17 | II | excluded | Graded series, valuations and Okounkov bodies | Q14, Q16 | [chapters/q17-graded-series-valuations-and-okounkov-bodies.tex](../chapters/q17-graded-series-valuations-and-okounkov-bodies.tex) |
 | Q18 | II | excluded | b-divisors and non-Archimedean potentials | Q17 | [chapters/q18-b-divisors-and-non-archimedean-potentials.tex](../chapters/q18-b-divisors-and-non-archimedean-potentials.tex) |
 | Q19 | II | excluded | Bergman kernels and equilibrium measures | Q18, Q04 | [chapters/q19-bergman-kernels-and-equilibrium-measures.tex](../chapters/q19-bergman-kernels-and-equilibrium-measures.tex) |

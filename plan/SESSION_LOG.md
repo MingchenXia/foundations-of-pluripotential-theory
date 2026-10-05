@@ -858,3 +858,26 @@ The live pass now has 53 complete active-file reads through Chapters 1–17, wit
 The complete Q16 parent and three recursive inputs have fresh second mathematical/editorial reads. The review covers relative-interior duality and finite-primal attainment; completed Alexandrov measures, mixed determinants and full-mass bounded testing; translated lattice-cell volume limits; invariant-psh finiteness; and the internal projective monomial, orbit/divisor, section and all-face entropy-metric constructions. Empty-interior and dimension-zero conventions are checked. No new mathematical or editorial gap was identified, and broader toric applications remain in SGPT.
 
 The live pass now has 57 complete active-file reads through Chapters 1–18, with A01 and H01 remaining. 559 of 603 labelled attribution rows are adjudicated. This documentation-only checkpoint retains the checked 502-page manuscript and fresh release. The preceding 989a61686d1a715abda99047718b9b4b72287ff9 passed exact-full-head CI 37297896013 and 37297890448. Remaining analytic-appendix/history reads, H01 source/errata/status semantic adjudication and the final complete-book build/image release stay open.
+
+## 2026-10-05 — Analytic appendix second read
+
+The complete 695-line A01 appendix has a fresh second mathematical/editorial read, from analytic division/coherence and finite/discriminant algebra through normalization, curve and mapping arguments, relative marked-one principalization, connected fibers and Jacobian-order divisor realization. Ambient psh pullback, compact maximum and singular upper bounds are checked without importing FN equivalence. The two accepted resolution/principalization existence interfaces remain the only external mathematical inputs. No new mathematical or editorial gap was identified.
+
+The live second pass has 58 complete active-file reads, with H01 remaining. All 603 labelled result/definition/example attribution rows now have semantic context decisions; final original-source/version/normalization/errata and proof-credit adjudication remain open. This review-documentation checkpoint retains the checked 502-page manuscript/release; it does not certify unfinished H01 or final whole-book layout.
+
+## 2026-10-05 — Final H01 semantic audit and complete second source pass
+
+H01 has a fresh complete 290-line second read in nine contiguous successful chunks, completing 59/59 active input reads in both whole-prequel passes. All 603 labelled environments and all 73 cited source identities now have semantic adjudications. The final audit reconciles source versions/locators, every required normalization conversion, relevant unofficial errata, metadata/statement/proof credit and the two accepted EI-RES interfaces. No new mathematical or editorial gap was identified. Older source-catalog open notes are preserved as history and explicitly distinguished from later closed internal foundations.
+
+Final full build, selected layout review, tracked-source empty-directory release and remote synchronization remain. No independent review or all-502-page direct visual inspection is claimed.
+
+## 2026-10-05 — Final formatting and historical-task closure
+
+All three H01 obligations are verified on the final semantic audit, with their complete source/dependency/errata scopes. All 109 required tasks are verified; 30 historical tasks remain excluded. Contents and chapter-map titles now match the actual eighteen-chapter book. The live progress generator uses the closed 318-row source audit instead of its obsolete unfinished-audit sentence.
+
+The final forced 502-page build has zero unresolved references/citations and zero overfull/underfull boxes. A paired complete-entry review permits one bibliography break after arXiv:, fixing the sole stretched line without changing its source identity. Only physical page 501 changes; all 502 first/final rasters and page text match. The final phase directly inspects 44 selected pages and carries unchanged earlier visual scopes through identical rasters, without claiming direct inspection of all pages. The full fresh tracked-source rebuild and remote final checks remain before the book is declared complete.
+
+## 2026-10-05 — Complete checked prequel release
++
++The full staged tracked-source archive rebuilt successfully in a fresh empty directory; all 502 pages match the checked PDF in page text. This completes the requested writing and repeated polishing after all 109 required tasks, both actual 59-input source passes, the 318 Part I dispositions and final attribution/source audit. The final release record separates authoring-agent proof review from mechanical checks and selected visual scope. No independent review is claimed; only the two explicit EI-RES existence interfaces remain external. Exact delivery-head push and both workflow checks are verified at delivery without a self-referential commit hash in the source payload.
++

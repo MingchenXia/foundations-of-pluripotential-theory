@@ -18,7 +18,7 @@ Choose the earliest dependency-ready required unit. For a source use, read the s
 
 Every retained proof has exact earlier dependencies or the previously permitted resolution/principalization interface. Consult original references independently online, retain checked versions and pair GZ uses with its scoped errata review. Perform two direct reads around build/visual checks; builds do not certify mathematics. Keep releases private, stage new files before the fresh archive rebuild, and push checked work regularly.
 
-The final scope denominator remains provisional until the five Part I proof graphs and necessary appendix dependencies are audited. The former 48/110 percentage, 244 statement mappings and larger page counts are historical evidence under the superseded plan. They do not measure completion of this prequel.
+The five Part I proof graphs and necessary appendix dependencies have now been audited: 318 exact source statement dispositions are closed, and all 109 required mathematical/historical-source tasks are verified. Both actual whole-prequel source reads cover all 59 active inputs; the final checked-release evidence is recorded in research/reviews/2026-10-05-whole-prequel-final-release.json. The former 48/110 percentage, 244 statement mappings and larger page counts are historical evidence under the superseded plan. They do not measure completion of this prequel.
 
 ## Historical checkpoints under the earlier broader plan
 

@@ -2,11 +2,15 @@
 
 The author's scope instructions of 4 October 2026 are controlling: this book is a systematic self-contained prequel to SGPT Part I, with limited necessary overlap. Parts II and III are excluded apart from the author's later explicit request for the foundations of Example 6.1.3 (ex:BBJ). The supplied root, lines 204–209, and the complete `part_prel.tex` directly checked for this decision identify **five** Part I chapters: psh functions, non-pluripolar products, envelopes, geodesic rays and ample toric potentials. There are 318 inventoried statement environments in those chapters; that is an audit queue, not 318 missing proofs.
 
+## Final scope status — 2026-10-05
+
+All five source proof graphs and all 318 exact statement dispositions are closed. The active book contains the required foundational dependencies and the two narrowly requested additions; broader SGPT Parts II/III and source-native applications remain excluded. All 109 required tasks, both 59-input direct source passes, 603 labelled-environment attribution decisions and 73 source-version/proof-scope adjudications are complete. The final release record is research/reviews/2026-10-05-whole-prequel-final-release.json. Earlier dated open checkpoints below retain their historical scope and are superseded by the later exact closure records; they do not reopen finished foundations.
+
 ## Inclusion rule
 
 Include a result if Part I uses it without a complete proof, or if it is needed to prove such a result from the declared reader prerequisites. Record the exact source use, the complete source proof inspected, what is missing, the new internal proof and its earlier dependencies. A statement with a complete SGPT proof is normally excluded from reproduction. Permit only the short overlap necessary for definitions, transitions or a foundational proof. A citation or absence of a proof environment does not by itself establish a gap.
 
-## Confirmed foundations and current open interfaces
+## Confirmed foundational interfaces
 
 | Part I use | Evidence actually checked | Prequel home / disposition |
 |---|---|---|

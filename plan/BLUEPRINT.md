@@ -21,7 +21,7 @@ Keep two main parts: **Potential theory**, then **Pluripotential theory**. The r
 1. Measures, distributions, harmonic/subharmonic functions, kernel energy, capacity and exceptional sets; fine topology and the Fourier/incidence tools needed for canonical psh representatives.
 2. Complex forms and positive currents; psh functions and their pointwise representatives; local bounded Monge–Ampere products, nonlinear capacity and pluripolarity.
 3. Weighted L2 estimates and extension, coherent multiplier ideals, Lelong theory and strong openness, analytic singularities and approximation, global potentials and positive classes.
-4. Only the missing foundations for Part I's non-pluripolar products, envelopes, full-mass/finite-energy theory and geodesic constructions. The existing Q09–Q11 drafts undergo a proof-gap/overlap audit before final inclusion.
+4. Only the missing foundations for Part I's non-pluripolar products, envelopes, full-mass/finite-energy theory and geodesic constructions. The exact Part I proof-gap/overlap audit governs the final Q09–Q11 inclusion.
 5. Convex duality, subgradient measures, lattice-volume counting and the geometric prerequisites assumed in the ample toric chapter. Do not reproduce the toric pluripotential dictionary already proved in SGPT.
 
 An appendix supplies the complex-space and modification tools needed on this route. A final historical chapter records exact attribution and checked versions. Stable chapter IDs may survive a relocation or exclusion; they are not a requirement to print all 27 old units.
@@ -40,4 +40,4 @@ The quantitative Nakamaye regularization has only its two recorded conclusions. 
 
 Read each coherent unit completely, including its recursive dependencies and seams; perform the first mathematical/editorial read, build and visual inspection, then a second complete direct read and final affected inspection. Preserve svmono, shared counters, the index and the single bibliography. Keep editorial tracking out of the printed mathematics.
 
-Complete the book only after the Part I missing-proof and overlap audit, every required internal proof, integration and two whole-prequel reads are finished. The current required task count is provisional until the gap audit closes. Preserve excluded drafts privately without treating them as obligations. Commit and push checked work regularly; do not publish, merge or change repository visibility.
+Complete the book only after the Part I missing-proof and overlap audit, every required internal proof, integration and two whole-prequel reads are finished. The closed Part I audit fixes 109 required tasks, including the three final historical-source obligations. Preserve excluded drafts privately without treating them as obligations. Commit and push checked work regularly; do not publish, merge or change repository visibility.

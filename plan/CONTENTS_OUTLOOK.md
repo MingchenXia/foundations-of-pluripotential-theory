@@ -1,6 +1,6 @@
-# Projected contents
+# Contents
 
-This is the projected reader-facing structure of the English prequel to SGPT Part I. It has two main parts and eighteen chapters. The chapter numbers follow the current active reading order; stable project IDs are kept in chapters.json. Section boundaries in Chapters 15–17 remain subject to the missing-proof and overlap audit. This outline is a scope and narrative plan, not a claim that all listed proofs are complete.
+The English prequel to SGPT Part I has two main parts and eighteen chapters, followed by two appendices, the subject index and references. These titles match the current compiled book; stable project IDs are kept in chapters.json. The complete Part I proof-gap/overlap audit and both actual whole-prequel source reads are recorded in research/reviews and research/audits.
 
 ## Part I. Potential theory
 
@@ -9,7 +9,7 @@ This is the projected reader-facing structure of the English prequel to SGPT Par
 3. **Subharmonic functions.** Mean inequalities and canonical representatives; Riesz measures and decomposition; convergence, compactness and Hartogs estimates; exceptional sets.
 4. **Riesz potentials, energy and capacity.** Kernel energy; extremal functions and capacity; equilibrium measures; polarity and negligible sets; polar Cantor sets carrying atom-free probability measures.
 5. **Fine topology and balayage.** Thinness and fine neighborhoods; reduction and sweeping; Green energy and harmonic measure; countable selection and quasi-open sets.
-6. **Fourier analysis and complex-line incidence.** Fourier transforms; Hessian multipliers and the required Sobolev estimates; unitary invariant measures; measurable circle selection and incidence of complex lines.
+6. **Fourier analysis and incidence of complex lines.** Fourier transforms; Hessian multipliers and the required Sobolev estimates; unitary invariant measures; measurable circle selection and incidence of complex lines.
 
 ## Part II. Pluripotential theory
 
@@ -19,17 +19,17 @@ This is the projected reader-facing structure of the English prequel to SGPT Par
 10. **Pluripolar sets and the plurifine topology.** Relative extremal functions; capacity-zero sets and pluripolarity; global poles; plurifine locality, selection and quasi-extrema.
 11. **Weighted L2 estimates and holomorphic extension.** Hilbert complexes and the basic estimate; pseudoconvex exhaustion; singular weights and solvability; point interpolation; Ohsawa–Takegoshi extension.
 12. **Lelong numbers and multiplier ideals.** Lelong–Jensen formulas and Siu semicontinuity; coherent multiplier ideals and their operations; zero Lelong numbers and exponential integrability; strong openness; change of variables, discrepancies and exact valuative criteria.
-13. **Analytic singularities and approximation.** Rational analytic singularities; local Bergman approximation; overlap and patching; quantitative lower-bound regularization; bounded-growth ideals and integrability bridges.
+13. **Analytic singularities and Demailly approximation.** Rational analytic singularities; local Bergman approximation; overlap and patching; quantitative lower-bound regularization; bounded-growth ideals and integrability bridges.
 14. **Global potentials and positive cohomology classes.** Compact Kähler geometry and the dd^c lemma; normalized potentials and minimal singularities; positivity cones and divisorial decomposition; non-Kähler loci; global metrics, extension and approximation; the required global pole construction.
 15. **Non-pluripolar products.** Truncation and plurifine locality; global and mixed mass bounds; singularity monotonicity; mixed inequalities and positive-mass interfaces; the full-mass convergence used in Part I; diffuse polar measures with zero Lelong numbers and zero non-pluripolar mass.
 16. **Envelopes and model potentials.** Obstacle and rooftop envelopes; contact measures and their exact regularity regimes; singularity envelopes and model representatives; comparison and domination; relative capacities and quantitative extrapolation.
-17. **Relative energy, Monge–Ampère equations and Perron segments.** Singular integration by parts; the energy foundations needed by the variational proof; prescribed-measure and exponential equations; capacity boundedness estimates; ceilings and singularity-envelope idempotence at arbitrary mass; the missing Perron, maximality and slope prerequisites for Part I.
-18. **Convex and ample toric foundations.** Supporting planes and Legendre duality; real and mixed Monge–Ampère measures; convex-body volume and lattice counts; projective toric charts and character sections; the exact Guillemin reference metric.
+17. **Relative energy and Perron segments.** Singular integration by parts; the energy foundations needed by the variational proof; prescribed-measure and exponential equations; capacity boundedness estimates; ceilings and singularity-envelope idempotence at arbitrary mass; the missing Perron, maximality and slope prerequisites for Part I.
+18. **Convex analysis and toric potentials.** Supporting planes and Legendre duality; real and mixed Monge–Ampère measures; convex-body volume and lattice counts; projective toric charts and character sections; the exact Guillemin reference metric.
 
 ## End matter
 
-- **Appendix. Complex spaces and modifications.** Local analytic algebra; reduced spaces and normalization; finite maps and curve slices; blowups and the permitted resolution/principalization interface; connected fibers; smooth-target psh descent and smooth-center divisor realization.
-- **Historical and bibliographical notes.** Attribution linked to body results, exact versions and locators, normalization conversions and adjudicated source errors.
+- **Appendix A. Complex spaces and modifications.** Local analytic algebra; reduced spaces and normalization; finite maps and curve slices; blowups and the permitted resolution/principalization interface; connected fibers; smooth-target psh descent and smooth-center divisor realization.
+- **Appendix B. Historical and bibliographical notes.** Attribution linked to body results, exact versions and locators, normalization conversions and adjudicated source errors.
 - **Subject index.**
 - **References.**
 
