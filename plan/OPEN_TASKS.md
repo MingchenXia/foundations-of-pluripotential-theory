@@ -12,7 +12,7 @@ Next coherent writing unit: **Q10**.
 
 ## Q11 — Relative energy and Perron segments
 
-- `Q09-07` [second-read] Positive non-pluripolar mass and volume imply bigness
+- `Q09-07` [second-read] Positive mass and volume imply bigness; pseudo-effective obstacle concentration
 - `Q11-01` [second-read] Relative finite-energy classes, energy monotonicity and integration by parts
 - `Q11-02` [second-read] Weak geodesics and subgeodesics on product domains and strips
 - `Q11-04` [second-read] Perron extremal slopes and bounded singularity-type cutoff stability

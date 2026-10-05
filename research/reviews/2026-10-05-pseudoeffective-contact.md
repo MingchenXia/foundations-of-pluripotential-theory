@@ -1,0 +1,9 @@
+# Pseudo-effective obstacle concentration — scoped two-read review
+
+The complete new corollary and both adjoining transitions were directly read before the first build and again after visual inspection. The complete supplied npp concentration statement/proof, lines 695–848, was reread. Earlier complete big-class concentration and positive-mass bigness reviews remain evidence; this is no new whole-Q10/Q11 certification.
+
+In a non-big class positive-mass bigness forces every top non-pluripolar measure to vanish. In a big class a cap strictly above the finite envelope preserves its competitor family maximum and exact contact set. The earlier bounded-above obstacle theorem therefore handles upper-unbounded quasi-continuous obstacles. Finite rooftops follow from concentration and the ordered-contact inequality; common poles have zero mass. All hypotheses, the finite upper bound and nonempty rooftop are explicit. No envelope PDE or external input is used.
+
+The 482-page first/final builds passed integrity and the house audit with zero errors and no unresolved references/citations, overfull boxes or fatal errors. All 29 changed physical pages, including contents/history/index, were visually inspected. All 482 first/final images have equal hashes; final physical pages 315,380,462 were also directly re-inspected. The JSON records exact logs and the fresh source-archive rebuild result.
+
+Q09-07 remains second-read behind the energy/equation gate; the new result is printed immediately after bigness. Q10-02 now has four remaining mathematical scopes: full real C1,1 Kahler envelope with uniform bound; two bounded metric-Laplacian obstacles; big-class ample-locus bounded metric-Laplacian envelope; arbitrary irregular psh contact density. Final attribution/overlap and two whole-prequel polishing reads remain.
