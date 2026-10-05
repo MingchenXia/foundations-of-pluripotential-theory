@@ -786,3 +786,13 @@ The analytic-space appendix and history notes complete the first actual read of 
 The result/source indexes distinguish body proof reads, direct/auxiliary attribution contexts, exact retained versions, published metadata counterparts and historical-only references. They are explicitly awaiting semantic adjudication and confer no automatic completion credit. A fresh BT82 metadata retry succeeds and the requested paper's v1 metadata is reconfirmed; originals are unchanged. H01-01 is proof-review and H01-02/03 drafting. All 106 mathematical tasks and 318 source dispositions retain prior evidence. The preceding 7ef68d35ec55ce92a448af3be54967b7fe1b593b passed exact-head CI 37274167808 and 37274163395.
 
 The staged tracked-source archive rebuilt in an empty directory with all 502 page texts matching the current draft. The paired history patch and first-pass checkpoint are ready to push; the second whole-prequel read has begun with the frontmatter/input/style files.
+
+## 2026-10-05 — Second whole-prequel pass through harmonic foundations
+
+All frontmatter/input/style files and the complete P01/P02 source chapters have fresh second-read evidence, recorded separately from earlier reviews. P01 now makes the Hessian-Taylor function explicitly real-valued; both BT caller fragments satisfy this hypothesis. P02 fixes a bounded domain at the Green-section entry and uses harmonicity away from the pole to identify pointwise kernel differences after Weyl's lemma. Two saved changed-unit reads, paired builds and physical PDF29/30/40/41 inspections are in research/reviews/2026-10-05-classical-second-pass-corrections.json. The draft remains 502 pages.
+
+Auxiliary attribution in these two chapters is semantically tied to exact historical contexts or direct internal proof dependencies, separately from original-source proof checks. The result index remains incomplete for later chapters and cannot certify H01. Fifty-three active inputs remain in the second pass. The preceding a0de098f991b53558caa285e98ec8e51f7607106 passed exact-head CI37278426097 and37278421871.
+
+The complete 243-line P03 second read now covers canonical representative/Riesz proofs, compactness/Hartogs, completed measurable envelopes and polar removal/connectivity; no new gap identified. The live second-pass record has seven fully read inputs and 52 pending inputs, with attribution adjudication alongside the actual reads.
+
+The staged tracked-source archive rebuilt in an empty directory with all 502 page texts matching. Both classical correction units have passing paired builds and actual affected-page inspection.
