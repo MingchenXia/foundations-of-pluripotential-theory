@@ -1,0 +1,186 @@
+\subsection{The full real Hessian}
+\label{sec:real-hessian-envelopes}
+A bounded metric Laplacian controls the complex Hessian of a psh potential, but does not bound its full real Hessian. We now prove the stronger estimate for obstacles whose real gradients are Lipschitz. The proof retains the positive third-derivative terms in the largest-eigenvalue calculation; these terms absorb the negative derivative of its logarithm.
+
+The notation $C^{1,1}$ means that the function is $C^1$ and its first derivatives are locally Lipschitz in smooth real coordinates. On a compact manifold its norm may be measured by the value, gradient and essentially bounded weak covariant Hessian for any fixed smooth metric. These definitions agree. Indeed bounded difference quotients of a Lipschitz first derivative give its distributional derivative a bound against the $L^1$ norm of test functions; \cref{lem:dominated-measure-density} gives an $L^\infty$ derivative. Conversely, convolution of a function with bounded weak second derivatives has uniformly Lipschitz gradients on smaller coordinate balls. If the function is already $C^1$, its convolved gradients converge uniformly to its gradient, which inherits that bound. The $C^1$ representative in the applications below follows first from \cref{prop:compact-metric-laplacian-lp}. Coordinate changes and the covariant correction involve only bounded smooth coefficients and first derivatives, so the norms from fixed metrics are equivalent.
+
+\begin{lemma}\label{lem:penalized-real-hessian}
+Fix a K\"ahler form $\kappa$. Suppose $f$ is smooth, $\|f\|_\infty+\|\nabla f\|_\infty\leq B$ and $\nabla^2f\leq B g_0$ as real quadratic forms, for a fixed background metric $g_0$. The solutions $a_\beta$ of \eqref{eq:penalized-kahler-equation} satisfy
+\[
+ \|a_\beta\|_\infty+\|\nabla a_\beta\|_\infty
+                      +\|\nabla^2a_\beta\|_\infty\leq C
+\]
+for all sufficiently large $\beta$. The threshold and $C$ depend only on $B$ and the fixed geometry. In particular, the estimate needs no lower bound for $\nabla^2f$.
+\end{lemma}
+\begin{proof}
+Fixed metric equivalence lets us use the coefficient matrix $k$ of $2\pi\kappa$ and its real metric $g_0=2\operatorname{Re}(k_{i\bar j}\,\mathrm dz_i\otimes\mathrm d\bar z_j)$. Set $a=a_\beta$, $G=k+(a_{i\bar j})$ and $D_G=G^{i\bar j}\partial_i\partial_{\bar j}$. The upper Hessian assumption bounds $D_kf$. \Cref{lem:penalized-equation-trace} gives uniform bounds for $a$ and $\operatorname{tr}_kG$ when $\beta$ is sufficiently large. The fixed elliptic estimate and Morrey's inequality in \cref{prop:compact-metric-laplacian-lp} then bound $\nabla a$ uniformly. Denote by $C$ constants using only these bounds, the obstacle bounds in the statement and the fixed geometry; they may increase during the proof, but are independent of $\beta$.
+
+Let $\ell$ be the largest eigenvalue of the real covariant Hessian $\nabla^2a$. Its real trace is $2D_ka\geq-2n$. Consequently every Hessian eigenvalue has absolute value at most $C(\ell+1)$ whenever $\ell\geq1$. It suffices to bound $\ell$ above. Put
+\[
+ s=|\partial a|_k^2,\quad S=\sup_Xs,\quad
+ \tau=(1+2\sup_X|\partial f|_k^2)^{-1},\quad
+ \eta(s)=-\frac\tau2\log(1+S-s).
+\]
+Then $\tau$ has a positive uniform lower bound and
+\begin{equation}\label{eq:real-hessian-gradient-weight}
+ \frac{\tau}{2(1+S)}\leq\eta'\leq\frac\tau2,
+ \qquad \eta''=\frac{2(\eta')^2}{\tau}\geq2(\eta')^2.
+\end{equation}
+For a constant $A>0$ to be chosen, consider
+$Q=\log\ell+\eta(s)-Aa$ where $\ell>0$.
+If this set is empty there is nothing to prove. Otherwise $Q$ tends to $-\infty$ as $\ell$ tends to zero, and attains a maximum at some $x_0$. A uniform bound for $\ell(x_0)$ bounds $\ell$ everywhere, since $a$ and $\eta$ are uniformly bounded. We may thus assume $\ell(x_0)\geq1$ and as large as any uniform threshold used below.
+
+Choose $k$-normal holomorphic coordinates at $x_0$ in which $G$ is diagonal, with diagonal entries $r_i>0$. These satisfy $r_i\leq C$, hence $r_i^{-1}\geq c>0$. Write $T=\sum_i r_i^{-1}$. Take a $g_0$-orthonormal real Hessian eigenbasis $V_1,\ldots,V_{2n}$ at $x_0$, with $V_1$ belonging to $\ell$, and extend these vectors with constant real coordinate coefficients. To make the largest eigenvalue simple, let $B_0$ be the constant covariant matrix which at $x_0$ is the orthogonal projection onto $V_1^\perp$, and set
+\[
+ \Phi=g_0^{-1}(\nabla^2a-B_0).
+\]
+The matrix $B_0$ is nonnegative everywhere in this chart. The largest eigenvalue of $\Phi$ is at most $\ell$, equals it at $x_0$, and is simple there. Denote its eigenvalues at $x_0$ by $\lambda=\ell(x_0),\lambda_2,\ldots,\lambda_{2n}$. The latter are the original Hessian eigenvalues minus one, so $\lambda-\lambda_\alpha\geq1$ for $\alpha>1$. The smooth perturbed expression $\widehat Q=\log\lambda_1(\Phi)+\eta(s)-Aa$ still has a local maximum at $x_0$.
+
+All subsequent quantities are evaluated at $x_0$. Write $a_{V_\alpha V_\gamma}=\nabla^2a(V_\alpha,V_\gamma)$ and define the nonnegative quantities
+\begin{align*}
+ U&=2\sum_{i,\alpha>1}
+       \frac{|\partial_i a_{V_\alpha V_1}|^2}
+                      {r_i\lambda(\lambda-\lambda_\alpha)},&
+ V&=\sum_{p,q}\frac{|V_1G_{p\bar q}|^2}{r_pr_q\lambda},\\
+ N&=\sum_i\frac{|\partial_i a_{V_1V_1}|^2}{r_i\lambda^2},&
+ K&=\sum_{i,k}\frac{|a_{ik}|^2+|a_{i\bar k}|^2}{r_i}.
+\end{align*}
+We first derive the maximum inequality, including its third-derivative terms. For a symmetric matrix with a simple eigenvalue, differentiating its eigenvector equation gives
+\[
+ \lambda'=\langle M'V_1,V_1\rangle,\qquad
+ \lambda''=\langle M''V_1,V_1\rangle
+       +2\sum_{\alpha>1}
+        \frac{|\langle M'V_1,V_\alpha\rangle|^2}
+                             {\lambda-\lambda_\alpha}.
+\]
+\Needspace{7\baselineskip}
+Here the eigenvector is differentiated with unit length, and its component along $V_\alpha$ is $\langle M'V_1,V_\alpha\rangle/(\lambda-\lambda_\alpha)$; substitution proves the second formula. Apply it to $\Phi$, conjugated by the square root of $g_0$ to a symmetric matrix. First derivatives of $g_0$ vanish in the chosen coordinates; its second derivatives contribute only $C\lambda T$ to the summed error. The two real derivatives making up $\partial_i\partial_{\bar i}$ therefore give
+\[
+ D_G\lambda_1(\Phi)\geq
+ 2\sum_{i,\alpha>1}
+       \frac{|\partial_i a_{V_\alpha V_1}|^2}
+                           {r_i(\lambda-\lambda_\alpha)}
+       +\sum_i r_i^{-1}V_1V_1G_{i\bar i}-C\lambda T.
+\]
+For clarity, the derivative commutation in the last term uses the coordinate formula $a_{V_1V_1}=V_1V_1a-\Gamma^t_{uv}V_1^uV_1^v\partial_ta$. The Christoffel symbols vanish at $x_0$. On differentiating this formula twice, the errors contain a fixed first derivative of $\Gamma$ times a second derivative of $a$, or a fixed second derivative of $\Gamma$ times its first derivative. The derivatives of $k$ contribute bounded errors as well. The preceding Hessian and gradient bounds by $C(\lambda+1)$ give exactly $C\lambda T$; no third derivative occurs in these errors.
+
+Differentiate $\log\det G=\log\det k+\beta(a-f)$ twice along $V_1$. The inverse-matrix derivative gives
+\[
+ \sum_i r_i^{-1}V_1V_1G_{i\bar i}
+  =\sum_{p,q}\frac{|V_1G_{p\bar q}|^2}{r_pr_q}
+       +V_1V_1\log\det k+\beta(\lambda-f_{V_1V_1}).
+\]
+At the normal-coordinate center directional and covariant second derivatives agree. If $\lambda\geq2\max\{1,\sup_{X,|Y|_{g_0}=1}f_{YY}\}$, the last term is at least $\beta\lambda/2$. Since $T\geq c$, the fixed determinant error is absorbed above. The first eigenvalue derivative is $\partial_i a_{V_1V_1}$, so
+\[
+ D_G\log\lambda_1(\Phi)\geq U+V-N-CT+\beta/2.
+\]
+Differentiating the determinant equation once, and applying the product rule to $s$, similarly gives
+\[
+ D_Gs\geq K-CT
+           +2\beta\operatorname{Re}\sum_k a_{\bar k}(a_k-f_k)
+       \geq K-CT+\beta s-\beta|\partial f|_k^2.
+\]
+The fixed errors are derivatives of $k^{-1}$ times first derivatives of $a$; the remaining contracted third derivatives are $\partial_k\log\det G-\partial_k\log\det k$. This verifies the displayed calculation without an estimate for those derivatives. Also $D_Ga=n-T$. As $\eta'|\partial f|_k^2\leq1/4$, the maximum principle yields
+\begin{equation}\label{eq:real-hessian-maximum}
+ 0\geq U+V-N+\eta'K
+       +\eta''\sum_i\frac{|s_i|^2}{r_i}
+       +(A-C_0)T-An+\beta\eta's+\beta/4,
+\end{equation}
+where $C_0$ is uniform and does not depend on $A$.
+
+\Needspace{7\baselineskip}
+We now absorb $N$ completely. Fix $0<\varepsilon<1/2$, and assume $\lambda\geq C/\varepsilon^2$. Let $J$ be the complex structure and put
+\[
+ W=(V_1-\mathrm iJV_1)/\sqrt2
+       =\sum_q\nu_q\partial_q,\qquad
+ JV_1=\sum_{\alpha>1}\mu_\alpha V_\alpha.
+\]
+Our real metric normalization gives $\sum_q|\nu_q|^2=\sum_{\alpha>1}\mu_\alpha^2=1$. The coefficients and $J$ are constant in this coordinate system.
+
+\Needspace{5\baselineskip}
+Using $V_1=\sqrt2\overline W-\mathrm iJV_1$, the third derivatives commute to give
+\begin{equation}\label{eq:real-hessian-third-splitting}
+ \partial_i a_{V_1V_1}
+ =\sqrt2\sum_q\overline\nu_q V_1G_{i\bar q}
+       -\mathrm i\sum_{\alpha>1}\mu_\alpha
+                           \partial_i a_{V_1V_\alpha}+E_i,
+ \qquad |E_i|\leq C.
+\end{equation}
+Indeed the third derivatives of the scalar $a$ commute; replacing coordinate second derivatives by covariant ones at their first derivative introduces only $\partial\Gamma$ times $\nabla a$. The derivatives of the fixed $k$ are bounded too. Thus this error uses only the already bounded gradient.
+
+Twice use $|b+c|^2\leq(1+t)|b|^2+(1+t^{-1})|c|^2$, first with $t$ comparable to $\varepsilon$ to remove $E_i$, then with $t=1/\varepsilon$ for the two principal terms. More explicitly, the first step has coefficient $(1-2\varepsilon)(1+t)=1-\varepsilon$ with $t=\varepsilon/(1-2\varepsilon)$. The resulting error is at most $C T/(\varepsilon\lambda^2)\leq T$. Hence
+\begin{align*}
+ (1-2\varepsilon)N\leq{}&
+ (1-\varepsilon)(1+\varepsilon^{-1})
+     \sum_i\frac{2|\sum_q\overline\nu_q V_1G_{i\bar q}|^2}
+                    {r_i\lambda^2}\\
+ &+(1-\varepsilon^2)
+     \sum_i\frac{|\sum_{\alpha>1}\mu_\alpha
+                              \partial_i a_{V_1V_\alpha}|^2}
+                       {r_i\lambda^2}+T.
+\end{align*}
+Weighted Cauchy--Schwarz and $\sum_qr_q|\nu_q|^2\leq C$ bound the first line by $CV/(\varepsilon\lambda)\leq V$. For the second line Cauchy--Schwarz gives
+\[
+ \left|\sum_{\alpha>1}\mu_\alpha
+                       \partial_i a_{V_1V_\alpha}\right|^2
+ \leq\left(\lambda-\sum_{\alpha>1}\lambda_\alpha\mu_\alpha^2\right)
+       \sum_{\alpha>1}
+       \frac{|\partial_i a_{V_1V_\alpha}|^2}
+                                   {\lambda-\lambda_\alpha}.
+\]
+Remembering the perturbation by $B_0$, positivity of $G$ gives
+\[
+ 0<G(W,\overline W)
+    =1+\tfrac12\left(\lambda+
+               \sum_{\alpha>1}(\lambda_\alpha+1)\mu_\alpha^2\right).
+\]
+Thus $\lambda-\sum_{\alpha>1}\lambda_\alpha\mu_\alpha^2\leq2\lambda+3$. If $\lambda\geq3/(2\varepsilon^2)$, then $(1-\varepsilon^2)(2\lambda+3)\leq2\lambda$, so the second line is at most $U$. Finally the critical-point equation for $\widehat Q$ is
+\[
+ \frac{\partial_i a_{V_1V_1}}\lambda=Aa_i-\eta's_i.
+\]
+\Needspace{6\baselineskip}
+It bounds the unused $2\varepsilon N$ by
+$4\varepsilon A^2\sum_i|a_i|^2/r_i+
+2(\eta')^2\sum_i|s_i|^2/r_i$.
+Combining the three bounds proves
+\begin{equation}\label{eq:real-hessian-third-absorption}
+ N\leq U+V+T+4\varepsilon A^2\sum_i\frac{|a_i|^2}{r_i}
+                           +2(\eta')^2\sum_i\frac{|s_i|^2}{r_i}.
+\end{equation}
+Choose $A=C_0+3$ (increasing $C_0$ to be positive), and
+$\varepsilon=[4A^2(S+1)]^{-1}<1/2$.
+These choices are uniform. By \eqref{eq:real-hessian-gradient-weight}, the $\eta''$ term absorbs the last term of \eqref{eq:real-hessian-third-absorption}; also $4\varepsilon A^2\sum_i|a_i|^2/r_i\leq T$. Substitution in \eqref{eq:real-hessian-maximum}, dropping its positive $\beta$ terms, gives
+\[
+ 0\geq\eta'K+T-An.
+\]
+The lower bound for $\eta'$ and $r_i^{-1}\geq c$ bound every $a_{ik},a_{i\bar k}$ at $x_0$, hence every real Hessian component there. This bounds $\lambda(x_0)$, even in the large-eigenvalue case. The maximum property of $Q$ then bounds the largest eigenvalue everywhere. Its real trace lower bound bounds the remaining eigenvalues below and finishes the proof.
+\end{proof}
+
+\begin{theorem}\label{thm:kahler-real-c11-envelope}
+For a fixed K\"ahler form $\kappa$ and finitely many real $C^{1,1}$ functions $f_1,\ldots,f_r$, $r\geq1$, the envelope
+\[
+ P_\kappa\bigl(\min_{1\leq j\leq r}f_j\bigr)
+\]
+is $C^{1,1}$. Its norm is bounded in terms of the fixed geometry and a common bound for the $C^{1,1}$ norms of the obstacles. In particular the single-obstacle envelope has a uniform full real Hessian bound.
+\end{theorem}
+\begin{proof}
+First let $f$ be smooth. The preceding lemma bounds the full real Hessians of $a_\beta$ uniformly for large $\beta$, and \cref{prop:penalized-envelope-uniform-limit} gives uniform convergence to $P_\kappa(f)$. The covariant Hessian inequalities pass to distributions. Testing each real quadratic component and using \cref{lem:dominated-measure-density} makes these weak derivatives bounded functions. The limiting gradient bound follows from the uniform Lipschitz bounds on the smooth gradients, or from their local convolution limits. The $C^1$ representative follows from the already proved bounded metric Laplacian. It is therefore $C^{1,1}$ by the observation at the start of this subsection.
+
+For general obstacles, use chart convolutions and a smooth partition to obtain $f_{j,\rho}\to f_j$ in $C^1$ with uniformly bounded full covariant Hessians. In a partitioned convolution the extra second-derivative terms involve only the first derivatives and values of the local approximations; these are uniformly bounded, as are the convolutions of the bounded weak second derivatives. Set
+\[
+ F_{\rho,\delta}=-\delta\log\sum_j
+                               \mathrm e^{-f_{j,\rho}/\delta}.
+\]
+\Needspace{9\baselineskip}
+Its gradient is a convex combination of the gradients of $f_{j,\rho}$. For any real tangent vector $Y$, its covariant Hessian is
+\begin{align*}
+ \nabla^2F_{\rho,\delta}(Y,Y)
+ & =\sum_jp_j\nabla^2f_{j,\rho}(Y,Y)\\
+ &\quad-\frac1\delta\left(\sum_jp_j(\mathrm df_{j,\rho}(Y))^2
+                         -\left(\sum_jp_j\mathrm df_{j,\rho}(Y)\right)^2\right)\\
+ &\leq C|Y|_{g_0}^2,
+\end{align*}
+where $p_j$ are the positive weights used in the preceding subsection. The variance is nonnegative. Choose $\delta\downarrow0$ with $\delta\log r\leq1$. The values and gradients are uniformly bounded, so \cref{lem:penalized-real-hessian} and the smooth-obstacle argument give uniform full Hessian bounds for $P_\kappa(F_{\rho,\delta})$. Here a lower obstacle-Hessian bound is unnecessary, which is essential for the smooth minimum. These obstacles tend uniformly to $\min_jf_j$. Uniform envelope stability in \cref{prop:obstacle-envelope-maximal-member}, followed by the same weak derivative passage, proves the assertion and its norm bound.
+\end{proof}
+\index{envelope!full real Hessian bound}
+\index{rooftop envelope!$C^{1,1}$ regularity}
