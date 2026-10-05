@@ -1,9 +1,13 @@
 \chapter{Lelong numbers and multiplier ideals}
 \label{chap:q05}
 
-Logarithmic growth measures the concentration of a plurisubharmonic function's Hessian at a point. Holomorphic extension makes its integrability ideals coherent. Their orders detect analytic Lelong level sets, and extension from moving slices gives strong openness. On higher models these ideals recover divisorial growth and integrability thresholds.
+A plurisubharmonic function may have a complicated pole set, yet its growth near a point has a well-defined logarithmic coefficient. The Lelong number records this coefficient. The Jensen formula also identifies it with the limiting density of the positive Hessian current, connecting pointwise growth with the measure estimates developed earlier. This number gives useful bounds, but does not by itself describe all integrability properties of a singular weight. Multiplier ideals retain finer information: they collect the holomorphic germs whose squared modulus is integrable against that weight.
 
-Let $X$ be a complex manifold. Weights are plurisubharmonic and not identically $-\infty$ on any component unless a restriction convention says otherwise. Local integrability uses any smooth positive volume form; its densities are comparable on compact coordinate neighborhoods.
+The extension estimates of the preceding chapter make these ideals accessible. We first use weighted correction with a logarithmic pole to reproduce arbitrary finite jets by globally weighted integrable holomorphic functions. Local algebra then turns this approximation into coherence. Comparing the vanishing orders of these functions with the growth of the weight proves Siu's analyticity theorem for positive Lelong level sets. The same comparison shows that zero Lelong number at $x$ makes $\mathrm e^{-t\varphi}$ integrable near $x$ for every $t>0$, a fact needed later for the polar-measure example on the projective line. Restriction and product formulas follow from extension and Hilbert-space generation. We next exploit the uniform extension constant on moving hyperplanes to prove monotone stability and strong openness; the contradiction is measured on one fixed analytic curve.
+
+The final section studies these local integrability conditions on smooth birational models. For analytic singularities, change of variables reduces the question to explicit one-variable radial integrals on a log resolution. For general weights, multiplier ideals recover generic divisorial Lelong numbers and give a criterion with one positive margin valid for every divisor over the point. This provides the local foundation for comparing singularities and their ideals in later chapters.
+
+Let $X$ be a complex manifold of dimension $n\geq0$. Weights are plurisubharmonic and not identically $-\infty$ on any component unless a restriction convention says otherwise. Local integrability uses any smooth positive volume form; its densities are comparable on compact coordinate neighborhoods.
 
 \section{Logarithmic growth and the Jensen formula}
 \label{sec:lelong-jensen}
@@ -17,7 +21,7 @@ for sufficiently negative $t$. This is finite, nondecreasing and convex. The lim
 \begin{equation}\label{eq:lelong-growth-definition}
  \nu(u,a)=\lim_{t\to-\infty}\frac{N(t)}{t}
 \end{equation}
-exists in $[0,\infty)$. For every sufficiently small $r_0$,
+exists in $[0,\infty)$. For every sufficiently small $r_0>0$,
 \begin{equation}\label{eq:lelong-attained-growth}
  u(z)\leq\nu(u,a)\log\frac{|z-a|^2}{r_0^2}
                 +\sup_{B(a,r_0)}u,\qquad 0<|z-a|<r_0.
@@ -199,7 +203,7 @@ Let $H_\varphi(\Omega)$ be as in \cref{thm:multiplier-ideal-coherence}, and let 
 \[
  \sup_V|h_i|\leq C\|F\|_\varphi.
 \]
-The neighborhood and constant are independent of $F$. Consequently, for every positive integer $m$ and local generators $g_i$ chosen from $H_{m\varphi}(\Omega)$,
+The neighborhood and constant are independent of $F$. Consequently, for every real $m>0$ and local generators $g_i$ chosen from $H_{m\varphi}(\Omega)$,
 \begin{equation}\label{eq:weight-versus-multiplier-generators}
  \varphi\leq\frac1m\log\sum_i|g_i|^2+C_m
 \end{equation}
@@ -219,7 +223,7 @@ For the last assertion apply this estimate to the space with weight $m\varphi$. 
 For a nonzero coherent ideal $\mathfrak a$ near $x$, write $\operatorname{ord}_x\mathfrak a=\min\{\operatorname{ord}_x f:f\in\mathfrak a_x,\ f\ne0\}$. On a connected chart this is finite if the ideal is nonzero somewhere, by the identity observation in \cref{lem:strong-analytic-noetherian}.
 
 \begin{lemma}\label{lem:multiplier-order-lelong-bounds}
-For $m\geq1$ and $n=\dim X\geq1$,
+For every positive integer $m$ and $n=\dim X\geq1$,
 \begin{equation}\label{eq:multiplier-order-lelong-bounds}
  m\nu(\varphi,x)-n
        <\operatorname{ord}_x\mathcal I(m\varphi)
@@ -240,7 +244,7 @@ $\varphi(a)\leq(k/m)\log|a-x|^2+C$. At its poles this bound holds as well. The l
 
 \Needspace{12\baselineskip}
 \begin{corollary}\label{cor:zero-lelong-trivial-multiplier-ideal}
-If a quasi-plurisubharmonic weight $u$ has $\nu(u,x)=0$, then $\mathcal I(tu)_x=\mathcal O_{X,x}$ for every $t>0$.
+If a quasi-plurisubharmonic weight $u$ (locally a plurisubharmonic function plus a smooth real function) has $\nu(u,x)=0$, then $\mathcal I(tu)_x=\mathcal O_{X,x}$ for every $t>0$.
 \end{corollary}
 \begin{proof}
 At a zero-dimensional point the weight is finite, and the assertion follows from the definition. Otherwise choose a local smooth background making $u$ plurisubharmonic, and subtract a constant to make the resulting weight $v$ nonpositive. These bounded changes preserve Lelong numbers and multiplier ideals. For every integer $m\geq1$, \cref{lem:multiplier-order-lelong-bounds} gives $\operatorname{ord}_x\mathcal I(mv)=0$. Thus the ideal contains a germ nonzero at $x$, which is a unit, and $\mathcal I(mv)_x=\mathcal O_{X,x}$. Given $t>0$, choose $m\geq t$; the inequality $\mathrm e^{-tv}\leq\mathrm e^{-mv}$ gives the same conclusion for $t$.
@@ -271,7 +275,7 @@ Positive Lelong number forces $\varphi(x)=-\infty$ by \eqref{eq:lelong-attained-
 
 \begin{proposition}\label{prop:generic-divisorial-lelong}
 For an irreducible analytic subset $Z\subset X$, let
-$\nu(\varphi,Z)=\inf_{x\in Z}\nu(\varphi,x)$. This value is attained outside a countable union of proper analytic subsets of $Z$. If $E$ is a prime divisor on a smooth model $\pi:Y\to X$, define
+$\nu(\varphi,Z)=\inf_{x\in Z}\nu(\varphi,x)$. This value is attained outside a countable union of proper analytic subsets of $Z$. If $E$ is a prime divisor on a smooth model, that is, a proper bimeromorphic map $\pi:Y\to X$ with $Y$ smooth, define
 \[
  \nu(\varphi,E)=\nu(\varphi\circ\pi,E).
 \]
@@ -363,13 +367,14 @@ $F^r+a_1F^{r-1}+\cdots+a_r=0$ with $a_j\in\mathcal I(\varphi)_x^j$, it must belo
 \end{proof}
 \index{integrally closed ideal!multiplier ideal}
 
+\Needspace{18\baselineskip}
 \section{Strong openness by extension from moving slices}
 \label{sec:strong-openness}
 
 The extension estimate has a constant independent of the weight. This uniformity turns integrability on nearby slices into a contradiction when an ideal fails to contain a germ. Two curve facts make the contradiction quantitative.
 
 \begin{lemma}\label{lem:bounded-domination-curve}
-Let $F,g_1,\ldots,g_r$ be holomorphic near $0\in\mathbb C^n$, with $F$ not identically zero. If no neighborhood bound $|F|\leq C|g|$ holds, there is an irreducible analytic curve through zero on whose normalization $F$ is nonzero off zero and each $g_j/F$ extends holomorphically with value zero at zero. After a linear coordinate choice and a parametrization it has the form
+Let $n\geq1$, let $r\geq0$ be an integer, and let $F,g_1,\ldots,g_r$ be holomorphic near $0\in\mathbb C^n$, with $F$ not identically zero. Write $|g|=(\sum_{j=1}^r|g_j|^2)^{1/2}$, with value zero for an empty tuple. If no neighborhood bound $|F|\leq C|g|$ holds, there is an irreducible analytic curve through zero on whose normalization $F$ is nonzero off zero and each $g_j/F$ extends holomorphically with value zero at zero. After a linear coordinate choice and a parametrization it has the form
 \[
  \gamma(t)=(t^q,\gamma_2(t),\ldots,\gamma_n(t)),\qquad
  |\gamma_j(t)|\leq C|t|^q,
@@ -382,8 +387,9 @@ Failure of the bound gives $z_i\to0$, with $F(z_i)\ne0$ and $|g(z_i)|/|F(z_i)|\t
 The projected curve has an analytic representative: restrict its parametrizing disc so that the zero fiber is isolated and its boundary avoids zero; over a small target ball the map is proper with finite fibers, and \cref{thm:proper-analytic-image} applies. Normalize that image curve by \cref{prop:analytic-curve-parametrization}. The bounded quotients extend on its parameter disc by one-variable removal and still have value zero. Choose a linear first coordinate whose order on the normalized curve is the smallest order of its coordinate functions, say $q$. Its leading coefficient is nonzero. A holomorphic $q$th root of its unit factor changes the parameter so that this coordinate is $t^q$. The remaining coordinates have order at least $q$ and satisfy the displayed bounds. If there are no $g_j$, simply select any curve avoiding $F=0$; the same parametrization applies.
 \end{proof}
 
+\Needspace{17\baselineskip}
 \begin{lemma}\label{lem:curve-extension-norm-lower-bound}
-Fix such a curve in a polydisc $\Omega=\Delta_R\times P\subset\mathbb C\times\mathbb C^{n-1}$, and a holomorphic $F$ with $F\circ\gamma$ nonzero off zero. There are $r,c>0$, depending on this fixed data, such that every $0<|a|<r$ and every $H\in\mathcal O(\Omega)$ satisfying
+Fix such a curve in a polydisc $\Omega=\Delta_R\times P\subset\mathbb C\times\mathbb C^{n-1}$ containing zero, with $R>0$, and a holomorphic $F$ on $\Omega$ with $F\circ\gamma$ nonzero off zero. There are $r,c>0$, depending on this fixed data, such that every $0<|a|<r$ and every $H\in\mathcal O(\Omega)$ satisfying
 \[
  H|_{\{z_1=a\}}=F|_{\{z_1=a\}},\qquad
  (H/F)\circ\gamma\text{ holomorphic at }0\text{ with value }0,
@@ -403,7 +409,7 @@ Choose $\rho>0$ so that all curve points for $|t|\leq\rho$ lie in a fixed smalle
 \]
 Indeed each of the $q$ points over a nonzero $z_1$ is a fixed positive distance from the fiber boundary; sum their point estimates and integrate in $z_1$. The substitution $z_1=t^q$ has Jacobian $q^2|t|^{2q-2}$. Constants absorb the fixed number $q$ of estimates. This calculation is also valid when the fiber is a point.
 
-Write $F\circ\gamma=t^m v(t)$ with $v$ nowhere zero on this disc, and $h=(H/F)\circ\gamma=\sum_{\ell\geq1}c_\ell t^\ell$. The lower bound for $|v|$ and angular orthogonality give
+Write $F\circ\gamma=t^m v(t)$ with $m\geq0$ an integer and $v$ nowhere zero on this disc, and $h=(H/F)\circ\gamma=\sum_{\ell\geq1}c_\ell t^\ell$. The lower bound for $|v|$ and angular orthogonality give
 \[
  \int_\Omega|H|^2\,\mathrm dV
  \geq c_1\sum_{\ell\geq1}
@@ -556,14 +562,14 @@ For every prime divisor $E$ over $X$ and positive integer $m$,
       <\operatorname{ord}_E\mathcal I(m\varphi)
       \leq m\nu(\varphi,E).
 \end{equation}
-Here the order of the ideal is the minimum of the orders of its local generators near the center. In particular
+Here the order of the ideal is the vanishing order of its pullback at a generic smooth point of $E$, equivalently the minimum of the orders of any finite local generating family near a generic point of the center. In particular
 \[
  \nu(\varphi,E)=\lim_{m\to\infty}\frac1m
                            \operatorname{ord}_E\mathcal I(m\varphi).
 \]
 \end{corollary}
 \begin{proof}
-Choose finite generators from the weighted Hilbert space on a neighborhood of the center. Each is integrable with weight $m\varphi$, so the slice argument in \cref{prop:general-necessary-valuative-bound} gives its order plus $A_X(E)$ strictly larger than $m\nu(\varphi,E)$. The minimum of finitely many orders satisfies the same bound. Pull back \eqref{eq:weight-versus-multiplier-generators} to the model. At a generic smooth point of $E$, the generators have a common factor of order equal to the ideal order and their remaining factors generate the unit ideal there. Thus the logarithm of their squared sum has generic Lelong number equal to that order. Comparison of growth coefficients gives the upper inequality. Division by $m$ and passage to the limit proves recovery.
+Choose a coordinate neighborhood of a generic point of the center on which finitely many weighted Hilbert-space members generate the ideal. Each is integrable with weight $m\varphi$, so the slice argument in \cref{prop:general-necessary-valuative-bound} gives its order plus $A_X(E)$ strictly larger than $m\nu(\varphi,E)$. The minimum of finitely many orders satisfies the same bound. Pull back \eqref{eq:weight-versus-multiplier-generators} to the model. At a generic smooth point of $E$, the generators have a common factor of order equal to the ideal order and their remaining factors generate the unit ideal there. Thus the logarithm of their squared sum has generic Lelong number equal to that order. Comparison of growth coefficients gives the upper inequality. Division by $m$ and passage to the limit proves recovery.
 \end{proof}
 \index{Lelong number!recovery from multiplier ideals}
 
@@ -606,6 +612,7 @@ The constant is a local bound for $|f|^2$. The pole and generator-zero sets are 
 \end{proof}
 \index{multiplier ideal!valuative criterion}
 
+\Needspace{9\baselineskip}
 \begin{example}\label{ex:strict-transform-integrability}
 For $c>0$ and $\varphi=c\log|z_1|^2$ on a polydisc, the identity map is already a log resolution. Its only relevant divisor is $E=\{z_1=0\}$, with discrepancy one; the criterion is $\operatorname{ord}_E f+1>c$. Considering exceptional divisors alone would omit this integrability test. For the blowup of a point in dimension $n\geq2$, the chart $z_1=w_1$, $z_j=w_1w_j$ for $j>1$ gives $J_\pi=w_1^{n-1}$ and $A_X(E)=n$, in agreement with the radial threshold for $c\log|z|^2$.
 \end{example}
