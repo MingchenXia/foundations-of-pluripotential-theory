@@ -182,10 +182,9 @@ Let $F$ be closed. By definition, $p\in\partial F(x)$ means that $x\in\operatorn
 \item The pointwise supremum of a family of convex functions is convex. The pointwise limit of a decreasing net of convex functions is convex; it may take the value $-\infty$.
 \item Let $(F_i)_{i\in I}$ be a nonempty family of proper convex functions on $N_{\mathbb R}$, and put
 \[
- H(x)=\inf\left\{\sum_{j=1}^q\lambda_jF_{i_j}(x_j):
-       q\geq1,\ i_j\in I,\ x_j\in\operatorname{dom}F_{i_j},\ \lambda_j>0,\ \sum_j\lambda_j=1,\ \sum_j\lambda_jx_j=x\right\},
+ H(x)=\inf\sum_{j=1}^q\lambda_jF_{i_j}(x_j),
 \]
-with $H(x)=+\infty$ if no such combination exists. Then $H$, the \emph{convex envelope} of the family, is the largest convex function below $\inf_iF_i$, and $H^*=\sup_iF_i^*$. If $H$ has an affine minorant, then its lower semicontinuous regularization $\overline H$ is the largest lower semicontinuous convex function below $\inf_iF_i$, and $\overline H=(\sup_iF_i^*)^*$.
+where the infimum is taken over the values $\sum_j\lambda_jF_{i_j}(x_j)$ of all \emph{admissible combinations} for $x$, that is, over all $q\geq1$, $i_j\in I$, $x_j\in\operatorname{dom}F_{i_j}$ and $\lambda_j>0$ with $\sum_j\lambda_j=1$ and $\sum_j\lambda_jx_j=x$; we set $H(x)=+\infty$ if no such combination exists. Then $H$, the \emph{convex envelope} of the family, is the largest convex function below $\inf_iF_i$, and $H^*=\sup_iF_i^*$. If $H$ has an affine minorant, then its lower semicontinuous regularization $\overline H$ is the largest lower semicontinuous convex function below $\inf_iF_i$, and $\overline H=(\sup_iF_i^*)^*$.
 \item For proper convex functions $F,G$ on $N_{\mathbb R}$, the \emph{infimal convolution}
 \[
  (F\mathbin\square G)(x)=\inf_{y+z=x}(F(y)+G(z))
@@ -205,7 +204,7 @@ whenever the right-hand side is finite, the minimum being attained; and $(F+G)^*
 \]
 Since $a$ and $b$ are arbitrary, this shows that $\operatorname{epi}F$ is convex; this also covers the case where $F(x)$ or $F(y)$ equals $-\infty$.
 
-(2) If $H(x)<a$ and $H(x')<a'$, we can choose combinations for $x$ and $x'$ with costs below $a$ and $a'$; mixing them with weights $1-\lambda$ and $\lambda$ gives a combination for $(1-\lambda)x+\lambda x'$ with cost below $(1-\lambda)a+\lambda a'$. Hence $H$ is convex. Combinations with $q=1$ show $H\leq F_i$ for each $i$. If $G$ is convex and $G\leq F_i$ for all $i$, then for every admissible combination
+(2) If $H(x)<a$ and $H(x')<a'$, we can choose admissible combinations for $x$ and $x'$ with values below $a$ and $a'$; mixing them with weights $1-\lambda$ and $\lambda$ gives an admissible combination for $(1-\lambda)x+\lambda x'$ with value below $(1-\lambda)a+\lambda a'$. Hence $H$ is convex. Combinations with $q=1$ show $H\leq F_i$ for each $i$. If $G$ is convex and $G\leq F_i$ for all $i$, then for every admissible combination
 \[
  G\Bigl(\sum_j\lambda_jx_j\Bigr)\leq\sum_j\lambda_jG(x_j)\leq\sum_j\lambda_jF_{i_j}(x_j),
 \]
@@ -215,7 +214,7 @@ where the first inequality follows from the convexity of $\operatorname{epi}G$; 
 \]
 and combinations with $q=1$ give equality. Since affine functions are convex, an affine function lies below $H$ if and only if it lies below $\inf_iF_i$. Suppose that $H$ has an affine minorant. Then $H$ is proper, so $\overline H$ is a closed proper convex function by \cref{prop:convex-closure-and-dense-convergence}, and $\overline H=H^{**}=(\sup_iF_i^*)^*$ by \cref{thm:finite-dimensional-fenchel-duality}. A lower semicontinuous convex function below $\inf_iF_i$ lies below $H$, and therefore below $\overline H$.
 
-(3) Convexity of $F\mathbin\square G$ follows as in (2), by mixing decompositions $x=y+z$ and $x'=y'+z'$ whose costs are close to the infima. The two suprema over $y$ and $z$ in
+(3) Convexity of $F\mathbin\square G$ follows as in (2), by mixing decompositions $x=y+z$ and $x'=y'+z'$ whose values $F(y)+G(z)$ are close to the infima. The two suprema over $y$ and $z$ in
 \[
  (F\mathbin\square G)^*(p)=\sup_{y,z}\bigl(\langle p,y\rangle-F(y)+\langle p,z\rangle-G(z)\bigr)=F^*(p)+G^*(p)
 \]
@@ -369,11 +368,17 @@ Write $\mu_j=\operatorname{MA}_{\mathbb R}(F_j)$ and $\mu=\operatorname{MA}_{\ma
 
 \emph{Step 3: vague convergence.} Let $f\geq0$ be continuous with compact support $S$. By Step 1 there is $C$ with $\mu_j(S)\leq C$ for all large $j$. For $t>0$, the set $\{f\geq t\}$ is compact and $\{f>t\}$ is open. Integrating over $t$ (by Tonelli's theorem, $\int f\,\mathrm d\nu=\int_0^\infty\nu(\{f>t\})\,\mathrm dt=\int_0^\infty\nu(\{f\geq t\})\,\mathrm dt$ for every positive measure $\nu$), we obtain from Step 2 and Fatou's lemma
 \[
- \int f\,\mathrm d\mu=\int_0^\infty\mu(\{f>t\})\,\mathrm dt\leq\liminf_j\int_0^\infty\mu_j(\{f>t\})\,\mathrm dt=\liminf_j\int f\,\mathrm d\mu_j,
+\begin{split}
+ \int f\,\mathrm d\mu&=\int_0^\infty\mu(\{f>t\})\,\mathrm dt\\
+ &\leq\liminf_j\int_0^\infty\mu_j(\{f>t\})\,\mathrm dt=\liminf_j\int f\,\mathrm d\mu_j,
+\end{split}
 \]
 and from Step 1 and Fatou's lemma for the functions $t\mapsto C-\mu_j(\{f\geq t\})$ on $(0,\max f]$
 \[
- \limsup_j\int f\,\mathrm d\mu_j=\limsup_j\int_0^{\max f}\mu_j(\{f\geq t\})\,\mathrm dt\leq\int_0^{\max f}\mu(\{f\geq t\})\,\mathrm dt=\int f\,\mathrm d\mu.
+\begin{split}
+ \limsup_j\int f\,\mathrm d\mu_j&=\limsup_j\int_0^{\max f}\mu_j(\{f\geq t\})\,\mathrm dt\\
+ &\leq\int_0^{\max f}\mu(\{f\geq t\})\,\mathrm dt=\int f\,\mathrm d\mu.
+\end{split}
 \]
 Hence $\int f\,\mathrm d\mu_j\to\int f\,\mathrm d\mu$. A general continuous function with compact support is the difference of its positive and negative parts, which proves vague convergence.
 
