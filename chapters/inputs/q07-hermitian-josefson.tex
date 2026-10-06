@@ -1,178 +1,298 @@
 \section{Global poles on compact complex manifolds}
 \label{sec:compact-complex-josefson}
-For this section let $X$ be a connected compact complex manifold of positive dimension $n$, and choose a smooth Hermitian form $\omega>0$. Closedness is not assumed. Write $\PSH(X,\omega)$ for the locally integrable quasi-psh functions with $\ddc u\geq-\omega$, using their canonical upper semicontinuous representatives. Every global quasi-psh function becomes $\omega$-psh after multiplication by a sufficiently small positive constant. We shall pass from a local pole to a global one using bounded extremal functions. Two elementary local estimates handle the nonclosed background.
+A subset of a complex manifold is pluripolar if it is locally contained in pole sets of plurisubharmonic functions (\cref{def:pluripolar-set}). Josefson's theorem (\cref{thm:josefson}) shows that on $\mathbb C^n$ a single plurisubharmonic function on all of $\mathbb C^n$ suffices. A compact connected complex manifold carries no nonconstant plurisubharmonic functions, by the maximum principle, so there the global pole function has to be quasi-plurisubharmonic. In this section we prove that every pluripolar subset of a compact complex manifold lies in the pole set of one quasi-plurisubharmonic function (\cref{thm:compact-complex-global-josefson}). The manifold need not be K\"ahler.
+
+The proof follows the capacity argument used on $\mathbb C^n$. For a set $A$ we consider the global extremal function $T_A$, the upper envelope of the $\omega$-plurisubharmonic functions that are nonpositive on $A$; its regularization is bounded unless $A$ is globally pluripolar (\cref{lem:hermitian-extremal-pole-alternative}). If a piece of a pluripolar set were not globally pluripolar, we would approximate it by compact sublevel sets of small capacity. The Monge--Amp\`ere measure of the extremal function of a compact set lives on that set and its mass is controlled by the capacity (\cref{prop:hermitian-extremal-mass-support}), so in the limit we would obtain a bounded potential with zero Monge--Amp\`ere mass. Since the background form $\omega$ is not assumed to be closed, the total mass $\int_X(\omega+\ddc u)^n$ is not a cohomological quantity, and we must prove separately that it is positive. We derive this from a comparison principle for small gaps (\cref{prop:hermitian-small-gap-comparison}), in which the error terms produced by $\mathrm d\omega$ and $\ddc\omega$ are absorbed by the size of the gap. Freezing the coefficients of $\omega$ on small balls and a local estimate for nearby bounded potentials (\cref{lem:nearby-bounded-psh-traces}) then allow us to use the homogeneous balayage of \cref{chap:q08} for the closed constant-coefficient forms.
+
+Throughout this section $X$ is a connected compact complex manifold of dimension $n\geq1$, and $\omega$ is a Hermitian form on $X$ (\cref{sec:analytic-singularity-definitions}), which need not be closed. Since $\omega$ need not have local potentials, the class $\PSH(X,\theta)$ of \cref{def:quasi-psh-and-theta-psh} does not apply directly. We write $\PSH(X,\omega)$ for the set of quasi-plurisubharmonic functions $u$ on $X$ with $\omega+\ddc u\geq0$ in the sense of currents, and call its elements \emph{$\omega$-plurisubharmonic}; for an open set $D\subset X$ the class $\PSH(D,\omega)$ is defined in the same way. We put $\omega_u=\omega+\ddc u$. If $\Phi$ is quasi-plurisubharmonic on $X$, then compactness gives $\ddc\Phi\geq-C\omega$ for some $C>0$, so $t\Phi\in\PSH(X,\omega)$ for $0<t\leq1/C$. In local coordinates $\beta$ denotes the Euclidean form \eqref{eq:euclidean-hermitian-form}.
+\index{plurisubharmonic function!relative to a Hermitian form}
+
+We first define products of the currents $\omega_u$ for bounded $u$. Let $u_1,\ldots,u_p\in\PSH(X,\omega)$ be bounded, where $1\leq p\leq n$. On a coordinate ball $B$ choose a smooth function $q$ with $\ddc q\geq\omega$ on $B$, for instance a large multiple of $|z|^2$. Then the functions $u_l+q$ are bounded and plurisubharmonic on $B$, and $\omega_{u_l}=\ddc(u_l+q)+\sigma$ with the smooth form $\sigma=\omega-\ddc q$. On $B$ we define
+\begin{equation}\label{eq:hermitian-product-expansion}
+ \omega_{u_1}\wedge\cdots\wedge\omega_{u_p}
+ =\sum_{J\subset\{1,\ldots,p\}}\Bigl(\bigwedge_{l\in J}\ddc(u_l+q)\Bigr)\wedge\sigma^{p-|J|},
+\end{equation}
+where the products of the currents $\ddc(u_l+q)$ are Bedford--Taylor products (\cref{def:bedford-taylor-product}). These products are obtained by multiplying by a potential and applying $\ddc$, so they depend linearly on each potential; moreover $\ddc(hR)=\ddc h\wedge R$ for a smooth function $h$ and a closed current $R$. If $q$ is replaced by another such function $q'$, each $\ddc(u_l+q)$ therefore changes by the smooth closed form $\ddc(q'-q)$ and $\sigma$ by its negative, and the right side of \eqref{eq:hermitian-product-expansion} does not change. Hence the local definitions agree on overlaps and define a current of order zero on $X$; by \cref{prop:bt-positive-recursion} it is the exterior product when the $u_l$ are smooth. Since Bedford--Taylor products are symmetric (\cref{thm:bt-decreasing-continuity}), the product is symmetric in its factors, and it is affine in each $u_l$. For $u_1=\cdots=u_p=u$ we write $\omega_u^p$, and similarly for mixed powers; the factor $\omega$ is the case $u_l=0$.
 
 \begin{lemma}\label{lem:hermitian-bounded-products}
-Finite maxima, regularized suprema of locally uniformly upper-bounded families, and max pasting under the upper boundary inequality preserve $\omega$-psh functions. For bounded $u_1,\ldots,u_p\in\PSH(X,\omega)$, with integer $1\leq p\leq n$, the mixed products of $\omega_{u_j}=\omega+\ddc u_j$ are well-defined positive currents. They have finite mass and give locally pluripolar sets zero trace mass. They are continuous under uniformly bounded decreasing sequences, and under uniformly bounded increasing sequences with the canonical upper regularized limit. The normalized family $\sup_X u=0$ is compact in $L^1(X)$ and has a uniform $L^1$ bound; its supremum is continuous under $L^1$ convergence.
+The following assertions hold.
+\begin{enumerate}
+\item\label{itm:lem:hermitian-bounded-products:maxima} A finite maximum of functions in $\PSH(X,\omega)$ belongs to $\PSH(X,\omega)$, and so does the upper semicontinuous regularization of the supremum of a nonempty family in $\PSH(X,\omega)$ that is uniformly bounded above. If $u\in\PSH(X,\omega)$, $D\subset X$ is open, $v\in\PSH(D,\omega)$, and $\limsup_{D\ni y\to x}v(y)\leq u(x)$ for every $x\in\partial D$, then the function equal to $\max\{u,v\}$ on $D$ and to $u$ on $X\setminus D$ belongs to $\PSH(X,\omega)$.
+\item\label{itm:lem:hermitian-bounded-products:products} Let $u_1,\ldots,u_p\in\PSH(X,\omega)$ be bounded, $1\leq p\leq n$. The current $\omega_{u_1}\wedge\cdots\wedge\omega_{u_p}$ is positive. The total mass of its trace measure with respect to $\omega$ is bounded by a constant depending only on $(X,\omega)$ and $\max_l\sup_X|u_l|$, and it gives zero mass to every pluripolar set.
+\item\label{itm:lem:hermitian-bounded-products:continuity} For $1\leq l\leq p$ let $(u_{l,j})_{j\geq1}$ be sequences in $\PSH(X,\omega)$ with $\sup_{l,j}\sup_X|u_{l,j}|<\infty$. Suppose that either each sequence decreases pointwise to a function $u_l$, or each sequence increases and $u_l$ is the upper semicontinuous regularization of its limit. Then the $u_l$ are bounded functions in $\PSH(X,\omega)$, and $\omega_{u_{1,j}}\wedge\cdots\wedge\omega_{u_{p,j}}\to\omega_{u_1}\wedge\cdots\wedge\omega_{u_p}$ weakly.
+\item\label{itm:lem:hermitian-bounded-products:compactness} The set of $u\in\PSH(X,\omega)$ with $\sup_Xu=0$ is compact in $L^1(X)$, hence bounded in $L^1(X)$, and $u\mapsto\sup_Xu$ is continuous on $\PSH(X,\omega)$ for the $L^1$ topology.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-For the first assertion freeze the smooth coefficients on arbitrarily small coordinate balls. There a constant closed positive form $\gamma$ can be chosen with $\omega\leq\gamma\leq\omega+\varepsilon\beta$. Add its quadratic potential and apply the ordinary psh maximum, envelope or pasting theorem. The resulting Hessian is at least $-\gamma\geq-\omega-\varepsilon\beta$. A finite small-ball cover and then $\varepsilon\downarrow0$ prove the exact lower bound $-\omega$ distributionally. The ordinary local constructions also supply the canonical upper semicontinuous representatives.
+\ref{itm:lem:hermitian-bounded-products:maxima} We freeze the coefficients of $\omega$ on small balls. Fix $\varepsilon>0$, a coordinate chart and a compact subset $L$ of it. For $a\in L$ let $\omega(a)$ be the form with constant coefficients equal to those of $\omega$ at $a$. By uniform continuity of the coefficients, there is $r>0$ such that $\gamma_a=\omega(a)+\tfrac\varepsilon2\beta$ satisfies $\omega\leq\gamma_a\leq\omega+\varepsilon\beta$ on $B(a,r)$ for every $a\in L$. Let $g_a$ be a quadratic polynomial with $\ddc g_a=\gamma_a$. If $u\in\PSH(X,\omega)$, then $\ddc(u+g_a)\geq\gamma_a-\omega\geq0$, so $u+g_a$ is plurisubharmonic on $B(a,r)$. Apply \cref{prop:psh-max-gluing} (for maxima and for the pasted function) or \cref{thm:psh-upper-envelopes} (for regularized suprema) to the functions $u+g_a$ on $B(a,r)$, and subtract $g_a$. Since $g_a$ is continuous, this gives the function $w$ in question on $B(a,r)$; for instance $(\sup_iu_i)^*+g_a=(\sup_i(u_i+g_a))^*$. Hence $w$ is quasi-plurisubharmonic and $\ddc w\geq-\gamma_a\geq-\omega-\varepsilon\beta$ on each ball $B(a,r)$ with $a\in L$. Positivity of currents is a local property, so $\omega+\ddc w\geq-\varepsilon\beta$ on a neighborhood of $L$. Letting $\varepsilon\downarrow0$ gives $\omega+\ddc w\geq0$ on the interior of $L$, and since the chart and $L$ were arbitrary, $w\in\PSH(X,\omega)$.
 
-On a coordinate ball choose a smooth quadratic $q$ with $\ddc q\geq2\omega$. The $u_j+q$ are bounded psh. Expand every factor as $\ddc(u_j+q)+(\omega-\ddc q)$, defining the product by the earlier bounded products and smooth factors. A second choice of $q$ gives the same expansion by bounded multilinearity. Local radial smoothing of $u_j$ has Hessian at least $-\omega-o(1)\beta$, since convolution of the smooth coefficients of $\omega$ converges uniformly to them. Its products with background $\omega+o(1)\beta$ are positive and tend to the defined expansion. Thus the latter is positive. Bounded CLN on a finite chart cover gives finite mass; the local expansion and the zero polar mass of bounded products give the asserted trace property. Decreasing and increasing continuity follow term by term from the corresponding bounded local theorems. For an increasing sequence its pointwise and canonical limits differ only on a locally pluripolar set by \cref{cor:psh-pluripolar-discrepancy}, applied after adding $q$.
+\ref{itm:lem:hermitian-bounded-products:products} We first prove positivity on a coordinate ball $B$, choosing $q=C|z|^2$ in \eqref{eq:hermitian-product-expansion}. Let $\rho_k$ be radial mollifiers whose radii decrease to zero, and put $u_{l,k}=(u_l+q)*\rho_k-q$ on a smaller concentric ball $B'$. Since $q$ is quadratic, $\ddc u_{l,k}=(\ddc u_l)*\rho_k$, where the convolution acts on the coefficients, and $(\omega+\ddc u_l)*\rho_k\geq0$ because mollification preserves positivity. By uniform continuity of the coefficients of $\omega$, there are $\tau_k\to0$ with $\omega*\rho_k\leq\omega+\tau_k\beta$ on $B'$. Hence the smooth $(1,1)$-forms $\omega_{u_{l,k}}+\tau_k\beta$ are positive, and so is their exterior product. Expanding this product as in \eqref{eq:hermitian-product-expansion}, with $\sigma$ replaced by $\sigma+\tau_k\beta$, we obtain
+\[
+ \sum_J\Bigl(\bigwedge_{l\in J}\ddc\bigl((u_l+q)*\rho_k\bigr)\Bigr)\wedge(\sigma+\tau_k\beta)^{p-|J|}.
+\]
+As $k\to\infty$, the functions $(u_l+q)*\rho_k$ decrease to $u_l+q$, so the Bedford--Taylor products converge weakly by \cref{thm:bt-decreasing-continuity}; their masses are locally bounded by \cref{thm:cln-bounded}, and $\sigma+\tau_k\beta\to\sigma$ uniformly. Hence the product \eqref{eq:hermitian-product-expansion} is a weak limit of positive forms on $B'$, and it is positive.
 
-The proof of \cref{prop:normalized-global-psh-compactness} uses local psh compactness, moving maximum points and propagation of noncollapse through a finite connected cover. It applies here with these fixed quadratic corrections: their Hessians dominate $\omega$, and neither local compactness nor that propagation requires the background to be closed. Distributional convergence gives $\ddc u\geq-\omega$. The same continuous-majorant Hartogs argument proves supremum continuity. This proves all the compactness assertions, including the uniform normalized $L^1$ bound.
+Cover $X$ by finitely many such balls, with $q$ defined on larger balls. On compact subsets of each ball, \cref{thm:cln-bounded} bounds the trace masses of the Bedford--Taylor products in \eqref{eq:hermitian-product-expansion} in terms of $\max_l\sup|u_l+q|$; since $\sigma$ is smooth, the same holds for the total variation of the coefficient measures of the product, and the finite cover gives the asserted bound for its trace measure with respect to $\omega$. Bedford--Taylor products of locally bounded plurisubharmonic functions give zero mass to pluripolar sets by \cref{cor:psh-pluripolar-discrepancy}; hence so does every term of \eqref{eq:hermitian-product-expansion}, and so does the product.
+
+\ref{itm:lem:hermitian-bounded-products:continuity} On a coordinate ball, add a function $q$ as in \eqref{eq:hermitian-product-expansion}. In the decreasing case, $u_l+q$ is plurisubharmonic by \cref{thm:psh-decreasing-nets}, since it is bounded below, so $u_l\in\PSH(X,\omega)$; and the Bedford--Taylor products of the functions $u_{l,j}+q$ converge weakly by \cref{thm:bt-decreasing-continuity}. In the increasing case, $u_l\in\PSH(X,\omega)$ by \ref{itm:lem:hermitian-bounded-products:maxima}, the functions $u_{l,j}+q$ increase to $u_l+q$ almost everywhere by \cref{thm:psh-upper-envelopes}, and \cref{thm:bt-increasing-continuity} gives the same convergence. In both cases we multiply by the fixed smooth forms $\sigma^{p-|J|}$ and sum; a partition of unity subordinate to finitely many balls gives weak convergence on $X$.
+
+\ref{itm:lem:hermitian-bounded-products:compactness} The proof of \cref{prop:normalized-global-psh-compactness} applies without change once the smooth local potentials of $\theta$ used there are replaced by the functions $q$ on a finite cover by coordinate balls: if $u$ is $\omega$-plurisubharmonic, then $u+q$ is plurisubharmonic, and closedness of the background is not used anywhere else in that proof. An $L^1$ limit of $\omega$-plurisubharmonic functions satisfies $\omega+\ddc u\geq0$ in the sense of currents, and the canonical plurisubharmonic representatives of $u+q$ on the balls give its representative in $\PSH(X,\omega)$. Continuity of $u\mapsto\sup_Xu$ follows from the same Hartogs argument as there, after adding $q$.
 \end{proof}
 
 \begin{lemma}\label{lem:hermitian-one-factor-comparison}
-Let $u,v$ be bounded $\omega$-psh and let $T$ be a product of $n-1$ factors chosen among $\omega$, $\omega_u$ and $\omega_v$. Put $E=\{u<v\}$. Then
+Let $u,v\in\PSH(X,\omega)$ be bounded, put $E=\{u<v\}$, and let $T$ be a product of $n-1$ factors, each equal to $\omega$, $\omega_u$ or $\omega_v$. Then $\ddc T$ is a real measure on $X$, that is, a real current of order zero and degree $2n$, and
 \begin{equation}\label{eq:hermitian-one-factor-comparison}
  \int_E(\omega_v-\omega_u)\wedge T
-       \leq\int_E(v-u)\,\ddc T.
+       \leq\int_E(v-u)\,\ddc T,
 \end{equation}
-The last derivative is a finite signed measure. Its variation is bounded by a fixed constant times the sum of the products obtained by deleting one factor from $T$ and inserting $\omega^2$, or by deleting two factors and inserting $\omega^3$.
+where $(\omega_v-\omega_u)\wedge T=\omega_v\wedge T-\omega_u\wedge T$. Moreover, there is a constant $C$ depending only on $(X,\omega)$ such that the total variation $|\ddc T|$ of this measure satisfies
+\begin{equation}\label{eq:hermitian-ddc-product-variation}
+ |\ddc T|\leq C\Bigl(\sum_iT_{\hat\imath}\wedge\omega^2+\sum_{i<i'}T_{\hat\imath\hat\imath'}\wedge\omega^3\Bigr).
+\end{equation}
+Here $T_{\hat\imath}$ denotes the product of the factors of $T$ other than the $i$th one, $T_{\hat\imath\hat\imath'}$ the product of those other than the $i$th and the $i'$th, and empty sums are zero.
 \end{lemma}
 \begin{proof}
-Every factor has first derivative $\mathrm d\omega$ and second derivative $\ddc\omega$. Differentiate the local expansions from the preceding lemma. The product rule expresses $\ddc T$ as a sum of $\ddc\omega$ times products with one factor deleted and of $\mathrm d\omega\wedge\mathrm d^{\mathrm c}\omega$ times products with two deleted; signs and numerical coefficients depend only on the number of factors. On compact $X$, these smooth forms are bounded in variation by $C\omega^2$ and $C\omega^3$ when paired with positive complementary products. This proves the variation bound. For $n=1$, $T=1$ and its derivative is zero.
+If $n=1$, then $T=1$ and $\ddc T=0$, so \eqref{eq:hermitian-ddc-product-variation} is trivial; the proof of \eqref{eq:hermitian-one-factor-comparison} below covers this case as well.
 
-Set $w=v-u$. Choose smooth convex functions $F_\delta$ with $F_\delta=F_\delta'=0$ on $(-\infty,0]$, $0\leq F_\delta'\leq1$, $F_\delta''\geq0$, and $F_\delta(w)\to w^+$, $F_\delta'(w)\to\mathbf1_{\{w>0\}}$ pointwise. The bounded chain rule gives
+\emph{Step 1. The measure $\ddc T$.} Work on a coordinate ball with $q$ and $\sigma$ as in \eqref{eq:hermitian-product-expansion}. Each factor of $T$ has the form $\Theta_i+\sigma$, where $\Theta_i$ is $\ddc q$, $\ddc(u+q)$ or $\ddc(v+q)$; thus $T=\sum_J\Theta_J\wedge\sigma^{n-1-|J|}$, where $\Theta_J$ is the Bedford--Taylor product of the $\Theta_i$ with $i\in J$. The currents $\Theta_J$ are closed of pure bidegree, so $\mathrm d\Theta_J=\mathrm d^{\mathrm c}\Theta_J=0$, where $\mathrm d^{\mathrm c}$ is the operator \eqref{eq:dc-operator}; hence $\ddc(\Theta_J\wedge\sigma^m)=\Theta_J\wedge\ddc(\sigma^m)$. Since $\mathrm d$ and $\mathrm d^{\mathrm c}$ annihilate $\ddc q$, we have $\mathrm d\sigma=\mathrm d\omega$ and $\mathrm d^{\mathrm c}\sigma=\mathrm d^{\mathrm c}\omega$, and the Leibniz rule gives
 \[
- \ddc F_\delta(w)\wedge T
-   =F_\delta'(w)\ddc w\wedge T
-      +F_\delta''(w)\,\mathrm dw\wedge\mathrm d^{\mathrm c}w\wedge T.
+ \ddc(\sigma^m)=m\,\sigma^{m-1}\wedge\ddc\omega+m(m-1)\,\sigma^{m-2}\wedge\mathrm d\omega\wedge\mathrm d^{\mathrm c}\omega.
 \]
-Here is a justification for the nonclosed $T$. On each chart its expansion is a finite sum of closed bounded psh products times smooth forms. Each smooth form is a linear combination, with smooth bounded coefficients, of constant forms; their coefficient variations are dominated by a finite sum of positive complementary constant forms. Apply \cref{lem:bounded-psh-current-chain-rule} to those closed positive currents, and polarize for the difference $w$. Strong gradient convergence proves the displayed chain rule and all first derivative product rules after multiplication by the smooth coefficients. Bounded weighted continuity handles its Hessian terms. The gradient term is nonnegative, because $T$ is positive; this also follows by pointwise matrix positivity and the strong gradient limit.
+Expand $T_{\hat\imath}$ and $T_{\hat\imath\hat\imath'}$ in the same way. For a fixed $J$, with $m=n-1-|J|$, there are $m$ indices $i\notin J$ and $m(m-1)/2$ pairs $i<i'$ outside $J$; comparing coefficients, we obtain
+\begin{equation}\label{eq:hermitian-ddc-product}
+ \ddc T=\sum_i\ddc\omega\wedge T_{\hat\imath}
+      +2\sum_{i<i'}\mathrm d\omega\wedge\mathrm d^{\mathrm c}\omega\wedge T_{\hat\imath\hat\imath'}.
+\end{equation}
+In particular $\mathrm dT$, $\mathrm d^{\mathrm c}T$ and $\ddc T$ are currents of order zero, being sums of Bedford--Taylor products multiplied by smooth forms. The forms $\ddc\omega$ and $\mathrm d\omega\wedge\mathrm d^{\mathrm c}\omega=\frac{\mathrm i}{2\pi}\partial\omega\wedge\bar\partial\omega$ are real, of bidegrees $(2,2)$ and $(3,3)$. At every point, $\omega^2$ and $\omega^3$ are interior points of the cones of strongly positive forms (\cref{prop:positivity-cones}); since $X$ is compact, there is $C$ such that $C\omega^2\pm\ddc\omega$ and $C\omega^3\pm\mathrm d\omega\wedge\mathrm d^{\mathrm c}\omega$ are strongly positive on $X$. The currents $T_{\hat\imath}$ and $T_{\hat\imath\hat\imath'}$ are positive by \itemref{itm:lem:hermitian-bounded-products:products}, so their products with these forms are positive measures, and \eqref{eq:hermitian-ddc-product-variation} follows from \eqref{eq:hermitian-ddc-product}.
 
-Integration by parts on compact $X$ gives
-$\int_X\ddc F_\delta(w)\wedge T=\int_XF_\delta(w)\ddc T$.
-Indeed expand $\ddc(F_\delta(w)T)$, whose integral is zero; integrating the first derivative cross term once cancels it and leaves this identity. All derivative measures and products were justified in the preceding paragraph. Discard the nonnegative gradient term. Bounded convergence against the finite coefficient measures gives \eqref{eq:hermitian-one-factor-comparison}; the chosen derivatives vanish also at $w=0$, so no equality-level term is introduced.
+\emph{Step 2. A convex cutoff.} Put $w=v-u$, a bounded Borel function on $X$. Fix a smooth increasing function $\lambda\colon\mathbb R\to[0,1]$ with $\lambda=0$ on $(-\infty,0]$ and $\lambda=1$ on $[1,\infty)$, and for $\delta>0$ put $F_\delta(t)=\int_0^t\lambda(s/\delta)\,\mathrm ds$. Then $F_\delta$ is smooth and convex, $F_\delta=0$ on $(-\infty,0]$, $0\leq F_\delta'\leq1$, and as $\delta\downarrow0$ we have $F_\delta(t)\to t^+$ and $F_\delta'(t)\to\mathbf1_{(0,\infty)}(t)$ for every real $t$. We shall prove that, for every $\delta>0$,
+\begin{equation}\label{eq:hermitian-convex-cutoff-comparison}
+ \int_XF_\delta'(w)\,(\omega_v-\omega_u)\wedge T\leq\int_XF_\delta(w)\,\ddc T.
+\end{equation}
+Granting this, let $\delta\downarrow0$. The integrands converge pointwise and boundedly to $\mathbf1_E$ and to $(v-u)\mathbf1_E$; note that $F_\delta'(0)=0$, so the first limit is the indicator of $\{w>0\}=E$. Both measures have finite total variation, so dominated convergence turns \eqref{eq:hermitian-convex-cutoff-comparison} into \eqref{eq:hermitian-one-factor-comparison}.
+
+To prove \eqref{eq:hermitian-convex-cutoff-comparison}, choose finitely many coordinate balls $B_i$ covering $X$, smooth functions $q_i$ with $\ddc q_i\geq\omega$ on a neighborhood of $\overline{B_i}$, and a smooth partition of unity $(\chi_i)$ on $X$ with $\Supp\chi_i\subset B_i$. Fix $i$. On a neighborhood of $\Supp\chi_i$, radial convolution gives smooth plurisubharmonic functions $u_l+q_i\downarrow u+q_i$ and $v_l+q_i\downarrow v+q_i$ as $l\to\infty$, uniformly bounded; then $w_l=v_l-u_l\to w$ pointwise and boundedly on $\Supp\chi_i$. For the smooth function $f=F_\delta(w_l)$, the definition of derivatives of currents and the Leibniz rule give
+\[
+ \int f\,\ddc(\chi_iT)=\int\chi_i\,\ddc f\wedge T,\qquad
+ \ddc(\chi_iT)=\chi_i\ddc T+\Lambda_i,
+\]
+where $\Lambda_i=\ddc\chi_i\wedge T+\mathrm d\chi_i\wedge\mathrm d^{\mathrm c}T-\mathrm d^{\mathrm c}\chi_i\wedge\mathrm dT$, and the chain rule gives
+\[
+ \ddc f=F_\delta'(w_l)\,\ddc w_l+F_\delta''(w_l)\,\frac{\mathrm i}{2\pi}\,\partial w_l\wedge\bar\partial w_l.
+\]
+The last term is a smooth strongly positive $(1,1)$-form, since $F_\delta''\geq0$, and $T$ is positive, so its product with $\chi_iT$ is a positive measure. Consequently
+\begin{equation}\label{eq:hermitian-local-cutoff-inequality}
+ \int\chi_iF_\delta'(w_l)\,\ddc w_l\wedge T\leq\int F_\delta(w_l)\bigl(\chi_i\ddc T+\Lambda_i\bigr).
+\end{equation}
+Now let $l\to\infty$. By Step 1, $\ddc T$ and $\Lambda_i$ are measures of finite total variation, so the right side tends to $\int F_\delta(w)(\chi_i\ddc T+\Lambda_i)$ by dominated convergence. On the left, $\ddc w_l\wedge T=\ddc(v_l+q_i)\wedge T-\ddc(u_l+q_i)\wedge T$. By \eqref{eq:hermitian-product-expansion}, each of these two currents is a finite sum of products of smooth forms with currents $\ddc(v_l+q_i)\wedge S$ or $\ddc(u_l+q_i)\wedge S$, where $S$ is a fixed Bedford--Taylor product of some of the functions $q_i$, $u+q_i$ and $v+q_i$. The weight $F_\delta'(w_l)$ is a continuous function of $(u_l+q_i,v_l+q_i)$, and these pairs take values in a fixed compact square. Approximating this function uniformly on the square by polynomials, and using \cref{cor:bt-polynomial-weights} with base current $S$ together with the mass bounds of \cref{thm:cln-bounded}, we find that the left side of \eqref{eq:hermitian-local-cutoff-inequality} tends to $\int\chi_iF_\delta'(w)\,\bigl(\ddc(v+q_i)-\ddc(u+q_i)\bigr)\wedge T=\int\chi_iF_\delta'(w)\,(\omega_v-\omega_u)\wedge T$. Finally we sum the limiting inequalities over $i$. Since $\sum_i\chi_i=1$, we have $\sum_i\Lambda_i=0$, and \eqref{eq:hermitian-convex-cutoff-comparison} follows.
 \end{proof}
 
 \begin{proposition}\label{prop:hermitian-small-gap-comparison}
-There are constants $s_0,C>0$ depending only on $(X,\omega)$ such that, if $u,v$ are bounded $\omega$-psh, $\omega_v\geq\tfrac12\omega$ and $0<v-u\leq s<s_0$ on $E=\{u<v\}$, then
+There are constants $s_0,C>0$, depending only on $(X,\omega)$, with the following property. Let $u,v\in\PSH(X,\omega)$ be bounded with $\omega_v\geq\tfrac12\omega$, put $E=\{u<v\}$, and suppose that $v-u\leq s$ on $E$ for some $s\in(0,s_0)$. Then
 \[
  \int_E\omega_v^n\leq(1+Cs)\int_E\omega_u^n.
 \]
-In particular every bounded $\omega$-psh $u$ has $\int_X\omega_u^n>0$.
+In particular $\int_X\omega_u^n>0$ for every bounded $u\in\PSH(X,\omega)$.
 \end{proposition}
 \begin{proof}
-Put $a_k=\int_E\omega_u^k\wedge\omega^{n-k}$, $0\leq k\leq n$. Apply the preceding lemma to $T=\omega_u^k\wedge\omega^{n-k-1}$. Strict positivity of $\omega_v$ and the variation estimate give, after enlarging a fixed $B\geq1$,
+On $E$ we have $0<v-u\leq s$. Whenever we apply \cref{lem:hermitian-one-factor-comparison} below, \eqref{eq:hermitian-ddc-product-variation} therefore bounds the right side of \eqref{eq:hermitian-one-factor-comparison} by $s$ times the masses on $E$ of products with fewer factors $\omega_u,\omega_v$. We fix a constant $B\geq1$, depending only on $(X,\omega)$, which absorbs the constant of \eqref{eq:hermitian-ddc-product-variation} and the number of terms in it.
+
+\emph{Step 1. Pure traces.} For $0\leq k\leq n$ put $a_k=\int_E\omega_u^k\wedge\omega^{n-k}$, and apply \cref{lem:hermitian-one-factor-comparison} to $T=\omega_u^k\wedge\omega^{n-k-1}$, $0\leq k<n$. Since $\omega_v-\tfrac12\omega=\tfrac12\omega_{2v}$ with $2v\in\PSH(X,\omega)$ bounded, and the products are affine in each potential, the current $(\omega_v-\tfrac12\omega)\wedge T$ is positive; hence $\int_E\omega_v\wedge T\geq\tfrac12a_k$. Moreover $\int_E\omega_u\wedge T=a_{k+1}$. Deleting one or two factors of $T$ and inserting $\omega^2$ or $\omega^3$ produces only the products $\omega_u^h\wedge\omega^{n-h}$ with $h\in\{k-2,k-1,k\}$. Thus
 \begin{equation}\label{eq:hermitian-pure-trace-recurrence}
  \tfrac12a_k\leq a_{k+1}+sB\sum_{h=0}^k a_h,
                   \qquad 0\leq k<n.
 \end{equation}
-In fact the error involves only $a_k,a_{k-1},a_{k-2}$, but the displayed bound suffices. Choose $s_0B(n+1)4^n\leq1/4$. Induction gives $a_k\leq4a_{k+1}$: the earlier inequalities imply $\sum_{h=0}^k a_h\leq(k+1)4^k a_k$, so the error is at most $a_k/4$. Consequently $a_k\leq4^{n-k}a_n$.
-
-For mixed traces put $a_{j,k}=\int_E\omega_u^j\wedge\omega_v^k\wedge\omega^{n-j-k}$. Replacing one $v$ factor using \eqref{eq:hermitian-one-factor-comparison} gives
+Choose $s_0>0$ with $s_0B(n+1)4^n\leq1/4$; in particular $sB\leq1$. We prove $a_k\leq4a_{k+1}$ for $0\leq k<n$ by induction on $k$. If it holds for all smaller indices, then $a_h\leq4^{k-h}a_k$ for $h\leq k$, so $\sum_{h=0}^ka_h\leq(k+1)4^ka_k$, and the error term in \eqref{eq:hermitian-pure-trace-recurrence} is at most $s_0B(n+1)4^na_k\leq\tfrac14a_k$. Hence $\tfrac12a_k\leq a_{k+1}+\tfrac14a_k$, that is, $a_k\leq4a_{k+1}$. Consequently
 \[
- a_{j,k}\leq a_{j+1,k-1}
-               +sB\sum_{p+q<j+k}a_{p,q}\qquad(k\geq1),
+ a_k\leq4^{n-k}a_n,\qquad 0\leq k\leq n.
 \]
-with the same fixed enlargement of $B$. The variation bound has only smaller numbers of $u,v$ factors. Induct on $j+k$, then replace the $k$ remaining $v$ factors one by one. Since $sB\leq1$ and there are finitely many indices, this yields
-$a_{j,k}\leq C_n\sum_{h=0}^{j+k}a_h\leq C'_n a_n$.
-Finally telescope $\omega_v^n-\omega_u^n$ and apply the one-factor comparison to its $n$ mixed $(n-1)$-factor products. Their error traces have just been bounded by $C'_n a_n$. This proves the stated inequality.
 
-For positivity set $m=\inf_Xu$ and $v=m+s$, with $0<s<s_0$. The strict sublevel $E=\{u<m+s\}$ is nonempty and open by upper semicontinuity, hence $\int_E\omega^n>0$. Here $\omega_v=\omega$ and $0<v-u\leq s$ on $E$. The comparison inequality forces $\int_E\omega_u^n>0$.
+\emph{Step 2. Mixed traces.} For $j,k\geq0$ with $j+k\leq n$ put $a_{j,k}=\int_E\omega_u^j\wedge\omega_v^k\wedge\omega^{n-j-k}$, so that $a_{j,0}=a_j$. If $k\geq1$, apply \cref{lem:hermitian-one-factor-comparison} to $T=\omega_u^j\wedge\omega_v^{k-1}\wedge\omega^{n-j-k}$. Then $\int_E\omega_v\wedge T=a_{j,k}$ and $\int_E\omega_u\wedge T=a_{j+1,k-1}$, while deleting one or two factors of $T$ and inserting $\omega^2$ or $\omega^3$ produces products with fewer factors $\omega_u,\omega_v$. After enlarging $B$ once more by a factor depending only on $n$, we obtain
+\[
+ a_{j,k}\leq a_{j+1,k-1}+sB\sum_{p+q<j+k}a_{p,q}\qquad(k\geq1).
+\]
+We show by induction on $m=j+k$ that $a_{j,k}\leq C_m\sum_{h=0}^ma_h$ with $C_m$ depending only on $n$. For $k=0$ this is clear. For $k\geq1$, since $sB\leq1$, applying the last inequality $k$ times, which replaces the factors $\omega_v$ one at a time by $\omega_u$, gives
+\[
+ a_{j,k}\leq a_{j+k,0}+k\sum_{p+q<m}a_{p,q},
+\]
+and by the induction hypothesis the last sum is at most a constant depending only on $n$ times $\sum_{h<m}a_h$. Together with Step 1 this shows $a_{j,k}\leq C'_na_n$ for all $j,k$, where $C'_n$ depends only on $n$.
+
+\emph{Step 3. Conclusion.} By symmetry of the products,
+\[
+ \omega_v^n-\omega_u^n=\sum_{i=0}^{n-1}(\omega_v-\omega_u)\wedge\omega_v^i\wedge\omega_u^{n-1-i}.
+\]
+Apply \cref{lem:hermitian-one-factor-comparison} to each of the $n$ products $T=\omega_v^i\wedge\omega_u^{n-1-i}$. The resulting error terms are bounded by $sB$ times sums of traces $a_{p,q}$, hence by a constant times $sa_n$ by Step 2. This proves $\int_E\omega_v^n\leq(1+Cs)\int_E\omega_u^n$ with $C$ depending only on $(X,\omega)$.
+
+\emph{Step 4. Positivity.} Let $u\in\PSH(X,\omega)$ be bounded, put $m=\inf_Xu$, fix $s\in(0,s_0)$, and apply the inequality to the constant function $v=m+s$. Then $\omega_v=\omega\geq\tfrac12\omega$, and $E=\{u<m+s\}$ is nonempty by the definition of the infimum and open because $u$ is upper semicontinuous; moreover $0<v-u\leq s$ on $E$ since $u\geq m$. Hence $0<\int_E\omega^n\leq(1+Cs)\int_E\omega_u^n$, and therefore $\int_X\omega_u^n\geq\int_E\omega_u^n>0$.
 \end{proof}
 \index{comparison principle!Hermitian small gaps}
 
-For a set $A\subset X$ define its global extremal function and, for Borel $A$, its bounded-test capacity by
+We now introduce the extremal functions and the capacity. For a set $A\subset X$, the \emph{global extremal function} of $A$ is
 \[
- T_A=\sup\{u\in\PSH(X,\omega):u\leq0\text{ on }A\},\qquad
- c_\omega(A)=\sup_{\substack{v\in\PSH(X,\omega)\\0\leq v\leq1}}
-                         \int_A\omega_v^n.
+ T_A=\sup\{u\in\PSH(X,\omega):u\leq0\text{ on }A\},
 \]
-The capacity is finite by local bounded CLN. A set is called globally pluripolar if it is contained in the pole set of a global quasi-psh function.
+and for a Borel set $A\subset X$, the \emph{Monge--Amp\`ere capacity} of $A$ is
+\[
+ c_\omega(A)=\sup\Bigl\{\int_A\omega_v^n:v\in\PSH(X,\omega),\ 0\leq v\leq1\Bigr\}.
+\]
+By \itemref{itm:lem:hermitian-bounded-products:products}, $c_\omega(A)\leq c_\omega(X)<\infty$. A set $A\subset X$ is \emph{globally pluripolar} if $A\subset\{\Phi=-\infty\}$ for some quasi-plurisubharmonic function $\Phi$ on $X$.
+\index{extremal function!global}\index{capacity!Monge--Amp\`ere, Hermitian background}\index{pluripolar set!globally pluripolar on compact manifolds}
 
 \begin{lemma}\label{lem:hermitian-extremal-pole-alternative}
-Either $A$ is globally pluripolar or $T_A^*$ is a bounded nonnegative $\omega$-psh function. For a compact $K$ with nonempty interior only the second alternative occurs. Countable unions of globally pluripolar sets are globally pluripolar.
+For every set $A\subset X$, exactly one of the following holds: $A$ is globally pluripolar, or $T_A^*$ is a bounded nonnegative function in $\PSH(X,\omega)$. A compact set $K\subset X$ with nonempty interior is not globally pluripolar. A countable union of globally pluripolar sets is globally pluripolar.
 \end{lemma}
 \begin{proof}
-If the defining family has unbounded suprema on $X$, choose members $u_j\leq0$ on $A$ with $b_j=\sup_Xu_j\geq2^j$. The normalized $\psi_j=u_j-b_j\leq0$ have uniformly bounded $L^1$ norms. The decreasing sum $\sum_j2^{-j}\psi_j$ is locally quasi-psh with Hessian at least $-\omega$, is integrable by that bound, and is $-\infty$ on $A$. Otherwise $0\leq T_A\leq C$; local envelope regularization with a quadratic correction makes $T_A^*$ bounded and $\omega$-psh. A global pole conversely makes the suprema unbounded by adding arbitrary constants to a small rescaling of its potential.
+Let $\mathcal F_A$ be the family of all $u\in\PSH(X,\omega)$ with $u\leq0$ on $A$. It contains the constant $0$, so $T_A\geq0$.
 
-A globally quasi-psh pole set has zero volume, since its potential is locally integrable, so it cannot contain the interior of $K$. For a countable union choose normalized $\omega$-psh pole potentials and take the same decreasing weighted sum. The uniform normalized $L^1$ bound again prevents identically infinite collapse.
+Suppose first that $\sup\{\sup_Xu:u\in\mathcal F_A\}=\infty$. Choose $u_j\in\mathcal F_A$ with $b_j=\sup_Xu_j\geq2^j$ for $j\geq1$, and put $\psi_j=u_j-b_j$. Then $\psi_j\in\PSH(X,\omega)$, $\sup_X\psi_j=0$, $\psi_j\leq-2^j$ on $A$, and $\|\psi_j\|_{L^1(X)}\leq M$ for a constant $M$, by \itemref{itm:lem:hermitian-bounded-products:compactness}. The partial sums $\Phi_N=\sum_{j=1}^N2^{-j}\psi_j$ decrease with $N$, and $\ddc\Phi_N\geq-\sum_j2^{-j}\omega\geq-\omega$. On a coordinate ball with a function $q$ as in \eqref{eq:hermitian-product-expansion}, the functions $\Phi_N+q$ are plurisubharmonic and decrease, so by \cref{thm:psh-decreasing-nets} their limit $\Phi+q$ is plurisubharmonic or identically $-\infty$ on the ball. By monotone convergence $\int_X|\Phi|\leq\sum_j2^{-j}M\leq M$, so $\Phi$ is finite almost everywhere and the second alternative never occurs. Hence $\Phi\in\PSH(X,\omega)$, and $\Phi=-\infty$ on $A$ because every term $2^{-j}\psi_j$ is at most $-1$ there. Thus $A$ is globally pluripolar.
+
+Otherwise $T_A\leq C$ for a constant $C$, and by \itemref{itm:lem:hermitian-bounded-products:maxima} the regularization $T_A^*$ belongs to $\PSH(X,\omega)$ and satisfies $0\leq T_A^*\leq C$. Conversely, if $A\subset\{\Phi=-\infty\}$ for a quasi-plurisubharmonic $\Phi$, choose $t>0$ with $t\Phi\in\PSH(X,\omega)$. Then $t\Phi+c\in\mathcal F_A$ for every real $c$, and $\sup_X(t\Phi+c)=t\sup_X\Phi+c$ is unbounded in $c$. Hence the two alternatives exclude each other.
+
+A quasi-plurisubharmonic function is locally integrable, so its pole set has Lebesgue measure zero in every chart and contains no nonempty open set. Therefore a compact set with nonempty interior is not globally pluripolar.
+
+Finally let $A_j\subset\{\Phi_j=-\infty\}$, $j\geq1$, with $\Phi_j$ quasi-plurisubharmonic. After multiplying by small positive constants and subtracting constants, we may assume that $\Phi_j\in\PSH(X,\omega)$ and $\sup_X\Phi_j=0$. The argument of the second paragraph, applied to the $\Phi_j$ in place of the $\psi_j$, shows that $\sum_j2^{-j}\Phi_j$ belongs to $\PSH(X,\omega)$; it equals $-\infty$ on every $A_j$.
 \end{proof}
 
+The next estimate is purely local. It compares the mixed Monge--Amp\`ere masses of two bounded plurisubharmonic functions whose difference is small relative to the square of the radius.
+
 \begin{lemma}\label{lem:nearby-bounded-psh-traces}
-Let $U,V$ be bounded psh on a Euclidean ball $B(a,r)$ and $|V-U|\leq er^2$ for $e\geq0$. Write $A=\ddc U$, $D=\ddc V$ and let $\beta$ be the Euclidean form. For every integer $0\leq k\leq n$,
+Let $U,V$ be bounded plurisubharmonic functions on a ball $B(a,r)\subset\mathbb C^n$, $n\geq1$, with $|V-U|\leq\kappa r^2$ for some $\kappa\geq0$. Put $A=\ddc U$ and $D=\ddc V$. For every integer $0\leq k\leq n$,
 \[
  \int_{B(a,r/2)}\sum_{j=0}^k A^j\wedge D^{k-j}\wedge\beta^{n-k}
- \leq C_n\sum_{l=0}^k e^{k-l}
-                         \int_{B(a,r)}A^l\wedge\beta^{n-l}.
+ \leq C_n\sum_{l=0}^k \kappa^{k-l}
+                         \int_{B(a,r)}A^l\wedge\beta^{n-l},
 \]
-At $e=0$ the term with exponent zero has coefficient one.
+where $C_n$ depends only on $n$ and $\kappa^0=1$, also when $\kappa=0$.
 \end{lemma}
 \begin{proof}
-Choose $(n+1)^2$ concentric intermediate radii between $r/2$ and $r$, with equal gaps, and cutoffs supported in the next ball and equal to one on the previous ball. Their Hessians have variation at most $C_nr^{-2}\beta$. If a mixed product has a $D$ factor, replace it by $A+\ddc(V-U)$ and integrate the difference by parts against the cutoff. Closedness of the remaining products bounds its absolute value by $C_ne$ times the integral on the next ball of the remaining product wedged with $\beta$. The other term has one fewer $D$ factor and the same total degree. Repeat until it has only $A$ factors, and apply the same procedure to every error term, whose total degree is smaller. A branch takes at most $k+(k-1)+\cdots+1$ steps, fewer than the chosen number of radii. Each term of final degree $l$ has acquired $k-l$ factors $e$. There are only a dimension-dependent number of branches and coefficients. Summing these bounds proves the formula. Bounded recursion justifies each integration by parts; no derivatives of $U,V$ are required.
+Put $\rho_i=r/2+ir/(2n)$ and $B_i=B(a,\rho_i)$ for $0\leq i\leq n$, so that $B_0=B(a,r/2)$ and $B_n=B(a,r)$. Choose cutoff functions $\chi_i\in C^\infty_c(B_{i+1})$, $0\leq i<n$, with $0\leq\chi_i\leq1$, $\chi_i=1$ on $B_i$ and $-C_nr^{-2}\beta\leq\ddc\chi_i\leq C_nr^{-2}\beta$; this is possible because the gaps between consecutive radii are $r/(2n)$. For integers $j,m\geq0$ with $j+m\leq n$ and $0\leq i\leq n$, put
+\[
+ I_i(j,m)=\int_{B_i}A^j\wedge D^m\wedge\beta^{n-j-m}.
+\]
+Let $m\geq1$, $i<n$, and let $R=A^j\wedge D^{m-1}\wedge\beta^{n-j-m}$, a closed positive current. By the definition of Bedford--Taylor products, $D\wedge R-A\wedge R=\ddc((V-U)R)$, so
+\[
+ \int\chi_i\,D\wedge R=\int\chi_i\,A\wedge R+\int(V-U)\,R\wedge\ddc\chi_i.
+\]
+Since $R$ is positive and $|V-U|\leq\kappa r^2$, the last integral is at most $C_n\kappa\int_{B_{i+1}}R\wedge\beta$ in absolute value. Using $\mathbf1_{B_i}\leq\chi_i\leq\mathbf1_{B_{i+1}}$ and the positivity of the currents involved, we obtain
+\[
+ I_i(j,m)\leq I_{i+1}(j+1,m-1)+C_n\kappa\,I_{i+1}(j,m-1).
+\]
+Both terms on the right have one factor $D$ fewer. Applying this inequality $m$ times, starting from $i=0$, we find
+\[
+ I_0(j,m)\leq\sum_{t=0}^m\binom mt(C_n\kappa)^{m-t}I_m(j+t,0)
+ \leq\sum_{t=0}^m\binom mt(C_n\kappa)^{m-t}\int_{B(a,r)}A^{j+t}\wedge\beta^{n-j-t}.
+\]
+Take $m=k-j$ and sum over $0\leq j\leq k$. With $l=j+t$ we have $m-t=k-l$, so every term with $A^l$ carries the factor $\kappa^{k-l}$, and the coefficients depend only on $n$. This proves the lemma; for $l=k$ the factor is $\kappa^0=1$.
 \end{proof}
 
 \begin{proposition}\label{prop:hermitian-extremal-mass-support}
-If $K\subset X$ is compact and $u=T_K^*$ is bounded, then $\omega_u^n$ is supported on $K$. Put $S=\max\{1,\sup_Xu\}$ and $M=\int_X\omega_u^n$. Then
+Let $K\subset X$ be compact, and suppose that $u=T_K^*$ is bounded. Then the measure $\omega_u^n$ is carried by $K$. Moreover, with $S=\max\{1,\sup_Xu\}$ and $M=\int_X\omega_u^n$,
 \begin{equation}\label{eq:hermitian-extremal-capacity-bound}
                     0<M\leq S^n c_\omega(K).
 \end{equation}
 \end{proposition}
 \begin{proof}
-We prove the support assertion using only the closed-background balayage of \cref{cor:homogeneous-psh-balayage}. Work in a chart disjoint from $K$. On $B(a,r)$ freeze the coefficients of $\omega$ at $a$, obtaining a constant form $\omega(a)=\ddc h_a$. Smoothness gives
-$-\delta\beta\leq\omega-\omega(a)\leq\delta\beta$ with $\delta\leq C r$ on a fixed smaller chart. Set $q=\pi|z-a|^2$, so $\ddc q=\beta$.
+\emph{Step 1. Increasing competitors.} By Choquet's lemma (\cref{lem:choquet-selection}), applied in finitely many coordinate charts, there are functions $v_k\in\PSH(X,\omega)$ with $v_k\leq0$ on $K$ such that $(\sup_kv_k)^*=u$. The functions $u_j=\max\{0,v_1,\ldots,v_j\}$ belong to $\PSH(X,\omega)$ by \itemref{itm:lem:hermitian-bounded-products:maxima}, increase with $j$, vanish on $K$, satisfy $0\leq u_j\leq T_K\leq u$, and $(\sup_ju_j)^*=u$.
 
-Choquet selection gives increasing bounded competitors $0\leq u_j\leq u$, each at most zero on $K$, with canonical limit $u$. Balayage the bounded psh $U_j=u_j+h_a+\delta q$ in $B(a,r)$, obtaining $V_j\geq U_j$ with $(\ddc V_j)^n=0$. Put $\rho=q-\pi r^2$. The function
-$W_j=V_j-h_a-\delta q+2\delta\rho$ is $\omega$-psh, because
-$\omega+\ddc W_j\geq\omega-\omega(a)+\delta\beta\geq0$.
-Its boundary upper limits are at most $u_j$. Paste $\max\{u_j,W_j\}$ in the ball to $u_j$ outside. The preceding Hermitian pasting rule makes this a global $\omega$-psh competitor, still zero on $K$. It is therefore at most $T_K\leq u$. Hence
+\emph{Step 2. Frozen balayage.} Let $W\subset X\setminus K$ be the domain of a coordinate chart, identified with an open subset of $\mathbb C^n$, and let $L\subset W$ be compact. Since $X\setminus K$ is a countable union of such sets $L$, it suffices to show that $\omega_u^n(L)=0$. Choose open sets $W''\Subset W'\Subset W$ with $L\subset W''$. For $a\in W''$ let $\omega(a)$ be the form with constant coefficients equal to those of $\omega$ at $a$, and let $h_a$ be a quadratic polynomial with $\ddc h_a=\omega(a)$. The coefficients of $\omega$ are Lipschitz on $W'$, so there are $r_0>0$ and $C_1$ such that, for $a\in W''$ and $0<r\leq r_0$, the ball $B(a,2r)$ lies in $W'$ and
 \[
- U_j\leq V_j\leq u+h_a+\delta q-2\delta\rho.
+ -\delta\beta\leq\omega-\omega(a)\leq\delta\beta\quad\text{on }B(a,2r),\qquad\delta=C_1r.
 \]
-Balayage is increasing, so the canonical limit $V$ is bounded psh, has zero Monge--Amp\`ere measure and satisfies, with $U=u+h_a+\delta q$,
-\begin{equation}\label{eq:hermitian-frozen-balayage-error}
-                  0\leq V-U\leq2\pi\delta r^2.
-\end{equation}
-These claims use increasing bounded continuity; the upper inequality survives regularization because its right side is upper semicontinuous.
+Fix such $a$ and $r$, put $q=\pi|z-a|^2$, so that $\ddc q=\beta$ by \eqref{eq:bt-determinant-normalization}, and let $B=B(a,r)$. The functions
+\[
+ U_j=u_j+h_a+\delta q
+\]
+are bounded and plurisubharmonic on $B(a,2r)$, since $\ddc U_j=\omega_{u_j}+(\omega(a)-\omega+\delta\beta)\geq0$. Let $V_j$ be the homogeneous balayage of $U_j$ in $B$ given by \cref{cor:homogeneous-psh-balayage}: it equals $U_j$ outside $B$, satisfies $V_j\geq U_j$ and $(\ddc V_j)^n=0$ in $B$, and its restriction to $B$ has upper boundary limits at most $U_j$ on $\partial B$.
 
-Write $A=\ddc U$, $D=\ddc V$. A cutoff $\chi$ equal to one on $B(a,r/4)$ and supported in $B(a,r/2)$, the difference-of-powers identity and bounded integration by parts give
+We compare $V_j$ with $u$. Put $\rho=q-\pi r^2$, which is nonpositive on $B$ and vanishes on $\partial B$, and let $W_j=V_j-h_a-\delta q+2\delta\rho$ on $B$. Then
+\[
+ \omega+\ddc W_j=\ddc V_j+(\omega-\omega(a)+\delta\beta)\geq0,
+\]
+so $W_j\in\PSH(B,\omega)$, and for $x\in\partial B$ we have $\limsup_{B\ni y\to x}W_j(y)\leq U_j(x)-h_a(x)-\delta q(x)=u_j(x)$. By \itemref{itm:lem:hermitian-bounded-products:maxima}, the function equal to $\max\{u_j,W_j\}$ on $B$ and to $u_j$ on $X\setminus B$ belongs to $\PSH(X,\omega)$. It vanishes on $K$, because $B\cap K=\varnothing$, so it is a competitor for $T_K$; hence $\max\{u_j,W_j\}\leq T_K\leq u$ on $B$. Therefore
+\[
+ U_j\leq V_j\leq u+h_a+\delta q-2\delta\rho\quad\text{on }B.
+\]
+The balayage is increasing in the data, so $V_j$ increases with $j$. Let $V$ be the upper semicontinuous regularization of $\lim_jV_j$ on $B$. Since $U_1\leq V_j\leq u+h_a+\delta q+2\pi\delta r^2$, the $V_j$ are uniformly bounded, $V$ is bounded and plurisubharmonic, and $V_j\to V$ almost everywhere by \cref{thm:psh-upper-envelopes}; hence $(\ddc V)^n=0$ on $B$ by \cref{thm:bt-increasing-continuity}. Put $U=u+h_a+\delta q$. Since $\sup_jU_j=\sup_ju_j+h_a+\delta q$ and $h_a+\delta q$ is continuous, upper regularization gives $V\geq U$. The upper bound for $V_j$ is upper semicontinuous, so it also holds for $V$. As $-2\delta\rho\leq2\pi\delta r^2$ on $B$, we conclude
+\begin{equation}\label{eq:hermitian-frozen-balayage-error}
+                  0\leq V-U\leq2\pi\delta r^2\quad\text{on }B.
+\end{equation}
+
+\emph{Step 3. A local mass estimate.} Put $A=\ddc U$ and $D=\ddc V$ on $B$. Since $A=\omega_u+\gamma$ with the smooth positive form $\gamma=\omega(a)-\omega+\delta\beta$, expanding $A^n$ by means of \eqref{eq:hermitian-product-expansion} gives $A^n=\sum_k\binom nk\omega_u^k\wedge\gamma^{n-k}\geq\omega_u^n$, by the positivity of the products $\omega_u^k$. Choose $\chi\in C^\infty_c(B(a,r/2))$ with $0\leq\chi\leq1$, $\chi=1$ on $B(a,r/4)$ and $-C_2r^{-2}\beta\leq\ddc\chi\leq C_2r^{-2}\beta$. By the definition of Bedford--Taylor products,
+$A^n-D^n=\ddc\bigl((U-V)\sum_{j=0}^{n-1}A^j\wedge D^{n-1-j}\bigr)$. Using $D^n=0$, integration by parts against $\chi$ and \eqref{eq:hermitian-frozen-balayage-error}, we obtain
 \[
  \begin{aligned}
  \int_{B(a,r/4)}\omega_u^n
- &\leq\int\chi A^n\\
- &=\int(U-V)\ddc\chi\wedge\sum_{j=0}^{n-1}A^j\wedge D^{n-1-j}\\
- &\leq C\delta\int_{B(a,r/2)}
+ &\leq\int\chi A^n
+ =\int(U-V)\,\ddc\chi\wedge\sum_{j=0}^{n-1}A^j\wedge D^{n-1-j}\\
+ &\leq2\pi C_2\delta\int_{B(a,r/2)}
                    \sum_{j=0}^{n-1}A^j\wedge D^{n-1-j}\wedge\beta.
  \end{aligned}
 \]
-The first inequality follows from $A=\omega_u+\omega(a)-\omega+\delta\beta\geq\omega_u$; the equality uses $D^n=0$. Apply the preceding trace lemma with $e=2\pi\delta$. For small $r$ take $e\leq1$. On the fixed chart choose $C_0$ so that $\Gamma=\ddc u+C_0\beta\geq A\geq0$ for every such ball. The last expression is at most
-$C\delta\sum_{l=0}^{n-1}\int_{B(a,r)}\Gamma^l\wedge\beta^{n-l}$.
+Apply \cref{lem:nearby-bounded-psh-traces} with $k=n-1$ and $\kappa=2\pi\delta=2\pi C_1r$; for small $r$ we have $\kappa\leq1$, and the last integral is at most $C_n\sum_{l=0}^{n-1}\int_{B(a,r)}A^l\wedge\beta^{n-l}$. Choose $C_0$ such that $C_0\beta\geq\omega$ on $W'$ and $C_0\beta\geq\omega(a)+\delta\beta$ for all $a\in W''$ and $r\leq r_0$. Then $\Gamma=\ddc u+C_0\beta$ is the Hessian of the bounded plurisubharmonic function $u+C_0\pi|z|^2$ on $W'$, it does not depend on $a$ and $r$, and $\Gamma-A$ is a smooth positive form; hence $A^l\wedge\beta^{n-l}\leq\Gamma^l\wedge\beta^{n-l}$. Altogether, for $a\in W''$ and all sufficiently small $r$,
+\[
+ \int_{B(a,r/4)}\omega_u^n\leq C_3\,r\sum_{l=0}^{n-1}\int_{B(a,r)}\Gamma^l\wedge\beta^{n-l},
+\]
+with $C_3$ independent of $a$ and $r$.
 
-Cover any fixed compact subset of the chart by balls $B(a,r/4)$ whose enlarged balls $B(a,r)$ have bounded overlap, using a Euclidean grid. The measures $\Gamma^l\wedge\beta^{n-l}$ have finite mass on a fixed larger compact set by bounded CLN. Summation bounds $\omega_u^n$ of that subset by $C r$ times this fixed finite mass. Let $r\downarrow0$. A countable compact exhaustion proves zero mass off $K$.
+\emph{Step 4. Zero mass off $K$.} For small $r$, the points of a cubical grid of mesh $r/(2\sqrt{2n})$ that lie within distance $r/4$ of $L$ belong to $W''$. The balls $B(a,r/4)$ centered at these points cover $L$, and every point of $\mathbb C^n$ lies in at most $N_n$ of the balls $B(a,r)$, where $N_n$ depends only on $n$. Summing the local estimate over these balls gives
+\[
+ \omega_u^n(L)\leq C_3N_n\,r\sum_{l=0}^{n-1}\int_{\overline{W'}}\Gamma^l\wedge\beta^{n-l}.
+\]
+The integrals on the right are finite by \cref{thm:cln-bounded}, applied in $W$, and do not depend on $r$. Letting $r\downarrow0$ gives $\omega_u^n(L)=0$. Hence $\omega_u^n$ is carried by $K$.
 
-Finally $0\leq u/S\leq1$ is $\omega$-psh and
-$\omega_{u/S}=S^{-1}\omega_u+(1-S^{-1})\omega\geq S^{-1}\omega_u$.
-Positivity and support give $M\leq S^n\int_K\omega_{u/S}^n\leq S^n c_\omega(K)$. Strict positivity of $M$ is the small-gap comparison proposition.
+\emph{Step 5. The mass bound.} Since $T_K\geq0$, we have $0\leq u\leq S$. The function $v=u/S$ satisfies $0\leq v\leq1$ and belongs to $\PSH(X,\omega)$ because $S\geq1$. Moreover $\omega_v=S^{-1}\omega_u+(1-S^{-1})\omega$, so expanding $\omega_v^n$ and using the positivity of the mixed products gives $\omega_v^n\geq S^{-n}\omega_u^n$. As $\omega_u^n$ is carried by $K$,
+\[
+ M=\int_K\omega_u^n\leq S^n\int_K\omega_v^n\leq S^nc_\omega(K).
+\]
+Finally $M>0$ by \cref{prop:hermitian-small-gap-comparison}.
 \end{proof}
 \index{extremal function!Hermitian mass support}
 
 \begin{theorem}\label{thm:compact-complex-global-josefson}
-Every locally pluripolar subset of a compact complex manifold is globally pluripolar: it is contained in $\{\Phi=-\infty\}$ for a global quasi-psh function $\Phi$.
+Let $X$ be a compact complex manifold, and let $A\subset X$ be pluripolar in the sense of \cref{def:pluripolar-set}, that is, locally contained in pole sets of plurisubharmonic functions. Then $A$ is globally pluripolar: there is a quasi-plurisubharmonic function $\Phi$ on $X$ with $A\subset\{\Phi=-\infty\}$.
 \end{theorem}
 \begin{proof}
-By a countable chart cover and the countable-union lemma it suffices to treat
-$E=\{\varphi=-\infty\}\cap U_1$, where $\varphi$ is psh on a coordinate ball $U$ and $U_1\Subset U$. Subtract a constant so that $\varphi\leq0$ on a neighborhood of $\overline U_1$. If $E$ is empty there is nothing to prove. Suppose it is not globally pluripolar, so $0\leq T_E^*\leq C$.
+The compact manifold $X$ has finitely many connected components, and it suffices to construct $\Phi$ on each of them. On a component of dimension zero, which is a point, pluripolar sets are empty and $\Phi=0$ works. We may therefore assume that $X$ is connected of dimension $n\geq1$, and we fix a Hermitian form $\omega$ on $X$, so that the notation of this section applies.
 
-Take smooth psh $\varphi_j\downarrow\varphi$ on that neighborhood, still nonpositive there, with uniformly bounded $L^1$ norms. For each positive integer $N$ put
-$K_{j,N}=\{\varphi_j\leq-N\}\cap\overline U_1$.
-For all sufficiently large $j$ it has nonempty interior, because $E\ne\varnothing$ and $\varphi_j\downarrow-\infty$ at any point of $E$. Thus $u_{j,N}=T_{K_{j,N}}^*$ is bounded and nonnegative. For fixed $N$ the sets increase with $j$, so their extremals decrease to a bounded $\omega$-psh $u_N$. On $\{\varphi_j<-N\}\cap U_1$ the extremal is zero: all competitors are at most zero on a neighborhood of each such point. It follows that $u_N=0$ on $\{\varphi<-N\}\cap U_1$, and hence
+Every point of $X$ has a coordinate ball $U$ and a plurisubharmonic function on $U$ whose pole set contains $A\cap U$; choose a smaller ball $U_1\Subset U$ around the point. By compactness finitely many of the balls $U_1$ cover $X$. By the last assertion of \cref{lem:hermitian-extremal-pole-alternative} it therefore suffices to prove the following: if $U$ is a coordinate ball, $\varphi$ is plurisubharmonic on $U$ and $U_1\Subset U$ is a smaller ball, then $E=\{\varphi=-\infty\}\cap U_1$ is globally pluripolar. If $E$ is empty, there is nothing to prove, so let $E\neq\varnothing$. Choose balls $U_1\Subset U_3\Subset U_2\Subset U$ and subtract a constant from $\varphi$ so that $\varphi\leq0$ on $U_2$. Suppose, to reach a contradiction, that $E$ is not globally pluripolar. By \cref{lem:hermitian-extremal-pole-alternative}, there is a constant $C$ with $0\leq T_E^*\leq C$.
+
+\emph{Step 1. Sublevel sets and their extremal functions.} Radial convolution gives smooth plurisubharmonic functions $\varphi_j$ on $U_3$ that decrease to $\varphi$ as $j\to\infty$. Since $\varphi\leq0$ on $U_2$, we have $\varphi\leq\varphi_j\leq0$ on $U_3$, so $\|\varphi_j\|_{L^1(U_3)}\leq\|\varphi\|_{L^1(U_3)}$. For integers $N,j\geq1$ put
+\[
+ K_{j,N}=\{\varphi_j\leq-N\}\cap\overline{U_1},\qquad O_{j,N}=\{\varphi_j<-N\}\cap U_1.
+\]
+Then $K_{j,N}$ is compact and contains the open set $O_{j,N}$. Fix $x_0\in E$. Since $\varphi_j(x_0)\downarrow-\infty$, there is $j_0(N)$ such that $x_0\in O_{j,N}$ for $j\geq j_0(N)$. For these $j$ the set $K_{j,N}$ has nonempty interior, so $u_{j,N}=T_{K_{j,N}}^*$ is a bounded nonnegative function in $\PSH(X,\omega)$ by \cref{lem:hermitian-extremal-pole-alternative}. Every competitor for $T_{K_{j,N}}$ is nonpositive on the open set $O_{j,N}$; hence so is $T_{K_{j,N}}$, and its upper semicontinuous regularization satisfies $u_{j,N}=0$ on $O_{j,N}$.
+
+For fixed $N$, the sets $K_{j,N}$ increase with $j$, because $\varphi_j$ decreases. Hence $u_{j,N}$ decreases with $j$; let $u_N$ be its limit. By \itemref{itm:lem:hermitian-bounded-products:continuity}, $u_N\in\PSH(X,\omega)$, and $0\leq u_N\leq u_{j_0(N),N}$ is bounded. If $x\in U_1$ and $\varphi(x)<-N$, then $x\in O_{j,N}$ for all large $j$, so $u_N(x)=0$. In particular $u_N=0$ on $E$, so $u_N$ is a competitor for $T_E$, and
 \[
                     0\leq u_N\leq T_E^*\leq C.
 \]
-As $N$ increases, $u_N$ increases. Its canonical limit $u_\infty$ is bounded $\omega$-psh. Bounded decreasing and increasing continuity give
-\[
- M_{j,N}:=\int_X\omega_{u_{j,N}}^n\longrightarrow
- M_N:=\int_X\omega_{u_N}^n,\qquad
- M_N\longrightarrow M_\infty:=\int_X\omega_{u_\infty}^n>0.
-\]
-The last strict inequality follows from the small-gap comparison, rather than from any uniform lower bound for all bounded potentials.
+For fixed $j$, the sets $K_{j,N}$ decrease as $N$ increases, so $u_{j,N}$, and hence $u_N$, increase with $N$. Let $u_\infty$ be the upper semicontinuous regularization of $\lim_Nu_N$. By \itemref{itm:lem:hermitian-bounded-products:maxima}, $u_\infty\in\PSH(X,\omega)$ and $0\leq u_\infty\leq C$.
 
-On a fixed neighborhood of $\overline U_1$, a quadratic $h$ with $\ddc h\geq\omega$ makes every global test $0\leq v\leq1$ into a uniformly bounded local psh $v+h$. Positivity yields $\omega_v^n\leq(\ddc(v+h))^n$. On $K_{j,N}$, $-\varphi_j\geq N$, so weighted CLN gives
+\emph{Step 2. Masses.} Put
+\[
+ M_{j,N}=\int_X\omega_{u_{j,N}}^n,\qquad
+ M_N=\int_X\omega_{u_N}^n,\qquad
+ M_\infty=\int_X\omega_{u_\infty}^n.
+\]
+By \itemref{itm:lem:hermitian-bounded-products:continuity}, applied to the uniformly bounded decreasing sequence $(u_{j,N})_{j\geq j_0(N)}$ and to the uniformly bounded increasing sequence $(u_N)_{N\geq1}$, and testing the weak convergence with the constant function $1$ on the compact manifold $X$, we obtain
+\[
+ M_{j,N}\longrightarrow M_N\quad(j\to\infty),\qquad
+ M_N\longrightarrow M_\infty\quad(N\to\infty).
+\]
+Moreover $M_\infty>0$ by \cref{prop:hermitian-small-gap-comparison}, since $u_\infty$ is bounded.
+
+\emph{Step 3. The capacity of $K_{j,N}$.} Choose a smooth function $h$ on $U_3$ with $\ddc h\geq\omega$, for instance a multiple of $|z|^2$. If $v\in\PSH(X,\omega)$ and $0\leq v\leq1$, then $v+h$ is plurisubharmonic on $U_3$ with $|v+h|\leq1+\sup_{U_3}|h|$, and $\ddc(v+h)=\omega_v+(\ddc h-\omega)$ with $\ddc h-\omega$ smooth and positive; expanding as in Step 3 of the preceding proof gives $\omega_v^n\leq(\ddc(v+h))^n$ on $U_3$. Since $-\varphi_j\geq N$ on $K_{j,N}$, the weighted Chern--Levine--Nirenberg inequality (\cref{thm:cln-weighted}), applied with a compact neighborhood $L\subset U_3$ of $\overline{U_1}$, gives
 \[
  \int_{K_{j,N}}\omega_v^n
- \leq N^{-1}\int_{\overline U_1}(-\varphi_j)
-                                      (\ddc(v+h))^n
- \leq C'/N.
+ \leq\frac1N\int_{\overline{U_1}}(-\varphi_j)\,(\ddc(v+h))^n
+ \leq\frac{C'}N.
 \]
-The constant is independent of $v,j,N$, by their uniform bounded and $L^1$ norms. Consequently $c_\omega(K_{j,N})\leq C'/N$. The extremal capacity bound implies
-\[
- M_{j,N}\leq \max\{1,\sup_Xu_{j,N}\}^n C'/N.
-\]
-For fixed $N$, supremum continuity under decreasing bounded convergence lets $j\to\infty$. Since $u_N\leq C$, this gives $M_N\leq\max\{1,C\}^n C'/N$. Now $N\to\infty$ forces $M_\infty=0$, the contradiction.
+The constant $C'$ depends on $\|\varphi_j\|_{L^1(L)}\leq\|\varphi\|_{L^1(U_3)}$ and on the bound for $|v+h|$, but not on $v$, $j$ or $N$. Taking the supremum over $v$, we obtain $c_\omega(K_{j,N})\leq C'/N$.
 
-This proves every local piece globally pluripolar. The countable-union construction gives the required $\Phi$. On a disconnected compact manifold apply the argument to its finitely many components and join the resulting potentials. In dimension zero locally pluripolar sets are empty and the constant zero suffices.
+\emph{Step 4. Conclusion.} By \cref{prop:hermitian-extremal-mass-support},
+\[
+ M_{j,N}\leq\max\{1,\sup_Xu_{j,N}\}^n\,\frac{C'}N\qquad(j\geq j_0(N)).
+\]
+For fixed $N$, the uniformly bounded functions $u_{j,N}$ decrease to $u_N$, so $u_{j,N}\to u_N$ in $L^1(X)$ by dominated convergence, and $\sup_Xu_{j,N}\to\sup_Xu_N$ by \itemref{itm:lem:hermitian-bounded-products:compactness}. Letting $j\to\infty$ and using $u_N\leq C$, we obtain $M_N\leq\max\{1,C\}^nC'/N$. Letting $N\to\infty$ gives $M_\infty=0$, which contradicts $M_\infty>0$. Hence $E$ is globally pluripolar, and the theorem is proved.
 \end{proof}
 \index{Josefson's theorem!compact complex manifolds}

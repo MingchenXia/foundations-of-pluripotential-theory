@@ -96,7 +96,7 @@ Since $S$ is closed, $\ker S$ is a closed subspace, and $H_1=\ker S\oplus(\ker S
  |\langle g,f\rangle|\le\sqrt M\,\|T^*f\|\qquad(f\in\Dom T^*).
 \]
 
-Consequently the map $\lambda\colon T^*f\mapsto\langle g,f\rangle$ is well defined on $\operatorname{Ran}T^*$: if $T^*f=T^*f'$, then $|\langle g,f-f'\rangle|\le\sqrt M\,\|T^*(f-f')\|=0$. It is conjugate-linear and bounded by $\sqrt M$. We extend $\lambda$ by continuity to the closure of $\operatorname{Ran}T^*$, and by zero on the orthogonal complement of this closure. By \cref{prop:hilbert-projection-representation}, applied to conjugate-linear functionals, there is $u\in H_0$ with $\|u\|\le\sqrt M$ and
+Consequently the map $\lambda\colon T^*f\mapsto\langle g,f\rangle$ is well defined on $\operatorname{Ran}T^*$: if $T^*f=T^*f'$, then $|\langle g,f-f'\rangle|\le\sqrt M\,\|T^*(f-f')\|=0$. It is conjugate-linear and bounded by $\sqrt M$, hence uniformly continuous, so it extends uniquely to a bounded conjugate-linear functional on the closure of $\operatorname{Ran}T^*$; we extend it further by zero on the orthogonal complement of this closure, and obtain a conjugate-linear functional on $H_0$ of norm at most $\sqrt M$. By \cref{prop:hilbert-projection-representation}, applied to conjugate-linear functionals, there is $u\in H_0$ with $\|u\|\le\sqrt M$ and
 \[
  \langle u,T^*f\rangle=\langle g,f\rangle\qquad(f\in\Dom T^*).
 \]
@@ -267,17 +267,21 @@ for $n=1$ there are no nonzero $(0,2)$-forms. For a measurable function $\varphi
 
 Fix smooth real functions $\varphi_1,\varphi_2,\varphi_3$ on $\Omega$ and put
 \[
- H_0=L^2(\Omega,\mathrm e^{-\varphi_1}),\quad
- H_1=L^2_{(0,1)}(\Omega,\mathrm e^{-\varphi_2}),\quad
- H_2=L^2_{(0,2)}(\Omega,\mathrm e^{-\varphi_3}).
+ \mathcal H_0=L^2(\Omega,\mathrm e^{-\varphi_1}),\quad
+ \mathcal H_1=L^2_{(0,1)}(\Omega,\mathrm e^{-\varphi_2}),\quad
+ \mathcal H_2=L^2_{(0,2)}(\Omega,\mathrm e^{-\varphi_3}).
 \]
-Let $T=\bar\partial$ from $H_0$ to $H_1$ and $S=\bar\partial$ from $H_1$ to $H_2$ be defined on their maximal domains
+Let $T=\bar\partial$ from $\mathcal H_0$ to $\mathcal H_1$ and $S=\bar\partial$ from $\mathcal H_1$ to $\mathcal H_2$ be defined on their maximal domains
 \[
- \Dom T=\{u\in H_0:\bar\partial u\in H_1\},\qquad \Dom S=\{f\in H_1:\bar\partial f\in H_2\}.
+ \Dom T=\{u\in \mathcal H_0:\bar\partial u\in \mathcal H_1\},\qquad \Dom S=\{f\in \mathcal H_1:\bar\partial f\in \mathcal H_2\}.
 \]
-Since the weights are continuous, convergence in $H_0$, $H_1$ or $H_2$ implies convergence in $L^2$ on compact sets, and hence in the sense of distributions; therefore $T$ and $S$ are closed. Since the measures $\mathrm e^{-\varphi_k}\,\mathrm dV$ are Radon measures, \cref{lem:mollifier-density} shows that smooth compactly supported functions and forms are dense in $H_0$ and in $H_1$; they belong to $\Dom T$ and $\Dom S$, so $T$ and $S$ are densely defined. Finally $\bar\partial\bar\partial=0$ on distributions, so $\operatorname{Ran}T\subset\ker S$.
+Since the weights are continuous, convergence in $\mathcal H_0$, $\mathcal H_1$ or $\mathcal H_2$ implies convergence in $L^2$ on compact sets, and hence in the sense of distributions; therefore $T$ and $S$ are closed. Since the measures $\mathrm e^{-\varphi_k}\,\mathrm dV$ are Radon measures, \cref{lem:mollifier-density} shows that smooth compactly supported functions and forms are dense in $\mathcal H_0$ and in $\mathcal H_1$; they belong to $\Dom T$ and $\Dom S$, so $T$ and $S$ are densely defined. Finally $\bar\partial\bar\partial=0$ on distributions, so $\operatorname{Ran}T\subset\ker S$. Thus $T$ and $S$ satisfy the hypotheses on the operators in \cref{thm:hilbert-complex-solvability}, with $\mathcal H_k$ in place of $H_k$.
 
-Let $f=\sum_jf_j\,\mathrm d\bar z_j\in\Dom T^*$. For $u\in C^\infty_c(\Omega)$, integration by parts in the sense of distributions gives $\langle Tu,f\rangle_{H_1}=\langle u,\vartheta f\rangle_{H_0}$, where $\vartheta f$ is the distribution on the right of \eqref{eq:three-weight-adjoint}; since also $\langle Tu,f\rangle_{H_1}=\langle u,T^*f\rangle_{H_0}$, we obtain
+Let $f=\sum_jf_j\,\mathrm d\bar z_j\in\Dom T^*$. For every $u\in C^\infty_c(\Omega)$ we have
+\[
+ \sum_j\int_\Omega\partial_{\bar z_j}u\;\overline{f_j}\,\mathrm e^{-\varphi_2}\,\mathrm dV=\langle Tu,f\rangle_{\mathcal H_1}=\langle u,T^*f\rangle_{\mathcal H_0}=\int_\Omega u\,\overline{T^*f}\,\mathrm e^{-\varphi_1}\,\mathrm dV.
+\]
+Integrating by parts on the left in the sense of distributions, we obtain $\mathrm e^{-\varphi_1}T^*f=-\sum_j\partial_{z_j}(f_j\mathrm e^{-\varphi_2})$, that is,
 \begin{equation}\label{eq:three-weight-adjoint}
  T^*f=-\mathrm e^{\varphi_1-\varphi_2}
        \sum_j\bigl(\partial_{z_j}f_j-(\partial_{z_j}\varphi_2)f_j\bigr)
@@ -286,18 +290,18 @@ in the sense of distributions. Conversely, if $f$ is a smooth compactly supporte
 
 \begin{lemma}\label{lem:three-weight-density}
 Let $\varphi$ and $\psi$ be smooth real functions on $\Omega$, and put $\varphi_k=\varphi+(k-3)\psi$ for $k=1,2,3$, so that $\varphi_1=\varphi-2\psi$, $\varphi_2=\varphi-\psi$ and $\varphi_3=\varphi$. Assume that there are functions $\chi_\nu\in C_c^\infty(\Omega)$, $\nu\in\mathbb N$, with $0\le\chi_\nu\le1$ and $|\bar\partial\chi_\nu|^2\le\mathrm e^\psi$, such that for every compact set $K\subset\Omega$ we have $\chi_\nu=1$ on a neighborhood of $K$ for all large $\nu$. Then, for the operators $T$ and $S$ defined by these weights, the smooth compactly supported $(0,1)$-forms are dense in $\Dom T^*\cap\Dom S$ for the graph norm
-$\|f\|_{H_1}+\|T^*f\|_{H_0}+\|Sf\|_{H_2}$.
+$\|f\|_{\mathcal H_1}+\|T^*f\|_{\mathcal H_0}+\|Sf\|_{\mathcal H_2}$.
 \end{lemma}
 \begin{proof}
-\emph{Step 1: cutting off.} Let $f\in\Dom T^*\cap\Dom S$, and write $\chi=\chi_\nu$. For a real function $\chi\in C^\infty_c(\Omega)$ we have $|\partial_{z_j}\chi|=|\partial_{\bar z_j}\chi|$, so the Cauchy--Schwarz inequality gives $|\sum_j(\partial_{z_j}\chi)f_j|^2\le|\bar\partial\chi|^2|f|^2$. Lagrange's identity $\sum_{j<k}|a_jb_k-a_kb_j|^2=|a|^2|b|^2-|\sum_ja_j\bar b_j|^2$ gives likewise $|\bar\partial\chi\wedge f|^2\le|\bar\partial\chi|^2|f|^2$. Since $\varphi_1-2\varphi_2=-\varphi=-\varphi_3$ and $|\bar\partial\chi|^2\mathrm e^{-\varphi}\le\mathrm e^{-\varphi_2}$, the form $\bar\partial\chi\wedge f$ lies in $H_2$, the function $\mathrm e^{\varphi_1-\varphi_2}\sum_j(\partial_{z_j}\chi)f_j$ lies in $H_0$, and both of their squared norms are at most
+\emph{Step 1: cutting off.} Let $f\in\Dom T^*\cap\Dom S$, and write $\chi=\chi_\nu$. For a real function $\chi\in C^\infty_c(\Omega)$ we have $|\partial_{z_j}\chi|=|\partial_{\bar z_j}\chi|$, so the Cauchy--Schwarz inequality gives $|\sum_j(\partial_{z_j}\chi)f_j|^2\le|\bar\partial\chi|^2|f|^2$. Lagrange's identity $\sum_{j<k}|a_jb_k-a_kb_j|^2=|a|^2|b|^2-|\sum_ja_j\bar b_j|^2$ gives likewise $|\bar\partial\chi\wedge f|^2\le|\bar\partial\chi|^2|f|^2$. Since $\varphi_1-2\varphi_2=-\varphi=-\varphi_3$ and $|\bar\partial\chi|^2\mathrm e^{-\varphi}\le\mathrm e^{-\varphi_2}$, the form $\bar\partial\chi\wedge f$ lies in $\mathcal H_2$, the function $\mathrm e^{\varphi_1-\varphi_2}\sum_j(\partial_{z_j}\chi)f_j$ lies in $\mathcal H_0$, and both of their squared norms are at most
 \begin{equation}\label{eq:three-weight-cutoff-error}
- \int_\Omega|f|^2|\bar\partial\chi_\nu|^2\mathrm e^{-\varphi}\,\mathrm dV\le\|f\|_{H_1}^2.
+ \int_\Omega|f|^2|\bar\partial\chi_\nu|^2\mathrm e^{-\varphi}\,\mathrm dV\le\|f\|_{\mathcal H_1}^2.
 \end{equation}
 
-Let $u\in\Dom T$. Then $\chi u\in\Dom T$ and $T(\chi u)=\chi Tu+u\,\bar\partial\chi$, because $u\,\bar\partial\chi\in H_1$, the weights being bounded on the support of $\chi$. As $\chi$ is real and $\overline{\partial_{\bar z_j}\chi}=\partial_{z_j}\chi$, we get
+Let $u\in\Dom T$. Then $\chi u\in\Dom T$ and $T(\chi u)=\chi Tu+u\,\bar\partial\chi$, because $u\,\bar\partial\chi\in \mathcal H_1$, the weights being bounded on the support of $\chi$. As $\chi$ is real and $\overline{\partial_{\bar z_j}\chi}=\partial_{z_j}\chi$, we get
 \[
- \langle Tu,\chi f\rangle_{H_1}=\langle T(\chi u),f\rangle_{H_1}-\langle u\,\bar\partial\chi,f\rangle_{H_1}
- =\Bigl\langle u,\chi T^*f-\mathrm e^{\varphi_1-\varphi_2}\sum_j(\partial_{z_j}\chi)f_j\Bigr\rangle_{H_0}.
+ \langle Tu,\chi f\rangle_{\mathcal H_1}=\langle T(\chi u),f\rangle_{\mathcal H_1}-\langle u\,\bar\partial\chi,f\rangle_{\mathcal H_1}
+ =\Bigl\langle u,\chi T^*f-\mathrm e^{\varphi_1-\varphi_2}\sum_j(\partial_{z_j}\chi)f_j\Bigr\rangle_{\mathcal H_0}.
 \]
 Hence $\chi f\in\Dom T^*$, and the distributional product rule shows that $\chi f\in\Dom S$, with
 \[
@@ -330,7 +334,7 @@ Let $\varphi$ be a smooth real function on $\Omega$, and let $\delta_j$ be the d
 Consequently, if $\psi$ is a smooth real function and $T$ and $S$ are the operators defined by the weights $\varphi_k=\varphi+(k-3)\psi$ of \cref{lem:three-weight-density}, then for every $t>0$
 \begin{equation}\label{eq:three-weight-basic-estimate}
  \int\sum_{j,k}\varphi_{j\bar k}f_j\bar f_k\mathrm e^{-\varphi}\,\mathrm dV
- \le(1+t^{-1})\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2
+ \le(1+t^{-1})\|T^*f\|_{\mathcal H_0}^2+\|Sf\|_{\mathcal H_2}^2
       +(1+t)\int|f|^2|\bar\partial\psi|^2\mathrm e^{-\varphi}\,\mathrm dV.
 \end{equation}
 \end{proposition}
@@ -358,7 +362,7 @@ By the elementary inequality $|A+B|^2\le(1+t^{-1})|A|^2+(1+t)|B|^2$,
 \[
  \Bigl\|\sum_j\delta_jf_j\Bigr\|_\varphi^2\le(1+t^{-1})\int|T^*f|^2\mathrm e^{2\psi-\varphi}\,\mathrm dV+(1+t)\int\Bigl|\sum_j(\partial_{z_j}\psi)f_j\Bigr|^2\mathrm e^{-\varphi}\,\mathrm dV.
 \]
-The first integral is $\|T^*f\|_{H_0}^2$, because $\varphi_1=\varphi-2\psi$, and $|\sum_j(\partial_{z_j}\psi)f_j|^2\le|\bar\partial\psi|^2|f|^2$ by the Cauchy--Schwarz inequality, since $|\partial_{z_j}\psi|=|\partial_{\bar z_j}\psi|$ for real $\psi$. Moreover $\|\bar\partial f\|_\varphi^2=\|Sf\|_{H_2}^2$, because $\varphi_3=\varphi$. Inserting these bounds into the identity and dropping its last, nonnegative, term, we obtain \eqref{eq:three-weight-basic-estimate}.
+The first integral is $\|T^*f\|_{\mathcal H_0}^2$, because $\varphi_1=\varphi-2\psi$, and $|\sum_j(\partial_{z_j}\psi)f_j|^2\le|\bar\partial\psi|^2|f|^2$ by the Cauchy--Schwarz inequality, since $|\partial_{z_j}\psi|=|\partial_{\bar z_j}\psi|$ for real $\psi$. Moreover $\|\bar\partial f\|_\varphi^2=\|Sf\|_{\mathcal H_2}^2$, because $\varphi_3=\varphi$. Inserting these bounds into the identity and dropping its last, nonnegative, term, we obtain \eqref{eq:three-weight-basic-estimate}.
 \end{proof}
 \index{Bochner--Kodaira identity!interior scalar form}
 
@@ -406,18 +410,18 @@ For instance, $g(x)=\sum_{j\ge1}c_j\kappa_1(x-t-j+1)$, where $\kappa_1$ is smoot
 \]
 gives $H_{\gamma(s)}\ge(m_j/\lambda_j)\lambda_jI\ge(1+t)|\bar\partial\psi|^2I$. Finally, the integral in \eqref{eq:hormander-convex-increase} over the compact set $\{s\le t+1\}$ is finite, and its integral over $K_j$ is at most $\mathrm e^{-\gamma(t+j)}I_j\le2^{-j}$.
 
-\emph{Step 2: the estimate.} Put $\varphi_0=\varphi+\gamma(s)$ and $\varphi_k=\varphi_0+(k-3)\psi$ for $k=1,2,3$, and let $T$ and $S$ be the corresponding operators. By the last condition in \eqref{eq:hormander-convex-increase}, $\alpha\in H_1=L^2_{(0,1)}(\Omega,\mathrm e^{-\varphi_2})$, and $\alpha\in\ker S$. Let $f$ be a smooth compactly supported $(0,1)$-form. We apply \eqref{eq:three-weight-basic-estimate} with $\varphi_0$ in place of $\varphi$. Since $H_{\varphi_0}=H_\varphi+H_{\gamma(s)}$, the second condition in \eqref{eq:hormander-convex-increase} absorbs the last term of \eqref{eq:three-weight-basic-estimate}, and we obtain
+\emph{Step 2: the estimate.} Put $\varphi_0=\varphi+\gamma(s)$ and $\varphi_k=\varphi_0+(k-3)\psi$ for $k=1,2,3$, and let $T$ and $S$ be the corresponding operators. By the last condition in \eqref{eq:hormander-convex-increase}, $\alpha\in \mathcal H_1=L^2_{(0,1)}(\Omega,\mathrm e^{-\varphi_2})$, and $\alpha\in\ker S$. Let $f$ be a smooth compactly supported $(0,1)$-form. We apply \eqref{eq:three-weight-basic-estimate} with $\varphi_0$ in place of $\varphi$. Since $H_{\varphi_0}=H_\varphi+H_{\gamma(s)}$, the second condition in \eqref{eq:hormander-convex-increase} absorbs the last term of \eqref{eq:three-weight-basic-estimate}, and we obtain
 \[
  \int H_\varphi[f]\,\mathrm e^{-\varphi_0}\,\mathrm dV
-       \le(1+t^{-1})\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2.
+       \le(1+t^{-1})\|T^*f\|_{\mathcal H_0}^2+\|Sf\|_{\mathcal H_2}^2.
 \]
 Moreover $\varphi-2\varphi_2=-\varphi_0-\gamma(s)+2\psi\le-\varphi_0$ by the first condition in \eqref{eq:hormander-convex-increase}. Since $M<\infty$, the dual energy of $\alpha$ is finite almost everywhere, and the inequality $|\sum_j\alpha_j\bar f_j|^2\le|\alpha|_{H_\varphi^{-1}}^2H_\varphi[f]$ together with the Cauchy--Schwarz inequality gives
 \[
- |\langle\alpha,f\rangle_{H_1}|^2
+ |\langle\alpha,f\rangle_{\mathcal H_1}|^2
  \le\int|\alpha|_{H_\varphi^{-1}}^2\mathrm e^{-\varphi}\,\mathrm dV\cdot\int H_\varphi[f]\,\mathrm e^{\varphi-2\varphi_2}\,\mathrm dV
- \le M(1+t^{-1})\bigl(\|T^*f\|_{H_0}^2+\|Sf\|_{H_2}^2\bigr).
+ \le M(1+t^{-1})\bigl(\|T^*f\|_{\mathcal H_0}^2+\|Sf\|_{\mathcal H_2}^2\bigr).
 \]
-Both sides are continuous for the graph norm of \cref{lem:three-weight-density}, whose hypotheses hold by Step 1; hence the inequality extends to all $f\in\Dom T^*\cap\Dom S$. By \cref{thm:hilbert-complex-solvability} there is $u_t\in H_0$ with $\bar\partial u_t=\alpha$ and $\|u_t\|_{H_0}^2\le M(1+t^{-1})$. On $\{s<t\}$ both $\gamma(s)$ and $\psi$ vanish, so $\varphi_1=\varphi$ there and
+Both sides are continuous for the graph norm of \cref{lem:three-weight-density}, whose hypotheses hold by Step 1; hence the inequality extends to all $f\in\Dom T^*\cap\Dom S$. By \cref{thm:hilbert-complex-solvability} there is $u_t\in \mathcal H_0$ with $\bar\partial u_t=\alpha$ and $\|u_t\|_{\mathcal H_0}^2\le M(1+t^{-1})$. On $\{s<t\}$ both $\gamma(s)$ and $\psi$ vanish, so $\varphi_1=\varphi$ there and
 \[
  \int_{\{s<t\}}|u_t|^2\mathrm e^{-\varphi}\,\mathrm dV\le M(1+t^{-1}).
 \]

@@ -3,7 +3,7 @@
 
 Let $d\geq1$. For a function $v$ on $\mathbb R^d$ we write $D^2v=(\partial_a\partial_bv)_{a,b=1}^d$ for its real Hessian. In $L^p$ norms of vector-valued and matrix-valued functions, vectors carry the Euclidean norm and matrices the Hilbert--Schmidt norm $|M|=(\sum_{a,b}|M_{ab}|^2)^{1/2}$. Constants denoted by $C_d$ and $C_{d,p}$ depend only on the indicated parameters and may change from line to line.
 
-The Laplacian $\Delta v$ is the trace of $D^2v$, so a bound for $\Delta v$ does not bound $D^2v$ pointwise. We show that it does bound $D^2v$ in $L^p$ for $1<p<\infty$ (\cref{thm:hessian-multiplier-lp}). On the Fourier side, $\partial_a\partial_bv$ is obtained from $-\Delta v$ by multiplication with the bounded function $-\xi_a\xi_b/|\xi|^2$, so the case $p=2$ follows from Plancherel's theorem. For the other exponents we represent the corresponding operator away from the support of a function by a kernel that is smooth off the diagonal, and we use the Calder\'on--Zygmund decomposition: on each cube of the decomposition the function minus its average has mean zero, and this cancellation makes the image of that part integrable far from the cube. The section ends with Sobolev spaces and Morrey's inequality, which turn $L^p$ bounds for second derivatives into H\"older continuity of first derivatives.
+The Laplacian $\Delta v$ is the trace of $D^2v$, so a bound for $\Delta v$ does not bound $D^2v$ pointwise. We show that it does bound $D^2v$ in $L^p$ for $1<p<\infty$, and that consequently the potential of a bounded function with compact support has second derivatives in $L^p_{\loc}$ (\cref{thm:hessian-multiplier-lp}). On the Fourier side, $\partial_a\partial_bv$ is obtained from $-\Delta v$ by multiplication with the bounded function $-\xi_a\xi_b/|\xi|^2$, so the case $p=2$ follows from Plancherel's theorem. For the other exponents we represent the corresponding operator away from the support of a function by a kernel that is smooth off the diagonal, and we use the Calder\'on--Zygmund decomposition: on each cube of the decomposition the function minus its average has mean zero, and this cancellation makes the image of that part integrable far from the cube. The section ends with Sobolev spaces and Morrey's inequality, which turn $L^p$ bounds for second derivatives into H\"older continuity of first derivatives.
 
 \begin{lemma}\label{lem:hessian-multiplier-kernel}
 Let $1\leq a,b\leq d$, and define an operator $T_{ab}$ on $L^2(\mathbb R^d)$ by
@@ -104,6 +104,7 @@ For every $1<p<\infty$ there is a constant $C_{d,p}$ such that $\|T_{ab}f\|_p\le
  \|D^2v\|_p\leq C_{d,p}\|\Delta v\|_p,
  \qquad v\in C_c^\infty(\mathbb R^d).
 \end{equation}
+Moreover, let $g\in L^\infty(\mathbb R^d)$ vanish outside a compact set, and let $w(x)=\int E_d(x-y)g(y)\,\mathrm d y$ be its potential, where $E_d$ is the fundamental solution \eqref{eq:laplacian-fundamental-solution}. Then $w$ is continuously differentiable, $\Delta w=g$ in the sense of distributions, and the distributional second derivatives of $w$ belong to $L^p_{\loc}(\mathbb R^d)$ for every $1<p<\infty$.
 \end{theorem}
 \begin{proof}
 Assume first that $1<p<2$, and let $f\in L^p\cap L^2$. Fix $\lambda>0$ and split $f=f_1+f_2$ with $f_1=f\mathbf1_{\{|f|>\lambda\}}$ and $f_2=f\mathbf1_{\{|f|\leq\lambda\}}$. Since $|f_1|\leq\lambda^{1-p}|f|^p$, we have $f_1\in L^1\cap L^2$, and $f_2\in L^2$. Apply \cref{lem:hessian-multiplier-weak-one} to $f_1$, and Chebyshev's inequality with the $L^2$ bound to $f_2$, both with threshold $\lambda/2$. This gives
@@ -128,9 +129,26 @@ Now let $2<p<\infty$, put $p'=p/(p-1)\in(1,2)$, let $f\in L^p\cap L^2$, and writ
 The integral on the left is finite. If it is nonzero, dividing by its $(1/p')$th power gives $(\int_{E_N}|h|^p)^{1/p}\leq C_{d,p'}\|f\|_p$; if it is zero, this bound is trivial. The sets $E_N$ increase to $\{|h|<\infty\}$, which has full measure since $h\in L^2$, so monotone convergence gives $\|T_{ab}f\|_p\leq C_{d,p'}\|f\|_p$.
 
 By \cref{lem:mollifier-density}, $C_c^\infty\subset L^p\cap L^2$ is dense in $L^p$, so $T_{ab}$ has a unique bounded extension from $L^p\cap L^2$ to $L^p$. Finally, for $v\in C_c^\infty$, \cref{lem:hessian-multiplier-kernel}(3) gives $\|\partial_a\partial_bv\|_p=\|T_{ab}\Delta v\|_p\leq C_{d,p}\|\Delta v\|_p$, and summing over $a$ and $b$ proves \eqref{eq:euclidean-hessian-lp}.
+
+It remains to prove the assertions about the potential $w$. Off the origin, $E_d$ is smooth with gradient $G(z)=z/(s_{d-1}|z|^d)$; for $d=1$ this is $\operatorname{sign}(z)/2$, since $s_0=2$. The function $E_d$ is locally integrable by \cref{prop:laplacian-fundamental-solution}, and so is $|G(z)|=s_{d-1}^{-1}|z|^{1-d}$, by polar coordinates. If $k$ is any locally integrable function on $\mathbb R^d$, then $k*g$ is continuous. Indeed, for $x,x'$ in a fixed ball, only the restriction $k_1$ of $k$ to a fixed larger ball enters into $k*g(x)$ and $k*g(x')$, and
+\[
+ |k*g(x)-k*g(x')|\leq\|g\|_\infty\int|k_1(z)-k_1(z+x'-x)|\,\mathrm d z,
+\]
+which tends to zero as $x'\to x$ by the continuity of translation in $L^1$ (see the proof of \cref{lem:mollifier-density}). Hence $w$ and the components $G_j*g$ of $G*g$ are continuous. Let $t\in\mathbb R$. If the segment from $z$ to $z+te_j$ does not contain the origin, then $E_d(z+te_j)-E_d(z)=\int_0^tG_j(z+se_j)\,\mathrm d s$; for $d=1$ this identity holds for every $z$, because $E_1$ is continuous and piecewise linear. For $d\geq2$ and fixed $x$ and $t$, the points $y$ for which the segment from $x-y$ to $x-y+te_j$ contains the origin form a segment, which is a null set. We put $z=x-y$, integrate against $g(y)\,\mathrm d y$, and apply Fubini's theorem, which is justified by the local integrability of $G$. This gives
+\[
+ w(x+te_j)-w(x)=\int_0^t(G_j*g)(x+se_j)\,\mathrm d s,
+\]
+so $w$ is continuously differentiable, with $\nabla w=G*g$. Next, let $\chi$ be a test function. Fubini's theorem and the evenness of $E_d$ give $\int w\Delta\chi\,\mathrm d x=\int g(y)\,(E_d*\Delta\chi)(y)\,\mathrm d y$, and $(E_d*\Delta\chi)(y)=\langle\Delta E_d,\chi(y-\cdot)\rangle=\chi(y)$ by \cref{prop:laplacian-fundamental-solution}. Hence $\Delta w=g$ in the sense of distributions.
+
+To prove the last assertion, fix a test function $\chi$ and put $w_\varepsilon=w*\rho_\varepsilon$. By \cref{prop:distribution-smoothing}(1), $w_\varepsilon$ is smooth, $\nabla w_\varepsilon=(\nabla w)*\rho_\varepsilon$ and $\Delta w_\varepsilon=g*\rho_\varepsilon$. As $\varepsilon\to0$, \cref{lem:mollifier-density} shows that $w_\varepsilon\to w$ and $\nabla w_\varepsilon\to\nabla w$ uniformly on compact sets, since $w$ and $\nabla w$ are continuous, and that $g*\rho_\varepsilon\to g$ in $L^p$ on compact sets. Consequently the Laplacians of the test functions $v_\varepsilon=\chi w_\varepsilon$,
+\[
+ \Delta v_\varepsilon=\chi\,(g*\rho_\varepsilon)+2\nabla\chi\cdot\nabla w_\varepsilon+w_\varepsilon\Delta\chi,
+\]
+converge in $L^p(\mathbb R^d)$. Applying \eqref{eq:euclidean-hessian-lp} to the differences $v_\varepsilon-v_{\varepsilon'}$, we see that along every sequence $\varepsilon\to0$ the second derivatives $\partial_a\partial_bv_\varepsilon$ form a Cauchy sequence in $L^p$. Since $v_\varepsilon\to\chi w$ uniformly, their limits are the distributional derivatives $\partial_a\partial_b(\chi w)$, which therefore belong to $L^p$. Choosing $\chi$ equal to one on a given ball, we conclude that the distributional second derivatives of $w$ are $p$-integrable on that ball.
 \end{proof}
 \index{singular integral!$L^p$ boundedness}
 \index{Hessian!$L^p$ estimate}
+\index{fundamental solution!potential of a bounded function}
 
 For an integer $k\geq0$, $1\leq p<\infty$ and an open set $U\subset\mathbb R^d$, the Sobolev space\index{Sobolev space} $W^{k,p}(U)$ consists of the functions in $L^p(U)$ whose distributional derivatives of order at most $k$ belong to $L^p(U)$, with the norm $\|v\|_{W^{k,p}(U)}=\sum_{|\alpha|\leq k}\|\partial^\alpha v\|_{L^p(U)}$. We write $W^{k,p}_{\loc}(U)$ for the space of functions whose restrictions to every open set $V\Subset U$ belong to $W^{k,p}(V)$. On a compact smooth manifold $X$, fix finitely many coordinate charts covering $X$ and a smooth partition of unity subordinate to them. Then $W^{k,p}(X)$ consists of the functions whose products with the cutoff functions, written in the corresponding charts, belong to $W^{k,p}$ of the chart domains, and its norm is the sum of these chart norms. Other choices of charts and partitions of unity give equivalent norms. For smooth functions this follows from the chain rule and the Leibniz rule, because the coordinate changes and the cutoff functions have bounded derivatives on the relevant compact sets; for weak derivatives the same rules follow by mollification in the charts and distributional passage to the limit.
 
@@ -154,7 +172,7 @@ For a compact set $F\subset\mathbb R^d$ and $0<\alpha\leq1$, the H\"older norm\i
 \[
  \|v\|_{C^{0,\alpha}(F)}=\sup_F|v|+\sup_{x,y\in F,\ x\neq y}\frac{|v(x)-v(y)|}{|x-y|^\alpha}.
 \]
-A continuously differentiable function on an open set $U$ is of class $C^{1,\alpha}$ on a subset of $U$ if its first derivatives have finite $C^{0,\alpha}$ norm there, and it belongs to $C^{1,\alpha}_{\loc}(U)$ if it is of class $C^{1,\alpha}$ on every compact subset of $U$.
+A continuously differentiable function on an open set $U$ is of class $C^{1,\alpha}$ on a compact set $F\subset U$ if its first derivatives have finite $C^{0,\alpha}(F)$ norm, and it belongs to $C^{1,\alpha}_{\loc}(U)$ if it is of class $C^{1,\alpha}$ on every compact subset of $U$.
 
 \Needspace{10\baselineskip}
 \begin{lemma}[Morrey's inequality]\label{lem:morrey-sobolev-representative}
