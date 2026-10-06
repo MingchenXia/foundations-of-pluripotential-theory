@@ -1,96 +1,127 @@
 \subsection{Extending strictly positive potentials}
 \label{sec:strict-positive-potential-extension}
-A potential on a submanifold can be pulled back by a local holomorphic projection, but different projections give different extensions. A small normal logarithmic pole makes their exponentials comparable near the submanifold. This comparison permits finite maximum gluing while keeping the prescribed restriction exactly.
+We stay on the compact K\"ahler manifold $(X,\omega)$ and its submanifold $Y$, but now we extend potentials instead of sections. Let $\varphi\in\PSH(Y,\omega|_Y)$ be such that $\omega|_Y+\ddc\varphi$ is a K\"ahler current on $Y$. We look for an $\omega$-plurisubharmonic function $\widetilde\varphi$ on $X$ that restricts exactly to $\varphi$ and for which $\omega+\ddc\widetilde\varphi$ is again a K\"ahler current (\cref{thm:holder-positive-potential-extension}). Local extensions near $Y$ are easy to write down: pull $\varphi$ back by a holomorphic projection onto $Y$ and add a large multiple of a function vanishing to second order along $Y$. The difficulty lies in gluing them. Two projections give different pullbacks, and a maximum of local extensions, each lowered by a cutoff penalty near the edge of its chart, keeps the prescribed values on $Y$ only if every penalized extension is dominated near $Y$ by another one. We obtain this comparison by adding to $\mathrm e^\varphi$ the exponential of a small logarithmic pole along $Y$: when $\mathrm e^\varphi$ is H\"older continuous, the difference between two pullbacks of $\mathrm e^\varphi$ is small compared with this exponential near $Y$. The following elementary lemma shows that the logarithm of such a sum is again quasi-plurisubharmonic.
 
 \begin{lemma}\label{lem:background-logarithmic-sum}
-If $a,b\in\PSH(U,\beta)$ for a smooth closed real $(1,1)$-form $\beta$, then
+Let $U$ be an open subset of a complex manifold, let $\theta$ be a smooth closed real $(1,1)$-form on $U$, and let $a,b\in\PSH(U,\theta)$. Then
 \[
- \log(\mathrm e^a+\mathrm e^b)\in\PSH(U,\beta),
+ \log(\mathrm e^a+\mathrm e^b)\in\PSH(U,\theta),
 \]
-with value $-\infty$ at their common poles. Moreover
-$\max\{a,b\}\leq\log(\mathrm e^a+\mathrm e^b)\leq\max\{a,b\}+\log2$.
+where $\mathrm e^{-\infty}=0$ and $\log0=-\infty$, so that this function equals $-\infty$ precisely at the common poles of $a$ and $b$. Moreover
+\[
+ \max\{a,b\}\leq\log(\mathrm e^a+\mathrm e^b)\leq\max\{a,b\}+\log2.
+\]
 \end{lemma}
 \begin{proof}
-On a coordinate ball add a smooth potential $s$ for $\beta$. The map $H(x,y)=\log(\mathrm e^x+\mathrm e^y)$ is increasing in each variable and convex: its Hessian is $p(1-p)\left(\begin{smallmatrix}1&-1\\-1&1\end{smallmatrix}\right)$, where $p=\mathrm e^x/(\mathrm e^x+\mathrm e^y)$. The smooth chain rule makes $H(a+s,b+s)$ psh for smooth psh inputs. Decreasing convolution approximations and decreasing psh continuity give the assertion for arbitrary inputs, since $H(a+s,b+s)=\log(\mathrm e^a+\mathrm e^b)+s$. The two inequalities follow by factoring out the larger exponential, including their extended values at common poles.
+Both assertions are local, so we may work on a coordinate ball $B\subset U$ on which $\theta=\ddc s$ for a smooth real function $s$ (\cref{lem:smooth-potential-on-ball}). Then $a+s$ and $b+s$ are plurisubharmonic on $B$, and
+\[
+ \log(\mathrm e^a+\mathrm e^b)+s=H(a+s,b+s),\qquad H(x,y)=\log(\mathrm e^x+\mathrm e^y).
+\]
+The function $H$ is smooth on $\mathbb R^2$ and increasing in each variable: its partial derivatives are $p$ and $1-p$, where $p=\mathrm e^x/(\mathrm e^x+\mathrm e^y)$, and its Hessian matrix is $p(1-p)\left(\begin{smallmatrix}1&-1\\-1&1\end{smallmatrix}\right)$, so $H$ is also convex. If $f,g$ are smooth plurisubharmonic functions, the chain rule gives
+\[
+ \ddc H(f,g)=p\,\ddc f+(1-p)\,\ddc g
+      +p(1-p)\,\frac{\mathrm i}{2\pi}\,\partial(f-g)\wedge\bar\partial(f-g)\geq0,
+\]
+with $p$ evaluated at $(f,g)$; hence $H(f,g)$ is plurisubharmonic. For general $a,b$, let $f_k\downarrow a+s$ and $g_k\downarrow b+s$ be smooth plurisubharmonic regularizations by radial convolution on a smaller ball (\cref{thm:psh-distribution-representative}). Since $H$ extends continuously to $[-\infty,\infty)^2$ and remains increasing in each variable, the functions $H(f_k,g_k)$ decrease to $H(a+s,b+s)$. This limit is at least $a+s$, so it is not identically $-\infty$, and it is plurisubharmonic by \cref{thm:psh-decreasing-nets}. Consequently $\log(\mathrm e^a+\mathrm e^b)=H(a+s,b+s)-s$ belongs to $\PSH(B,\theta)$.
+
+For the inequalities fix a point and suppose that $a\geq b$ there; the other case is symmetric. If $a=-\infty$, then $b=-\infty$ as well, and all three expressions equal $-\infty$. Otherwise $\log(\mathrm e^a+\mathrm e^b)=a+\log(1+\mathrm e^{b-a})$, and $0\leq\log(1+\mathrm e^{b-a})\leq\log2$.
 \end{proof}
 
 \begin{theorem}\label{thm:holder-positive-potential-extension}
-Let $Y\subset X$ be a nonempty connected closed complex submanifold. Suppose $\varphi\in\PSH(Y,\omega|_Y)$ satisfies
+Let $Y\subset X$ be a nonempty connected closed complex submanifold, and let $\varphi\in\PSH(Y,\omega|_Y)$ satisfy
 \[
- \omega|_Y+\ddc\varphi\geq\delta\omega|_Y\quad(\delta>0),
+ \omega|_Y+\ddc\varphi\geq\delta\,\omega|_Y
 \]
-and $\mathrm e^\varphi$, defined as zero at poles, is H\"older continuous. There are $\widetilde\varphi\in\PSH(X,\omega)$ and $\varepsilon>0$ such that
+for some $\delta>0$. Suppose that $\mathrm e^\varphi$, defined to be zero at the poles of $\varphi$, is H\"older continuous on $Y$. Then there are $\widetilde\varphi\in\PSH(X,\omega)$ and $\varepsilon>0$ such that
 \[
  \widetilde\varphi|_Y=\varphi,\qquad
  \omega+\ddc\widetilde\varphi\geq\varepsilon\omega.
 \]
-The extension is continuous on $X\setminus Y$, and its exponential is H\"older continuous on $X$. If $\varphi$ has rational analytic singularities, then so does $\widetilde\varphi$.
+Moreover $\widetilde\varphi$ is continuous on $X\setminus Y$, and $\mathrm e^{\widetilde\varphi}$ is H\"older continuous on $X$. If $\varphi$ has rational analytic singularities, then so does $\widetilde\varphi$.
 \end{theorem}
 \begin{proof}
-If $Y=X$, take $\widetilde\varphi=\varphi$. If $Y$ is a point, its potential has a finite value; the constant extension has all the stated properties. Thus suppose $0<\dim Y<n$. Choose $0<\varepsilon<\min\{\delta/4,1/4\}$ and an exponent $0<\alpha\leq1$ for $\mathrm e^\varphi$.
+If $Y=X$, take $\widetilde\varphi=\varphi$ and $\varepsilon=\delta$. If $Y$ is a point $y$, then $\varphi(y)$ is a real number, since quasi-plurisubharmonic functions on a point are real-valued, and the constant function $\widetilde\varphi=\varphi(y)$ has all the stated properties, with $\varepsilon=1$. We may therefore assume that $0<\dim Y<n$. Fix $\varepsilon$ with $0<\varepsilon<\min\{\delta/4,1/4\}$, and let $\alpha\in(0,1]$ be a H\"older exponent of $\mathrm e^\varphi$. Distances are taken with respect to the Riemannian metric of $\omega$, and $r(x)$ denotes the distance from $x\in X$ to $Y$.
 
-Let $R=R_Y$ and $b$ be given by \cref{lem:global-normal-pole}. Choose a rational $c$ with $0<c<\alpha$ so small that
+\emph{Step 1. A small normal pole.} Let $R=R_Y$ and $b\geq0$ be given by \cref{lem:global-normal-pole}, so that $\ddc\log R\geq-b\omega$. Choose a rational number $c$ with $0<c<\alpha$ and $cb/2\leq1-4\varepsilon$; this is possible because $1-4\varepsilon>0$. Put $F=\frac c2\log R$. Then
 \[
- F=\frac c2\log R,\qquad
- \omega+\ddc F\geq4\varepsilon\omega.
+ \omega+\ddc F\geq\Bigl(1-\frac{cb}2\Bigr)\omega\geq4\varepsilon\omega.
 \]
-This is possible because $cb/2<1-4\varepsilon$ can be imposed. The function $F$ is smooth off $Y$, has rational analytic singularities, and is $-\infty$ on $Y$. Near $Y$, with $r(x)=\operatorname{dist}(x,Y)$,
+The function $F$ is smooth on $X\setminus Y$, equals $-\infty$ on $Y$, and has rational analytic singularities, since $\log R$ has analytic type $(1,\mathcal I_Y)$ and $c/2$ is rational. Because $R$ vanishes exactly on the compact submanifold $Y$ and has a positive definite normal quadratic term along it, there is a constant $C\geq1$ such that, near $Y$,
 \begin{equation}\label{eq:normal-exponential-lower-bound}
- R\asymp r^2,\qquad \mathrm e^F=R^{c/2}\geq C^{-1}r^c.
+ C^{-1}r^2\leq R\leq Cr^2,\qquad \mathrm e^F=R^{c/2}\geq C^{-1}r^c.
 \end{equation}
-Its exponential is H\"older continuous, since $R$ is smooth and the map $t\mapsto t^{c/2}$ is H\"older on bounded nonnegative intervals.
+Moreover $\mathrm e^F=R^{c/2}$ is H\"older continuous on $X$, because $R$ is smooth and $t\mapsto t^{c/2}$ is H\"older continuous on $[0,\max_XR]$.
 
-Take finitely many relatively compact submanifold coordinate products $W_j$, with holomorphic projections $\pi_j:W_j\to Y$, covering $Y$. Shrinking products makes these projections defined into their corresponding tangential charts. There is one $A>0$ such that, after further shrinking near $Y$,
+\emph{Step 2. Local extensions.} Cover $Y$ by finitely many coordinate charts $W_j$ of the following form: in coordinates $(z',w)\in\mathbb C^m\times\mathbb C^{n-m}$, where $m=\dim Y$, the chart is a product $W_j=B'_j\times B''_j$ of balls and $Y\cap W_j=B'_j\times\{0\}$. Let $\pi_j\colon W_j\to Y$, $\pi_j(z',w)=(z',0)$, be the holomorphic projection. After replacing each chart by a slightly smaller product, we may assume that $\pi_j$ and all functions and forms used below extend smoothly to a neighborhood of the compact closure $\overline{W_j}$. Below we shall shrink the normal factors $B''_j$ several times; this does not change $Y\cap W_j$, so the charts keep covering $Y$. We claim that there is $A>0$ such that, after such a shrinking,
 \[
- a_j=\varphi\circ\pi_j+AR,\quad b_j=F+AR
-                  \in\PSH(W_j,(1-2\varepsilon)\omega).
+ a_j=\varphi\circ\pi_j+AR,\qquad b_j=F+AR
 \]
-Here is the positivity check. Pullback of the assumed inequality gives
-$\ddc(\varphi\circ\pi_j)\geq-(1-4\varepsilon)\pi_j^*(\omega|_Y)$. At $Y$ the smooth form
-\[
- (1-2\varepsilon)\omega
-       -(1-4\varepsilon)\pi_j^*(\omega|_Y)+A\ddc R
-\]
-has tangential block $2\varepsilon\omega|_Y$. The form $\ddc R$ has zero tangential and mixed blocks and a positive definite normal block. On the finite cover, increasing $A$ makes the Schur complement positive, and continuity keeps the form positive on smaller products. Also $\ddc R$ is semipositive at $Y$; shrink again so that $A\ddc R\geq-\varepsilon\omega$. The lower bound for $F$ then gives the assertion for $b_j$.
+belong to $\PSH(W_j,(1-2\varepsilon)\omega)$ for every $j$.
 
-By the logarithmic-sum lemma the local extensions
+Since $4\varepsilon\leq\delta$, the hypothesis gives $\ddc\varphi\geq-(1-\delta)\omega|_Y\geq-(1-4\varepsilon)\omega|_Y$. Holomorphic pullback preserves plurisubharmonicity (\cref{prop:psh-holomorphic-pullback}); applying it to $\varphi$ plus local smooth potentials of $(1-4\varepsilon)\omega|_Y$, we obtain $\ddc(\varphi\circ\pi_j)\geq-(1-4\varepsilon)\pi_j^*(\omega|_Y)$. For $a_j$ it therefore suffices that the smooth form
 \[
- \varphi_j=\log(\mathrm e^{\varphi\circ\pi_j}+\mathrm e^F)+AR
-                  \in\PSH(W_j,(1-2\varepsilon)\omega)
+ Q_j=(1-2\varepsilon)\omega-(1-4\varepsilon)\pi_j^*(\omega|_Y)+A\ddc R
 \]
-restrict to $\varphi$ on $Y$. They are continuous off $Y$, and their exponentials are H\"older continuous on smaller products. We claim that for every $p\in Y\cap W_i\cap W_j$ and every $\eta>0$, on a neighborhood of $p$,
+be positive on $W_j$. At a point of $Y$, split the tangent space into the tangential directions $\partial/\partial z'$ and the normal directions $\partial/\partial w$, and write the coefficient matrices of real $(1,1)$-forms in the corresponding blocks. The map $\pi_j$ is the identity on $Y$ and kills the normal directions. Hence $\pi_j^*(\omega|_Y)$ has zero mixed and normal blocks, and the tangential block of $Q_j$ is $2\varepsilon\,\omega|_Y$, which is positive definite. The function $R\geq0$ vanishes on $Y$, so its first derivatives vanish there as well; differentiating the identities $R(z',0)=0$ and $\partial R/\partial\bar w(z',0)=0$ with respect to $z'$ shows that $\ddc R$ has zero tangential and mixed blocks along $Y$, while its normal block $N_R$ is positive definite by the choice of $R$. Let $\Omega_T$, $\Omega_M$ and $\Omega_N$ denote the tangential, mixed and normal blocks of $(1-2\varepsilon)\omega$, so that $\Omega_T-(1-4\varepsilon)\,\omega|_Y$ is the matrix of $2\varepsilon\,\omega|_Y$. By the Schur complement criterion, $Q_j$ is positive definite at a point of $Y$ if and only if
+\[
+ \Omega_N+AN_R-\Omega_M^*\bigl(2\varepsilon\,\omega|_Y\bigr)^{-1}\Omega_M
+\]
+is positive definite there. All blocks depend continuously on the point, $N_R$ is positive definite, and the sets $Y\cap\overline{W_j}$ are compact and finite in number; hence one $A$ achieves this at every point of every $Y\cap\overline{W_j}$. Fix such an $A$. By continuity, $Q_j$ remains positive on a neighborhood of $Y\cap\overline{W_j}$, and we shrink the normal factor $B''_j$ so that $W_j$ lies in this neighborhood. This proves the claim for $a_j$. Along $Y$ the form $\ddc R$ is positive semidefinite, so after shrinking the normal factors once more we also have $A\ddc R\geq-\varepsilon\omega$ on every $W_j$. Together with $\ddc F\geq-(1-4\varepsilon)\omega$ this gives
+\[
+ (1-2\varepsilon)\omega+\ddc b_j\geq(1-2\varepsilon)\omega-(1-4\varepsilon)\omega-\varepsilon\omega=\varepsilon\omega\geq0,
+\]
+which proves the claim for $b_j$.
+
+By \cref{lem:background-logarithmic-sum}, applied with $\theta=(1-2\varepsilon)\omega$, the functions
+\[
+ \varphi_j=\log(\mathrm e^{a_j}+\mathrm e^{b_j})
+          =\log(\mathrm e^{\varphi\circ\pi_j}+\mathrm e^F)+AR
+\]
+belong to $\PSH(W_j,(1-2\varepsilon)\omega)$. On $Y$ we have $F=-\infty$, $R=0$ and $\varphi\circ\pi_j=\varphi$, so $\varphi_j=\varphi$ on $Y\cap W_j$, also at the poles of $\varphi$. Off $Y$ the function $\mathrm e^F$ is positive and continuous and $\mathrm e^{\varphi\circ\pi_j}$ is continuous, so $\varphi_j$ is continuous on $W_j\setminus Y$. Finally $\mathrm e^{\varphi_j}=(\mathrm e^\varphi\circ\pi_j+\mathrm e^F)\,\mathrm e^{AR}$ is locally H\"older continuous on $W_j$.
+
+\emph{Step 3. Comparison on overlaps.} We claim that for every $p\in Y\cap W_i\cap W_j$ and every $\eta>0$ there is a neighborhood of $p$ on which
 \begin{equation}\label{eq:holder-extension-overlap}
  \varphi_i\leq\varphi_j+\eta.
 \end{equation}
-The projections agree on $Y$ and are smooth; in smaller common coordinates their distance is at most $Cr$. H\"older continuity gives
+At points of $Y$ it holds because $\varphi_i=\varphi=\varphi_j$ there, including at the poles of $\varphi$; so we only have to consider points off $Y$. Work in a coordinate chart of $X$ around $p$, in which the Riemannian distance is comparable to the Euclidean distance $|\cdot|$. Both projections are smooth near $p$ and restrict to the identity on $Y$. If $x$ is close to $p$ and $y\in Y$ is a point with $\operatorname{dist}(x,y)=r(x)$, then $\pi_i(y)=y=\pi_j(y)$, and the Lipschitz bounds for $\pi_i$ and $\pi_j$ near $p$ give $|\pi_i(x)-\pi_j(x)|\leq C_1r(x)$. H\"older continuity of $\mathrm e^\varphi$ near $p$ therefore yields
 \[
- |\mathrm e^{\varphi\circ\pi_i}-\mathrm e^{\varphi\circ\pi_j}|
-                         \leq C_1r^\alpha.
+ \bigl|\mathrm e^{\varphi\circ\pi_i}-\mathrm e^{\varphi\circ\pi_j}\bigr|\leq C_2r^\alpha
 \]
-Since $c<\alpha$, \eqref{eq:normal-exponential-lower-bound} makes this at most $(\mathrm e^\eta-1)\mathrm e^F$ sufficiently near $p$. Adding $\mathrm e^F$ proves \eqref{eq:holder-extension-overlap}; the common $AR$ cancels. On $Y$ both restrictions coincide, including at poles, so the inequality holds there as well.
+near $p$. Since $c<\alpha$, the lower bound in \eqref{eq:normal-exponential-lower-bound} gives $C_2r^\alpha\leq(\mathrm e^\eta-1)C^{-1}r^c\leq(\mathrm e^\eta-1)\mathrm e^F$ at all points sufficiently close to $p$. There
+\[
+ \mathrm e^{\varphi\circ\pi_i}+\mathrm e^F
+ \leq\mathrm e^{\varphi\circ\pi_j}+\mathrm e^\eta\mathrm e^F
+ \leq\mathrm e^\eta\bigl(\mathrm e^{\varphi\circ\pi_j}+\mathrm e^F\bigr).
+\]
+Taking logarithms and adding $AR$ to both sides gives \eqref{eq:holder-extension-overlap}.
 
-Choose nested products $W'_j\Subset U_j\Subset T_j\Subset W_j$, with $\bigcup_jW'_j\supset Y$. Let $f_j\geq0$ be smooth, compactly supported in $W_j$, zero near $\overline{W'_j}$ and at least one near $\overline{T_j}\setminus U_j$. For a fixed sufficiently small $\eta>0$, arrange $\eta\ddc f_j\leq\varepsilon\omega$ for all $j$. Then
+\emph{Step 4. Gluing near $Y$.} Choose open sets $W'_j\Subset U_j\Subset T_j\Subset W_j$ such that the $W'_j$ still cover $Y$, and smooth functions $f_j\geq0$ with compact support in $W_j$ such that $f_j=0$ on a neighborhood of $\overline{W'_j}$ and $f_j\geq1$ on a neighborhood of $\overline{T_j}\setminus U_j$. Fix $\eta>0$ so small that $\eta\ddc f_j\leq\varepsilon\omega$ for every $j$. Since $(1-\varepsilon)\omega+\ddc\varphi_j\geq\varepsilon\omega$, the functions
 \[
  \widehat\varphi_j=\varphi_j-\eta f_j
-                  \in\PSH(W_j,(1-\varepsilon)\omega).
 \]
-On $W=\bigcup_jT_j$ define $\psi(x)=\max_{x\in T_j}\widehat\varphi_j(x)$. We verify that this is a locally fixed finite maximum near $Y$, despite the changing set of indices. For $p\in Y$ choose $j$ with $p\in W'_j$. On a small neighborhood of $p$, $f_j=0$. Every index $l$ with $p\in\partial T_l$ has $f_l\geq1$ nearby, and \eqref{eq:holder-extension-overlap} with tolerance $\eta/2$ gives
+belong to $\PSH(W_j,(1-\varepsilon)\omega)$. On $W=\bigcup_jT_j$ define
 \[
- \widehat\varphi_l\leq\varphi_j-\eta/2\leq\varphi_j.
+ \psi(x)=\max\{\widehat\varphi_j(x):x\in T_j\}.
 \]
-These are extended-value inequalities and remain valid at common poles. Such boundary indices can therefore be discarded wherever they are present. Indices with $p\notin\overline{T_l}$ are absent nearby, while those with $p\in T_l$ are present throughout a smaller neighborhood. Thus $\psi$ is there the maximum over the fixed latter indices. It is $(1-\varepsilon)\omega$-psh, continuous off $Y$, and has H\"older continuous exponential. Every summand restricts to at most $\varphi$, and the chosen $j$ gives equality. Hence $\psi|_Y=\varphi$.
+The set of indices in this maximum changes with $x$. We show that near $Y$ the maximum is nevertheless taken over a fixed set of indices. Let $p\in Y$, and choose $j$ with $p\in W'_j$; then $f_j=0$ near $p$, and $j$ occurs in the maximum near $p$. Let $l$ be an index with $p\in\partial T_l$. Then $p\in\overline{T_l}\setminus U_l$, so $f_l\geq1$ near $p$. Since $p\in Y\cap W_l\cap W_j$, the inequality \eqref{eq:holder-extension-overlap} with $\eta/2$ in place of $\eta$ gives, near $p$,
+\[
+ \widehat\varphi_l\leq\varphi_l-\eta\leq\varphi_j-\eta/2\leq\widehat\varphi_j.
+\]
+These are inequalities between functions with values in $[-\infty,\infty)$, valid also at common poles. Hence there is a neighborhood $O_p$ of $p$ on which the indices $l$ with $p\in\partial T_l$ never affect the maximum, the indices with $p\notin\overline{T_l}$ do not occur, and the indices with $p\in T_l$ occur at every point. On $O_p$ the function $\psi$ is therefore the maximum of the $\widehat\varphi_l$ over the fixed finite set of indices $l$ with $p\in T_l$.
 
-Take a neighborhood $G$ of $Y$ whose closure lies inside the just-constructed neighborhood, with $\partial G$ disjoint from $Y$. Both $\psi$ and $F$ are finite and continuous near this compact boundary. Choose $K$ so that $F+K>\psi$ on a boundary neighborhood, and set
+Let $W_0=\bigcup_{p\in Y}O_p$. A finite maximum of functions in $\PSH(O_p,(1-\varepsilon)\omega)$ belongs to this class, as one sees by adding a local potential of $(1-\varepsilon)\omega$ and applying \cref{prop:psh-max-gluing}. Hence $\psi\in\PSH(W_0,(1-\varepsilon)\omega)$; moreover $\psi$ is continuous on $W_0\setminus Y$, and $\mathrm e^\psi$ is locally H\"older continuous, after shrinking the $O_p$ if necessary. On $Y$ every $\widehat\varphi_l$ restricts to $\varphi-\eta f_l\leq\varphi$, while $\widehat\varphi_j=\varphi$ near $p$ for the index $j$ chosen above. Consequently $\psi|_Y=\varphi$.
+
+\emph{Step 5. The global extension.} Choose an open neighborhood $G$ of $Y$ with $\overline G\subset W_0$. Its boundary $\partial G$ is compact and disjoint from $Y$, and both $\psi$ and $F$ are finite and continuous near $\partial G$. Choose a constant $M$ such that $F+M>\psi$ on a neighborhood of $\partial G$, and set
 \[
  \widetilde\varphi=
  \begin{cases}
-  \max\{\psi,F+K\},&\text{on }G,\\
-  F+K,&\text{on }X\setminus G.
+  \max\{\psi,F+M\}&\text{on }G,\\
+  F+M&\text{on }X\setminus G.
  \end{cases}
 \]
-The definitions agree near the boundary. Maximum gluing gives $\widetilde\varphi\in\PSH(X,(1-\varepsilon)\omega)$ and the required strict positivity. Since $F|_Y=-\infty$, the restriction remains exactly $\varphi$. Continuity off $Y$ and local H\"older continuity of the exponential follow from the construction; a finite compact cover gives a global H\"older exponent and bound.
+The two expressions agree near $\partial G$. The function $F+M$ belongs to $\PSH(X,(1-4\varepsilon)\omega)\subset\PSH(X,(1-\varepsilon)\omega)$, and $\psi\in\PSH(W_0,(1-\varepsilon)\omega)$. The gluing statement of \cref{prop:psh-max-gluing}, applied after adding local potentials of $(1-\varepsilon)\omega$, therefore gives $\widetilde\varphi\in\PSH(X,(1-\varepsilon)\omega)$, that is, $\omega+\ddc\widetilde\varphi\geq\varepsilon\omega$. Since $F=-\infty$ on $Y$, we have $\widetilde\varphi|_Y=\psi|_Y=\varphi$. The function $\widetilde\varphi$ is continuous on $X\setminus Y$ because $\psi$ and $F$ are. Its exponential $\max\{\mathrm e^\psi,\mathrm e^M\mathrm e^F\}$ is locally H\"older continuous, and covering the compact manifold $X$ by finitely many open sets on which it is H\"older continuous, we obtain a single H\"older exponent and constant on $X$.
 
-Finally suppose $\varphi$ has rational analytic singularities. Holomorphic projection preserves them, and $F$ has rational analytic type by its construction. The logarithmic-sum lemma places $\varphi_j$ within $\log2$ of the maximum of these two potentials plus $AR$. \Cref{prop:rational-analytic-operations} therefore gives its analytic singularities. Smooth penalties and the locally fixed finite maxima preserve that property. The final splice is locally another such maximum near $Y$ and is smooth outside $\overline G$, so $\widetilde\varphi$ has rational analytic singularities everywhere.
+\emph{Step 6. Analytic singularities.} Finally suppose that $\varphi$ has rational analytic singularities (\cref{def:rational-analytic-singularities}). By \cref{prop:rational-analytic-operations}, so does the holomorphic pullback $\varphi\circ\pi_j$, which is not identically $-\infty$ on $W_j$; the function $F$ has rational analytic singularities by Step 1. By \cref{lem:background-logarithmic-sum}, $\varphi_j$ differs from $\max\{\varphi\circ\pi_j,F\}+AR$ by a function with values in $[0,\log2]$. The maximum has rational analytic singularities by the same proposition, and adding a bounded function preserves the local presentations \eqref{eq:rational-analytic-singularities}; hence $\varphi_j$ has rational analytic singularities. Subtracting the smooth function $\eta f_j$ and taking the locally fixed finite maxima of Step 4 preserve this property, so $\psi$ has rational analytic singularities on $W_0$. On $G$, the function $\widetilde\varphi$ is the maximum of $\psi$ and $F+M$, and near $X\setminus G$ it equals $F+M$, which is smooth there. Therefore $\widetilde\varphi$ has rational analytic singularities on $X$.
 \end{proof}
 \index{K\"ahler current!submanifold potential extension}
 \index{plurisubharmonic function!H\"older exponential extension}
