@@ -1,80 +1,145 @@
 \chapter{Harmonic functions and the Dirichlet problem}
 \label{chap:p02}
-Let $\Omega\subset\mathbb R^d$ be open, with $d\geq1$. A distributional equation specifies derivatives rather than pointwise values. For the Laplacian, its homogeneous equation nevertheless determines a smooth function. Mean values explain this regularity; the Poisson kernel then turns boundary values on a ball into interior values. On a general bounded domain, the same replacement on balls constructs a harmonic envelope, while barriers decide which boundary values it attains.
+Harmonic functions are the solutions of the Laplace equation $\Delta h=0$. In potential theory they play the role that affine functions play for convex functions: the subharmonic functions of \cref{chap:p03} are defined and studied by comparison with them, and the Green kernels built from them define the potentials and energies of \cref{chap:p04,chap:p05}. This chapter develops the part of their theory that is used in the rest of the book. Throughout, $\Omega$ denotes an open subset of $\mathbb R^d$, where $d\geq1$.
+
+We begin with mean values. A continuous function is harmonic exactly when its value at the center of every closed ball in its domain equals its mean over the boundary sphere (\cref{thm:harmonic-mean-characterization}), and averaging against a mollifier then shows that harmonic functions are smooth, with interior estimates for all their derivatives. A distributional equation prescribes derivatives rather than pointwise values; nevertheless, Weyl's lemma (\cref{thm:weyl}) shows that a distribution with vanishing Laplacian is a smooth harmonic function. The fundamental solution of the Laplacian (\cref{prop:laplacian-fundamental-solution}) fixes the sign conventions for all later potentials.
+
+The Dirichlet problem asks for a harmonic function with prescribed continuous boundary values. On a ball it is solved explicitly by the Poisson integral (\cref{thm:ball-dirichlet}), whose kernel also yields the Harnack inequalities and the compactness of families of positive harmonic functions. On a general bounded domain there is no such formula, and we use Perron's method instead: the candidate solution is the upper envelope of all continuous subsolutions whose boundary values do not exceed the data, and replacing a subsolution on a small ball by the Poisson integral of its values shows that this envelope is harmonic (\cref{thm:perron-harmonic,thm:perron-resolutivity}). Whether the envelope attains the prescribed value at a given boundary point is a local question, decided by the existence of a barrier (\cref{thm:barrier-regularity}); a punctured ball shows that it can fail. When every boundary point is regular, the solution operator is integration against harmonic measure, and correcting the fundamental solution by the harmonic function with the same boundary values gives the Green function (\cref{thm:dirichlet-green}).
 
 \section{The Laplacian and mean values}
 \label{sec:harmonic-mean-values}
-Write $B(x,r)=\{y\in\mathbb R^d:|y-x|<r\}$ for the ball of radius $r>0$ and $S^{d-1}=\{y\in\mathbb R^d:|y|=1\}$ for the unit sphere. The Euclidean Laplacian is $\Delta=\sum_{j=1}^d\partial_{x_j}^2$. A real function $h\in C^2(\Omega)$ is harmonic\index{harmonic function} if $\Delta h=0$. Complex harmonic functions are defined by applying this condition to their real and imaginary parts. In dimension one they are affine on each interval component. Write $s_{d-1}$ for the area of the unit sphere; $s_0=2$, and the volume of the unit ball is $s_{d-1}/d$.
+Write $B(x,r)=\{y\in\mathbb R^d:|y-x|<r\}$ for the open ball with center $x$ and radius $r>0$, and $S^{d-1}=\{y\in\mathbb R^d:|y|=1\}$ for the unit sphere. The Laplacian\index{Laplacian} is $\Delta=\sum_{j=1}^d\partial_{x_j}^2$. A real function $h\in C^2(\Omega)$ is \emph{harmonic}\index{harmonic function} if $\Delta h=0$, and a complex function is harmonic if its real and imaginary parts are harmonic. In dimension one the harmonic functions are the functions that are affine on each component interval of $\Omega$.
 
-We use Euclidean surface measure $\mathrm d S$. It can be defined on the unit sphere by $S(A)=d|\{t\omega:0<t<1,\ \omega\in A\}|$ for Borel $A$. Scaling gives the sphere measure at any radius. The polar-coordinate formula follows first on annular sectors from the identity $|\{t\omega:a<t<b,\ \omega\in A\}|=(b^d-a^d)S(A)/d$, and then for nonnegative and integrable functions by simple approximation and \cref{prop:integral-limits,prop:tonelli-fubini}. Thus
+We define surface measure on the unit sphere through the Lebesgue measure of cones: for a Borel set $A\subset S^{d-1}$ put
 \[
- \int_{B(x,R)}f(y)\,\mathrm d y
- =\int_0^R r^{d-1}\int_{S^{d-1}}f(x+r\omega)\,\mathrm d S(\omega)\,\mathrm d r.
+ S(A)=d\,\bigl|\{t\omega:0<t<1,\ \omega\in A\}\bigr|.
+\]
+The cone over $A$ is the inverse image of $A$ under the continuous map $y\mapsto y/|y|$ on $B(0,1)\setminus\{0\}$, so it is a Borel set; moreover, the cone over a countable union is the union of the cones, and cones over disjoint sets are disjoint. Hence $S$ is a finite Borel measure on $S^{d-1}$, the \emph{surface measure}\index{surface measure}. It is invariant under orthogonal transformations of $\mathbb R^d$, because Lebesgue measure is. We write $s_{d-1}=S(S^{d-1})$ for the area of the unit sphere, so that the unit ball has volume $s_{d-1}/d$. For instance, $s_0=2$, because $S$ is counting measure on $S^0=\{\pm1\}$, and $s_1=2\pi$, because the unit disc has area $\pi$. On a sphere $\partial B(x,r)$ we use the measure obtained by translation and dilation, again denoted $\mathrm dS$:
+\[
+ \int_{\partial B(x,r)}g\,\mathrm dS=r^{d-1}\int_{S^{d-1}}g(x+r\omega)\,\mathrm dS(\omega).
 \]
 
-The divergence identity on balls also follows from one-variable integration. Let $F=(F_1,\ldots,F_d)$ be a $C^1$ vector field on a neighborhood of a closed ball $\overline B$, and let $\nu$ be the outward unit normal on $\partial B$. For its $j$th component, integrate $\partial_jF_j$ along the intervals obtained by fixing the other coordinates in the ball. The endpoints are the two graph hemispheres. Their outward normal component times surface area is respectively plus and minus the base area, since on a graph $x_j=g(x')$ the normal is proportional to $(-\nabla g,1)$. Summing these identities gives $\int_B\operatorname{div}F=\int_{\partial B}F\cdot\nu$, where $\operatorname{div}F=\sum_j\partial_jF_j$. The equators have surface measure zero and may be obtained as limits of truncated graphs. For a field defined only near a closed annulus, multiply it by a smooth cutoff which is one on the annulus and zero on a smaller inner ball, and extend it by zero inside. Subtracting the identities for the two concentric balls then gives the annular formula. In dimension one these identities are the fundamental theorem of calculus.
+By dilation, the cone $\{t\omega:0<t<b,\ \omega\in A\}$ has Lebesgue measure $b^dS(A)/d$. Hence the annular sector $\{x+t\omega:a<t<b,\ \omega\in A\}$ has Lebesgue measure $(b^d-a^d)S(A)/d=S(A)\int_a^bt^{d-1}\,\mathrm dt$. In other words, Lebesgue measure on $B(x,R)\setminus\{x\}$ and the image of the product measure $t^{d-1}\,\mathrm dt\times S$ under the homeomorphism $(t,\omega)\mapsto x+t\omega$ from $(0,R)\times S^{d-1}$ onto $B(x,R)\setminus\{x\}$ agree on annular sectors. These sectors are closed under finite intersections and generate the Borel sets, so the class argument in the proof of \cref{prop:tonelli-fubini} shows that the two finite measures coincide. Approximating by simple functions and using \cref{prop:integral-limits,prop:tonelli-fubini}, we obtain the formula of integration in polar coordinates
+\begin{equation}\label{eq:polar-coordinates}
+ \int_{B(x,R)}f(y)\,\mathrm d y
+ =\int_0^R r^{d-1}\int_{S^{d-1}}f(x+r\omega)\,\mathrm d S(\omega)\,\mathrm d r
+\end{equation}
+for nonnegative and for integrable functions $f$ on $B(x,R)$.
+
+Next we prove the divergence theorem on balls. Let $B=B(c,R)$, let $\nu(y)=(y-c)/R$ be the outward unit normal on $\partial B$, and let $F=(F_1,\ldots,F_d)$ be a $C^1$ vector field on a neighborhood of $\overline B$, with divergence $\operatorname{div}F=\sum_{j=1}^d\partial_jF_j$. Then
+\begin{equation}\label{eq:ball-divergence}
+ \int_B\operatorname{div}F\,\mathrm dy=\int_{\partial B}F\cdot\nu\,\mathrm dS.
+\end{equation}
+In dimension one this is the fundamental theorem of calculus, so let $d\geq2$. It suffices to prove that $\int_B\partial_jF_j\,\mathrm dy=\int_{\partial B}F_j\nu_j\,\mathrm dS$ for each $j$. Write $y=(y',y_j)$, where $y'\in\mathbb R^{d-1}$ collects the other coordinates, let $B'$ be the open ball of radius $R$ about $c'$ in $\mathbb R^{d-1}$, and put $g_\pm(y')=c_j\pm(R^2-|y'-c'|^2)^{1/2}$. By Fubini's theorem and the fundamental theorem of calculus,
+\[
+ \int_B\partial_jF_j\,\mathrm dy=\int_{B'}\bigl(F_j(y',g_+(y'))-F_j(y',g_-(y'))\bigr)\,\mathrm dy'.
+\]
+It remains to identify the two terms with the integrals of $F_j\nu_j$ over the open hemispheres $\partial B\cap\{\pm(y_j-c_j)>0\}$; the equator $\partial B\cap\{y_j=c_j\}$ has surface measure zero, because the cone over it lies in a hyperplane. Consider first the unit sphere. The map $(t,\omega')\mapsto t\bigl(\omega',(1-|\omega'|^2)^{1/2}\bigr)$, with the last entry placed in the $j$th coordinate, is a diffeomorphism from $(0,1)\times\{\omega'\in\mathbb R^{d-1}:|\omega'|<1\}$ onto the open half-ball $\{|y|<1,\ y_j>0\}$, and the absolute value of its Jacobian determinant is $t^{d-1}(1-|\omega'|^2)^{-1/2}$. If $A'$ is a Borel subset of the unit ball of $\mathbb R^{d-1}$ and $A$ is the set of points of the upper hemisphere lying over $A'$, the definition of $S$ and the change of variables formula therefore give
+\[
+ S(A)=d\int_{A'}\int_0^1t^{d-1}(1-|\omega'|^2)^{-1/2}\,\mathrm dt\,\mathrm d\omega'=\int_{A'}(1-|\omega'|^2)^{-1/2}\,\mathrm d\omega'.
+\]
+Since $\omega_j=(1-|\omega'|^2)^{1/2}$ on the upper hemisphere, this says that $\omega_j\,\mathrm dS=\mathrm d\omega'$ there. After dilation and translation we obtain $\nu_j\,\mathrm dS=\mathrm dy'$ on the upper hemisphere of $\partial B$, and similarly $\nu_j\,\mathrm dS=-\mathrm dy'$ on the lower one. Hence the right side of the last display equals $\int_{\partial B}F_j\nu_j\,\mathrm dS$, which proves \eqref{eq:ball-divergence}.
+
+We also need the corresponding identity on an annulus. Let $0<r<R$, and let $F$ be a $C^1$ vector field on a neighborhood $U$ of the closed annulus $\{r\leq|y-c|\leq R\}$. Choose a smooth function $\eta$ with compact support in $U$ which equals one near the annulus (\cref{lem:mollifier-density}). Then $\eta F$, extended by zero outside $U$, is a $C^1$ vector field on $\mathbb R^d$. Applying \eqref{eq:ball-divergence} to $\eta F$ on $B(c,R)$ and on $B(c,r)$ and subtracting, we obtain
+\begin{equation}\label{eq:annulus-divergence}
+ \int_{r<|y-c|<R}\operatorname{div}F\,\mathrm dy=\int_{\partial B(c,R)}F\cdot\nu\,\mathrm dS-\int_{\partial B(c,r)}F\cdot\nu\,\mathrm dS,
+\end{equation}
+where $\nu(y)=(y-c)/|y-c|$ on both spheres.
+
+For a continuous function $u$ on $\Omega$ and a closed ball $\overline{B(x,r)}\subset\Omega$, we write
+\[
+ M_u(x,r)=\frac{1}{s_{d-1}}\int_{S^{d-1}}u(x+r\omega)\,\mathrm d S(\omega)
+\]
+for the mean of $u$ over the sphere $\partial B(x,r)$. We say that $u$ has the \emph{sphere mean-value property}\index{mean-value property} if $u(x)=M_u(x,r)$ for every closed ball $\overline{B(x,r)}\subset\Omega$, and the \emph{ball mean-value property} if $u(x)=|B(x,r)|^{-1}\int_{B(x,r)}u\,\mathrm dy$ for every such ball.
 
 \begin{proposition}\label{prop:spherical-mean-derivative}
-For $u\in C^2(\Omega)$ and $\overline{B(x,R)}\subset\Omega$, put
-\[
- M_u(x,r)=s_{d-1}^{-1}\int_{S^{d-1}}u(x+r\omega)\,\mathrm d S(\omega).
-\]
-Then, for $0<r<R$,
+Let $u\in C^2(\Omega)$ and $\overline{B(x,R)}\subset\Omega$. Then, for $0<r<R$,
 \begin{equation}\label{eq:spherical-mean-derivative}
  \frac{\mathrm d}{\mathrm d r}M_u(x,r)
  =\frac{1}{s_{d-1}r^{d-1}}\int_{B(x,r)}\Delta u(y)\,\mathrm d y.
 \end{equation}
-In particular, harmonic functions have both the sphere and ball mean-value properties.
+In particular, harmonic functions have both the sphere and the ball mean-value properties.
 \end{proposition}
 \begin{proof}
-Differentiate the sphere integral and apply the ball divergence identity to $\nabla u$. Rescaling its boundary integral gives \eqref{eq:spherical-mean-derivative}. If $\Delta u=0$, the spherical mean is constant in $r$ and tends to $u(x)$ as $r\downarrow0$, by continuity. Integrating the spherical identity in polar coordinates gives the ball identity. For $d=1$, differentiation of $(u(x+r)+u(x-r))/2$ gives the same formula directly.
+Since $u$ is $C^1$ on a neighborhood of $\overline{B(x,R)}$, we may differentiate under the integral sign:
+\[
+ \frac{\mathrm d}{\mathrm d r}M_u(x,r)=\frac{1}{s_{d-1}}\int_{S^{d-1}}\nabla u(x+r\omega)\cdot\omega\,\mathrm dS(\omega)=\frac{1}{s_{d-1}r^{d-1}}\int_{\partial B(x,r)}\nabla u\cdot\nu\,\mathrm dS.
+\]
+Applying \eqref{eq:ball-divergence} to $F=\nabla u$, whose divergence is $\Delta u$, gives \eqref{eq:spherical-mean-derivative}. In dimension one, where $M_u(x,r)=(u(x+r)+u(x-r))/2$, the same formula can also be checked directly.
+
+Now let $u$ be harmonic. Then $M_u(x,\cdot)$ is constant on $(0,R)$. Since $|M_u(x,r)-u(x)|\leq\max_{|y-x|=r}|u(y)-u(x)|$, which tends to zero as $r\downarrow0$ because $u$ is continuous at $x$, the constant is $u(x)$. If $\overline{B(x,r)}\subset\Omega$, compactness gives $R>r$ with $\overline{B(x,R)}\subset\Omega$, so $u(x)=M_u(x,r)$; this is the sphere mean-value property. Multiplying by $s_{d-1}r^{d-1}$ and integrating in $r$, \eqref{eq:polar-coordinates} gives $\int_{B(x,r)}u\,\mathrm dy=s_{d-1}r^du(x)/d=|B(x,r)|\,u(x)$, which is the ball mean-value property.
 \end{proof}
 
 \begin{theorem}\label{thm:harmonic-mean-characterization}
-A continuous function is harmonic if and only if it has the sphere mean-value property for every ball compactly contained in its domain. Every harmonic function is smooth. If $h$ is harmonic and $\overline{B(x,r)}\subset\Omega$, then for every multi-index $\alpha$,
+A continuous function on $\Omega$ is harmonic if and only if it has the sphere mean-value property. Every harmonic function is smooth. If $h$ is harmonic on $\Omega$ and $\overline{B(x,r)}\subset\Omega$, then for every multi-index $\alpha$,
 \begin{equation}\label{eq:harmonic-interior-derivatives}
  |\partial^\alpha h(x)|\leq C_{d,\alpha}r^{-d-|\alpha|}\int_{B(x,r)}|h(y)|\,\mathrm d y,
 \end{equation}
-where the constants depend only on $d$, $\alpha$, and the fixed mollifier of \cref{sec:convolution}.
+where the constant $C_{d,\alpha}$ depends only on $d$, $\alpha$, and the fixed mollifier $\rho$ of \cref{sec:convolution}.
 \end{theorem}
 \begin{proof}
-Polar integration and radiality of the mollifier show that a continuous function with the sphere mean-value property satisfies $u*\rho_\varepsilon=u$ on $\Omega_\varepsilon$. \Cref{prop:distribution-smoothing} makes it smooth there, hence everywhere. Taylor's formula at $x$ and sphere symmetry give
+Recall from \cref{sec:convolution} the mollifiers $\rho_\varepsilon$, the sets $\Omega_\varepsilon$ and the mollifications $u_\varepsilon=u*\rho_\varepsilon$. Let $u$ be continuous with the sphere mean-value property. If $x\in\Omega_\varepsilon$, then $\overline{B(x,\varepsilon)}\subset\Omega$. Since $\rho$ is even and depends only on $|y|$, we may write $\rho_\varepsilon(y)=\phi_\varepsilon(|y|)$, and \eqref{eq:polar-coordinates} gives
+\begin{align*}
+ u_\varepsilon(x)&=\int_{B(0,\varepsilon)}u(x+y)\rho_\varepsilon(y)\,\mathrm dy=s_{d-1}\int_0^\varepsilon r^{d-1}\phi_\varepsilon(r)M_u(x,r)\,\mathrm dr\\
+ &=u(x)\int_{\mathbb R^d}\rho_\varepsilon\,\mathrm dy=u(x).
+\end{align*}
+Thus $u=u_\varepsilon$ on $\Omega_\varepsilon$, and $u_\varepsilon$ is smooth there by \cref{prop:distribution-smoothing}. As $\Omega$ is the union of the sets $\Omega_\varepsilon$, the function $u$ is smooth. Fix $x\in\Omega$. Taylor's formula gives
+\[
+ u(x+r\omega)=u(x)+r\sum_j\partial_ju(x)\,\omega_j+\frac{r^2}{2}\sum_{j,k}\partial_j\partial_ku(x)\,\omega_j\omega_k+o(r^2),
+\]
+uniformly in $\omega\in S^{d-1}$. We average over the sphere. The reflections $\omega\mapsto-\omega$ and $\omega_j\mapsto-\omega_j$ preserve $S$, so $\int\omega_j\,\mathrm dS=0$ and $\int\omega_j\omega_k\,\mathrm dS=0$ for $j\neq k$. Permutations of the coordinates also preserve $S$, so the integrals $\int\omega_j^2\,\mathrm dS$ are all equal, and their sum is $s_{d-1}$ because $\sum_j\omega_j^2=1$. Hence
 \[
  M_u(x,r)=u(x)+\frac{r^2}{2d}\Delta u(x)+o(r^2).
 \]
-Here $\int\omega_j\omega_k\,\mathrm d S=0$ for $j\neq k$ by reflection, and each diagonal integral equals $s_{d-1}/d$ by permutation symmetry and $\sum\omega_j^2=1$. The mean-value property forces $\Delta u(x)=0$. The reverse implication is \cref{prop:spherical-mean-derivative}.
+Since $M_u(x,r)=u(x)$ for all small $r$, it follows that $\Delta u(x)=0$. Thus $u$ is harmonic. Conversely, harmonic functions have the sphere mean-value property by \cref{prop:spherical-mean-derivative}; in particular they are smooth.
 
-For a harmonic $h$, the convolution identity with radius $r$ holds on a neighborhood of $x$. Differentiating its kernel gives
+Now let $h$ be harmonic and $\overline{B(x,r)}\subset\Omega$. Then $x$ lies in the open set $\Omega_r$, and $h=h*\rho_r$ near $x$ by the first part of the proof. Differentiating under the integral sign, as in \cref{prop:distribution-smoothing}, we get
 \[
- \partial^\alpha h(x)=\int h(y)\partial^\alpha\rho_r(x-y)\,\mathrm d y.
+ \partial^\alpha h(x)=\int_{B(x,r)} h(y)\,(\partial^\alpha\rho_r)(x-y)\,\mathrm d y.
 \]
-Since $\|\partial^\alpha\rho_r\|_\infty=r^{-d-|\alpha|}\|\partial^\alpha\rho\|_\infty$, this proves \eqref{eq:harmonic-interior-derivatives}.
+Since $\partial^\alpha\rho_r(z)=r^{-d-|\alpha|}(\partial^\alpha\rho)(z/r)$, this proves \eqref{eq:harmonic-interior-derivatives} with $C_{d,\alpha}=\sup|\partial^\alpha\rho|$.
 \end{proof}
 
 \begin{proposition}\label{prop:harmonic-maximum}
-A real harmonic function on a connected open set which attains its global maximum or minimum at an interior point is constant. If $D$ is a bounded open set and $h$ is harmonic on $D$ with $\limsup_{D\ni x\to\zeta}h(x)\leq0$ for every $\zeta\in\partial D$, then $h\leq0$ on $D$. Consequently a harmonic function continuous on the closure of a bounded domain is determined by its boundary values.
+Let $h$ be a real harmonic function on an open set $D\subset\mathbb R^d$.
+\begin{enumerate}
+\item If $D$ is connected and $h$ attains its maximum or its minimum over $D$ at a point of $D$, then $h$ is constant.
+\item If $D$ is bounded and $\limsup_{D\ni x\to\zeta}h(x)\leq0$ for every $\zeta\in\partial D$, then $h\leq0$ on $D$.
+\end{enumerate}
+Consequently, a harmonic function on a bounded open set which is continuous on its closure is determined by its boundary values.
 \end{proposition}
 \begin{proof}
-At a point where the global maximum is attained, the ball mean equals that maximum and all values are at most it. Continuity therefore forces equality everywhere on each sufficiently small ball. The maximum locus is thus open as well as closed; connectedness proves the first assertion. Replace $h$ by $-h$ for the minimum.
+For the first assertion, suppose that $h$ attains its maximum $m$ at a point of $D$, and let $E=\{x\in D:h(x)=m\}$. This set is nonempty and closed in $D$. If $x\in E$ and $\overline{B(x,r)}\subset D$, the ball mean-value property gives $\int_{B(x,r)}(m-h)\,\mathrm dy=0$. The integrand is continuous and nonnegative, so it vanishes on $B(x,r)$. Thus $E$ is open, and $E=D$ by connectedness. For the minimum, apply this to $-h$.
 
-For the second assertion, fix $\varepsilon>0$. Each boundary point has a neighborhood on which $h<\varepsilon$ inside $D$. A finite subcover of the compact boundary leaves a compact subset of $D$ on which any value greater than $\varepsilon$ would force a positive global maximum. The first assertion on its component would make $h$ constant there; a boundary point of that bounded component contradicts the boundary condition. Hence $h\leq\varepsilon$, and $\varepsilon\downarrow0$ gives $h\leq0$. Apply the result to the difference of two candidate solutions and to its negative for uniqueness.
+For the second assertion, let $\varepsilon>0$. Each $\zeta\in\partial D$ has a ball $B(\zeta,r_\zeta)$ such that $h<\varepsilon$ on $D\cap B(\zeta,r_\zeta)$. Since $D$ is bounded, $\partial D$ is compact, and finitely many of these balls cover it; let $W$ be their union. Then $K=\overline D\setminus W=D\setminus W$ is compact. Suppose that $h>\varepsilon$ somewhere in $D$. Since $h<\varepsilon$ on $D\cap W$, the function $h$ attains its maximum over $D$ at a point $x_0\in K$, and $h(x_0)>\varepsilon$. Let $D_0$ be the component of $D$ containing $x_0$. By the first assertion $h=h(x_0)$ on $D_0$. Since $D_0$ is bounded and nonempty, it has a boundary point $\zeta$. This point does not lie in $D$, because a component of $D$ containing $\zeta$ would be an open set meeting $D_0$ and hence equal to $D_0$. Thus $\zeta\in\partial D$ and $\limsup_{D\ni x\to\zeta}h(x)\geq h(x_0)>0$, contradicting the hypothesis. Hence $h\leq\varepsilon$ on $D$, and letting $\varepsilon\downarrow0$ gives $h\leq0$.
+
+Finally, if two harmonic functions on a bounded open set are continuous on its closure and agree on its boundary, apply the second assertion to the real and imaginary parts of their difference and of its negative.
 \end{proof}
 
 \begin{theorem}[Weyl's lemma]\label{thm:weyl}
-If $T\in\mathcal D'(\Omega)$ satisfies $\Delta T=0$, then it is the distribution of a unique smooth harmonic function. In particular, a locally integrable distributionally harmonic function agrees almost everywhere with that function.
+Let $T\in\mathcal D'(\Omega)$ satisfy $\Delta T=0$. Then there is a unique smooth harmonic function $h$ on $\Omega$ such that $\langle T,\chi\rangle=\int_\Omega h\chi\,\mathrm dx$ for every $\chi\in C_c^\infty(\Omega)$. In particular, a locally integrable function whose distributional Laplacian vanishes agrees almost everywhere with a harmonic function.\index{Weyl's lemma}
 \end{theorem}
 \begin{proof}
-By \cref{prop:distribution-smoothing}, $T_\varepsilon$ is a smooth harmonic function on $\Omega_\varepsilon$. Choose $\overline{B(x,3r)}\subset\Omega$ and $\varepsilon<r$. The radial mean-value identity gives, on $B(x,r)$,
+For a test function $\phi$ on $\mathbb R^d$ supported in $\overline{B(0,s)}$ and $y\in\Omega_s$, write $(T*\phi)(y)=\langle T,\phi(y-\cdot)\rangle$; thus $T_\varepsilon=T*\rho_\varepsilon$ in the notation of \cref{prop:distribution-smoothing}. The argument in the proof of that proposition, with $\rho_\varepsilon$ replaced by $\phi$, shows that $T*\phi$ is smooth on $\Omega_s$ and that $\partial^\alpha(T*\phi)=T*\partial^\alpha\phi$. By \cref{prop:distribution-smoothing}, $\Delta T_\varepsilon=(\Delta T)_\varepsilon=0$, so $T_\varepsilon$ is a smooth harmonic function on $\Omega_\varepsilon$.
+
+Fix $x\in\Omega$ and $r>0$ with $\overline{B(x,3r)}\subset\Omega$, and let $0<\varepsilon<r$. Every point of $B(x,2r)$ has distance greater than $r$ from $\mathbb R^d\setminus\Omega$, so $B(x,2r)\subset\Omega_\varepsilon$. For $y\in B(x,r)$ the closed ball $\overline{B(y,r)}$ lies in $B(x,2r)$, and the identity $u=u*\rho_r$ from the proof of \cref{thm:harmonic-mean-characterization}, applied to $u=T_\varepsilon$, gives $T_\varepsilon(y)=\int T_\varepsilon(z)\rho_r(y-z)\,\mathrm dz$. Applying \eqref{eq:distribution-convolution-pairing} to the test function $\rho_r(y-\cdot)$, which is supported in $\Omega_\varepsilon$, and using that $\rho_r$ and $\rho_\varepsilon$ are even, we obtain
 \[
- T_\varepsilon=T_\varepsilon*\rho_r=T*(\rho_\varepsilon*\rho_r).
+ T_\varepsilon=T*(\rho_\varepsilon*\rho_r)\qquad\text{on }B(x,r).
 \]
-The last identity follows by passing Riemann sums through $T$ as in \eqref{eq:distribution-convolution-pairing}; all kernels have common compact support in $\Omega$. The kernels $\rho_\varepsilon*\rho_r$ converge to $\rho_r$ in every derivative. The distribution estimate, also applied after differentiating in the center, gives convergence of the displayed smooth functions in every derivative on smaller compact sets to $T*\rho_r$. This limit is harmonic and represents $T$ there because $T_\varepsilon\to T$ distributionally. The local representatives agree on overlaps by injectivity in \cref{prop:distribution-smoothing}, and hence define a global smooth harmonic function. That same injectivity proves uniqueness and the almost-everywhere assertion.
+As $\varepsilon\to0$, the kernels $\rho_\varepsilon*\rho_r$ converge to $\rho_r$ uniformly with all derivatives, with supports in $\overline{B(0,2r)}$, by \cref{lem:mollifier-density}. Let $C$ and $m$ be the constants of \cref{def:distribution} for $T$ and the compact set $\overline{B(x,3r)}$, which contains the supports of $(\rho_\varepsilon*\rho_r)(y-\cdot)$ and $\rho_r(y-\cdot)$ for $y\in B(x,r)$. For every multi-index $\alpha$,
+\[
+ \sup_{y\in B(x,r)}\bigl|\partial^\alpha T_\varepsilon(y)-\partial^\alpha(T*\rho_r)(y)\bigr|
+ \leq C\max_{|\beta|\leq m}\sup\bigl|\partial^{\alpha+\beta}(\rho_\varepsilon*\rho_r-\rho_r)\bigr|,
+\]
+which tends to zero. Hence $T_\varepsilon\to T*\rho_r$ on $B(x,r)$, uniformly with all derivatives.
+
+Every point of $\Omega$ is the center of such a ball. Therefore $h(y)=\lim_{\varepsilon\to0}T_\varepsilon(y)$ exists for every $y\in\Omega$, and on each ball $B(x,r)$ as above it equals $T*\rho_r$ and is the limit of $T_\varepsilon$ uniformly with all derivatives. Thus $h$ is smooth and $\Delta h=\lim_{\varepsilon\to0}\Delta T_\varepsilon=0$. Every compact subset of $\Omega$ is covered by finitely many of these balls, so $T_\varepsilon\to h$ uniformly on compact sets, and \cref{prop:distribution-smoothing} gives $\int h\chi\,\mathrm dx=\lim_{\varepsilon\to0}\int T_\varepsilon\chi\,\mathrm dx=\langle T,\chi\rangle$ for every test function $\chi$. If two continuous functions define the same distribution, they agree almost everywhere by \cref{prop:distribution-smoothing}, and hence everywhere, since nonempty open sets have positive measure. This proves uniqueness. The last assertion follows from the same injectivity.
 \end{proof}
 
 \Needspace{17\baselineskip}
 \section{Fundamental solutions}
 \label{sec:fundamental-solutions}
-A fundamental solution\index{fundamental solution!Laplacian} for $\Delta$ is a distribution $E$ on $\mathbb R^d$ with $\Delta E=\delta_0$. The normalization fixes the sign of the potentials used later.
+A fundamental solution\index{fundamental solution!Laplacian} of $\Delta$ is a distribution $E$ on $\mathbb R^d$ with $\Delta E=\delta_0$. We fix the following choice; its sign determines the sign of all potentials used later.
 
 \begin{proposition}\label{prop:laplacian-fundamental-solution}
 The locally integrable functions
@@ -85,151 +150,185 @@ The locally integrable functions
  -((d-2)s_{d-1})^{-1}|x|^{2-d},&d\geq3
  \end{cases}
 \end{equation}
-are fundamental solutions of $\Delta$. For $d\geq2$ set $E_d(0)=-\infty$; this does not affect the associated distribution. They are harmonic away from zero. For $f\in C_c^\infty(\mathbb R^d)$, $E_d*f$ is smooth and satisfies $\Delta(E_d*f)=f$.
+are fundamental solutions of $\Delta$. For $d\geq2$ we set $E_d(0)=-\infty$; this does not affect the associated distribution. Each $E_d$ is harmonic on $\mathbb R^d\setminus\{0\}$. For $f\in C_c^\infty(\mathbb R^d)$, the convolution $(E_d*f)(x)=\int E_d(x-y)f(y)\,\mathrm dy$ is smooth and satisfies $\Delta(E_d*f)=f$.
 \end{proposition}
 \begin{proof}
-For a radial function $F(|x|)$, differentiation gives $\Delta F=F''+(d-1)F'/|x|$ away from zero. The functions in \eqref{eq:laplacian-fundamental-solution} therefore are harmonic there. Their local integrability follows from polar integration: the singular radial integrands are $r|\log r|$ in dimension two and $r$ in higher dimensions. In dimension one, the derivative of $|x|/2$ is $\operatorname{sign}(x)/2$ off zero, and one-variable integration by parts against a test function gives its second distributional derivative $\delta_0$.
+For a function of the form $F(|x|)$ with $F\in C^2(0,\infty)$, differentiation gives $\Delta F(|x|)=F''(|x|)+(d-1)F'(|x|)/|x|$ for $x\neq0$. A direct computation shows that this vanishes for the functions in \eqref{eq:laplacian-fundamental-solution}, which are therefore harmonic off the origin. They are continuous off the origin and locally integrable: for $d\geq2$, by \eqref{eq:polar-coordinates}, the integral of $|E_d|$ over $B(0,1)$ is a constant multiple of $\int_0^1r|\log r|\,\mathrm dr$ when $d=2$ and of $\int_0^1r\,\mathrm dr$ when $d\geq3$. In dimension one, the derivative of $|x|/2$ is $\operatorname{sign}(x)/2$ for $x\neq0$, and two integrations by parts on $(-\infty,0)$ and $(0,\infty)$ give $\int\frac{|x|}{2}\chi''(x)\,\mathrm dx=\chi(0)$ for every test function $\chi$; that is, $E_1''=\delta_0$.
 
-For $d\geq2$, integrate $E_d\Delta\chi$ on an annulus $\varepsilon<|x|<R$ with $\chi$ supported inside the outer ball. Applying the divergence identity to $E_d\nabla\chi-\chi\nabla E_d$ gives
+Let $d\geq2$, let $\chi$ be a test function, and choose $R$ with $\Supp\chi\subset B(0,R)$. On the annulus $\varepsilon<|x|<R$ we have $\operatorname{div}(E_d\nabla\chi-\chi\nabla E_d)=E_d\Delta\chi$, because $\Delta E_d=0$ there. The vector field vanishes near $|x|=R$, so \eqref{eq:annulus-divergence} gives
 \[
  \int_{|x|>\varepsilon}E_d\Delta\chi\,\mathrm d x
- =\int_{|x|=\varepsilon}\left(-E_d\partial_r\chi+\chi\partial_rE_d\right)\mathrm d S.
+ =\int_{|x|=\varepsilon}\left(-E_d\partial_r\chi+\chi\partial_rE_d\right)\mathrm d S,
 \]
-The first boundary term tends to zero: its absolute value is bounded by a fixed multiple of $\varepsilon|\log\varepsilon|$ or $\varepsilon$. The radial derivative is $(s_{d-1}\varepsilon^{d-1})^{-1}$, so the second term is the sphere average of $\chi$ and tends to $\chi(0)$. Local integrability permits the interior integral to tend to $\int E_d\Delta\chi$. This proves $\Delta E_d=\delta_0$.
+where $\partial_r$ denotes the derivative in the direction of $x/|x|$. The first boundary term tends to zero as $\varepsilon\to0$: its absolute value is at most $\sup|\nabla\chi|$ times $\varepsilon|\log\varepsilon|$ if $d=2$, and times $\varepsilon/(d-2)$ if $d\geq3$. Since $s_1=2\pi$, the radial derivative of $E_d$ on $|x|=\varepsilon$ equals $(s_{d-1}\varepsilon^{d-1})^{-1}$ in all dimensions $d\geq2$, so the second term is the mean $M_\chi(0,\varepsilon)$, which tends to $\chi(0)$. On the left, $E_d$ is locally integrable, so dominated convergence gives the limit $\int E_d\Delta\chi\,\mathrm dx$. Hence $\langle\Delta E_d,\chi\rangle=\langle E_d,\Delta\chi\rangle=\chi(0)$, that is, $\Delta E_d=\delta_0$.
 
-On a compact set of centers the convolution integral has a common bounded region of integration. Differentiation can be transferred to $f$ by writing it as $\int E_d(y)f(x-y)\,\mathrm d y$, and dominated convergence proves smoothness. The same pairing calculation gives $\Delta(E_d*f)=(\Delta E_d)*f=\delta_0*f=f$.
+Finally, let $f\in C_c^\infty(\mathbb R^d)$ and write $(E_d*f)(x)=\int E_d(y)f(x-y)\,\mathrm dy$. For $x$ in a compact set, the integrand vanishes unless $y$ lies in a fixed bounded set, and every derivative of $f$ is bounded. Since $E_d$ is locally integrable, dominated convergence allows us to differentiate under the integral sign any number of times, so $E_d*f$ is smooth and $\partial^\alpha(E_d*f)=E_d*\partial^\alpha f$. In particular, since $\Delta_y[f(x-y)]=(\Delta f)(x-y)$,
+\[
+ \Delta(E_d*f)(x)=\int E_d(y)\,\Delta_y[f(x-y)]\,\mathrm dy=\langle\Delta E_d,f(x-\cdot)\rangle=f(x).
+\]
 \end{proof}
-The kernels for $-\Delta$ are $\Gamma_d=-E_d$. In dimension two a constant may be added to $\Gamma_2$ to make it nonnegative on a prescribed bounded range of distances; its singularity is $-(2\pi)^{-1}\log|x|$. Both the constant and the range must remain fixed in such a use.
+We shall also use $\Gamma_d=-E_d$, which satisfies $-\Delta\Gamma_d=\delta_0$; the Green kernels of \cref{sec:harmonic-measure-green} are normalized by this sign. For $d\geq3$ the function $\Gamma_d$ is positive. In dimension two, $\Gamma_2(x)=(2\pi)^{-1}\log(1/|x|)$ changes sign at $|x|=1$. Adding a constant to $\Gamma_2$ changes neither its singularity $-(2\pi)^{-1}\log|x|$ at the origin nor the equation $-\Delta\Gamma_2=\delta_0$, and a suitable constant makes it nonnegative on any prescribed bounded range of distances. When such a normalization is used, the constant and the range are fixed in advance.
 
 \section{Poisson kernels and Harnack inequalities}
 \label{sec:poisson-kernels}
-For $d\geq2$, $B=B(0,R)$, $x\in B$, and $\zeta\in\partial B$, put
+Let $D\subset\mathbb R^d$ be a bounded open set. The \emph{Dirichlet problem}\index{Dirichlet problem!Laplacian} on $D$ asks, for a given $f\in C(\partial D)$, for a function $h$ which is harmonic on $D$ and continuous on $\overline D$ with $h=f$ on $\partial D$. By \cref{prop:harmonic-maximum} it has at most one solution. On a ball the solution is given by an explicit integral formula. For $d\geq2$, a ball $B=B(c,R)$, $x\in B$ and $\zeta\in\partial B$, put
 \begin{equation}\label{eq:ball-poisson-kernel}
- P_B(x,\zeta)=\frac{R^2-|x|^2}{s_{d-1}R|x-\zeta|^d}.
+ P_B(x,\zeta)=\frac{R^2-|x-c|^2}{s_{d-1}R|x-\zeta|^d}.
 \end{equation}
-For other centers translate this formula. In dimension one the Poisson integral on $(a,b)$ is the affine interpolation of the two endpoint values.
+This is the Poisson kernel\index{Poisson kernel} of $B$. In dimension one, $B=(a,b)$ and $\partial B=\{a,b\}$ carries counting measure, and the Poisson integral below is the affine interpolation $H_Bf(x)=\bigl((b-x)f(a)+(x-a)f(b)\bigr)/(b-a)$ of the two endpoint values; this is also what \eqref{eq:ball-poisson-kernel} gives for $d=1$.
 
 \Needspace{12\baselineskip}
 \begin{theorem}\label{thm:ball-dirichlet}
-For $f\in C(\partial B)$, the Poisson integral
+Let $B$ be a ball and $f\in C(\partial B)$. The Poisson integral
 \[
- H_Bf(x)=\int_{\partial B}P_B(x,\zeta)f(\zeta)\,\mathrm d S(\zeta)
+ H_Bf(x)=\int_{\partial B}P_B(x,\zeta)f(\zeta)\,\mathrm d S(\zeta),\qquad x\in B,
 \]
-is the unique harmonic function on $B$ extending continuously to $f$ on $\partial B$. The kernel is positive and has integral one. The operator $H_B$ is linear, preserves order, and satisfies $\|H_Bf\|_\infty\leq\|f\|_\infty$. Every harmonic function defined near $\overline B$ has this Poisson representation.
+is the unique harmonic function on $B$ which extends continuously to $\overline B$ with boundary values $f$. The kernel is positive, and $\int_{\partial B}P_B(x,\zeta)\,\mathrm dS(\zeta)=1$ for every $x\in B$. The operator $H_B$ is linear, preserves order, and satisfies $\sup_B|H_Bf|\leq\max_{\partial B}|f|$. Every function harmonic on a neighborhood of $\overline B$ is the Poisson integral of its restriction to $\partial B$.
 \end{theorem}
 \begin{proof}
-For fixed $\zeta$, set $A=R^2-|x|^2$ and $t=|x-\zeta|$. Direct differentiation gives
+In dimension one all assertions follow directly from the explicit formula for $H_Bf$, so let $d\geq2$; we may assume that $c=0$. Fix $\zeta\in\partial B$ and put $A(x)=R^2-|x|^2$ and $t(x)=|x-\zeta|$. We have $\nabla A=-2x$, $\Delta A=-2d$, $\nabla t^{-d}=-dt^{-d-2}(x-\zeta)$ and, by the radial formula in the proof of \cref{prop:laplacian-fundamental-solution}, $\Delta t^{-d}=2dt^{-d-2}$. Hence
 \[
- \Delta(At^{-d})=2dt^{-d-2}\bigl(-t^2+2x\cdot(x-\zeta)+R^2-|x|^2\bigr)=0,
+ \Delta(At^{-d})=2dt^{-d-2}\bigl(-t^2+2x\cdot(x-\zeta)+R^2-|x|^2\bigr)=2dt^{-d-2}(R^2-|\zeta|^2)=0.
 \]
-since $|\zeta|=R$. Thus the kernel is harmonic in $x$. Differentiation under the boundary integral is allowed on every compact subset of $B$, where the denominators are bounded away from zero. Its integral over $\zeta$ is a smooth harmonic radial function of $x$. The radial differential equation in the proof of \cref{prop:laplacian-fundamental-solution} shows that a radial harmonic function smooth at zero is constant. Evaluation at zero gives that constant as one.
+Thus $P_B(\cdot,\zeta)$ is harmonic on $B$. On a compact subset of $B$ the denominators $|x-\zeta|^d$ are bounded away from zero, so we may differentiate under the integral sign, and $H_Bf$ is smooth and harmonic on $B$. In particular, $I(x)=\int_{\partial B}P_B(x,\zeta)\,\mathrm dS(\zeta)$ is harmonic. It is also radial, because $P_B(Qx,Q\zeta)=P_B(x,\zeta)$ for every orthogonal transformation $Q$ and $S$ is invariant under $Q$. Write $I(x)=F(|x|)$. The radial formula gives $(r^{d-1}F'(r))'=r^{d-1}\bigl(F''(r)+(d-1)F'(r)/r\bigr)=0$ on $(0,R)$, so $r^{d-1}F'(r)$ is constant. Since $I$ is smooth at the origin, $F'$ is bounded near $0$, and as $d\geq2$ the constant is zero. Hence $I$ is constant, and its value is $I(0)=R^2\cdot s_{d-1}R^{d-1}/(s_{d-1}R\cdot R^d)=1$.
 
-Fix $\zeta_0\in\partial B$. In a small boundary cap, uniform continuity makes $|f(\zeta)-f(\zeta_0)|<\varepsilon$. The integral of this difference over the cap is at most $\varepsilon$, by positivity and normalization. On its complement, when $x$ is close to $\zeta_0$, the kernel is bounded by a constant times $R^2-|x|^2$, since $|x-\zeta|$ has a positive lower bound. Its contribution tends to zero as $x\to\zeta_0$. Hence $H_Bf\to f(\zeta_0)$. \Cref{prop:harmonic-maximum} proves uniqueness. Positivity, the integral-one identity and the displayed formula prove the remaining operator assertions. The endpoint interpolation gives all the same conclusions in dimension one.
+Next fix $\zeta_0\in\partial B$ and $\varepsilon>0$, and choose $\delta>0$ such that $|f(\zeta)-f(\zeta_0)|<\varepsilon$ for $\zeta\in\partial B$ with $|\zeta-\zeta_0|<\delta$. Since the kernel is positive with integral one,
+\begin{align*}
+ |H_Bf(x)-f(\zeta_0)|&\leq\int_{\partial B}P_B(x,\zeta)|f(\zeta)-f(\zeta_0)|\,\mathrm dS(\zeta)\\
+ &\leq\varepsilon+2\max_{\partial B}|f|\int_{\{\zeta\in\partial B:|\zeta-\zeta_0|\geq\delta\}}P_B(x,\zeta)\,\mathrm dS(\zeta).
+\end{align*}
+If $|x-\zeta_0|<\delta/2$, then $|x-\zeta|\geq\delta/2$ in the last integral, so the integral is at most a constant, depending on $\delta$ and $R$, times $R^2-|x|^2$. This tends to zero as $x\to\zeta_0$. Hence $\limsup_{x\to\zeta_0}|H_Bf(x)-f(\zeta_0)|\leq\varepsilon$ for every $\varepsilon>0$, and $H_Bf$ extends continuously to $\overline B$ with boundary values $f$.
+
+Uniqueness follows from \cref{prop:harmonic-maximum}. The operator $H_B$ is linear by definition, and positivity and normalization of the kernel show that $H_B$ preserves order and that $|H_Bf|\leq\max_{\partial B}|f|$. Finally, if $h$ is harmonic on a neighborhood of $\overline B$, then $h$ and $H_B(h|_{\partial B})$ are harmonic on $B$, continuous on $\overline B$ and equal on $\partial B$, so they coincide.
 \end{proof}
+We often regard $H_Bf$ as the continuous function on $\overline B$ which equals $f$ on $\partial B$.
 
 \begin{proposition}\label{prop:harnack-ball}
-If $h\geq0$ is harmonic on $B(0,R)$ and $d\geq2$, then for $r=|x|<R$,
+Let $h\geq0$ be harmonic on $B(0,R)$, let $x\in B(0,R)$ and put $r=|x|$. If $d\geq2$, then
 \begin{equation}\label{eq:harnack-ball}
  \frac{R^{d-2}(R-r)}{(R+r)^{d-1}}h(0)
  \leq h(x)\leq
  \frac{R^{d-2}(R+r)}{(R-r)^{d-1}}h(0).
 \end{equation}
-For $d=1$, $(1-r/R)h(0)\leq h(x)\leq(1+r/R)h(0)$ on $(-R,R)$. A nonnegative harmonic function on a domain is either positive everywhere or identically zero. For a compact $K$ in a domain $\Omega$ and $x_0\in\Omega$, there is $C=C(K,x_0,\Omega)>0$ with
+If $d=1$, then $(1-r/R)h(0)\leq h(x)\leq(1+r/R)h(0)$. A nonnegative harmonic function on a domain is either positive everywhere or identically zero. Finally, let $\Omega$ be a domain, $K\subset\Omega$ compact and $x_0\in\Omega$. Then there is a constant $C=C(K,x_0,\Omega)>0$ such that
 \[
  \sup_K h\leq C h(x_0)
 \]
-for every nonnegative harmonic $h$ on $\Omega$.
+for every nonnegative harmonic function $h$ on $\Omega$.\index{Harnack inequality}
 \end{proposition}
 \begin{proof}
-Use the Poisson formula on $B(0,R')$ with $r<R'<R$. The ratio of its kernel at $x$ to its kernel at zero is bounded below and above by the coefficients of \eqref{eq:harnack-ball} with $R'$ in place of $R$, because $R'-r\leq|x-\zeta|\leq R'+r$. Integrate against the nonnegative boundary values and let $R'\uparrow R$. In one dimension $h(x)=h(0)+ax$, and positivity on $(-R,R)$ gives $|a|\leq h(0)/R$. The zero assertion also follows from the minimum principle.
+Let $d\geq2$ and $r<R'<R$. By \cref{thm:ball-dirichlet} on $B(0,R')$, both $h(x)$ and $h(0)$ are integrals of the nonnegative boundary values of $h$ against the Poisson kernel. For $|\zeta|=R'$ we have $R'-r\leq|x-\zeta|\leq R'+r$, so the ratio of the kernel at $x$ to the kernel at the center lies between the two coefficients in \eqref{eq:harnack-ball} with $R'$ in place of $R$. Integrating and letting $R'\uparrow R$ gives \eqref{eq:harnack-ball}. In dimension one $h(x)=h(0)+ax$ for some $a\in\mathbb R$, and nonnegativity on $(-R,R)$ gives $|a|\leq h(0)/R$. If a nonnegative harmonic function on a domain vanishes at a point, it attains its minimum there and is identically zero by \cref{prop:harmonic-maximum}.
 
-Any two points of an open connected Euclidean set can be joined by a polygonal path in it: the points reachable from a fixed point in this way form an open subset whose complement is also open. Cover a fixed path by finitely many overlapping balls compactly contained in $\Omega$ and apply the ball inequality at successive overlap points. It bounds $h$ near its endpoint by a constant times $h(x_0)$. A finite collection of these endpoint neighborhoods covers $K$ and proves the assertion. All balls and constants are chosen from $K$, $x_0$, and $\Omega$, independently of $h$.
+For the last assertion we first apply the ball estimate to a ball $B(a,2\rho)\subset\Omega$: for $y\in B(a,\rho)$, \eqref{eq:harnack-ball} on $B(a,2\rho)$, or its one-dimensional analogue, gives $h(y)\leq C_0h(a)$ with a constant $C_0$ depending only on $d$. Now let $y\in\Omega$. Since $\Omega$ is connected, $y$ can be joined to $x_0$ by a polygonal path in $\Omega$: the set of points that can be so joined is open, and so is its complement in $\Omega$, because balls are convex. The path is compact, so there is $\rho>0$ with $B(z,2\rho)\subset\Omega$ for every point $z$ of the path. Choose points $x_0=p_0,p_1,\ldots,p_N=y$ along the path with $|p_{i+1}-p_i|<\rho$. Applying the ball estimate on $B(p_i,2\rho)$ for $i=0,\ldots,N-1$ gives $h(y)\leq C_0^Nh(x_0)$, and once more on $B(y,2\rho)$ gives $h\leq C_0^{N+1}h(x_0)$ on $B(y,\rho)$. Here $\rho$ and $N$ depend on $y$, $x_0$ and $\Omega$, but not on $h$. Finitely many of the balls $B(y,\rho)$, $y\in K$, cover $K$, and the largest of the corresponding constants $C_0^{N+1}$ is the required $C$.
 \end{proof}
 
 \begin{corollary}\label{cor:harmonic-normal-limits}
-Let $D\subset\mathbb R^d$ be a domain. Every sequence of nonnegative harmonic functions on $D$ whose values are bounded at one fixed point has a subsequence converging in $C^\infty$ on compact subsets. An increasing sequence of harmonic functions on $D$ either has a finite harmonic limit, with convergence in $C^\infty$ on compact subsets, or tends locally uniformly to $+\infty$. A decreasing sequence either has such a finite harmonic limit or tends locally uniformly to $-\infty$.
+Let $D\subset\mathbb R^d$ be a domain, and say that functions converge in $C^\infty$ on compact subsets if all their partial derivatives converge uniformly on compact subsets of $D$.
+\begin{enumerate}
+\item Every sequence of nonnegative harmonic functions on $D$ which is bounded at one point of $D$ has a subsequence converging in $C^\infty$ on compact subsets; the limit is harmonic.
+\item An increasing sequence of harmonic functions on $D$ either converges in $C^\infty$ on compact subsets to a finite harmonic function, or tends to $+\infty$ uniformly on compact subsets.
+\item A decreasing sequence of harmonic functions on $D$ either converges in $C^\infty$ on compact subsets to a finite harmonic function, or tends to $-\infty$ uniformly on compact subsets.
+\end{enumerate}
 \end{corollary}
 \begin{proof}
-The Harnack bounds and \eqref{eq:harmonic-interior-derivatives} bound every derivative locally. The next derivative bounds give equicontinuity on small compact balls by one-variable integration along segments. The compactness argument for continuous functions in \cref{prop:arzela-ascoli}, followed by a diagonal extraction over a compact exhaustion and all derivatives, gives a $C^\infty$ limit. To identify its derivatives, integrate the first derivatives along sufficiently short coordinate segments and pass to the uniform limit; repeat this argument for higher derivatives. The Laplacian then passes to the limit.
+Let $h_j\geq0$ be harmonic on $D$ with $h_j(x_0)\leq M$. Let $K\subset D$ be compact and choose $\delta>0$ such that $K_\delta=\{y:\operatorname{dist}(y,K)\leq\delta\}$ is contained in $D$. By \cref{prop:harnack-ball}, $h_j\leq C(K_\delta,x_0,D)M$ on $K_\delta$ for all $j$, and \eqref{eq:harmonic-interior-derivatives} with radius $\delta$ then bounds each derivative $\partial^\alpha h_j$ on $K$ uniformly in $j$. Since the derivatives of $\partial^\alpha h_j$ are bounded as well, the functions $\partial^\alpha h_j$ are uniformly Lipschitz on every closed ball in $D$, and hence equicontinuous on compact subsets of $D$. Applying \cref{prop:arzela-ascoli} on the compact exhaustion $(K_m)$ of $D$ constructed in \cref{sec:radon-measures} and making a diagonal extraction over all $m$ and all multi-indices $\alpha$, we obtain a subsequence along which every $\partial^\alpha h_j$ converges uniformly on compact subsets of $D$, say to $g_\alpha$. Writing $e_k$ for the $k$th standard basis vector and integrating along short coordinate segments, $\partial^\alpha h_j(y+te_k)-\partial^\alpha h_j(y)=\int_0^t\partial^{\alpha+e_k}h_j(y+se_k)\,\mathrm ds$, and passing to the uniform limit, we find that $\partial_kg_\alpha=g_{\alpha+e_k}$. By induction, $g=g_0$ is smooth with $\partial^\alpha g=g_\alpha$, so the subsequence converges to $g$ in $C^\infty$ on compact subsets, and $\Delta g=\lim_j\Delta h_j=0$. This proves the first assertion.
 
-For an increasing sequence $h_j$, apply this argument to $h_j-h_1\geq0$ if its values at one point remain bounded. Every convergent subsequence has the same pointwise limit by monotonicity, and compactness therefore makes the whole sequence converge in each compact derivative norm. If the values at one point are unbounded, the reverse Harnack bound, obtained by the same chains, forces divergence to $+\infty$ uniformly on each compact set. Apply this assertion to $h_1-h_j$ for a decreasing sequence.
+We also need a lower Harnack bound: for compact $K\subset D$ and $x_0\in D$ there is $c>0$ such that $h\geq c\,h(x_0)$ on $K$ for every nonnegative harmonic $h$ on $D$. Indeed, if $B(a,2\rho)\subset D$, the left inequality in \eqref{eq:harnack-ball}, or its one-dimensional analogue, gives $h\geq c_0h(a)$ on $B(a,\rho)$ with $c_0>0$ depending only on $d$. Cover $K$ by finitely many balls $B(a_k,\rho_k)$ with $B(a_k,2\rho_k)\subset D$. The last assertion of \cref{prop:harnack-ball}, applied to the compact set $\{x_0\}$ and the base point $a_k$, gives $h(x_0)\leq C_kh(a_k)$. Hence $h\geq(c_0/\max_kC_k)h(x_0)$ on $K$.
+
+Now let $(h_j)$ be increasing and fix $x_0\in D$. The functions $h_j-h_1$ are nonnegative and harmonic. If $h_j(x_0)$ is bounded, the first assertion applies to every subsequence of $(h_j-h_1)$. Since the sequence increases and, by \cref{prop:harnack-ball}, is bounded on compact sets, it has a finite pointwise limit, and every subsequence has a further subsequence converging in $C^\infty$ on compact subsets to this limit. Hence the whole sequence converges in $C^\infty$ on compact subsets, and the limit is a finite harmonic function. If $h_j(x_0)\to+\infty$, the lower Harnack bound gives $h_j-h_1\geq c(h_j(x_0)-h_1(x_0))$ on each compact $K$, and since $h_1$ is bounded on $K$, $h_j\to+\infty$ uniformly on $K$. For a decreasing sequence, apply this to $(-h_j)$.
 \end{proof}
 
 \begin{corollary}\label{cor:harmonic-liouville}
-A harmonic function on $\mathbb R^d$ bounded above or below is constant.
+A real harmonic function on $\mathbb R^d$ which is bounded above or bounded below is constant.\index{Liouville's theorem}
 \end{corollary}
 \begin{proof}
-After changing sign and subtracting a lower bound, it is nonnegative. For two fixed points, the Harnack coefficients on balls of radius $R$ centered at one point tend to one as $R\to\infty$, so their values agree. The same conclusion follows from the one-dimensional affine formula.
+After changing the sign and adding a constant, we may assume that the function $h$ is nonnegative. Fix $x\in\mathbb R^d$ and put $r=|x|$. For $R>r$, \cref{prop:harnack-ball} on $B(0,R)$ gives $c_Rh(0)\leq h(x)\leq C_Rh(0)$ with coefficients $c_R$ and $C_R$ that tend to one as $R\to\infty$; this holds for $d\geq2$ by \eqref{eq:harnack-ball} and for $d=1$ by the one-dimensional inequality. Letting $R\to\infty$ gives $h(x)=h(0)$. Hence $h$ is constant.
 \end{proof}
 
 \section{Perron envelopes and boundary barriers}
 \label{sec:perron-barriers}
-For the rest of this section, $\Omega$ is a bounded domain, and functions and boundary data are real-valued. Its boundary is compact. A continuous subsolution\index{Dirichlet problem!subsolution} on an open set $D$ is a real continuous function $v$ satisfying $v\leq H_B(v|_{\partial B})$ on every ball $\overline B\subset D$. The inequality implies the sphere submean inequality at the center. Conversely, if the sphere submean inequality holds for all sufficiently small radii at each point, then $v$ is a subsolution. Indeed, for a ball $B$ subtract its harmonic Poisson extension and add $\varepsilon|x|^2$. At an interior maximum this new function would be at most its sphere mean minus $\varepsilon r^2$, which is impossible. The boundary values bound its maximum, and $\varepsilon\downarrow0$ gives the required comparison. This proof also shows that the condition is local.
+We now solve the Dirichlet problem on a general bounded domain by Perron's method. Throughout this section $\Omega$ is a bounded domain, so that $\partial\Omega$ is compact and nonempty, and all functions and boundary data are real-valued.
 
-The maximum of two continuous subsolutions is a subsolution: order preservation of $H_B$ bounds each one by $H_B$ of their boundary maximum. Sums and multiplication by nonnegative constants preserve the condition by linearity. Subtracting a harmonic function preserves it. The negative of a subsolution is called a continuous supersolution\index{Dirichlet problem!supersolution}. A $C^2$ function with $\Delta v\geq0$ is a subsolution by \eqref{eq:spherical-mean-derivative}.
+Let $D$ be an open set. A \emph{continuous subsolution}\index{Dirichlet problem!subsolution} on $D$ is a continuous function $v\colon D\to\mathbb R$ such that $v\leq H_B(v|_{\partial B})$ on $B$ for every ball $B$ with $\overline B\subset D$. A function $w$ is a \emph{continuous supersolution}\index{Dirichlet problem!supersolution} if $-w$ is a continuous subsolution. Harmonic functions are both, by the Poisson representation in \cref{thm:ball-dirichlet}. At the center $c$ of $B=B(c,r)$ the Poisson kernel equals $(s_{d-1}r^{d-1})^{-1}$, so a continuous subsolution satisfies the sphere submean inequality $v(c)\leq M_v(c,r)$ whenever $\overline{B(c,r)}\subset D$.
+
+Conversely, a continuous function $v$ on $D$ such that every $c\in D$ satisfies $v(c)\leq M_v(c,r)$ for all sufficiently small $r>0$ is a continuous subsolution. To see this, let $B$ be a ball with $\overline B\subset D$, let $H$ be the Poisson integral of $v|_{\partial B}$, regarded as a continuous function on $\overline B$, and for $\varepsilon>0$ put $w(y)=v(y)-H(y)+\varepsilon|y|^2$. The mean of $|y|^2$ over the sphere $\partial B(c,r)$ is $|c|^2+r^2$, and $M_H(c,r)=H(c)$, so $w(c)\leq M_w(c,r)-\varepsilon r^2$ for every $c\in B$ and all small $r$. On the other hand, at a point $c\in B$ where $w$ attains its maximum over $\overline B$ we would have $w(c)\geq M_w(c,r)$. Hence the maximum of $w$ is attained only on $\partial B$, where $w(y)=\varepsilon|y|^2$. Thus $v-H\leq\varepsilon\max_{\overline B}|y|^2$ on $B$, and letting $\varepsilon\downarrow0$ gives $v\leq H$. In particular, being a continuous subsolution is a local property: if every point of $D$ has an open neighborhood on which $v$ is a continuous subsolution, then $v$ is a continuous subsolution on $D$. It also follows that the continuous subsolutions are exactly the continuous subharmonic functions in the sense of \cref{def:subharmonic}.
+
+These functions are stable under the usual operations. If $v_1$ and $v_2$ are continuous subsolutions, then so is $\max\{v_1,v_2\}$, because $H_B$ preserves order, so that $v_i\leq H_B(v_i|_{\partial B})\leq H_B(\max\{v_1,v_2\}|_{\partial B})$. Sums and multiples by nonnegative constants of continuous subsolutions are continuous subsolutions, by linearity of $H_B$, and so is $v-h$ for every harmonic $h$, because $h=H_B(h|_{\partial B})$ on $B$. Correspondingly, the minimum of two continuous supersolutions is a continuous supersolution. Finally, a function $v\in C^2(D)$ with $\Delta v\geq0$ is a continuous subsolution, because by \eqref{eq:spherical-mean-derivative} the mean $M_v(c,r)$ increases with $r$, and it tends to $v(c)$ as $r\downarrow0$.
 
 \begin{lemma}\label{lem:subsolution-comparison}
-If $D$ is a bounded open set and $v$ is a continuous subsolution on $D$ with $\limsup_{D\ni x\to\zeta}v(x)\leq0$ at every boundary point, then $v\leq0$. If $\overline B\subset D$, replacing $v$ inside $B$ by $H_B(v|_{\partial B})$ produces a continuous subsolution $v^B\geq v$, unchanged outside $B$.
+Let $D$ be a bounded open set and $v$ a continuous subsolution on $D$. If $\limsup_{D\ni x\to\zeta}v(x)\leq0$ for every $\zeta\in\partial D$, then $v\leq0$ on $D$. Moreover, if $B$ is a ball with $\overline B\subset D$, then the function $v^B$ which equals $H_B(v|_{\partial B})$ on $B$ and $v$ on $D\setminus B$ is a continuous subsolution on $D$ with $v^B\geq v$.
 \end{lemma}
+We call $v^B$ the \emph{harmonic lifting}\index{harmonic lifting} of $v$ on $B$.
 \begin{proof}
-For the first assertion, the finite boundary-neighborhood argument of \cref{prop:harmonic-maximum} makes any value exceeding a positive $\varepsilon$ produce an attained global maximum in $D$. At a maximum point the sphere submean inequality forces equality on every sufficiently small sphere, by continuity and positivity of sphere measure on open caps. Thus the maximum locus is open and closed in its component. A boundary point of that bounded component contradicts the boundary condition. Letting $\varepsilon\downarrow0$ proves the assertion.
+Let $\varepsilon>0$ and suppose that $v>\varepsilon$ somewhere. As in the proof of \cref{prop:harmonic-maximum}, finitely many balls cover $\partial D$ and have the property that $v<\varepsilon$ on their intersections with $D$; the complement $K$ in $D$ of their union is compact, and $v$ attains its maximum $m$ over $D$ at a point $x_0\in K$, with $m>\varepsilon$. Let $D_0$ be the component of $D$ containing $x_0$ and $E=\{x\in D_0:v(x)=m\}$. If $c\in E$ and $\overline{B(c,r)}\subset D$, then $m=v(c)\leq M_v(c,r)\leq m$, so the continuous nonnegative function $m-v$ has mean zero over $\partial B(c,r)$. It therefore vanishes on this sphere: otherwise it would be positive on a nonempty relatively open subset of the sphere, which has positive surface measure because the cone over it contains a nonempty open set. As this holds for all small $r$, we get $v=m$ near $c$. Thus $E$ is open; it is also closed in $D_0$ and nonempty, so $E=D_0$. As in the proof of \cref{prop:harmonic-maximum}, a boundary point of the bounded component $D_0$ lies in $\partial D$, and the upper limit of $v$ at this point is at least $m>0$, a contradiction. Hence $v\leq\varepsilon$, and letting $\varepsilon\downarrow0$ gives $v\leq0$.
 
-The lifted function is continuous by \cref{thm:ball-dirichlet}, and dominates $v$ by its defining comparison. For a ball $A$ compactly contained in $D$, let $H=H_A(v^B|_{\partial A})$. On $\partial A$ we have $v\leq v^B=H$, so $v\leq H$ on $A$ by the subsolution comparison for $v$. On $A\cap B$, $v^B-H$ is harmonic and has nonpositive boundary values: on $\partial B$ the lift equals $v$, and on $\partial A$ it equals $H$. The bounded-domain maximum principle applies to every component of $A\cap B$. Hence $v^B\leq H$ there and also on $A\setminus B$, where $v^B=v$. This is precisely the subsolution condition for the lift.
+For the second assertion, $v^B$ is harmonic on $B$ and equals $v$ on $D\setminus B$; it is continuous at the points of $\partial B$ because $H_B(v|_{\partial B})$ extends continuously to $v$ on $\partial B$ (\cref{thm:ball-dirichlet}). Moreover $v^B\geq v$, because $v\leq H_B(v|_{\partial B})$ on $B$. To verify the subsolution inequality, let $A$ be a ball with $\overline A\subset D$, and let $H=H_A(v^B|_{\partial A})$, regarded as a continuous function on $\overline A$. Since $v\leq v^B$ and $H_A$ preserves order, $v\leq H_A(v|_{\partial A})\leq H$ on $A$; the same inequality holds on $\partial A$, where $H=v^B\geq v$. On the open set $A\cap B$, the function $v^B-H$ is harmonic, and it is continuous on the closure of $A\cap B$. A boundary point $\zeta$ of $A\cap B$ lies either on $\partial A$, where $v^B(\zeta)=H(\zeta)$, or in $A\cap\partial B$, where $v^B(\zeta)=v(\zeta)\leq H(\zeta)$. By \cref{prop:harmonic-maximum}, $v^B\leq H$ on $A\cap B$. On $A\setminus B$ we have $v^B=v\leq H$. Hence $v^B\leq H_A(v^B|_{\partial A})$ on $A$, as required.
 \end{proof}
 
-For $f\in C(\partial\Omega,\mathbb R)$, let $\mathcal S_f$ be the continuous subsolutions on $\Omega$ satisfying $\limsup_{\Omega\ni x\to\zeta}v(x)\leq f(\zeta)$ for every $\zeta\in\partial\Omega$. Define the lower Perron envelope\index{Perron envelope} by
+For $f\in C(\partial\Omega)$, let $\mathcal S_f$ be the set of continuous subsolutions $v$ on $\Omega$ such that $\limsup_{\Omega\ni x\to\zeta}v(x)\leq f(\zeta)$ for every $\zeta\in\partial\Omega$. The \emph{lower Perron envelope}\index{Perron envelope} of $f$ is
 \[
- U_f(x)=\sup_{v\in\mathcal S_f}v(x).
+ U_f(x)=\sup_{v\in\mathcal S_f}v(x),\qquad x\in\Omega.
 \]
-The constant $\min_{\partial\Omega}f$ belongs to this class. \Cref{lem:subsolution-comparison} bounds every member above by $\max_{\partial\Omega}f$. Taking its maximum with the lower constant preserves membership, so the supremum may be taken over members bounded on both sides by these constants.
+The constant $\min_{\partial\Omega}f$ belongs to $\mathcal S_f$, and every $v\in\mathcal S_f$ satisfies $v\leq\max_{\partial\Omega}f$, by \cref{lem:subsolution-comparison} applied to $v-\max_{\partial\Omega}f$. Since $\max\{v,\min_{\partial\Omega}f\}$ belongs to $\mathcal S_f$ whenever $v$ does, the supremum does not change if it is taken only over the members of $\mathcal S_f$ with values in $[\min_{\partial\Omega}f,\max_{\partial\Omega}f]$.
 
 \begin{theorem}\label{thm:perron-harmonic}
-For every continuous boundary function $f$, $U_f$ is harmonic on $\Omega$ and lies between the minimum and maximum of $f$. If a harmonic function on $\Omega$ extends continuously to $f$ on the boundary, it equals $U_f$.
+Let $f\in C(\partial\Omega)$. Then $U_f$ is harmonic on $\Omega$ and $\min_{\partial\Omega}f\leq U_f\leq\max_{\partial\Omega}f$. If a harmonic function on $\Omega$ extends continuously to $\overline\Omega$ with boundary values $f$, then it equals $U_f$.
 \end{theorem}
 \begin{proof}
-Fix a ball $\overline B\subset\Omega$ and $x_0\in B$. Choose $v_j\in\mathcal S_f$ with $v_j(x_0)\to U_f(x_0)$, and replace them by their successive finite maxima and the constant lower bound. They increase and are uniformly bounded. Lift them on $B$. The lifted harmonic functions increase, remain in $\mathcal S_f$ by \cref{lem:subsolution-comparison}, and converge to a harmonic $h$ on $B$ by \cref{cor:harmonic-normal-limits}. They give $h\leq U_f$ and $h(x_0)=U_f(x_0)$.
+The bounds for $U_f$ were proved above. Fix a ball $B$ with $\overline B\subset\Omega$ and a point $x_0\in B$. If $v\in\mathcal S_f$, its harmonic lifting $v^B$ on $B$ is a continuous subsolution by \cref{lem:subsolution-comparison}, and it coincides with $v$ near $\partial\Omega$ because $\overline B$ is a compact subset of $\Omega$; hence $v^B\in\mathcal S_f$.
 
-For any other bounded member $v\in\mathcal S_f$, lift $\max\{v_j,v\}$ on $B$. Their increasing harmonic limit $k$ satisfies $k\geq h$ and $k(x_0)\leq U_f(x_0)=h(x_0)$. The nonnegative harmonic function $k-h$ vanishes at $x_0$, so \cref{prop:harnack-ball} makes it zero. Since $k\geq v$ on $B$, it follows that $h\geq U_f$ there. Thus $U_f=h$ on every such ball. For a continuous Dirichlet solution $H$, the function $H$ belongs to $\mathcal S_f$, while every $v\in\mathcal S_f$ satisfies $v-H\leq0$ by \cref{lem:subsolution-comparison}. Hence $U_f=H$.
+Choose $v_j\in\mathcal S_f$ with $v_j(x_0)\to U_f(x_0)$, and put $w_j=\max\{v_1,\ldots,v_j,\min_{\partial\Omega}f\}$. Then $(w_j)$ is an increasing sequence in $\mathcal S_f$ with values in $[\min_{\partial\Omega}f,\max_{\partial\Omega}f]$, and $w_j(x_0)\to U_f(x_0)$ because $v_j\leq w_j\leq U_f$. The liftings $w_j^B$ belong to $\mathcal S_f$ and satisfy $w_j\leq w_j^B\leq U_f$. On $B$ they are harmonic, increase with $j$ because $H_B$ preserves order, and are bounded by $\max_{\partial\Omega}f$. By \cref{cor:harmonic-normal-limits}, they converge on $B$ to a harmonic function $h$, and $h\leq U_f$ on $B$, while $h(x_0)=U_f(x_0)$.
+
+Now let $v\in\mathcal S_f$ be arbitrary. The same argument applied to the increasing sequence $\max\{w_j,v\}\in\mathcal S_f$ shows that the liftings $(\max\{w_j,v\})^B$ increase on $B$ to a harmonic function $k$. Since these liftings dominate $w_j^B$ and $v$ and lie in $\mathcal S_f$, we have $h\leq k\leq U_f$ and $k\geq v$ on $B$. In particular $k(x_0)\leq U_f(x_0)=h(x_0)$, so the nonnegative harmonic function $k-h$ on $B$ vanishes at $x_0$ and therefore vanishes identically, by \cref{prop:harnack-ball}. Hence $v\leq h$ on $B$. Taking the supremum over $v\in\mathcal S_f$ gives $U_f\leq h$, so $U_f=h$ on $B$. Since $B$ was arbitrary, $U_f$ is harmonic on $\Omega$.
+
+Finally, let $H$ be harmonic on $\Omega$ and continuous on $\overline\Omega$ with $H=f$ on $\partial\Omega$. Then $H\in\mathcal S_f$, so $H\leq U_f$. Conversely, for $v\in\mathcal S_f$ the function $v-H$ is a continuous subsolution with $\limsup_{x\to\zeta}(v-H)(x)\leq0$ at every $\zeta\in\partial\Omega$, so $v\leq H$ by \cref{lem:subsolution-comparison}. Hence $U_f=H$.
 \end{proof}
 
-The upper Perron envelope is $V_f=-U_{-f}$; equivalently it is the infimum of continuous supersolutions whose boundary lower limits dominate $f$. Comparison gives $U_f\leq V_f$.
+The \emph{upper Perron envelope} is $V_f=-U_{-f}$. Equivalently, $V_f$ is the pointwise infimum of the set $-\mathcal S_{-f}$, which consists of the continuous supersolutions $w$ on $\Omega$ with $\liminf_{\Omega\ni x\to\zeta}w(x)\geq f(\zeta)$ for every $\zeta\in\partial\Omega$. If $v\in\mathcal S_f$ and $w\in-\mathcal S_{-f}$, then $v-w$ is a continuous subsolution with $\limsup_{x\to\zeta}(v-w)(x)\leq f(\zeta)-f(\zeta)=0$ at every $\zeta\in\partial\Omega$, so $v\leq w$ by \cref{lem:subsolution-comparison}. Hence $U_f\leq V_f$.
 
 \begin{theorem}\label{thm:perron-resolutivity}
-For every bounded domain and every $f\in C(\partial\Omega)$, $U_f=V_f$. The resulting map from continuous boundary data to harmonic functions is linear, positive, and a contraction for the supremum norm.
+For every $f\in C(\partial\Omega)$ we have $U_f=V_f$. The resulting map $f\mapsto U_f$ from $C(\partial\Omega)$ to harmonic functions on $\Omega$ is linear and positive, and it is a contraction for the supremum norm: $\sup_\Omega|U_f|\leq\max_{\partial\Omega}|f|$.
 \end{theorem}
 \begin{proof}
-Adding Perron competitors and comparing supersolutions gives
+Write $\|f\|=\max_{\partial\Omega}|f|$, and let $\mathcal R$ be the set of $f\in C(\partial\Omega)$ with $U_f=V_f$.
+
+\emph{Step 1: $\mathcal R$ is a closed linear subspace, and $f\mapsto U_f$ is linear on it.} If $v\in\mathcal S_f$ and $w\in\mathcal S_g$, then $v+w\in\mathcal S_{f+g}$; taking suprema over $v$ and $w$ at a fixed point gives $U_f+U_g\leq U_{f+g}$. Applying this to $-f$ and $-g$ and changing signs gives $V_{f+g}\leq V_f+V_g$. Together with the inequality $U\leq V$ proved above,
 \[
  U_f+U_g\leq U_{f+g}\leq V_{f+g}\leq V_f+V_g.
 \]
-For the first inequality, approximate the two suprema at a fixed point by individual competitors and add them. The last inequality follows by taking negatives of the first one. Positive homogeneity follows directly from the classes. If $U_f=V_f$ and $U_g=V_g$, these inequalities give equality and additivity for $f+g$. Taking negatives exchanges the upper and lower envelopes, so equality also holds for $-f$. The boundary functions for which equality holds therefore form a real linear subspace. Order and translation by constants give $|U_f-U_g|\leq\|f-g\|_{C(\partial\Omega)}$, and the same bound for $V$. This subspace is thus closed for uniform convergence.
+Moreover $\mathcal S_{tf}=t\,\mathcal S_f$ for $t>0$, so $U_{tf}=tU_f$ and $V_{tf}=tV_f$, while $U_{-f}=-V_f$ and $V_{-f}=-U_f$ by definition. Consequently, if $f,g\in\mathcal R$, the display forces $U_{f+g}=V_{f+g}=U_f+U_g$, and $tf\in\mathcal R$ for every real $t$. Thus $\mathcal R$ is a linear subspace, and $f\mapsto U_f$ is linear on it. If $f\leq g$, then $\mathcal S_f\subset\mathcal S_g$ and hence $U_f\leq U_g$; and $\mathcal S_{f+t}=\mathcal S_f+t$ for constants $t$, so $U_{f+t}=U_f+t$. Since $f\leq g+\|f-g\|$, it follows that $|U_f-U_g|\leq\|f-g\|$, and similarly $|V_f-V_g|\leq\|f-g\|$. If $f_n\in\mathcal R$ converge uniformly to $f$, then $0\leq V_f-U_f\leq|V_f-V_{f_n}|+|U_{f_n}-U_f|\leq2\|f-f_n\|\to0$, so $f\in\mathcal R$. Hence $\mathcal R$ is closed.
 
-If $F$ is smooth near $\overline\Omega$ and $\Delta F\geq0$ there, then $F\in\mathcal S_{F|_{\partial\Omega}}$. Hence $U_{F|_{\partial\Omega}}\geq F$, and this harmonic function has boundary lower limits at least the prescribed data. It is consequently an upper competitor too, proving equality of the envelopes. For an arbitrary smooth $F$, choose $A\geq0$ so that $\Delta F+2dA\geq0$ near the compact closure. Then $F=(F+A|x|^2)-A|x|^2$ is a difference of two such functions; the linear-subspace assertion applies.
+\emph{Step 2: $\mathcal R$ contains the restrictions of smooth functions.} Let $F$ be a smooth function on a neighborhood of $\overline\Omega$ with $\Delta F\geq0$ there. Then $F$ is a continuous subsolution on $\Omega$ with boundary values $F|_{\partial\Omega}$, so $F\in\mathcal S_{F|_{\partial\Omega}}$ and $U_{F|_{\partial\Omega}}\geq F$. Consequently the harmonic function $U_{F|_{\partial\Omega}}$ satisfies $\liminf_{x\to\zeta}U_{F|_{\partial\Omega}}(x)\geq F(\zeta)$ at every $\zeta\in\partial\Omega$, so it belongs to $-\mathcal S_{-F|_{\partial\Omega}}$ and $V_{F|_{\partial\Omega}}\leq U_{F|_{\partial\Omega}}$. Thus $F|_{\partial\Omega}\in\mathcal R$. For an arbitrary smooth $F$ on a neighborhood of $\overline\Omega$, choose a bounded open neighborhood $U$ of $\overline\Omega$ whose closure lies in the domain of $F$, and a constant $A\geq0$ with $\Delta F+2dA\geq0$ on $U$. Then $F=(F+A|x|^2)-A|x|^2$ is a difference of two functions of the kind just treated, since $\Delta(A|x|^2)=2dA$, and Step 1 gives $F|_{\partial\Omega}\in\mathcal R$.
 
-Finally, smooth ambient restrictions are dense in $C(\partial\Omega)$. Cover the boundary by finitely many small balls centered at its points, choose smooth cutoffs positive on smaller balls covering it, and divide by their sum near the boundary. The weighted values of $f$ at these centers differ from $f$ by at most its modulus of continuity at twice the ball radius. Multiplication by a smooth cutoff supported where the denominator is positive gives a smooth ambient function. Letting the radius tend to zero proves density. Closedness therefore gives equality for every continuous $f$. The inequalities above give linearity; order gives positivity and comparison with constants gives the norm bound.
+\emph{Step 3: restrictions of smooth functions are dense in $C(\partial\Omega)$.} Let $f\in C(\partial\Omega)$ and $\delta>0$. By compactness there are points $\zeta_1,\ldots,\zeta_N\in\partial\Omega$ with $\partial\Omega\subset\bigcup_iB(\zeta_i,\delta)$. Put $\chi_i(x)=\rho((x-\zeta_i)/(2\delta))$, which is smooth, positive on $B(\zeta_i,2\delta)$ and zero outside it, and let $\sigma=\sum_i\chi_i$, which is positive on the open set $W=\bigcup_iB(\zeta_i,2\delta)\supset\partial\Omega$. Choose a smooth function $\eta$ with compact support in $W$ which equals one near $\partial\Omega$ (\cref{lem:mollifier-density}), and put
+\[
+ F=\eta\,\frac{\sum_if(\zeta_i)\chi_i}{\sigma},
+\]
+extended by zero outside $W$; this is a smooth function on $\mathbb R^d$. For $\zeta\in\partial\Omega$, the value $F(\zeta)$ is a convex combination of values $f(\zeta_i)$ with $|\zeta_i-\zeta|<2\delta$, so $|F(\zeta)-f(\zeta)|\leq\sup\{|f(\zeta)-f(\zeta')|:\zeta,\zeta'\in\partial\Omega,\ |\zeta-\zeta'|<2\delta\}$. By uniform continuity of $f$ on the compact set $\partial\Omega$, this tends to zero as $\delta\to0$.
+
+By Steps 1--3, $\mathcal R=C(\partial\Omega)$, and $f\mapsto U_f$ is linear. We have $U_0=0$, because $0\in\mathcal S_0$ and every member of $\mathcal S_0$ is nonpositive by \cref{lem:subsolution-comparison}. Hence $f\geq0$ implies $U_f\geq U_0=0$, and $|U_f|=|U_f-U_0|\leq\|f\|$ by Step 1.
 \end{proof}
 
 \begin{definition}\label{def:boundary-barrier}
-A boundary point $\xi\in\partial\Omega$ is regular\index{boundary point!regular} if $U_f(x)\to f(\xi)$ as $\Omega\ni x\to\xi$ for every $f\in C(\partial\Omega)$. A barrier\index{barrier} at $\xi$ is a positive continuous supersolution $b$ on $\Omega$ such that $b(x)\to0$ as $x\to\xi$ and, for every neighborhood $V$ of $\xi$,
+A boundary point $\xi\in\partial\Omega$ is \emph{regular}\index{boundary point!regular} if $U_f(x)\to f(\xi)$ as $\Omega\ni x\to\xi$, for every $f\in C(\partial\Omega)$. A \emph{barrier}\index{barrier} at $\xi$ is a positive continuous supersolution $b$ on $\Omega$ such that $b(x)\to0$ as $x\to\xi$ and, for every neighborhood $V$ of $\xi$ with $\Omega\setminus V\neq\varnothing$,
 \[
- \inf_{\Omega\setminus V}b>0
+ \inf_{\Omega\setminus V}b>0.
 \]
-whenever $\Omega\setminus V$ is nonempty.
 \end{definition}
 
 \begin{theorem}\label{thm:barrier-regularity}
-A boundary point is regular if and only if it has a barrier. If all boundary points are regular, every continuous boundary function has a unique harmonic extension continuous on $\overline\Omega$. An exterior ball whose closed ball meets $\overline\Omega$ at just $\xi$ supplies a barrier at $\xi$.
+A boundary point of $\Omega$ is regular if and only if it has a barrier. If every boundary point of $\Omega$ is regular, then every $f\in C(\partial\Omega)$ has a unique harmonic extension to $\Omega$ which is continuous on $\overline\Omega$, namely $U_f$. If $\xi\in\partial\Omega$ and there is a ball $B(a,r)$ with $\overline{B(a,r)}\cap\overline\Omega=\{\xi\}$, then $\xi$ has a barrier.
 \end{theorem}
 \begin{proof}
-Suppose $b$ is a barrier, and replace it by $\min\{b,1\}$; the negative of this minimum is the maximum of two subsolutions, so it is still a barrier. Given $\varepsilon>0$, choose a neighborhood $V$ of $\xi$ on which $|f(\zeta)-f(\xi)|<\varepsilon$ for boundary points $\zeta$. Shrink it slightly, so boundary points outside it have neighborhoods where $b\geq c>0$, by the barrier condition for a smaller neighborhood of $\xi$. For sufficiently large $C$, the subsolution $f(\xi)-\varepsilon-Cb$ has boundary upper limits at most $f$, and the supersolution $f(\xi)+\varepsilon+Cb$ has boundary lower limits at least $f$. Here $C$ may depend on $f$, $\varepsilon$, $V$ and $b$. The first is a Perron competitor. Comparison of each competitor with the second gives
+Suppose that $b$ is a barrier at $\xi$, and let $f\in C(\partial\Omega)$ and $\varepsilon>0$. Choose $\delta>0$ such that $|f(\zeta)-f(\xi)|<\varepsilon$ for all $\zeta\in\partial\Omega$ with $|\zeta-\xi|<2\delta$, and put $c=\inf_{\Omega\setminus B(\xi,\delta)}b>0$. (If $\Omega\subset B(\xi,\delta)$, then every boundary point satisfies $|\zeta-\xi|\leq\delta$, and we put $c=1$.) If $\zeta\in\partial\Omega$ and $|\zeta-\xi|\geq2\delta$, then $\Omega\cap B(\zeta,\delta)$ lies outside $B(\xi,\delta)$, so $\liminf_{x\to\zeta}b(x)\geq c$. Choose $C\geq2\max_{\partial\Omega}|f|/c$; thus $C$ depends on $f$, $\varepsilon$ and $b$. The continuous subsolution $f(\xi)-\varepsilon-Cb$ then has upper limit at most $f(\zeta)$ at every $\zeta\in\partial\Omega$: if $|\zeta-\xi|<2\delta$ because $b>0$ and $f(\zeta)>f(\xi)-\varepsilon$, and if $|\zeta-\xi|\geq2\delta$ because $Cc\geq2\max_{\partial\Omega}|f|$. Hence it belongs to $\mathcal S_f$. In the same way, the continuous supersolution $f(\xi)+\varepsilon+Cb$ has lower limit at least $f(\zeta)$ at every boundary point, so it dominates every member of $\mathcal S_f$, as shown before \cref{thm:perron-resolutivity}. Therefore
 \[
- f(\xi)-\varepsilon-Cb\leq U_f\leq f(\xi)+\varepsilon+Cb.
+ f(\xi)-\varepsilon-Cb\leq U_f\leq f(\xi)+\varepsilon+Cb\qquad\text{on }\Omega.
 \]
-Let $x\to\xi$ and then $\varepsilon\downarrow0$ to prove regularity.
+Letting $x\to\xi$ and then $\varepsilon\downarrow0$ shows that $U_f(x)\to f(\xi)$. Thus $\xi$ is regular.
 
-Conversely, at a regular $\xi$ take the boundary function $f(\zeta)=|\zeta-\xi|$. For $D=\operatorname{diam}(\overline\Omega)>0$, the smooth subsolution $v(x)=|x-\xi|^2/D$ is at most $f$ on the boundary. Thus $b=U_f$ is harmonic, bounded and at least $|x-\xi|^2/D$. It is positive inside $\Omega$, bounded below away from $\xi$, and tends to zero there by regularity. It is the required barrier. If every boundary point is regular, \cref{thm:perron-harmonic} and the definition give a continuous extension at every boundary point; the maximum principle gives uniqueness.
+Conversely, let $\xi$ be regular, and take the boundary function $f(\zeta)=|\zeta-\xi|$. The smooth function $v(x)=|x-\xi|^2/\operatorname{diam}\Omega$ satisfies $\Delta v\geq0$ and $v\leq f$ on $\partial\Omega$, so $v\in\mathcal S_f$. Thus $b=U_f$ is harmonic, and hence a continuous supersolution, with $b\geq|x-\xi|^2/\operatorname{diam}\Omega$. In particular $b$ is positive on $\Omega$, and $\inf_{\Omega\setminus V}b\geq\rho^2/\operatorname{diam}\Omega>0$ for every neighborhood $V$ of $\xi$ containing a ball $B(\xi,\rho)$. By regularity, $b(x)\to f(\xi)=0$ as $x\to\xi$. Hence $b$ is a barrier. If every boundary point is regular, then by \cref{thm:perron-harmonic} and the definition of regularity, $U_f$ is harmonic on $\Omega$ and extends continuously to $\overline\Omega$ with boundary values $f$; uniqueness follows from \cref{prop:harmonic-maximum}.
 
-For an exterior ball $B(a,r)$ with $\overline{B(a,r)}\cap\overline\Omega=\{\xi\}$, use
+Finally, suppose that $\overline{B(a,r)}\cap\overline\Omega=\{\xi\}$. Then $|\xi-a|=r$, since otherwise the open ball $B(a,r)$ would contain $\xi$ and hence points of the open set $\Omega$. Put
 \[
  b(x)=\begin{cases}
  |x-a|-r,&d=1,\\
@@ -237,56 +336,64 @@ For an exterior ball $B(a,r)$ with $\overline{B(a,r)}\cap\overline\Omega=\{\xi\}
  r^{2-d}-|x-a|^{2-d},&d\geq3.
  \end{cases}
 \]
-It is harmonic and positive on $\Omega$, zero only at $\xi$ on the compact closure, and therefore has the required positive lower bounds away from $\xi$. In dimension one the bounded domain is an interval lying on one side of the exterior ball, so $|x-a|$ is affine there.
+For $d\geq2$ this is harmonic on $\mathbb R^d\setminus\{a\}$ by \cref{prop:laplacian-fundamental-solution}. In dimension one, $\Omega$ is an interval lying on one side of $[a-r,a+r]$, so $|x-a|$ is affine on $\Omega$ and $b$ is harmonic there as well. The function $b$ is continuous on the compact set $\overline\Omega$, positive on $\overline\Omega\setminus\{\xi\}$ and zero at $\xi$. Hence $b(x)\to0$ as $x\to\xi$, and for a neighborhood $V$ of $\xi$ the infimum of $b$ over $\overline\Omega\setminus\Int V$ is attained and positive. Thus $b$ is a barrier at $\xi$.
 \end{proof}
 
 \Needspace{8\baselineskip}
 \begin{proposition}\label{prop:local-barrier}
-Let $\xi\in\partial\Omega$. Suppose $b$ is a positive continuous supersolution on $\Omega\cap V$, where $V$ is an open neighborhood of $\xi$, extends continuously to $\overline\Omega\cap V$, and vanishes there only at $\xi$. Then $\xi$ is regular.
+Let $\xi\in\partial\Omega$ and let $V$ be an open neighborhood of $\xi$. Suppose that $b$ is a positive continuous supersolution on $\Omega\cap V$ which extends continuously to $\overline\Omega\cap V$, and that the extension vanishes at $\xi$ but nowhere else on $\overline\Omega\cap V$. Then $\xi$ is regular.
 \end{proposition}
 \begin{proof}
-Choose $r>0$ with $\overline{B(\xi,2r)}\subset V$ and with $\overline\Omega\cap\partial B(\xi,r)$ nonempty. Positivity and compactness on a thin closed annulus around that sphere give a lower bound $2c>0$ there. On $\Omega\cap B(\xi,r)$ take $\min\{b,c\}$ and outside this ball take the constant $c$. The two definitions agree on a neighborhood of the joining sphere. Locally the resulting function is a supersolution, since a minimum of supersolutions is one; locality of the submean characterization at the start of \cref{sec:perron-barriers} makes it a supersolution globally. It tends to zero at $\xi$ and is bounded below away from $\xi$ by positivity on the remaining compact subsets of the local closure and by $c$ outside. Apply \cref{thm:barrier-regularity}.
+Choose $r>0$ with $\overline{B(\xi,2r)}\subset V$ and $0<t<r$. The set $L=\overline\Omega\cap\{r-t\leq|x-\xi|\leq r+t\}$ is compact, and $b$ is positive and continuous on it, so there is $c>0$ with $b\geq2c$ on $L$ (if $L$ is empty, any $c>0$ will do). Define $\tilde b=\min\{b,c\}$ on $\Omega\cap B(\xi,r)$ and $\tilde b=c$ on $\Omega\setminus B(\xi,r)$. Since $b\geq2c$ on $L$, we have $\tilde b=\min\{b,c\}$ on $\Omega\cap B(\xi,r+t)$ and $\tilde b=c$ on $\Omega\setminus\overline{B(\xi,r)}$. These two open sets cover $\Omega$, and on each of them $\tilde b$ is a continuous supersolution, being a minimum of two continuous supersolutions or a constant. By the locality of the subsolution property noted at the beginning of this section, $\tilde b$ is a continuous supersolution on $\Omega$. It is positive and tends to zero at $\xi$. If $W$ is a neighborhood of $\xi$, then $\tilde b\geq c$ on $\Omega\setminus B(\xi,r)$, while on $(\Omega\cap B(\xi,r))\setminus W$ it is at least the minimum of $c$ and of $b$ over the compact set $(\overline\Omega\cap\overline{B(\xi,r)})\setminus\Int W$, on which $b$ is positive. Hence $\tilde b$ is a barrier at $\xi$, and \cref{thm:barrier-regularity} shows that $\xi$ is regular.
 \end{proof}
 
 \begin{example}\label{ex:punctured-ball-irregular}
-For $d\geq2$, zero is an irregular boundary point of $B(0,1)\setminus\{0\}$. Give the isolated boundary point zero the value one and the unit sphere the value zero. Every Perron competitor is bounded above by one. For $d\geq3$, compare it on punctured annuli with $\varepsilon|x|^{2-d}$; at the inner boundary this dominates one when the radius is sufficiently small, and at the outer boundary it dominates the prescribed zero. Letting the inner radius decrease gives $v(x)\leq\varepsilon|x|^{2-d}$ everywhere; then $\varepsilon\downarrow0$ gives $v\leq0$. For $d=2$, use $\varepsilon\log(1/|x|)$ instead. The zero function is a competitor, so the Perron envelope is zero and misses the value at the isolated point. In dimension one the punctured interval has two components and this conclusion changes: affine interpolation attains the endpoint value on each component.
+Let $d\geq2$. The punctured ball $B(0,1)\setminus\{0\}$ is a bounded domain with boundary $S^{d-1}\cup\{0\}$, and the origin is an irregular boundary point. To see this, let $f$ equal one at the origin and zero on $S^{d-1}$; it is continuous on the boundary because the origin is an isolated boundary point. Every $v\in\mathcal S_f$ satisfies $v\leq1$. Let $d\geq3$ and $\varepsilon>0$, and compare $v$ with the harmonic function $\varepsilon|x|^{2-d}$ on the annulus $\{\delta<|x|<1\}$. On the inner sphere $|x|=\delta$ this function equals $\varepsilon\delta^{2-d}\geq1\geq v$ if $\delta$ is small enough, and at points of the outer sphere the upper limit of $v$ is at most $0$, while the comparison function tends to $\varepsilon>0$. By \cref{lem:subsolution-comparison}, $v\leq\varepsilon|x|^{2-d}$ on the annulus. Letting $\delta\downarrow0$ and then $\varepsilon\downarrow0$ gives $v\leq0$. For $d=2$ the same argument works with $\varepsilon\log(1/|x|)$, which tends to $+\infty$ at the origin and vanishes on the unit circle. Since $0\in\mathcal S_f$, the Perron envelope $U_f$ vanishes identically, so it does not attain the value $f(0)=1$ at the origin. For $d=1$ the set $(-1,0)\cup(0,1)$ is not connected; on each of its components the Dirichlet problem is solved by affine interpolation, which does attain the value at the endpoint $0$.
 \end{example}
 
 \section{Harmonic measure and Green functions}
 \label{sec:harmonic-measure-green}
-In this section $\Omega$ is a bounded domain and every boundary point is regular. Denote its unique continuous Dirichlet extension by $H_\Omega f$. Uniqueness shows that this operator is linear; comparison shows it is positive and has sup norm at most one. For complex boundary data, extend it by $H_\Omega(f+\mathrm i g)=H_\Omega f+\mathrm i H_\Omega g$ for real continuous $f,g$.
+A bounded domain is called \emph{regular}\index{domain!regular} if all its boundary points are regular. Balls are regular by the last assertion of \cref{thm:barrier-regularity}: for $\zeta\in\partial B(c,R)$, the closed ball $\overline{B(2\zeta-c,R)}$ meets $\overline{B(c,R)}$ only at $\zeta$. In this section $\Omega$ is a bounded regular domain. For real $f\in C(\partial\Omega)$ we write $H_\Omega f$ for the unique harmonic function on $\Omega$ which extends continuously to $\overline\Omega$ with boundary values $f$ (\cref{thm:barrier-regularity}). By uniqueness, $H_\Omega$ is linear, and by \cref{prop:harmonic-maximum} it preserves order and satisfies $\sup_\Omega|H_\Omega f|\leq\max_{\partial\Omega}|f|$. For complex boundary data we put $H_\Omega(f+\mathrm i g)=H_\Omega f+\mathrm i H_\Omega g$, where $f$ and $g$ are real and continuous. When $\Omega$ is a ball, $H_\Omega$ is the Poisson integral of \cref{thm:ball-dirichlet}, again by uniqueness.
 
 \begin{proposition}\label{prop:harmonic-measure}
-For $x\in\Omega$ there is a unique Borel probability measure $\omega_x=\omega_x^\Omega$ on $\partial\Omega$ such that
+For every $x\in\Omega$ there is a unique Borel probability measure $\omega_x=\omega_x^\Omega$ on $\partial\Omega$ such that
 \[
  H_\Omega f(x)=\int_{\partial\Omega}f\,\mathrm d\omega_x,\qquad f\in C(\partial\Omega).
 \]
-Its integrals of continuous boundary functions depend harmonically on $x$. On a ball its density with respect to surface measure is the Poisson kernel.
+For each $f\in C(\partial\Omega)$, the function $x\mapsto\int f\,\mathrm d\omega_x$ is harmonic on $\Omega$. If $\Omega$ is a ball, then $\mathrm d\omega_x=P_\Omega(x,\cdot)\,\mathrm dS$.
 \end{proposition}
 \begin{proof}
-Apply \cref{thm:positive-functional-measure} on $\mathbb R^d$ to the functional $g\mapsto H_\Omega(g|_{\partial\Omega})(x)$ for $g\in C_c(\mathbb R^d)$. The resulting measure is carried by $\partial\Omega$: every test supported off it has integral zero, and \eqref{eq:measure-open-tests} gives zero measure to its complement. A cutoff equal to one on the compact boundary has integral $H_\Omega1(x)=1$, so its total mass is one.
+The map $g\mapsto H_\Omega(g|_{\partial\Omega})(x)$ is a positive linear functional on $C_c(\mathbb R^d,\mathbb R)$, so by \cref{thm:positive-functional-measure} it is integration against a Radon measure $\mu$ on $\mathbb R^d$. If $g\in C_c(\mathbb R^d)$ is supported in the open set $\mathbb R^d\setminus\partial\Omega$, then $g|_{\partial\Omega}=0$ and $\int g\,\mathrm d\mu=0$; by \eqref{eq:measure-open-tests}, $\mu(\mathbb R^d\setminus\partial\Omega)=0$. If $\eta\in C_c(\mathbb R^d)$ equals one on the compact set $\partial\Omega$, then $\mu(\mathbb R^d)=\int\eta\,\mathrm d\mu=H_\Omega1(x)=1$. Let $\omega_x$ be the restriction of $\mu$ to the Borel subsets of $\partial\Omega$; it is a probability measure.
 
-Restrictions of $C_c(\mathbb R^d)$ approximate every continuous boundary function uniformly by the smooth approximation constructed in \cref{thm:perron-resolutivity}. Uniform approximation passes both the integral and $H_\Omega$ to the limit. It also proves uniqueness using the measure uniqueness assertion on $\mathbb R^d$. The harmonic dependence is the definition of $H_\Omega$, and \cref{thm:ball-dirichlet} identifies the ball density.
+Every $f\in C(\partial\Omega)$ is a uniform limit of restrictions of functions in $C_c(\mathbb R^d)$, by Step 3 of the proof of \cref{thm:perron-resolutivity}. Both sides of the asserted identity are continuous for uniform convergence on $\partial\Omega$, the right side because $\omega_x$ is finite and the left side because $|H_\Omega f|\leq\max_{\partial\Omega}|f|$. Hence the identity holds for real $f$, and by linearity for complex $f$. If $\omega'$ is another Borel probability measure on $\partial\Omega$ with the same property, then $\omega_x$ and $\omega'$, extended by zero to $\mathbb R^d$, are finite Borel measures, hence Radon measures by \cref{prop:borel-regularity}, with the same integrals against every $g\in C_c(\mathbb R^d)$. The uniqueness assertion of \cref{thm:positive-functional-measure} gives $\omega'=\omega_x$. The function $x\mapsto\int f\,\mathrm d\omega_x=H_\Omega f(x)$ is harmonic by the definition of $H_\Omega$. If $\Omega$ is a ball, $P_\Omega(x,\cdot)\,\mathrm dS$ is a Borel probability measure on $\partial\Omega$ with the required property, by \cref{thm:ball-dirichlet}, so it equals $\omega_x$.
 \end{proof}
-The probability measure $\omega_x$ is harmonic measure\index{harmonic measure}. It records boundary values as seen from $x$, rather than surface area on an arbitrary boundary.
+The probability measure $\omega_x$ is called the \emph{harmonic measure}\index{harmonic measure} of $\Omega$ at $x$. Thus $H_\Omega f(x)$ is the average of the boundary values of $f$ with respect to $\omega_x$. When $\Omega$ is a ball centered at $x$, harmonic measure is normalized surface measure; in general, however, it depends on $x$ and is not given by surface area.
 
 \Needspace{19\baselineskip}
 \begin{theorem}\label{thm:dirichlet-green}
-For $d\geq2$ and $x\in\Omega$, define
+Let $d\geq2$ and $x\in\Omega$, and define
 \[
- G_\Omega(x,y)=\Gamma_d(y-x)-H_\Omega(\Gamma_d(\cdot-x)|_{\partial\Omega})(y),\qquad y\neq x.
+ G_\Omega(x,y)=\Gamma_d(y-x)-H_\Omega(\Gamma_d(\cdot-x)|_{\partial\Omega})(y),\qquad y\in\Omega\setminus\{x\},
 \]
-Set $G_\Omega(x,x)=+\infty$ for $d\geq2$. It is positive, harmonic in $y$ away from $x$, locally integrable in $y$, satisfies $-\Delta_yG_\Omega(x,\cdot)=\delta_x$, and tends to zero at every boundary point. These properties determine it uniquely for $y\neq x$. For an interval $(a,b)$ the corresponding kernel is
+and $G_\Omega(x,x)=+\infty$. Then $G_\Omega(x,\cdot)$ is positive on $\Omega$, harmonic on $\Omega\setminus\{x\}$ and locally integrable on $\Omega$, it satisfies $-\Delta_yG_\Omega(x,\cdot)=\delta_x$ in the sense of distributions on $\Omega$, and $G_\Omega(x,y)\to0$ as $y$ tends to any point of $\partial\Omega$. These properties determine $G_\Omega(x,y)$ uniquely for $y\neq x$. For $d=1$ and an interval $\Omega=(a,b)$, the corresponding kernel, which has the same properties except that it is finite at $y=x$, is
 \[
  G_{(a,b)}(x,y)=\frac{(\min\{x,y\}-a)(b-\max\{x,y\})}{b-a}.
 \]
-If bounded regular domains $D_j$ increase to a bounded regular domain $D$, then $G_{D_j}(x,y)\uparrow G_D(x,y)$ for $x\neq y$ eventually in $D_j$, with local smooth convergence in $y$ away from $x$.
+Finally, let $D_1\subset D_2\subset\cdots$ be bounded regular domains whose union $D$ is a bounded regular domain. Then for $x\neq y$ in $D$, the values $G_{D_j}(x,y)$, defined once $x,y\in D_j$, increase to $G_D(x,y)$, and for fixed $x$ the convergence holds in $C^\infty$ on compact subsets of $D\setminus\{x\}$, as functions of $y$.\index{Green function}
 \end{theorem}
 \begin{proof}
-The boundary function in the definition is continuous, since $x$ has positive distance from $\partial\Omega$. Its extension is harmonic on all of $\Omega$, so \cref{prop:laplacian-fundamental-solution} proves local integrability and the distributional equation. Continuity at the boundary gives zero boundary limits. To prove nonnegativity, any Perron competitor for this boundary function lies below $\Gamma_d(y-x)$: compare on $\Omega\setminus\overline{B(x,\varepsilon)}$ and take $\varepsilon$ small enough that the pole dominates the competitor, which is bounded above. The outer boundary upper limit of their difference is nonpositive. The comparison lemma applies and then $\varepsilon\downarrow0$ gives the assertion. Thus $G_\Omega\geq0$. The punctured domain is connected for $d\geq2$, since a polygonal path through $x$ can be detoured within a small punctured ball. The minimum principle and the infinite pole make $G_\Omega>0$ there.
+Let $\gamma=\Gamma_d(\cdot-x)|_{\partial\Omega}$, which is continuous because $\Gamma_d(\cdot-x)$ is continuous on $\mathbb R^d\setminus\{x\}$. Its extension $H_\Omega\gamma$ is harmonic on $\Omega$, so $G_\Omega(x,\cdot)$ is harmonic on $\Omega\setminus\{x\}$, and \cref{prop:laplacian-fundamental-solution}, translated to the point $x$, shows that it is locally integrable on $\Omega$ and satisfies $-\Delta_yG_\Omega(x,\cdot)=\delta_x$. As $y\to\zeta\in\partial\Omega$, both $\Gamma_d(y-x)$ and $H_\Omega\gamma(y)$ tend to $\gamma(\zeta)$, so $G_\Omega(x,y)\to0$. The argument of this paragraph applies equally when $d=1$.
 
-The difference of two kernels with the asserted distributional equation is distributionally harmonic on all of $\Omega$. Weyl's lemma gives its smooth harmonic representative. Away from $x$, both kernels are harmonic, so this representative agrees pointwise with their difference. It has zero boundary limits, so the maximum principle makes it zero. On an interval the displayed formula is affine on each side of $x$, continuous at $x$, and has first derivative jump $-1$, which proves the equation and all boundary assertions directly.
+To prove positivity, let $d\geq2$ and $v\in\mathcal S_\gamma$; we show that $v\leq\Gamma_d(\cdot-x)$ on $\Omega\setminus\{x\}$. Since $v\leq\max_{\partial\Omega}\gamma$ and $\Gamma_d(y-x)\to+\infty$ as $y\to x$, there is $\varepsilon_0>0$ such that $\overline{B(x,\varepsilon_0)}\subset\Omega$ and $v\leq\Gamma_d(\cdot-x)$ on $\partial B(x,\varepsilon)$ for $0<\varepsilon<\varepsilon_0$. On the bounded open set $\Omega\setminus\overline{B(x,\varepsilon)}$, the function $v-\Gamma_d(\cdot-x)$ is a continuous subsolution. At a point $\zeta\in\partial\Omega$ its upper limit is at most $\gamma(\zeta)-\gamma(\zeta)=0$, and on $\partial B(x,\varepsilon)$ it is continuous and nonpositive. By \cref{lem:subsolution-comparison}, $v\leq\Gamma_d(\cdot-x)$ there, and letting $\varepsilon\downarrow0$ gives the claim. Taking the supremum over $v$ yields $H_\Omega\gamma=U_\gamma\leq\Gamma_d(\cdot-x)$, that is, $G_\Omega(x,\cdot)\geq0$. The set $\Omega\setminus\{x\}$ is connected when $d\geq2$. Indeed, join two of its points by a polygonal path in $\Omega$. If the path passes through $x$, choose $\rho>0$ smaller than the distances of the two points from $x$ and with $\overline{B(x,\rho)}\subset\Omega$, and replace the portion of the path between its first and last visits to the sphere $\partial B(x,\rho)$ by a path in that sphere, which is path-connected because $d\geq2$. If $G_\Omega(x,\cdot)$ vanished at some point of $\Omega\setminus\{x\}$, the minimum principle of \cref{prop:harmonic-maximum} would make it identically zero there, contradicting $G_\Omega(x,y)\to+\infty$ as $y\to x$. Hence $G_\Omega(x,\cdot)>0$.
+
+For uniqueness, let $G'$ be another function with the stated properties. The locally integrable function $G_\Omega(x,\cdot)-G'$ has vanishing distributional Laplacian on $\Omega$, so by \cref{thm:weyl} it agrees almost everywhere with a harmonic function $h$ on $\Omega$. Away from $x$, the functions $G_\Omega(x,\cdot)$ and $G'$ are harmonic, so their difference is continuous there and therefore equals $h$ everywhere on $\Omega\setminus\{x\}$. Then $h$ has zero boundary limits, and $h=0$ by \cref{prop:harmonic-maximum}. In dimension one, the displayed function $G_{(a,b)}(x,\cdot)$ is continuous, positive on $(a,b)$, zero at $a$ and $b$, and affine on each side of $x$; its derivative jumps by $-1$ at $x$, so its second distributional derivative is $-\delta_x$. Thus it has the stated properties. By the uniqueness argument, which applies verbatim for $d=1$, it coincides with $\Gamma_1(y-x)-H_{(a,b)}(\Gamma_1(\cdot-x)|_{\{a,b\}})(y)$ for $y\neq x$, and also for $y=x$, since both functions are continuous at $x$. Hence the defining formula of $G_\Omega$ holds in all dimensions, and the remaining argument applies for every $d\geq1$.
 
 \Needspace{15\baselineskip}
-If $D_1\subset D_2$ and $x\in D_1$, the difference $G_{D_2}(x,\cdot)-G_{D_1}(x,\cdot)$, initially defined away from $x$, extends harmonically across $x$ by Weyl's lemma. Its boundary lower limits are nonnegative, because the second kernel tends to zero and the first is nonnegative. The maximum principle gives domain monotonicity. For an exhaustion of $D$, write $h_j=H_{D_j}(\Gamma_d(\cdot-x)|_{\partial D_j})$. These harmonic corrections decrease on their growing domains and are bounded below by the correction for $D$. Apply \cref{cor:harmonic-normal-limits} on each ball compactly contained in $D$, after its closure lies in all subsequent $D_j$. The local finite harmonic limits agree on overlaps and give a harmonic limit on $D$. The limiting Green kernel lies between zero and $G_D$, so their harmonic difference has zero boundary limits. Uniqueness identifies the limit with $G_D$. The same convergence theorem gives the asserted local derivative convergence.
+We next prove monotonicity in the domain. Let $D'\subset D''$ be bounded regular domains and $x\in D'$. On $D'\setminus\{x\}$ the fundamental solutions cancel, and
+\[
+ G_{D''}(x,\cdot)-G_{D'}(x,\cdot)=H_{D'}(\Gamma_d(\cdot-x)|_{\partial D'})-H_{D''}(\Gamma_d(\cdot-x)|_{\partial D''}),
+\]
+which is harmonic on all of $D'$. At every $\zeta\in\partial D'$ its lower limit is nonnegative, because $G_{D'}(x,y)\to0$ and $G_{D''}(x,y)\geq0$. By \cref{prop:harmonic-maximum}, $G_{D''}(x,\cdot)\geq G_{D'}(x,\cdot)$ on $D'\setminus\{x\}$.
+
+Now let $D_j$ and $D$ be as in the statement, fix $x\in D$, and consider only $j$ large enough that $x\in D_j$. Put $h_j=H_{D_j}(\Gamma_d(\cdot-x)|_{\partial D_j})$ and $h=H_D(\Gamma_d(\cdot-x)|_{\partial D})$. By monotonicity, $G_{D_j}(x,\cdot)\leq G_{D_{j+1}}(x,\cdot)\leq G_D(x,\cdot)$ on $D_j\setminus\{x\}$, that is, $h_j\geq h_{j+1}\geq h$ there, and also at $x$, since these functions are continuous at $x$. Let $B$ be a ball with $\overline B\subset D$. The compact set $\overline B$ is covered by the increasing open sets $D_j$, so $\overline B\subset D_j$ for all large $j$. On $B$ the functions $h_j$ then form a decreasing sequence of harmonic functions bounded below by $h$, and \cref{cor:harmonic-normal-limits} shows that they converge in $C^\infty$ on compact subsets of $B$ to a finite harmonic function. These local limits are pointwise limits, so they define a harmonic function $h_\infty$ on $D$, and $h_j\to h_\infty$ in $C^\infty$ on compact subsets of $D$, since every compact subset of $D$ is covered by finitely many such balls. The function $\Gamma_d(\cdot-x)-h_\infty$ is the pointwise limit of $G_{D_j}(x,\cdot)$, so it lies between $0$ and $G_D(x,\cdot)$. Therefore the harmonic function $h_\infty-h=G_D(x,\cdot)-(\Gamma_d(\cdot-x)-h_\infty)$ satisfies $0\leq h_\infty-h\leq G_D(x,\cdot)$ on $D\setminus\{x\}$, so it has zero boundary limits and vanishes by \cref{prop:harmonic-maximum}. Thus $h_j\to h$, which means that $G_{D_j}(x,y)$ increases to $G_D(x,y)$ for every $y\neq x$, and $G_{D_j}(x,\cdot)-G_D(x,\cdot)=h-h_j\to0$ in $C^\infty$ on compact subsets of $D$.
 \end{proof}

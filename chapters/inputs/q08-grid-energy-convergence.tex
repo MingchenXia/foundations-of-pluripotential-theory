@@ -1,53 +1,63 @@
 \subsection{Convergence of energy integrals}
 \label{sec:canonical-grid-energy-convergence}
-The energy bounds control large negative values, but the measure in an energy integral also varies with the mesh. We first establish continuity against a fixed measure which ignores capacity-zero sets. Cell averages then transfer that continuity to the canonical approximants.
+We shall identify the limit $u$ of a convergent subsequence of canonical approximants as a solution of $(\ddc u)^n=\mu$. For this we must pass to the limit in integrals such as $\int U_j\,\mathrm d\mu_j$, in which both the integrand and the measure depend on $j$, and the energy bounds of \cref{prop:canonical-grid-energy-control} control only the large negative values of the integrand. We first prove that $L^1_{\loc}$ convergence of uniformly bounded plurisubharmonic functions implies $L^1$ convergence against any fixed finite measure that does not charge sets of outer capacity zero (\cref{lem:bounded-psh-fixed-measure-continuity}). Writing integrals against $\mu_j$ as integrals of cube averages against $\mu$, we then transfer this continuity to the varying measures $\mu_j$ (\cref{thm:canonical-grid-self-integral-convergence}).
 
 \begin{lemma}\label{lem:bounded-psh-fixed-measure-continuity}
-Let $\nu$ be a finite positive measure on a ball $B$. Suppose $\nu(E)=0$ for every Borel set $E\subset B$ such that
+Let $\nu$ be a finite positive Borel measure on a ball $B$ such that $\nu(E)=0$ for every Borel set $E\subset B$ satisfying
 \[
- \operatorname{Cap}_B^*(E\cap K)=0\qquad\text{for every compact }K\Subset B.
+ \operatorname{Cap}_B^*(E\cap K)=0\qquad\text{for every compact }K\subset B.
 \]
-If $-L\leq v_j\leq0$ are plurisubharmonic and $v_j\to v$ in $L^1_{\loc}(B)$, with the canonical psh representative of the limit, then
+Let $L\geq0$, let $v_j$ be plurisubharmonic functions on $B$ with $-L\leq v_j\leq0$, and suppose that $v_j\to v$ in $L^1_{\loc}(B)$, where $v$ is the plurisubharmonic representative of the limit. Then
 \[
  \int_B|v_j-v|\,\mathrm d\nu\longrightarrow0.
 \]
-The hypothesis on $\nu$ holds if $\nu\leq(\ddc w)^n$ for a bounded psh function $w$ on $B$.
+The hypothesis on $\nu$ holds if $\nu\leq(\ddc w)^n$ for a bounded plurisubharmonic function $w$ on $B$.
 \end{lemma}
 \begin{proof}
-The limit also lies between $-L$ and zero. For any such convergent sequence put
-\[
- b_\ell=\left(\sup_{j\geq\ell}v_j\right)^*.
-\]
-These bounded psh functions decrease to $v$. Indeed, at a point $z$ upper semicontinuity of $v$ and Hartogs' lemma bound all sufficiently late $v_j$ on a neighborhood of $z$ by $v(z)+2\varepsilon$. Thus the decreasing limit is at most $v(z)$. The inequalities $b_\ell\geq v_\ell$ and local $L^1$ convergence give the opposite inequality almost everywhere, and canonical representatives identify the limit everywhere. By \cref{cor:psh-envelope-zero-capacity}, the Borel discrepancy between each countable supremum and its regularization has zero outer capacity locally. Outside their union,
-\begin{equation}\label{eq:fixed-measure-psh-limsup}
- \limsup_jv_j=v\qquad\nu\text{-almost everywhere}.
-\end{equation}
-This argument applies to every subsequence and to every sequence of finite convex combinations of successive tails.
+The bounds $-L\le v\le0$ hold almost everywhere, hence everywhere by the uniqueness assertion of \cref{thm:psh-distribution-representative}.
 
-We construct convex tail combinations converging strongly in $L^2(\nu)$. Let $\mathcal C_\ell$ be the finite convex combinations of $\{v_j:j\geq\ell\}$ and let $d_\ell=\inf_{r\in\mathcal C_\ell}\|r\|_{L^2(\nu)}$. The numbers $d_\ell$ increase to a finite limit. Choose $r_\ell\in\mathcal C_\ell$ with
+\emph{Step 1. The upper limit of $v_j$.} We show that
+\begin{equation}\label{eq:fixed-measure-psh-limsup}
+ \limsup_{j\to\infty}v_j=v\qquad\nu\text{-almost everywhere}.
+\end{equation}
+For $\ell\ge1$ let
+\[
+ b_\ell=\left(\sup_{j\geq\ell}v_j\right)^*
+\]
+be the upper semicontinuous regularization of the supremum. By \cref{thm:psh-upper-envelopes}, these are plurisubharmonic functions with values in $[-L,0]$, and they decrease as $\ell$ increases. We claim that $b_\ell\downarrow v$ everywhere. Let $z\in B$ and $\varepsilon>0$. By upper semicontinuity, $v<v(z)+\varepsilon$ on a neighborhood of a closed ball $\overline{B'}$ centered at $z$, and Hartogs' lemma (\cref{thm:psh-compactness-hartogs}), applied with the constant majorant $v(z)+\varepsilon$, gives $v_j<v(z)+\varepsilon$ on $\overline{B'}$ for all large $j$. Hence $b_\ell(z)\le v(z)+\varepsilon$ for all large $\ell$, and the decreasing limit of $b_\ell$ is at most $v$. Conversely, $b_\ell\ge v_j$ for all $j\ge\ell$, and a subsequence of $(v_j)$ converges to $v$ almost everywhere, so $b_\ell\ge v$ almost everywhere. The decreasing limit of the $b_\ell$ is plurisubharmonic by \cref{thm:psh-decreasing-nets} and equals $v$ almost everywhere, hence everywhere by uniqueness of plurisubharmonic representatives.
+
+The sets $N_\ell=\{\sup_{j\ge\ell}v_j<b_\ell\}$ are Borel, and by \cref{cor:psh-envelope-zero-capacity} they satisfy $\operatorname{Cap}_B^*(N_\ell\cap K)=0$ for every compact $K\subset B$. By countable subadditivity of outer capacity, the union $N=\bigcup_\ell N_\ell$ has the same property, so $\nu(N)=0$ by hypothesis. For $z\notin N$ we have $\sup_{j\ge\ell}v_j(z)=b_\ell(z)$ for every $\ell$, and therefore $\limsup_jv_j(z)=\lim_\ell b_\ell(z)=v(z)$. This proves \eqref{eq:fixed-measure-psh-limsup}. The argument applies to every sequence of plurisubharmonic functions with values in $[-L,0]$ that converges to $v$ in $L^1_{\loc}(B)$.
+
+\emph{Step 2. Convergence of $\int v_j\,\mathrm d\nu$.} Let $\mathcal C_\ell$ be the set of finite convex combinations of $v_\ell,v_{\ell+1},\ldots$, and let
+\[
+ d_\ell=\inf_{r\in\mathcal C_\ell}\|r\|_{L^2(\nu)}.
+\]
+Since $\mathcal C_{\ell+1}\subset\mathcal C_\ell$, the numbers $d_\ell$ increase, and they are bounded by $L\,\nu(B)^{1/2}$. Choose $r_\ell\in\mathcal C_\ell$ with
 \[
  \|r_\ell\|_{L^2(\nu)}^2\leq d_\ell^2+\ell^{-1}.
 \]
-For $k\geq\ell$, the midpoint belongs to $\mathcal C_\ell$, so the parallelogram identity gives
+For $k\geq\ell$ the midpoint $(r_k+r_\ell)/2$ belongs to the convex set $\mathcal C_\ell$, so its norm is at least $d_\ell$, and the parallelogram identity gives
 \[
  \|r_k-r_\ell\|_{L^2(\nu)}^2
+ =2\|r_k\|_{L^2(\nu)}^2+2\|r_\ell\|_{L^2(\nu)}^2-4\Bigl\|\frac{r_k+r_\ell}2\Bigr\|_{L^2(\nu)}^2
  \leq2(d_k^2-d_\ell^2)+2k^{-1}+2\ell^{-1}.
 \]
-Hence $r_\ell$ is Cauchy in $L^2(\nu)$. Completeness here follows directly from integration: select a subsequence with summable successive $L^2$ distances; the triangle inequality and monotone convergence put the sum of the absolute differences in $L^2$. The subsequence consequently converges almost everywhere and in $L^2$, and the Cauchy property gives convergence of the original sequence. Call its limit $h$.
+Hence $(r_\ell)$ is a Cauchy sequence in $L^2(\nu)$, and it converges in $L^2(\nu)$ to a function $h$ by completeness of $L^2(\nu)$. (A subsequence with summable successive distances converges $\nu$-almost everywhere and in $L^2(\nu)$, by the triangle inequality and monotone convergence applied to the sum of the absolute differences; the Cauchy property then gives convergence of the whole sequence.) Some subsequence of $(r_\ell)$ converges to $h$ $\nu$-almost everywhere. On the other hand, the $r_\ell$ are plurisubharmonic with values in $[-L,0]$, and $r_\ell\to v$ in $L^1_{\loc}(B)$, since $\|r_\ell-v\|_{L^1(K)}\le\sup_{j\ge\ell}\|v_j-v\|_{L^1(K)}$ for every compact $K\subset B$. Applying \eqref{eq:fixed-measure-psh-limsup} to that subsequence, we find $h=v$ $\nu$-almost everywhere. Thus $r_\ell\to v$ in $L^2(\nu)$, and hence $\int r_\ell\,\mathrm d\nu\to\int v\,\mathrm d\nu$.
 
-The convex tail combinations still converge to $v$ in $L^1_{\loc}(B)$. A subsequence converges to $h$ $\nu$-almost everywhere. Apply \eqref{eq:fixed-measure-psh-limsup} to that subsequence to obtain $h=v$ $\nu$-almost everywhere. Thus every subsequence of the original sequence admits finite convex tail combinations converging to $v$ in $L^2(\nu)$. It follows that $\int v_j\,\mathrm d\nu\to\int v\,\mathrm d\nu$: otherwise a subsequence of these integrals stays on one side of the limit by a fixed positive amount, and all its convex combinations retain that separation, contradicting their strong convergence. Hartogs' pointwise upper bound gives $(v_j-v)_+\to0$ everywhere. Dominated convergence and
+We now show that $\int v_j\,\mathrm d\nu\to\int v\,\mathrm d\nu$. Otherwise there are $c>0$ and a subsequence $(v_{j_i})$ such that either $\int v_{j_i}\,\mathrm d\nu\ge\int v\,\mathrm d\nu+c$ for all $i$, or $\int v_{j_i}\,\mathrm d\nu\le\int v\,\mathrm d\nu-c$ for all $i$. The subsequence satisfies the hypotheses of the lemma, so the preceding paragraph provides convex combinations of its tails whose integrals converge to $\int v\,\mathrm d\nu$. This is impossible, since every convex combination of the $v_{j_i}$ satisfies the same inequality as the $v_{j_i}$ themselves.
+
+\emph{Step 3. Conclusion.} By Hartogs' lemma, $\limsup_jv_j\le v$ everywhere, so $(v_j-v)_+\to0$ pointwise. These functions are bounded by $L$, so $\int(v_j-v)_+\,\mathrm d\nu\to0$ by dominated convergence. Since
 \[
- |v_j-v|=2(v_j-v)_+-(v_j-v)
+ |v_j-v|=2(v_j-v)_+-(v_j-v),
 \]
-now prove the assertion.
+Step~2 proves the assertion.
 
-Finally put $M=\sup_Bw-\inf_Bw$. If $M=0$, then $\nu=0$. Otherwise $(w-\inf_Bw)/M$ is a capacity competitor, so
-$\nu(A)\leq M^n\operatorname{Cap}_B(A)$ for every Borel $A$. Apply this to $E\cap K$ and exhaust $B$ to verify the hypothesis.
+Finally, suppose that $\nu\le(\ddc w)^n$ with $w$ bounded and plurisubharmonic, and put $M=\sup_Bw-\inf_Bw$. If $M=0$, then $w$ is constant and $\nu=0$. Otherwise $(w-\inf_Bw)/M$ belongs to the family defining $\operatorname{Cap}_B$, so $\nu(A)\leq M^n\operatorname{Cap}_B(A)\le M^n\operatorname{Cap}_B^*(A)$ for every Borel set $A\subset B$. If $E$ is as in the hypothesis, then $\nu(E\cap K)=0$ for every compact $K\subset B$, and exhausting $B$ by compact sets gives $\nu(E)=0$.
 \end{proof}
 \index{Monge--Amp\`ere measure!fixed-measure continuity}
 
 \begin{theorem}\label{thm:canonical-grid-self-integral-convergence}
-In \cref{prop:canonical-grid-energy-control}, suppose a subsequence, relabeled $U_j$, converges in $L^1(B)$ to the canonical nonpositive psh function $u$. Then $u\in L^2(\mu)$ and
+Let $\mu$, $\mu_j$ and $U_j$ be as in \cref{prop:canonical-grid-energy-control}. Suppose that a subsequence of $(U_j)$, relabeled $(U_j)$ together with the corresponding measures $\mu_j$, converges in $L^1(B)$, and let $u$ be the nonpositive plurisubharmonic representative of its limit. Then $u\in L^2(\mu)$ and
 \begin{equation}\label{eq:canonical-grid-self-integral-convergence}
  \int_B|U_j-u|\,\mathrm d\mu\longrightarrow0,
  \qquad
@@ -59,68 +69,77 @@ In particular,
 \]
 \end{theorem}
 \begin{proof}
-The zero-measure case is immediate. We assume $m>0$ and use the same cubes as in \cref{prop:canonical-grid-energy-control}.
+If $m=0$, then $\mu=\mu_j=0$ and there is nothing to prove. We assume that $m>0$, and use the cubes and the polydiscs $P(z,r)$ of the proof of \cref{prop:canonical-grid-energy-control}; recall that $K$ denotes the support of $\mu$.
 
 \Needspace{6\baselineskip}
-\emph{Step 1. The fixed measure.}
-The uniform $e_2(U_j)$ bound and \cref{thm:bounded-subsolution-local-energy-moments} give
+\emph{Step 1. Convergence against the fixed measure $\mu$.}
+By \cref{thm:bounded-subsolution-local-energy-moments} with $p=2$ and the uniform bound for $e_2(U_j)$ in \cref{prop:canonical-grid-energy-control},
 \[
- \sup_j\int_BU_j^2\,\mathrm d\mu<\infty.
+ S=\sup_j\int_BU_j^2\,\mathrm d\mu<\infty.
 \]
-For fixed $T>0$, the bounded truncations $\max\{U_j,-T\}$ converge in local volume $L^1$ to $\max\{u,-T\}$. The preceding lemma gives convergence in $L^1(\mu)$ and hence convergence of their squared integrals, since squaring is Lipschitz on $[-T,0]$. Let $T\to\infty$ to obtain $u\in L^2(\mu)$. In particular $u$ is finite $\mu$-almost everywhere. The elementary tail bound
+Fix $T>0$. The truncations $\max\{U_j,-T\}$ are plurisubharmonic with values in $[-T,0]$, and they converge to $\max\{u,-T\}$ in $L^1_{\loc}(B)$, since $s\mapsto\max\{s,-T\}$ is $1$-Lipschitz. The measure $\mu$ satisfies the hypothesis of \cref{lem:bounded-psh-fixed-measure-continuity}, because $\mu\le(\ddc w)^n$, so the truncations converge in $L^1(\mu)$. Since $|a^2-b^2|\le2T|a-b|$ for $a,b\in[-T,0]$, it follows that $\int\max\{u,-T\}^2\,\mathrm d\mu\le S$. Letting $T\to\infty$, monotone convergence gives $\int u^2\,\mathrm d\mu\le S$; in particular $u\in L^2(\mu)$, and $u$ is finite $\mu$-almost everywhere. For every measurable $v\le0$ we have the elementary tail bound
 \[
  \int_B|v-\max\{v,-T\}|\,\mathrm d\mu
              \leq T^{-1}\int_Bv^2\,\mathrm d\mu,
-                  \qquad v\leq0,
 \]
-applied to $v=U_j,u$, proves the first convergence in \eqref{eq:canonical-grid-self-integral-convergence}.
+because $0\le\max\{v,-T\}-v\le v^2/T$. Applying it to $v=U_j$ and $v=u$, we get
+\[
+ \limsup_{j\to\infty}\int_B|U_j-u|\,\mathrm d\mu\le\frac{2S}T,
+\]
+and letting $T\to\infty$ proves the first convergence in \eqref{eq:canonical-grid-self-integral-convergence}.
 
 \emph{Step 2. Cell averages.}
-For $z\in K$ let $Q_j(z)$ be its half-open cube and write
+For $z\in K$ let $Q_j(z)$ be the cube of $\mathcal Q_j$ containing $z$, and write
 \[
- \mathcal A_jv(z)=\frac1{|Q_j(z)|}\int_{Q_j(z)}v\,\mathrm dV.
+ \mathcal A_jv(z)=\frac1{|Q_j(z)|}\int_{Q_j(z)}v\,\mathrm dV
 \]
-For a $\mu_j$-integrable function $v$, set $\mathcal A_jv=0$ on cubes of zero $\mu$-mass if the volume average is undefined there. This choice affects no integral against $\mu$. The definition of $\mu_j$ then gives
+for the average over this cube of a function $v$ integrable on it. If $v$ is $\mu_j$-integrable, then $v$ is integrable on every cube $Q$ with $\mu(Q)>0$; on a cube with $\mu(Q)=0$ on which $v$ is not integrable we set $\mathcal A_jv=0$, which does not affect integrals against $\mu$. Since $\mu$ is carried by $K$, the definition of $\mu_j$ gives
 \begin{equation}\label{eq:canonical-grid-cell-pairing}
  \int_Bv\,\mathrm d\mu_j=\int_K\mathcal A_jv\,\mathrm d\mu.
 \end{equation}
-The polydiscs used in the preceding proposition give, for negative psh $v$ and at every finite center,
+For a plurisubharmonic function $v\le0$ on $B$ and $z\in K$, the Cauchy--Schwarz inequality and the polydisc estimate in the proof of \cref{prop:canonical-grid-energy-control}, with $p=2$, give
 \begin{equation}\label{eq:canonical-grid-cell-square}
  |\mathcal A_jv(z)|^2
- \leq\mathcal A_j(v^2)(z)\leq D_{n,2}|v(z)|^2.
+ \leq\mathcal A_j(v^2)(z)\leq D_{n,2}|v(z)|^2;
 \end{equation}
-The local $L^p$ proposition applies also to the possibly unbounded function $u$.
+the right side is infinite if $v(z)=-\infty$. The polydisc estimate requires only $v(z)>-\infty$, so this applies also to the possibly unbounded function $u$.
 
-At a point where $u(z)$ is finite, fix $\varepsilon>0$ and put $c=u(z)+2\varepsilon$. Upper semicontinuity and Hartogs' lemma give $u,U_j\leq c$ on the shrinking polydisc centered at $z$, for all sufficiently large $j$. Applying the same cell estimate with $p=1$ to $v-c\leq0$ gives
+Fix $z\in K$ with $u(z)>-\infty$ and $\varepsilon>0$, and put $c=u(z)+2\varepsilon$. By upper semicontinuity of $u$ and Hartogs' lemma (\cref{thm:psh-compactness-hartogs}), there is a neighborhood of $z$ on which $u\le c$ and $U_j\le c$ for all large $j$. Since the polydiscs $P(z,4\sqrt2\,h_j)$ shrink to $z$, for $v=u$ or $v=U_j$ and all large $j$ the function $v-c$ is plurisubharmonic and nonpositive on $P(z,4\sqrt2\,h_j)$. The polydisc estimate with $p=1$ then gives $\mathcal A_j(c-v)(z)\le D_{n,1}(c-v(z))$, while $\mathcal A_jv(z)\le c$ because $v\le c$ on $Q_j(z)$. Thus, for all large $j$,
 \[
  c-D_{n,1}(c-v(z))\leq\mathcal A_jv(z)\leq c,
-                   \qquad v=u\ \hbox{or}\ U_j,
+                   \qquad v=u\ \text{or}\ v=U_j.
 \]
-where we may take $D_{n,1}\geq1$. Letting $\varepsilon\downarrow0$ proves $\mathcal A_ju(z)\to u(z)$. It also proves $\mathcal A_jU_j(z)\to u(z)$ whenever $U_j(z)\to u(z)$.
+For $v=u$ this gives $u(z)+2\varepsilon(1-D_{n,1})\le\mathcal A_ju(z)\le u(z)+2\varepsilon$, so letting $j\to\infty$ and then $\varepsilon\downarrow0$ proves $\mathcal A_ju(z)\to u(z)$. The same argument shows that $\mathcal A_jU_j(z)\to u(z)$ whenever $U_j(z)\to u(z)$.
 
-The first convergence in \eqref{eq:canonical-grid-self-integral-convergence} makes every subsequence admit a further subsequence with $U_j\to u$ $\mu$-almost everywhere. Thus $\mathcal A_jU_j\to u$ in $\mu$-measure. Both cell-average sequences have uniformly bounded $L^2(\mu)$ norms by \eqref{eq:canonical-grid-cell-square} and Step~1. They therefore converge to $u$ in $L^1(\mu)$. Indeed for their difference $F_j$ from $u$, Cauchy--Schwarz gives
+By the first convergence in \eqref{eq:canonical-grid-self-integral-convergence}, every subsequence of $(U_j)$ has a further subsequence converging to $u$ $\mu$-almost everywhere. Since $u$ is finite $\mu$-almost everywhere, it follows that $\mathcal A_jU_j\to u$ in $\mu$-measure, and $\mathcal A_ju\to u$ $\mu$-almost everywhere. By \eqref{eq:canonical-grid-cell-square} and Step~1, both sequences of cell averages are bounded in $L^2(\mu)$. A sequence $F_j$ which converges to zero in $\mu$-measure and is bounded in $L^2(\mu)$ converges to zero in $L^1(\mu)$: for $\varepsilon>0$ the Cauchy--Schwarz inequality gives
 \[
  \int_K|F_j|\,\mathrm d\mu
  \leq\varepsilon m+\|F_j\|_{L^2(\mu)}
                  \mu(\{|F_j|>\varepsilon\})^{1/2}.
 \]
 \Needspace{4\baselineskip}
-First let $j\to\infty$, then $\varepsilon\downarrow0$. By \eqref{eq:canonical-grid-cell-pairing},
+Letting first $j\to\infty$ and then $\varepsilon\downarrow0$, and applying this to $F_j=\mathcal A_jU_j-u$ and $F_j=\mathcal A_ju-u$, we see that $\mathcal A_jU_j\to u$ and $\mathcal A_ju\to u$ in $L^1(\mu)$. The function $U_j-u$ is $\mu_j$-integrable, since $u$ is locally integrable and $\mu_j$ has a bounded density with compact support. Therefore \eqref{eq:canonical-grid-cell-pairing} gives
 \begin{equation}\label{eq:canonical-grid-signed-integral}
- \int_B(U_j-u)\,\mathrm d\mu_j\longrightarrow0.
+ \int_B(U_j-u)\,\mathrm d\mu_j=\int_K(\mathcal A_jU_j-\mathcal A_ju)\,\mathrm d\mu\longrightarrow0.
 \end{equation}
 
 \emph{Step 3. The absolute difference.}
-Put $H_j(z)=\mathcal A_j((U_j-u)_+)(z)$. At a finite point $u(z)$, the constant $c$ used above gives
+Put $g_j=\mathcal A_j((U_j-u)_+)$ on $K$. Let $z\in K$ with $u(z)>-\infty$, and let $c$ be as in Step~2. For all large $j$ we have $U_j\le c$ and $u\le c$ on $Q_j(z)$, so $(U_j-u)_+\le c-u$ there, and hence
 \[
- 0\leq H_j(z)\leq c-\mathcal A_ju(z)
+ 0\leq g_j(z)\leq c-\mathcal A_ju(z).
 \]
-for all sufficiently large $j$. Hence $H_j\to0$ $\mu$-almost everywhere by the cell-average convergence and then $\varepsilon\downarrow0$. Jensen's inequality and \eqref{eq:canonical-grid-cell-square} give
+Since $\mathcal A_ju(z)\to u(z)$, letting $j\to\infty$ and then $\varepsilon\downarrow0$ shows that $g_j\to0$ $\mu$-almost everywhere. The Cauchy--Schwarz inequality and \eqref{eq:canonical-grid-cell-square} give
 \[
- H_j(z)^2\leq2\mathcal A_j(U_j^2)(z)
+ g_j(z)^2\leq2\mathcal A_j(U_j^2)(z)
                   +2\mathcal A_j(u^2)(z)
- \leq2D_{n,2}\bigl(U_j(z)^2+u(z)^2\bigr).
+ \leq2D_{n,2}\bigl(U_j(z)^2+u(z)^2\bigr),
 \]
-Step~1 bounds their $L^2(\mu)$ norms uniformly, so the same Cauchy--Schwarz argument gives $\int H_j\,\mathrm d\mu\to0$. This is $\int (U_j-u)_+\,\mathrm d\mu_j$ by \eqref{eq:canonical-grid-cell-pairing}. Combine it with \eqref{eq:canonical-grid-signed-integral} and the absolute-difference identity to finish the second convergence. Finally \eqref{eq:canonical-grid-cell-pairing} and Step~2 give $\int u\,\mathrm d\mu_j\to\int u\,\mathrm d\mu$, proving the last assertion.
+so the $g_j$ are bounded in $L^2(\mu)$ by Step~1. The argument at the end of Step~2 gives $\int_Kg_j\,\mathrm d\mu\to0$, and by \eqref{eq:canonical-grid-cell-pairing} this integral equals $\int_B(U_j-u)_+\,\mathrm d\mu_j$. Combining this with \eqref{eq:canonical-grid-signed-integral} and the identity $|U_j-u|=2(U_j-u)_+-(U_j-u)$, we obtain the second convergence in \eqref{eq:canonical-grid-self-integral-convergence}.
+
+Finally, since $(\ddc U_j)^n=\mu_j$,
+\[
+ \int_BU_j(\ddc U_j)^n=\int_B(U_j-u)\,\mathrm d\mu_j+\int_Bu\,\mathrm d\mu_j.
+\]
+The first term tends to zero by the second convergence in \eqref{eq:canonical-grid-self-integral-convergence}, and by \eqref{eq:canonical-grid-cell-pairing} and Step~2 the second term equals $\int_K\mathcal A_ju\,\mathrm d\mu$, which tends to $\int_Bu\,\mathrm d\mu$. This proves the last assertion.
 \end{proof}
 \index{local energy!canonical self-integral convergence}

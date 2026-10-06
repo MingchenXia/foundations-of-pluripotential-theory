@@ -1,88 +1,120 @@
 \section{The ball Dirichlet problem with continuous density}
 \label{sec:bt-continuous-ball-dirichlet}
 
-The linear density inequalities make subsolutions stable under maxima and controlled quadratic perturbations. These operations allow the homogeneous ball envelope to be replaced by an envelope with prescribed density. The exact-center automorphisms still give bounded second differences, provided their Jacobian factor is included in the density.
+We now solve the Dirichlet problem
+\[
+ (\ddc u)^n=f\eta^n\quad\text{on }B,\qquad u=\varphi\quad\text{on }\partial B,
+\]
+on a ball $B$, for a continuous density $f\ge0$ and continuous boundary values $\varphi$. As for the homogeneous equation in \cref{thm:homogeneous-ball-dirichlet}, the solution is the upper envelope of subsolutions. By the linear characterization of density lower bounds in \cref{prop:bounded-monge-ampere-linear-density}, subsolutions are stable under maxima, convex combinations and the addition of multiples of $|z|^2$ (\cref{lem:continuous-density-subsolution-algebra}). This makes the envelope a subsolution, and it allows us to use the automorphisms of \cref{lem:ball-centered-automorphisms} once more to bound its second differences. Since a biholomorphism multiplies the density by the squared modulus of its Jacobian determinant, this Jacobian factor now enters the estimate.
 
 \begin{lemma}\label{lem:continuous-density-subsolution-algebra}
-Let $u,v\in\PSH(\Omega)\cap L^\infty_{\loc}$ and let $F,G\ge0$ be continuous with $(\ddc u)^n\ge F^n\eta^n$ and $(\ddc v)^n\ge G^n\eta^n$. For $0\le t\le1$ and $a\ge0$,
+Let $u,v$ be locally bounded plurisubharmonic functions on $\Omega$, and let $F,G\ge0$ be continuous functions on $\Omega$ with $(\ddc u)^n\ge F^n\eta^n$ and $(\ddc v)^n\ge G^n\eta^n$. Then, for $0\le t\le1$ and $a\ge0$,
 \[
  \bigl(\ddc((1-t)u+tv+a|z|^2)\bigr)^n
  \ge\bigl((1-t)F+tG+a\bigr)^n\eta^n.
 \]
-Also $(\ddc\max\{u,v\})^n\ge\min\{F,G\}^n\eta^n$.
+Moreover, $(\ddc\max\{u,v\})^n\ge\min\{F,G\}^n\eta^n$.
 \end{lemma}
 \begin{proof}
-For every admissible $B$, the linear inequalities in \cref{prop:bounded-monge-ampere-linear-density} give
+Let $B$ be a positive definite Hermitian matrix with $\det B=1$. By the implication from (1) to (3) in \cref{prop:bounded-monge-ampere-linear-density}, $L_Bu\ge nF$ and $L_Bv\ge nG$ in the sense of distributions. Moreover $L_B|z|^2=\operatorname{tr}B\ge n(\det B)^{1/n}=n$ by the arithmetic--geometric mean inequality for the eigenvalues of $B$. Hence
 \[
- L_B((1-t)u+tv+a|z|^2)
- \ge n((1-t)F+tG)+a\operatorname{tr}B
- \ge n((1-t)F+tG+a).
+ L_B\bigl((1-t)u+tv+a|z|^2\bigr)
+ \ge n\bigl((1-t)F+tG\bigr)+a\operatorname{tr}B
+ \ge n\bigl((1-t)F+tG+a\bigr),
 \]
-Here $\operatorname{tr}B\ge n$ by arithmetic--geometric mean. The same proposition gives the first assertion. An upper test for $\max\{u,v\}$ at a point touches at least one of $u,v$ there. Its determinant is at least the corresponding density, and hence at least $\min\{F,G\}^n$. Apply the upper-test characterization again.
+and the implication from (3) to (1), applied with the continuous density $((1-t)F+tG+a)^n$, gives the first assertion.
+
+For the second, let $q$ be an upper test function for $\max\{u,v\}$ at a point $x$. If $u(x)\ge v(x)$, then $q(x)=u(x)$ and $q\ge\max\{u,v\}\ge u$ near $x$, so $q$ is an upper test function for $u$ at $x$, and the implication from (1) to (2) gives $\det H(q)(x)\ge F(x)^n\ge\min\{F,G\}(x)^n$. The case $v(x)\ge u(x)$ is symmetric. The implication from (2) to (1) now gives the assertion.
 \end{proof}
 
 \Needspace{22\baselineskip}
 \begin{theorem}\label{thm:continuous-density-ball-dirichlet}
-Let $B=B(a,R)\subset\mathbb C^n$, $n\ge1$ and $R>0$. For $f\in C(\overline B)$ with $f\ge0$ and real $\varphi\in C(\partial B)$, there is a unique $H_{f,\varphi}\in\PSH(B)\cap C(\overline B)$ with
+Let $B=B(a,R)\subset\mathbb C^n$ with $n\ge1$ and $R>0$. Let $f\in C(\overline B)$ be nonnegative, and let $\varphi\in C(\partial B)$ be real. There is a unique $H_{f,\varphi}\in\PSH(B)\cap C(\overline B)$ such that
 \[
- (\ddc H_{f,\varphi})^n=f\eta^n,
+ (\ddc H_{f,\varphi})^n=f\eta^n\quad\text{on }B,
  \qquad H_{f,\varphi}|_{\partial B}=\varphi.
 \]
-It is the pointwise supremum of bounded plurisubharmonic $v$ satisfying $(\ddc v)^n\ge f\eta^n$ and upper boundary limits at most $\varphi$. For any other such data $g,\chi$,
+It is the pointwise supremum of the bounded plurisubharmonic functions $v$ on $B$ such that $(\ddc v)^n\ge f\eta^n$ and $\limsup_{B\ni z\to\zeta}v(z)\le\varphi(\zeta)$ for every $\zeta\in\partial B$. If $g\in C(\overline B)$ is another nonnegative density and $\chi\in C(\partial B)$ another real boundary function, then
 \begin{equation}\label{eq:ball-dirichlet-root-stability}
  \|H_{f,\varphi}-H_{g,\chi}\|_{L^\infty(B)}
  \le\|\varphi-\chi\|_{L^\infty(\partial B)}
        +R^2\|f^{1/n}-g^{1/n}\|_{L^\infty(B)}.
 \end{equation}
-If $f^{1/n}$ and $\varphi$ have real $C^2$ extensions to neighborhoods of $\overline B$ and $\partial B$, respectively, then $H_{f,\varphi}\in C^{1,1}_{\loc}(B)$.
+If $f^{1/n}$ is the restriction of a real $C^2$ function on a neighborhood of $\overline B$ and $\varphi$ that of a real $C^2$ function on a neighborhood of $\partial B$, then $H_{f,\varphi}\in C^{1,1}_{\loc}(B)$.
 \end{theorem}
 \begin{proof}
-An affine change $z=a+R\zeta$ reduces the problem to the unit ball. The transformed density is $R^{2n}f(a+R\zeta)$, so its root is $R^2f^{1/n}(a+R\zeta)$. We prove the assertions there and put $\psi=|z|^2-1$ and $F=f^{1/n}$.
+The affine map $\zeta\mapsto a+R\zeta$ carries the unit ball onto $B$ and pulls $\eta^n$ back to $R^{2n}\eta^n$. Since Bedford--Taylor products are invariant under biholomorphisms (\cref{prop:bt-positive-recursion}), a function $u$ on $B$ satisfies $(\ddc u)^n\ge f\eta^n$ if and only if $\zeta\mapsto u(a+R\zeta)$ satisfies the same inequality with the density $R^{2n}f(a+R\zeta)$, whose $n$th root is $R^2f^{1/n}(a+R\zeta)$; the same holds with equality. It therefore suffices to prove the theorem for the unit ball, with $R=1$ in \eqref{eq:ball-dirichlet-root-stability}. We write $z$ again for the variable and put
+\[
+ \psi=|z|^2-1,\qquad F=f^{1/n}.
+\]
+In this proof a \emph{competitor} is a bounded plurisubharmonic function $v$ on $B$ with $(\ddc v)^n\ge f\eta^n$ and $\limsup_{B\ni z\to\zeta}v(z)\le\varphi(\zeta)$ for all $\zeta\in\partial B$. We call the data $(f,\varphi)$ \emph{regular} if $F$ and $\varphi$ are restrictions of real $C^2$ functions on neighborhoods of $\overline B$ and $\partial B$, respectively.
 
-\emph{Step 1. The subsolution envelope for regular data.}
-First suppose $F$ and $\varphi$ have the stated $C^2$ extensions. Extend $\varphi$ as a real $C^2$ function $b$ on a neighborhood of $\overline B$. For a sufficiently large $A$, $s=b+A\psi$ is strictly plurisubharmonic and $\det H(s)\ge f$ on $B$. It is a bounded subsolution with the required boundary value. Every bounded competitor is at most the harmonic extension $P\varphi$, by \cref{thm:subharmonic-comparison}. Let $H$ be their supremum. By \cref{lem:continuous-density-subsolution-algebra}, finite maxima of competitors, including $s$, remain competitors. Choquet selection in \cref{thm:psh-upper-envelopes} supplies such finite maxima increasing almost everywhere to the upper regularization $H^*$. They lie between $s$ and $P\varphi$. Increasing continuity in \cref{thm:bt-increasing-continuity} therefore gives $(\ddc H^*)^n\ge f\eta^n$. The same two barriers give boundary value $\varphi$, so $H^*$ is a competitor. Hence $H=H^*$ pointwise, and $H$ is bounded and plurisubharmonic.
+\emph{Step 1. The envelope of competitors for regular data.}
+Assume that $(f,\varphi)$ is regular. Multiplying a $C^2$ extension of $\varphi$ by a cutoff equal to one near $\partial B$, we extend $\varphi$ to a real $C^2$ function $b$ on a neighborhood of $\overline B$. Since the complex Hessian of $b$ and the function $f$ are bounded on $\overline B$, for $A>0$ large enough the function $s=b+A\psi$ is strictly plurisubharmonic near $\overline B$ and satisfies $\det(s_{j\bar k})\ge f$ on $B$. It is continuous on $\overline B$ and equals $\varphi$ on $\partial B$; in particular, $s$ is a competitor. On the other hand, let $P\varphi$ be the harmonic extension of $\varphi$ (\cref{thm:ball-dirichlet}). Every competitor is subharmonic with boundary upper limits at most $\varphi$, so it is bounded above by $P\varphi$, by the harmonic comparison principle (\cref{thm:subharmonic-comparison} and the remark following it).
 
-\emph{Step 2. Second differences and equality of the density.}
-Fix a compact set of centers $K\Subset B$ and use $S_{a,h}$ from \cref{lem:ball-centered-automorphisms}. Write $J_{a,h}(z)=\det_{\mathbb C}D_zS_{a,h}$. Local smooth approximation and decreasing continuity show that Bedford--Taylor measures commute with these biholomorphisms. Consequently
+Let $H$ be the pointwise supremum of all competitors, so that $s\le H\le P\varphi$. By \cref{lem:continuous-density-subsolution-algebra}, the maximum of finitely many competitors is a competitor. By \cref{thm:psh-upper-envelopes}, some countable family of competitors has the same upper semicontinuous regularization $H^*$ as the whole family, and its supremum equals $H^*$ almost everywhere. Taking finite maxima of $s$ and the members of this family, we obtain competitors $v_j$ which increase to a function equal to $H^*$ almost everywhere, and $s\le v_j\le P\varphi$. By \cref{thm:bt-increasing-continuity}, $(\ddc v_j)^n\to(\ddc H^*)^n$ weakly, and hence $(\ddc H^*)^n\ge f\eta^n$. Since $P\varphi$ is continuous, $s\le H\le H^*\le P\varphi$; as $s$ and $P\varphi$ are continuous on $\overline B$ and equal $\varphi$ on $\partial B$, the function $H^*$ has boundary limits $\varphi$. Thus $H^*$ is a competitor, so $H^*\le H$ and $H=H^*$. In particular, $H$ is a bounded plurisubharmonic competitor with $\lim_{B\ni z\to\zeta}H(z)=\varphi(\zeta)$ for all $\zeta\in\partial B$.
+
+\emph{Step 2. Second differences and the equation for regular data.}
+Fix a compact set $K\subset B$. For $a\in K$ and small $h\in\mathbb C^n$, let $S_{a,h}$ be the automorphisms of \cref{lem:ball-centered-automorphisms}, and write $J_{a,h}=\det_{\mathbb C}DS_{a,h}$ for their complex Jacobian determinants. Since Bedford--Taylor products are invariant under biholomorphisms (\cref{prop:bt-positive-recursion}) and $S_{a,h}^*\eta^n=|J_{a,h}|^2\eta^n$, we have
 \[
  \bigl(\ddc(H\circ S_{a,h})\bigr)^n
- \ge (F\circ S_{a,h})^n|J_{a,h}|^2\eta^n.
+ \ge (F\circ S_{a,h})^n|J_{a,h}|^2\eta^n
+ =\bigl((F\circ S_{a,h})|J_{a,h}|^{2/n}\bigr)^n\eta^n.
 \]
-The explicit formula for the automorphisms has denominators bounded away from zero on $\overline B$, uniformly for $a\in K$ and sufficiently small $h$. Its inverse has the same property. Thus $|J_{a,h}|^{2/n}$ is smooth and strictly positive there, with its first two real $h$ derivatives uniformly bounded. Taylor's formula and $S_{a,0}=\mathrm{id}$ give constants $C_1,C_2\ge0$ such that
+The explicit formula in the proof of \cref{lem:ball-centered-automorphisms} shows that $S_{a,h}$ and its inverse depend smoothly on $(a,h,z)$ near $\overline B$, with denominators bounded away from zero, uniformly for $a\in K$ and small $h$. Hence $J_{a,h}$ does not vanish on $\overline B$, and $|J_{a,h}|^{2/n}$ is smooth and positive there, with its first two derivatives in the real parameter $h$ uniformly bounded. Put
+\[
+ \Phi_{a,h}=\tfrac12\bigl((F\circ S_{a,h})|J_{a,h}|^{2/n}
+ +(F\circ S_{a,-h})|J_{a,-h}|^{2/n}\bigr),
+\]
+a nonnegative continuous function on $\overline B$. Since $S_{a,0}$ is the identity and $J_{a,0}=1$, Taylor's formula in $h$, in which the first-order terms cancel in the symmetric averages, gives constants $C_1,C_2\ge0$ such that
 \[
  \begin{aligned}
- \tfrac12\bigl((F\circ S_{a,h})|J_{a,h}|^{2/n}
- +(F\circ S_{a,-h})|J_{a,-h}|^{2/n}\bigr)
- &\ge F-C_1|h|^2 &&\text{on }\overline B,\\
+ \Phi_{a,h}&\ge F-C_1|h|^2 &&\text{on }\overline B,\\
  \tfrac12(\varphi\circ S_{a,h}+\varphi\circ S_{a,-h})
  &\le\varphi+C_2|h|^2 &&\text{on }\partial B.
  \end{aligned}
 \]
-The constants depend on $K,n$ and the fixed $C^2$ data, independently of $a,h,z$. By \cref{lem:continuous-density-subsolution-algebra},
+The constants depend only on $K$, $n$ and the $C^2$ extensions of $F$ and $\varphi$, and not on $a$, $h$ or $z$. Consider
 \[
  V_{a,h}=\tfrac12(H\circ S_{a,h}+H\circ S_{a,-h})
-            +C_1|h|^2\psi-C_2|h|^2
+            +C_1|h|^2\psi-C_2|h|^2.
 \]
-has Monge--Amp\`ere measure at least $f\eta^n$ and upper boundary limits at most $\varphi$. Indeed the average's root lower bound is the nonnegative average in the first line above; adding $C_1|h|^2\psi$ raises it by $C_1|h|^2$. Therefore $V_{a,h}\le H$. Evaluating at $a$ and using $-1\le\psi(a)\le0$ gives
+Since additive constants do not change Monge--Amp\`ere measures, \cref{lem:continuous-density-subsolution-algebra}, applied with $t=1/2$ and the quadratic term $C_1|h|^2|z|^2$, gives
 \[
- H(a+h)+H(a-h)-2H(a)\le2(C_1+C_2)|h|^2.
+ (\ddc V_{a,h})^n\ge\bigl(\Phi_{a,h}+C_1|h|^2\bigr)^n\eta^n\ge F^n\eta^n=f\eta^n.
 \]
-As in the proof of \cref{thm:homogeneous-ball-dirichlet}, convolution turns this into an upper bound for every real directional Hessian; plurisubharmonicity in the direction $\mathrm ih$ gives its lower bound. \Cref{prop:bounded-hessian-taylor} then gives the canonical locally $C^{1,1}$ representative and its almost-everywhere second-order Taylor expansion. Bounded Hessian coefficients, Lebesgue differentiation and uniform Bedford--Taylor continuity identify $(\ddc H)^n=\det(H_{j\bar k})\eta^n$.
+Since $S_{a,\pm h}$ preserve $\partial B$ and $H$ has boundary limits $\varphi$, the boundary limits of $V_{a,h}$ are $\frac12(\varphi\circ S_{a,h}+\varphi\circ S_{a,-h})-C_2|h|^2\le\varphi$. Thus $V_{a,h}$ is a competitor, and $V_{a,h}\le H$. Evaluating at $a$, where $S_{a,\pm h}(a)=a\pm h$, and using $-1\le\psi(a)\le0$, we obtain
+\[
+ H(a+h)+H(a-h)-2H(a)\le2(C_1+C_2)|h|^2
+\]
+for all $a\in K$ and all sufficiently small $h$.
 
-At a Taylor point $x$ where $\det(H_{j\bar k})(x)>f(x)$, the complex Hessian is positive definite. Let $Q$ be the real quadratic Taylor polynomial. Choose $\varepsilon>0$ so small that $Q-\varepsilon|z-x|^2$ remains strictly plurisubharmonic and its determinant exceeds $f$ on a small ball about $x$. Shrink its radius $r$ so that the Taylor remainder on the sphere is less than $\varepsilon r^2/2$. Then
-$q=Q-\varepsilon|z-x|^2+\varepsilon r^2/4$ is below $H$ on that sphere and above it at $x$. Paste $\max\{H,q\}$ inside the small ball and $H$ outside. Gluing and \cref{lem:continuous-density-subsolution-algebra} give a bounded competitor exceeding $H$, a contradiction. Since $\det(H_{j\bar k})\ge f$ almost everywhere already, equality holds almost everywhere. This proves the equation for regular data.
+Exactly as in the proof of \cref{thm:homogeneous-ball-dirichlet}, convolving this inequality bounds the real Hessians of the regularizations of $H$ from above on compact subsets of $B$, and plurisubharmonicity in the direction $\mathrm ih$ bounds them from below. The argument given there, based on \cref{prop:bounded-hessian-taylor}, shows that $H$ is locally $C^{1,1}$ on $B$, that it has a second-order Taylor expansion at almost every point, and that $(\ddc H)^n=\det(H_{j\bar k})\,\eta^n$, where $H_{j\bar k}$ are the bounded measurable coefficients of the complex Hessian of $H$. Since $(\ddc H)^n\ge f\eta^n$, we have $\det(H_{j\bar k})\ge f$ almost everywhere.
 
-\emph{Step 3. Root-density stability and continuous data.}
-For two regular data sets, put $\delta=\|\varphi-\chi\|_\infty$ and $\varepsilon=\|f^{1/n}-g^{1/n}\|_\infty$. The function $H_{g,\chi}+\varepsilon\psi-\delta$ has upper boundary limits at most $\varphi$ and, by \cref{lem:continuous-density-subsolution-algebra}, measure at least $(g^{1/n}+\varepsilon)^n\eta^n\ge f\eta^n$. It is a competitor for $H_{f,\varphi}$. Reverse the data sets to obtain \eqref{eq:ball-dirichlet-root-stability} with $R=1$.
+Suppose that at a point $x$ where $H$ has a second-order Taylor expansion, the complex Hessian satisfies $\det(H_{j\bar k})(x)>f(x)$. Let $Q$ be the real quadratic Taylor polynomial of $H$ at $x$. Its complex Hessian is positive semidefinite, by the submean inequality for $H$ on complex lines as in the proof of \cref{prop:bounded-monge-ampere-linear-density}, and it has positive determinant, so it is positive definite. Choose $\varepsilon>0$ so small that $Q-\varepsilon|z-x|^2$ is still strictly plurisubharmonic and, since $f$ is continuous, the determinant of its constant complex Hessian exceeds $f$ on a ball about $x$. Then choose $r>0$ so small that this holds on $B(x,r)$, that $\overline{B(x,r)}\subset B$, and that $|H-Q|<\varepsilon r^2/2$ on $\partial B(x,r)$. The function
+\[
+ q=Q-\varepsilon|z-x|^2+\varepsilon r^2/4
+\]
+satisfies $q<H$ on $\partial B(x,r)$ and $q(x)>H(x)$. Let $\widehat H=\max\{H,q\}$ on $B(x,r)$ and $\widehat H=H$ on $B\setminus B(x,r)$. By \cref{prop:psh-max-gluing}, $\widehat H$ is plurisubharmonic, and it coincides with $H$ near $\partial B(x,r)$ because $q<H$ there. On $B(x,r)$ we have $(\ddc q)^n\ge f\eta^n$, so \cref{lem:continuous-density-subsolution-algebra} gives $(\ddc\widehat H)^n\ge f\eta^n$ there; elsewhere this holds because $\widehat H=H$ near every point. Thus $\widehat H$ is a competitor with $\widehat H(x)>H(x)$, a contradiction. Consequently $\det(H_{j\bar k})=f$ almost everywhere, that is, $(\ddc H)^n=f\eta^n$. This solves the problem for regular data, and the solution is locally $C^{1,1}$ on $B$.
 
-For continuous data, extend $F\ge0$ continuously outside $\overline B$ by radial projection and convolve with nonnegative kernels. This gives smooth nonnegative $F_j\to F$ uniformly on $\overline B$. Smooth boundary approximations $\varphi_j\to\varphi$ are obtained on an annular neighborhood. The estimate just proved makes $H_{F_j^n,\varphi_j}$ uniformly Cauchy on $\overline B$. Its limit $U$ is continuous and plurisubharmonic, with boundary value $\varphi$. Uniform continuity of the bounded products gives $(\ddc U)^n=f\eta^n$. Applying the estimate to approximations of two sets of data and taking their uniform limits proves the stated stability bound for their solutions.
+\emph{Step 3. Stability and continuous data.}
+Let $(f,\varphi)$ and $(g,\chi)$ be regular data, with envelopes $H_{f,\varphi}$ and $H_{g,\chi}$ as in Step 1. Put $\delta=\|\varphi-\chi\|_{L^\infty(\partial B)}$ and $\varepsilon=\|f^{1/n}-g^{1/n}\|_{L^\infty(B)}$. By \cref{lem:continuous-density-subsolution-algebra},
+\[
+ \bigl(\ddc(H_{g,\chi}+\varepsilon\psi-\delta)\bigr)^n\ge(g^{1/n}+\varepsilon)^n\eta^n\ge f\eta^n,
+\]
+and $H_{g,\chi}+\varepsilon\psi-\delta$ has boundary limits $\chi-\delta\le\varphi$. It is therefore a competitor for $(f,\varphi)$, and since $\psi\ge-1$ we get $H_{g,\chi}-\varepsilon-\delta\le H_{f,\varphi}$. Exchanging the roles of the two data gives \eqref{eq:ball-dirichlet-root-stability} with $R=1$ for regular data.
 
-\emph{Step 4. Uniqueness and the envelope.}
-Let $U$ be the solution constructed above and let $v$ be any bounded plurisubharmonic competitor for these continuous data. For $\varepsilon>0$, put $v_\varepsilon=v+\varepsilon\psi$. Its measure is at least $(F+\varepsilon)^n\eta^n$, whereas that of $U$ is $F^n\eta^n$. Boundary comparison gives
+Now let $f$ and $\varphi$ be continuous. Extend $F$ to $\mathbb C^n$ by $F(z)=F(z/|z|)$ for $|z|>1$ and convolve with mollifiers; this gives smooth functions $F_j\ge0$ with $F_j\to F$ uniformly on $\overline B$. Similarly, extending $\varphi$ to a neighborhood of $\partial B$ by $\varphi(z)=\varphi(z/|z|)$ and mollifying, we obtain smooth functions $\varphi_j$ on a neighborhood of $\partial B$ with $\varphi_j\to\varphi$ uniformly on $\partial B$. The data $(F_j^n,\varphi_j)$ are regular, and by the estimate just proved the solutions $H_j=H_{F_j^n,\varphi_j}$, which are continuous on $\overline B$, form a uniform Cauchy sequence on $\overline B$. Their uniform limit $U$ is continuous on $\overline B$, plurisubharmonic on $B$, and equal to $\varphi$ on $\partial B$. By \cref{prop:bt-uniform-continuity}, $(\ddc H_j)^n\to(\ddc U)^n$ weakly, and since $F_j^n\to f$ uniformly on $\overline B$, we obtain $(\ddc U)^n=f\eta^n$.
+
+\emph{Step 4. The envelope, uniqueness and stability.}
+Let $U$ be a solution of the problem that is continuous on $\overline B$, for instance the one constructed in Step 3, and let $v$ be a competitor. For $\varepsilon>0$ put $v_\varepsilon=v+\varepsilon\psi$. By \cref{lem:continuous-density-subsolution-algebra}, $(\ddc v_\varepsilon)^n\ge(F+\varepsilon)^n\eta^n$, while $(\ddc U)^n=F^n\eta^n$. Since $\liminf_{z\to\zeta}(U(z)-v_\varepsilon(z))\ge0$ for every $\zeta\in\partial B$, the comparison principle \cref{thm:bt-comparison} gives
 \[
  \int_{\{U<v_\varepsilon\}}(F+\varepsilon)^n\eta^n
+ \le\int_{\{U<v_\varepsilon\}}(\ddc v_\varepsilon)^n
  \le\int_{\{U<v_\varepsilon\}}F^n\eta^n.
 \]
-The strict difference makes this Borel set Lebesgue null. Uniqueness of canonical plurisubharmonic representatives gives $U\ge v_\varepsilon$ pointwise, as in \cref{thm:bt-comparison}. Let $\varepsilon\downarrow0$ to get $U\ge v$. Since $U$ itself is a competitor, it equals their pointwise envelope. Any other continuous solution is a competitor and is therefore at most $U$; applying the same argument with the solutions interchanged gives equality. Scaling back proves all assertions.
+These integrals are finite, and $(F+\varepsilon)^n-F^n\ge\varepsilon^n$, so the Borel set $\{U<v_\varepsilon\}$ is Lebesgue null. Hence $\max\{U,v_\varepsilon\}=U$ almost everywhere, and the uniqueness assertion of \cref{thm:psh-distribution-representative} gives $U\ge v_\varepsilon$ everywhere. Letting $\varepsilon\downarrow0$, we get $U\ge v$. Since $U$ is itself a competitor, it is the pointwise supremum of all competitors. In particular, any two solutions in $\PSH(B)\cap C(\overline B)$ coincide with this supremum, which proves uniqueness. For regular data the solution is therefore the envelope of Step 1, which is locally $C^{1,1}$ by Step 2.
+
+Finally, if $(f,\varphi)$ and $(g,\chi)$ are continuous data, approximate both as in Step 3. By uniqueness, the corresponding solutions converge uniformly to $H_{f,\varphi}$ and $H_{g,\chi}$, and \eqref{eq:ball-dirichlet-root-stability} for the approximating regular data passes to the limit. Undoing the affine change of variables proves all assertions of the theorem.
 \end{proof}
 \index{Dirichlet problem!continuous Monge--Amp\`ere density}

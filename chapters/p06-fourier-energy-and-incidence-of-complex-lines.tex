@@ -1,209 +1,269 @@
 \chapter{Fourier analysis and incidence of complex lines}
 \label{chap:p06}
 
-Let $D\subset\mathbb C^n$ be open, with $n\geq2$. A function on $D$ that is subharmonic on every complex-line section is bounded above on compact subsets of each individual line. The bounds could still depend on the line. To control them uniformly, we will place a probability measure on an annular set of high values, bound its energy independently of the function, and project it onto complex hyperplanes. Fourier analysis turns that energy bound into an $L^2$ bound for the projected densities. This forces one affine complex line to meet infinitely many high-value sets and contradicts its local upper bound.
+This chapter develops the Fourier analysis on Euclidean space that the complex theory of \cref{part:pluripotential} requires. Its main application concerns functions of several complex variables. Let $D\subset\mathbb C^n$ be open, with $n\geq2$, and let $u$ be a function on $D$ whose restriction to every complex line is subharmonic. On each line $u$ is upper semicontinuous, and hence bounded above on compact subsets of that line, but the hypothesis gives no control of these bounds as the line varies. We prove that a Borel function with this property is nevertheless locally bounded above on $D$ (\cref{cor:borel-line-subharmonic-bound}). In \cref{chap:q02} this is the step that makes upper semicontinuity automatic for functions that are subharmonic on complex lines (\cref{thm:automatic-psh-usc}).
 
-The same Fourier transform also controls weak second derivatives. Its Hessian multipliers are bounded on every $L^p$, $1<p<\infty$, by a dyadic decomposition and cancellation. This supplies the real regularity needed to interpret determinants for nonsmooth obstacles later in the book.
+The proof is by contradiction. Suppose that $u(x_j)\to\infty$ along a sequence $x_j\to p$. The submean inequality shows that $u\geq u(x_j)$ on a subset of positive length of every sufficiently small circle centered at $x_j$ in a complex line through $x_j$. Choosing one such point on each circle, we obtain a probability measure on an annulus about $x_j$, carried by the set where $u\geq u(x_j)$, whose Riesz energy of order $2n-2$ is bounded independently of $j$ (\cref{thm:high-value-star-energy}). By Plancherel's theorem, energy of this order is a constant multiple of the average, over all complex hyperplanes $H$, of the squared $L^2$ norms of the densities of the measures projected onto $H$ (\cref{thm:complex-projection-l2}). By the Cauchy--Schwarz inequality, a projected measure with a density of controlled $L^2$ norm cannot be concentrated on a set of small measure. An incidence argument then produces a single complex line that meets infinitely many of the sets $\{u\geq u(x_j)\}$ near $p$ (\cref{thm:complex-line-incidence}), which contradicts the upper bound of $u$ on that line. The Fourier analysis is developed in \cref{sec:fourier-energy}, and the invariant measures used to average over directions and over hyperplanes are constructed in \cref{sec:unitary-measures}.
+
+The same Fourier methods give $L^p$ estimates for second derivatives. In \cref{sec:hessian-singular-integrals} we show that, for $1<p<\infty$, the $L^p$ norm of the Laplacian of a test function bounds the $L^p$ norm of its full real Hessian. For $p=2$ this is Plancherel's theorem; the other exponents require the Calder\'on--Zygmund decomposition. Together with Morrey's inequality, these estimates supply the real regularity of functions with bounded Laplacian that is used in \cref{chap:q10} to compute Monge--Amp\`ere measures of envelopes below nonsmooth obstacles. References and historical remarks are collected in \cref{sec:history-fourier-incidence}.
 
 \section{Fourier transform and energy}
 \label{sec:fourier-energy}
-Let $d\geq1$. A finite complex measure means $\mu=\sigma_1+\mathrm i\sigma_2$, with $\sigma_1,\sigma_2$ finite real signed measures. For $f\in L^1(\mathbb R^d)$ and such a measure $\mu$, use the Fourier transform\index{Fourier transform} convention
+Let $d\geq1$. We develop the Fourier transform on $\mathbb R^d$ as far as Plancherel's theorem, and use it to express the Riesz energy of a measure as a weighted $L^2$ norm of its Fourier transform (\cref{thm:riesz-fourier-energy}). A finite complex measure on $\mathbb R^d$ is a combination $\mu=\sigma_1+\mathrm i\sigma_2$ of finite real signed measures $\sigma_1,\sigma_2$. For $f\in L^1(\mathbb R^d)$ and such a measure $\mu$ we use the Fourier transform\index{Fourier transform}
 \[
  \widehat f(\xi)=\int_{\mathbb R^d}f(x)\mathrm e^{-2\pi\mathrm i x\cdot\xi}\,\mathrm d x,
  \qquad \widehat\mu(\xi)=\int\mathrm e^{-2\pi\mathrm i x\cdot\xi}\,\mathrm d\mu(x).
 \]
-These functions are bounded and continuous by dominated convergence. The Schwartz space\index{Schwartz space} $\mathcal S(\mathbb R^d)$ consists of smooth complex functions for which $x^\alpha\partial^\beta f$ is bounded for all multi-indices $\alpha,\beta$. In particular every derivative is integrable, and $C_c^\infty\subset\mathcal S$.
+Both functions are bounded, by $\|f\|_1$ and by the sum of the total variations of $\sigma_1$ and $\sigma_2$, respectively, and they are continuous by dominated convergence. The Schwartz space\index{Schwartz space} $\mathcal S(\mathbb R^d)$ consists of the smooth complex functions $f$ on $\mathbb R^d$ such that $x^\alpha\partial^\beta f$ is bounded for all multi-indices $\alpha,\beta$. Every derivative of a Schwartz function is integrable, since it is bounded by a constant multiple of $(1+|x|^2)^{-d}$, and $C_c^\infty(\mathbb R^d)\subset\mathcal S(\mathbb R^d)$.
 
 \begin{lemma}\label{lem:fourier-gaussian}
-The Fourier transform maps $\mathcal S$ into itself. For $t>0$,
+The Fourier transform maps $\mathcal S(\mathbb R^d)$ into itself. Moreover, for $t>0$,
 \[
  \widehat{\mathrm e^{-\pi t|x|^2}}(\xi)=t^{-d/2}\mathrm e^{-\pi|\xi|^2/t}.
 \]
 \end{lemma}
 \begin{proof}
-Differentiating under the integral multiplies $f$ by $-2\pi\mathrm i x_j$, and integration by parts multiplies its transform by $2\pi\mathrm i\xi_j$. Boundary terms vanish by rapid decay, first on boxes and then on letting their sides tend to infinity. Iterating gives boundedness of every $\xi^\alpha\partial^\beta\widehat f$, since it is a constant multiple of the transform of an integrable derivative of $x^\beta f$. This proves the Schwartz assertion.
+Let $f\in\mathcal S$. Since $x_jf$ is integrable, we may differentiate under the integral sign; thus $\widehat f$ is smooth, and $\partial_{\xi_j}\widehat f$ is the transform of $-2\pi\mathrm i x_jf$. Integration by parts shows that the transform of $\partial_jf$ is $2\pi\mathrm i\xi_j\widehat f$; the boundary terms vanish by the rapid decay of $f$, first on boxes and then as their sides tend to infinity. Iterating these two rules, we find that $\xi^\alpha\partial^\beta\widehat f$ is a constant multiple of the transform of $\partial^\alpha(x^\beta f)$. This derivative is integrable, so $\xi^\alpha\partial^\beta\widehat f$ is bounded. Hence $\widehat f\in\mathcal S$.
 
-In one dimension set $F(\xi)=\int\mathrm e^{-\pi x^2}\mathrm e^{-2\pi\mathrm i x\xi}\,\mathrm d x$. Integration by parts gives $F'=-2\pi\xi F$. Also $F(0)=1$: square the positive Gaussian integral and use planar polar coordinates to obtain $2\pi\int_0^\infty r\mathrm e^{-\pi r^2}\,\mathrm d r=1$. The differential equation gives $F(\xi)=\mathrm e^{-\pi\xi^2}$. Scaling and the product formula from Fubini give the result in dimension $d$.
+For the Gaussian, consider first $d=1$ and set $F(\xi)=\int\mathrm e^{-\pi x^2}\mathrm e^{-2\pi\mathrm i x\xi}\,\mathrm d x$. Differentiating under the integral and integrating by parts, we obtain $F'=-2\pi\xi F$, so $F(\xi)\mathrm e^{\pi\xi^2}$ is constant. Moreover $F(0)=1$: squaring the positive integral $F(0)$ and using polar coordinates in the plane gives $F(0)^2=2\pi\int_0^\infty r\mathrm e^{-\pi r^2}\,\mathrm d r=1$. Hence $F(\xi)=\mathrm e^{-\pi\xi^2}$. In dimension $d$, Fubini's theorem writes the transform of $\mathrm e^{-\pi|x|^2}$ as a product of one-dimensional transforms, which proves the formula for $t=1$; the substitution $x=y/\sqrt t$ gives the general case.
 \end{proof}
 
 \begin{theorem}[Plancherel]\label{thm:plancherel}
-\index{Plancherel's theorem}For $f\in\mathcal S$ the inversion formula is
+\index{Plancherel's theorem}Every $f\in\mathcal S(\mathbb R^d)$ satisfies the inversion formula
 \[
- f(x)=\int\widehat f(\xi)\mathrm e^{2\pi\mathrm i x\cdot\xi}\,\mathrm d\xi.
+ f(x)=\int\widehat f(\xi)\mathrm e^{2\pi\mathrm i x\cdot\xi}\,\mathrm d\xi,\qquad x\in\mathbb R^d.
 \]
-The Fourier transform extends uniquely to a unitary operator on $L^2(\mathbb R^d)$, with inverse given on Schwartz functions by changing the exponential's sign. It agrees almost everywhere with the integral transform on $L^1\cap L^2$.
+The Fourier transform on $\mathcal S(\mathbb R^d)$ extends uniquely to a bounded operator on $L^2(\mathbb R^d)$. This extension is unitary, its inverse is given on Schwartz functions by the integral with the exponential $\mathrm e^{2\pi\mathrm i x\cdot\xi}$, and on $L^1\cap L^2$ it agrees almost everywhere with the integral transform.
 \end{theorem}
 \begin{proof}
-Insert the factor $\mathrm e^{-\pi\varepsilon^2|\xi|^2}$ into the frequency integrand in the asserted inversion formula. Fubini and \cref{lem:fourier-gaussian} identify it with $f*g_\varepsilon(x)$, where $g_\varepsilon(y)=\varepsilon^{-d}\mathrm e^{-\pi|y|^2/\varepsilon^2}$. This probability kernel is an approximate identity: uniform continuity controls the integral on $|y|<\delta$, and its mass on $|y|\geq\delta$ tends to zero by scaling and integrability. Thus $f*g_\varepsilon\to f$ uniformly. On the Fourier side, $\widehat f\in L^1$ permits dominated convergence, proving inversion. The same proof with the signs reversed gives inversion in the other order.
-
-For $f,g\in\mathcal S$, apply inversion to $g$ and Fubini to get
+Let $f\in\mathcal S$ and $\varepsilon>0$. Insert the factor $\mathrm e^{-\pi\varepsilon^2|\xi|^2}$ into the inversion integral. By Fubini's theorem and \cref{lem:fourier-gaussian} with $t=\varepsilon^2$,
 \[
- \int f\overline g\,\mathrm d x=\int\widehat f\,\overline{\widehat g}\,\mathrm d\xi.
+ \int\widehat f(\xi)\mathrm e^{2\pi\mathrm i x\cdot\xi}\mathrm e^{-\pi\varepsilon^2|\xi|^2}\,\mathrm d\xi=f*g_\varepsilon(x),
+ \qquad g_\varepsilon(y)=\varepsilon^{-d}\mathrm e^{-\pi|y|^2/\varepsilon^2}.
 \]
-The absolute integral needed for this interchange is at most $\|f\|_1\|\widehat g\|_1$. Smooth compactly supported functions are dense in $L^2$ by \cref{lem:mollifier-density}. Hence the identity extends the transform as an isometry to $L^2$. The inverse transform extends as an isometry too, and the two compositions are the identity on a dense subspace and therefore everywhere. This proves unitarity and uniqueness.
+The functions $g_\varepsilon$ are positive with integral one, and the substitution $y=\varepsilon y'$ shows that their mass outside a fixed ball $B(0,\delta)$ tends to zero as $\varepsilon\to0$. Since $f$ is bounded and uniformly continuous, splitting the convolution integral into the regions $|y|<\delta$ and $|y|\geq\delta$ shows that $f*g_\varepsilon\to f$ uniformly. On the other side, $\widehat f\in\mathcal S\subset L^1$ by \cref{lem:fourier-gaussian}, so dominated convergence lets $\varepsilon\to0$ under the frequency integral. This proves the inversion formula. The same argument with the signs of the exponents reversed shows that $f$ is also recovered by applying first the inverse integral transform and then the Fourier transform.
 
-If $f\in L^1\cap L^2$, cutoff and smooth approximation give $f_j\in C_c^\infty$ converging in both norms. This follows by cutting off the tails, truncating the values, and using a mollifier; translation continuity in both norms gives the final approximation. The integral transforms converge uniformly by the $L^1$ estimate, while their $L^2$ transforms converge in $L^2$. A subsequence of an $L^2$ convergent sequence converges almost everywhere: select squared errors with summable integrals and apply Tonelli. The two limits agree almost everywhere.
+For $f,g\in\mathcal S$, applying inversion to $g$ and Fubini's theorem, we obtain Parseval's identity
+\[
+ \int f\overline g\,\mathrm d x=\int\widehat f\,\overline{\widehat g}\,\mathrm d\xi;
+\]
+the interchange of integrals is justified because the double integral of the absolute value is at most $\|f\|_1\|\widehat g\|_1$. By \cref{lem:mollifier-density}, $C_c^\infty(\mathbb R^d)$, and hence $\mathcal S$, is dense in $L^2$. Therefore the Fourier transform extends uniquely from $\mathcal S$ to an isometry of $L^2$, and the inverse integral transform extends in the same way. Both compositions of the two extensions are continuous and equal to the identity on the dense subspace $\mathcal S$, hence everywhere. Thus the extension is unitary, with the stated inverse.
+
+Finally let $f\in L^1\cap L^2$. We choose $f_j\in C_c^\infty$ converging to $f$ both in $L^1$ and in $L^2$: first replace $f$ by $f\mathbf1_{B(0,R)}$ with $R$ large, and then mollify; by \cref{lem:mollifier-density} the mollifications converge in both norms, since their supports lie in a fixed compact set. The integral transforms of the $f_j$ converge uniformly to that of $f$, because the difference is bounded by $\|f_j-f\|_1$, while by isometry they converge in $L^2$ to the $L^2$ transform of $f$. A subsequence of an $L^2$ convergent sequence converges almost everywhere: choose it so that the squared $L^2$ errors are summable, and apply Tonelli's theorem to the sum of the squared errors. Hence the two transforms of $f$ agree almost everywhere.
 \end{proof}
+We continue to write $\widehat f$ for the $L^2$ transform of $f\in L^2(\mathbb R^d)$, and we call its inverse the inverse $L^2$ transform.
 
 \begin{proposition}\label{prop:measure-fourier-l2}
-If a finite positive measure $\mu$ on $\mathbb R^d$ satisfies $\widehat\mu\in L^2$, then $\mu=g\,\mathrm d x$ for a nonnegative $g\in L^1\cap L^2$, and $\|g\|_2=\|\widehat\mu\|_2$.
+Let $\mu$ be a finite positive Borel measure on $\mathbb R^d$ such that $\widehat\mu\in L^2(\mathbb R^d)$. Then $\mu=g\,\mathrm d x$ for a nonnegative function $g\in L^1\cap L^2$, and $\|g\|_2=\|\widehat\mu\|_2$.
 \end{proposition}
 \begin{proof}
-Let $g$ be the inverse $L^2$ transform of $\widehat\mu$. For $\phi\in\mathcal S$, inversion and Fubini give
+Let $g\in L^2$ be the inverse $L^2$ transform of $\widehat\mu$, so that $\widehat g=\widehat\mu$. For $\phi\in\mathcal S$, the inversion formula and Fubini's theorem give
 \[
  \int\phi\,\mathrm d\mu=\int\widehat\phi(\xi)\widehat\mu(-\xi)\,\mathrm d\xi=\int\phi g\,\mathrm d x.
 \]
-The last equality is the bilinear form of Plancherel, obtained by conjugating one test. In particular the distribution defined by $g$ is positive. Its mollifications are nonnegative and converge to $g$ in $L^1$ locally, so $g$ is real and nonnegative almost everywhere. The uniqueness of Radon measures against smooth tests, using \cref{lem:mollifier-density,prop:continuous-density}, gives $\mu=g\,\mathrm d x$. Increasing compact cutoffs then give $\int g=\mu(\mathbb R^d)<\infty$. The norm equality is Plancherel.
+The second equality is Parseval's identity applied to $\phi$ and $\overline g$. Indeed, the transform of $\overline g$ at $\xi$ is $\overline{\widehat g(-\xi)}$; this holds for Schwartz functions by definition, and it extends to $L^2$ because both sides are continuous in $g$ for the $L^2$ norm. In particular, for every test function $\phi$ the number $\int\phi g\,\mathrm d x=\int\phi\,\mathrm d\mu$ is real when $\phi$ is real and nonnegative when $\phi\geq0$, so the locally integrable function $g$ defines a positive distribution. By \cref{prop:distribution-smoothing} its mollifications $g*\rho_\varepsilon$ are nonnegative, and they converge to $g$ in $L^1$ on compact sets by \cref{lem:mollifier-density}. Hence $g$ is real and nonnegative almost everywhere. The measures $\mu$ and $g\,\mathrm d x$ are Radon by \cref{prop:borel-regularity}, and they define the same distribution; by the injectivity assertion of \cref{prop:distribution-smoothing}, $\mu=g\,\mathrm d x$. In particular $\int g\,\mathrm d x=\mu(\mathbb R^d)<\infty$, and $\|g\|_2=\|\widehat\mu\|_2$ because the $L^2$ transform is unitary.
 \end{proof}
 
-For $0<s<d$, the Riesz $s$-energy\index{energy!Riesz} of a finite positive measure is
+For $0<s<d$, the Riesz $s$-energy\index{energy!Riesz} of a finite positive Borel measure $\mu$ on $\mathbb R^d$ is
 \[
- I_s(\mu)=\iint|x-y|^{-s}\,\mathrm d\mu(x)\,\mathrm d\mu(y).
+ I_s(\mu)=\iint|x-y|^{-s}\,\mathrm d\mu(x)\,\mathrm d\mu(y)\in[0,\infty].
 \]
-This kernel has no fundamental-solution normalizing factor. We allow the value infinity.
+The kernel $|x-y|^{-s}$ carries no normalizing constant. For instance, if $d\geq3$ and $\mu$ has compact support, its Newtonian energy $I(\mu)$ from \cref{sec:kernel-energy} satisfies $(d-2)s_{d-1}I(\mu)=I_{d-2}(\mu)$.
 
 \begin{theorem}\label{thm:riesz-fourier-energy}
-For every finite positive measure on $\mathbb R^d$ and $0<s<d$,
+Let $\mu$ be a finite positive Borel measure on $\mathbb R^d$, and let $0<s<d$. Then
 \[
  I_s(\mu)=b_{d,s}\int_{\mathbb R^d}|\widehat\mu(\xi)|^2|\xi|^{s-d}\,\mathrm d\xi,
- \qquad b_{d,s}=\pi^{s-d/2}\frac{\Gamma((d-s)/2)}{\Gamma(s/2)}.
+ \qquad b_{d,s}=\pi^{s-d/2}\frac{\Gamma((d-s)/2)}{\Gamma(s/2)},
 \]
-Here $\Gamma(a)=\int_0^\infty v^{a-1}\mathrm e^{-v}\,\mathrm d v$ for $a>0$. The equality includes infinite energies.
+where $\Gamma(a)=\int_0^\infty v^{a-1}\mathrm e^{-v}\,\mathrm d v$, $a>0$, is Euler's Gamma function\index{Gamma function}. Both sides may be infinite.
 \end{theorem}
 \begin{proof}
-The substitution $v=\pi t|z|^2$ gives
+For $z\in\mathbb R^d$, the substitution $v=\pi t|z|^2$ gives
 \[
  |z|^{-s}=\frac{\pi^{s/2}}{\Gamma(s/2)}\int_0^\infty t^{s/2-1}\mathrm e^{-\pi t|z|^2}\,\mathrm d t,
 \]
-including infinity at $z=0$. Gaussian inversion and Fubini against the finite product measure give
+and both sides are $+\infty$ when $z=0$. By \cref{lem:fourier-gaussian} with $t$ replaced by $1/t$, we have $\mathrm e^{-\pi t|z|^2}=t^{-d/2}\int\mathrm e^{-\pi|\xi|^2/t}\mathrm e^{-2\pi\mathrm i z\cdot\xi}\,\mathrm d\xi$. Taking $z=x-y$ and integrating with respect to $\mu\times\mu$, we obtain
 \[
  \iint\mathrm e^{-\pi t|x-y|^2}\,\mathrm d\mu(x)\,\mathrm d\mu(y)
- =t^{-d/2}\int\mathrm e^{-\pi|\xi|^2/t}|\widehat\mu(\xi)|^2\,\mathrm d\xi.
+ =t^{-d/2}\int\mathrm e^{-\pi|\xi|^2/t}|\widehat\mu(\xi)|^2\,\mathrm d\xi;
 \]
-The Fourier Gaussian is integrable, so that interchange is absolute. All terms after this identity are nonnegative. Tonelli therefore interchanges the $t$ and $\xi$ integrals even when the answer is infinite. For $\xi\neq0$, the substitution $v=\pi|\xi|^2/t$ evaluates the remaining integral as
+Fubini's theorem applies here because the Gaussian in $\xi$ is integrable and $\mu\times\mu$ is finite. Now insert the integral formula for $|x-y|^{-s}$ into $I_s(\mu)$. All integrands are nonnegative, so Tonelli's theorem allows us to integrate first in $(x,y)$, then use the last identity, and finally integrate in $t$ before $\xi$, even when the integrals are infinite:
+\[
+ I_s(\mu)=\frac{\pi^{s/2}}{\Gamma(s/2)}\int|\widehat\mu(\xi)|^2\int_0^\infty t^{(s-d)/2-1}\mathrm e^{-\pi|\xi|^2/t}\,\mathrm d t\,\mathrm d\xi.
+\]
+For $\xi\neq0$, the substitution $v=\pi|\xi|^2/t$ evaluates the inner integral as
 \[
  \int_0^\infty t^{(s-d)/2-1}\mathrm e^{-\pi|\xi|^2/t}\,\mathrm d t
- =\pi^{(s-d)/2}|\xi|^{s-d}\Gamma((d-s)/2).
+ =\pi^{(s-d)/2}|\xi|^{s-d}\Gamma((d-s)/2),
 \]
-Multiplication of the constants gives the formula. The single point $\xi=0$ has Lebesgue measure zero and does not affect it.
+and the point $\xi=0$ is a Lebesgue null set. Multiplying the constants gives the formula.
 \end{proof}
 
 \begin{example}\label{ex:gaussian-riesz-energy}
-The probability measure $\mathrm d\mu=\mathrm e^{-\pi|x|^2}\,\mathrm d x$ on $\mathbb R^d$ has
+For $0<s<d$, the probability measure $\mathrm d\mu=\mathrm e^{-\pi|x|^2}\,\mathrm d x$ on $\mathbb R^d$ satisfies
 \[
- I_s(\mu)=\left(\frac\pi2\right)^{s/2}\frac{\Gamma((d-s)/2)}{\Gamma(d/2)},\qquad 0<s<d.
+ I_s(\mu)=\left(\frac\pi2\right)^{s/2}\frac{\Gamma((d-s)/2)}{\Gamma(d/2)}.
 \]
 \end{example}
 \begin{proof}
-Polar integration of $\int\mathrm e^{-\pi|x|^2}\,\mathrm d x=1$ gives $s_{d-1}=2\pi^{d/2}/\Gamma(d/2)$. The transform in \cref{lem:fourier-gaussian} and the energy formula give
+Recall that $s_{d-1}$ denotes the area of the unit sphere $S^{d-1}$ (\cref{sec:harmonic-mean-values}). Polar coordinates give $1=\int\mathrm e^{-\pi|x|^2}\,\mathrm d x=s_{d-1}\int_0^\infty\mathrm e^{-\pi r^2}r^{d-1}\,\mathrm d r=s_{d-1}\Gamma(d/2)/(2\pi^{d/2})$, so $s_{d-1}=2\pi^{d/2}/\Gamma(d/2)$. By \cref{lem:fourier-gaussian}, $\widehat\mu(\xi)=\mathrm e^{-\pi|\xi|^2}$. Hence \cref{thm:riesz-fourier-energy} and polar coordinates give
 \[
- I_s(\mu)=b_{d,s}s_{d-1}\int_0^\infty\mathrm e^{-2\pi r^2}r^{s-1}\,\mathrm d r.
+ I_s(\mu)=b_{d,s}\int\mathrm e^{-2\pi|\xi|^2}|\xi|^{s-d}\,\mathrm d\xi=b_{d,s}s_{d-1}\int_0^\infty\mathrm e^{-2\pi r^2}r^{s-1}\,\mathrm d r.
 \]
-The substitution $v=2\pi r^2$ evaluates the radial integral as $\Gamma(s/2)/(2(2\pi)^{s/2})$. Inserting the constants proves the formula.
+The substitution $v=2\pi r^2$ evaluates the radial integral as $\Gamma(s/2)/(2(2\pi)^{s/2})$. Inserting the values of $b_{d,s}$ and $s_{d-1}$ proves the formula.
 \end{proof}
 
 \input{chapters/inputs/p06-hessian-multipliers}
 
 \section{Unitary invariant measures}
 \label{sec:unitary-measures}
-Identify $\mathbb C^n$ with $\mathbb R^{2n}$, and set $\langle z,w\rangle=\sum_jz_j\overline{w_j}$. Thus the real scalar product is $\operatorname{Re}\langle z,w\rangle$. The compact group $\mathrm U(n)$ consists of matrices $U$ with $U^*U=1$. Its invariant probability\index{measure!unitary invariant} has a direct Gaussian construction.
+To average over complex directions and over complex hyperplanes we need invariant probability measures\index{measure!unitary invariant} on complex projective space and on the Grassmannian of hyperplanes. We construct them from Gaussian random matrices, compute the measure of small balls in projective space, and introduce orthonormal frames on hyperplanes that depend on the hyperplane in a Borel way.
+
+We identify $\mathbb C^n$ with $\mathbb R^{2n}$ and write $\langle z,w\rangle=\sum_jz_j\overline{w_j}$ for the Hermitian inner product, so that the Euclidean inner product is $\Real\langle z,w\rangle$. The unitary group\index{unitary group} $\mathrm U(n)$ consists of the complex $n\times n$ matrices $U$ with $U^*U=1$, where $U^*$ is the conjugate transpose; it is a compact set of matrices.
 
 \Needspace{9\baselineskip}
 \begin{proposition}\label{prop:unitary-invariant-probability}
-There is a probability measure $\eta$ on $\mathrm U(n)$ invariant under left and right multiplication. Every compact metric space on which this group acts continuously and transitively has a unique invariant probability measure, obtained by applying a random matrix with law $\eta$ to one fixed point. In particular this defines invariant probabilities on the unit sphere, complex projective space, and every complex Grassmannian.
+There is a Borel probability measure $\eta$ on $\mathrm U(n)$ that is invariant under left and right multiplication by elements of $\mathrm U(n)$. Let $Y$ be a nonempty compact metric space on which $\mathrm U(n)$ acts continuously and transitively. Then $Y$ carries a unique $\mathrm U(n)$-invariant Borel probability measure; for every $y_0\in Y$, it is the image of $\eta$ under the map $g\mapsto gy_0$. In particular, the unit sphere of $\mathbb C^n$, complex projective space and every complex Grassmannian carry unique unitary invariant probability measures.
 \end{proposition}
 \begin{proof}
-Let $X$ be a complex $n$ by $n$ matrix with density $\mathrm e^{-\pi\operatorname{tr}(X^*X)}$ for Lebesgue measure on its $2n^2$ real entries. The density integrates to one by the Gaussian formula. Singular matrices have measure zero. Indeed $|\det X|^2$ is a nonzero real polynomial; a nonzero polynomial has a null zero set by induction on the number of variables, viewing it as a polynomial in the last variable and applying Fubini off the null common zero set of its coefficients. Define
+Let $X$ be a random complex $n\times n$ matrix with density $\mathrm e^{-\pi\operatorname{tr}(X^*X)}$ with respect to Lebesgue measure on its $2n^2$ real coordinates. Since $\operatorname{tr}(X^*X)=\sum_{j,k}|X_{jk}|^2$, this density is a product of one-dimensional Gaussian densities and has integral one. The singular matrices form a null set, because they are the zero set of the real polynomial $|\det X|^2$, which is not identically zero. Here we use that a real polynomial that is not identically zero has a Lebesgue null zero set. This follows by induction on the number of variables: regard the polynomial as a polynomial in the last variable. One of its coefficients is a nonzero polynomial in the remaining variables, so by induction the common zero set of the coefficients is null; off this set each one-variable section has finitely many zeros, and Fubini's theorem applies.
+
+For invertible $X$ define
 \[
- Q(X)=X(X^*X)^{-1/2}.
+ Q(X)=X(X^*X)^{-1/2},
 \]
-The positive square root exists and is unique by the Hermitian spectral theorem. It depends continuously on positive definite matrices: along a convergent sequence, the roots are bounded, every convergent subsequence has square equal to the limiting matrix and is positive, and uniqueness identifies the limit; inversion is continuous away from zero eigenvalues. Thus $Q$ is Borel on the nonsingular matrices and is unitary.
+where $(X^*X)^{1/2}$ is the positive square root of the positive definite matrix $X^*X$. By the spectral theorem for Hermitian matrices, this square root exists and is unique. It depends continuously on the matrix: along a convergent sequence of positive definite matrices the square roots are bounded, every convergent subsequence of them has a positive semidefinite limit whose square is the limiting matrix, and uniqueness identifies this limit. Since inversion is continuous on invertible matrices, $Q$ is continuous on the open set of invertible matrices, and $Q(X)^*Q(X)=(X^*X)^{-1/2}X^*X(X^*X)^{-1/2}=1$. Let $\eta$ be the law of $Q(X)$, a Borel probability measure on $\mathrm U(n)$.
 
-For fixed $U,V\in\mathrm U(n)$, the matrix $UXV$ has the same Gaussian distribution. The map on entries is real orthogonal and preserves the displayed density. Functional calculus gives $Q(UXV)=UQ(X)V$. The distribution $\eta$ of $Q(X)$ is therefore invariant on both sides.
+Fix $U,V\in\mathrm U(n)$. The map $X\mapsto UXV$ is real linear and preserves $\operatorname{tr}(X^*X)$, so it is orthogonal on $\mathbb R^{2n^2}$ and preserves the Gaussian density; hence $UXV$ has the same law as $X$. By uniqueness of positive square roots, $(V^*X^*XV)^{1/2}=V^*(X^*X)^{1/2}V$, and therefore $Q(UXV)=UQ(X)V$. Consequently $UQ(X)V$ has law $\eta$, which proves the invariance of $\eta$ on both sides.
 
-On a transitive compact space $Y$, let $\sigma$ be the distribution of $gy_0$ for $g$ with law $\eta$. Left invariance makes it invariant. For a continuous $f$ on $Y$, the number $\int f(gy)\,\mathrm d\eta(g)$ is independent of $y$, by transitivity and right invariance. Integrate this equality against any invariant probability on $Y$ and use Fubini. The result is $\int f\,\mathrm d\sigma$ for every such probability. To deduce uniqueness of the measures, approximate the indicator of any closed set $F\subset Y$ by the decreasing continuous functions $\max\{0,1-j\operatorname{dist}(y,F)\}$. Dominated convergence gives equality on closed sets; the $\pi$--$\lambda$ argument gives equality on their generated Borel $\sigma$-algebra.
+Now let $Y$ be as in the statement, fix $y_0\in Y$, and let $\sigma$ be the image of $\eta$ under $g\mapsto gy_0$. For $h\in\mathrm U(n)$, the image of $\sigma$ under $h$ is the image of $\eta$ under $g\mapsto hgy_0$, which is $\sigma$ by left invariance; thus $\sigma$ is invariant. Let $f$ be continuous on $Y$. Every $y\in Y$ has the form $hy_0$, by transitivity, and right invariance gives
+\[
+ \int f(gy)\,\mathrm d\eta(g)=\int f(ghy_0)\,\mathrm d\eta(g)=\int f\,\mathrm d\sigma.
+\]
+Let $\tau$ be any invariant Borel probability measure on $Y$. Integrating the last identity against $\tau$ and applying Fubini's theorem to the continuous function $(g,y)\mapsto f(gy)$ on $\mathrm U(n)\times Y$, we obtain
+\[
+ \int f\,\mathrm d\sigma=\int_{\mathrm U(n)}\int_Yf(gy)\,\mathrm d\tau(y)\,\mathrm d\eta(g)=\int f\,\mathrm d\tau.
+\]
+Thus $\sigma$ and $\tau$ agree on continuous functions. For a nonempty closed set $F\subset Y$, the continuous functions $\max\{0,1-j\operatorname{dist}(y,F)\}$ decrease to $\mathbf1_F$, so dominated convergence gives $\sigma(F)=\tau(F)$. The closed sets are stable under finite intersections and generate the Borel $\sigma$-algebra, so the class argument in the proof of \cref{prop:tonelli-fubini} gives $\sigma=\tau$. In particular $\sigma$ does not depend on $y_0$.
 \end{proof}
 
-For an integer $0\leq k\leq n$, represent $\mathrm{Gr}_{\mathbb C}(k,n)$\index{Grassmannian!complex} by Hermitian matrices $P$ with $P^2=P$ and $\operatorname{tr}P=k$. These form a compact set, and $P$ is the orthogonal projection onto its image. The unitary action is $P\mapsto UPU^*$; choosing orthonormal bases proves transitivity. Projective space $\mathbb P^{n-1}(\mathbb C)$ is the case $k=1$. Its invariant probability will be denoted by $\sigma$. For unit representatives $e,e'$ of $\xi,\xi'$, set
+For an integer $0\leq k\leq n$, we realize the complex Grassmannian\index{Grassmannian!complex} $\mathrm{Gr}_{\mathbb C}(k,n)$ of $k$-dimensional complex subspaces of $\mathbb C^n$ as the set of Hermitian matrices $P$ with $P^2=P$ and $\operatorname{tr}P=k$; such a matrix is the orthogonal projection onto its image, which has dimension $k$. This set is closed and bounded, since $\operatorname{tr}(P^*P)=\operatorname{tr}P=k$, and hence compact. The unitary group acts by $P\mapsto UPU^*$, which replaces the image of $P$ by its image under $U$; the action is transitive because any two orthonormal bases are related by a unitary matrix. Complex projective space $\mathbb P^{n-1}(\mathbb C)$ is the case $k=1$. For $\xi\in\mathbb P^{n-1}(\mathbb C)$ we write $P_\xi$ for the corresponding rank-one projection, and we denote the invariant probability measure on $\mathbb P^{n-1}(\mathbb C)$ by $\sigma$. The Hopf map\index{Hopf map} $q\colon S^{2n-1}\to\mathbb P^{n-1}(\mathbb C)$ sends a unit vector $e$ to the complex line it spans, that is, to the projection $ee^*$.
+
+For $\xi,\xi'\in\mathbb P^{n-1}(\mathbb C)$ with unit representatives $e,e'$, set
 \[
- d(\xi,\xi')=\arccos|\langle e,e'\rangle|\in[0,\pi/2].
+ d(\xi,\xi')=\arccos|\langle e,e'\rangle|\in[0,\pi/2];
 \]
-This is a metric: it is the minimum of the spherical distance $\delta(e,e')=\arccos\operatorname{Re}\langle e,e'\rangle$ between representatives on their two phase circles. To check the spherical triangle inequality, decompose two unit vectors relative to a third. Cauchy--Schwarz bounds their real scalar product below by $\cos(a+b)$ when the two intervening angles are $a,b$ and $a+b\leq\pi$; if $a+b>\pi$, the inequality is automatic. Choosing minimizing phases relative to one middle representative now gives the triangle inequality for $d$. It induces the quotient topology, by compactness and the continuous distance formula. The Hopf map\index{Hopf map} $q:S^{2n-1}\to\mathbb P^{n-1}(\mathbb C)$ sends a vector to its span.
+this does not depend on the choice of representatives. We claim that $d$ is a metric inducing the topology of $\mathbb P^{n-1}(\mathbb C)$.\index{projective space!invariant metric and measure} Let $\delta(e,e')=\arccos\Real\langle e,e'\rangle\in[0,\pi]$ be the angle between two unit vectors, that is, their great-circle distance on $S^{2n-1}$. Since the maximum of $\Real\langle\mathrm e^{\mathrm i\theta}e,e'\rangle$ over $\theta$ is $|\langle e,e'\rangle|$, the number $d(\xi,\xi')$ is the minimum of $\delta$ over the unit representatives of $\xi$ and $\xi'$. The angle $\delta$ satisfies the triangle inequality. Indeed, let $e,e',e''$ be unit vectors, put $a=\delta(e,e')$ and $b=\delta(e',e'')$, and write $e=\cos a\,e'+\sin a\,u$ and $e''=\cos b\,e'+\sin b\,w$ with unit vectors $u,w$ orthogonal to $e'$ for the Euclidean inner product. Then $\Real\langle e,e''\rangle=\cos a\cos b+\sin a\sin b\Real\langle u,w\rangle\geq\cos(a+b)$ by the Cauchy--Schwarz inequality. Hence $\delta(e,e'')\leq a+b$ when $a+b\leq\pi$, and this inequality is trivial when $a+b>\pi$. Now fix a unit representative $e'$ of $\xi'$, and choose the representatives $e$ of $\xi$ and $e''$ of $\xi''$ such that $\delta(e,e')=d(\xi,\xi')$ and $\delta(e',e'')=d(\xi',\xi'')$. Then
+\[
+ d(\xi,\xi'')\leq\delta(e,e'')\leq d(\xi,\xi')+d(\xi',\xi'').
+\]
+The function $d$ is symmetric, and $d(\xi,\xi')=0$ forces equality in the Cauchy--Schwarz inequality $|\langle e,e'\rangle|\leq1$, hence $\xi=\xi'$. Finally, $\cos^2d(\xi,\xi')=|\langle e,e'\rangle|^2=\operatorname{tr}(P_\xi P_{\xi'})$ depends continuously on the two projections. Therefore the identity map from $\mathbb P^{n-1}(\mathbb C)$, with its compact matrix topology, to the metric space $(\mathbb P^{n-1}(\mathbb C),d)$ is a continuous bijection onto a Hausdorff space, hence a homeomorphism. Since $q$ is a continuous surjection from a compact space onto a Hausdorff space, this topology is also the quotient topology of the Hopf map.
 
 \Needspace{9\baselineskip}
 \begin{lemma}\label{lem:projective-ball-volume}
-For $n\geq2$, $0<a\leq\pi/2$, and $\xi_0\in\mathbb P^{n-1}(\mathbb C)$,
+Let $n\geq2$, $0<a\leq\pi/2$ and $\xi_0\in\mathbb P^{n-1}(\mathbb C)$. Then
 \[
  \sigma\{\xi:d(\xi,\xi_0)<a\}=(\sin a)^{2n-2}.
 \]
-In particular these balls have measure at most $a^{2n-2}$.
+In particular, this ball has $\sigma$-measure at most $a^{2n-2}$.
 \end{lemma}
 \begin{proof}
-Normalized surface measure on the sphere is unitary invariant, so its Hopf image is $\sigma$. The direction of a Gaussian vector $Z$ with density $\mathrm e^{-\pi|z|^2}$ has that sphere distribution, by polar coordinates. Take $\xi_0$ to be the first coordinate line. The independent variables $T_j=\pi|Z_j|^2$ have density $\mathrm e^{-t}$ on $t>0$, by planar polar coordinates. The event in question is
+Let $Z$ be a random vector in $\mathbb C^n$ with density $\mathrm e^{-\pi|z|^2}$. This density is unitary invariant and $Z\neq0$ almost surely. Hence the law of $Z/|Z|$ is a unitary invariant probability measure on $S^{2n-1}$, and its image under $q$, which is the law of the line $\mathbb CZ$, is $\sigma$ by the uniqueness in \cref{prop:unitary-invariant-probability}. By polar coordinates, the law of $Z/|Z|$ is the normalized surface measure of $S^{2n-1}$; in particular, normalized surface measure is unitary invariant.
+
+Since $\sigma$ is invariant and the unitary group acts transitively, we may take $\xi_0=\mathbb Ce_1$, the first coordinate line. The real coordinates of $Z$ are independent, so the variables $T_j=\pi|Z_j|^2$ are independent, and polar coordinates in $\mathbb C$ show that each has density $\mathrm e^{-t}$ on $t>0$. For the line $\xi=\mathbb CZ$, the condition $d(\xi,\xi_0)<a$ means $|Z_1|^2/|Z|^2>\cos^2a$, that is,
 \[
  \frac{T_1}{T_1+\cdots+T_n}>\cos^2a,
- \quad\text{or}\quad T_1>\cot^2a\sum_{j=2}^nT_j.
+ \quad\text{or equivalently}\quad T_1>\cot^2a\sum_{j=2}^nT_j,
 \]
-Conditioning on the last $n-1$ variables and integrating their densities gives $(1+\cot^2a)^{-(n-1)}=(\sin a)^{2n-2}$. Boundary equality has probability zero; the endpoint $a=\pi/2$ follows too. Unitary invariance gives every center.
+where $\cot(\pi/2)=0$. Since $T_1$ exceeds $s\geq0$ with probability $\mathrm e^{-s}$, Fubini's theorem shows that this event has probability
+\[
+ \prod_{j=2}^n\int_0^\infty\mathrm e^{-(1+\cot^2a)t}\,\mathrm d t=(1+\cot^2a)^{-(n-1)}=(\sin a)^{2n-2}.
+\]
+The last assertion follows from $\sin a\leq a$.
 \end{proof}
 
-Write $\mathcal H=\mathrm{Gr}_{\mathbb C}(n-1,n)$, with invariant probability $\nu$. For $H\in\mathcal H$, let $m_H$ be its Euclidean Lebesgue measure in real dimension $2n-2$. Integrals depending on $H$ can be defined in Borel orthonormal coordinates. To construct these, project the standard coordinate vectors onto $H$ and apply Gram--Schmidt to a linearly independent choice. There are finitely many choices; their nonvanishing Gram determinants define open sets covering $\mathcal H$. Use the first successful choice to partition this cover into Borel sets. This gives a Borel isometry $T_H:\mathbb C^{n-1}\to H$, continuous on each underlying chart. Consequently $H\mapsto\int_H f(H,c)\,\mathrm d m_H(c)$ is Borel for nonnegative Borel $f$, by the parameter integral on fixed coordinates. A monotone-class argument from rectangles proves that parameter integral is Borel. The value is independent of the frame, since changes of orthonormal frame preserve Lebesgue measure.
+We write $\mathcal H=\mathrm{Gr}_{\mathbb C}(n-1,n)$ for the space of complex hyperplanes through the origin in $\mathbb C^n$, and $\nu$ for its invariant probability measure. For $H\in\mathcal H$, we denote by $P_H$ the orthogonal projection onto $H$, which is the matrix representing $H$; by $H^\perp$ the orthogonal complement of $H$, which is a complex line; and by $m_H$ the Lebesgue measure of $H$, that is, the image of Lebesgue measure on $\mathbb C^{n-1}=\mathbb R^{2n-2}$ under any complex linear isometry $\mathbb C^{n-1}\to H$.
+
+To integrate functions that depend on $H$, we use orthonormal frames of $H$ that depend on $H$ in a Borel way. Order the $(n-1)$-element subsets $I$ of $\{1,\ldots,n\}$. For each $I$, the set $W_I$ of hyperplanes $H$ for which the vectors $P_He_i$, $i\in I$, are linearly independent is open, since it is defined by the nonvanishing of their Gram determinant, which is the principal minor of $P_H$ with indices in $I$. These sets cover $\mathcal H$, because $P_He_1,\ldots,P_He_n$ span $H$. On the Borel set of hyperplanes for which $I$ is the first index with $H\in W_I$, apply the Gram--Schmidt process to $(P_He_i)_{i\in I}$. The resulting orthonormal basis of $H$ defines a complex linear isometry $T_H\colon\mathbb C^{n-1}\to H$, which depends continuously on $H$ on each $W_I$ and in a Borel way on all of $\mathcal H$. Consequently, for every nonnegative Borel function $f$ on the closed set $\{(H,c)\in\mathcal H\times\mathbb C^n:c\in H\}$, the function
+\[
+ H\longmapsto\int_Hf(H,c)\,\mathrm d m_H(c)=\int_{\mathbb C^{n-1}}f(H,T_Hw)\,\mathrm d w
+\]
+is Borel, by Tonelli's theorem (\cref{prop:tonelli-fubini}) applied to the Borel function $(H,w)\mapsto f(H,T_Hw)$. The value of the integral does not depend on the frame, because a change of orthonormal frame preserves Lebesgue measure.
 
 \section{Circle selection and high-value sets}
 \label{sec:high-value-stars}
-The only selection needed below concerns closed subsets of circles with positive arc length. Their positive measure permits a direct construction that also proves measurability.
+An affine complex line\index{complex line!affine section} in $\mathbb C^n$ is a set $L=a+\mathbb Cb$ with $a\in\mathbb C^n$ and $b\in\mathbb C^n\setminus\{0\}$. For an open set $D\subset\mathbb C^n$, we identify the section $D\cap L$ with the open set $\{\zeta\in\mathbb C:a+\zeta b\in D\}$, and we call a function on a connected component of $D\cap L$ subharmonic if its composite with $\zeta\mapsto a+\zeta b$ is subharmonic in the sense of \cref{def:subharmonic}. This does not depend on the parametrization, because two parametrizations differ by a map $\zeta\mapsto\alpha\zeta+\beta$ with $\alpha\neq0$, which maps circles onto circles and normalized arc length onto normalized arc length.
+
+In the proof of \cref{thm:high-value-star-energy} we must choose, measurably in the circle, a point of each circle at which a given function is large. The sets of admissible points will be closed and have positive length, and for such sets the arc-length median provides an explicit Borel choice.
 
 \Needspace{22\baselineskip}
 \begin{lemma}\label{lem:positive-circle-selection}
-\index{Borel selection!circle sections}Let $T$ be a separable metric space, and let $F\subset T\times[0,2\pi]$ be Borel, with every section $F_t$ closed and of positive Lebesgue measure. There is a Borel map $a:T\to[0,2\pi]$ with $a(t)\in F_t$.
+\index{Borel selection!circle sections}Let $T$ be a separable metric space, and let $F\subset T\times[0,2\pi]$ be a Borel set whose sections $F_t=\{\theta:(t,\theta)\in F\}$ are closed and have positive Lebesgue measure for every $t\in T$. Then there is a Borel map $a\colon T\to[0,2\pi]$ such that $a(t)\in F_t$ for every $t\in T$.
 \end{lemma}
 \begin{proof}
-Put $q(t)=|F_t|$ and $A_t(b)=|F_t\cap[0,b]|$. For fixed $b$, both functions are Borel in $t$, by a monotone-class argument starting with Borel rectangles. For each $t$, $A_t$ is continuous and nondecreasing, with values zero and $q(t)$ at the two endpoints. Define
+Write $|\cdot|$ for Lebesgue measure on $[0,2\pi]$, and put $\ell(t)=|F_t|$ and $A_t(b)=|F_t\cap[0,b]|$ for $b\in[0,2\pi]$. For fixed $b$, both $\ell(t)$ and $A_t(b)$ are Borel functions of $t$. Indeed, the class of Borel sets $G\subset T\times[0,2\pi]$ for which $t\mapsto|G_t\cap[0,b]|$ is Borel contains the products of Borel sets and is closed under complements and countable disjoint unions; since $T$ is separable, such products generate the Borel sets of $T\times[0,2\pi]$, and the class argument in the proof of \cref{prop:tonelli-fubini} shows that the class contains every Borel set. For fixed $t$, the function $A_t$ is continuous and nondecreasing, with $A_t(0)=0$ and $A_t(2\pi)=\ell(t)>0$. Define
 \[
- a(t)=\inf\{b\in\mathbb Q\cap[0,2\pi]:A_t(b)\geq q(t)/2\}.
+ a(t)=\inf\{b\in\mathbb Q\cap[0,2\pi]:A_t(b)\geq\ell(t)/2\}.
 \]
-Since $0<q(t)/2<q(t)$, the rational competitor set is nonempty, and continuity gives $A_t(a(t))=q(t)/2$. Countable infima give Borel measurability. If $a(t)\notin F_t$, an open interval about it misses $F_t$, so $A_t$ is constant there. A smaller rational point would be a competitor, contradicting the infimum. Hence $a(t)\in F_t$.
+Because $A_t$ is continuous and nondecreasing and $0<\ell(t)/2<\ell(t)$, the set of all $b\in[0,2\pi]$ with $A_t(b)\geq\ell(t)/2$ is an interval $[b_t,2\pi]$ with $0<b_t<2\pi$ and $A_t(b_t)=\ell(t)/2$. The rational numbers are dense in this interval, so $a(t)=b_t$ and $A_t(a(t))=\ell(t)/2$. The map $a$ is Borel, since for every $c$
+\[
+ \{t:a(t)<c\}=\bigcup_{b\in\mathbb Q\cap[0,c)}\{t:A_t(b)\geq\ell(t)/2\}.
+\]
+Finally, suppose that $a(t)\notin F_t$. Since $F_t$ is closed and $a(t)>0$, some interval $[a(t)-\varepsilon,a(t)]$ with $\varepsilon>0$ misses $F_t$, and $A_t$ is constant on it. A rational number $b$ in this interval with $b<a(t)$ then satisfies $A_t(b)=\ell(t)/2$, contradicting the definition of $a(t)$. Hence $a(t)\in F_t$.
 \end{proof}
 
 \Needspace{14\baselineskip}
 \begin{theorem}\label{thm:high-value-star-energy}
-Let $n\geq2$, and let $u:D\to\mathbb R$ be Borel and subharmonic on every connected component of every affine complex-line section of the open set $D\subset\mathbb C^n$. Let $R>0$ satisfy $\overline{B(x,R)}\subset D$, and put $A=u(x)$. There is a Borel probability measure $\mu$ carried by
+Let $D\subset\mathbb C^n$ be open, with $n\geq2$, and let $u\colon D\to\mathbb R$ be a Borel function whose restriction to every connected component of every affine complex-line section of $D$ is subharmonic. Let $x\in D$ and $R>0$ satisfy $\overline{B(x,R)}\subset D$, and put $A=u(x)$. Then there is a Borel probability measure $\mu$ carried by the Borel set
 \[
- E=\{y:R/2\leq|y-x|\leq R,\ u(y)\geq A\}
+ E=\{y\in\mathbb C^n:R/2\leq|y-x|\leq R,\ u(y)\geq A\}
 \]
-such that $I_{2n-2}(\mu)\leq C_nR^{-(2n-2)}$. The constant depends only on $n$.
+such that $I_{2n-2}(\mu)\leq C_nR^{-(2n-2)}$, where the constant $C_n$ depends only on $n$.
 \end{theorem}
 \begin{proof}
-For $r\in[R/2,R]$ and a projective direction $\xi$, choose a unit representative $e_0(\xi)$. It can be chosen Borel: in the rank-one projection matrix $P_\xi$, take the first index $j$ with $(P_\xi)_{jj}>0$ and put $e_0=P_\xi e_j/\sqrt{(P_\xi)_{jj}}$. This has norm one and a positive $j$th coordinate. The section
+We first construct $\mu$. For $\xi\in\mathbb P^{n-1}(\mathbb C)$ we choose a unit vector $e_0(\xi)\in\xi$ in a Borel way: if $j$ is the first index with $(P_\xi)_{jj}>0$, put $e_0(\xi)=P_\xi e_j/\sqrt{(P_\xi)_{jj}}$. Since $|P_\xi e_j|^2=\langle P_\xi e_j,e_j\rangle=(P_\xi)_{jj}$, this is a unit vector in $\xi$. The set of $\xi$ with a given first index $j$ is Borel, and $e_0$ is continuous on it.
+
+Let $r\in[R/2,R]$ and $\xi\in\mathbb P^{n-1}(\mathbb C)$. The circle $\theta\mapsto x+r\mathrm e^{\mathrm i\theta}e_0(\xi)$ lies in the closed disc $\{x+\zeta e_0(\xi):|\zeta|\leq r\}$, which is connected and contained in $D$, hence in one component of the section of $D$ by the line $x+\xi$. On this component $u$ is subharmonic; in particular it is upper semicontinuous and bounded above on the circle, and by \cref{thm:subharmonic-comparison} it satisfies the submean inequality
 \[
- F_{r,\xi}=\{\theta\in[0,2\pi]:u(x+r\mathrm e^{\mathrm i\theta}e_0(\xi))\geq A\}
+ A=u(x)\leq\frac1{2\pi}\int_0^{2\pi}u(x+r\mathrm e^{\mathrm i\theta}e_0(\xi))\,\mathrm d\theta.
 \]
-is closed by upper semicontinuity on the complex line. It has positive length. Otherwise $u<A$ almost everywhere on the circle, while it is bounded above there, and its circle integral would be strictly less than $A$. This contradicts the submean inequality at $x$. The same inequality ensures that the negative part of that circle restriction is integrable, so the comparison of integrals is legitimate.
+Let
+\[
+ F_{r,\xi}=\{\theta\in[0,2\pi]:u(x+r\mathrm e^{\mathrm i\theta}e_0(\xi))\geq A\}.
+\]
+This set is closed by upper semicontinuity, and it has positive length. Otherwise $u<A$ almost everywhere on the circle, so $A-u$ would be positive almost everywhere there and the circle mean of $u$ would be strictly less than $A$, contradicting the submean inequality.
 
-The total set of these sections is Borel, since $u$ and $e_0$ are Borel. Apply \cref{lem:positive-circle-selection} to choose a Borel phase, and let $e(r,\xi)$ be the resulting unit vector. Push normalized Lebesgue measure on $[R/2,R]$ times $\sigma$ forward by $\Psi(r,\xi)=x+re(r,\xi)$. This gives a Borel probability carried by $E$.
+The set of $(r,\xi,\theta)$ with $\theta\in F_{r,\xi}$ is Borel, because $u$ and $e_0$ are Borel. Since $[R/2,R]\times\mathbb P^{n-1}(\mathbb C)$ is a compact metric space, \cref{lem:positive-circle-selection} gives a Borel map $(r,\xi)\mapsto\alpha(r,\xi)$ with $\alpha(r,\xi)\in F_{r,\xi}$. Put $e(r,\xi)=\mathrm e^{\mathrm i\alpha(r,\xi)}e_0(\xi)$ and $\Psi(r,\xi)=x+re(r,\xi)$. Then $\Psi$ is Borel and takes its values in $E$. Let $\mu$ be the image under $\Psi$ of the product of normalized Lebesgue measure on $[R/2,R]$ and $\sigma$. It is a Borel probability measure carried by $E$.
 
-The energy estimate is independent of the phase choices. For unit representatives $e,e'$ of $\xi,\xi'$,
+It remains to estimate the energy; the estimate does not depend on the choice of the phases $\alpha(r,\xi)$. For $r,r'\in[R/2,R]$ and unit vectors $e,e'$ spanning $\xi,\xi'$,
 \[
  |re-r'e'|^2=(r-r')^2+rr'|e-e'|^2
- \geq(r-r')^2+\frac{R^2}{4}\bigl(2-2|\langle e,e'\rangle|\bigr).
+ \geq(r-r')^2+\frac{R^2}{4}\bigl(2-2|\langle e,e'\rangle|\bigr),
 \]
-Writing $a=d(\xi,\xi')$ and using $\sin(a/2)\geq a/\pi$ gives a lower bound $(r-r')^2+R^2a^2/\pi^2$. Scale $r=Rt$, and give $[1/2,1]\times\mathbb P^{n-1}(\mathbb C)$ the metric $\rho^2=(t-t')^2+d(\xi,\xi')^2$ and product probability $m$. Then
+since $rr'\geq R^2/4$ and $\Real\langle e,e'\rangle\leq|\langle e,e'\rangle|$. With $a=d(\xi,\xi')\in[0,\pi/2]$, we have $2-2|\langle e,e'\rangle|=4\sin^2(a/2)\geq4a^2/\pi^2$, because $\sin y\geq2y/\pi$ for $0\leq y\leq\pi/2$. Hence $|re-r'e'|^2\geq(r-r')^2+R^2a^2/\pi^2$. Write $r=Rt$ with $t\in[1/2,1]$. Equip $[1/2,1]\times\mathbb P^{n-1}(\mathbb C)$ with the metric $\rho$ defined by $\rho((t,\xi),(t',\xi'))^2=(t-t')^2+d(\xi,\xi')^2$, and with the product probability $m$ of normalized Lebesgue measure and $\sigma$. Then $\mu$ is the image of $m$ under $(t,\xi)\mapsto\Psi(Rt,\xi)$, and the inequality just proved gives
 \[
- |\Psi(Rt,\xi)-\Psi(Rt',\xi')|\geq cR\rho((t,\xi),(t',\xi'))
+ |\Psi(Rt,\xi)-\Psi(Rt',\xi')|\geq\frac R\pi\,\rho((t,\xi),(t',\xi')).
 \]
-for an absolute $c>0$. By \cref{lem:projective-ball-volume}, every $\rho$-ball of radius $a\leq1$ has $m$-measure at most $4a^{2n-1}$. A dyadic decomposition therefore gives, uniformly in its center $z$,
+A $\rho$-ball of radius $a\leq1$ is contained in the product of an interval of length $2a$, whose normalized measure is at most $4a$, and a $d$-ball of radius $a$. By \cref{lem:projective-ball-volume}, its $m$-measure is therefore at most $4a^{2n-1}$. In particular $m$ has no atoms, so the diagonal is null for $m\times m$. Fix $z\in[1/2,1]\times\mathbb P^{n-1}(\mathbb C)$. Splitting the integral into the set where $\rho(z,z')\geq1$ and the shells where $2^{-k-1}\leq\rho(z,z')<2^{-k}$, $k\geq0$, we obtain
 \[
  \int\rho(z,z')^{-(2n-2)}\,\mathrm d m(z')
- \leq1+\sum_{k=0}^\infty 2^{(k+1)(2n-2)}4\,2^{-k(2n-1)}<\infty.
+ \leq1+\sum_{k=0}^\infty 2^{(k+1)(2n-2)}\cdot4\cdot2^{-k(2n-1)}=1+2^{2n+1}.
 \]
-The ball bound also gives zero mass to a point, so the diagonal contributes no hidden atom. Integrating this bound in $z$ and using the distance inequality proves the asserted energy estimate.
+Since $\mu$ is the image of $m$, the lower bound for $|\Psi(Rt,\xi)-\Psi(Rt',\xi')|$ and an integration in $z$ give
+\[
+ I_{2n-2}(\mu)\leq\Bigl(\frac\pi R\Bigr)^{2n-2}\iint\rho(z,z')^{-(2n-2)}\,\mathrm d m(z')\,\mathrm d m(z)\leq\pi^{2n-2}(1+2^{2n+1})R^{-(2n-2)}.
+\]
+This is the assertion, with $C_n=\pi^{2n-2}(1+2^{2n+1})$.
 \end{proof}
 
 \Needspace{13\baselineskip}
 \section{Projection densities and incidence}
 \label{sec:complex-incidence}
+We now show that a measure of finite $(2n-2)$-energy on $\mathbb C^n$, $n\geq2$, projects onto almost every complex hyperplane with a square-integrable density, and we deduce the incidence theorem. The first step expresses averages over hyperplanes as a weighted integral over $\mathbb C^n$.
+
 \begin{lemma}\label{lem:complex-hyperplane-average}
-For nonnegative Borel $f$ on $\mathbb C^n$,
+Let $n\geq2$. For every nonnegative Borel function $f$ on $\mathbb C^n$,
 \[
  \int_{\mathcal H}\int_H f(\xi)\,\mathrm d m_H(\xi)\,\mathrm d\nu(H)
  =a_n\int_{\mathbb C^n}f(\xi)|\xi|^{-2}\,\mathrm d\xi,
@@ -211,70 +271,83 @@ For nonnegative Borel $f$ on $\mathbb C^n$,
 \]
 \end{lemma}
 \begin{proof}
-Use polar coordinates in each $H$. Average its normalized sphere measure over $\nu$. The resulting probability on $S^{2n-1}$ is unitary invariant and hence is normalized full-sphere measure by \cref{prop:unitary-invariant-probability}. Thus the left side is
+For $H\in\mathcal H$, let $S_H$ be the unit sphere of $H$ and $\tau_H$ its normalized surface measure. Polar coordinates in $H$, computed in the frame $T_H$, give
+\[
+ \int_Hf\,\mathrm d m_H=s_{2n-3}\int_0^\infty r^{2n-3}\int_{S_H}f(r\theta)\,\mathrm d\tau_H(\theta)\,\mathrm d r.
+\]
+Average the measures $\tau_H$ over $\nu$; by the frame construction above, this defines a probability measure $\tau=\int\tau_H\,\mathrm d\nu(H)$ on $S^{2n-1}$. A unitary matrix $U$ maps $\tau_H$ to $\tau_{UH}$, and $\nu$ is invariant, so $\tau$ is unitary invariant. By \cref{prop:unitary-invariant-probability} and the proof of \cref{lem:projective-ball-volume}, $\tau$ is the normalized surface measure $\mathrm dS/s_{2n-1}$ of $S^{2n-1}$. Integrating the last identity over $H$ and using Tonelli's theorem, we find that the left side of the lemma equals
 \[
  s_{2n-3}\int_0^\infty r^{2n-3}\int_{S^{2n-1}}f(r\theta)\,\frac{\mathrm d S(\theta)}{s_{2n-1}}\,\mathrm d r.
 \]
-Full-space polar coordinates give the right side. The frame construction just given and Tonelli justify all integrals for Borel $f$, including infinite values.
+Since $|\xi|^{-2}\,\mathrm d\xi=r^{2n-3}\,\mathrm d r\,\mathrm dS(\theta)$ in polar coordinates $\xi=r\theta$ of $\mathbb C^n$, this is the right side. All functions of $H$ involved are Borel by the frame construction, and all integrals may be infinite.
 \end{proof}
 
 \Needspace{13\baselineskip}
 \begin{theorem}\label{thm:complex-projection-l2}
-Let $\mu$ be a compactly supported finite positive measure on $\mathbb C^n$, $n\geq2$, with $I_{2n-2}(\mu)<\infty$. For almost every $H\in\mathcal H$, the orthogonal projection measure $(P_H)_*\mu$ has a density $g_H\in L^2(H,m_H)$, and
+Let $n\geq2$, and let $\mu$ be a compactly supported finite positive Borel measure on $\mathbb C^n$ with $I_{2n-2}(\mu)<\infty$. Then for $\nu$-almost every $H\in\mathcal H$, the projected measure $(P_H)_*\mu$ has a density $g_H\in L^2(H,m_H)$ with respect to $m_H$, and
 \[
  \int_{\mathcal H}\|g_H\|_2^2\,\mathrm d\nu(H)=\beta_n I_{2n-2}(\mu),
  \qquad \beta_n=\frac{a_n}{b_{2n,2n-2}}=\frac{\Gamma(n)}{\pi^{n-1}}>0.
 \]
 \end{theorem}
 \begin{proof}
-For $\xi\in H$, orthogonality gives $\operatorname{Re}\langle P_Hy,\xi\rangle=\operatorname{Re}\langle y,\xi\rangle$. Hence the Fourier transform of the projected measure is $\widehat\mu|_H$. Apply \cref{lem:complex-hyperplane-average} to $|\widehat\mu|^2$ and then \cref{thm:riesz-fourier-energy} to obtain
+On $H$ we use the Fourier transform defined by the Euclidean inner product $\Real\langle\cdot,\cdot\rangle$ and the measure $m_H$; in an orthonormal frame it is the transform of \cref{sec:fourier-energy} on $\mathbb R^{2n-2}$. For $y\in\mathbb C^n$ and $\xi\in H$ we have $\Real\langle P_Hy,\xi\rangle=\Real\langle y,\xi\rangle$, because $y-P_Hy$ is orthogonal to $H$. Hence the Fourier transform of $(P_H)_*\mu$ at $\xi\in H$ is $\int\mathrm e^{-2\pi\mathrm i\Real\langle P_Hy,\xi\rangle}\,\mathrm d\mu(y)=\widehat\mu(\xi)$; that is, it is the restriction of $\widehat\mu$ to $H$. Apply \cref{lem:complex-hyperplane-average} to the continuous function $|\widehat\mu|^2$, and then \cref{thm:riesz-fourier-energy} with $d=2n$ and $s=2n-2$, for which $|\xi|^{s-d}=|\xi|^{-2}$. We obtain
 \[
  \int_{\mathcal H}\int_H|\widehat\mu(\xi)|^2\,\mathrm d m_H(\xi)\,\mathrm d\nu(H)
- =\beta_n I_{2n-2}(\mu)<\infty.
+ =a_n\int_{\mathbb C^n}|\widehat\mu(\xi)|^2|\xi|^{-2}\,\mathrm d\xi=\beta_n I_{2n-2}(\mu)<\infty.
 \]
-The inner integral is a Borel function of $H$ in the fixed frames. It is finite almost everywhere. For those $H$, \cref{prop:measure-fourier-l2} gives the density and its norm. This proves the identity; the exceptional hyperplanes form a null set. The explicit constant uses the sphere area computed in \cref{ex:gaussian-riesz-energy} and $\Gamma(n)=(n-1)\Gamma(n-1)$, which follows by integration by parts. No jointly chosen density is required for the argument, since its norm equals the displayed Borel Fourier integral.
+The inner integral is a Borel function of $H$, by the frame construction in \cref{sec:unitary-measures}; hence it is finite for $\nu$-almost every $H$. For each such $H$, \cref{prop:measure-fourier-l2}, applied in an orthonormal frame of $H$, shows that $(P_H)_*\mu$ has a density $g_H\in L^1\cap L^2$ with $\|g_H\|_2^2=\int_H|\widehat\mu|^2\,\mathrm d m_H$. Integrating over $H$ proves the identity. Note that $H\mapsto\|g_H\|_2^2$ is Borel because it equals this Fourier integral, so no measurable choice of the densities themselves is needed.
+
+To compute $\beta_n$, recall from the proof of \cref{ex:gaussian-riesz-energy} that $s_{k-1}=2\pi^{k/2}/\Gamma(k/2)$. Hence $a_n=\Gamma(n)/(\pi\Gamma(n-1))$, while $b_{2n,2n-2}=\pi^{n-2}/\Gamma(n-1)$, and therefore $\beta_n=\Gamma(n)/\pi^{n-1}$.
 \end{proof}
 
 \Needspace{9\baselineskip}
 \begin{theorem}\label{thm:complex-line-incidence}
-Let $K\subset\mathbb C^n$ be compact, with $n\geq2$, and let $E_j\subset K$, $j\geq1$, be Borel. Suppose probabilities $\mu_j$ satisfy $\mu_j(E_j)=1$ and $I_{2n-2}(\mu_j)\leq C<\infty$. Some affine complex line meets $E_j$ for infinitely many $j$.
+\index{complex line!incidence}Let $n\geq2$, let $K\subset\mathbb C^n$ be compact, and let $E_j\subset K$, $j\geq1$, be Borel sets. Suppose that there are Borel probability measures $\mu_j$ on $\mathbb C^n$ such that $\mu_j(E_j)=1$ and $I_{2n-2}(\mu_j)\leq C$ for a constant $C<\infty$ independent of $j$. Then some affine complex line meets $E_j$ for infinitely many $j$.
 \end{theorem}
 \begin{proof}
-Choose $M$ with $K\subset B(0,M)$. The compact space
+Each $\mu_j$ is carried by $K$ and is therefore compactly supported. Choose $M>0$ with $K\subset B(0,M)$. Every affine complex line can be written as $c+H^\perp$ with $H\in\mathcal H$ and $c\in H$, and $c=P_Hy$ for every point $y$ of the line. If the line meets $K$, then $|c|<M$. Hence the lines that can meet $K$ are parametrized by the compact set
 \[
- \mathcal L_M=\{(H,c):H\in\mathcal H,\ c\in H,\ |c|\leq M\}
+ \mathcal L_M=\{(H,c):H\in\mathcal H,\ c\in H,\ |c|\leq M\}.
 \]
-parametrizes lines $c+H^\perp$ that can meet $K$. Give it the finite measure $\lambda$ defined by
+We equip $\mathcal L_M$ with the finite measure $\lambda$ defined by
 \[
  \int h\,\mathrm d\lambda=\int_{\mathcal H}\int_{H\cap\overline{B(0,M)}}h(H,c)\,\mathrm d m_H(c)\,\mathrm d\nu(H)
 \]
-for nonnegative Borel $h$. In the Borel frames this is a product integral and defines a Borel measure; its mass is the volume of a $(2n-2)$-dimensional ball of radius $M$.
+for nonnegative Borel functions $h$. In the frames of \cref{sec:unitary-measures}, $\lambda$ is the image of the product of $\nu$ and Lebesgue measure on the closed ball of radius $M$ in $\mathbb C^{n-1}$. Thus it is a Borel measure, and its total mass is the volume of a ball of radius $M$ in $\mathbb R^{2n-2}$.
 
-By inner regularity choose compact $F_j\subset E_j$ with $\mu_j(F_j)\geq1/2$. The incidence set
+By inner regularity (\cref{prop:borel-regularity}), choose compact sets $F_j\subset E_j$ with $\mu_j(F_j)\geq1/2$. The set
 \[
- J_j=\{(H,c):c\in P_HF_j\}
+ J_j=\{(H,c):H\in\mathcal H,\ c\in P_HF_j\}\subset\mathcal L_M
 \]
-is compact: it is the image of $\mathcal H\times F_j$ under the continuous map $(H,y)\mapsto(H,P_Hy)$. For almost every $H$, \cref{thm:complex-projection-l2} and Cauchy--Schwarz give
+parametrizes the lines meeting $F_j$. It is compact, as the image of $\mathcal H\times F_j$ under the continuous map $(H,y)\mapsto(H,P_Hy)$. Its section over $H$ is $P_HF_j$, so $\lambda(J_j)=\int m_H(P_HF_j)\,\mathrm d\nu(H)$. Let $g_{j,H}$ be the densities given by \cref{thm:complex-projection-l2} for $\mu_j$. Since $F_j\subset P_H^{-1}(P_HF_j)$, the Cauchy--Schwarz inequality gives, for $\nu$-almost every $H$,
 \[
- \frac12\leq(P_H)_*\mu_j(P_HF_j)
+ \frac12\leq\mu_j(F_j)\leq(P_H)_*\mu_j(P_HF_j)=\int_{P_HF_j}g_{j,H}\,\mathrm d m_H
  \leq\|g_{j,H}\|_2\,m_H(P_HF_j)^{1/2}.
 \]
-The first inequality follows since $F_j\subset P_H^{-1}(P_HF_j)$. Integrate in $H$ and apply Cauchy--Schwarz once more. Since $\nu$ is a probability,
+Integrate this inequality over $H$ with respect to the probability measure $\nu$, and apply the Cauchy--Schwarz inequality once more. Squaring the result and using \cref{thm:complex-projection-l2}, we obtain
 \[
  \frac14\leq\lambda(J_j)\int_{\mathcal H}\|g_{j,H}\|_2^2\,\mathrm d\nu(H)
  \leq\lambda(J_j)\beta_n C.
 \]
-Thus $\lambda(J_j)\geq\delta=1/(4\beta_n C)>0$. The constant $C$ is positive because a probability of finite energy cannot have zero energy. The decreasing sets $\bigcup_{j\geq m}J_j$ have measure at least $\delta$. Since $\lambda$ is finite, continuity from above gives
+In particular $C>0$, and $\lambda(J_j)\geq\delta=1/(4\beta_n C)$ for every $j$. The sets $\bigcup_{j\geq m}J_j$ decrease in $m$ and have measure at least $\delta$. Since $\lambda$ is finite, continuity from above gives
 \[
- \lambda\left(\bigcap_m\bigcup_{j\geq m}J_j\right)\geq\delta.
+ \lambda\left(\bigcap_m\bigcup_{j\geq m}J_j\right)\geq\delta>0,
 \]
-Any pair in this set represents a line meeting infinitely many $F_j$, and hence infinitely many $E_j$.
+so this set is nonempty. If $(H,c)$ belongs to it, then $c\in P_HF_j$ for infinitely many $j$. For each such $j$ there is $y\in F_j$ with $c=P_Hy$, so $y\in c+H^\perp$. Hence the line $c+H^\perp$ meets $F_j$, and therefore $E_j$, for infinitely many $j$.
 \end{proof}
 
 \Needspace{22\baselineskip}
 \begin{corollary}\label{cor:borel-line-subharmonic-bound}
-For $n\geq1$ and an open set $D\subset\mathbb C^n$, a finite Borel function $u:D\to\mathbb R$ that is subharmonic on every connected component of every affine complex-line section is locally bounded above.
+\index{complex line!subharmonic restrictions}Let $D\subset\mathbb C^n$ be open, with $n\geq1$, and let $u\colon D\to\mathbb R$ be a finite Borel function whose restriction to every connected component of every affine complex-line section of $D$ is subharmonic. Then $u$ is locally bounded above on $D$.
 \end{corollary}
 \begin{proof}
-For $n=1$ this is the upper semicontinuity of a planar subharmonic function. For $n\geq2$, otherwise there are $x_j\to p$ with $A_j=u(x_j)\to\infty$. Choose $R>0$ with $\overline{B(p,3R)}\subset D$ and discard finitely many terms so that $|x_j-p|<R/2$. By \cref{thm:high-value-star-energy}, the high-value annular sets about $x_j$ support probabilities of uniformly bounded $I_{2n-2}$-energy. They all lie in the fixed compact $\overline{B(p,2R)}$. By \cref{thm:complex-line-incidence}, one affine complex line meets infinitely many of them. Choose such points $y_j$ and a subsequence converging to $y$ on that line in the fixed compact set. A small disc in the line around $y$ lies in $D$, so eventually all the $y_j$ are in its single line-section component. Upper semicontinuity there contradicts $u(y_j)\geq A_j\to\infty$ and the finite value $u(y)$. This proves the local bound. Borel measurability is still an explicit hypothesis here; removing it belongs to the pointwise complex-line characterization.
+If $n=1$, the only affine complex line is $\mathbb C$ itself. Thus $u$ is subharmonic on every component of $D$, hence upper semicontinuous and locally bounded above.
+
+Let $n\geq2$, and suppose that $u$ is not bounded above on any neighborhood of some point $p\in D$. Then there are points $x_j\to p$ with $A_j=u(x_j)\to\infty$. Choose $R>0$ with $\overline{B(p,3R)}\subset D$; discarding finitely many terms, we may assume that $|x_j-p|<R/2$ for all $j$. Then $\overline{B(x_j,R)}\subset D$, and \cref{thm:high-value-star-energy} gives Borel probability measures $\mu_j$ carried by the sets
+\[
+ E_j=\{y\in\mathbb C^n:R/2\leq|y-x_j|\leq R,\ u(y)\geq A_j\},
+\]
+with $I_{2n-2}(\mu_j)\leq C_nR^{-(2n-2)}$ for every $j$. All the sets $E_j$ lie in the compact ball $\overline{B(p,2R)}$. By \cref{thm:complex-line-incidence}, some affine complex line $L$ meets $E_j$ for all $j$ in an infinite set $J$. Choose $y_j\in L\cap E_j$ for $j\in J$. Passing to a subsequence, we may assume that $y_j\to y\in L\cap\overline{B(p,2R)}\subset D$. A small closed disc in $L$ centered at $y$ lies in $D$, so for large $j$ the points $y_j$ lie in the same connected component of $D\cap L$ as $y$. On this component $u$ is subharmonic, hence upper semicontinuous, and therefore $\limsup_ju(y_j)\leq u(y)<\infty$. This contradicts $u(y_j)\geq A_j\to\infty$.
 \end{proof}
+Borel measurability enters this argument through the construction of the measures in \cref{thm:high-value-star-energy}. In the proof of \cref{thm:automatic-psh-usc}, measurability is first derived from the line hypothesis, and only then is \cref{cor:borel-line-subharmonic-bound} applied.

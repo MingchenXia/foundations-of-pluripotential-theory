@@ -1,95 +1,125 @@
 \section{Density lower bounds and mixed products}
 \label{sec:bt-density-lower-bounds}
 
-Let $\Omega\subset\mathbb C^n$ be open, with $n\ge1$, and put $\eta=\ddc|z|^2=\beta/\pi$. Thus $\eta^n=n!\pi^{-n}\,\mathrm dV_{2n}$ by \eqref{eq:bt-determinant-normalization}. A lower bound for a Monge--Amp\`ere density can be tested against smooth functions touching the potential from above. A matrix formula then turns these tests into linear differential inequalities, which survive convolution. This permits the smooth mixed determinant inequality to pass to locally bounded potentials.
+In the following sections we solve the Monge--Amp\`ere equation $(\ddc u)^n=\mu$ on a ball and study the lower bounds that mixed products inherit from lower bounds of the pure Monge--Amp\`ere measures. Throughout, $\Omega\subset\mathbb C^n$ is open, $n\ge1$, and we put
+\[
+ \eta=\ddc|z|^2=\beta/\pi,\qquad\text{so that}\qquad\eta^n=\frac{n!}{\pi^n}\,\mathrm dV_{2n}
+\]
+by \eqref{eq:bt-determinant-normalization}. Densities of Monge--Amp\`ere measures are taken with respect to $\eta^n$; for instance, a $C^2$ function $u$ satisfies $(\ddc u)^n=\det(u_{j\bar k})\,\eta^n$.
 
-Here a real $C^2$ function $q$ touches a real function $u$ from above at $x$ if $q(x)=u(x)$ and $q\ge u$ on a neighborhood of $x$.
+A lower bound $(\ddc u)^n\ge f\eta^n$ is a nonlinear condition on $u$, and it is not evident that it is preserved by convolution. We show that, for a continuous density $f$, it can be tested pointwise with smooth functions touching $u$ from above, and that it is equivalent to a family of linear elliptic inequalities, one for each positive definite Hermitian matrix of determinant one (\cref{prop:bounded-monge-ampere-linear-density}). Linear inequalities are preserved by convolution, and this allows us to pass the determinant inequalities for mixed products of smooth functions to locally bounded potentials. The same characterization will make subsolutions of the Dirichlet problem stable under the operations used in \cref{sec:bt-continuous-ball-dirichlet}.
+
+Let $u$ be a real function on an open subset of $\mathbb R^d$. A real $C^2$ function $q$ defined near a point $x$ \emph{touches $u$ from above at $x$} if $q(x)=u(x)$ and $q\ge u$ on a neighborhood of $x$; we then call $q$ an \emph{upper test function} for $u$ at $x$.
+\index{upper test function}
 
 \begin{lemma}\label{lem:determinant-linearization-mixed}
-For a positive semidefinite Hermitian $n\times n$ matrix $A$,
+Let $A$ be a positive semidefinite Hermitian $n\times n$ matrix. Then
 \[
- (\det A)^{1/n}=\inf_{B>0,\,\det B=1}\frac{\operatorname{tr}(BA)}n.
+ (\det A)^{1/n}=\inf\left\{\frac{\operatorname{tr}(BA)}n:\ B\text{ positive definite Hermitian},\ \det B=1\right\}.
 \]
-In the infimum $B>0$ means positive definite Hermitian. For positive semidefinite $A,C$, define $M_k(A,C)$ by
+If $C$ is another positive semidefinite Hermitian $n\times n$ matrix, define the numbers $M_k(A,C)$, $0\le k\le n$, by
 \[
- \det(tA+sC)=\sum_{k=0}^n\binom nk M_k(A,C)t^ks^{n-k}.
+ \det(tA+sC)=\sum_{k=0}^n\binom nk M_k(A,C)\,t^ks^{n-k}\qquad(t,s\in\mathbb R).
 \]
-For each integer $1\le k\le n-1$,
+Then $M_n(A,C)=\det A$, $M_0(A,C)=\det C$, and for each integer $1\le k\le n-1$,
 \[
  M_k(A,C)\ge(\det A)^{k/n}(\det C)^{(n-k)/n}.
 \]
-The endpoint coefficients are $M_n(A,C)=\det A$ and $M_0(A,C)=\det C$.
 \end{lemma}
 \begin{proof}
-If $A>0$, apply the arithmetic--geometric mean inequality to the eigenvalues of $B^{1/2}AB^{1/2}$. Equality is attained at $B=(\det A)^{1/n}A^{-1}$. If $A$ is singular, use this choice for $A+\varepsilon I$; its trace against $A$ is at most $n\det(A+\varepsilon I)^{1/n}$ and tends to zero. All the traces are nonnegative, proving the first assertion.
-
-Suppose first that $A,C>0$ and let $\lambda_1,\ldots,\lambda_n$ be the eigenvalues of $A^{-1/2}CA^{-1/2}$. Coefficient comparison gives
+Let $B$ be positive definite with $\det B=1$. The positive semidefinite matrix $B^{1/2}AB^{1/2}$ has trace $\operatorname{tr}(BA)$ and determinant $\det A$, so the arithmetic--geometric mean inequality for its eigenvalues gives $\operatorname{tr}(BA)/n\ge(\det A)^{1/n}$. If $A$ is positive definite, equality holds for $B=(\det A)^{1/n}A^{-1}$. If $A$ is singular, the matrices $B_\varepsilon=\det(A+\varepsilon I)^{1/n}(A+\varepsilon I)^{-1}$, $\varepsilon>0$, are admissible and
 \[
- M_k(A,C)=\frac{\det A}{\binom nk}
- \sum_{|J|=n-k}\prod_{j\in J}\lambda_j.
+ 0\le\operatorname{tr}(B_\varepsilon A)\le\operatorname{tr}\bigl(B_\varepsilon(A+\varepsilon I)\bigr)=n\det(A+\varepsilon I)^{1/n}\longrightarrow0
 \]
-Each eigenvalue occurs in $\binom{n-1}{n-k-1}$ of these products. Their geometric mean is therefore $(\lambda_1\cdots\lambda_n)^{(n-k)/n}$. The arithmetic--geometric mean inequality gives the stated bound since $\prod_j\lambda_j=\det C/\det A$. Replace both matrices by their sums with $\varepsilon I$ and let $\varepsilon\downarrow0$ to include the semidefinite case.
+as $\varepsilon\downarrow0$. This proves the infimum formula in both cases.
+
+The formulas for $M_n$ and $M_0$ follow from $\det(tA)=t^n\det A$ and $\det(sC)=s^n\det C$. Suppose first that $A$ and $C$ are positive definite, and let $\lambda_1,\ldots,\lambda_n>0$ be the eigenvalues of $A^{-1/2}CA^{-1/2}$. Since $\det(tA+sC)=\det A\prod_{i=1}^n(t+s\lambda_i)$, comparison of coefficients gives
+\[
+ M_k(A,C)=\frac{\det A}{\binom nk}\sum_{|J|=n-k}\prod_{j\in J}\lambda_j,
+\]
+the sum being over the subsets $J\subset\{1,\ldots,n\}$ with $n-k$ elements. Each eigenvalue occurs in exactly $\binom{n-1}{n-k-1}$ of these $\binom n{n-k}$ products, so the geometric mean of the products is $(\lambda_1\cdots\lambda_n)^{(n-k)/n}$. Since $\lambda_1\cdots\lambda_n=\det C/\det A$, the arithmetic--geometric mean inequality gives
+\[
+ M_k(A,C)\ge\det A\left(\frac{\det C}{\det A}\right)^{(n-k)/n}=(\det A)^{k/n}(\det C)^{(n-k)/n}.
+\]
+For semidefinite $A$ and $C$, apply this to $A+\varepsilon I$ and $C+\varepsilon I$ and let $\varepsilon\downarrow0$; both sides depend continuously on the matrices.
 \end{proof}
 
 \begin{lemma}\label{lem:constant-elliptic-upper-tests}
-Let $d\ge1$ be an integer and $L=\sum_{a,b=1}^d a_{ab}\partial_a\partial_b$, where $(a_{ab})$ is a real symmetric positive definite constant matrix. Let $w$ be real, locally bounded and upper semicontinuous on an open $U\subset\mathbb R^d$, and let $F:U\to\mathbb R$ be continuous. Suppose every $C^2$ function $q$ touching $w$ from above at $x$ satisfies $Lq(x)\ge F(x)$. Then $Lw\ge F$ distributionally.
+Let $d\ge1$, let $(a_{ab})$ be a real symmetric positive definite $d\times d$ matrix, and put $L=\sum_{a,b=1}^d a_{ab}\partial_a\partial_b$. Let $U\subset\mathbb R^d$ be open, let $w$ be a real, locally bounded, upper semicontinuous function on $U$, and let $F\colon U\to\mathbb R$ be continuous. If every upper test function $q$ for $w$ at any point $x\in U$ satisfies $Lq(x)\ge F(x)$, then $Lw\ge F$ in the sense of distributions on $U$.
 \end{lemma}
 \begin{proof}
-A real linear change of variables makes $L$ the ordinary Laplacian. If $F=0$, the upper-test condition implies harmonic comparison on every relatively compact ball $B(y,r)$. Indeed, let $h$ be harmonic on that ball, continuous on its closure, and at least $w$ on the boundary. If $w-h$ is positive somewhere inside, choose $\varepsilon>0$ so small that
-$w-h-\varepsilon(r^2-|x-y|^2)$ still has a positive value there. Its positive maximum is attained inside, since its boundary upper limits are nonpositive. Adding this maximum to $h+\varepsilon(r^2-|x-y|^2)$ gives an upper test with strictly negative Laplacian, a contradiction. Decreasing continuous majorants of $w|_{\partial B}$ and their Poisson extensions gives the sphere submean inequality, as in \cref{thm:subharmonic-comparison}. Consequently \cref{thm:subharmonic-distribution} gives $\Delta w\ge0$.
+A real linear change of coordinates transforms $L$ into the Laplacian $\Delta$. It maps upper test functions to upper test functions and preserves distributional inequalities, so we may assume that $L=\Delta$.
 
-For general $F$, work on a smaller ball and choose smooth $F_j\le F$ converging uniformly to $F$ there. Such functions result from convolution on a larger neighborhood followed by subtraction of its uniform approximation error. Multiply $F_j$ by a smooth cutoff equal to one near the smaller ball. Convolution with the fundamental solution in \cref{prop:laplacian-fundamental-solution} gives a smooth $h_j$ with $\Delta h_j=F_j$ on that ball: derivatives may be placed on the compactly supported smooth factor. Every upper test for $w-h_j$ has nonnegative Laplacian, so the first case gives $\Delta w\ge F_j$ distributionally. Uniform convergence gives $\Delta w\ge F$. Returning to the original coordinates proves the lemma.
+Suppose first that $F=0$. We show that $w$ satisfies the harmonic comparison principle on balls. Let $\overline{B(y,r)}\subset U$, and let $h$ be harmonic on $B(y,r)$ and continuous on its closure, with $w\le h$ on $\partial B(y,r)$. Suppose that $w-h$ is positive somewhere in the ball. Then, for $\varepsilon>0$ small enough, the upper semicontinuous function
+\[
+ g(x)=w(x)-h(x)-\varepsilon(r^2-|x-y|^2)
+\]
+still takes a positive value in $B(y,r)$. Since $g\le0$ on the sphere, its maximum $c>0$ over the closed ball is attained at a point $x_0\in B(y,r)$. Then $q=h+\varepsilon(r^2-|x-y|^2)+c$ is an upper test function for $w$ at $x_0$, whereas $\Delta q=-2d\varepsilon<0$, a contradiction. Hence $w\le h$ on $B(y,r)$. Comparing $w$ with the Poisson integrals of continuous functions decreasing to $w|_{\partial B(y,r)}$, we obtain the sphere submean inequality exactly as in the proof of the converse part of \cref{thm:subharmonic-comparison}. Thus $w$ is subharmonic, and since it is locally bounded, \cref{thm:subharmonic-distribution} gives $\Delta w\ge0$.
+
+In the general case it suffices to prove $\Delta w\ge F$ on every ball $B'$ with $\overline{B'}\subset U$. Convolving $F$ with mollifiers and subtracting the uniform error on a neighborhood of $\overline{B'}$, we obtain smooth functions $F_j$ such that $F_j\le F$ near $\overline{B'}$ and $F_j\to F$ uniformly there (\cref{lem:mollifier-density}). Multiply $F_j$ by a function in $C^\infty_c(U)$ equal to one near $\overline{B'}$; by \cref{prop:laplacian-fundamental-solution}, the convolution of the product with the fundamental solution $E_d$ is a smooth function $h_j$ with $\Delta h_j=F_j$ near $\overline{B'}$. If $q$ is an upper test function for $w-h_j$ at $x\in B'$, then $q+h_j$ is an upper test function for $w$ at $x$, so $\Delta q(x)\ge F(x)-F_j(x)\ge0$. The first case, applied to $w-h_j$ on $B'$, gives $\Delta w\ge F_j$ on $B'$, and letting $j\to\infty$ we obtain $\Delta w\ge F$ there.
 \end{proof}
 
-For a real $C^2$ function $q$ write $H(q)=(q_{j\bar k})$. For a positive definite Hermitian $B$ with $\det B=1$, put $L_Bq=\operatorname{tr}(BH(q))$. This is a constant real elliptic operator: diagonalizing $B$ by a unitary coordinate change expresses it as a positive weighted sum of the planar Laplacians, each with factor $1/4$.
+For a real $C^2$ function $q$ on an open subset of $\mathbb C^n$, we write $H(q)=(q_{j\bar k})$ for its complex Hessian matrix, where $q_{j\bar k}=\partial^2q/\partial z_j\partial\bar z_k$. For a positive definite Hermitian matrix $B$ with $\det B=1$, put
+\[
+ L_Bq=\operatorname{tr}\bigl(BH(q)\bigr).
+\]
+This is a real operator with constant coefficients, and it is elliptic: after a unitary change of coordinates diagonalizing $B$, it becomes $\frac14\sum_jb_j\Delta_j$, where $b_1,\ldots,b_n>0$ are the eigenvalues of $B$ and $\Delta_j$ is the Laplacian in the $j$th complex variable. Hence \cref{lem:constant-elliptic-upper-tests} applies to $L_B$.
 
 \begin{proposition}\label{prop:bounded-monge-ampere-linear-density}
-Let $u$ be locally bounded and plurisubharmonic on $\Omega$, and let $f\ge0$ be continuous. The following conditions are equivalent:
+Let $u$ be a locally bounded plurisubharmonic function on $\Omega$, and let $f\ge0$ be a continuous function on $\Omega$. The following conditions are equivalent:
 \begin{enumerate}
-\item $(\ddc u)^n\ge f\eta^n$ as measures;
-\item every real $C^2$ function $q$ touching $u$ from above at $x$ satisfies $\det H(q)(x)\ge f(x)$;
-\item $L_Bu\ge n f^{1/n}$ distributionally for every positive definite Hermitian $B$ with $\det B=1$.
+\item $(\ddc u)^n\ge f\eta^n$ as measures on $\Omega$;
+\item $\det H(q)(x)\ge f(x)$ for every $x\in\Omega$ and every upper test function $q$ for $u$ at $x$;
+\item $L_Bu\ge nf^{1/n}$ in the sense of distributions on $\Omega$, for every positive definite Hermitian matrix $B$ with $\det B=1$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-The complex Hessian of any upper test $q$ is positive semidefinite at the contact point. Restrict to a complex line through that point and use the submean inequality for $u$; the circle mean of $q$ is at least its center value. The second-order expansion gives nonnegativity of $H(q)$ on every complex direction.
+We first observe that the complex Hessian $H(q)(x)$ of an upper test function $q$ for $u$ at $x$ is positive semidefinite. Indeed, let $\xi\in\mathbb C^n$. For small $r>0$, the mean of $q$ over the circle $\theta\mapsto x+r\mathrm e^{\mathrm i\theta}\xi$ is at least the mean of $u$ over it, which is at least $u(x)=q(x)$ by the submean inequality for $u$ on complex lines. By Taylor's formula this mean equals $q(x)+r^2\sum_{j,k}q_{j\bar k}(x)\xi_j\bar\xi_k+o(r^2)$, so $\sum_{j,k}q_{j\bar k}(x)\xi_j\bar\xi_k\ge0$.
 
-Assume (1), and normalize a test by $q(x)=u(x)$ and $q\ge u$ near $x$. If $\det H(q)(x)<f(x)$, choose $\delta>0$ so small that $q_\delta=q+\delta|z-x|^2$ has positive definite complex Hessian at $x$ and still has determinant below $f(x)$. On a sufficiently small closed ball $\overline{B(x,r)}$, it is strictly plurisubharmonic and $\det H(q_\delta)<f$. Set $b=q_\delta-\delta r^2/2$. On the sphere $b>u$, whereas $b(x)<u(x)$. The Borel set $S=\{b<u\}\cap B(x,r)$ has positive Lebesgue measure. Otherwise $u\le b$ almost everywhere on the ball, and uniqueness of the plurisubharmonic representative in \cref{thm:psh-distribution-representative}, applied to $\max\{u,b\}$, would imply $u\le b$ everywhere. Bounded comparison in \cref{thm:bt-comparison} now gives
+\emph{(1) implies (2).} Assume (1), let $q$ be an upper test function for $u$ at $x$, and suppose that $\det H(q)(x)<f(x)$. Since $H(q)(x)$ is positive semidefinite, we can choose $\delta>0$ so small that $q_\delta=q+\delta|z-x|^2$ satisfies $H(q_\delta)(x)=H(q)(x)+\delta I>0$ and still $\det H(q_\delta)(x)<f(x)$. Since $q$ is of class $C^2$ and $f$ is continuous, there is $r>0$ such that $\overline{B(x,r)}\subset\Omega$, $q\ge u$ on $\overline{B(x,r)}$, $q_\delta$ is strictly plurisubharmonic there, and $\det H(q_\delta)<f$ on $\overline{B(x,r)}$. Put $b=q_\delta-\delta r^2/2$. Then $b=q+\delta r^2/2>u$ on the sphere $\partial B(x,r)$, while $b(x)=u(x)-\delta r^2/2<u(x)$.
+
+The Borel set $S=\{z\in B(x,r):b(z)<u(z)\}$ has positive Lebesgue measure. Otherwise $\max\{u,b\}=b$ almost everywhere on $B(x,r)$; since both functions are plurisubharmonic, the uniqueness assertion of \cref{thm:psh-distribution-representative} gives $\max\{u,b\}=b$ everywhere, contradicting $b(x)<u(x)$. The function $b-u$ is lower semicontinuous and positive on $\partial B(x,r)$, so $\liminf_{z\to\zeta}(b(z)-u(z))>0$ for every $\zeta\in\partial B(x,r)$. The comparison principle \cref{thm:bt-comparison}, applied on $B(x,r)$ with the bounded plurisubharmonic functions $b$ and $u$ in place of $u$ and $v$, therefore gives
 \[
- \int_S f\eta^n\le\int_S(\ddc u)^n
- \le\int_S(\ddc b)^n
- =\int_S\det H(q_\delta)\eta^n,
+ \int_S f\eta^n\le\int_S(\ddc u)^n\le\int_S(\ddc b)^n=\int_S\det H(q_\delta)\,\eta^n.
 \]
-contradicting the strict density inequality. The measures here are finite since the ball is relatively compact in the neighborhood where the potentials are bounded. Thus (2) holds.
+These integrals are finite, because $u$ is bounded near the compact ball. Since $\det H(q_\delta)<f$ on $S$ and $S$ has positive measure, the right side is strictly smaller than the left side, a contradiction. Thus (2) holds.
 
-Assume (2). The first formula of \cref{lem:determinant-linearization-mixed} gives $L_Bq(x)\ge n f(x)^{1/n}$ for every upper test and each fixed admissible $B$. Apply \cref{lem:constant-elliptic-upper-tests} with the continuous function $n f^{1/n}$ to obtain (3).
-
-Finally assume (3). Choose the nonnegative radial regularizing kernels used in \cref{thm:psh-distribution-representative}, so that $u_\varepsilon=u*\rho_\varepsilon\downarrow u$ on smaller open sets. Convolving each distributional inequality gives
+\emph{(2) implies (3).} Let $q$ be an upper test function for $u$ at $x$, and let $B$ be positive definite with $\det B=1$. Since $H(q)(x)$ is positive semidefinite, the infimum formula of \cref{lem:determinant-linearization-mixed} and (2) give
 \[
- \operatorname{tr}(BH(u_\varepsilon))\ge n(f^{1/n}*\rho_\varepsilon)
- \qquad(B>0,\ \det B=1).
+ L_Bq(x)=\operatorname{tr}\bigl(BH(q)(x)\bigr)\ge n\bigl(\det H(q)(x)\bigr)^{1/n}\ge nf(x)^{1/n}.
 \]
-These are pointwise inequalities between smooth functions. The matrix infimum formula therefore gives $\det H(u_\varepsilon)\ge(f^{1/n}*\rho_\varepsilon)^n$. The right side tends locally uniformly to $f$. The determinant normalization and the weak decreasing continuity of \cref{thm:bt-decreasing-continuity} give (1). This argument includes vanishing densities and singular Hessians.
+Since $u$ is locally bounded and upper semicontinuous, \cref{lem:constant-elliptic-upper-tests}, applied to $L_B$ and the continuous function $nf^{1/n}$, gives (3).
+
+\emph{(3) implies (1).} Let $\rho_\varepsilon$ be the nonnegative radial mollifiers of \cref{thm:psh-distribution-representative}, so that $u_\varepsilon=u*\rho_\varepsilon$ is smooth and plurisubharmonic on $\Omega_\varepsilon=\{x\in\Omega:\operatorname{dist}(x,\mathbb C^n\setminus\Omega)>\varepsilon\}$ and decreases to $u$ as $\varepsilon\downarrow0$. Since $L_B$ has constant coefficients, convolving (3) with $\rho_\varepsilon$ gives
+\[
+ \operatorname{tr}\bigl(BH(u_\varepsilon)\bigr)\ge n\,(f^{1/n}*\rho_\varepsilon)\quad\text{on }\Omega_\varepsilon\qquad(B>0,\ \det B=1).
+\]
+Both sides are continuous, so this holds pointwise. Since $H(u_\varepsilon)$ is positive semidefinite, taking the infimum over $B$ and using \cref{lem:determinant-linearization-mixed}, we obtain $\det H(u_\varepsilon)\ge(f^{1/n}*\rho_\varepsilon)^n$, that is,
+\[
+ (\ddc u_\varepsilon)^n\ge(f^{1/n}*\rho_\varepsilon)^n\eta^n\quad\text{on }\Omega_\varepsilon.
+\]
+As $\varepsilon\downarrow0$, the density on the right converges locally uniformly to $f$ by \cref{lem:mollifier-density}, and $(\ddc u_\varepsilon)^n\to(\ddc u)^n$ weakly by \cref{thm:bt-decreasing-continuity}, applied along any sequence $\varepsilon_j\downarrow0$. Testing against nonnegative functions in $C_c(\Omega)$ gives (1).
 \end{proof}
 \index{Monge--Amp\`ere measure!density lower bound}
 
 \begin{corollary}\label{cor:bounded-mixed-continuous-density}
-Let $u,v$ be locally bounded plurisubharmonic functions on $\Omega$, and let $f,g\ge0$ be continuous with $(\ddc u)^n\ge f\eta^n$ and $(\ddc v)^n\ge g\eta^n$. For each integer $1\le k\le n-1$,
+Let $u,v$ be locally bounded plurisubharmonic functions on $\Omega$, and let $f,g\ge0$ be continuous functions on $\Omega$ such that $(\ddc u)^n\ge f\eta^n$ and $(\ddc v)^n\ge g\eta^n$. Then, for each integer $1\le k\le n-1$,
 \[
- (\ddc u)^k\wedge(\ddc v)^{n-k}
- \ge f^{k/n}g^{(n-k)/n}\eta^n.
+ (\ddc u)^k\wedge(\ddc v)^{n-k}\ge f^{k/n}g^{(n-k)/n}\eta^n.
 \]
-For $k=0,n$ the corresponding assertions are the given pure-measure bounds.
+For $k=0$ and $k=n$ the same inequality is the hypothesis.
 \end{corollary}
 \begin{proof}
-Use the same radial kernels for both potentials. The proof of \cref{prop:bounded-monge-ampere-linear-density} gives
+Let $u_\varepsilon=u*\rho_\varepsilon$ and $v_\varepsilon=v*\rho_\varepsilon$, with the same mollifiers for both functions. By \cref{prop:bounded-monge-ampere-linear-density}, $u$ and $v$ satisfy condition (3) there, with the densities $f$ and $g$ respectively, and the last part of its proof gives
 \[
  \det H(u_\varepsilon)\ge(f^{1/n}*\rho_\varepsilon)^n,
  \qquad
  \det H(v_\varepsilon)\ge(g^{1/n}*\rho_\varepsilon)^n.
 \]
-Expand $(t\ddc u_\varepsilon+s\ddc v_\varepsilon)^n$ and its smooth determinant density. The coefficient of $\binom nk t^ks^{n-k}$ is $M_k(H(u_\varepsilon),H(v_\varepsilon))\eta^n$. The second assertion of \cref{lem:determinant-linearization-mixed} bounds this below by
-$(f^{1/n}*\rho_\varepsilon)^k(g^{1/n}*\rho_\varepsilon)^{n-k}\eta^n$.
-The continuous density converges locally uniformly to $f^{k/n}g^{(n-k)/n}$. Mixed decreasing continuity in \cref{thm:bt-decreasing-continuity} passes the measure inequality to the limit.
+Expanding $(t\ddc u_\varepsilon+s\ddc v_\varepsilon)^n=\det\bigl(tH(u_\varepsilon)+sH(v_\varepsilon)\bigr)\eta^n$ by the binomial formula and comparing the coefficients of $\binom nkt^ks^{n-k}$, we find
+\[
+ (\ddc u_\varepsilon)^k\wedge(\ddc v_\varepsilon)^{n-k}=M_k\bigl(H(u_\varepsilon),H(v_\varepsilon)\bigr)\eta^n\ge(f^{1/n}*\rho_\varepsilon)^k(g^{1/n}*\rho_\varepsilon)^{n-k}\eta^n,
+\]
+where the inequality is the second assertion of \cref{lem:determinant-linearization-mixed}. As $\varepsilon\downarrow0$, the density on the right converges locally uniformly to $f^{k/n}g^{(n-k)/n}$, while the left side converges weakly to $(\ddc u)^k\wedge(\ddc v)^{n-k}$ by \cref{thm:bt-decreasing-continuity}.
 \end{proof}
 \index{Bedford--Taylor product!mixed density inequality}

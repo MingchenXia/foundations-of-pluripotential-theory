@@ -1,73 +1,82 @@
 \section{Second derivatives and singular integrals}
 \label{sec:hessian-singular-integrals}
 
-Let $d\geq1$. Write $D^2v=(\partial_a\partial_bv)_{a,b=1}^d$, and use Euclidean norms for vectors and the Hilbert--Schmidt norm $|M|=(\sum_{a,b}|M_{ab}|^2)^{1/2}$ for matrices in $L^p$ norms. Constants $C_d$ and $C_{d,p}$ may change from line to line and depend only on the indicated parameters. A bound for a scalar Laplacian controls the full real Hessian in $L^p$, although it need not control that Hessian pointwise. Plancherel gives the estimate for $p=2$. The extension to other finite exponents uses cancellation away from the support of a function.
+Let $d\geq1$. For a function $v$ on $\mathbb R^d$ we write $D^2v=(\partial_a\partial_bv)_{a,b=1}^d$ for its real Hessian. In $L^p$ norms of vector-valued and matrix-valued functions, vectors carry the Euclidean norm and matrices the Hilbert--Schmidt norm $|M|=(\sum_{a,b}|M_{ab}|^2)^{1/2}$. Constants denoted by $C_d$ and $C_{d,p}$ depend only on the indicated parameters and may change from line to line.
+
+The Laplacian $\Delta v$ is the trace of $D^2v$, so a bound for $\Delta v$ does not bound $D^2v$ pointwise. We show that it does bound $D^2v$ in $L^p$ for $1<p<\infty$ (\cref{thm:hessian-multiplier-lp}). On the Fourier side, $\partial_a\partial_bv$ is obtained from $-\Delta v$ by multiplication with the bounded function $-\xi_a\xi_b/|\xi|^2$, so the case $p=2$ follows from Plancherel's theorem. For the other exponents we represent the corresponding operator away from the support of a function by a kernel that is smooth off the diagonal, and we use the Calder\'on--Zygmund decomposition: on each cube of the decomposition the function minus its average has mean zero, and this cancellation makes the image of that part integrable far from the cube. The section ends with Sobolev spaces and Morrey's inequality, which turn $L^p$ bounds for second derivatives into H\"older continuity of first derivatives.
 
 \begin{lemma}\label{lem:hessian-multiplier-kernel}
-For $1\leq a,b\leq d$, define $T_{ab}$ on $L^2(\mathbb R^d)$ by
+Let $1\leq a,b\leq d$, and define an operator $T_{ab}$ on $L^2(\mathbb R^d)$ by
 \[
  \widehat{T_{ab}f}(\xi)=-\frac{\xi_a\xi_b}{|\xi|^2}\widehat f(\xi),
  \qquad \xi\neq0,
 \]
-with multiplier zero at the origin. This is a self-adjoint operator of norm at most one. There is a smooth real kernel $K_{ab}$ away from zero such that
+the multiplier being zero at the origin. Then $T_{ab}$ is self-adjoint and has norm at most one. Moreover:
+\begin{enumerate}
+\item There is a smooth real function $K_{ab}$ on $\mathbb R^d\setminus\{0\}$ such that
 \[
  |K_{ab}(z)|\leq C_d|z|^{-d},\qquad
  |\nabla K_{ab}(z)|\leq C_d|z|^{-d-1}.
 \]
-If $f\in L^1\cap L^2$ has compact support, then almost everywhere outside that support
+\item If $f\in L^1\cap L^2$ has compact support, then for almost every $x\in\mathbb R^d\setminus\Supp f$,
 \[
  T_{ab}f(x)=\int K_{ab}(x-y)f(y)\,\mathrm d y.
 \]
-For $v\in C_c^\infty$, one has $\partial_a\partial_bv=T_{ab}(-\Delta v)$.
+\item For $v\in C_c^\infty(\mathbb R^d)$ we have $\partial_a\partial_bv=T_{ab}(-\Delta v)$.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-The multiplier is real and bounded by one in absolute value, so Plancherel gives the norm and adjoint assertions. The derivative identity follows by multiplying the transform of $-\Delta v$ by the displayed multiplier; both sides are $L^2$ functions.
+The multiplier is real and bounded by one in absolute value, so Plancherel's theorem shows that $T_{ab}$ is self-adjoint with norm at most one. For $v\in C_c^\infty$, the integration by parts rule in the proof of \cref{lem:fourier-gaussian} gives $\widehat{-\Delta v}(\xi)=4\pi^2|\xi|^2\widehat v(\xi)$ and $\widehat{\partial_a\partial_bv}(\xi)=-4\pi^2\xi_a\xi_b\widehat v(\xi)$. Multiplying the first identity by the multiplier of $T_{ab}$ gives the second, which proves (3).
 
 \Needspace{16\baselineskip}
-Put $H_t(z)=(4\pi t)^{-d/2}\mathrm e^{-|z|^2/(4t)}$. The Gaussian formula gives $\widehat H_t(\xi)=\mathrm e^{-4\pi^2t|\xi|^2}$. For $0<\varepsilon<R<\infty$, the operators
+To construct the kernel we use the heat kernel\index{heat kernel} $H_t(z)=(4\pi t)^{-d/2}\mathrm e^{-|z|^2/(4t)}$, $t>0$. By \cref{lem:fourier-gaussian}, $\widehat H_t(\xi)=\mathrm e^{-4\pi^2t|\xi|^2}$, and hence $\widehat{\partial_a\partial_bH_t}(\xi)=-4\pi^2\xi_a\xi_b\mathrm e^{-4\pi^2t|\xi|^2}$. For $0<\varepsilon<R<\infty$ put
 \[
- \int_\varepsilon^R\partial_a\partial_bH_t*f\,\mathrm d t
+ k_{\varepsilon,R}=\int_\varepsilon^R\partial_a\partial_bH_t\,\mathrm d t.
 \]
-have multiplier
+Since $|\partial_a\partial_bH_t(z)|\leq C_dt^{-d/2-1}(1+|z|^2/t)\mathrm e^{-|z|^2/(4t)}$, the kernel $k_{\varepsilon,R}$ is bounded and integrable, and Fubini's theorem gives its Fourier transform:
 \[
- -\frac{\xi_a\xi_b}{|\xi|^2}
+ \widehat{k_{\varepsilon,R}}(\xi)=-\frac{\xi_a\xi_b}{|\xi|^2}
     \bigl(\mathrm e^{-4\pi^2\varepsilon|\xi|^2}
-          -\mathrm e^{-4\pi^2R|\xi|^2}\bigr)
+          -\mathrm e^{-4\pi^2R|\xi|^2}\bigr),\qquad\xi\neq0.
 \]
-and converge to $T_{ab}f$ in $L^2$ as $\varepsilon\downarrow0$, $R\uparrow\infty$. Each finite integral is justified by the integrable smooth convolution kernels; bounded frequency multipliers and dominated convergence give the limit.
+Let $f\in L^1\cap L^2$. Then $k_{\varepsilon,R}*f$ is bounded and integrable, hence in $L^2$, and by Fubini's theorem and the last assertion of \cref{thm:plancherel} its Fourier transform is $\widehat{k_{\varepsilon,R}}\widehat f$. As $\varepsilon\downarrow0$ and $R\uparrow\infty$, these multipliers are bounded by one and converge to $-\xi_a\xi_b/|\xi|^2$ for $\xi\neq0$. By dominated convergence on the Fourier side and Plancherel's theorem, $k_{\varepsilon,R}*f\to T_{ab}f$ in $L^2$.
 
 For $z\neq0$ define
 \[
  K_{ab}(z)=\int_0^\infty\partial_a\partial_bH_t(z)\,\mathrm d t.
 \]
-Every differentiated integrand is bounded by a polynomial in $|z|/\sqrt t$ times $C t^{-(d+2+l)/2}\mathrm e^{-|z|^2/(4t)}$ for $l$ further derivatives. This is integrable uniformly on compact sets away from zero: the exponential controls $t\downarrow0$, and $t^{-(d+2+l)/2}$ controls $t\uparrow\infty$. Thus the kernel is smooth there. The change $t=r^2s$ shows $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Its bounded derivatives on the unit sphere give the two estimates.
+After $l$ further derivatives in $z$, the integrand is bounded by a polynomial in $|z|/\sqrt t$ times $Ct^{-(d+2+l)/2}\mathrm e^{-|z|^2/(4t)}$. For $z$ in a compact subset of $\mathbb R^d\setminus\{0\}$, these bounds are integrable in $t$, uniformly in $z$: the exponential factor controls $t\downarrow0$, and the power $t^{-(d+2+l)/2}$ controls $t\uparrow\infty$ because $(d+2+l)/2>1$. Hence $K_{ab}$ is smooth on $\mathbb R^d\setminus\{0\}$ and may be differentiated under the integral sign. Differentiating the identity $H_{r^2s}(rz)=r^{-d}H_s(z)$ twice in $z$ and substituting $t=r^2s$, we find that $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Thus $K_{ab}$ is homogeneous of degree $-d$ and $\nabla K_{ab}$ is homogeneous of degree $-d-1$, and the bounds in (1) follow from the boundedness of $K_{ab}$ and $\nabla K_{ab}$ on the unit sphere. The same scaling shows that $\int_0^\infty|\partial_a\partial_bH_t(z)|\,\mathrm d t\leq C_d|z|^{-d}$.
 
-On a compact set disjoint from the support of $f$, the integral of $|\partial_a\partial_bH_t(x-y)|$ in $t$ is at most $C_d|x-y|^{-d}$. Fubini and dominated convergence therefore identify the finite heat integrals with the asserted convolution in the limit, uniformly on that compact set. Their $L^2$ limit is $T_{ab}f$, proving the almost-everywhere identity. Exhaust the complement by such compact sets. This argument also applies for $d=1$, where $T_{11}=-1$ and the off-origin kernel vanishes.
+To prove (2), let $f$ have compact support, and let $L$ be a compact set disjoint from $\Supp f$. For $x\in L$,
+\[
+ k_{\varepsilon,R}*f(x)=\int f(y)\int_\varepsilon^R\partial_a\partial_bH_t(x-y)\,\mathrm d t\,\mathrm d y.
+\]
+The differences $x-y$, with $x\in L$ and $y\in\Supp f$, form a compact set not containing the origin. By the uniform integrability just proved, the inner integral converges to $K_{ab}(x-y)$ uniformly on this set, and it is bounded by $C_d|x-y|^{-d}$. Hence $k_{\varepsilon,R}*f$ converges uniformly on $L$ to $\int K_{ab}(x-y)f(y)\,\mathrm d y$. Since it also converges to $T_{ab}f$ in $L^2$, a subsequence converges almost everywhere to $T_{ab}f$, and the two limits agree almost everywhere on $L$. Covering $\mathbb R^d\setminus\Supp f$ by countably many such compact sets proves (2). The argument applies without change when $d=1$; then $T_{11}=-1$, and the kernel vanishes off the origin, because $\partial_z^2H_t=\partial_tH_t$ and $H_t(z)\to0$ both as $t\downarrow0$ and as $t\uparrow\infty$ for $z\neq0$.
 \end{proof}
 
 \begin{lemma}\label{lem:hessian-multiplier-weak-one}
-For $f\in L^1(\mathbb R^d)\cap L^2(\mathbb R^d)$ and $\lambda>0$,
+Let $f\in L^1(\mathbb R^d)\cap L^2(\mathbb R^d)$ and $\lambda>0$. Then
 \[
  |\{x:|T_{ab}f(x)|>\lambda\}|\leq\frac{C_d}{\lambda}\|f\|_1.
 \]
 \end{lemma}
 \begin{proof}
-The dyadic cubes are $2^k(m+[0,1)^d)$, for $k\in\mathbb Z$ and $m\in\mathbb Z^d$. Choose the maximal cubes $Q$ for which the average of $|f|$ exceeds $\lambda$. Such a cube lies below a maximal one: the averages on its successive ancestors tend to zero, since their volumes tend to infinity and $f\in L^1$. Two maximal cubes are disjoint, and their parent averages give
+We use the Calder\'on--Zygmund decomposition of $f$ at height $\lambda$. The dyadic cubes\index{dyadic cube} are the cubes $2^k(m+[0,1)^d)$ with $k\in\mathbb Z$ and $m\in\mathbb Z^d$. Two dyadic cubes are either disjoint or nested, and each dyadic cube $Q$ lies in a unique dyadic cube of twice its side length, its parent, which has volume $2^d|Q|$. Call a dyadic cube $Q$ selected if the average of $|f|$ over $Q$ exceeds $\lambda$, while the average over every strictly larger dyadic cube containing $Q$ does not. Every dyadic cube on which the average of $|f|$ exceeds $\lambda$ is contained in a selected cube, because the averages over its successive ancestors are at most $\|f\|_1$ divided by their volumes and therefore tend to zero. The selected cubes are pairwise disjoint. For each of them, the average over its parent is at most $\lambda$, and hence
 \[
- \sum_Q|Q|\leq\lambda^{-1}\|f\|_1,\qquad
- \lambda<\frac1{|Q|}\int_Q|f|\leq2^d\lambda.
+ \lambda<\frac1{|Q|}\int_Q|f|\leq2^d\lambda,\qquad
+ \sum_Q|Q|\leq\frac1\lambda\sum_Q\int_Q|f|\leq\frac1\lambda\|f\|_1.
 \]
-Outside their union, $|f|\leq\lambda$ almost everywhere. Indeed a shrinking dyadic cube containing a Lebesgue point is contained in a centered cube of comparable volume; \cref{thm:lebesgue-differentiation} makes its average tend to $|f(x)|$.
+Moreover, $|f|\leq\lambda$ almost everywhere outside the union of the selected cubes. Indeed, let $x$ be a point outside this union at which the conclusion of \cref{thm:lebesgue-differentiation} holds. Every dyadic cube containing $x$ has average of $|f|$ at most $\lambda$. The dyadic cube of side $2^k$ containing $x$ lies in the cube $x+(-2^k,2^k)^d$, whose volume is $2^d$ times larger. Hence the average of $|f-f(x)|$ over it tends to zero as $k\to-\infty$, so its average of $|f|$ tends to $|f(x)|$, and therefore $|f(x)|\leq\lambda$.
 
-Write $f_Q=|Q|^{-1}\int_Qf$, set $g=f$ off the selected cubes and $g=f_Q$ on each of them, and put $b_Q=(f-f_Q)\mathbf1_Q$. Then
+For a selected cube $Q$, let $f_Q=|Q|^{-1}\int_Qf$ be the average of $f$. Define $g=f$ outside the selected cubes and $g=f_Q$ on each selected cube $Q$, and put $b_Q=(f-f_Q)\mathbf1_Q$. Each $b_Q$ has integral zero, and
 \[
  \|g\|_1\leq\|f\|_1,\quad \|g\|_\infty\leq2^d\lambda,
  \quad \|g\|_2^2\leq2^d\lambda\|f\|_1,
  \qquad \sum_Q\|b_Q\|_1\leq2\|f\|_1.
 \]
-Each $b_Q$ has integral zero. Jensen's inequality and disjoint supports give $g\in L^2$ and convergence of $\sum_Qb_Q=f-g$ in $L^2$.
+By Jensen's inequality, $|Q||f_Q|^2\leq\int_Q|f|^2$, so $\|b_Q\|_2\leq2\|f\mathbf1_Q\|_2$. Since the $b_Q$ have disjoint supports, the series $\sum_Qb_Q$ converges to $f-g$ in $L^2$.
 
-Let $c_Q$ be the center of $Q$ and let $Q^*$ be its concentric enlargement by the factor $4\sqrt d$. For $x\notin Q^*$, the segment from $x-c_Q$ to $x-y$, $y\in Q$, stays at distance at least $|x-c_Q|/2$ from zero. Cancellation and \cref{lem:hessian-multiplier-kernel} yield
+Let $c_Q$ be the center of $Q$, and let $Q^*$ be the cube with center $c_Q$ and $4\sqrt d$ times the side length of $Q$. If $x\notin Q^*$ and $y\in Q$, then $|x-c_Q|\geq2\operatorname{diam}Q$ and $|y-c_Q|\leq\operatorname{diam}Q/2$, so every point of the segment from $x-c_Q$ to $x-y$ has norm at least $|x-c_Q|/2$. Since $b_Q$ has integral zero, parts (1) and (2) of \cref{lem:hessian-multiplier-kernel} and the mean value theorem give, for almost every $x\notin Q^*$,
 \[
  \begin{aligned}
  |T_{ab}b_Q(x)|
@@ -75,94 +84,114 @@ Let $c_Q$ be the center of $Q$ and let $Q^*$ be its concentric enlargement by th
  &\leq C_d\frac{\operatorname{diam}Q}{|x-c_Q|^{d+1}}\|b_Q\|_1.
  \end{aligned}
 \]
-Polar integration outside a ball of radius comparable to $\operatorname{diam}Q$ gives
+Integrating in polar coordinates about $c_Q$ over the region $|x-c_Q|\geq2\operatorname{diam}Q$, which contains $\mathbb R^d\setminus Q^*$, we obtain
 \[
  \int_{\mathbb R^d\setminus Q^*}|T_{ab}b_Q|\leq C_d\|b_Q\|_1.
 \]
-Put $B^*=\bigcup_QQ^*$. Its volume is at most $C_d\lambda^{-1}\|f\|_1$. Finite partial sums of the $b_Q$ converge in $L^2$, and so do their images under $T_{ab}$. Select an almost-everywhere convergent subsequence and use Fatou outside $B^*$ to get
+
+Put $B^*=\bigcup_QQ^*$. Then $|B^*|\leq(4\sqrt d)^d\sum_Q|Q|\leq C_d\lambda^{-1}\|f\|_1$. Enumerate the selected cubes, and let $S_N$ be the partial sums of $\sum_Qb_Q$. Since $S_N\to f-g$ in $L^2$, also $T_{ab}S_N\to T_{ab}(f-g)$ in $L^2$, and a subsequence converges almost everywhere. Moreover $\int_{\mathbb R^d\setminus B^*}|T_{ab}S_N|\leq\sum_Q\int_{\mathbb R^d\setminus Q^*}|T_{ab}b_Q|\leq C_d\|f\|_1$, so Fatou's lemma gives
 \[
  \int_{\mathbb R^d\setminus B^*}|T_{ab}(f-g)|\leq C_d\|f\|_1.
 \]
-Chebyshev's inequality for this integral and the $L^2$ bound for $T_{ab}g$ bound the sets where the two summands exceed $\lambda/2$. Including $B^*$ proves the assertion.
+Finally, $T_{ab}f=T_{ab}g+T_{ab}(f-g)$, and the set where $|T_{ab}f|>\lambda$ is contained in the union of $B^*$, the set where $|T_{ab}g|>\lambda/2$, and the set of $x\notin B^*$ with $|T_{ab}(f-g)(x)|>\lambda/2$. By Chebyshev's inequality and the $L^2$ bound for $T_{ab}$, the second set has measure at most $4\lambda^{-2}\|g\|_2^2\leq2^{d+2}\lambda^{-1}\|f\|_1$, and the third has measure at most $2\lambda^{-1}\int_{\mathbb R^d\setminus B^*}|T_{ab}(f-g)|\leq C_d\lambda^{-1}\|f\|_1$. Together with the bound for $|B^*|$, this proves the lemma.
 \end{proof}
 \index{Calder\'on--Zygmund decomposition}
 \index{singular integral!weak $(1,1)$ estimate}
 
 \begin{theorem}\label{thm:hessian-multiplier-lp}
-For every $1<p<\infty$, $T_{ab}$ extends uniquely to a bounded operator on $L^p(\mathbb R^d)$. In particular
+For every $1<p<\infty$ there is a constant $C_{d,p}$ such that $\|T_{ab}f\|_p\leq C_{d,p}\|f\|_p$ for $f\in L^p\cap L^2$; consequently $T_{ab}$ extends uniquely to a bounded operator on $L^p(\mathbb R^d)$. In particular
 \begin{equation}\label{eq:euclidean-hessian-lp}
  \|D^2v\|_p\leq C_{d,p}\|\Delta v\|_p,
  \qquad v\in C_c^\infty(\mathbb R^d).
 \end{equation}
 \end{theorem}
 \begin{proof}
-Let $1<p<2$ and $f\in L^p\cap L^2$. For $\lambda>0$ split $f$ into $f\mathbf1_{\{|f|>\lambda\}}$ and $f\mathbf1_{\{|f|\leq\lambda\}}$. The first lies in $L^1\cap L^2$. Apply the weak estimate to it, and the $L^2$ estimate to the second, both with threshold $\lambda/2$. This gives
+Assume first that $1<p<2$, and let $f\in L^p\cap L^2$. Fix $\lambda>0$ and split $f=f_1+f_2$ with $f_1=f\mathbf1_{\{|f|>\lambda\}}$ and $f_2=f\mathbf1_{\{|f|\leq\lambda\}}$. Since $|f_1|\leq\lambda^{1-p}|f|^p$, we have $f_1\in L^1\cap L^2$, and $f_2\in L^2$. Apply \cref{lem:hessian-multiplier-weak-one} to $f_1$, and Chebyshev's inequality with the $L^2$ bound to $f_2$, both with threshold $\lambda/2$. This gives
 \[
  |\{|T_{ab}f|>\lambda\}|
- \leq\frac{C_d}{\lambda}\int_{|f|>\lambda}|f|
-      +\frac{C_d}{\lambda^2}\int_{|f|\leq\lambda}|f|^2.
+ \leq\frac{C_d}{\lambda}\int_{\{|f|>\lambda\}}|f|
+      +\frac{C_d}{\lambda^2}\int_{\{|f|\leq\lambda\}}|f|^2.
 \]
-For any measurable $h$, Tonelli applied to $|h(x)|^p=\int_0^{|h(x)|}p\lambda^{p-1}\,\mathrm d\lambda$ gives its norm as the integral of this distribution function, including infinite norms. Multiplying the inequality by $p\lambda^{p-1}$ and integrating therefore gives
+For a measurable function $h$, Tonelli's theorem applied to $|h(x)|^p=\int_0^{|h(x)|}p\lambda^{p-1}\,\mathrm d\lambda$ expresses $\|h\|_p^p$ as the integral of $p\lambda^{p-1}$ times the distribution function $\lambda\mapsto|\{|h|>\lambda\}|$, also when the norm is infinite. We apply this to $h=T_{ab}f$: multiply the last inequality by $p\lambda^{p-1}$ and integrate in $\lambda$. By Tonelli's theorem again, the first term on the right contributes $C_d\int|f|\int_0^{|f|}p\lambda^{p-2}\,\mathrm d\lambda\,\mathrm d x=C_dp\|f\|_p^p/(p-1)$, and the second contributes $C_d\int|f|^2\int_{|f|}^\infty p\lambda^{p-3}\,\mathrm d\lambda\,\mathrm d x=C_dp\|f\|_p^p/(2-p)$; the inner integrals converge precisely because $p>1$ and $p<2$. Therefore
 \[
  \|T_{ab}f\|_p^p
  \leq C_dp\left(\frac1{p-1}+\frac1{2-p}\right)\|f\|_p^p.
 \]
-The two inner integrals are $\int_0^{|f|}\lambda^{p-2}\,\mathrm d\lambda$ and $\int_{|f|}^\infty\lambda^{p-3}\,\mathrm d\lambda$. Their stated values explain both restrictions on $p$. Plancherel handles $p=2$.
+For $p=2$ the bound is Plancherel's theorem.
 
-For $p>2$ put $p'=p/(p-1)<2$, take $f\in L^p\cap L^2$, and write $h=T_{ab}f$. For integers $N\geq1$, on $E_N=B(0,N)\cap\{|h|\leq N\}$ set $g_N=\mathbf1_{E_N}h|h|^{p-2}$. This belongs to $L^2\cap L^{p'}$. Self-adjointness, the proved $p'$ estimate and H\"older give
+Now let $2<p<\infty$, put $p'=p/(p-1)\in(1,2)$, let $f\in L^p\cap L^2$, and write $h=T_{ab}f\in L^2$. For integers $N\geq1$, put $E_N=B(0,N)\cap\{|h|\leq N\}$ and $g_N=\mathbf1_{E_N}h|h|^{p-2}$. Then $|g_N|\leq N^{p-1}\mathbf1_{E_N}$, so $g_N\in L^2\cap L^{p'}$, and $|g_N|^{p'}=\mathbf1_{E_N}|h|^p$. Since $T_{ab}$ is self-adjoint on $L^2$, the case $p'$ already proved and H\"older's inequality give
 \[
  \int_{E_N}|h|^p=\int h\overline{g_N}
  =\int f\overline{T_{ab}g_N}
  \leq C_{d,p'}\|f\|_p\left(\int_{E_N}|h|^p\right)^{1/p'}.
 \]
-If the integral is nonzero, division bounds its $p$th root; if it is zero the bound holds directly. The sets $E_N$ increase to full measure, since $h\in L^2$. Monotone convergence proves the $p$ estimate. Density of $C_c^\infty$ in $L^p$, from \cref{lem:mollifier-density}, gives the unique extension. Finally apply the derivative identity in \cref{lem:hessian-multiplier-kernel} to each coefficient of $D^2v$.
+The integral on the left is finite. If it is nonzero, dividing by its $(1/p')$th power gives $(\int_{E_N}|h|^p)^{1/p}\leq C_{d,p'}\|f\|_p$; if it is zero, this bound is trivial. The sets $E_N$ increase to $\{|h|<\infty\}$, which has full measure since $h\in L^2$, so monotone convergence gives $\|T_{ab}f\|_p\leq C_{d,p'}\|f\|_p$.
+
+By \cref{lem:mollifier-density}, $C_c^\infty\subset L^p\cap L^2$ is dense in $L^p$, so $T_{ab}$ has a unique bounded extension from $L^p\cap L^2$ to $L^p$. Finally, for $v\in C_c^\infty$, \cref{lem:hessian-multiplier-kernel}(3) gives $\|\partial_a\partial_bv\|_p=\|T_{ab}\Delta v\|_p\leq C_{d,p}\|\Delta v\|_p$, and summing over $a$ and $b$ proves \eqref{eq:euclidean-hessian-lp}.
 \end{proof}
 \index{singular integral!$L^p$ boundedness}
 \index{Hessian!$L^p$ estimate}
 
-For an integer $k\geq0$, $1\leq p<\infty$ and an open set $U\subset\mathbb R^d$, the Sobolev space\index{Sobolev space} $W^{k,p}(U)$ consists of $L^p$ functions whose distributional derivatives of order at most $k$ belong to $L^p$. Its norm is the sum of those derivative norms. On a compact smooth manifold, a finite coordinate cover and a smooth partition of unity define equivalent such norms. The chain rule and bounded derivatives of the coordinate changes prove equivalence for smooth functions; local smoothing and distributional passage to the limit give the same rule for weak derivatives.
+For an integer $k\geq0$, $1\leq p<\infty$ and an open set $U\subset\mathbb R^d$, the Sobolev space\index{Sobolev space} $W^{k,p}(U)$ consists of the functions in $L^p(U)$ whose distributional derivatives of order at most $k$ belong to $L^p(U)$, with the norm $\|v\|_{W^{k,p}(U)}=\sum_{|\alpha|\leq k}\|\partial^\alpha v\|_{L^p(U)}$. We write $W^{k,p}_{\loc}(U)$ for the space of functions whose restrictions to every open set $V\Subset U$ belong to $W^{k,p}(V)$. On a compact smooth manifold $X$, fix finitely many coordinate charts covering $X$ and a smooth partition of unity subordinate to them. Then $W^{k,p}(X)$ consists of the functions whose products with the cutoff functions, written in the corresponding charts, belong to $W^{k,p}$ of the chart domains, and its norm is the sum of these chart norms. Other choices of charts and partitions of unity give equivalent norms. For smooth functions this follows from the chain rule and the Leibniz rule, because the coordinate changes and the cutoff functions have bounded derivatives on the relevant compact sets; for weak derivatives the same rules follow by mollification in the charts and distributional passage to the limit.
 
 \begin{lemma}\label{lem:gradient-lp-interpolation}
-For $1\leq p<\infty$ and $\varepsilon>0$ there is $C_{d,\varepsilon}$ such that
+Let $1\leq p<\infty$ and $\varepsilon>0$. There is a constant $C_{d,\varepsilon}$, depending only on $d$ and $\varepsilon$, such that
 \[
  \|\nabla v\|_p\leq\varepsilon\|D^2v\|_p+C_{d,\varepsilon}\|v\|_p,
  \qquad v\in C_c^\infty(\mathbb R^d).
 \]
 \end{lemma}
 \begin{proof}
-Taylor's formula along the $a$th coordinate direction gives, for $h>0$,
+Let $e_a$ be the $a$th coordinate vector and $h>0$. Taylor's formula with integral remainder gives
 \[
  h\partial_av(x)=v(x+he_a)-v(x)
        -\int_0^h(h-t)\partial_a^2v(x+te_a)\,\mathrm d t.
 \]
-Translation invariance and the integral triangle inequality give $\|\partial_av\|_p\leq2h^{-1}\|v\|_p+(h/2)\|\partial_a^2v\|_p$. Sum over $a$ and choose $h$ sufficiently small in terms of $d,\varepsilon$.
+The $L^p$ norm is invariant under translation, so Minkowski's integral inequality gives $h\|\partial_av\|_p\leq2\|v\|_p+(h^2/2)\|\partial_a^2v\|_p$. Since $|\nabla v|\leq\sum_a|\partial_av|$ and $|\partial_a^2v|\leq|D^2v|$, summing over $a$ yields $\|\nabla v\|_p\leq2dh^{-1}\|v\|_p+(dh/2)\|D^2v\|_p$. The choice $h=2\varepsilon/d$ proves the lemma with $C_{d,\varepsilon}=d^2/\varepsilon$.
 \end{proof}
 
-For $0<\alpha\leq1$, the norm $\|v\|_{C^{0,\alpha}(F)}$ on a compact set $F$ is $\sup_F|v|+\sup_{x\neq y\in F}|v(x)-v(y)|/|x-y|^\alpha$. The notation $C^{1,\alpha}$ requires continuously differentiable functions with first derivatives H\"older continuous with exponent $\alpha$.
+For a compact set $F\subset\mathbb R^d$ and $0<\alpha\leq1$, the H\"older norm\index{H\"older space} of a function $v$ on $F$ is
+\[
+ \|v\|_{C^{0,\alpha}(F)}=\sup_F|v|+\sup_{x,y\in F,\ x\neq y}\frac{|v(x)-v(y)|}{|x-y|^\alpha}.
+\]
+A continuously differentiable function on an open set $U$ is of class $C^{1,\alpha}$ on a subset of $U$ if its first derivatives have finite $C^{0,\alpha}$ norm there, and it belongs to $C^{1,\alpha}_{\loc}(U)$ if it is of class $C^{1,\alpha}$ on every compact subset of $U$.
 
 \Needspace{10\baselineskip}
 \begin{lemma}[Morrey's inequality]\label{lem:morrey-sobolev-representative}
-Let $d<p<\infty$, $\alpha=1-d/p$, and $B'\Subset B$ be Euclidean balls. Every $v\in W^{1,p}(B)$ has a continuous representative with
+Let $d<p<\infty$, put $\alpha=1-d/p$, and let $B'\Subset B$ be Euclidean balls in $\mathbb R^d$. Every $v\in W^{1,p}(B)$ has a representative that is continuous on $B$ and satisfies
 \[
- \|v\|_{C^{0,\alpha}(\overline{B'})}\leq C\|v\|_{W^{1,p}(B)}.
+ \|v\|_{C^{0,\alpha}(\overline{B'})}\leq C\|v\|_{W^{1,p}(B)},
 \]
-Here $C$ depends only on $d,p,B',B$. Consequently a $W^{2,p}_{\mathrm{loc}}$ function has a $C^{1,\alpha}_{\mathrm{loc}}$ representative.
+where $C$ depends only on $d,p,B',B$. Consequently, for an open set $U\subset\mathbb R^d$, every function in $W^{2,p}_{\loc}(U)$ has a representative in $C^{1,\alpha}_{\loc}(U)$.
 \end{lemma}
 \begin{proof}
-First let $v$ be smooth. If $Q$ is a ball of radius $r$ and $x\in Q$, integrate $v(x)-v(z)$ along the segment from $x$ to $z$, then average in $z\in Q$. Polar coordinates about $x$ give
+Assume first that $v$ is smooth on $B$. Let $Q\subset B$ be a ball of radius $r$, let $v_Q=|Q|^{-1}\int_Qv$ be the average of $v$ over $Q$, and let $x\in Q$. We claim that
 \[
- |v(x)-v_Q|\leq C_d\int_Q|\nabla v(z)|\,|x-z|^{1-d}\,\mathrm d z,
- \qquad v_Q=\frac1{|Q|}\int_Qv.
+ |v(x)-v_Q|\leq C_d\int_Q|\nabla v(z)|\,|x-z|^{1-d}\,\mathrm d z.
 \]
-To see the constant, write $z=x+s\theta$, whose allowed radii satisfy $0<s<R(\theta)\leq2r$ by convexity. Interchanging the segment integral and the radial integral produces the factor $\int_t^{R(\theta)}s^{d-1}\,\mathrm d s/|Q|\leq C_d$; converting back to volume gives $t^{1-d}$. H\"older now bounds the displayed integral by $C_{d,p}r^{1-d/p}\|\nabla v\|_{L^p(Q)}$. Indeed $(1-d)p'>-d$ exactly when $p>d$; the same calculation holds for $d=1$.
+For $z\in Q$, integrate $\nabla v$ along the segment from $x$ to $z$ and average over $z\in Q$. Writing $z=x+s\theta$ with $\theta\in S^{d-1}$, convexity of $Q$ shows that the admissible radii form an interval $0<s<R(\theta)$ with $R(\theta)\leq2r$. In these polar coordinates about $x$, the average of the segment integrals is
+\[
+ \frac1{|Q|}\int_{S^{d-1}}\int_0^{R(\theta)}s^{d-1}\int_0^s|\nabla v(x+t\theta)|\,\mathrm d t\,\mathrm d s\,\mathrm d S(\theta).
+\]
+Interchanging the integrals in $s$ and $t$ produces the factor $|Q|^{-1}\int_t^{R(\theta)}s^{d-1}\,\mathrm d s$, which is at most $(2r)^d/(d|Q|)$ and hence bounded by a constant depending only on $d$. The remaining integral $\int_{S^{d-1}}\int_0^{R(\theta)}|\nabla v(x+t\theta)|\,\mathrm d t\,\mathrm d S(\theta)$ is the integral on the right side of the claim, written in polar coordinates. This proves the claim. By H\"older's inequality with $p'=p/(p-1)$, the right side of the claim is at most $C_{d,p}r^{1-d/p}\|\nabla v\|_{L^p(Q)}$, because
+\[
+ \int_Q|x-z|^{(1-d)p'}\,\mathrm d z\leq\int_{B(x,2r)}|x-z|^{(1-d)p'}\,\mathrm d z=C_{d,p}r^{(1-d)p'+d},
+\]
+and this integral is finite exactly when $(1-d)p'>-d$, that is, when $p>d$. (For $d=1$ the exponent $(1-d)p'$ is zero.)
 
-For $x,y\in B'$ with $r=|x-y|$ sufficiently small compared with $\operatorname{dist}(B',\partial B)$, use the common ball $Q=B(x,2r)\subset B$. Applying this bound at both points gives
+Let $\delta>0$ be the distance from $B'$ to $\mathbb R^d\setminus B$. If $x,y\in B'$ and $r=|x-y|<\delta/2$, the ball $Q=B(x,2r)$ lies in $B$ and contains $x$ and $y$. Applying the preceding bound at both points gives
 \[
  |v(x)-v(y)|\leq C_{d,p}|x-y|^{1-d/p}\|\nabla v\|_{L^p(B)}.
 \]
-Using a fixed small ball about each $x\in B'$ also bounds $|v(x)|$ by $C\|v\|_{W^{1,p}(B)}$, since its average is bounded by $|Q|^{-1/p}\|v\|_p$. For more distant pairs this supremum bound gives the same H\"older estimate with a constant depending on $B',B$.
+For $x\in B'$, the same bound on the ball $Q=B(x,\delta/2)\subset B$, together with the estimate $|v_Q|\leq|Q|^{-1/p}\|v\|_{L^p(B)}$ from H\"older's inequality, gives $\sup_{B'}|v|\leq C\|v\|_{W^{1,p}(B)}$ with $C$ depending on $d,p,\delta$. If $|x-y|\geq\delta/2$, then $|v(x)-v(y)|/|x-y|^\alpha\leq2(\delta/2)^{-\alpha}\sup_{B'}|v|$. These bounds prove the estimate for smooth $v$ on $B'$, and hence on $\overline{B'}$, since $v$ is continuous on $B\supset\overline{B'}$.
 
-For a general $W^{1,p}$ function, mollify on a slightly smaller ball still containing $\overline{B'}$. The functions and their weak derivatives converge in $L^p$ by \cref{lem:mollifier-density,prop:distribution-smoothing}. The just proved estimate makes the approximations Cauchy uniformly and in the H\"older seminorm on $B'$. Their continuous limit agrees almost everywhere with $v$ and obeys the estimate. For $v\in W^{2,p}$ apply this argument to $v$ and each first derivative. Their smooth approximations converge locally uniformly; passing to the limit in the segment formula identifies the continuous derivative limits as the classical derivatives of the continuous limit. This gives the last assertion.
+For general $v\in W^{1,p}(B)$, choose a ball $B''$, depending only on $B'$ and $B$, with $B'\Subset B''\Subset B$, and let $v_\varepsilon=v*\rho_\varepsilon$, which is smooth on $B''$ for small $\varepsilon$. By \cref{prop:distribution-smoothing}, $\partial_av_\varepsilon=(\partial_av)_\varepsilon$, and by \cref{lem:mollifier-density}, $v_\varepsilon\to v$ and $\partial_av_\varepsilon\to\partial_av$ in $L^p(B'')$. The estimate for smooth functions, applied on $B'\Subset B''$ to the differences of the $v_\varepsilon$, shows that they form a Cauchy family in the norm of $C^{0,\alpha}(\overline{B'})$. Their uniform limit is continuous on $\overline{B'}$, agrees almost everywhere with $v$, and satisfies the asserted estimate, because $\|v\|_{W^{1,p}(B'')}\leq\|v\|_{W^{1,p}(B)}$. Two continuous functions that agree almost everywhere on an open set agree everywhere on it. Hence the continuous representatives obtained from different balls $B'\Subset B$ agree on their overlaps and define a single continuous representative on $B$.
+
+Finally, let $v\in W^{2,p}_{\loc}(U)$. On every ball $B\Subset U$, both $v$ and its first derivatives $\partial_av$ belong to $W^{1,p}(B)$. By the preceding paragraph, on each smaller ball $B'\Subset B$ the mollifications $v_\varepsilon$ and $\partial_av_\varepsilon=(\partial_av)_\varepsilon$ converge uniformly to the continuous representatives $\tilde v$ of $v$ and $\tilde w_a$ of $\partial_av$. Passing to the limit in
+\[
+ v_\varepsilon(x+he_a)-v_\varepsilon(x)=\int_0^h\partial_av_\varepsilon(x+te_a)\,\mathrm d t
+\]
+shows that $\tilde v$ has the continuous partial derivatives $\partial_a\tilde v=\tilde w_a$. Hence $\tilde v$ is continuously differentiable, and by the first part its first derivatives are H\"older continuous with exponent $\alpha$ on each $\overline{B'}$. Every compact subset of $U$ is covered by finitely many such balls $B'$; pairs of points closer than a Lebesgue number of this cover lie in a common ball, and for the remaining pairs the supremum bound suffices. Hence $\tilde v\in C^{1,\alpha}_{\loc}(U)$.
 \end{proof}
 \index{Morrey's inequality}
 \index{Sobolev space!continuous representatives}
