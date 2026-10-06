@@ -1,352 +1,489 @@
 \chapter{Measures and distributions}
 \label{chap:p01}
-Let $\Omega$ be an open subset of $\mathbb R^d$, with $d\geq1$. Test functions define derivatives of singular potentials by integration; positivity connects these derivatives to measures. A derivative can therefore retain a geometric meaning even when the potential has no classical derivative. The passage requires two facts: positive linear functionals are measures, and smoothing preserves both distributional differentiation and positivity. Sources and pairing conventions are recorded in \cref{sec:history-measures}.
+The potentials studied in this book are seldom differentiable. On $\mathbb R^2$, for instance, the function $\log|x|$ is smooth away from the origin and tends to $-\infty$ there, yet its Laplacian has a precise meaning: it is $2\pi$ times the Dirac mass at the origin. Statements of this kind are made rigorous by differentiating in the weak sense, that is, by moving the derivatives onto smooth compactly supported test functions through integration by parts. The derivatives obtained in this way are distributions. For the potentials of interest in this book, beginning with subharmonic functions, these distributions are positive, and a positive distribution is automatically a measure. Measures and distributions are therefore the basic language of potential theory: the measure attached to a potential records where its mass lies, including the mass concentrated at its singularities.
+
+This chapter develops the parts of measure and distribution theory on which the rest of the book relies. Throughout, $\Omega$ is an open subset of $\mathbb R^d$, where $d\geq1$. After recalling the Lebesgue integral, we prove the Riesz representation theorem (\cref{thm:positive-functional-measure}), which identifies positive linear functionals on continuous functions with compact support with Radon measures. We then introduce distributions and show that convolution with a smooth kernel approximates a distribution by smooth functions, commutes with derivatives and preserves positivity (\cref{prop:distribution-smoothing}). Combined with the Riesz representation theorem, this shows that positive distributions are measures (\cref{thm:positive-distribution-measure}).
+
+Limits of potentials lead to limits of measures, so we next study weak convergence of measures and the compactness theorems that produce convergent subsequences or, where sequences are not enough, convergent subnets. The last section constructs bounded densities and proves the Lebesgue differentiation theorem; as an application, a continuous function whose distributional Hessian is bounded has a second-order Taylor expansion at almost every point (\cref{prop:bounded-hessian-taylor}). Although the reader is assumed to know Lebesgue integration, we recall its convergence theorems and Fubini's theorem with short proofs, in order to fix the conventions used later. References and historical remarks, including a comparison of pairing conventions, are collected in \cref{sec:history-measures}.
 
 \section{Radon measures and integration}
 \label{sec:radon-measures}
-All measures in this chapter are positive unless another qualification is given. We use the Lebesgue integral, defined first for simple functions and then for nonnegative measurable functions by taking a supremum. Lebesgue measure on $\mathbb R^d$ is denoted by $\mathrm dx$, and the Lebesgue measure of a measurable set $E$ by $|E|$. The Borel sets of $\Omega$ form the smallest $\sigma$-algebra containing its open sets. A measure is $\sigma$-finite if the space is a countable union of measurable sets of finite measure. We write $C_c(\Omega)$ for the real or complex continuous functions with compact support, specifying real scalars when positivity is at issue. The support is the closure in $\Omega$ of the set where the function is nonzero; $\Supp f$ denotes it, and $\Int E$ denotes the interior of a set $E$ in its ambient space.
+We begin by fixing the measure-theoretic conventions used throughout the book. Unless stated otherwise, all measures are positive, that is, they take values in $[0,\infty]$. We use the Lebesgue integral, defined first for nonnegative simple functions and then, for a nonnegative measurable function, as the supremum of the integrals of the simple functions below it. Lebesgue measure on $\mathbb R^d$ is denoted by $\mathrm dx$, and the Lebesgue measure of a measurable set $E\subset\mathbb R^d$ by $|E|$. The Borel $\sigma$-algebra of $\Omega$ is the smallest $\sigma$-algebra containing the open subsets of $\Omega$, and a Borel measure on $\Omega$ is a measure defined on it. A measure on a measurable space $X$ is $\sigma$-finite if $X$ is a countable union of measurable sets of finite measure. Functions in $C_c(\Omega)$ may be real- or complex-valued; we write $C_c(\Omega,\mathbb R)$ for the real-valued ones, in particular whenever positivity is involved. The support $\Supp f$ of a function $f$ on $\Omega$ is the closure in $\Omega$ of the set where $f\neq0$.
 
 \begin{definition}\label{def:radon-measure}
-A Radon measure\index{Radon measure} on $\Omega$ is a Borel measure $\mu$ which is finite on compact sets and satisfies, for every Borel set $E$,
+A Radon measure\index{Radon measure} on $\Omega$ is a Borel measure $\mu$ on $\Omega$ which is finite on compact sets and satisfies, for every Borel set $E\subset\Omega$,
 \[
  \mu(E)=\inf_{E\subset U,\ U\text{ open}}\mu(U)
        =\sup_{K\subset E,\ K\text{ compact}}\mu(K).
 \]
-The two equalities are outer and inner regularity\index{measure!regularity}. A function is locally integrable with respect to $\mu$ if its absolute value has finite integral on every compact subset of $\Omega$.
+The first equality is the outer regularity and the second the inner regularity\index{measure!regularity} of $\mu$. A measurable function is locally integrable with respect to $\mu$ if its absolute value has finite integral over every compact subset of $\Omega$.
 \end{definition}
 
-We will repeatedly use compact sets $K_j$, $j\geq1$, such that $K_j\subset\Int K_{j+1}$ and $\bigcup_j\Int K_j=\Omega$. They can be constructed recursively from
+The support\index{support!of a measure} $\Supp\mu$ of a Radon measure $\mu$ is the set of points of $\Omega$ all of whose neighborhoods have positive measure. It is relatively closed in $\Omega$, and $\mu(\Omega\setminus\Supp\mu)=0$: every compact subset of $\Omega\setminus\Supp\mu$ is covered by finitely many open sets of measure zero, so this follows from inner regularity.
+
+We shall often use a compact exhaustion\index{compact exhaustion} of $\Omega$, that is, a sequence of compact sets $K_j\subset\Omega$, $j\geq1$, such that $K_j\subset\Int K_{j+1}$ for every $j$ and $\bigcup_j\Int K_j=\Omega$. For example, we may take
 \[
- \{x\in\Omega:|x|\leq j,\ \operatorname{dist}(x,\mathbb R^d\setminus\Omega)\geq j^{-1}\}.
+ K_j=\{x\in\Omega:|x|\leq j,\ \operatorname{dist}(x,\mathbb R^d\setminus\Omega)\geq j^{-1}\},
 \]
-When $\Omega=\mathbb R^d$, the distance to the empty complement is $+\infty$. Each of these compact sets lies in the interior of one with sufficiently large index, because its distance from the complement of $\Omega$ is positive. Recursively choosing such indices gives the stated interior inclusions. For $K=\varnothing$ take the zero cutoff. If $K$ is nonempty and compact and $U$ is an open neighborhood of $K$, a continuous function $0\leq\eta\leq1$, equal to $1$ on $K$ and supported in $U$, is obtained by choosing a relatively compact neighborhood $V$ of $K$ with $\overline V\subset U$ and taking
+with the convention $\operatorname{dist}(x,\varnothing)=+\infty$ when $\Omega=\mathbb R^d$. Indeed, $K_j$ is closed and bounded in $\mathbb R^d$, hence compact. It is contained in the open set $\{x:|x|<j+1,\ \operatorname{dist}(x,\mathbb R^d\setminus\Omega)>(j+1)^{-1}\}$, which lies in $K_{j+1}$, and every point of $\Omega$ belongs to $\{x:|x|<j,\ \operatorname{dist}(x,\mathbb R^d\setminus\Omega)>j^{-1}\}\subset\Int K_j$ for all large $j$.
+
+Let $K\subset\Omega$ be compact and let $U\subset\Omega$ be an open set containing $K$. A cutoff function\index{cutoff function} for $K$ in $U$ is a continuous function $\eta\colon\Omega\to[0,1]$ such that $\eta=1$ on $K$ and $\Supp\eta$ is a compact subset of $U$. Such a function always exists. If $K=\varnothing$, take $\eta=0$. Otherwise choose $\delta>0$ with $2\delta<\operatorname{dist}(K,\mathbb R^d\setminus U)$ and put $V=\{x:\operatorname{dist}(x,K)<\delta\}$. Then $V$ is open, and its closure lies in the compact set $\{x:\operatorname{dist}(x,K)\leq\delta\}\subset U$. The function
 \[
- \eta(x)=\frac{\operatorname{dist}(x,\mathbb R^d\setminus V)}{\operatorname{dist}(x,\mathbb R^d\setminus V)+\operatorname{dist}(x,K)}.
+ \eta(x)=\frac{\operatorname{dist}(x,\mathbb R^d\setminus V)}{\operatorname{dist}(x,\mathbb R^d\setminus V)+\operatorname{dist}(x,K)}
 \]
-The denominator is positive, and the function is extended by zero outside $V$.
+is a cutoff function for $K$ in $U$: its denominator never vanishes, because the first term is positive on $V\supset K$ and the second is positive off $K$, and $\eta$ vanishes outside $V$. Smooth cutoff functions are constructed in \cref{lem:mollifier-density}.
 
 \begin{proposition}\label{prop:borel-regularity}
-Every Borel measure on $\Omega$ which is finite on compact subsets is Radon. In particular, it is $\sigma$-finite.
+Let $\mu$ be a Borel measure on $\Omega$ which is finite on compact subsets. Then $\mu$ is a Radon measure. In particular, $\mu$ is $\sigma$-finite.
 \end{proposition}
 \begin{proof}
-First suppose that $\mu(\Omega)<\infty$. The empty set requires no approximation. If $F$ is nonempty and relatively closed, the open sets $\{x\in\Omega:\operatorname{dist}(x,F)<j^{-1}\}$ decrease to $F$. Continuity of a finite measure from above proves outer approximation of $F$. Complementation proves approximation of every open set from inside by relatively closed sets.
+Assume first that $\mu(\Omega)<\infty$, and let $F\subset\Omega$ be relatively closed; we may assume that $F\neq\varnothing$. The open sets $U_j=\{x\in\Omega:\operatorname{dist}(x,F)<j^{-1}\}$ decrease to $F$, so $\mu(U_j)\to\mu(F)$ because $\mu$ is finite. Hence $F$ can be approximated in measure from outside by open sets. Passing to complements, every open set can be approximated from inside by relatively closed sets.
 
-Consider the Borel sets which admit both an open outer approximation and a relatively closed inner approximation, with arbitrarily small difference in measure. This class contains the relatively closed sets and is closed under complementation. It is closed under countable unions: open outer approximations with errors $\varepsilon2^{-j}$ give the outer assertion; continuity from below reduces the inner assertion to a finite union, which is approximated from inside by the finite union of closed inner approximations. Thus the class contains all Borel sets. Intersecting a closed inner approximation with $K_j$ replaces it by a compact one, with arbitrarily small additional error.
+Now let $\mathcal A$ be the class of Borel sets $E$ with the following property: for every $\varepsilon>0$ there are an open set $U$ and a relatively closed set $F$ with $F\subset E\subset U$ and $\mu(U\setminus F)<\varepsilon$. By the first step, $\mathcal A$ contains the relatively closed sets, and the definition is symmetric under passing to complements. We claim that $\mathcal A$ is closed under countable unions. Let $E=\bigcup_jE_j$ with $E_j\in\mathcal A$, and choose $F_j\subset E_j\subset U_j$ as above with $\mu(U_j\setminus F_j)<\varepsilon2^{-j}$. The open set $U=\bigcup_jU_j$ contains $E$ and satisfies $\mu(U\setminus E)<\varepsilon$. Since $\mu$ is continuous along increasing sequences, there is $N$ with $\mu(E\setminus\bigcup_{j\leq N}E_j)<\varepsilon$, and then the relatively closed set $F=\bigcup_{j\leq N}F_j$ satisfies $\mu(E\setminus F)<2\varepsilon$. Thus $\mathcal A$ is a $\sigma$-algebra containing the open sets, so it contains every Borel set. Finally, if $F\subset E$ is relatively closed and $(K_j)$ is a compact exhaustion of $\Omega$, then the sets $F\cap K_j$ are compact and $\mu(F\setminus K_j)\to0$. Therefore every Borel set can be approximated in measure from outside by open sets and from inside by compact sets, and $\mu$ is a Radon measure.
 
-For a locally finite measure, choose relatively compact open sets $V_j$ which exhaust $\Omega$. The finite Borel measure $E\mapsto\mu(E\cap V_j)$ has the regularity just proved. Its compact inner approximations prove inner regularity of $\mu$, by continuity from below. To prove outer regularity for a set $E$ of finite measure, partition $\Omega$ into Borel sets $B_j=K_j\setminus K_{j-1}$, where $K_0=\varnothing$, and choose $V_j$ containing $K_j$. The finite-measure result gives open sets $O_j\subset V_j$ containing $E\cap B_j$ such that $\mu(O_j\setminus(E\cap B_j))<\varepsilon2^{-j}$. Their union contains $E$ and has excess measure at most $\varepsilon$. For $\mu(E)=\infty$ the outer equality follows from monotonicity. Finally $\Omega=\bigcup K_j$ proves $\sigma$-finiteness.
+In general, let $(K_j)$ be a compact exhaustion of $\Omega$, put $K_0=\varnothing$, and let $V_j=\Int K_{j+1}$, a relatively compact open set containing $K_j$. The Borel measures $\mu_j(E)=\mu(E\cap V_j)$ are finite, so they are Radon by the case already treated. To prove inner regularity of $\mu$, let $E$ be a Borel set and $\varepsilon>0$. A compact set $K\subset E$ with $\mu_j(E\setminus K)<\varepsilon$ satisfies $\mu(K)\geq\mu_j(K)>\mu(E\cap V_j)-\varepsilon$, and $\mu(E\cap V_j)\to\mu(E)$ as $j\to\infty$; hence $\mu(E)=\sup_K\mu(K)$. To prove outer regularity, note that the Borel sets $B_j=K_j\setminus K_{j-1}$, $j\geq1$, partition $\Omega$ and that $E\cap B_j\subset V_j$. Outer regularity of $\mu_j$ gives an open set $O_j'\supset E\cap B_j$ with $\mu_j(O_j'\setminus(E\cap B_j))<\varepsilon2^{-j}$, so the open set $O_j=O_j'\cap V_j$ satisfies $\mu(O_j\setminus(E\cap B_j))<\varepsilon2^{-j}$. The union $O=\bigcup_jO_j$ is open, contains $E$, and satisfies $\mu(O\setminus E)<\varepsilon$; this proves outer regularity (if $\mu(E)=\infty$, it follows directly from monotonicity). Finally, $\mu$ is $\sigma$-finite because $\Omega=\bigcup_jK_j$ and each $\mu(K_j)$ is finite.
 \end{proof}
 
 \begin{proposition}\label{prop:integral-limits}
-Let $(X,\mu)$ be a measure space. For nonnegative measurable functions $f_j$ with $f_j\uparrow f$, we have $\int f_j\,\mathrm d\mu\uparrow\int f\,\mathrm d\mu$. For nonnegative measurable $f_j$,
+Let $(X,\mu)$ be a measure space and let $f_j$, $j\geq1$, be measurable functions on $X$.
+\begin{enumerate}
+\item If $f_j\geq0$ and $f_j\uparrow f$ pointwise, then $\int f_j\,\mathrm d\mu\uparrow\int f\,\mathrm d\mu$.
+\item If $f_j\geq0$ for every $j$, then
 \[
  \int\liminf_j f_j\,\mathrm d\mu\leq\liminf_j\int f_j\,\mathrm d\mu.
 \]
-If measurable real or complex functions $f_j$ converge almost everywhere to a measurable $f$ and $|f_j|\leq g$ for an integrable $g$, then $f$ is integrable and $\int|f_j-f|\,\mathrm d\mu\to0$.
+\item If the $f_j$ are real or complex, converge almost everywhere to a measurable function $f$, and satisfy $|f_j|\leq g$ for an integrable function $g$, then $f$ is integrable and $\int|f_j-f|\,\mathrm d\mu\to0$.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-For a nonnegative simple function $s\leq f$ and $0<t<1$, the sets $\{f_j\geq ts\}$ increase to a set containing $\{s>0\}$. Continuity from below on the finitely many level sets of $s$ gives $\lim_j\int f_j\geq t\int s$. Taking the supremum over $s$ and then letting $t\uparrow1$ proves the first assertion, including infinite integrals. Apply it to $\inf_{k\geq j}f_k$ to obtain the second assertion. For the last one, $|f|\leq g$ almost everywhere; apply the second assertion to $2g-|f_j-f|$ and subtract the finite integral of $2g$.
+(1) The integrals $\int f_j\,\mathrm d\mu$ increase and are bounded by $\int f\,\mathrm d\mu$, so it suffices to show that their limit is at least $\int f\,\mathrm d\mu$. Let $s\leq f$ be a nonnegative simple function and $0<t<1$. The measurable sets $E_j=\{f_j\geq ts\}$ increase with $j$, and their union contains $\{s>0\}$, since $f(x)\geq s(x)>ts(x)$ there. Applying continuity from below to the sets $E_j\cap\{s=a\}$ for the finitely many values $a$ of $s$, we obtain
+\[
+ \lim_j\int f_j\,\mathrm d\mu\geq\lim_jt\int_{E_j}s\,\mathrm d\mu=t\int s\,\mathrm d\mu.
+\]
+Taking the supremum over $s$ and then letting $t\uparrow1$ proves (1); infinite integrals are allowed throughout.
+
+(2) The functions $g_j=\inf_{k\geq j}f_k$ are measurable, they increase to $\liminf_jf_j$, and $\int g_j\,\mathrm d\mu\leq\int f_k\,\mathrm d\mu$ for every $k\geq j$. Applying (1) to $(g_j)$ gives (2).
+
+(3) Letting $j\to\infty$ in $|f_j|\leq g$ shows that $|f|\leq g$ almost everywhere, so $f$ is integrable. The functions $2g-|f_j-f|$ are nonnegative almost everywhere, and (2), applied after a modification on a null set, gives
+\[
+ \int2g\,\mathrm d\mu\leq\liminf_j\int\bigl(2g-|f_j-f|\bigr)\,\mathrm d\mu=\int2g\,\mathrm d\mu-\limsup_j\int|f_j-f|\,\mathrm d\mu.
+\]
+Since $\int2g\,\mathrm d\mu$ is finite, it follows that $\int|f_j-f|\,\mathrm d\mu\to0$.
 \end{proof}
-Monotone convergence\index{monotone convergence} here concerns sequences. An arbitrary increasing net of measurable functions need not have a measurable supremum, and it need not satisfy the same integral identity. Later uses of nets will require their own compactness or selection argument.
+Assertions (1), (2) and (3) are the monotone convergence theorem\index{monotone convergence}, Fatou's lemma and the dominated convergence theorem. They concern sequences. An increasing net of measurable functions need not have a measurable supremum, and even when it does, the integrals need not converge to the integral of the supremum. Whenever we pass to a limit along a net later on, a separate compactness or selection argument is required.
 
 \begin{proposition}\label{prop:tonelli-fubini}
-Let $(X,\mu)$ and $(Y,\nu)$ be $\sigma$-finite measure spaces. There is a unique product measure on the product $\sigma$-algebra with $(\mu\times\nu)(A\times B)=\mu(A)\nu(B)$, where $0\cdot\infty=0$. For nonnegative product-measurable $f$,
+Let $(X,\mu)$ and $(Y,\nu)$ be $\sigma$-finite measure spaces. There is a unique measure $\mu\times\nu$ on the product $\sigma$-algebra of $X\times Y$ such that $(\mu\times\nu)(A\times B)=\mu(A)\nu(B)$ for all measurable sets $A\subset X$ and $B\subset Y$, with the convention $0\cdot\infty=0$. If $f\geq0$ is measurable for the product $\sigma$-algebra, then the functions $x\mapsto\int_Yf(x,y)\,\mathrm d\nu(y)$ and $y\mapsto\int_Xf(x,y)\,\mathrm d\mu(x)$ are measurable, and
 \[
  \int f\,\mathrm d(\mu\times\nu)
  =\int_X\left(\int_Y f(x,y)\,\mathrm d\nu(y)\right)\mathrm d\mu(x)
  =\int_Y\left(\int_X f(x,y)\,\mathrm d\mu(x)\right)\mathrm d\nu(y).
 \]
-For complex $f$ with $\int|f|\,\mathrm d(\mu\times\nu)<\infty$, its sections are integrable for almost every parameter, both iterated integrals exist, and the same equalities hold.
+If $f$ is complex-valued, product-measurable and $\int|f|\,\mathrm d(\mu\times\nu)<\infty$, then $y\mapsto f(x,y)$ is $\nu$-integrable for $\mu$-almost every $x$, $x\mapsto f(x,y)$ is $\mu$-integrable for $\nu$-almost every $y$, both iterated integrals exist, and the same equalities hold.
 \end{proposition}
 \begin{proof}
-Suppose first that both measures are finite. The sets $E$ for which $x\mapsto\nu(E_x)$ is measurable form a class containing rectangles and closed under complements and countable disjoint unions; this follows from finiteness and \cref{prop:integral-limits}. Such a class containing an intersection-closed family contains its generated $\sigma$-algebra. Here is the needed class argument. In the smallest class $\mathcal L$ containing that family and closed under complements and disjoint countable unions, nested differences also belong to $\mathcal L$: if $B\subset A$ and both belong, then $A\setminus B=(A^c\cup B)^c$. First fix an element $A$ of the family and consider the members $B$ for which $A\cap B\in\mathcal L$. This is again such a class, so it contains $\mathcal L$. Fixing $B\in\mathcal L$ and repeating the argument shows that $\mathcal L$ is closed under intersections. Differences and arbitrary countable unions follow, so $\mathcal L$ is a $\sigma$-algebra.
+The product $\sigma$-algebra is generated by the measurable rectangles $A\times B$, and the rectangles are closed under finite intersections.
 
-Consequently $E\mapsto\int_X\nu(E_x)\,\mathrm d\mu(x)$ is a measure on the product $\sigma$-algebra: countable additivity follows by monotone convergence of the partial sums for disjoint sets. It has the required values on rectangles. Two finite measures agreeing on rectangles agree everywhere by the same class argument, applied to the class on which they agree. Interchanging the roles of $X$ and $Y$ therefore gives the same measure. The integral identities follow first for indicators, then for simple functions, and then by monotone convergence.
+\emph{Step 1: a class argument.} Let $\mathcal P$ be a nonempty family of subsets of a set $Z$ which is closed under finite intersections, and let $\mathcal L$ be the smallest family of subsets of $Z$ which contains $\mathcal P$ and is closed under complements and countable disjoint unions. We claim that $\mathcal L$ is the $\sigma$-algebra generated by $\mathcal P$. First, $\mathcal L$ contains differences of nested members: if $B\subset A$ and $A,B\in\mathcal L$, then $A\setminus B$ is the complement of the disjoint union of $Z\setminus A$ and $B$. Fix $A\in\mathcal P$ and consider the family of all $B\in\mathcal L$ with $A\cap B\in\mathcal L$. It contains $\mathcal P$, it is closed under complements because $A\cap(Z\setminus B)=A\setminus(A\cap B)$, and it is closed under countable disjoint unions; hence it equals $\mathcal L$. Next fix $B\in\mathcal L$; by what we have just shown, the family of all $A\in\mathcal L$ with $A\cap B\in\mathcal L$ contains $\mathcal P$, and the same argument shows that it equals $\mathcal L$. Thus $\mathcal L$ is closed under finite intersections. A countable union $\bigcup_jA_j$ of members of $\mathcal L$ is the disjoint union of the sets $A_j\cap(Z\setminus A_1)\cap\cdots\cap(Z\setminus A_{j-1})$, which belong to $\mathcal L$, so $\mathcal L$ is a $\sigma$-algebra, as claimed. Consequently, every family which contains $\mathcal P$ and is closed under complements and countable disjoint unions contains the $\sigma$-algebra generated by $\mathcal P$.
 
-For $\sigma$-finite spaces, partition $X$ and $Y$ into countably many measurable sets of finite measure. Sum the measures constructed on their products. Uniqueness on each finite product and monotone convergence give all the nonnegative assertions. Applying them to $|f|$ shows that almost every section is integrable; applying them to the positive and negative parts of the real and imaginary parts proves the final assertion.
+\emph{Step 2: finite measures.} Suppose that $\mu$ and $\nu$ are finite. For $E\subset X\times Y$ and $x\in X$ write $E_x=\{y:(x,y)\in E\}$. The sets $E$ all of whose sections $E_x$ are measurable form a $\sigma$-algebra containing the rectangles, since taking sections commutes with complements and unions; hence every section of a product-measurable set is measurable. Next, the product-measurable sets $E$ for which $x\mapsto\nu(E_x)$ is measurable form a family containing the rectangles, because $\nu((A\times B)_x)=\nu(B)\mathbf1_A(x)$. This family is closed under complements, because $\nu((X\times Y\setminus E)_x)=\nu(Y)-\nu(E_x)$ with $\nu(Y)<\infty$, and under countable disjoint unions, because then $\nu(E_x)$ is a countable sum of measurable functions. By Step 1 it is the whole product $\sigma$-algebra. Monotone convergence (\cref{prop:integral-limits}) applied to partial sums shows that
+\[
+ \lambda(E)=\int_X\nu(E_x)\,\mathrm d\mu(x)
+\]
+is countably additive, so $\lambda$ is a measure, and $\lambda(A\times B)=\mu(A)\nu(B)$. If $\lambda'$ is another measure on the product $\sigma$-algebra with the same values on rectangles, the sets on which $\lambda$ and $\lambda'$ agree form a family closed under complements (as $\lambda(X\times Y)=\lambda'(X\times Y)<\infty$) and countable disjoint unions, so $\lambda'=\lambda$ by Step 1. In particular, the measure $E\mapsto\int_Y\mu(\{x:(x,y)\in E\})\,\mathrm d\nu(y)$, obtained by exchanging the roles of $X$ and $Y$, coincides with $\lambda$. This proves uniqueness and both integral identities for indicator functions. By linearity they hold for nonnegative simple functions, and by monotone convergence, applied to an increasing sequence of simple functions converging to $f$, for every nonnegative product-measurable $f$; the measurability of the inner integrals passes to the limit.
+
+\emph{Step 3: $\sigma$-finite measures.} Partition $X$ and $Y$ into countably many measurable sets $X_m$ and $Y_n$ of finite measure, and define $\mu\times\nu$ as the sum over $m$ and $n$ of the product measures of Step 2 on $X_m\times Y_n$. Any measure with the required values on rectangles restricts on each $X_m\times Y_n$ to a finite measure with the same property, and hence agrees there with the product of Step 2; this proves uniqueness. Summing the identities of Step 2 over $m$ and $n$ and using monotone convergence gives the assertions for nonnegative $f$. If $\int|f|\,\mathrm d(\mu\times\nu)<\infty$, these assertions applied to $|f|$ show that $\int_Y|f(x,y)|\,\mathrm d\nu(y)<\infty$ for $\mu$-almost every $x$, and symmetrically in $y$. Applying the nonnegative case to the positive and negative parts of $\Real f$ and $\Img f$ proves the remaining assertions.
 \end{proof}
-We refer to these assertions as Tonelli's and Fubini's theorems\index{Fubini's theorem}\index{Tonelli's theorem}. An integrable function for a completed product measure has a product-measurable representative: approximate by simple functions and replace their measurable level sets by product-measurable sets modulo null sets, then take the pointwise limit outside their countable union of null sets. Accordingly, all almost-everywhere section assertions concern such representatives.
+We refer to these assertions as Tonelli's theorem\index{Tonelli's theorem} (for nonnegative $f$) and Fubini's theorem\index{Fubini's theorem} (for integrable $f$). They are often applied to a function $f$ that is only measurable for the completion of $\mu\times\nu$. Such a function agrees almost everywhere with a product-measurable function $g$. Indeed, approximate $f$ pointwise by simple functions measurable for the completion, replace each of their finitely many level sets by a product-measurable set differing from it only within a null set, and let $g$ be the pointwise limit of the modified simple functions outside the countable union of these null sets, and $0$ on that union. Accordingly, assertions about almost every section of such an $f$ refer to a product-measurable representative $g$.
 
-A finite real signed measure\index{measure!signed} is a difference $\sigma=\alpha-\beta$ of finite positive Radon measures. Its total variation\index{measure!total variation} is
+A finite real signed measure\index{measure!signed} on $\Omega$ is a difference $\sigma=\alpha-\beta$ of two finite Radon measures on $\Omega$. Its total variation\index{measure!total variation} is the function
 \[
  |\sigma|(A)=\sup_{A=\bigsqcup_{i=1}^m A_i}\sum_{i=1}^m|\sigma(A_i)|,
 \]
-where the supremum is over finite Borel partitions of the Borel set $A$. It is bounded by $\alpha+\beta$. Refining partitions proves finite additivity. For disjoint Borel sets $A_j$, finite additivity and monotonicity give $|\sigma|(\bigcup_jA_j)\geq\sum_j|\sigma|(A_j)$. Conversely, split each member of a finite partition of that union by the $A_j$ and use countable additivity of $\sigma$ and the triangle inequality. Taking the supremum gives the reverse inequality. Thus $|\sigma|$ is a finite measure, and it is Radon by \cref{prop:borel-regularity}. The positive measures $\sigma^+=(|\sigma|+\sigma)/2$ and $\sigma^-=(|\sigma|-\sigma)/2$ satisfy $\sigma=\sigma^+-\sigma^-$ and $|\sigma|=\sigma^++\sigma^-$. For $f$ integrable with respect to $|\sigma|$, define $\int f\,\mathrm d\sigma$ by this difference; simple approximation gives $|\int f\,\mathrm d\sigma|\leq\int|f|\,\mathrm d|\sigma|$. Convergence and iterated-integral arguments for signed measures therefore reduce to the positive results above.
+where the supremum is taken over all finite partitions of the Borel set $A$ into Borel sets. Since $|\sigma(A_i)|\leq\alpha(A_i)+\beta(A_i)$, we have $|\sigma|\leq\alpha+\beta$. We claim that $|\sigma|$ is a measure. It is finitely additive: if $A=A'\sqcup A''$, then combining partitions of $A'$ and of $A''$ gives $|\sigma|(A)\geq|\sigma|(A')+|\sigma|(A'')$, and intersecting a partition of $A$ with $A'$ and $A''$ and using the triangle inequality gives the reverse inequality. Now let $A$ be the union of disjoint Borel sets $A_j$, $j\geq1$. Finite additivity and monotonicity give $|\sigma|(A)\geq\sum_j|\sigma|(A_j)$. Conversely, for a finite partition $A=\bigsqcup_iB_i$, countable additivity of $\sigma$ and the triangle inequality give
+\[
+ \sum_i|\sigma(B_i)|\leq\sum_i\sum_j|\sigma(B_i\cap A_j)|\leq\sum_j|\sigma|(A_j),
+\]
+and taking the supremum over all partitions gives the reverse inequality. Thus $|\sigma|$ is a finite Borel measure, and it is Radon by \cref{prop:borel-regularity}. Since $|\sigma(A)|\leq|\sigma|(A)$, the positive and negative variations $\sigma^+=(|\sigma|+\sigma)/2$ and $\sigma^-=(|\sigma|-\sigma)/2$ are finite Radon measures, and $\sigma=\sigma^+-\sigma^-$, $|\sigma|=\sigma^++\sigma^-$. For a function $f$ integrable with respect to $|\sigma|$ we define $\int f\,\mathrm d\sigma=\int f\,\mathrm d\sigma^+-\int f\,\mathrm d\sigma^-$. For simple $f$, the inequality $|\int f\,\mathrm d\sigma|\leq\int|f|\,\mathrm d|\sigma|$ follows from $|\sigma(A)|\leq|\sigma|(A)$, and approximation by simple functions $s_k\to f$ with $|s_k|\leq|f|$, together with dominated convergence, extends it to all such $f$. In this way, convergence theorems and iterated integrals for signed measures reduce to the positive case treated above.
 
 \section{Positive linear functionals}
 \label{sec:positive-functionals}
-A positive linear functional $L:C_c(\Omega,\mathbb R)\to\mathbb R$ satisfies $L(f)\geq0$ when $f\geq0$. For a compact $K$, choose a continuous cutoff $\eta=1$ on $K$. Positivity applied to $\|f\|_\infty\eta\pm f$ gives
+A linear functional $L\colon C_c(\Omega,\mathbb R)\to\mathbb R$ is positive if $L(f)\geq0$ whenever $f\geq0$. Integration against a Radon measure is the basic example, and the Riesz representation theorem below shows that there are no others. Positivity alone already yields a local bound. Let $K\subset\Omega$ be compact and let $\eta$ be a cutoff function for $K$ in $\Omega$. If $f\in C_c(\Omega,\mathbb R)$ and $\Supp f\subset K$, then $\|f\|_\infty\eta\pm f\geq0$, and therefore
 \begin{equation}\label{eq:positive-functional-bound}
  |L(f)|\leq L(\eta)\|f\|_\infty,\qquad \Supp f\subset K.
 \end{equation}
-The bound is local; it does not require $\mu(\Omega)$ to be finite in the measure example.
+The constant $L(\eta)$ depends on $K$ but not on $f$. For integration against a Radon measure $\mu$ it equals $\int\eta\,\mathrm d\mu\leq\mu(\Supp\eta)$, which is finite even when $\mu(\Omega)=\infty$.
+
+The measure representing $L$ will be constructed from an outer measure. Recall that an outer measure\index{outer measure} on a set $X$ is a function $m^*$ from the subsets of $X$ to $[0,\infty]$ such that $m^*(\varnothing)=0$, $m^*(A)\leq m^*(B)$ whenever $A\subset B$, and $m^*(\bigcup_jA_j)\leq\sum_jm^*(A_j)$ for every sequence of subsets $A_j$. A set $F\subset X$ is $m^*$-measurable if $m^*(E)=m^*(E\cap F)+m^*(E\setminus F)$ for every $E\subset X$. For subsets $A$ and $B$ of a metric space, $\operatorname{dist}(A,B)$ denotes the infimum of the distances between points of $A$ and points of $B$; it is $+\infty$ if $A$ or $B$ is empty.
 
 \begin{lemma}\label{lem:metric-outer-measure}
-Let $m^*$ be an outer measure on a metric space, and suppose that
+Let $m^*$ be an outer measure on a metric space $X$ such that
 \[
- m^*(A\cup B)=m^*(A)+m^*(B)\quad\text{if }\operatorname{dist}(A,B)>0.
+ m^*(A\cup B)=m^*(A)+m^*(B)\quad\text{whenever }\operatorname{dist}(A,B)>0.
 \]
-Every Borel set is measurable for $m^*$, and restriction to the Borel sets is a measure.
+Then every Borel subset of $X$ is $m^*$-measurable, and the restriction of $m^*$ to the Borel sets is a measure.
 \end{lemma}
 \begin{proof}
-Recall that an outer measure is zero at the empty set, monotone, and countably subadditive. A set $F$ is measurable for this outer measure if $m^*(E)=m^*(E\cap F)+m^*(E\setminus F)$ for every set $E$. The measurable sets form a $\sigma$-algebra: complementation preserves this identity, two successive splittings give finite intersections, and successive splittings by disjoint measurable sets give
+We first show that the $m^*$-measurable sets form a $\sigma$-algebra on which $m^*$ is countably additive. The defining identity is symmetric in $F$ and $X\setminus F$, so the complement of a measurable set is measurable. If $F$ and $G$ are measurable and $E\subset X$, splitting $E$ by $F$ and then $E\cap F$ by $G$ gives
 \[
- m^*(E)\geq\sum_{j=1}^N m^*(E\cap F_j)+m^*\left(E\setminus\bigcup_j F_j\right).
+ m^*(E)=m^*(E\cap F\cap G)+m^*((E\cap F)\setminus G)+m^*(E\setminus F)\geq m^*(E\cap(F\cap G))+m^*(E\setminus(F\cap G)),
 \]
-Letting $N\to\infty$ and using subadditivity proves measurability of their union and countable additivity on measurable sets.
+by subadditivity, since $E\setminus(F\cap G)$ is the union of $(E\cap F)\setminus G$ and $E\setminus F$. The reverse inequality also follows from subadditivity, so $F\cap G$ is measurable, and the measurable sets form an algebra. Now let $F_1,F_2,\ldots$ be disjoint measurable sets with union $F$. Splitting $E$ successively by $F_1,\ldots,F_N$ gives
+\[
+ m^*(E)=\sum_{j=1}^Nm^*(E\cap F_j)+m^*\Bigl(E\setminus\bigcup_{j=1}^NF_j\Bigr)\geq\sum_{j=1}^Nm^*(E\cap F_j)+m^*(E\setminus F).
+\]
+Letting $N\to\infty$ and using subadditivity, we obtain $m^*(E)\geq\sum_jm^*(E\cap F_j)+m^*(E\setminus F)\geq m^*(E\cap F)+m^*(E\setminus F)$. Hence $F$ is measurable, and taking $E=F$ shows that $m^*(F)=\sum_jm^*(F_j)$. Since every countable union of measurable sets is a countable disjoint union of measurable sets, this proves the claim.
 
-It suffices to prove that a closed set $F$ is measurable. Take $E$ with $m^*(E)<\infty$. Write $E_N=E\cap\{\operatorname{dist}(x,F)\geq N^{-1}\}$. Separation gives $m^*(E)\geq m^*(E\cap F)+m^*(E_N)$. The layers
+It therefore suffices to show that every closed set $F\subset X$ is measurable, and we may assume that $F\neq\varnothing$. By subadditivity, we only have to prove $m^*(E)\geq m^*(E\cap F)+m^*(E\setminus F)$ for every $E\subset X$ with $m^*(E)<\infty$. For $N\geq1$ put $E_N=\{x\in E:\operatorname{dist}(x,F)\geq N^{-1}\}$. Since $\operatorname{dist}(E\cap F,E_N)\geq N^{-1}$, the hypothesis gives
 \[
- A_k=E\cap\{(k+1)^{-1}\leq\operatorname{dist}(x,F)<k^{-1}\}
+ m^*(E)\geq m^*((E\cap F)\cup E_N)=m^*(E\cap F)+m^*(E_N),
 \]
-with indices of the same parity are pairwise separated in every finite collection. Thus the sums of their outer measures are at most $m^*(E)$, and the tails of both series tend to zero. Since $E\setminus F\subset E_N\cup\bigcup_{k\geq N}A_k$, it follows that $m^*(E_N)\to m^*(E\setminus F)$. This proves the required splitting; when $m^*(E)=\infty$ the inequality in that direction is automatic. Subadditivity supplies the opposite inequality. Hence every closed set, and therefore every Borel set, is measurable.
+and it remains to show that $m^*(E_N)\to m^*(E\setminus F)$. Consider the layers
+\[
+ A_k=E\cap\{x:(k+1)^{-1}\leq\operatorname{dist}(x,F)<k^{-1}\},\qquad k\geq1.
+\]
+If $k'\geq k+2$, the triangle inequality for $\operatorname{dist}(\cdot,F)$ gives $\operatorname{dist}(A_k,A_{k'})\geq(k+1)^{-1}-(k+2)^{-1}>0$. Hence any finitely many layers whose indices have the same parity are pairwise at positive distance, and repeated application of the hypothesis shows that the sum of their outer measures is at most $m^*(E)$. Consequently $\sum_km^*(A_k)\leq2m^*(E)<\infty$. Since $F$ is closed, every point of $E\setminus F$ has positive distance from $F$, so $E\setminus F\subset E_N\cup\bigcup_{k\geq N}A_k$, and
+\[
+ m^*(E_N)\leq m^*(E\setminus F)\leq m^*(E_N)+\sum_{k\geq N}m^*(A_k).
+\]
+The tails of the convergent series tend to zero, so $m^*(E_N)\to m^*(E\setminus F)$, and $F$ is measurable.
 \end{proof}
+This is Carath\'eodory's criterion for metric outer measures.
 
 \begin{theorem}[Riesz representation]\label{thm:positive-functional-measure}
-Every positive linear functional on $C_c(\Omega,\mathbb R)$ is integration against a unique Radon measure on $\Omega$.
+Let $L$ be a positive linear functional on $C_c(\Omega,\mathbb R)$. Then there is a unique Radon measure $\mu$ on $\Omega$ such that $L(f)=\int f\,\mathrm d\mu$ for every $f\in C_c(\Omega,\mathbb R)$.\index{Riesz representation!positive functionals}
 \end{theorem}
 \begin{proof}
-For an open set $U\subset\Omega$, put
+Call $f$ admissible for an open set $U\subset\Omega$ if $f\in C_c(\Omega,\mathbb R)$, $0\leq f\leq1$ and $\Supp f\subset U$, and put
 \[
- m(U)=\sup\{L(f):f\in C_c(\Omega,\mathbb R),\ 0\leq f\leq1,\ \Supp f\subset U\}.
+ m(U)=\sup\{L(f):f\text{ admissible for }U\}.
 \]
-This function is countably subadditive on open sets. Indeed, if $\Supp f\subset\bigcup_j U_j$, a finite subcover of $\Supp f$ admits continuous compactly supported cutoffs $\eta_j$ in the corresponding $U_j$, whose sum is positive on $\Supp f$. The functions $f\eta_j/(\sum\eta_j)$, extended by zero where the denominator vanishes, form a finite partition of $f$; each lies between $0$ and $1$. The denominator is bounded below on $\Supp f$, so these extensions are continuous. Hence $L(f)\leq\sum_jm(U_j)$. For disjoint open sets, the reverse inequality follows by adding finitely many admissible functions, so $m$ is additive on disjoint open unions.
+Then $m(\varnothing)=0$, and $m$ is monotone.
 
-Define $m^*(A)=\inf_{U\supset A}m(U)$, where $U$ is open in $\Omega$. Choosing open approximations with summable errors proves countable subadditivity; if one of the individual outer measures is infinite there is nothing to prove. Thus $m^*$ is an outer measure and $m^*(U)=m(U)$ for open $U$. If $A$ and $B$ have positive distance, every open neighborhood of their union contains disjoint open neighborhoods of $A$ and $B$, obtained by intersecting it with sufficiently small distance neighborhoods. Additivity on disjoint opens proves the separation identity of \cref{lem:metric-outer-measure}. We obtain a Borel measure $\mu$ with $\mu(U)=m(U)$. If $V$ is relatively compact, a cutoff equal to $1$ on $\overline V$ bounds $m(V)$ by \eqref{eq:positive-functional-bound}. Thus $\mu$ is locally finite and Radon by \cref{prop:borel-regularity}.
+\emph{Step 1: $m$ is countably subadditive on open sets.} Let $U_1,U_2,\ldots$ be open and let $f$ be admissible for $U=\bigcup_jU_j$. Every point of the compact set $\Supp f$ is the center of a closed ball contained in some $U_j$, and finitely many of the corresponding open balls cover $\Supp f$. Hence there are $n$ and compact sets $L_j\subset U_j$, $1\leq j\leq n$, with $\Supp f\subset L_1\cup\cdots\cup L_n$; take for $L_j$ the union of those closed balls assigned to $U_j$. Choose cutoff functions $\eta_j$ for $L_j$ in $U_j$. Then $\eta=\sum_{j=1}^n\eta_j\geq1$ on $\Supp f$, so $\eta>0$ on an open neighborhood $W$ of $\Supp f$. The functions $f_j$ equal to $f\eta_j/\eta$ on $W$ and to $0$ on $\Omega\setminus\Supp f$ are well defined, because the two definitions agree on the overlap, and continuous, because $W$ and $\Omega\setminus\Supp f$ are open and cover $\Omega$. They satisfy $0\leq f_j\leq f$, $\Supp f_j\subset\Supp\eta_j\subset U_j$ and $\sum_jf_j=f$. Hence $L(f)=\sum_{j=1}^nL(f_j)\leq\sum_jm(U_j)$, and taking the supremum over $f$ gives $m(U)\leq\sum_jm(U_j)$. If the $U_j$ are pairwise disjoint and $h_j$ is admissible for $U_j$, then $\sum_{j\leq N}h_j$ is admissible for $U$, which gives $m(U)\geq\sum_{j\leq N}L(h_j)$. Taking suprema shows that $m$ is countably additive on disjoint open sets.
 
-We identify its integrals. Let $0\leq f\in C_c(\Omega)$, let $M=\|f\|_\infty>0$, choose an integer $N\geq1$, and set $\delta=M/N$. For $U_k=\{f>k\delta\}$ and arbitrary admissible $h_k$ in $U_k$, the pointwise inequality $\delta\sum_{k=1}^Nh_k\leq f$ gives
+\emph{Step 2: construction of $\mu$.} For $A\subset\Omega$ put $m^*(A)=\inf\{m(U):U\supset A,\ U\text{ open}\}$. Then $m^*$ is monotone, $m^*(\varnothing)=0$, and $m^*(U)=m(U)$ for open $U$ by monotonicity of $m$. If $A_1,A_2,\ldots$ are subsets with $\sum_jm^*(A_j)<\infty$ (otherwise there is nothing to prove) and $\varepsilon>0$, choose open sets $U_j\supset A_j$ with $m(U_j)<m^*(A_j)+\varepsilon2^{-j}$; Step 1 gives $m^*(\bigcup_jA_j)\leq\sum_jm(U_j)\leq\sum_jm^*(A_j)+\varepsilon$. Thus $m^*$ is an outer measure. Let $A$ and $B$ be subsets of $\Omega$ with $\operatorname{dist}(A,B)>0$; if one of them is empty there is nothing to prove, so let $\operatorname{dist}(A,B)=2\delta$ with $0<\delta<\infty$, and let $W\supset A\cup B$ be open. The sets $W\cap\{\operatorname{dist}(\cdot,A)<\delta\}$ and $W\cap\{\operatorname{dist}(\cdot,B)<\delta\}$ are disjoint open neighborhoods of $A$ and $B$ in $W$, so additivity on disjoint open sets and monotonicity give $m(W)\geq m^*(A)+m^*(B)$. Taking the infimum over $W$ and using subadditivity, we obtain the separation identity of \cref{lem:metric-outer-measure}. That lemma yields a Borel measure $\mu$ with $\mu(U)=m(U)$ for every open $U$. Every compact set $K$ has a relatively compact open neighborhood $V$; if $\eta$ is a cutoff function for $\overline V$ in $\Omega$, then \eqref{eq:positive-functional-bound} gives $L(f)\leq L(\eta)$ for every $f$ admissible for $V$, so $\mu(K)\leq m(V)\leq L(\eta)<\infty$. By \cref{prop:borel-regularity}, $\mu$ is a Radon measure.
+
+\emph{Step 3: $L(f)=\int f\,\mathrm d\mu$.} By linearity, it suffices to treat $f\in C_c(\Omega,\mathbb R)$ with $f\geq0$ and $M=\|f\|_\infty>0$. Fix an integer $N\geq1$, put $\delta=M/N$, and let $U_k=\{f>k\delta\}$ for $k\geq0$; these are open sets with $\mu(U_k)\leq\mu(\Supp f)<\infty$. For the lower bound, let $h_k$ be admissible for $U_k$, $1\leq k\leq N$. Then $h_k\leq\mathbf1_{U_k}$, and since at each point $x$ at most $f(x)/\delta$ indices $k\geq1$ satisfy $f(x)>k\delta$, we have $\delta\sum_{k=1}^Nh_k\leq\delta\sum_{k=1}^N\mathbf1_{U_k}\leq f$. Positivity of $L$ and the supremum over the $h_k$ give
 \[
  \delta\sum_{k=1}^N\mu(U_k)\leq L(f).
 \]
-On the other hand, set $g_k=\min\{1,\max\{0,f/\delta-(k-1)\}\}$ for $1\leq k\leq N$. Then $f=\delta\sum g_k$. For a cutoff $\eta=1$ on $\Supp f$, $L(g_1)\leq L(\eta)$, and for $k\geq2$ the support of $g_k$ is compactly contained in $\{f>(k-2)\delta\}$. Consequently
+For the upper bound, set $g_k=\min\{1,\max\{0,f/\delta-(k-1)\}\}$ for $1\leq k\leq N$. These are continuous functions with values in $[0,1]$, and $f=\delta\sum_{k=1}^Ng_k$. Let $\eta$ be a cutoff function for $\Supp f$ in $\Omega$; then $\eta-g_1\geq0$, so $L(g_1)\leq L(\eta)$. For $k\geq2$, the function $g_k$ vanishes outside the compact set $\{f\geq(k-1)\delta\}$, which is contained in $U_{k-2}$; thus $g_k$ is admissible for $U_{k-2}$ and $L(g_k)\leq\mu(U_{k-2})$. Consequently
 \[
- L(f)\leq\delta L(\eta)+\delta\sum_{k=2}^N\mu(\{f>(k-2)\delta\}).
+ L(f)\leq\delta L(\eta)+\delta\sum_{k=2}^N\mu(U_{k-2}).
 \]
-The difference between the upper and lower sums is bounded by $\delta(L(\eta)+2\mu(\{f>0\}))$, which tends to zero as $N\to\infty$. The lower simple functions $\delta\sum_{k=1}^N\mathbf1_{\{f>k\delta\}}$ differ from $f$ by at most $\delta$ on its compact support, so their integrals tend to $\int f\,\mathrm d\mu$. This proves $L(f)=\int f\,\mathrm d\mu$. The case $M=0$ and general real $f$ follow by linearity.
+The difference between this upper bound and the lower bound is $\delta L(\eta)+\delta(\mu(U_0)-\mu(U_{N-1})-\mu(U_N))\leq\delta(L(\eta)+\mu(U_0))$. On the other hand, the simple function $s_N=\delta\sum_{k=1}^N\mathbf1_{U_k}$ satisfies $0\leq f-s_N\leq\delta$ and vanishes outside $\Supp f$, so $\int s_N\,\mathrm d\mu=\delta\sum_{k=1}^N\mu(U_k)$ differs from $\int f\,\mathrm d\mu$ by at most $\delta\mu(\Supp f)$. Since $\mu(U_0)\leq\mu(\Supp f)$, both $L(f)$ and $\int f\,\mathrm d\mu$ therefore lie within $\delta(L(\eta)+\mu(\Supp f))$ of the lower bound. Letting $N\to\infty$ gives $L(f)=\int f\,\mathrm d\mu$.
 
-Finally, for any Radon measure and any open $U$, compact inner approximation and cutoffs give
+\emph{Step 4: uniqueness.} Let $\nu$ be any Radon measure on $\Omega$ and $U\subset\Omega$ open. For every compact $K\subset U$, a cutoff function $\eta$ for $K$ in $U$ satisfies $\nu(K)\leq\int\eta\,\mathrm d\nu\leq\nu(U)$. By inner regularity,
 \begin{equation}\label{eq:measure-open-tests}
- \mu(U)=\sup\left\{\int f\,\mathrm d\mu:0\leq f\leq1,\ f\in C_c(\Omega),\ \Supp f\subset U\right\}.
+ \nu(U)=\sup\left\{\int f\,\mathrm d\nu:0\leq f\leq1,\ f\in C_c(\Omega),\ \Supp f\subset U\right\}.
 \end{equation}
-Thus the functional determines all open-set values and, by outer regularity, all Borel values.
+Hence two Radon measures inducing the same functional agree on open sets, and by outer regularity they agree on all Borel sets.
 \end{proof}
 
 \begin{proposition}\label{prop:continuous-density}
-For a Radon measure $\mu$ and $1\leq p<\infty$, $C_c(\Omega)$ is dense in $L^p(\mu)$.
+Let $\mu$ be a Radon measure on $\Omega$ and let $1\leq p<\infty$. Then $C_c(\Omega)$ is dense in $L^p(\mu)$.
 \end{proposition}
 \begin{proof}
-Truncation in value and restriction to $K_j$ reduce an $L^p$ function to a bounded function on a compact set, with arbitrarily small $L^p$ error, by \cref{prop:integral-limits}. Approximation of its real and imaginary parts by finitely many level intervals reduces to indicators of Borel sets of finite measure contained in a compact set. For such a set $E$, regularity gives a compact $K\subset E$ and a relatively compact open $U\supset E$ with $\mu(U\setminus K)$ arbitrarily small. A cutoff $0\leq\eta\leq1$, equal to $1$ on $K$ and supported in $U$, satisfies $\|\eta-\mathbf1_E\|_{L^p}^p\leq\mu(U\setminus K)$. Combining the finite approximations proves the assertion.
+Let $u\in L^p(\mu)$, let $\varepsilon>0$, and let $(K_j)$ be a compact exhaustion of $\Omega$. The functions $u_j=u\mathbf1_{K_j\cap\{|u|\leq j\}}$ converge to $u$ pointwise and satisfy $|u_j-u|^p\leq|u|^p$, so $u_j\to u$ in $L^p(\mu)$ by dominated convergence (\cref{prop:integral-limits}). It therefore suffices to approximate a bounded Borel function $v$ vanishing outside a compact set $K$. The real and imaginary parts of $v$ are uniform limits of simple functions vanishing outside $K$, and a uniform error $\delta$ on $K$ produces an $L^p(\mu)$ error at most $\delta\mu(K)^{1/p}$. We are thus reduced to indicator functions $\mathbf1_E$ of Borel sets $E\subset K$. By regularity of $\mu$, there are a compact set $K'\subset E$ and an open set $U\supset E$ with $\mu(U\setminus K')<\varepsilon$. If $\eta$ is a cutoff function for $K'$ in $U$, then $|\eta-\mathbf1_E|\leq\mathbf1_{U\setminus K'}$, so $\|\eta-\mathbf1_E\|_{L^p(\mu)}^p\leq\mu(U\setminus K')<\varepsilon$. Combining these approximations by the triangle inequality proves the proposition.
 \end{proof}
 
 \section{Test functions and distributions}
 \label{sec:test-functions}
-A test function on $\Omega$ is an element of $C_c^\infty(\Omega)$. For a nonempty compact set $K\subset\Omega$, write $\mathcal D_K(\Omega)$ for the test functions supported in $K$. A multi-index is an element $\alpha=(\alpha_1,\ldots,\alpha_d)\in\mathbb N^d$, with $|\alpha|=\alpha_1+\cdots+\alpha_d$ and $\partial^\alpha=\partial_{x_1}^{\alpha_1}\cdots\partial_{x_d}^{\alpha_d}$. The seminorms on $\mathcal D_K(\Omega)$ are
+A locally integrable function need not be differentiable, but integration by parts shows how its derivatives should act: if $u\in C^1(\Omega)$ and $\chi$ is smooth with compact support in $\Omega$, then $\int_\Omega(\partial_ju)\chi\,\mathrm dx=-\int_\Omega u\,\partial_j\chi\,\mathrm dx$, and the right side makes sense for every locally integrable $u$. Distributions are the linear functionals on such $\chi$ that are continuous in a suitable sense; they include locally integrable functions and Radon measures, and they can be differentiated any number of times.
+
+A test function\index{test function} on $\Omega$ is an element of $C_c^\infty(\Omega)$. For a nonempty compact set $K\subset\Omega$, let $\mathcal D_K(\Omega)$ be the space of test functions supported in $K$. A multi-index is an element $\alpha=(\alpha_1,\ldots,\alpha_d)\in\mathbb N^d$; we write $|\alpha|=\alpha_1+\cdots+\alpha_d$ and $\partial^\alpha=\partial_{x_1}^{\alpha_1}\cdots\partial_{x_d}^{\alpha_d}$. We give $\mathcal D_K(\Omega)$ the topology defined by the seminorms
 \[
- p_{K,m}(\chi)=\max_{|\alpha|\leq m}\sup_{x\in K}|\partial^\alpha\chi(x)|,\qquad m\in\mathbb N.
+ p_{K,m}(\chi)=\max_{|\alpha|\leq m}\sup_{x\in K}|\partial^\alpha\chi(x)|,\qquad m\in\mathbb N,
 \]
-Its topology is generated by these seminorms. On $\mathcal D(\Omega)=C_c^\infty(\Omega)$ we use the locally convex topology generated by all seminorms whose restriction to every $\mathcal D_K(\Omega)$ is continuous. In particular, convergence of all derivatives with a common compact support implies convergence in $\mathcal D(\Omega)$.
+and $\mathcal D(\Omega)=C_c^\infty(\Omega)$ the locally convex topology defined by all seminorms on $C_c^\infty(\Omega)$ whose restrictions to every $\mathcal D_K(\Omega)$ are continuous. In particular, if test functions $\chi_j$ are supported in a fixed compact set and $\partial^\alpha\chi_j\to\partial^\alpha\chi$ uniformly for every multi-index $\alpha$, then $\chi_j\to\chi$ in $\mathcal D(\Omega)$.
 
 \begin{definition}\label{def:distribution}
-A distribution\index{distribution} on $\Omega$ is a complex linear functional $T$ on $C_c^\infty(\Omega)$ such that, for each nonempty compact $K\subset\Omega$, there are $C>0$ and $m\in\mathbb N$ satisfying
+A distribution\index{distribution} on $\Omega$ is a complex linear functional $\chi\mapsto\langle T,\chi\rangle$ on $C_c^\infty(\Omega)$ with the following property: for each nonempty compact set $K\subset\Omega$ there are constants $C>0$ and $m\in\mathbb N$ such that
 \[
  |\langle T,\chi\rangle|\leq C p_{K,m}(\chi)\qquad\text{for all }\chi\in\mathcal D_K(\Omega).
 \]
-A distribution is real if it takes real values on real test functions. A real distribution is positive if $\langle T,\chi\rangle\geq0$ for every nonnegative real test function $\chi$. We denote the space of distributions by $\mathcal D'(\Omega)$.
+A distribution $T$ is real if $\langle T,\chi\rangle$ is real for every real test function $\chi$, and a real distribution $T$ is positive\index{distribution!positive} if $\langle T,\chi\rangle\geq0$ for every nonnegative test function $\chi$. The space of distributions on $\Omega$ is denoted by $\mathcal D'(\Omega)$.
 \end{definition}
-The constants $C$ and $m$ may depend on $K$. This estimate is equivalent to continuity in the test-function topology just defined. In one direction continuity restricts to $\mathcal D_K$, where a finite collection of seminorm bounds is bounded by one $p_{K,m}$. In the other direction $\chi\mapsto|\langle T,\chi\rangle|$ itself belongs to the generating family of seminorms.
+The constants $C$ and $m$ may depend on $K$. The estimate in \cref{def:distribution} is equivalent to continuity of $T$ on $\mathcal D(\Omega)$. Indeed, if $T$ is continuous, then $|\langle T,\cdot\rangle|$ is bounded by a constant multiple of one of the seminorms defining the topology of $\mathcal D(\Omega)$; the restriction of that seminorm to $\mathcal D_K(\Omega)$ is continuous, hence bounded by a finite combination of the $p_{K,m}$, and since $p_{K,m}$ increases with $m$, a single $p_{K,m}$ suffices. Conversely, if the estimate holds, then $\chi\mapsto|\langle T,\chi\rangle|$ is itself a seminorm whose restriction to every $\mathcal D_K(\Omega)$ is continuous, so it is one of the seminorms defining the topology of $\mathcal D(\Omega)$, and $T$ is continuous.
 
-A locally integrable function $u$ defines a distribution by $\langle u,\chi\rangle=\int_\Omega u\chi\,\mathrm d x$: on $\mathcal D_K(\Omega)$ the bound holds with $m=0$ and $C=1+\int_K|u|\,\mathrm d x$. A Radon measure likewise defines a distribution by integration. These pairings are bilinear, with no complex conjugation. Equality of the distributions associated to locally integrable functions will imply equality almost everywhere, whereas a distribution by itself assigns no pointwise values to a function.
+A locally integrable function $u$ defines a distribution by $\langle u,\chi\rangle=\int_\Omega u\chi\,\mathrm d x$; on $\mathcal D_K(\Omega)$ the estimate holds with $m=0$ and $C=1+\int_K|u|\,\mathrm d x$. Likewise, a Radon measure defines a distribution by integration. These pairings are bilinear; no complex conjugation is involved. By \cref{prop:distribution-smoothing} below, a locally integrable function is determined by its distribution up to equality almost everywhere, so the distribution does not see the values of $u$ on a null set. A distribution $T$ vanishes on an open set $U\subset\Omega$ if $\langle T,\chi\rangle=0$ for every test function $\chi$ with $\Supp\chi\subset U$, and its support\index{support!of a distribution} $\Supp T$ is the complement in $\Omega$ of the union of all open sets on which $T$ vanishes.
 
-For a multi-index $\alpha$, define the distributional derivative\index{distribution!derivative} by
+For a multi-index $\alpha$, the distributional derivative\index{distribution!derivative} $\partial^\alpha T$ of $T\in\mathcal D'(\Omega)$ is defined by
 \[
  \langle\partial^\alpha T,\chi\rangle=(-1)^{|\alpha|}\langle T,\partial^\alpha\chi\rangle.
 \]
-The estimate for $T$ gives the distribution estimate for $\partial^\alpha T$ with order $m+|\alpha|$ on the same compact set. Integration by parts shows that this definition agrees with the classical derivative for smooth functions. If $a\in C^\infty(\Omega)$, multiplication is defined by $\langle aT,\chi\rangle=\langle T,a\chi\rangle$. Leibniz's formula bounds the derivatives of $a\chi$ on each compact set, so $aT$ is a distribution. Applying these definitions to a test function gives $\partial_j(aT)=a\partial_jT+(\partial_ja)T$.
+Since $p_{K,m}(\partial^\alpha\chi)\leq p_{K,m+|\alpha|}(\chi)$, the estimate for $T$ on $\mathcal D_K(\Omega)$ with order $m$ gives the estimate for $\partial^\alpha T$ with order $m+|\alpha|$. Integration by parts shows that this definition agrees with the classical derivative for smooth functions. If $a\in C^\infty(\Omega)$, the product $aT$ is defined by $\langle aT,\chi\rangle=\langle T,a\chi\rangle$; it is a distribution because Leibniz's formula bounds the derivatives of $a\chi$ on $K$ by those of $\chi$, with constants depending on $a$ and $K$. Unwinding the definitions on a test function gives the product rule $\partial_j(aT)=a\partial_jT+(\partial_ja)T$.
 
 \begin{example}\label{ex:dirac-derivative}
-For $x\in\Omega$, the Dirac measure\index{Dirac measure} $\delta_x$ satisfies $\langle\delta_x,\chi\rangle=\chi(x)$. In one real dimension, $\langle\delta'_0,\chi\rangle=-\chi'(0)$. This derivative is not integration against a locally finite signed measure: for a fixed cutoff $\eta=1$ near zero, the functions $\eta(x)\sin(nx)$ are uniformly bounded and have common compact support, while their pairings with $\delta'_0$ equal $-n$. Integration against a signed measure whose total variation is finite on that support would give a uniform bound.
+For $x\in\Omega$, the Dirac measure\index{Dirac measure} $\delta_x$ is the Radon measure with $\delta_x(E)=1$ if $x\in E$ and $\delta_x(E)=0$ otherwise; as a distribution, $\langle\delta_x,\chi\rangle=\chi(x)$. In one real dimension, if $0\in\Omega$, the derivative of $\delta_0$ satisfies $\langle\delta'_0,\chi\rangle=-\chi'(0)$. This distribution is not given by integration against a signed measure whose total variation is finite on compact sets. Indeed, fix a test function $\theta$ with $\theta(0)=1$, for example a suitable multiple of the function $\rho_\varepsilon$ of \cref{sec:convolution} with $\varepsilon$ small. The test functions $\chi_n(x)=\theta(x)\sin(nx)$ are bounded by $\sup|\theta|$ and supported in $\Supp\theta$, while $\langle\delta'_0,\chi_n\rangle=-n$. If $\langle\delta_0',\chi\rangle$ were equal to $\int\chi\,\mathrm d\sigma$, these pairings would be bounded by $\sup|\theta|\cdot|\sigma|(\Supp\theta)$.
 \end{example}
 
 \section{Convolution and approximate identities}
 \label{sec:convolution}
-Choose the nonnegative, even function
+Mollification, that is, convolution with a smooth kernel of small support, is our basic tool for approximating functions and distributions by smooth functions. Let
 \[
  \rho(x)=\begin{cases}c\exp(-(1-|x|^2)^{-1}),&|x|<1,\\0,&|x|\geq1,\end{cases}
- \qquad \int_{\mathbb R^d}\rho\,\mathrm d x=1.
+ \qquad \int_{\mathbb R^d}\rho\,\mathrm d x=1,
 \]
-The constant $c>0$ normalizes its integral. Differentiation inside the ball gives polynomial expressions in $(1-|x|^2)^{-1}$ times the exponential; they tend to zero at the boundary. Thus $\rho\in C_c^\infty(\mathbb R^d)$. Put $\rho_\varepsilon(x)=\varepsilon^{-d}\rho(x/\varepsilon)$ and $\Omega_\varepsilon=\{x\in\Omega:\operatorname{dist}(x,\mathbb R^d\setminus\Omega)>\varepsilon\}$. For $u\in L^1_{\loc}(\Omega)$ its mollification\index{mollification} is
+where the constant $c>0$ is chosen so that the integral equals $1$. Inside the unit ball, every partial derivative of $\rho$ is a polynomial in $x$ and $(1-|x|^2)^{-1}$ times $\exp(-(1-|x|^2)^{-1})$, and therefore tends to zero at the unit sphere, because $t^k\mathrm e^{-t}\to0$ as $t\to\infty$. Since every coordinate line meets the sphere in at most two points, the mean value theorem on coordinate segments shows inductively that $\rho$ has continuous partial derivatives of all orders on $\mathbb R^d$, all vanishing for $|x|\geq1$. Thus $\rho$ is a nonnegative even function in $C_c^\infty(\mathbb R^d)$. For $\varepsilon>0$ put $\rho_\varepsilon(x)=\varepsilon^{-d}\rho(x/\varepsilon)$, which is supported in the closed ball of radius $\varepsilon$ about $0$ and has integral $1$, and let
+\[
+ \Omega_\varepsilon=\{x\in\Omega:\operatorname{dist}(x,\mathbb R^d\setminus\Omega)>\varepsilon\}.
+\]
+For $u\in L^1_{\loc}(\Omega)$, its mollification\index{mollification} is
 \[
  u_\varepsilon(x)=(u*\rho_\varepsilon)(x)=\int_\Omega u(y)\rho_\varepsilon(x-y)\,\mathrm d y,\qquad x\in\Omega_\varepsilon.
 \]
-All integrals near a fixed $x\in\Omega_\varepsilon$ have support in a fixed compact subset of $\Omega$.
+If $x$ ranges over a compact subset $L$ of $\Omega_\varepsilon$, the integrand vanishes unless $y$ lies in the compact set $\{y:\operatorname{dist}(y,L)\leq\varepsilon\}\subset\Omega$, on which $u$ is integrable. The difference quotients of every derivative of $\rho_\varepsilon$ converge uniformly, by the mean value theorem and the uniform continuity of the next derivative, so we may differentiate under the integral sign: $u_\varepsilon\in C^\infty(\Omega_\varepsilon)$ and $\partial^\alpha u_\varepsilon=u*\partial^\alpha\rho_\varepsilon$. More generally, we write $(f*g)(x)=\int f(y)g(x-y)\,\mathrm dy$ for functions on $\mathbb R^d$ whenever the integral is defined.
 
 \Needspace{8\baselineskip}
 \begin{lemma}\label{lem:mollifier-density}
-Mollification of a continuous function converges uniformly on compact subsets. For $u\in L^p_{\loc}(\Omega)$, $1\leq p<\infty$, it converges in $L^p$ on compact subsets. If $\chi\in C_c^\infty(\Omega)$ is extended by zero, then $\chi*\rho_\varepsilon\to\chi$ in every derivative uniformly, with supports in one compact subset of $\Omega$ for small $\varepsilon$. There are smooth cutoffs equal to $1$ near any prescribed compact set and supported in any prescribed open neighborhood of it. Smooth compactly supported functions are dense in $C_c(\Omega)$ by uniform approximation with common compact support, and dense in $L^p(\mu)$ for every Radon measure $\mu$ and $1\leq p<\infty$.
+The following approximation properties hold as $\varepsilon\to0$.
+\begin{enumerate}
+\item If $u\in C(\Omega)$, then $u_\varepsilon\to u$ uniformly on every compact subset of $\Omega$.
+\item If $u\in L^p_{\loc}(\Omega)$ with $1\leq p<\infty$, then $u_\varepsilon\to u$ in $L^p(K)$ for every compact set $K\subset\Omega$.
+\item If $\chi\in C_c^\infty(\Omega)$ is extended by zero to $\mathbb R^d$, then for small $\varepsilon$ the functions $\chi*\rho_\varepsilon$ are supported in a fixed compact subset of $\Omega$, and $\partial^\alpha(\chi*\rho_\varepsilon)\to\partial^\alpha\chi$ uniformly for every multi-index $\alpha$.
+\item If $K\subset U\subset\Omega$ with $K$ compact and $U$ open, there is a smooth cutoff function for $K$ in $U$ which equals $1$ on a neighborhood of $K$.
+\item If $f\in C_c(\Omega)$ is extended by zero to $\mathbb R^d$, then for small $\varepsilon$ the functions $f*\rho_\varepsilon$ are test functions supported in a fixed compact subset of $\Omega$, and they converge uniformly to $f$. Consequently, $C_c^\infty(\Omega)$ is dense in $L^p(\mu)$ for every Radon measure $\mu$ on $\Omega$ and every $1\leq p<\infty$.
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-For continuous $u$, the difference from its convolution is bounded by $\sup_{|h|\leq\varepsilon}|u(x-h)-u(x)|$; uniform continuity on a slightly larger compact set proves the assertion. The same argument applied to $\partial^\alpha\chi$, together with differentiation under the compactly supported integral, proves the test-function assertion.
+(1) Since $\int\rho_\varepsilon=1$, we have $u_\varepsilon(x)-u(x)=\int(u(x-h)-u(x))\rho_\varepsilon(h)\,\mathrm dh$, so $|u_\varepsilon(x)-u(x)|\leq\sup_{|h|\leq\varepsilon}|u(x-h)-u(x)|$. If $K\subset\Omega$ is compact and $\delta>0$ is so small that $K'=\{x:\operatorname{dist}(x,K)\leq\delta\}\subset\Omega$, then for $\varepsilon<\delta$ this bound tends to zero uniformly on $K$, by the uniform continuity of $u$ on $K'$.
 
-For $v\in L^p(\mathbb R^d)$, translation is continuous in $L^p$. Indeed, it is continuous for $C_c$ functions by uniform continuity and a common compact support; \cref{prop:continuous-density} for Lebesgue measure and invariance of the $L^p$ norm under translation extend the assertion to $v$. Convexity of $|\cdot|^p$ and Tonelli give
+(2) We first show that translation is continuous in $L^p(\mathbb R^d)$: for $v\in L^p(\mathbb R^d)$, $\|v(\cdot-h)-v\|_p\to0$ as $h\to0$. For $v\in C_c(\mathbb R^d)$ this follows from uniform continuity, since for $|h|\leq1$ the functions $v(\cdot-h)$ are supported in a fixed compact set. For general $v$, choose $w\in C_c(\mathbb R^d)$ with $\|v-w\|_p$ small, by \cref{prop:continuous-density} applied to Lebesgue measure, and use the invariance of the $L^p$ norm under translation. Next, by Jensen's inequality for the convex function $|\cdot|^p$ and the probability measure $\rho_\varepsilon(h)\,\mathrm dh$,
+\[
+ |v*\rho_\varepsilon(x)-v(x)|^p=\Bigl|\int(v(x-h)-v(x))\rho_\varepsilon(h)\,\mathrm dh\Bigr|^p\leq\int|v(x-h)-v(x)|^p\rho_\varepsilon(h)\,\mathrm dh.
+\]
+(For integrands taking finitely many values this inequality is the definition of convexity, and the general case follows by approximation with simple functions and dominated convergence.) Integrating in $x$ and using Tonelli's theorem gives
 \[
  \|v*\rho_\varepsilon-v\|_p^p
- \leq\int\rho_\varepsilon(h)\|v(\cdot-h)-v\|_p^p\,\mathrm d h.
+ \leq\int\rho_\varepsilon(h)\|v(\cdot-h)-v\|_p^p\,\mathrm d h\leq\sup_{|h|\leq\varepsilon}\|v(\cdot-h)-v\|_p^p,
 \]
-The right side tends to zero by translation continuity. The convexity inequality for a probability integral follows first for finitely many values from convexity, and then by approximation by simple functions. Localizing $u$ to a relatively compact neighborhood of the compact set proves the local assertion.
+which tends to zero by continuity of translation. Now let $u\in L^p_{\loc}(\Omega)$ and $K\subset\Omega$ compact, choose $\delta>0$ with $\{x:\operatorname{dist}(x,K)\leq2\delta\}\subset\Omega$, and let $v$ equal $u$ on $W=\{x:\operatorname{dist}(x,K)<2\delta\}$ and $0$ elsewhere, so that $v\in L^p(\mathbb R^d)$. For $\varepsilon<\delta$ and $x\in K$, the integral defining $u_\varepsilon(x)$ only involves points of $W$, so $u_\varepsilon=v*\rho_\varepsilon$ on $K$ and $\|u_\varepsilon-u\|_{L^p(K)}\leq\|v*\rho_\varepsilon-v\|_p\to0$.
 
-For smooth cutoffs, choose a continuous cutoff equal to $1$ on a larger compact neighborhood and convolve it with $\rho_\varepsilon$, with $\varepsilon$ smaller than the two relevant separation distances. Its convolution is still $1$ near the original compact set and has support in the prescribed open set. The first assertion gives uniform smooth approximation of $C_c$ functions with common compact support. Combined with \cref{prop:continuous-density}, and the finite measure of this common support, it gives the last assertion.
+(3) The support of $\chi*\rho_\varepsilon$ is contained in the set of points at distance at most $\varepsilon$ from $\Supp\chi$, which is a fixed compact subset of $\Omega$ for $\varepsilon$ small. Differentiation under the integral sign gives $\partial^\alpha(\chi*\rho_\varepsilon)=(\partial^\alpha\chi)*\rho_\varepsilon$, and the argument of (1), applied to the uniformly continuous function $\partial^\alpha\chi$ on $\mathbb R^d$, proves uniform convergence.
+
+(4) Choose $\delta>0$ with $3\delta<\operatorname{dist}(K,\mathbb R^d\setminus U)$, and let $\eta$ be a continuous cutoff function for the compact set $\{x:\operatorname{dist}(x,K)\leq2\delta\}$ in the open set $\{x:\operatorname{dist}(x,K)<3\delta\}$. Choose $\varepsilon<\delta$ smaller than the distance from $\Supp\eta$ to $\mathbb R^d\setminus U$. Then $\eta*\rho_\varepsilon$ is smooth with values in $[0,1]$ and support in $U$, and it equals $1$ on the neighborhood $\{x:\operatorname{dist}(x,K)<\delta\}$ of $K$, because there the average only involves points where $\eta=1$.
+
+(5) The support statement is proved as in (3), and the functions $f*\rho_\varepsilon$ are smooth by differentiation under the integral sign. Uniform convergence follows from (1), applied on $\mathbb R^d$ to the continuous function $f$ extended by zero, because all the functions involved vanish outside a fixed compact set. If $g\in L^p(\mu)$, choose $f\in C_c(\Omega)$ with $\|g-f\|_{L^p(\mu)}$ small, by \cref{prop:continuous-density}. If all $f*\rho_\varepsilon$ are supported in the compact set $L$, then $\|f*\rho_\varepsilon-f\|_{L^p(\mu)}\leq\sup|f*\rho_\varepsilon-f|\,\mu(L)^{1/p}\to0$, which proves the density assertion.
 \end{proof}
 
+For a distribution, mollification is defined by letting the distribution act on the translated kernel. If $x\in\Omega_\varepsilon$, then $\rho_\varepsilon(x-\cdot)$ is a test function on $\Omega$, supported in the closed ball of radius $\varepsilon$ about $x$. For $T$ given by a function $u\in L^1_{\loc}(\Omega)$, the function $T_\varepsilon$ in the next proposition is the mollification $u_\varepsilon$.
+
 \begin{proposition}\label{prop:distribution-smoothing}
-For $T\in\mathcal D'(\Omega)$, define
+Let $T\in\mathcal D'(\Omega)$ and $\varepsilon>0$, and define
 \[
  T_\varepsilon(x)=\langle T,\rho_\varepsilon(x-\cdot)\rangle,\qquad x\in\Omega_\varepsilon.
 \]
-Then $T_\varepsilon$ is smooth, $\partial^\alpha T_\varepsilon=(\partial^\alpha T)_\varepsilon$, and $T_\varepsilon\to T$ in the sense that $\int T_\varepsilon\chi\,\mathrm d x\to\langle T,\chi\rangle$ for every test function $\chi$. Positive distributions have nonnegative mollifications. The maps from locally integrable functions and Radon measures to distributions are injective, with functions identified up to almost-everywhere equality.
+\begin{enumerate}
+\item The function $T_\varepsilon$ is smooth on $\Omega_\varepsilon$, and $\partial^\alpha T_\varepsilon=(\partial^\alpha T)_\varepsilon$ for every multi-index $\alpha$.
+\item For every test function $\chi$, we have $\int T_\varepsilon\chi\,\mathrm d x\to\langle T,\chi\rangle$ as $\varepsilon\to0$; the integral is defined as soon as $\Supp\chi\subset\Omega_\varepsilon$.
+\item If $T$ is positive, then $T_\varepsilon\geq0$.
+\item A locally integrable function on $\Omega$ is determined by its distribution up to equality almost everywhere, and a Radon measure on $\Omega$ is determined by its distribution.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-On a compact subset of $\Omega_\varepsilon$, the functions $\rho_\varepsilon(x-\cdot)$ have common compact support. Difference quotients in $x$ converge in every test-function seminorm to their differentiated kernels, by Taylor's formula applied to all derivatives of $\rho_\varepsilon$. The distribution estimate therefore permits differentiation of the pairing. Since $\partial_y^\alpha\rho_\varepsilon(x-y)=(-1)^{|\alpha|}\partial_x^\alpha\rho_\varepsilon(x-y)$, it also gives the derivative identity.
+(1) Fix $x\in\Omega_\varepsilon$ and $\delta>0$ such that the closed ball $\overline B(x,\delta)$ lies in $\Omega_\varepsilon$. For $|x'-x|\leq\delta$, the test functions $\rho_\varepsilon(x'-\cdot)$ are supported in the compact set $K=\overline B(x,\delta+\varepsilon)\subset\Omega$. Let $e_j$ be a coordinate unit vector. Taylor's formula, applied to all derivatives of $\rho_\varepsilon$, shows that the difference quotients $t^{-1}(\rho_\varepsilon(x+te_j-\cdot)-\rho_\varepsilon(x-\cdot))$ converge to $(\partial_j\rho_\varepsilon)(x-\cdot)$ in every seminorm $p_{K,m}$ as $t\to0$; similarly, $\rho_\varepsilon(x'-\cdot)\to\rho_\varepsilon(x-\cdot)$ in every $p_{K,m}$ as $x'\to x$. By the estimate of \cref{def:distribution} on $\mathcal D_K(\Omega)$, the function $T_\varepsilon$ is continuous at $x$, and $\partial_jT_\varepsilon(x)=\langle T,(\partial_j\rho_\varepsilon)(x-\cdot)\rangle$. Applying the same argument to the derivatives of $\rho_\varepsilon$, we find by induction that $T_\varepsilon$ is smooth and $\partial^\alpha T_\varepsilon(x)=\langle T,(\partial^\alpha\rho_\varepsilon)(x-\cdot)\rangle$. Since $\partial_y^\alpha[\rho_\varepsilon(x-y)]=(-1)^{|\alpha|}(\partial^\alpha\rho_\varepsilon)(x-y)$, the definition of the distributional derivative gives
+\[
+ (\partial^\alpha T)_\varepsilon(x)=(-1)^{|\alpha|}\langle T,\partial^\alpha_y[\rho_\varepsilon(x-y)]\rangle=\langle T,(\partial^\alpha\rho_\varepsilon)(x-\cdot)\rangle=\partial^\alpha T_\varepsilon(x).
+\]
 
-For $\Supp\chi\subset\Omega_\varepsilon$ we have
+(2) Let $\chi$ be a test function with $\Supp\chi\subset\Omega_\varepsilon$. We first prove
 \begin{equation}\label{eq:distribution-convolution-pairing}
  \int T_\varepsilon(x)\chi(x)\,\mathrm d x
  =\langle T,\chi*\rho_\varepsilon\rangle.
 \end{equation}
-To justify the interchange, approximate the integral of $\chi(x)\rho_\varepsilon(x-\cdot)$ by Riemann sums in a fixed box containing $\Supp\chi$. The integrand and each of its derivatives in the second variable are uniformly continuous on the relevant compact product, so the sums converge in each $p_{K,m}$ to the integral. Applying the distribution estimate proves \eqref{eq:distribution-convolution-pairing}; evenness of $\rho$ gives the displayed convolution. Now \cref{lem:mollifier-density} gives distributional convergence. Positivity gives $T_\varepsilon(x)\geq0$ directly.
+Since $\rho$ is even, $(\chi*\rho_\varepsilon)(y)=\int\chi(x)\rho_\varepsilon(x-y)\,\mathrm dx$, and $\chi*\rho_\varepsilon$ is a test function supported in the compact set $K$ of points at distance at most $\varepsilon$ from $\Supp\chi$, which lies in $\Omega$. Divide a closed cube containing $\Supp\chi$ into $N^d$ congruent subcubes $Q_l$ with centers $c_l$, and put
+\[
+ S_N(y)=\sum_l\chi(c_l)\rho_\varepsilon(c_l-y)|Q_l|.
+\]
+Only terms with $c_l\in\Supp\chi$ contribute, so $S_N$ is a finite linear combination of test functions $\rho_\varepsilon(c_l-\cdot)$ with $c_l\in\Omega_\varepsilon$; it belongs to $\mathcal D_K(\Omega)$, and $\langle T,S_N\rangle=\sum_l\chi(c_l)T_\varepsilon(c_l)|Q_l|$. As $N\to\infty$, this is a Riemann sum for the continuous function $T_\varepsilon\chi$, extended by zero, and so it tends to $\int T_\varepsilon\chi\,\mathrm dx$. On the other hand, for every multi-index $\beta$, $\partial^\beta S_N(y)$ is a Riemann sum for the integral of $x\mapsto\chi(x)\partial^\beta_y[\rho_\varepsilon(x-y)]$, a function that is uniformly continuous in $(x,y)$; hence $\partial^\beta S_N\to\partial^\beta(\chi*\rho_\varepsilon)$ uniformly, that is, $S_N\to\chi*\rho_\varepsilon$ in every seminorm $p_{K,m}$. The estimate for $T$ on $\mathcal D_K(\Omega)$ gives $\langle T,S_N\rangle\to\langle T,\chi*\rho_\varepsilon\rangle$, which proves \eqref{eq:distribution-convolution-pairing}. Finally, by \cref{lem:mollifier-density}, the functions $\chi*\rho_\varepsilon$ are supported in a fixed compact set for small $\varepsilon$ and converge to $\chi$ together with all their derivatives uniformly; the estimate for $T$ on that compact set gives $\langle T,\chi*\rho_\varepsilon\rangle\to\langle T,\chi\rangle$.
 
-If a locally integrable function has zero distribution, all its mollifications vanish. Their local $L^1$ convergence gives that it vanishes almost everywhere. If two Radon measures agree on smooth tests, uniform approximation with common compact support makes them agree on $C_c$; \cref{thm:positive-functional-measure} gives equality of the measures.
+(3) If $T$ is positive, then $T_\varepsilon(x)\geq0$ because $\rho_\varepsilon(x-\cdot)$ is a nonnegative test function.
+
+(4) If $u\in L^1_{\loc}(\Omega)$ defines the zero distribution, then $u_\varepsilon=T_\varepsilon=0$ for every $\varepsilon$. Since $u_\varepsilon\to u$ in $L^1(K)$ for every compact $K\subset\Omega$ by \cref{lem:mollifier-density}, $u=0$ almost everywhere. Applied to the difference of two functions, this proves the first assertion. If two Radon measures $\mu$ and $\nu$ define the same distribution, then $\int f\,\mathrm d\mu=\int f\,\mathrm d\nu$ for every $f\in C_c(\Omega)$: by \cref{lem:mollifier-density}, $f$ is the uniform limit of test functions $\chi$ supported in a fixed compact set $L$, and $|\int(f-\chi)\,\mathrm d\mu|\leq\|f-\chi\|_\infty\mu(L)$, and similarly for $\nu$. The uniqueness part of \cref{thm:positive-functional-measure} gives $\mu=\nu$.
 \end{proof}
 
 \begin{theorem}\label{thm:positive-distribution-measure}
-A positive distribution is integration against a unique Radon measure. Conversely, every Radon measure defines a positive distribution.
+Let $T$ be a positive distribution on $\Omega$. Then there is a unique Radon measure $\mu$ on $\Omega$ such that $\langle T,\chi\rangle=\int\chi\,\mathrm d\mu$ for every test function $\chi$. Conversely, every Radon measure defines a positive distribution in this way.
 \end{theorem}
 \begin{proof}
-Choose a nonnegative smooth cutoff $\eta=1$ on a neighborhood of a compact set $K$. For real tests supported in $K$, positivity gives
+Let $K\subset\Omega$ be compact, and let $\eta$ be a smooth cutoff function for $K$ in $\Omega$ (\cref{lem:mollifier-density}). For every real test function $\chi$ with $\Supp\chi\subset K$, the test functions $\|\chi\|_\infty\eta\pm\chi$ are nonnegative, so positivity gives
 \[
  |\langle T,\chi\rangle|\leq\langle T,\eta\rangle\|\chi\|_\infty.
 \]
-Every real $f\in C_c(\Omega)$ has smooth approximations with common compact support by \cref{lem:mollifier-density}. The displayed estimate makes their pairings Cauchy and independent of the approximation. Taking a common compact support for two approximation sequences proves this independence; taking one for finitely many functions proves linearity of the extension. For $f\geq0$, its nonnegative mollifications prove positivity of the extension. Apply \cref{thm:positive-functional-measure}, and use \cref{prop:distribution-smoothing} for uniqueness. The converse follows by integration and the bound $|\int\chi\,\mathrm d\mu|\leq\mu(K)\|\chi\|_\infty$.
+We use this bound to extend $T$ to $C_c(\Omega,\mathbb R)$. Let $f\in C_c(\Omega,\mathbb R)$. By \cref{lem:mollifier-density}, the real test functions $f*\rho_\varepsilon$ are supported in a fixed compact set for small $\varepsilon$ and converge uniformly to $f$. By the displayed estimate, for any sequence $\varepsilon_k\to0$ the numbers $\langle T,f*\rho_{\varepsilon_k}\rangle$ form a Cauchy sequence, and the same estimate shows that the limit $\Lambda(f)$ does not depend on the choice of uniformly convergent approximations by real test functions, as long as they are supported in a common compact set. Applying this to approximations of $f$ and $g$ supported in a common compact set shows that $\Lambda$ is linear. If $f\geq0$, the approximations $f*\rho_\varepsilon$ are nonnegative, so $\Lambda(f)\geq0$. Thus $\Lambda$ is a positive linear functional on $C_c(\Omega,\mathbb R)$, and \cref{thm:positive-functional-measure} gives a Radon measure $\mu$ with $\Lambda(f)=\int f\,\mathrm d\mu$. For a real test function $\chi$, the constant approximation shows that $\Lambda(\chi)=\langle T,\chi\rangle$; applying this to $\Real\chi$ and $\Img\chi$ gives $\langle T,\chi\rangle=\int\chi\,\mathrm d\mu$ for every test function. The measure $\mu$ is unique by \cref{prop:distribution-smoothing}. Conversely, if $\mu$ is a Radon measure, then $|\int\chi\,\mathrm d\mu|\leq(1+\mu(K))p_{K,0}(\chi)$ for $\chi\in\mathcal D_K(\Omega)$, so integration against $\mu$ is a distribution, and it is positive because the integral of a nonnegative function is nonnegative.
 \end{proof}
 
 \section{Weak convergence of measures}
 \label{sec:weak-measures}
-The weak topology on $\mathcal D'(\Omega)$ is the topology generated by the maps $T\mapsto\langle T,\chi\rangle$. A net converges in this topology exactly when its pairings with every test function converge. For Radon measures, vague convergence\index{measure!vague convergence} means convergence of the integrals against every $f\in C_c(\Omega)$. For finite Radon measures, narrow convergence\index{measure!narrow convergence} means convergence against every bounded continuous function. These are different topologies on a noncompact space.
+Limits of potentials lead to limits of their Laplacians, and hence to limits of measures. Since the families we encounter are not always sequences, we work with nets. A directed set\index{directed set} is a nonempty set $I$ with a preorder $\leq$ in which every two elements have a common upper bound. A net\index{net} $(x_i)_{i\in I}$ in a topological space $X$ is a map $i\mapsto x_i$ from a directed set $I$ to $X$. It converges to $x\in X$ if for every neighborhood $U$ of $x$ there is $i_0\in I$ with $x_i\in U$ for all $i\geq i_0$. For a net $(a_i)$ of real numbers we put $\liminf_i a_i=\sup_{i_0}\inf_{i\geq i_0}a_i$ and $\limsup_i a_i=\inf_{i_0}\sup_{i\geq i_0}a_i$.
+
+The weak topology on $\mathcal D'(\Omega)$ is the weakest topology for which all maps $T\mapsto\langle T,\chi\rangle$, $\chi\in C_c^\infty(\Omega)$, are continuous. A net $(T_i)$ converges to $T$ in this topology exactly when $\langle T_i,\chi\rangle\to\langle T,\chi\rangle$ for every test function $\chi$, and we then say that $T_i\to T$ in the sense of distributions. Similarly, the vague topology on the set of Radon measures on $\Omega$ is the weakest topology for which all maps $\mu\mapsto\int f\,\mathrm d\mu$, $f\in C_c(\Omega)$, are continuous; a net $(\mu_i)$ converges vaguely\index{measure!vague convergence} to $\mu$ if $\int f\,\mathrm d\mu_i\to\int f\,\mathrm d\mu$ for every $f\in C_c(\Omega)$. A net of finite Radon measures converges narrowly\index{measure!narrow convergence} to a finite Radon measure $\mu$ if the same holds for every bounded continuous function $f$ on $\Omega$. Narrow convergence implies vague convergence, but not conversely, because mass can escape to infinity or to the boundary of $\Omega$; see \cref{ex:escaping-mass}.
 
 \begin{proposition}\label{prop:positive-distribution-convergence}
-If positive distributions $T_i$ converge distributionally to $T$, then $T$ is positive, and the associated Radon measures converge vaguely. Conversely, vague convergence of Radon measures implies distributional convergence.
+Let $(T_i)$ be a net of positive distributions on $\Omega$ which converges in the sense of distributions to $T\in\mathcal D'(\Omega)$. Then $T$ is positive, and the Radon measures associated with the $T_i$ by \cref{thm:positive-distribution-measure} converge vaguely to the Radon measure associated with $T$. Conversely, if a net of Radon measures converges vaguely, then the associated distributions converge in the sense of distributions.
 \end{proposition}
 \begin{proof}
-The limit of the nonnegative numbers $\langle T_i,\chi\rangle$ is nonnegative for every nonnegative test, so \cref{thm:positive-distribution-measure} applies to $T$. For a fixed compact $K$, a nonnegative smooth cutoff $\eta=1$ on $K$ gives $\mu_i(K)\leq\langle T_i,\eta\rangle$. The latter numbers are eventually bounded. Approximate any $f\in C_c(\Omega)$ uniformly by smooth tests supported in a common compact $K'$. The eventual bound for $\mu_i(K')$, and the corresponding finite bound for $\mu(K')$, make the integral errors uniformly small. Distributional convergence on the approximating test proves vague convergence. The converse uses the inclusion $C_c^\infty\subset C_c$.
+For every nonnegative test function $\chi$, the numbers $\langle T_i,\chi\rangle$ are nonnegative, so their limit $\langle T,\chi\rangle$ is nonnegative; similarly, $\langle T,\chi\rangle$ is real for real $\chi$. Hence $T$ is positive, and by \cref{thm:positive-distribution-measure} the distributions $T$ and $T_i$ are given by Radon measures $\mu$ and $\mu_i$. Let $f\in C_c(\Omega)$. By \cref{lem:mollifier-density}, there is a compact set $L\subset\Omega$ such that $f$ is the uniform limit of test functions supported in $L$. Let $\eta$ be a smooth cutoff function for $L$ in $\Omega$. Then $\mu_i(L)\leq\langle T_i,\eta\rangle\to\langle T,\eta\rangle$, so there is $i_0$ with $\mu_i(L)\leq C=\langle T,\eta\rangle+1$ for all $i\geq i_0$; also $\mu(L)\leq\langle T,\eta\rangle<C$. For every test function $\chi$ supported in $L$ and every $i\geq i_0$,
+\[
+ \left|\int f\,\mathrm d\mu_i-\int f\,\mathrm d\mu\right|\leq2C\|f-\chi\|_\infty+|\langle T_i,\chi\rangle-\langle T,\chi\rangle|,
+\]
+so $\limsup_i|\int f\,\mathrm d\mu_i-\int f\,\mathrm d\mu|\leq2C\|f-\chi\|_\infty$, which can be made arbitrarily small. Thus $\mu_i\to\mu$ vaguely. (For a net, the convergence of $\langle T_i,\eta\rangle$ only yields a bound for $i\geq i_0$, which is all we need.) The converse holds because every test function belongs to $C_c(\Omega)$.
 \end{proof}
 
 \begin{proposition}\label{prop:vague-set-inequalities}
-If $\mu_i\to\mu$ vaguely, then for every open $U$ and compact $K$,
+Let $(\mu_i)$ be a net of Radon measures on $\Omega$ converging vaguely to a Radon measure $\mu$. Then for every open set $U\subset\Omega$ and every compact set $K\subset\Omega$,
 \[
  \mu(U)\leq\liminf_i\mu_i(U),\qquad
  \limsup_i\mu_i(K)\leq\mu(K).
 \]
-For nets, $\liminf_i a_i=\sup_{i_0}\inf_{i\geq i_0}a_i$ and $\limsup_i a_i=\inf_{i_0}\sup_{i\geq i_0}a_i$. If $E$ is a relatively compact Borel set and $\mu(\partial_\Omega E)=0$, then $\mu_i(E)\to\mu(E)$. Here $\partial_\Omega E$ is the boundary of $E$ in $\Omega$.
+Consequently, if $E\Subset\Omega$ is a Borel set whose boundary $\partial_\Omega E$ in $\Omega$ satisfies $\mu(\partial_\Omega E)=0$, then $\mu_i(E)\to\mu(E)$.
 \end{proposition}
 \begin{proof}
-For $0\leq f\leq1$ supported in $U$, convergence gives $\int f\,\mathrm d\mu\leq\liminf_i\mu_i(U)$. Take the supremum using \eqref{eq:measure-open-tests}. For $K$, outer regularity gives a relatively compact open $V\supset K$ with $\mu(V)<\mu(K)+\varepsilon$. A cutoff equal to $1$ on $K$ and supported in $V$ gives $\limsup_i\mu_i(K)\leq\int\eta\,\mathrm d\mu\leq\mu(V)$. Let $\varepsilon\downarrow0$. Apply these inequalities to $\Int E$ and $\overline E$, whose measures both equal $\mu(E)$ under the boundary hypothesis.
+Let $f\in C_c(\Omega)$ with $0\leq f\leq1$ and $\Supp f\subset U$. Then $\int f\,\mathrm d\mu_i\leq\mu_i(U)$ for every $i$, so $\int f\,\mathrm d\mu=\lim_i\int f\,\mathrm d\mu_i\leq\liminf_i\mu_i(U)$. Taking the supremum over such $f$ and using \eqref{eq:measure-open-tests} gives the first inequality. For the second, let $\varepsilon>0$. By outer regularity, there is an open set $V\supset K$ with $\mu(V)<\mu(K)+\varepsilon$, and if $\eta$ is a cutoff function for $K$ in $V$, then $\mu_i(K)\leq\int\eta\,\mathrm d\mu_i\to\int\eta\,\mathrm d\mu\leq\mu(V)$. Hence $\limsup_i\mu_i(K)\leq\mu(K)+\varepsilon$ for every $\varepsilon>0$. Finally, let $E$ be as in the last assertion. Its closure $\overline E$ in $\Omega$ is compact, and $\overline E\setminus\Int E=\partial_\Omega E$ is a $\mu$-null set, so $\mu(\Int E)=\mu(E)=\mu(\overline E)$. The two inequalities give
+\[
+ \mu(E)=\mu(\Int E)\leq\liminf_i\mu_i(\Int E)\leq\liminf_i\mu_i(E)
+\]
+and
+\[
+ \limsup_i\mu_i(E)\leq\limsup_i\mu_i(\overline E)\leq\mu(\overline E)=\mu(E),
+\]
+so $\mu_i(E)\to\mu(E)$.
 \end{proof}
 
 \begin{proposition}\label{prop:tight-vague-narrow}
-Let $\mu_i$ be finite Radon measures converging vaguely to $\mu$. Suppose that they are eventually uniformly tight: for every $\varepsilon>0$ there are a compact $K\subset\Omega$ and an index $i_0$ such that $\mu_i(\Omega\setminus K)<\varepsilon$ for all $i\geq i_0$. Then $\mu$ is finite and $\mu_i\to\mu$ narrowly. In particular, $\mu_i(\Omega)\to\mu(\Omega)$.
+Let $(\mu_i)$ be a net of finite Radon measures on $\Omega$ converging vaguely to $\mu$. Suppose that the net is eventually uniformly tight: for every $\varepsilon>0$ there are a compact set $K\subset\Omega$ and an index $i_0$ such that $\mu_i(\Omega\setminus K)<\varepsilon$ for all $i\geq i_0$. Then $\mu$ is finite and $\mu_i\to\mu$ narrowly. In particular, $\mu_i(\Omega)\to\mu(\Omega)$.
 \end{proposition}
 \begin{proof}
-The open-set inequality gives $\mu(\Omega\setminus K)\leq\varepsilon$, and $\mu(K)<\infty$, so $\mu$ is finite. For bounded continuous $f$, choose a cutoff $0\leq\eta\leq1$ equal to $1$ on $K$. The integrals of $f\eta$ converge vaguely, while
+Let $\varepsilon>0$, and choose $K$ and $i_0$ as in the hypothesis. Since $\Omega\setminus K$ is open, \cref{prop:vague-set-inequalities} gives $\mu(\Omega\setminus K)\leq\liminf_i\mu_i(\Omega\setminus K)\leq\varepsilon$; as $\mu(K)<\infty$, the measure $\mu$ is finite. Let $f$ be a bounded continuous function on $\Omega$ and let $\eta$ be a cutoff function for $K$ in $\Omega$. Then $f\eta\in C_c(\Omega)$, so $\int f\eta\,\mathrm d\mu_i\to\int f\eta\,\mathrm d\mu$. Since $0\leq1-\eta\leq1$ and $1-\eta$ vanishes on $K$, we have for $i\geq i_0$
 \[
  \left|\int f(1-\eta)\,\mathrm d\mu_i\right|\leq\|f\|_\infty\varepsilon,
  \qquad
  \left|\int f(1-\eta)\,\mathrm d\mu\right|\leq\|f\|_\infty\varepsilon.
 \]
-Letting $\varepsilon\downarrow0$ proves the assertion, including $f=1$.
+Hence $\limsup_i|\int f\,\mathrm d\mu_i-\int f\,\mathrm d\mu|\leq2\|f\|_\infty\varepsilon$. Letting $\varepsilon\downarrow0$ proves narrow convergence, and the choice $f=1$ gives $\mu_i(\Omega)\to\mu(\Omega)$.
 \end{proof}
 
 \begin{example}\label{ex:escaping-mass}
-On $\mathbb R$, $\delta_j$ converges vaguely to zero, but its total mass is always one. On $(0,1)$, the sequence $\delta_{1/j}$ for $j\geq2$ has the same behavior: mass escapes through a boundary omitted from the space. Local distributional convergence cannot by itself recover total mass.
+On $\mathbb R$, the Dirac measures $\delta_j$, $j\geq1$, converge vaguely to zero, since $f(j)=0$ for every $f\in C_c(\mathbb R)$ and all large $j$; yet each of them has total mass one. Similarly, on $\Omega=(0,1)$ the measures $\delta_{1/j}$, $j\geq2$, converge vaguely to zero; here the mass escapes through the boundary point $0$, which does not belong to $\Omega$. Neither sequence is eventually uniformly tight, and vague convergence alone does not determine the limit of the total masses.
 \end{example}
 
 \begin{theorem}\label{thm:local-measure-selection}
-Every sequence of Radon measures with $\sup_j\mu_j(K)<\infty$ for every compact $K\subset\Omega$ has a vaguely convergent subsequence. An eventually uniformly tight such sequence has a narrowly convergent subsequence with a finite limit.
+Let $(\mu_j)$ be a sequence of Radon measures on $\Omega$ such that $\sup_j\mu_j(K)<\infty$ for every compact set $K\subset\Omega$. Then $(\mu_j)$ has a vaguely convergent subsequence. If, moreover, the $\mu_j$ are finite and the sequence is eventually uniformly tight, then $(\mu_j)$ has a narrowly convergent subsequence, and its limit is finite.
 \end{theorem}
 \begin{proof}
-There is a countable family of real $C_c$ functions which is uniformly dense among functions with any given compact support, allowing the approximations to have a common slightly larger compact support. To construct it, triangulate rational grids in $\mathbb R^d$, prescribe rational values at their finitely many vertices, and interpolate linearly on each simplex, setting all but finitely many vertex values to zero. Retain the functions whose supports are compactly contained in $\Omega$. For a continuous compactly supported function, uniform continuity makes its interpolants on fine grids converge uniformly; rational perturbations of vertex values add arbitrarily small error. The supports remain in a fixed compact neighborhood of the original support.
+\emph{Step 1: a countable dense family.} Let $\varphi(t)=\max\{0,1-|t|\}$ for $t\in\mathbb R$, so that $\sum_{n\in\mathbb Z}\varphi(t-n)=1$ for every $t$. For $k\geq1$ and $n\in\mathbb Z^d$ put $\varphi_{k,n}(x)=\prod_{l=1}^d\varphi(2^kx_l-n_l)$. These functions are continuous and nonnegative, $\varphi_{k,n}(x)\neq0$ only if $|x-2^{-k}n|_\infty<2^{-k}$, where $|\cdot|_\infty$ denotes the maximum norm, and $\sum_n\varphi_{k,n}=1$ on $\mathbb R^d$. Let $\mathcal F$ be the countable family of all functions $\sum_nq_n\varphi_{k,n}$, with $k\geq1$ and finitely many nonzero rational coefficients $q_n$, whose support is a compact subset of $\Omega$. Given $f\in C_c(\Omega,\mathbb R)$, extended by zero to $\mathbb R^d$, choose rational numbers $q_{k,n}$ with $|q_{k,n}-f(2^{-k}n)|\leq2^{-k}$ and $q_{k,n}=0$ whenever $f(2^{-k}n)=0$, and put $f_k=\sum_nq_{k,n}\varphi_{k,n}$. Since the $\varphi_{k,n}$ are nonnegative with sum $1$,
+\[
+ |f_k(x)-f(x)|\leq\sum_n|q_{k,n}-f(x)|\varphi_{k,n}(x)\leq2^{-k}+\sup\{|f(y)-f(x)|:|y-x|_\infty<2^{-k}\},
+\]
+which tends to zero uniformly in $x$ by the uniform continuity of $f$. Moreover, $f_k$ vanishes outside the set of points at $|\cdot|_\infty$-distance at most $2^{-k}$ from $\Supp f$; for $k$ larger than some $k_0$ these sets are contained in a fixed compact set $L\subset\Omega$. Hence every $f\in C_c(\Omega,\mathbb R)$ is the uniform limit of functions in $\mathcal F$ supported in a fixed compact subset of $\Omega$.
 
-Enumerate this family. Its integrals against $\mu_j$ are bounded by the assumed compact mass bounds. Successive subsequence extraction and the diagonal subsequence make all these integrals converge. Uniform approximation with common compact support then makes the integrals of every real $f\in C_c$ Cauchy. Their limits define a positive linear functional, which is a Radon measure by \cref{thm:positive-functional-measure}. Thus the subsequence converges vaguely. The tightness assertion follows from \cref{prop:tight-vague-narrow}; passing to a subsequence preserves eventual uniform tightness.
+\emph{Step 2: diagonal extraction.} Enumerate $\mathcal F=\{g_1,g_2,\ldots\}$. For each $l$, the numbers $\int g_l\,\mathrm d\mu_j$ are bounded by $\|g_l\|_\infty\sup_j\mu_j(\Supp g_l)<\infty$. Choosing successively convergent subsequences for $g_1,g_2,\ldots$ and passing to the diagonal subsequence, we obtain a subsequence $(\mu_{j_k})$ such that $\int g_l\,\mathrm d\mu_{j_k}$ converges for every $l$. Now let $f\in C_c(\Omega,\mathbb R)$, and choose $L$ and approximations $f_m\in\mathcal F$ supported in $L$ as in Step 1. With $C_L=\sup_j\mu_j(L)$,
+\[
+ \left|\int f\,\mathrm d\mu_{j_k}-\int f\,\mathrm d\mu_{j_{k'}}\right|\leq2C_L\|f-f_m\|_\infty+\left|\int f_m\,\mathrm d\mu_{j_k}-\int f_m\,\mathrm d\mu_{j_{k'}}\right|,
+\]
+so $(\int f\,\mathrm d\mu_{j_k})_k$ is a Cauchy sequence. Its limit $\Lambda(f)$ defines a positive linear functional on $C_c(\Omega,\mathbb R)$, which is integration against a Radon measure $\mu$ by \cref{thm:positive-functional-measure}. Thus $\mu_{j_k}\to\mu$ vaguely; complex-valued $f$ are handled by linearity. If the $\mu_j$ are finite and the sequence is eventually uniformly tight, then so is every subsequence, and \cref{prop:tight-vague-narrow} shows that $\mu$ is finite and $\mu_{j_k}\to\mu$ narrowly.
 \end{proof}
 
-\section{Directed limits and compactness}
+\section{Nets and compactness}
 \label{sec:nets-compactness}
-A directed set\index{directed set} is a nonempty preordered set in which every pair has a common upper bound. A net\index{net} in a space $X$ is a map $i\mapsto x_i$ from a directed set $I$. It converges to $x$ if for every neighborhood $U$ of $x$ there is $i_0$ with $x_i\in U$ for $i\geq i_0$. An increasing final map $h:J\to I$ gives the Willard subnet\index{subnet!Willard} $x_{h(j)}$: final means that for every $i_0$ all sufficiently large $j$ satisfy $h(j)\geq i_0$. Every subnet of a convergent net has the same limit, by these two eventual assertions. The weak topologies above need not have countable neighborhood bases, so selection of sequences is not a substitute for a subnet assertion.
+The weak topology on $\mathcal D'(\Omega)$ and the vague topology need not have countable neighborhood bases, so compactness in these topologies cannot in general be detected by sequences, and subnets must take the place of subsequences. As stated in the Conventions, a subnet always means a Willard subnet\index{subnet!Willard}. Explicitly, let $(x_i)_{i\in I}$ be a net and let $h\colon J\to I$ be an increasing map from a directed set $J$ which is final, that is, for every $i_0\in I$ there is $j_0\in J$ with $h(j)\geq i_0$ for all $j\geq j_0$; then $(x_{h(j)})_{j\in J}$ is a subnet of $(x_i)$. If $(x_i)$ converges to $x$, then so does each of its subnets: given a neighborhood $U$ of $x$, choose $i_0$ with $x_i\in U$ for $i\geq i_0$, and then $j_0$ as in the definition of finality.
 
 \begin{proposition}\label{prop:compact-net-characterization}
-A space is compact if and only if every net has a convergent Willard subnet.
+A topological space $X$ is compact if and only if every net in $X$ has a convergent Willard subnet.
 \end{proposition}
 \begin{proof}
-In a compact space the closed tail sets $\overline{\{x_i:i\geq i_0\}}$ have the finite intersection property, so their intersection contains a point $x$. The finite intersection property follows from directedness; nonempty intersection is equivalent to the open-cover definition of compactness, by taking complements. Thus every neighborhood $U$ of $x$ meets every tail of the net.
+Suppose first that $X$ is compact, and let $(x_i)_{i\in I}$ be a net in $X$. For $i_0\in I$ let $T_{i_0}$ be the closure of the tail $\{x_i:i\geq i_0\}$. Finitely many of these sets $T_{i_1},\ldots,T_{i_n}$ all contain the tail of a common upper bound of $i_1,\ldots,i_n$, so they have nonempty intersection. Since $X$ is compact, a family of closed sets with this finite intersection property has nonempty intersection; otherwise the complements would form an open cover without a finite subcover. Choose a point $x$ in all the sets $T_{i_0}$. Then every neighborhood of $x$ meets every tail of the net.
 
-Use triples $(i,U,k)$ with $k\geq i$ and $x_k\in U$, where $U$ is an open neighborhood of $x$. Order them by
+Let $J$ be the set of triples $(i,U,k)$ with $i,k\in I$, $k\geq i$, $U$ an open neighborhood of $x$, and $x_k\in U$, preordered by
 \[
  (i,U,k)\leq(i',U',k')\quad\text{if }i\leq i',\ U'\subset U,\ k\leq k'.
 \]
-This is directed: dominate the two first and third indices, intersect the neighborhoods, and use the tail property to choose a larger third index in that intersection. The map $(i,U,k)\mapsto k$ is increasing and final, and the resulting subnet converges to $x$.
+The set $J$ is nonempty, since $(i,X,i)\in J$ for every $i\in I$. It is directed: given $(i_1,U_1,k_1)$ and $(i_2,U_2,k_2)$ in $J$, choose $i\in I$ with $i\geq i_1,i_2,k_1,k_2$, put $U=U_1\cap U_2$, and choose $k\geq i$ with $x_k\in U$, which is possible because $U$ meets the tail of $i$; then $(i,U,k)$ dominates both triples. The map $h(i,U,k)=k$ is increasing, and it is final, because $(i,U,k)\geq(i_0,X,i_0)$ implies $k\geq i\geq i_0$. Finally, the subnet $(x_{h(j)})_{j\in J}$ converges to $x$: if $V$ is a neighborhood of $x$, choose an open neighborhood $U\subset V$ of $x$ and a triple $(i,U,k)\in J$; then $x_{k'}\in U'\subset U\subset V$ for every $(i',U',k')\geq(i,U,k)$.
 
-Conversely, suppose an open cover has no finite subcover. Index its finite subfamilies by inclusion, and choose $x_F$ outside the union of $F$. A convergent subnet would eventually lie in a cover member containing its limit, while finality would eventually make its index contain that member. These two assertions contradict the construction.
+Conversely, suppose that $X$ is not compact, and let $\mathcal U$ be an open cover of $X$ without a finite subcover. The finite subfamilies $F\subset\mathcal U$, ordered by inclusion, form a directed set, and for each $F$ we choose a point $x_F\in X$ outside $\bigcup F$. Suppose that a subnet $(x_{h(j)})_{j\in J}$ converges to a point $x$, and let $U\in\mathcal U$ contain $x$. On the one hand, $x_{h(j)}\in U$ for all sufficiently large $j$. On the other hand, by finality, $h(j)\supset\{U\}$ for all sufficiently large $j$, and then $x_{h(j)}\notin U$. Since $J$ is directed, some $j$ satisfies both conditions, a contradiction. Hence this net has no convergent subnet.
 \end{proof}
 
 \Needspace{4\baselineskip}
 \begin{lemma}\label{lem:compact-product}
-A product of compact spaces is compact in the product topology.
+A product of compact topological spaces is compact in the product topology.
 \end{lemma}
 \begin{proof}
-We use the axiom of choice in its maximality form. A filter is a family of subsets closed under finite intersections and supersets, containing the whole space and excluding the empty set. A maximal filter, called an ultrafilter, exists above every filter: the union of an inclusion-ordered chain of filters is a filter, so the maximality principle applies. Maximality implies that for every subset $A$, either $A$ or its complement belongs to the ultrafilter. Indeed, if $A$ cannot be added, some existing member is disjoint from $A$, and its complement therefore contains that member.
+This is Tychonoff's theorem\index{Tychonoff's theorem}. We use the axiom of choice in the form of Zorn's lemma, through ultrafilters. A filter on a set $Z$ is a family $\mathcal F$ of subsets of $Z$ such that $Z\in\mathcal F$, $\varnothing\notin\mathcal F$, and $\mathcal F$ is closed under finite intersections and under passing to supersets. An ultrafilter\index{ultrafilter} is a filter which is maximal for inclusion. We need three properties of ultrafilters.
 
-In a compact space the closures of ultrafilter members have the finite intersection property and meet at some $x$. Every neighborhood of $x$ belongs to the ultrafilter, since otherwise its closed complement would belong and contain $x$. Conversely, if every ultrafilter converges, a family of closed sets with the finite intersection property extends to an ultrafilter; its limit lies in every one of those sets. Thus this convergence property characterizes compactness.
+(a) Every filter is contained in an ultrafilter. Indeed, the union of a chain of filters containing a given filter is again a filter, so Zorn's lemma applies.
 
-An ultrafilter on a product induces, by inverse images of coordinate projections, an ultrafilter on each factor. Choose a limit in each compact factor. A basic neighborhood of the resulting product point imposes only finitely many coordinate conditions. Their inverse images belong to the original ultrafilter, as does their intersection, so it converges to the product point. The characterization just proved gives compactness. Empty factors give an empty, hence compact, product; the product over an empty index set is a singleton.
+(b) A filter $\mathcal U$ on $Z$ is an ultrafilter if and only if, for every $A\subset Z$, either $A\in\mathcal U$ or $Z\setminus A\in\mathcal U$. Let $\mathcal U$ be an ultrafilter and $A\subset Z$. If $A$ meets every member of $\mathcal U$, then the sets containing $U\cap A$ for some $U\in\mathcal U$ form a filter containing $\mathcal U$ and $A$, so $A\in\mathcal U$ by maximality. Otherwise some $U\in\mathcal U$ is disjoint from $A$, and then $Z\setminus A\supset U$ belongs to $\mathcal U$. Conversely, if $\mathcal U$ has this property, a strictly larger filter would contain some $A\notin\mathcal U$ together with $Z\setminus A\in\mathcal U$, and hence $\varnothing=A\cap(Z\setminus A)$, which is impossible.
+
+(c) A filter $\mathcal F$ on a topological space $Z$ converges to $z\in Z$ if every neighborhood of $z$ belongs to $\mathcal F$. We claim that $Z$ is compact if and only if every ultrafilter on $Z$ converges. Suppose that $Z$ is compact and let $\mathcal U$ be an ultrafilter on $Z$. The closures of the members of $\mathcal U$ have the finite intersection property, so they have a common point $z$. If an open neighborhood $N$ of $z$ did not belong to $\mathcal U$, then by (b) the closed set $Z\setminus N$ would belong to $\mathcal U$ and therefore contain $z$, which is absurd. Hence every neighborhood of $z$ belongs to $\mathcal U$. Conversely, suppose that every ultrafilter on $Z$ converges, and let $\mathcal C$ be a family of closed sets with the finite intersection property. The sets containing a finite intersection of members of $\mathcal C$ form a filter, which by (a) is contained in an ultrafilter $\mathcal U$ converging to some $z$. If $z\notin C$ for some $C\in\mathcal C$, then $Z\setminus C$ is a neighborhood of $z$, so both $Z\setminus C$ and $C$ belong to $\mathcal U$, which is impossible. Hence $z$ lies in every member of $\mathcal C$, and $Z$ is compact.
+
+Now let $Z=\prod_\alpha X_\alpha$ be a product of compact spaces, with projections $p_\alpha$. If some $X_\alpha$ is empty, so is $Z$, and there is nothing to prove. Let $\mathcal U$ be an ultrafilter on $Z$. For each $\alpha$, the family $\{A\subset X_\alpha:p_\alpha^{-1}(A)\in\mathcal U\}$ is a filter on $X_\alpha$ with the property in (b), hence an ultrafilter, and by (c) it converges to some point $z_\alpha\in X_\alpha$. Let $z=(z_\alpha)$. A basic neighborhood of $z$ has the form $\bigcap_{l=1}^np_{\alpha_l}^{-1}(V_l)$, where $V_l$ is a neighborhood of $z_{\alpha_l}$. Each $p_{\alpha_l}^{-1}(V_l)$ belongs to $\mathcal U$, hence so does their intersection, and therefore so does every neighborhood of $z$. Thus $\mathcal U$ converges to $z$, and $Z$ is compact by (c).
 \end{proof}
 
 \begin{theorem}\label{thm:local-measure-compactness}
-Choose nonnegative $\chi_r\in C_c(\Omega)$ equal to $1$ on $K_r$, where the interiors of $K_r$ exhaust $\Omega$, and numbers $0\leq M_r<\infty$. The set
+Let $(K_r)_{r\geq1}$ be a compact exhaustion of $\Omega$. For each $r$, let $\chi_r\in C_c(\Omega)$ be a nonnegative function equal to $1$ on $K_r$, and let $0\leq M_r<\infty$. Then the set
 \[
- \mathcal M=\left\{\mu\text{ Radon on }\Omega:\int\chi_r\,\mathrm d\mu\leq M_r\text{ for every }r\right\}
+ \mathcal M=\left\{\mu\text{ Radon measure on }\Omega:\int\chi_r\,\mathrm d\mu\leq M_r\text{ for every }r\right\}
 \]
-is compact in the vague topology. Every net in this set has a vaguely convergent Willard subnet.
+is compact in the vague topology. In particular, every net in $\mathcal M$ has a Willard subnet converging vaguely to an element of $\mathcal M$.
 \end{theorem}
 \begin{proof}
-For each real $f\in C_c(\Omega)$ choose $r$ with $\Supp f\subset K_r$. Its integral for a measure in $\mathcal M$ lies in $[-M_r\|f\|_\infty,M_r\|f\|_\infty]$. Embed $\mathcal M$ into the product of these compact intervals over all $f$. In that product, linearity, positivity and the inequalities for $\chi_r$ are closed conditions involving finitely many coordinates at a time. Every point satisfying them is a positive linear functional on $C_c$, hence a Radon measure by \cref{thm:positive-functional-measure}. Therefore the image is closed in a compact product and is compact. The induced topology is precisely the vague topology; uniqueness in that theorem makes the embedding injective. Apply \cref{prop:compact-net-characterization}.
-
+For each $f\in C_c(\Omega,\mathbb R)$ choose an index $r(f)$ with $\Supp f\subset K_{r(f)}$; this is possible because $\Supp f$ is compact and the open sets $\Int K_r$ increase to $\Omega$. For $\mu\in\mathcal M$ we have $|f|\leq\|f\|_\infty\chi_{r(f)}$, so $\int f\,\mathrm d\mu$ lies in the compact interval $I_f=[-M_{r(f)}\|f\|_\infty,M_{r(f)}\|f\|_\infty]$. Consider the map
+\[
+ \Phi\colon\mathcal M\to P=\prod_{f\in C_c(\Omega,\mathbb R)}I_f,\qquad\Phi(\mu)=\left(\int f\,\mathrm d\mu\right)_f.
+\]
+The product $P$ is compact by \cref{lem:compact-product}. The map $\Phi$ is injective by the uniqueness in \cref{thm:positive-functional-measure}. Since the vague topology is generated by the maps $\mu\mapsto\int f\,\mathrm d\mu$ with $f$ real (a complex $f$ being a combination of two real ones), and the product topology by the coordinate projections, $\Phi$ is a homeomorphism onto its image. This image consists of the points $(a_f)\in P$ such that $a_{sf+tg}=sa_f+ta_g$ for all $f,g$ and all real $s,t$, $a_f\geq0$ whenever $f\geq0$, and $a_{\chi_r}\leq M_r$ for every $r$. Indeed, the image satisfies these conditions, and conversely a point satisfying them defines a positive linear functional $f\mapsto a_f$ on $C_c(\Omega,\mathbb R)$, which by \cref{thm:positive-functional-measure} is integration against a Radon measure $\mu$, and $\mu\in\mathcal M$ by the last condition. Each condition involves finitely many coordinates at a time and is closed in $P$, so $\Phi(\mathcal M)$ is closed in the compact space $P$ and hence compact. Therefore $\mathcal M$ is vaguely compact, and the assertion about nets follows from \cref{prop:compact-net-characterization}.
 \end{proof}
 
 \begin{proposition}[Arzel\`a--Ascoli]\label{prop:arzela-ascoli}
-Let $K$ be a compact metric space. Every equicontinuous uniformly bounded family in $C(K)$ is relatively compact in the uniform topology.\index{Arzel\`a--Ascoli theorem}
+Let $K$ be a compact metric space. Every equicontinuous and uniformly bounded family in $C(K)$ is relatively compact for the uniform topology.\index{Arzel\`a--Ascoli theorem}
 \end{proposition}
-\begin{proof} For each $\varepsilon>0$, equicontinuity gives a finite cover of $K$ on which each function oscillates by less than $\varepsilon$. Uniform boundedness allows the values at the finitely many centers to be rounded to a finite grid. Two functions with the same rounded data differ by at most $4\varepsilon$ everywhere. Choosing one function from each nonempty data class gives a finite uniform net, so the family is totally bounded. The space $C(K)$ is complete: uniform limits of continuous functions are continuous and pointwise completeness gives the limit of a uniform Cauchy sequence. A complete totally bounded metric space is compact, since successive finite nets produce a Cauchy subsequence of every sequence; if an open cover had no finite subcover, total boundedness would permit nested subsets of diameter tending to zero with the same property. Choosing a point in each nested subset gives a Cauchy sequence. Completeness gives a limit, and the diameter bounds imply that an entire sufficiently late subset lies in one cover member containing that limit, a contradiction. The closure of the family in $C(K)$ is therefore compact.
+\begin{proof}
+Let $\mathcal F\subset C(K)$ be equicontinuous and bounded by $M$. We first show that $\mathcal F$ is totally bounded. Let $\varepsilon>0$. By equicontinuity, every $x\in K$ is the center of an open ball $B_x$ such that $|f(y)-f(x)|<\varepsilon$ for all $y\in B_x$ and all $f\in\mathcal F$, and by compactness finitely many of these balls, centered at $x_1,\ldots,x_n$, cover $K$. Let $G$ be a finite set of scalars such that every scalar of absolute value at most $M$ lies within $\varepsilon$ of some element of $G$. For each map $\gamma\colon\{1,\ldots,n\}\to G$, let $\mathcal F_\gamma$ be the set of $f\in\mathcal F$ with $|f(x_l)-\gamma(l)|<\varepsilon$ for all $l$. These finitely many sets cover $\mathcal F$, and if $f,g\in\mathcal F_\gamma$ and $y\in B_{x_l}$, then
+\[
+ |f(y)-g(y)|\leq|f(y)-f(x_l)|+|f(x_l)-g(x_l)|+|g(x_l)-g(y)|<4\varepsilon.
+\]
+Choosing one function in each nonempty $\mathcal F_\gamma$, we obtain a finite set within uniform distance $4\varepsilon$ of every element of $\mathcal F$, and hence within $5\varepsilon$ of every element of the closure $\overline{\mathcal F}$ of $\mathcal F$ in $C(K)$. Thus $\overline{\mathcal F}$ is totally bounded.
+
+The space $C(K)$ is complete for the uniform metric: a uniform Cauchy sequence converges pointwise, and its limit is continuous because the convergence is uniform. Hence $\overline{\mathcal F}$ is complete, being closed. It remains to recall that a complete and totally bounded metric space $Y$ is sequentially compact and compact. Given a sequence in $Y$, cover $Y$ by finitely many sets of diameter less than $1$ and choose one containing infinitely many terms, cover it by finitely many sets of diameter less than $1/2$ and choose one containing infinitely many of those terms, and so on; a diagonal choice gives a Cauchy subsequence, which converges by completeness. Similarly, if an open cover of $Y$ had no finite subcover, we could choose nested sets $S_1\supset S_2\supset\cdots$ with $\operatorname{diam}S_n<1/n$, none of which is covered by finitely many members of the cover. Points $y_n\in S_n$ then form a Cauchy sequence with a limit $y$. If $U$ is a member of the cover containing $y$ and $B(y,s)\subset U$, then for large $n$ we have $\operatorname{dist}(y_n,y)<s/2$ and $\operatorname{diam}S_n<s/2$, so $S_n\subset B(y,s)\subset U$, a contradiction. Hence $\overline{\mathcal F}$ is compact; in particular, every sequence in $\mathcal F$ has a uniformly convergent subsequence.
 \end{proof}
 
 \section{Densities and differentiation of integrals}
 \label{sec:densities-differentiation}
 
-An estimate by a positive measure supplies a bounded density relative to that measure. For Lebesgue measure, differentiation of integrals also identifies the density at almost every point. These facts will distinguish a distributional Hessian from a pointwise second-order expansion and describe coefficients of singular positive currents.
+If a measure $\mu$ is dominated by a constant multiple of a measure $\nu$, then $\mu$ has a bounded density with respect to $\nu$; we construct it directly from averages over dyadic cubes. When $\nu$ is Lebesgue measure, the Lebesgue differentiation theorem recovers a density at almost every point as the limit of its averages over small cubes. These results relate a distributional Hessian to a pointwise second-order expansion (\cref{prop:bounded-hessian-taylor}), and they will later describe the coefficients of positive currents. If $\nu$ is a Radon measure on $\Omega$ and $g\geq0$ is a Borel function, we write $g\nu$ for the measure $E\mapsto\int_Eg\,\mathrm d\nu$ on Borel sets, and $g\,\mathrm dx$ when $\nu$ is Lebesgue measure.
 
 \begin{lemma}\label{lem:dominated-measure-density}
-Let $\mu,\nu$ be positive Radon measures on an open subset of $\mathbb R^d$. If $\mu(E)\le C\nu(E)$ for every Borel $E$, with a finite $C\ge0$, then $\mu=g\nu$ for a Borel function $0\le g\le C$ almost everywhere with respect to $\nu$. The density is unique up to $\nu$-null sets. If each relatively compact open set $U$ admits a finite constant $C_U\geq0$ with $\mu(E)\leq C_U\nu(E)$ for every Borel $E\subset U$, the analogous conclusion holds with a locally essentially bounded density $g$. In particular, $\mu(E)\le C|E|$ gives $\mu=g\,\mathrm dx$ with $0\le g\le C$.
+Let $\mu$ and $\nu$ be Radon measures on $\Omega$.
+\begin{enumerate}
+\item If there is a constant $C\in[0,\infty)$ with $\mu(E)\leq C\nu(E)$ for every Borel set $E\subset\Omega$, then $\mu=g\nu$ for a Borel function $g$ with $0\leq g\leq C$ $\nu$-almost everywhere.
+\item If every relatively compact open set $U\subset\Omega$ admits a constant $C_U\in[0,\infty)$ with $\mu(E)\leq C_U\nu(E)$ for every Borel set $E\subset U$, then $\mu=g\nu$ for a nonnegative Borel function $g$ which is locally essentially bounded with respect to $\nu$.
+\end{enumerate}
+In both cases the density $g$ is unique up to $\nu$-null sets. In particular, if $\mu(E)\le C|E|$ for every Borel set $E$, then $\mu=g\,\mathrm dx$ with $0\le g\le C$.
 \end{lemma}
 \begin{proof}
-Work on a half-open cube $Q$ with closure in the domain and subdivide it into half-open dyadic cubes. On each cube $Q'$ of generation $k$ put $g_k=\mu(Q')/\nu(Q')$ if $\nu(Q')>0$, and put $g_k=0$ otherwise; domination also gives $\mu(Q')=0$ in the latter case. Thus $0\le g_k\le C$. For $l\ge k$, the $\nu$-integral of $g_l$ on each generation-$k$ cube is its $\mu$-mass, which also equals the $\nu$-integral of $g_k$ there. Expansion in $L^2(Q,\nu)$ gives
+We first construct the density on a cube. Let $Q$ be a half-open cube $\prod_{l=1}^d[a_l,a_l+s)$ whose closure lies in $\Omega$, so that $\mu(Q)$ and $\nu(Q)$ are finite, and assume that $\mu(E)\leq C\nu(E)$ for Borel sets $E\subset Q$. For $k\geq0$, let $\mathcal Q_k$ be the partition of $Q$ into the $2^{kd}$ half-open dyadic subcubes of side $2^{-k}s$. Define $g_k$ on $Q$ by $g_k=\mu(Q')/\nu(Q')$ on each $Q'\in\mathcal Q_k$ with $\nu(Q')>0$, and $g_k=0$ on each $Q'\in\mathcal Q_k$ with $\nu(Q')=0$; in the latter case also $\mu(Q')=0$, by domination. Thus $0\leq g_k\leq C$ and $\int_{Q'}g_k\,\mathrm d\nu=\mu(Q')$ for every $Q'\in\mathcal Q_k$. If $l\geq k$, every cube of $\mathcal Q_k$ is a disjoint union of cubes of $\mathcal Q_l$, so also $\int_{Q'}g_l\,\mathrm d\nu=\mu(Q')$ for $Q'\in\mathcal Q_k$. Since $g_k$ is constant on each cube of $\mathcal Q_k$, it follows that $\int_Qg_lg_k\,\mathrm d\nu=\int_Qg_k^2\,\mathrm d\nu$, and therefore, in $L^2(Q,\nu)$,
 \[
- \|g_l-g_k\|_2^2=\|g_l\|_2^2-\|g_k\|_2^2.
+ \|g_l-g_k\|_2^2=\|g_l\|_2^2-\|g_k\|_2^2\qquad(l\geq k).
 \]
-The squared norms increase and are bounded by $C^2\nu(Q)$, so $(g_k)$ is Cauchy in $L^2(Q,\nu)$. Choose a subsequence whose successive $L^2$ differences are at most $2^{-j}$. Their $L^1(\nu)$ norms are summable by Cauchy--Schwarz, and Tonelli gives convergence of the subsequence $\nu$-almost everywhere. Define its limit to be zero on the Borel set where it does not converge. The resulting Borel $g$ lies in $[0,C]$. Bounded convergence gives $L^2(\nu)$ convergence of that subsequence, and the Cauchy property gives convergence of the full sequence. The integrals on every fixed dyadic cube therefore equal its $\mu$-mass. These half-open cubes form disjoint partitions and generate the Borel sets of $Q$, even when $\nu$ charges their boundaries. The class argument from \cref{prop:tonelli-fubini} identifies the two finite measures on every Borel subset of $Q$.
+The squared norms increase with $k$ and are bounded by $C^2\nu(Q)$, so $(g_k)$ is a Cauchy sequence in $L^2(Q,\nu)$. Choose $k_1<k_2<\cdots$ with $\|g_{k_{j+1}}-g_{k_j}\|_2\leq2^{-j}$. By the Cauchy--Schwarz inequality, $\int_Q|g_{k_{j+1}}-g_{k_j}|\,\mathrm d\nu\leq\nu(Q)^{1/2}2^{-j}$, so by monotone convergence the series $\sum_j|g_{k_{j+1}}-g_{k_j}|$ has finite integral and converges $\nu$-almost everywhere. Hence $(g_{k_j})$ converges $\nu$-almost everywhere. Let $g$ be its limit on the Borel set where it converges, and $0$ elsewhere. Then $g$ is a Borel function with values in $[0,C]$, $g_{k_j}\to g$ in $L^2(Q,\nu)$ by dominated convergence, and, since the whole sequence is Cauchy, $g_k\to g$ in $L^2(Q,\nu)$ and hence in $L^1(Q,\nu)$. Consequently $\int_{Q'}g\,\mathrm d\nu=\lim_l\int_{Q'}g_l\,\mathrm d\nu=\mu(Q')$ for every dyadic subcube $Q'$ of $Q$.
 
-If two densities $g,h$ give the same measure, integration on each set $Q\cap\{g>h+1/j\}$ makes that set $\nu$-null; reversing the roles proves $g=h$ almost everywhere. A countable cover by cubes with compact closures in the domain and this uniqueness on overlaps give the global density. The same construction on relatively compact neighborhoods proves the local assertion.
+To pass from dyadic cubes to Borel sets, note that the dyadic subcubes of $Q$, together with $\varnothing$, form a family closed under finite intersections, since two such cubes are either nested or disjoint. If $U$ is open, every point of $U\cap Q$ lies in dyadic subcubes of $Q$ of arbitrarily small diameter, hence in one contained in $U$; so $U\cap Q$ is the union of the countably many dyadic subcubes contained in $U$. Therefore these cubes generate the Borel $\sigma$-algebra of $Q$. The finite measures $\mu$ and $g\nu$ agree on these cubes, including $Q$ itself, so by the class argument of Step 1 in the proof of \cref{prop:tonelli-fubini} they agree on every Borel subset of $Q$. (Since the half-open cubes partition $Q$ exactly, no assumption on the $\nu$-measure of their boundaries is needed.)
+
+For uniqueness, let $g$ and $h$ be nonnegative Borel functions with $g\nu=h\nu=\mu$ on the Borel subsets of such a cube $Q$. For $j\geq1$, the set $A_j=Q\cap\{g>h+1/j\}$ satisfies $j^{-1}\nu(A_j)\leq\int_{A_j}(g-h)\,\mathrm d\nu=\mu(A_j)-\mu(A_j)=0$, so $g\leq h$ $\nu$-almost everywhere on $Q$, and by symmetry $g=h$ $\nu$-almost everywhere on $Q$. Since $\Omega$ is a countable union of such cubes, densities on $\Omega$ are unique up to $\nu$-null sets.
+
+To obtain a density on $\Omega$ in case (1), cover $\Omega$ by countably many half-open cubes $Q_1,Q_2,\ldots$ with closures in $\Omega$, for example by all half-open dyadic cubes with this property. Let $g_k$ be the density on $Q_k$ constructed above, and set $g=g_k$ on $P_k=Q_k\setminus\bigcup_{l<k}Q_l$. For every Borel set $E\subset\Omega$, countable additivity gives
+\[
+ \mu(E)=\sum_k\mu(E\cap P_k)=\sum_k\int_{E\cap P_k}g_k\,\mathrm d\nu=\int_Eg\,\mathrm d\nu,
+\]
+so $\mu=g\nu$ with $0\leq g\leq C$. In case (2), every cube $Q$ with closure in $\Omega$ lies in a relatively compact open set $U$, and $\mu(E)\leq C_U\nu(E)$ for Borel sets $E\subset Q$; the same construction and gluing give $\mu=g\nu$ with a nonnegative Borel function $g$. To see that $g$ is locally essentially bounded, let $U\subset\Omega$ be relatively compact and open, and let $A_j=U\cap\{g>C_U+1/j\}$. Then $(C_U+1/j)\nu(A_j)\leq\int_{A_j}g\,\mathrm d\nu=\mu(A_j)\leq C_U\nu(A_j)$, and $\nu(A_j)\leq\nu(\overline U)<\infty$, so $\nu(A_j)=0$. Hence $g\leq C_U$ $\nu$-almost everywhere on $U$. The final assertion is case (1) with $\nu$ equal to Lebesgue measure, which is a Radon measure by \cref{prop:borel-regularity}.
 \end{proof}
 \index{measure!bounded density}
 \index{Radon--Nikodym density!bounded domination}
 
 \begin{theorem}[Lebesgue differentiation]\label{thm:lebesgue-differentiation}
-For $f\in L^1_{\loc}(\Omega)$, almost every $x\in\Omega$ satisfies
+Let $f\in L^1_{\loc}(\Omega)$. Then almost every $x\in\Omega$ satisfies
 \[
  \lim_{r\downarrow0}\frac1{|Q(x,r)|}
         \int_{Q(x,r)}|f(y)-f(x)|\,\mathrm dy=0,
@@ -354,46 +491,81 @@ For $f\in L^1_{\loc}(\Omega)$, almost every $x\in\Omega$ satisfies
 \]
 \end{theorem}
 \begin{proof}
-For $f\in L^1(\mathbb R^d)$ define $Mf(x)$ as the supremum of the averages of $|f|$ over the cubes $Q(x,r)$. Translation continuity in $L^1$ makes each fixed-radius average continuous, so $\{Mf>t\}$ is open. We claim
+We first treat $f\in L^1(\mathbb R^d)$. Define its maximal function by
+\[
+ Mf(x)=\sup_{r>0}\frac1{|Q(x,r)|}\int_{Q(x,r)}|f(y)|\,\mathrm dy.
+\]
+For fixed $r$, the average of $|f|$ over $Q(x,r)$ is a continuous function of $x$, because $\int_{Q(x,r)}|f|$ and $\int_{Q(x',r)}|f|$ differ by at most $\|f(\cdot+x-x')-f\|_1$, which tends to zero as $x'\to x$ by the continuity of translation in $L^1$ (see the proof of \cref{lem:mollifier-density}). As a supremum of continuous functions, $Mf$ is lower semicontinuous, so $\{Mf>t\}$ is open for every $t$. We claim the maximal inequality
 \[
  |\{Mf>t\}|\le\frac{3^d}{t}\|f\|_1,\qquad t>0.
 \]
-Cover a compact subset of this open set by finitely many cubes centered at its points, each with average above $t$. Among that finite family choose a cube of largest side length, discard those meeting it, and repeat. The chosen cubes are disjoint; every discarded cube lies in the threefold concentric enlargement of the chosen cube which discarded it. Their enlargements cover the compact set. Its volume is at most $3^d$ times the sum of the chosen volumes, bounded by $3^dt^{-1}\|f\|_1$. Inner regularity proves the claim.
+By inner regularity of Lebesgue measure, it suffices to bound $|L|$ for every compact set $L\subset\{Mf>t\}$. Every point of $L$ is the center of an open cube over which the average of $|f|$ exceeds $t$, and finitely many of these cubes cover $L$. Among them, select a cube of largest side length, discard all cubes meeting it, and repeat with the remaining ones. The selected cubes are pairwise disjoint, and every discarded cube meets a selected cube of at least the same side length, so it lies in the concentric cube with three times that side length. These enlarged cubes cover $L$. Hence $|L|$ is at most $3^d$ times the sum of the volumes of the selected cubes, which is less than $t^{-1}$ times the sum of the integrals of $|f|$ over them, and hence at most $3^dt^{-1}\|f\|_1$.
 
-For a continuous compactly supported $c$, the upper limit of the displayed oscillation is at most $M(f-c)(x)+|f(x)-c(x)|$. The continuous part has zero limit by continuity. The maximal estimate and Chebyshev's inequality show that the set where this upper limit exceeds $2t$ has volume at most $(3^d+1)t^{-1}\|f-c\|_1$. Approximate $f$ in $L^1$ by \cref{prop:continuous-density}; the volume is zero. Taking positive rational $t$ proves the assertion. For local integrability, cut off $f$ on a neighborhood of a fixed compact set and then use a countable exhaustion.
+Now let $c\in C_c(\mathbb R^d)$. For every $x$ and $r$,
+\[
+ \frac1{|Q(x,r)|}\int_{Q(x,r)}|f(y)-f(x)|\,\mathrm dy\leq M(f-c)(x)+\frac1{|Q(x,r)|}\int_{Q(x,r)}|c(y)-c(x)|\,\mathrm dy+|c(x)-f(x)|,
+\]
+and the middle term tends to zero as $r\downarrow0$ because $c$ is continuous at $x$. Hence the upper limit $\Lambda f(x)$ of the left side as $r\downarrow0$ satisfies $\Lambda f(x)\leq M(f-c)(x)+|f(x)-c(x)|$. For $t>0$, the set $\{\Lambda f>2t\}$ is therefore contained in $\{M(f-c)>t\}\cup\{|f-c|>t\}$, whose measure is at most $(3^d+1)t^{-1}\|f-c\|_1$ by the maximal inequality and Chebyshev's inequality. By \cref{prop:continuous-density}, applied to Lebesgue measure, $\|f-c\|_1$ can be made arbitrarily small, so $\{\Lambda f>2t\}$ is a null set. Taking $t$ over the positive rational numbers shows that $\Lambda f=0$ almost everywhere, which proves the theorem for $f\in L^1(\mathbb R^d)$.
+
+Finally, let $f\in L^1_{\loc}(\Omega)$ and let $(K_j)$ be a compact exhaustion of $\Omega$. The function $f_j$ equal to $f$ on $\Int K_{j+1}$ and to $0$ elsewhere belongs to $L^1(\mathbb R^d)$. For $x\in\Int K_j$ and small $r$, the cube $Q(x,r)$ lies in $\Int K_{j+1}$, so the averages in the statement are the same for $f$ and $f_j$. Hence almost every point of $\Int K_j$ satisfies the assertion, and taking the union over $j$ completes the proof.
 \end{proof}
-Points satisfying this limit are called Lebesgue points of $f$.
+Points $x$ satisfying this limit are called Lebesgue points\index{Lebesgue point} of $f$.
 \index{Lebesgue differentiation theorem}
 
 \begin{lemma}\label{lem:weak-poincare-cube}
-If $F$ is continuous on a neighborhood of a closed cube $Q$ of side length $l$ and its distributional first derivatives belong to $L^1$ there, then, with $F_Q=|Q|^{-1}\int_QF$,
+Let $Q\subset\mathbb R^d$ be a closed cube of side length $l$, and let $F$ be a continuous function on a neighborhood of $Q$ whose distributional first derivatives belong to $L^1$ there. Put $F_Q=|Q|^{-1}\int_QF\,\mathrm dx$. Then
 \[
- \int_Q|F-F_Q|\le l\sum_{k=1}^d\int_Q|\partial_kF|.
+ \int_Q|F-F_Q|\,\mathrm dx\le l\sum_{k=1}^d\int_Q|\partial_kF|\,\mathrm dx.
 \]
 The same assertion holds componentwise for vector-valued $F$.
 \end{lemma}
 \begin{proof}
-For smooth $F$, change the coordinates of $x$ into those of $y$ one at a time and integrate the corresponding one-variable derivative. Integrate over $Q\times Q$. For the $k$th term, integration over the two endpoint coordinates gives a bound $l^2$ times the integral of that derivative on the coordinate interval; the unused coordinates give the factor $l^{d-1}$. Dividing by $|Q|=l^d$, and using
-$|F(x)-F_Q|\le |Q|^{-1}\int_Q|F(x)-F(y)|\,\mathrm dy$, proves the bound. For the stated $F$, smooth it on a slightly larger cube. Uniform convergence of $F_\varepsilon$ and $L^1$ convergence of its derivatives, proved in \cref{lem:mollifier-density,prop:distribution-smoothing}, pass the inequality to the limit.
+Suppose first that $F$ is continuously differentiable on a neighborhood of $Q$. For $x,y\in Q$ and $0\leq k\leq d$, let $z^{(k)}=(y_1,\ldots,y_k,x_{k+1},\ldots,x_d)$, so that $z^{(0)}=x$, $z^{(d)}=y$, and $z^{(k-1)}$ and $z^{(k)}$ differ only in the $k$th coordinate. If $I_k$ denotes the $k$th side interval of $Q$, the fundamental theorem of calculus gives
+\[
+ |F(y)-F(x)|\leq\sum_{k=1}^d|F(z^{(k)})-F(z^{(k-1)})|\leq\sum_{k=1}^d\int_{I_k}|\partial_kF(y_1,\ldots,y_{k-1},t,x_{k+1},\ldots,x_d)|\,\mathrm dt.
+\]
+We integrate over $(x,y)\in Q\times Q$. The $k$th term does not depend on the $d+1$ coordinates $x_1,\ldots,x_k$ and $y_k,\ldots,y_d$, which contribute a factor $l^{d+1}$, and the integral over the remaining coordinates and $t$ equals $\int_Q|\partial_kF|\,\mathrm dx$. Hence $\iint_{Q\times Q}|F(x)-F(y)|\,\mathrm dx\,\mathrm dy\leq l^{d+1}\sum_k\int_Q|\partial_kF|\,\mathrm dx$. Since $|F(x)-F_Q|\leq|Q|^{-1}\int_Q|F(x)-F(y)|\,\mathrm dy$ and $|Q|=l^d$, integrating in $x$ proves the inequality. In general, the mollifications $F_\varepsilon$ are smooth on a neighborhood of $Q$ for small $\varepsilon$. They converge to $F$ uniformly on $Q$, and their derivatives $\partial_kF_\varepsilon=(\partial_kF)_\varepsilon$ converge to $\partial_kF$ in $L^1(Q)$, by \cref{lem:mollifier-density,prop:distribution-smoothing}. The inequality for $F_\varepsilon$ therefore passes to the limit.
 \end{proof}
 
 \begin{proposition}\label{prop:bounded-hessian-taylor}
-Let $f:\Omega\to\mathbb R$ be continuous. If its real distributional Hessian has locally bounded measurable coefficients, then $f\in C^{1,1}_{\loc}(\Omega)$: its first derivatives exist and are locally Lipschitz. At almost every $x$, with $A(x)$ the density of that Hessian,
+Let $f\colon\Omega\to\mathbb R$ be continuous, and suppose that its real distributional Hessian has locally bounded measurable coefficients, that is, $\partial_a\partial_bf=A_{ab}$ for measurable functions $A_{ab}$ on $\Omega$ that are bounded on compact sets, $1\leq a,b\leq d$. Then $f\in C^{1,1}_{\loc}(\Omega)$: its first derivatives exist and are locally Lipschitz. Moreover, with $A=(A_{ab})$, almost every $x\in\Omega$ satisfies
 \[
- f(x+h)=f(x)+\nabla f(x)\cdot h+\tfrac12h^tA(x)h+o(|h|^2).
+ f(x+h)=f(x)+\nabla f(x)\cdot h+\tfrac12h^tA(x)h+o(|h|^2)\qquad(h\to0).
 \]
-Conversely, locally uniform Hessian bounds for smooth regularizations of $f$ suffice for the hypothesis.
+Conversely, the hypothesis on the Hessian holds whenever the Hessians of smooth regularizations of $f$ are locally uniformly bounded, in the following sense: every ball $B\Subset\Omega$ carries smooth functions $f_j$ which converge to $f$ in the sense of distributions on $B$ and whose second derivatives are bounded on $B$ uniformly in $j$.
 \end{proposition}
 \begin{proof}
-On a smaller ball the smooth regularizations have a uniform Hessian bound. Taylor's formula along a fixed short segment bounds their gradients by their common value bound and the Hessian bound. Their gradients are equibounded and equi-Lipschitz. \Cref{prop:arzela-ascoli} gives locally uniform subsequential limits; the distributional derivative identifies each limit uniquely. Passing the segment integral to the limit proves that $f$ is $C^1$ and its gradient is locally Lipschitz.
-
-For the converse, each real Hessian entry $H$ satisfies $-C\,\mathrm dx\le H\le C\,\mathrm dx$ distributionally on a smaller ball. The positive distribution theorem makes $C\,\mathrm dx\pm H$ measures; their sum is $2C\,\mathrm dx$. \Cref{lem:dominated-measure-density} gives $H$ a bounded density. This argument also justifies the measurable Hessian coefficients used below without invoking a general Radon--Nikodym theorem.
+\emph{Step 1: $f\in C^{1,1}_{\loc}(\Omega)$.} Fix a closed ball $\overline B=\overline B(x_0,R)$ and $s>0$ with $\overline B(x_0,R+2s)\subset\Omega$, and let $C$ bound the functions $|A_{ab}|$ on $B(x_0,R+2s)$. For $\varepsilon<s$, the mollification $f_\varepsilon$ is smooth on a neighborhood of $\overline B'=\overline B(x_0,R+s)$. By \cref{prop:distribution-smoothing}, $\partial_a\partial_bf_\varepsilon=(\partial_a\partial_bf)_\varepsilon=A_{ab}*\rho_\varepsilon$ there, which is an average of values of $A_{ab}$ on $B(x_0,R+2s)$; hence $|\partial_a\partial_bf_\varepsilon|\leq C$ on $\overline B'$. By \cref{lem:mollifier-density}, $f_\varepsilon\to f$ uniformly on $\overline B'$, so there is $M$ with $|f_\varepsilon|\leq M$ on $\overline B'$ for all small $\varepsilon$. For $x\in\overline B$ and a unit vector $e$, Taylor's formula on the segment from $x$ to $x+se$ gives
+\[
+ f_\varepsilon(x+se)=f_\varepsilon(x)+s\,\partial_ef_\varepsilon(x)+\int_0^s(s-t)\,\partial_e^2f_\varepsilon(x+te)\,\mathrm dt,
+\]
+where $\partial_e^2f_\varepsilon=\sum_{a,b}e_ae_b\partial_a\partial_bf_\varepsilon$ is bounded by $dC$. Hence $|\partial_ef_\varepsilon(x)|\leq2M/s+dCs/2$ on $\overline B$. Thus the gradients $\nabla f_\varepsilon$ are bounded on $\overline B$ uniformly in small $\varepsilon$, and since the operator norm of their derivative is at most $dC$, they are Lipschitz on the convex set $\overline B$ with the constant $dC$. By \cref{prop:arzela-ascoli}, every sequence $\varepsilon_k\to0$ has a subsequence along which $\nabla f_{\varepsilon_k}$ converges uniformly on $\overline B$ to a continuous map $G$. Since $\partial_af_\varepsilon=(\partial_af)_\varepsilon$ converges to $\partial_af$ in the sense of distributions (\cref{prop:distribution-smoothing}), the distribution $\partial_af$ on the open ball $B$ is the continuous function $G_a$. By the injectivity in \cref{prop:distribution-smoothing}, two such limits agree almost everywhere, hence everywhere on $\overline B$ by continuity. Therefore $\nabla f_\varepsilon\to G$ uniformly on $\overline B$ as $\varepsilon\to0$. Passing to the limit in
+\[
+ f_\varepsilon(y)-f_\varepsilon(x)=\int_0^1\nabla f_\varepsilon(x+t(y-x))\cdot(y-x)\,\mathrm dt,\qquad x,y\in\overline B,
+\]
+we obtain the same identity for $f$ and $G$. As $G$ is continuous, $f$ is differentiable on $B$ with $\nabla f=G$, and $G$ is Lipschitz with constant $dC$, being a uniform limit of such maps. Since $\Omega$ is covered by such balls, $f\in C^{1,1}_{\loc}(\Omega)$.
 
 \Needspace{19\baselineskip}
-Let $x$ be a common Lebesgue point of the finitely many coefficients of $A$, and fix the unit cube $Q=(-1,1)^d$. For small $r$ put
+\emph{Step 2: the Taylor expansion.} By \cref{thm:lebesgue-differentiation}, almost every point of $\Omega$ is a common Lebesgue point of the finitely many functions $A_{ab}$. Let $x$ be such a point, let $Q=(-1,1)^d$, and choose $r_0>0$ such that the closed cube $x+2r_0\overline Q$ lies in $\Omega$ and $\nabla f$ is Lipschitz there, with constant $\lambda$. For $0<r\leq r_0$, define on $2Q$
 \[
  G_r(y)=\frac{\nabla f(x+ry)-\nabla f(x)}r-A(x)y.
 \]
-These vector functions are equi-Lipschitz, vanish at zero, and their derivative matrices are $A(x+ry)-A(x)$. \Cref{thm:lebesgue-differentiation} makes the $L^1(Q)$ norms of those matrices tend to zero. \Cref{lem:weak-poincare-cube} gives $\int_Q|G_r-(G_r)_Q|\to0$. Equi-Lipschitz functions with this property converge uniformly to their means on $\overline Q$: a discrepancy of fixed size at any point persists on a fixed-radius portion of $Q$, contradicting the integral bound. Since $G_r(0)=0$, the means also tend to zero. Thus $\|G_r\|_\infty\to0$. Integrating the gradient along a segment from $x$ to $x+h$ gives the stated expansion. Almost every point is such a common Lebesgue point.
+These maps vanish at $0$ and are Lipschitz with the common constant $\lambda+|A(x)|$, where $|A(x)|$ is the operator norm. By the change of variables $z=x+ry$ in the definition of distributional derivatives, the distributional derivatives of the components of $G_r$ are $\partial_{y_b}(G_r)_a(y)=A_{ab}(x+ry)-A_{ab}(x)$. Since $x$ is a Lebesgue point,
+\[
+ \int_Q|A_{ab}(x+ry)-A_{ab}(x)|\,\mathrm dy=\frac1{r^d}\int_{Q(x,r)}|A_{ab}(z)-A_{ab}(x)|\,\mathrm dz\to0\qquad(r\downarrow0).
+\]
+Applying \cref{lem:weak-poincare-cube} on the closed cube $\overline Q$ to each component of $G_r$, we obtain $\int_Q|G_r-(G_r)_Q|\,\mathrm dy\to0$. We claim that $\sup_{\overline Q}|G_r-(G_r)_Q|\to0$. Otherwise there would be $\eta>0$, radii $r_k\to0$ and points $y_k\in\overline Q$ with $|G_{r_k}(y_k)-(G_{r_k})_Q|\geq\eta$. By the common Lipschitz bound, $|G_{r_k}-(G_{r_k})_Q|\geq\eta/2$ on the intersection of $Q$ with a ball of fixed radius about $y_k$, and these intersections have measure bounded below by a positive constant independent of $k$; this contradicts $\int_Q|G_{r_k}-(G_{r_k})_Q|\,\mathrm dy\to0$. Since $G_r(0)=0$, it follows that $|(G_r)_Q|\to0$, and hence $\sup_{\overline Q}|G_r|\to0$ as $r\downarrow0$.
+
+Now let $0<|h|\leq r_0$, and put $r=|h|$ and $y=h/|h|\in\overline Q$. For $0<t\leq1$ we have $\nabla f(x+th)-\nabla f(x)=rt\,G_{rt}(y)+tA(x)h$. Since $f$ is continuously differentiable,
+\[
+ f(x+h)-f(x)-\nabla f(x)\cdot h-\tfrac12h^tA(x)h=\int_0^1\bigl(\nabla f(x+th)-\nabla f(x)-tA(x)h\bigr)\cdot h\,\mathrm dt=\int_0^1rt\,G_{rt}(y)\cdot h\,\mathrm dt,
+\]
+whose absolute value is at most $|h|^2\sup_{0<\varrho\leq|h|}\sup_{\overline Q}|G_\varrho|=o(|h|^2)$.
+
+\emph{Step 3: the converse.} Let $B\Subset\Omega$ be a ball, and let $f_j$ be as in the statement, with $|\partial_a\partial_bf_j|\leq C$ on $B$ for all $j$, $a$ and $b$. For a nonnegative test function $\chi$ supported in $B$,
+\[
+ \langle\partial_a\partial_bf,\chi\rangle=\int f\,\partial_a\partial_b\chi\,\mathrm dx=\lim_j\int f_j\,\partial_a\partial_b\chi\,\mathrm dx=\lim_j\int(\partial_a\partial_bf_j)\chi\,\mathrm dx,
+\]
+so $|\langle\partial_a\partial_bf,\chi\rangle|\leq C\int\chi\,\mathrm dx$. Writing $H$ for the restriction of $\partial_a\partial_bf$ to $B$, it follows that the distributions $C\,\mathrm dx+H$ and $C\,\mathrm dx-H$ on $B$ are positive. By \cref{thm:positive-distribution-measure} they are given by Radon measures $\nu_+$ and $\nu_-$ on $B$, and $\nu_++\nu_-=2C\,\mathrm dx$ by the uniqueness in that theorem. Thus $\nu_+(E)\leq2C|E|$ for every Borel set $E\subset B$, and \cref{lem:dominated-measure-density} gives $\nu_+=g\,\mathrm dx$ with $0\leq g\leq2C$. Hence $H$ is the bounded function $g-C$ on $B$. Densities obtained on overlapping balls agree almost everywhere on the overlap by the injectivity in \cref{prop:distribution-smoothing}, so a countable cover of $\Omega$ by such balls defines a measurable function $A_{ab}$ on $\Omega$, bounded on compact sets, which represents $\partial_a\partial_bf$ on each ball of the cover. To see that $\partial_a\partial_bf=A_{ab}$ on all of $\Omega$, let $\chi$ be a test function. Its support is covered by finitely many balls $B_1,\ldots,B_n$ of the cover, and as in Step 1 of the proof of \cref{thm:positive-functional-measure}, now with smooth cutoff functions from \cref{lem:mollifier-density}, we can write $\chi=\sum_{k=1}^n\chi_k$ with test functions $\chi_k$ supported in $B_k$. Then $\langle\partial_a\partial_bf,\chi\rangle=\sum_k\int A_{ab}\chi_k\,\mathrm dx=\int A_{ab}\chi\,\mathrm dx$. In particular, the mollifications $f_\varepsilon$, $\varepsilon\to0$, are such regularizations whenever their Hessians are bounded on compact sets uniformly in small $\varepsilon$, because they converge to $f$ in the sense of distributions by \cref{prop:distribution-smoothing}.
 \end{proof}
 \index{Hessian!bounded distributional coefficients}\index{Taylor expansion!almost everywhere}
