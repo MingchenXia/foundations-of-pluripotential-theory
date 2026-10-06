@@ -15,13 +15,15 @@ All 109 required tasks have recorded verification evidence. The earlier proof an
 
 The additional [reader-precision review](research/reviews/2026-10-05-reader-precision-round.json) is complete for all twenty chapter/appendix units. Each has two fresh complete source reads, builds and affected-page inspections. The whole-book and both part introductions now develop the mathematical questions and proof dependencies. Chapter openings, first-use notation and hypotheses have been refined, and verified result locators appear in formal citations. The active project contains 61 TeX inputs. Earlier reviews remain separate historical evidence and are not counted as fresh reads.
 
+The [SGPT independence review](research/reviews/2026-10-06-sgpt-proof-independence.json) classifies all 53 active SGPT citations as introductory or historical attribution and checks selected internal dependency chains. SGPT supplies no proof premise. The integrity check guards against SGPT citations in proofs or mathematical assertions; semantic dependency review remains necessary. The [chapter prerequisite graph](plan/DEPENDENCIES.md) is now regenerated with the current required scope.
+
 The [current delivery record](research/reviews/2026-10-06-reader-precision-final-delivery.json) records the whole-book checks, actual visual scope and fresh source-package rebuild. The [earlier release record](research/reviews/2026-10-05-whole-prequel-final-release.json) preserves its original scope. These are authoring-agent reviews, not independent certification. Build success alone is not mathematical verification. The source package excludes the local operational handoff log; all manuscript, bibliography and build files remain included.
 
 ```sh
 make check      # Source integrity, dependencies, labels and citations
 make audit      # The repository-local house writing audit
 make build      # Build the active prequel PDF
-make progress   # Regenerate required-scope progress and task views
+make progress   # Regenerate required-scope progress, task views and prerequisite graph
 make verify     # Integrity, audit and build
 make release    # Rebuild a tracked source archive in an empty directory
 ```
