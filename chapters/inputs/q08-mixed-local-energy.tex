@@ -1,6 +1,6 @@
 \subsection{Mixed energy and truncation}
 \label{sec:mixed-local-energy}
-Canonical approximants have controlled energies but need not have a common bound as functions. Mixed products must therefore be compared with their bounded truncations before continuity can be used. A mixed energy estimate makes the discarded sets uniformly small for both products.
+In the next section we approximate several potentials at once by canonical approximants and must pass to the limit in their mixed Monge--Amp\`ere products. These approximants converge in capacity and have bounded energies, but they are not uniformly bounded, so \cref{thm:bt-capacity-continuity} does not apply to them directly. We therefore compare the mixed products with those of the truncated potentials. For this we need to know that the sets where one of the potentials is very negative carry little mass of a mixed product. This follows from the mixed energy inequality of \cref{thm:bounded-mixed-local-energy}, which bounds a mixed energy by the geometric mean of the energies $e_1$ of \cref{def:bounded-zero-boundary-energy}.
 
 \begin{theorem}\label{thm:bounded-mixed-local-energy}
 For $u_0,\ldots,u_n\in\mathcal E_0(B)$,
@@ -9,85 +9,100 @@ For $u_0,\ldots,u_n\in\mathcal E_0(B)$,
  \leq C_n\prod_{l=0}^n e_1(u_l)^{1/(n+1)},
  \qquad C_n=2^{n+2}.
 \end{equation}
-In particular the integral is finite, also when some energy is zero.
+In particular the integral is finite, and it vanishes if one of the energies $e_1(u_l)$ vanishes.
 \end{theorem}
 \begin{proof}
-Write $B=B(a,R)$ and $\rho=|z-a|^2-R^2$. We first prove the inequality with constant one for potentials which equal positive multiples of $\rho$ on boundary collars. We then approximate arbitrary members of $\mathcal E_0(B)$ by such potentials, retaining an explicit bound for their energies.
+Write $B=B(a,R)$ and $\rho(z)=|z-a|^2-R^2$. We first prove the inequality with constant one for potentials which are positive multiples of $\rho$ near $\partial B$, and then approximate arbitrary elements of $\mathcal E_0(B)$ by such potentials while keeping their energies under control.
 
-\emph{Step 1. The collar case.}
-For this step assume that each $u_l=c_l\rho$ near $\partial B$, with $c_l>0$. All mixed products have finite total mass: their measures are smooth on a common collar and locally finite in the remaining compact interior. Put
+\emph{Step 1. Potentials with quadratic collars.}
+In this step we assume that each $u_l$ equals $c_l\rho$ on a neighborhood of $\partial B$ in $B$, for some constant $c_l>0$. Then every mixed product of the $u_l$ has finite total mass, since it is smooth near $\partial B$ and locally finite on the rest of $B$. For functions $b_0,\ldots,b_n$ of this kind, put
 \[
- I(u_0,\ldots,u_n)
-       =\int_B(-u_0)\,\ddc u_1\wedge\cdots\wedge\ddc u_n.
+ I(b_0,\ldots,b_n)
+       =\int_B(-b_0)\,\ddc b_1\wedge\cdots\wedge\ddc b_n,
 \]
-For smooth potentials with zero boundary values and
-$S=\ddc u_2\wedge\cdots\wedge\ddc u_n$, Stokes' formula gives
+and use the same expression when the $b_l$ are smooth plurisubharmonic functions on a neighborhood of $\overline B$ vanishing on $\partial B$.
+
+Consider first such smooth functions, and put $S=\ddc b_2\wedge\cdots\wedge\ddc b_n$, with $S=1$ if $n=1$. Let $\mathrm d^{\mathrm c}$ be the real operator of \eqref{eq:dc-operator}, so that $\mathrm d\mathrm d^{\mathrm c}=\ddc$. Since $\mathrm d(b_0\,\mathrm d^{\mathrm c}b_1\wedge S)=\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S+b_0\,\ddc b_1\wedge S$, and the boundary term in Stokes' formula contains the factor $b_0=0$, we obtain
 \[
- I(u_0,u_1,u_2,\ldots,u_n)
-          =\int_B\mathrm du_0\wedge\mathrm d^cu_1\wedge S.
+ I(b_0,b_1,b_2,\ldots,b_n)
+          =\int_B\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S.
 \]
-The boundary term vanishes because $u_0=0$ there. In dimension one $S=1$. Since $S$ is positive of type $(n-1,n-1)$, the real bilinear form
+Only the $(1,1)$-part of $\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1$ contributes, and it equals
+$(\mathrm i/4\pi)(\partial b_0\wedge\bar\partial b_1+\partial b_1\wedge\bar\partial b_0)$. This expression is symmetric in $b_0,b_1$, and for $b_0=b_1$ it is the positive form $(\mathrm i/2\pi)\partial b_0\wedge\bar\partial b_0$. Since $S$ is a positive form of bidegree $(n-1,n-1)$, the real bilinear form
 \[
- (b,c)\longmapsto\int_B\mathrm db\wedge\mathrm d^cc\wedge S
+ (b,c)\longmapsto\int_B\mathrm db\wedge\mathrm d^{\mathrm c}c\wedge S,
 \]
-is symmetric and nonnegative on the diagonal. Indeed its $(1,1)$ factor is
-$(\mathrm i/(4\pi))(\partial b\wedge\bar\partial c+
-\partial c\wedge\bar\partial b)$, and positivity applies when $b=c$. Applying nonnegativity to $b+tc$, $t\in\mathbb R$, proves Cauchy--Schwarz, including a zero diagonal term. Consequently
+defined for smooth real $b,c$ vanishing on $\partial B$, is symmetric and positive semidefinite. Expanding its value at $b+tc$, $t\in\mathbb R$, gives the Cauchy--Schwarz inequality, also when one of the diagonal terms vanishes:
 \begin{equation}\label{eq:mixed-local-energy-two-slot}
- I(b,c,u_2,\ldots,u_n)^2
- \leq I(b,b,u_2,\ldots,u_n)I(c,c,u_2,\ldots,u_n).
+ I(b,c,b_2,\ldots,b_n)^2
+ \leq I(b,b,b_2,\ldots,b_n)I(c,c,b_2,\ldots,b_n).
 \end{equation}
-The same symmetry interchanges the first two slots. Symmetry of the Hessian factors interchanges the remaining slots, so $I$ is symmetric in all $n+1$ slots.
+The symmetry of the bilinear form allows us to interchange the first two arguments of $I$, and the symmetry of the products allows us to permute the last $n$ arguments. Hence $I$ is symmetric in all $n+1$ arguments.
 
-These assertions also hold for bounded collar potentials. Extend each $u_l$ across the boundary using $c_l\rho$ and convolve with the same smooth radial kernel of radius $\varepsilon$. For a constant $\kappa>0$ determined by that kernel,
+These assertions persist for potentials with quadratic collars. Extend each $u_l$ by $c_l\rho$ to a plurisubharmonic function on a neighborhood of $\overline B$. Let $\vartheta_\varepsilon$ be a smooth radial mollifier supported in the ball of radius $\varepsilon$; we avoid the usual notation $\rho_\varepsilon$, since $\rho$ is the quadratic function above. Because $\rho$ is a quadratic polynomial and $\vartheta_\varepsilon$ is radial, $\rho*\vartheta_\varepsilon=\rho+\kappa\varepsilon^2$ with the constant $\kappa=\int|y|^2\vartheta_1(y)\,\mathrm dV(y)$. Hence
 \[
- u_{l,\varepsilon}=u_l*\rho_\varepsilon-c_l\kappa\varepsilon^2
+ u_{l,\varepsilon}=u_l*\vartheta_\varepsilon-c_l\kappa\varepsilon^2
 \]
-equals $c_l\rho$ on a smaller fixed collar. It is smooth and psh on a neighborhood of $\overline B$, has zero boundary values, and is nonpositive by the maximum principle. The raw radial convolutions decrease to $u_l$. Their weighted products converge on compact tests by \cref{thm:bt-decreasing-continuity}; the subtracted constants change weighted integrals by terms tending to zero, by the local mass bounds. On the fixed collar the corrected potentials and their products already equal their limiting quadratic expressions. A compact cutoff for the interior therefore gives convergence of all the displayed global integrals. Passing to the limit proves full symmetry and \eqref{eq:mixed-local-energy-two-slot}. The corrected smoothings themselves need not decrease.
+equals $c_l\rho$ on a fixed neighborhood of $\partial B$ for all small $\varepsilon$. Each $u_{l,\varepsilon}$ is smooth and plurisubharmonic on a neighborhood of $\overline B$ and vanishes on $\partial B$. The convolutions $u_l*\vartheta_\varepsilon$ decrease to $u_l$ as $\varepsilon\downarrow0$, and they have the same Hessians as the $u_{l,\varepsilon}$. (The functions $u_{l,\varepsilon}$ themselves need not decrease, which is why we apply decreasing continuity to the convolutions.) By \cref{thm:bt-decreasing-continuity},
+\[
+ (-u_0*\vartheta_\varepsilon)\,\ddc u_{1,\varepsilon}\wedge\cdots\wedge\ddc u_{n,\varepsilon}
+ \longrightarrow(-u_0)\,\ddc u_1\wedge\cdots\wedge\ddc u_n
+\]
+weakly, and the constant $c_0\kappa\varepsilon^2$ changes the integral against a fixed test function only by an amount tending to zero, by the local mass bounds of \cref{thm:cln-bounded}. Near $\partial B$, all the $u_{l,\varepsilon}$ and $u_l$ coincide with $c_l\rho$. Splitting the integrals over $B$ by a cutoff in $C_c(B)$ which equals one outside this neighborhood of $\partial B$, we conclude that $I(u_{0,\varepsilon},\ldots,u_{n,\varepsilon})\to I(u_0,\ldots,u_n)$, and likewise for every rearrangement of the potentials. Passing to the limit in the smooth case proves that $I$ is symmetric and satisfies \eqref{eq:mixed-local-energy-two-slot} for potentials with quadratic collars.
 
-Every $e_1(u_l)$ is positive, because its collar integral is positive. Multiply $u_l$ by $e_1(u_l)^{-1/(n+1)}$ to normalize each energy to one. Consider the finitely many ordered $(n+1)$-tuples whose entries are drawn from these normalized potentials. Let $F$ be the largest value of $I$ on those tuples, and among the maximizing tuples choose one for which the sum of the squares of the entry multiplicities is largest. Diagonal tuples have value one, so $F\geq1$.
+We now prove the inequality with constant one in this case. Since $u_l=c_l\rho$ near $\partial B$ with $c_l>0$, the energy $e_1(u_l)$ is positive: already its integral over a neighborhood of $\partial B$ is positive. Since $I$ is multilinear and $e_1(tv)=t^{n+1}e_1(v)$ for $t>0$, both sides of the inequality are multiplied by the same factor when each $u_l$ is replaced by $e_1(u_l)^{-1/(n+1)}u_l$. We may therefore assume that $e_1(u_l)=1$ for every $l$. Consider the finitely many ordered $(n+1)$-tuples whose entries are taken from the functions $u_0,\ldots,u_n$, and let $F$ be the largest value of $I$ on these tuples. Since $I(u_l,\ldots,u_l)=e_1(u_l)=1$, we have $F\geq1$. Among the tuples on which $I$ equals $F$, choose one for which the sum of the squares of the multiplicities of its distinct entries is largest.
 
-If the chosen tuple contains two different entries $b,c$, symmetry puts them in the first two slots. Both quantities on the right of \eqref{eq:mixed-local-energy-two-slot} are at most $F$. Since its left side is $F^2$, both replacements also maximize $I$. If $b,c$ have multiplicities $r,s$, replacing one $c$ by $b$ changes the sum of squares by $2(r-s)+2$; the opposite replacement changes it by $2(s-r)+2$. At least one change is positive, contradicting the choice of tuple. Thus the maximizing tuple is diagonal and $F=1$. Undoing the normalization proves the constant-one estimate in the collar case.
+Suppose that this tuple contains two distinct functions $b$ and $c$, with multiplicities $r$ and $s$. By symmetry we may place them in the first two slots. In \eqref{eq:mixed-local-energy-two-slot}, the left side is $F^2$, while the two factors on the right are nonnegative values of $I$ on tuples of our family, hence at most $F$. Therefore both factors equal $F$. Replacing one entry $c$ by $b$ changes the sum of the squares of the multiplicities by $(r+1)^2+(s-1)^2-r^2-s^2=2(r-s)+2$, and replacing one entry $b$ by $c$ changes it by $2(s-r)+2$. One of these numbers is positive, which contradicts the choice of the tuple. Hence the chosen tuple consists of a single function repeated $n+1$ times, and $F=1$. In particular $I(u_0,\ldots,u_n)\leq1$, which is the inequality with constant one.
 
 \emph{Step 2. Approximation with controlled energy.}
-Fix $u\in\mathcal E_0(B)$ and let
+Let $u\in\mathcal E_0(B)$, put $m_\rho=\int_B(\ddc\rho)^n$, and for $j\geq1$ let
 \[
- \delta_j=j^{-n-1},\qquad v_j=\max\{u-\delta_j,j\rho\},
- \qquad m_\rho=\int_B(\ddc\rho)^n.
+ \delta_j=j^{-n-1},\qquad v_j=\max\{u-\delta_j,j\rho\}.
 \]
-The positive shift below $u$ makes $v_j=j\rho$ on a boundary collar: $u-\delta_j\leq-\delta_j$, whereas $j\rho> -\delta_j$ sufficiently near the boundary. Thus $v_j\in\mathcal E_0(B)$ and the compact-support current identity gives
+Since $u-\delta_j\leq-\delta_j$ while $j\rho>-\delta_j$ near $\partial B$, the function $v_j$ equals $j\rho$ on a neighborhood of $\partial B$ in $B$. Hence $v_j\in\mathcal E_0(B)$, and since $v_j-j\rho$ has compact support in $B$, the argument in the proof of \cref{lem:zero-boundary-truncation-mass} gives
 \[
  \int_B(\ddc v_j)^n=j^n m_\rho.
 \]
-Moreover $v_j\to u$ uniformly on $B$. To check this, fix $s>0$. On a sufficiently thin boundary collar, $-s<u\leq0$ and $u-\delta_j\leq v_j\leq0$. On its compact complement, $j\rho<u-\delta_j$ for all large $j$, because $u$ is bounded. The uniform error is therefore at most $s+\delta_j$.
+Moreover, $v_j\to u$ uniformly on $B$. Indeed, let $s>0$, and choose a neighborhood $V$ of $\partial B$ with $u>-s$ on $V\cap B$. Since $u-\delta_j\leq v_j\leq0$, we have $|v_j-u|\leq s+\delta_j$ on $V\cap B$. On the set $B\setminus V$, whose closure is a compact subset of $B$, the function $\rho$ is bounded away from zero and $u$ is bounded, so $j\rho<u-\delta_j$, and hence $v_j=u-\delta_j$, there for all large $j$.
 
-For $t>4\delta_j$ the two inclusions
+Next we estimate $e_1(v_j)$. Let $t>4\delta_j$. Since $u\leq v_j+\delta_j$ and $v_j\leq0$,
 \[
  \{v_j<-t\}\subset\{u<v_j/2-t/4\}
-                       \subset\{u<-t/4\}
+                       \subset\{u<-t/4\};
 \]
-follow from $u\leq v_j+\delta_j$ and $v_j\leq0$. The middle set is relatively compact, since the boundary limits of $u$ and $v_j/2-t/4$ are $0$ and $-t/4$. Bounded comparison gives
+for the first inclusion note that on $\{v_j<-t\}$ we have $v_j/2<-t/2<-t/4-\delta_j$, hence $u\leq v_j+\delta_j<v_j/2-t/4$. As $u$ tends to $0$ and $v_j/2-t/4$ tends to $-t/4$ at $\partial B$, the comparison theorem \cref{thm:bt-comparison} applies to $u$ and $v_j/2-t/4$ and gives
 \[
  \int_{\{v_j<-t\}}(\ddc v_j)^n
+       \leq2^n\int_{\{u<v_j/2-t/4\}}\bigl(\ddc(v_j/2)\bigr)^n
        \leq2^n\int_{\{u<-t/4\}}(\ddc u)^n.
 \]
-Layer integration, using the total mass bound for $0<t\leq4\delta_j$, yields
+For $0<t\leq4\delta_j$ we use the total mass $j^nm_\rho$ instead. Integrating over $t$, using $e_1(v)=\int_0^\infty(\ddc v)^n(\{v<-t\})\,\mathrm dt$, we obtain
 \begin{equation}\label{eq:quadratic-collar-energy-approximation}
  e_1(v_j)\leq4\delta_j j^n m_\rho+2^{n+2}e_1(u)
-                 =4m_\rho/j+C_ne_1(u).
+                 =\frac{4m_\rho}j+C_ne_1(u).
 \end{equation}
 
-Apply this construction to every $u_l$. Their approximants are uniformly bounded, converge uniformly, and hence converge locally in capacity to their possibly discontinuous limits. Weighted capacity continuity, \cref{thm:bt-capacity-continuity}, gives convergence of $I$ on compact cutoffs with values in $[0,1]$. The collar estimate and \eqref{eq:quadratic-collar-energy-approximation} bound those tested integrals by
+\emph{Step 3. The general case.}
+Apply the construction of Step 2 to each $u_l$, obtaining functions $v_{l,j}\in\mathcal E_0(B)$ which equal $j\rho$ near $\partial B$. They are uniformly bounded, since $u_l-1\leq v_{l,j}\leq0$, and they converge uniformly, hence locally in capacity, to $u_l$. Let $\chi\in C_c(B)$ with $0\leq\chi\leq1$. The weight $-u_0$ is bounded and quasi-continuous (\cref{thm:psh-capacity-quasicontinuity}), so the weighted form of \cref{thm:bt-capacity-continuity} and Step 1 give
 \[
- \prod_{l=0}^n(4m_\rho/j+C_ne_1(u_l))^{1/(n+1)}.
+ \begin{aligned}
+ \int_B\chi(-u_0)\,\ddc u_1\wedge\cdots\wedge\ddc u_n
+ &=\lim_{j\to\infty}\int_B\chi(-v_{0,j})\,\ddc v_{1,j}\wedge\cdots\wedge\ddc v_{n,j}\\
+ &\leq\limsup_{j\to\infty}\prod_{l=0}^ne_1(v_{l,j})^{1/(n+1)}.
+ \end{aligned}
 \]
-Let $j\to\infty$ and exhaust $B$ by nonnegative compact cutoffs increasing to one. This proves \eqref{eq:bounded-mixed-local-energy}. The same limiting argument covers zero energies without normalizing them.
+By \eqref{eq:quadratic-collar-energy-approximation}, the right side is at most
+\[
+ \lim_{j\to\infty}\prod_{l=0}^n\left(\frac{4m_\rho}j+C_ne_1(u_l)\right)^{1/(n+1)}
+ =C_n\prod_{l=0}^ne_1(u_l)^{1/(n+1)}.
+\]
+Letting $\chi$ increase to one proves \eqref{eq:bounded-mixed-local-energy}. Vanishing energies need no separate treatment, since the energies of the $v_{l,j}$ are positive.
 \end{proof}
 \index{local energy!mixed inequality}
 
 \Needspace{12\baselineskip}
 \begin{corollary}\label{cor:mixed-products-energy-capacity-continuity}
-For $1\leq l\leq n$ let $u_{l,j}\in\mathcal E_0(B)$, with $e_1(u_{l,j})\leq E<\infty$. Suppose $u_{l,j}\to u_l$ locally in capacity, where each $u_l$ is bounded, nonpositive and psh. Then
+For $1\leq l\leq n$ let $u_{l,j}\in\mathcal E_0(B)$ with $e_1(u_{l,j})\leq E<\infty$ for all $j$. Suppose that $u_{l,j}\to u_l$ locally in capacity as $j\to\infty$, where each $u_l$ is a bounded nonpositive plurisubharmonic function. Then
 \[
  \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{n,j}
           \longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_n
@@ -95,17 +110,28 @@ For $1\leq l\leq n$ let $u_{l,j}\in\mathcal E_0(B)$, with $e_1(u_{l,j})\leq E<\i
 weakly on $B$.
 \end{corollary}
 \begin{proof}
-For $T>0$ write $a_{l,j,T}=\max\{u_{l,j},-T\}$, and denote the original and truncated mixed measures by $R_j$ and $R_{j,T}$. The truncation lemma gives $e_1(a_{l,j,T})\leq E$. Apply the theorem with extra weight $-u_{l,j}$ to $R_j$, and with extra weight $-a_{l,j,T}$ to $R_{j,T}$. Each resulting integral is at most $C_nE$.
-
-Let $D_{j,T}=\bigcup_{l=1}^n\{u_{l,j}\leq-T\}$. On its $l$-th constituent both extra weights are at least $T$, so
+For $T>0$ put $a_{l,j}=\max\{u_{l,j},-T\}$, and write
 \[
- R_j(D_{j,T}),\ R_{j,T}(D_{j,T})\leq nC_nE/T.
+ R_j=\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{n,j},\qquad
+ R_{j,T}=\ddc a_{1,j}\wedge\cdots\wedge\ddc a_{n,j}.
 \]
-Iterated strict maximum locality gives $R_j=R_{j,T}$ on the complement, where every $u_{l,j}>-T$. Thus for each compactly supported continuous $\chi$,
+By \cref{lem:zero-boundary-truncation-mass}, $a_{l,j}\in\mathcal E_0(B)$ and $e_1(a_{l,j})\leq E$. For each $l$, \cref{thm:bounded-mixed-local-energy} with $u_0=u_{l,j}$, respectively $u_0=a_{l,j}$, gives
+\[
+ \int_B(-u_{l,j})\,R_j\leq C_nE,\qquad\int_B(-a_{l,j})\,R_{j,T}\leq C_nE.
+\]
+Let $D_{j,T}=\bigcup_{l=1}^n\{u_{l,j}\leq-T\}$. On $\{u_{l,j}\leq-T\}$ both $-u_{l,j}$ and $-a_{l,j}$ are at least $T$, so Chebyshev's inequality gives
+\[
+ R_j(D_{j,T})\leq nC_nE/T,\qquad R_{j,T}(D_{j,T})\leq nC_nE/T.
+\]
+On the complement of $D_{j,T}$, every $u_{l,j}$ is greater than $-T$. Maximum locality (\cref{prop:bt-maximum-locality} with $p=1$), applied to one factor at a time with the help of the symmetry of the products, shows that $R_j=R_{j,T}$ there. Hence, for every $\chi\in C_c(B)$,
 \[
  \left|\int_B\chi\,(R_j-R_{j,T})\right|
                     \leq2nC_nE\|\chi\|_\infty/T.
 \]
-The tie sets were included in $D_{j,T}$. For fixed $T>\max_l\|u_l\|_\infty$, the truncated potentials converge locally in capacity to $u_l$ and have a common bound. Bounded capacity continuity identifies the weak limit of $R_{j,T}$ with the stated limiting mixed product. First let $j\to\infty$ at fixed $T$, then let $T\to\infty$ in the error estimate.
+Now fix $T>\max_l\|u_l\|_\infty$. Then the uniformly bounded functions $a_{l,j}$ converge to $\max\{u_l,-T\}=u_l$ locally in capacity, so \cref{thm:bt-capacity-continuity} shows that $R_{j,T}\to\ddc u_1\wedge\cdots\wedge\ddc u_n$ weakly. Consequently
+\[
+ \limsup_{j\to\infty}\left|\int_B\chi\,R_j-\int_B\chi\,\ddc u_1\wedge\cdots\wedge\ddc u_n\right|\leq2nC_nE\|\chi\|_\infty/T,
+\]
+and letting $T\to\infty$ completes the proof.
 \end{proof}
 \index{Bedford--Taylor product!energy-controlled continuity}

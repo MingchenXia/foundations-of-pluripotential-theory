@@ -1,9 +1,9 @@
 \section{Mixed products for a common measure}
 \label{sec:common-measure-mixed-products}
-The measure in a density lower bound may be singular with respect to volume. Convolution then preserves neither of the prescribed lower bounds. Instead we solve equations for cube averages of all the pure Monge--Amp\`ere measures. H\"older's inequality compares their densities with the cube averages of the desired mixed lower bound, and the energy estimates justify taking limits.
+\Cref{cor:bounded-multifactor-continuous-density} bounds a mixed Monge--Amp\`ere product from below when the pure Monge--Amp\`ere measures of the factors have continuous lower densities with respect to Lebesgue measure. For non-pluripolar products in \cref{chap:q09} we need the same inequality relative to an arbitrary positive Radon measure $\mu$, which may be singular with respect to Lebesgue measure. Convolution is then of no use, since it does not preserve lower bounds relative to $\mu$. Instead, we restrict each pure Monge--Amp\`ere measure to a compact set and replace it by its cube averages, as in \cref{prop:canonical-grid-energy-control}. The averaged measures have piecewise constant densities, so the case of Lebesgue measure applies on each cube, and H\"older's inequality compares the resulting bound with the cube averages of the expected mixed lower bound. The convergence results of \cref{sec:local-energy-moments} then allow us to pass to the limit.
 
 \begin{theorem}\label{thm:bounded-multifactor-common-measure}
-Let $\Omega\subset\mathbb C^n$ be open, $n\geq1$, and let $u_1,\ldots,u_n$ be locally bounded plurisubharmonic functions. Let $\mu$ be a positive Radon measure, and let $f_i\geq0$ belong to $L^1_{\loc}(\mu)$. If
+Let $\Omega\subset\mathbb C^n$ be open, $n\geq1$, and let $u_1,\ldots,u_n$ be locally bounded plurisubharmonic functions on $\Omega$. Let $\mu$ be a positive Radon measure on $\Omega$, and let $f_1,\ldots,f_n\geq0$ belong to $L^1_{\loc}(\mu)$. If
 \[
  (\ddc u_i)^n\geq f_i\mu\qquad(1\leq i\leq n),
 \]
@@ -12,65 +12,72 @@ then
  \ddc u_1\wedge\cdots\wedge\ddc u_n
                   \geq\left(\prod_{i=1}^nf_i^{1/n}\right)\mu.
 \end{equation}
-Repeated potentials and zero densities are permitted. For $n=1$ this is the hypothesis. Densities are understood up to $\mu$-null sets.
+The potentials need not be distinct, and the densities may vanish; they matter only up to $\mu$-null sets. For $n=1$ the assertion is the hypothesis.
 \end{theorem}
 \begin{proof}
-Suppose $n\geq2$. Generalized H\"older's inequality makes $\prod_i f_i^{1/n}\mu$ locally finite. We first assume all $u_i\in\mathcal E_0(B)$ and then localize by quadratic collars.
+Let $n\geq2$. For every compact $K\subset\Omega$ the generalized H\"older inequality gives $\int_K\prod_if_i^{1/n}\,\mathrm d\mu\leq\prod_i(\int_Kf_i\,\mathrm d\mu)^{1/n}<\infty$, so the right side of \eqref{eq:bounded-multifactor-common-measure} is a positive Radon measure. We first prove the theorem when $\Omega$ is a ball $B=B(a_0,R)$ and all $u_i$ belong to $\mathcal E_0(B)$ (Steps 1 and 2), and then reduce the general case to this one by means of quadratic collars (Step 3). Put $\rho(z)=|z-a_0|^2-R^2$.
 
-\emph{Step 1. Compactly supported pure measures.}
-Choose increasing compact concentric balls $K_l\Subset B$ exhausting $B$, and set
+\emph{Step 1. Exhaustion by compactly supported measures.}
+Choose closed balls $K_l\Subset B$ concentric with $B$, increasing with $l$ and exhausting $B$, and set
 \[
  \alpha_{i,l}=\mathbf1_{K_l}(\ddc u_i)^n.
 \]
-These measures have finite masses and bounded subsolutions $u_i$. By \cref{thm:compact-bounded-subsolution-ball-dirichlet}, their zero-boundary solutions $A_{i,l}$ lie in $\mathcal E_0(B)$. Its pointwise envelope assertion gives
+These measures are finite since $u_i\in\mathcal E_0(B)$, they have compact support in $B$, and they are dominated by the Monge--Amp\`ere measure of the bounded plurisubharmonic function $u_i$. By \cref{thm:compact-bounded-subsolution-ball-dirichlet}, the equation $(\ddc A)^n=\alpha_{i,l}$ has a bounded solution $A_{i,l}\in\mathcal E_0(B)$ with zero boundary values, and $A_{i,l}$ is the largest bounded plurisubharmonic subsolution with upper boundary limits at most zero. The function $u_i$ is such a subsolution for every $\alpha_{i,l}$, and $A_{i,l+1}$ is one for $\alpha_{i,l}$, because $\alpha_{i,l+1}\geq\alpha_{i,l}$. Therefore
 \[
- u_i\leq A_{i,l+1}\leq A_{i,l}\leq0:
+ u_i\leq A_{i,l+1}\leq A_{i,l}\leq0.
 \]
-$u_i$ is a subsolution for every $\alpha_{i,l}$, and $A_{i,l+1}$ is a subsolution for $\alpha_{i,l}$.
 
-The limit $A_{i,\infty}$ is bounded and psh. Its boundary limits are zero because $u_i\leq A_{i,\infty}\leq0$. Bounded decreasing continuity gives
+We claim that $A_{i,l}\downarrow u_i$ as $l\to\infty$. The decreasing limit $A_{i,\infty}$ satisfies $u_i\leq A_{i,\infty}\leq0$, so it is a bounded plurisubharmonic function with zero boundary values. By \cref{thm:bt-decreasing-continuity}, $(\ddc A_{i,\infty})^n$ is the weak limit of $\alpha_{i,l}$, that is,
 \[
- (\ddc A_{i,\infty})^n=(\ddc u_i)^n.
+ (\ddc A_{i,\infty})^n=(\ddc u_i)^n,
 \]
-Their common total mass is finite. Write $\rho=|z-a_0|^2-R^2$ for $B=B(a_0,R)$. Compare $u_i$ with $A_{i,\infty}+\varepsilon\rho$. Their equal pure measures and positivity of the mixed terms give
+and this measure has finite total mass. Let $\varepsilon>0$ and $S=\{u_i<A_{i,\infty}+\varepsilon\rho\}$. Since $u_i-(A_{i,\infty}+\varepsilon\rho)$ tends to zero at $\partial B$, the comparison theorem \cref{thm:bt-comparison} applies. Expanding $(\ddc(A_{i,\infty}+\varepsilon\rho))^n$ and dropping the mixed terms, which are positive, we obtain
 \[
- \varepsilon^n\int_{\{u_i<A_{i,\infty}+\varepsilon\rho\}}
-                         (\ddc\rho)^n\leq0
+ \int_S(\ddc u_i)^n+\varepsilon^n\int_S(\ddc\rho)^n
+ \leq\int_S\bigl(\ddc(A_{i,\infty}+\varepsilon\rho)\bigr)^n
+ \leq\int_S(\ddc u_i)^n.
 \]
-after cancelling two finite integrals of the common measure. The comparison applies because both boundary limits are zero. The strict set is volume-null; canonical psh representatives preserve the almost-everywhere ordering. Hence $u_i\geq A_{i,\infty}+\varepsilon\rho$ everywhere. Letting $\varepsilon\downarrow0$ proves $A_{i,l}\downarrow u_i$ for every $i$.
+The integrals of $(\ddc u_i)^n$ are finite, so $S$ is Lebesgue null. An almost-everywhere inequality between plurisubharmonic functions holds everywhere, hence $u_i\geq A_{i,\infty}+\varepsilon\rho$ on $B$. Letting $\varepsilon\downarrow0$ gives $A_{i,\infty}=u_i$, as claimed.
 
 \emph{Step 2. A common grid.}
-Fix $l$. Partition $\mathbb R^{2n}$ into half-open cubes with side length tending to zero, using the same partitions for all $i$. For sufficiently fine grids every cube meeting $K_l$ has closure in $B$. Let $\alpha_{i,l,j}$ be the cube averages of $\alpha_{i,l}$ and $A_{i,l,j}$ their zero-boundary solutions. The compact-measure theorem gives $A_{i,l,j}\to A_{i,l}$ locally in capacity. The canonical-grid energy estimate, \cref{prop:canonical-grid-energy-control}, gives a common finite bound for all their first energies at this fixed $l$. There are only finitely many $i$, and each original measure is dominated by the bounded subsolution $u_i$. Zero measures have zero solutions. Thus \cref{cor:mixed-products-energy-capacity-continuity} gives
+Fix $l$. Choose a sequence of partitions of $\mathbb C^n=\mathbb R^{2n}$ into half-open cubes whose side lengths tend to zero, the same for all $i$, and so fine that every cube meeting $K_l$ has its closure in $B$. Let $\alpha_{i,l,j}$ be the corresponding cube averages of $\alpha_{i,l}$, as in \cref{prop:canonical-grid-energy-control}, and let $A_{i,l,j}\in\mathcal E_0(B)$ be the corresponding canonical approximants of $\alpha_{i,l}$, that is, the zero-boundary solutions of $(\ddc A_{i,l,j})^n=\alpha_{i,l,j}$. By \cref{thm:compact-bounded-subsolution-ball-dirichlet}, $A_{i,l,j}\to A_{i,l}$ locally in capacity as $j\to\infty$. By \cref{prop:canonical-grid-energy-control}, applied with the bounded subsolution $u_i$, the energies $e_1(A_{i,l,j})$ are bounded uniformly in $j$; since there are only finitely many indices $i$, they have a common bound. (If $\alpha_{i,l}=0$, all these solutions vanish.) Therefore \cref{cor:mixed-products-energy-capacity-continuity} gives
 \begin{equation}\label{eq:common-measure-grid-mixed-limit}
  \bigwedge_{i=1}^n\ddc A_{i,l,j}
                       \longrightarrow\bigwedge_{i=1}^n\ddc A_{i,l}
 \end{equation}
 weakly on $B$.
 
-Put $\lambda_l=\mathbf1_{K_l}\prod_i f_i^{1/n}\mu$ and let $\lambda_{l,j}$ be its cube averages. For every cube $Q$, pure domination and generalized H\"older give
+Let $\lambda_l=\mathbf1_{K_l}\prod_if_i^{1/n}\mu$, a finite measure, and let $\lambda_{l,j}$ be its cube averages. For every cube $Q$, the hypothesis gives $\alpha_{i,l}(Q)\geq\int_{Q\cap K_l}f_i\,\mathrm d\mu$, and the generalized H\"older inequality then gives
 \begin{equation}\label{eq:common-measure-grid-holder}
  \prod_{i=1}^n\left(\frac{\alpha_{i,l}(Q)}{|Q|}\right)^{1/n}
  \geq\frac1{|Q|}\int_{Q\cap K_l}\prod_{i=1}^nf_i^{1/n}\,\mathrm d\mu
  =\frac{\lambda_l(Q)}{|Q|}.
 \end{equation}
-On each cube interior the pure densities of $A_{i,l,j}$ are constant. Apply \cref{cor:bounded-multifactor-continuous-density} there. Its reference measure is $\eta^n=c_n\,\mathrm dV$, $c_n=n!\pi^{-n}$. Dividing the $n$ pure densities by $c_n$ and multiplying the mixed density by $c_n$ cancels this factor, since the $n$ exponents sum to one. The result is the left side of \eqref{eq:common-measure-grid-holder} against $\mathrm dV$. The desired density vanishes on cubes with $\lambda_l(Q)=0$. Positivity and the volume-null cube boundaries therefore give on all of $B$
+Let $Q$ be a cube with $\lambda_l(Q)>0$; it meets $K_l$, so its interior lies in $B$. There the measures $(\ddc A_{i,l,j})^n=\alpha_{i,l,j}$ have the constant densities $\alpha_{i,l}(Q)/|Q|$ with respect to Lebesgue measure $\mathrm dV$. Recall that $\eta^n=c_n\,\mathrm dV$ with $\eta=\ddc|z|^2$ and $c_n=n!\pi^{-n}$, by \eqref{eq:bt-determinant-normalization}. Applying \cref{cor:bounded-multifactor-continuous-density} on the open set $\Int Q$ to the constant densities $c_n^{-1}\alpha_{i,l}(Q)/|Q|$ with respect to $\eta^n$, and using \eqref{eq:common-measure-grid-holder}, we obtain on $\Int Q$
 \[
- \bigwedge_{i=1}^n\ddc A_{i,l,j}\geq\lambda_{l,j}.
+ \bigwedge_{i=1}^n\ddc A_{i,l,j}
+ \geq\prod_{i=1}^n\left(\frac{\alpha_{i,l}(Q)}{c_n|Q|}\right)^{1/n}\eta^n
+ =\prod_{i=1}^n\left(\frac{\alpha_{i,l}(Q)}{|Q|}\right)^{1/n}\mathrm dV
+ \geq\lambda_{l,j}.
 \]
-Only finitely many cubes have nonzero right-hand density. On a compact continuous test, replacing values by cube averages changes its integral by at most the modulus of continuity at the cube diameter times $\lambda_l(B)$. Hence $\lambda_{l,j}\to\lambda_l$ weakly, even for singular $\mu$ and measurable $f_i$. Pass $j\to\infty$ using \eqref{eq:common-measure-grid-mixed-limit}. This proves $\bigwedge_i\ddc A_{i,l}\geq\lambda_l$. Finally $A_{i,l}\downarrow u_i$ with common bounds for each $i$, and $\lambda_l\uparrow\prod_i f_i^{1/n}\mu$. Bounded mixed decreasing continuity and monotone convergence on nonnegative compact tests prove the claimed inequality for $\mathcal E_0(B)$.
+The factor $c_n$ cancels because the $n$ exponents $1/n$ sum to one. The measure $\lambda_{l,j}$ vanishes on the cubes with $\lambda_l(Q)=0$ and does not charge the cube boundaries, which are Lebesgue null. Since the mixed product is positive, we conclude that
+\[
+ \bigwedge_{i=1}^n\ddc A_{i,l,j}\geq\lambda_{l,j}\quad\text{on }B.
+\]
+
+As $j\to\infty$, $\lambda_{l,j}\to\lambda_l$ weakly. Indeed, only finitely many cubes have positive $\lambda_l$-mass, and for $\chi\in C_c(B)$, replacing the values of $\chi$ by its cube averages changes $\int\chi\,\mathrm d\lambda_l$ by at most $\lambda_l(B)$ times the modulus of continuity of $\chi$ at the cube diameter. This holds although $\mu$ may be singular and the $f_i$ are merely measurable. Letting $j\to\infty$ and using \eqref{eq:common-measure-grid-mixed-limit}, we obtain $\bigwedge_i\ddc A_{i,l}\geq\lambda_l$. Finally let $l\to\infty$. By Step 1, $A_{i,l}\downarrow u_i$ with $u_i\leq A_{i,l}\leq0$, so \cref{thm:bt-decreasing-continuity} gives $\bigwedge_i\ddc A_{i,l}\to\bigwedge_i\ddc u_i$ weakly, while $\lambda_l$ increases to $\prod_if_i^{1/n}\mu$. Testing with nonnegative functions in $C_c(B)$ and using monotone convergence on the right, we obtain \eqref{eq:bounded-multifactor-common-measure} for potentials in $\mathcal E_0(B)$.
 
 \emph{Step 3. Localization.}
-For the given locally bounded potentials choose a ball $B=B(a_0,R)$ with $\overline B\subset\Omega$ and a compact $K\Subset B$. Subtract constants so that every $u_i\leq-1$ on $B$. For sufficiently large $C_i>0$,
+Now let $u_1,\ldots,u_n$ be locally bounded on $\Omega$. Choose a ball $B=B(a_0,R)$ with $\overline B\subset\Omega$ and a compact set $K\subset B$. Since adding constants does not change the products, we may assume that $u_i\leq-1$ on $B$. With $\rho(z)=|z-a_0|^2-R^2$ and constants $C_i>0$ so large that $C_i\rho<\inf_Bu_i$ on a neighborhood of $K$, put
 \[
- \widetilde u_i=\max\{u_i,C_i\rho\},\qquad
- \rho=|z-a_0|^2-R^2,
+ \widetilde u_i=\max\{u_i,C_i\rho\}.
 \]
-agrees with $u_i$ near $K$ and is quadratic on a boundary collar. Thus $\widetilde u_i\in\mathcal E_0(B)$: the collar measure is smooth and its interior measure is locally finite. Replace $\mu$ by $\mathbf1_K\mu$. Maximum locality preserves every pure lower bound for this measure. Apply the proved case and restrict to $K$, where all products agree with the original ones. Constant shifts do not affect any product. Such balls and compact neighborhoods cover $\Omega$, so the inequality holds everywhere.
+Then $\widetilde u_i=u_i$ on a neighborhood of $K$, and $\widetilde u_i=C_i\rho$ near $\partial B$, because $C_i\rho\to0$ at $\partial B$ while $u_i\leq-1$. Thus $\widetilde u_i\in\mathcal E_0(B)$: its Monge--Amp\`ere measure is smooth near $\partial B$ and locally finite on the rest of $B$. By locality of the products on the open neighborhood of $K$ where $\widetilde u_i=u_i$, we have $(\ddc\widetilde u_i)^n\geq f_i\mathbf1_K\mu$ on $B$. The case already proved, applied to the measure $\mathbf1_K\mu$, gives $\bigwedge_i\ddc\widetilde u_i\geq\prod_if_i^{1/n}\mathbf1_K\mu$, and on $K$ the left side equals $\bigwedge_i\ddc u_i$. Since the interiors of such compact sets $K$ cover $\Omega$, the inequality holds on $\Omega$.
 \end{proof}
 \index{Monge--Amp\`ere measure!multifactor common-measure inequality}
 
 \begin{corollary}\label{cor:bounded-common-measure-mixed}
-Let $u,v$ be locally bounded plurisubharmonic functions on an open $\Omega\subset\mathbb C^n$, $n\geq1$, and let $\mu$ be a positive Radon measure. If $f,g\geq0$ belong to $L^1_{\loc}(\mu)$ and
+Let $u,v$ be locally bounded plurisubharmonic functions on an open set $\Omega\subset\mathbb C^n$, $n\geq1$, and let $\mu$ be a positive Radon measure on $\Omega$. If $f,g\geq0$ belong to $L^1_{\loc}(\mu)$ and
 \[
  (\ddc u)^n\geq f\mu,\qquad(\ddc v)^n\geq g\mu,
 \]
@@ -79,10 +86,10 @@ then, for each integer $1\leq k\leq n-1$,
  (\ddc u)^k\wedge(\ddc v)^{n-k}
                        \geq f^{k/n}g^{(n-k)/n}\mu.
 \end{equation}
-The endpoint bounds are the hypotheses. For $n=1$ only these endpoints occur.
+For $k=0$ and $k=n$ the corresponding inequalities are the hypotheses; for $n=1$ only these occur.
 \end{corollary}
 \begin{proof}
-Apply the theorem to $k$ copies of $u$ and $n-k$ copies of $v$, with the corresponding repeated densities. H\"older's inequality gives local finiteness of the resulting measure.
+Apply \cref{thm:bounded-multifactor-common-measure} to $k$ copies of $u$ with density $f$ and $n-k$ copies of $v$ with density $g$.
 \end{proof}
 \index{Monge--Amp\`ere measure!common-measure mixed inequality}
 
@@ -94,5 +101,5 @@ Under the hypotheses of \cref{cor:bounded-common-measure-mixed},
 \]
 \end{corollary}
 \begin{proof}
-Expand the left side by multilinearity. For each interior mixed term use \cref{cor:bounded-common-measure-mixed}; for the two endpoints use the original pure bounds. The binomial formula gives the asserted density. This also proves the result when $n=1$ by direct additivity. The densities are locally integrable: each interior term is bounded by a constant times $f+g$, by the weighted arithmetic--geometric mean inequality.
+By additivity and symmetry of the products, $(\ddc(u+v))^n=\sum_{k=0}^n\binom nk(\ddc u)^k\wedge(\ddc v)^{n-k}$. Bound the terms with $1\leq k\leq n-1$ by \cref{cor:bounded-common-measure-mixed} and the terms with $k=0,n$ by the hypotheses; the binomial formula then gives the assertion. The density on the right is locally $\mu$-integrable, since $f^{k/n}g^{(n-k)/n}\leq f+g$ by the weighted arithmetic--geometric mean inequality.
 \end{proof}

@@ -1,35 +1,45 @@
-Write $D(a,r)=\{z\in\mathbb C:|z-a|<r\}$ and $D=D(0,1)$. The measures in the disc and polydisc estimates below are Euclidean volume.
+We next show that plurisubharmonic functions belong to $L^p_{\loc}$ for every finite $p$, and that $L^1_{\loc}$ convergence of plurisubharmonic functions implies $L^p_{\loc}$ convergence. We first treat a subharmonic function $v\leq0$ on the unit disc. By the Riesz decomposition, $v$ is the sum of a harmonic function and a logarithmic potential, and the logarithmic kernel belongs locally to every $L^p$ with $p<\infty$; this gives an $L^p$ bound in terms of the value of $v$ at the center. Applying this bound in one complex variable at a time then gives the estimate for plurisubharmonic functions on polydiscs.
 
-The logarithmic kernel on a complex line belongs locally to every finite $L^p$ space. Riesz decomposition transfers this integrability to negative subharmonic functions, with a bound at a finite center. Applying that bound one variable at a time gives the stronger integrability of psh functions.
+We write $D(a,r)=\{z\in\mathbb C:|z-a|<r\}$ and $D=D(0,1)$, and for $t>0$ we write $tD=D(0,t)$; thus $D^n$ is the unit polydisc in $\mathbb C^n$ and $(tD)^n$ the polydisc of radius $t$ centered at $0$. Integrals over discs and polydiscs are taken with respect to Lebesgue measure $\mathrm dV$.
 
 \Needspace{12\baselineskip}
 \begin{lemma}\label{lem:negative-subharmonic-disc-lp}
-For every $1\leq p<\infty$, there is $C_p>0$ such that a subharmonic function $v\leq0$ on the unit disc $D\subset\mathbb C$, with $v(0)>-\infty$, satisfies
+For every $1\leq p<\infty$ there is a constant $C_p>0$ such that every subharmonic function $v\leq0$ on $D$ with $v(0)>-\infty$ satisfies
 \[
  \|v\|_{L^p(D(0,1/2))}\leq C_p|v(0)|.
 \]
 \end{lemma}
 \begin{proof}
-The ball submean inequality gives $\|v\|_{L^1(D(0,r))}\leq\pi r^2|v(0)|$ for $0<r<1$. Write $\mu=\Delta v$ and choose a nonnegative smooth cutoff $\chi$ supported in $D(0,19/20)$, equal to one on $D(0,9/10)$. Distributional integration gives
+In this proof $C$ denotes constants depending only on $p$ and on two cutoff functions fixed below. Since $v(0)>-\infty$, the function $v$ is not identically $-\infty$, and hence it is locally integrable by \cref{prop:subharmonic-local-integrability}. For $0<r<1$, the ball submean inequality (\cref{thm:subharmonic-comparison}) and $v\leq0$ give
+\begin{equation}\label{eq:negative-subharmonic-disc-lone}
+ \|v\|_{L^1(D(0,r))}=-\int_{D(0,r)}v\,\mathrm dV\leq\pi r^2|v(0)|.
+\end{equation}
+Let $\mu=\Delta v$ be the Riesz measure of $v$, and choose a smooth cutoff $\chi\geq0$ supported in $D(0,19/20)$ and equal to one on $D(0,9/10)$. By the definition of the distributional Laplacian and \eqref{eq:negative-subharmonic-disc-lone},
 \[
  \mu(D(0,9/10))\leq\int\chi\,\mathrm d\mu
-   =\int v\Delta\chi\,\mathrm dV\leq C|v(0)|.
+   =\int v\Delta\chi\,\mathrm dV\leq\sup|\Delta\chi|\,\|v\|_{L^1(D(0,19/20))}\leq C|v(0)|.
 \]
-Choose a smooth cutoff $0\leq\eta\leq1$ supported in $D(0,9/10)$ and equal to one near $\overline{D(0,4/5)}$. By \cref{thm:riesz-decomposition},
+Next choose a smooth cutoff $0\leq\eta\leq1$ supported in $D(0,9/10)$ and equal to one on a neighborhood of $\overline{D(0,4/5)}$. The fundamental solution in the plane is $(2\pi)^{-1}\log|z|$, so \cref{thm:riesz-decomposition} gives
 \[
  v(z)=P(z)+h(z),\qquad
  P(z)=\frac1{2\pi}\int\log|z-\zeta|\,\eta(\zeta)\,\mathrm d\mu(\zeta),
 \]
-on $D(0,4/5)$, with $h$ harmonic. For $|\zeta|\leq9/10$, translation and polar integration bound
+for every $z\in D(0,4/5)$, with $h$ harmonic on $D(0,4/5)$.
+
+We estimate $P$. For $|\zeta|\leq9/10$, the translated disc $D(0,4/5)-\zeta$ lies in $D(0,2)$, so
 \[
  \int_{D(0,4/5)}|\log|z-\zeta||^p\,\mathrm dV(z)
-     \leq\int_{D(0,2)}|\log|z||^p\,\mathrm dV(z)<\infty.
+     \leq L_p=\int_{D(0,2)}|\log|z||^p\,\mathrm dV(z)<\infty;
 \]
-Indeed the integral near zero is $2\pi\int_0^1r|\log r|^p\,\mathrm dr$. Jensen's inequality for the finite measure $\eta\mu$, followed by Tonelli, therefore gives $\|P\|_{L^p(D(0,4/5))}\leq C_p|v(0)|$. If this measure is zero, $P=0$ and the same bound holds. The bounds for $v$ and $P$ in $L^1$ give $\|h\|_{L^1(D(0,4/5))}\leq C|v(0)|$. For $|z|\leq1/2$, the harmonic mean formula on a fixed-radius ball about $z$ bounds $|h(z)|$ by this last norm times a fixed constant. Adding the two estimates proves the assertion.
+the integral $L_p$ is finite because its part over $D$ equals $2\pi\int_0^1r|\log r|^p\,\mathrm dr$. Let $m=\int\eta\,\mathrm d\mu$, so that $m\leq\mu(D(0,9/10))\leq C|v(0)|$. If $m=0$, then $P=0$. Otherwise, Jensen's inequality for the probability measure $\eta\mu/m$ gives
+\[
+ |P(z)|^p\leq\Bigl(\frac m{2\pi}\Bigr)^p\int|\log|z-\zeta||^p\,\frac{\eta(\zeta)\,\mathrm d\mu(\zeta)}m,
+\]
+and integrating over $z\in D(0,4/5)$ with Tonelli's theorem yields $\|P\|_{L^p(D(0,4/5))}\leq L_p^{1/p}m/(2\pi)\leq C|v(0)|$. The case $p=1$ of this bound and \eqref{eq:negative-subharmonic-disc-lone} give $\|h\|_{L^1(D(0,4/5))}\leq C|v(0)|$. For $|z|\leq1/2$, the disc $D(z,3/10)$ lies in $D(0,4/5)$, and the mean value property of $h$ on this disc gives $|h(z)|\leq C\|h\|_{L^1(D(0,4/5))}\leq C|v(0)|$. Adding the estimates for $P$ and $h$ on $D(0,1/2)$ proves the lemma.
 \end{proof}
 
 \begin{proposition}\label{prop:negative-psh-polydisc-lp}
-Let $D^n\subset\mathbb C^n$ be the unit polydisc, $n\geq1$. For every $1\leq p<\infty$ there are constants $C_{n,p},A_{n,p}>0$ such that every psh $v\leq0$ on $D^n$ satisfies
+Let $n\geq1$ and $1\leq p<\infty$. There are constants $C_{n,p},A_{n,p}>0$ such that every plurisubharmonic function $v\leq0$ on the unit polydisc $D^n$ satisfies
 \[
  \|v\|_{L^p((\tfrac12D)^n)}\leq C_{n,p}|v(0)|
                          \quad\text{if }v(0)>-\infty,
@@ -38,36 +48,45 @@ and
 \begin{equation}\label{eq:negative-psh-lp-lone-bound}
  \|v\|_{L^p((\tfrac14D)^n)}\leq A_{n,p}\|v\|_{L^1(D^n)}.
 \end{equation}
-The second estimate applies whenever its right side is finite.
+Here $\|v\|_{L^1(D^n)}$ may be infinite, in which case \eqref{eq:negative-psh-lp-lone-bound} holds trivially.
 \end{proposition}
 \begin{proof}
-For the first assertion apply \cref{lem:negative-subharmonic-disc-lp} in the first variable with the other variables fixed. The center function $z'\mapsto v(0,z')$ is psh by \cref{prop:psh-holomorphic-pullback} and is finite at the origin. It is therefore locally integrable and finite almost everywhere. Off its null pole set the line restriction has a finite center, so
+We prove the first estimate by induction on $n$. For $n=1$ it is \cref{lem:negative-subharmonic-disc-lp}. Let $n\geq2$, write $z=(z_1,z')$ with $z'\in\mathbb C^{n-1}$, and let $v$ be as in the statement with $v(0)>-\infty$. The function $w(z')=v(0,z')$ is the composition of $v$ with the holomorphic map $z'\mapsto(0,z')$, so by \cref{prop:psh-holomorphic-pullback} it is plurisubharmonic or identically $-\infty$ on $D^{n-1}$. Since $w(0)=v(0)>-\infty$, it is plurisubharmonic, hence locally integrable and finite outside a Lebesgue null set $E\subset D^{n-1}$. For $z'\in D^{n-1}\setminus E$, the function $z_1\mapsto v(z_1,z')$ is subharmonic and nonpositive on $D$, with the finite value $w(z')$ at the center, so \cref{lem:negative-subharmonic-disc-lp} gives
 \[
  \int_{\frac12D}|v(z_1,z')|^p\,\mathrm dV(z_1)
-                              \leq C_p^p|v(0,z')|^p.
+                              \leq C_p^p|w(z')|^p.
 \]
-Tonelli and induction on $n$ prove the first estimate, including the possibility of infinite slice integrals over that null exceptional set.
-
-For the second, choose $a\in(\tfrac1{10}D)^n$ with $v(a)>-\infty$ and
+We integrate over $z'\in(\tfrac12D)^{n-1}$ using Tonelli's theorem; the null set $E$, on which the inner integral may be infinite, does not contribute. The induction hypothesis applied to $w$ then gives
 \[
- |v(a)|\leq2|(\tfrac1{10}D)^n|^{-1}\|v\|_{L^1(D^n)}.
+ \|v\|_{L^p((\frac12D)^n)}^p\leq C_p^p\|w\|_{L^p((\frac12D)^{n-1})}^p\leq C_p^pC_{n-1,p}^p|v(0)|^p,
 \]
-Such a point exists by integration; when the norm is zero, the canonical representative is zero and the estimate follows. The polydisc of radius $4/5$ about $a$ lies in $D^n$. Its half-sized polydisc contains $(\tfrac14D)^n$. Apply the first estimate after translation and rescaling. The Euclidean volume factor is fixed, giving \eqref{eq:negative-psh-lp-lone-bound}.
+which is the first estimate with $C_{n,p}=C_pC_{n-1,p}$.
+
+For the second estimate, let $Q=(\tfrac1{10}D)^n$ and $|Q|$ its volume. If $\|v\|_{L^1(D^n)}=0$, then $v=0$ almost everywhere, hence $v\equiv0$ by \cref{thm:psh-distribution-representative}, and there is nothing to prove; we may also assume that $\|v\|_{L^1(D^n)}<\infty$. The mean of $|v|$ over $Q$ is at most $|Q|^{-1}\|v\|_{L^1(D^n)}$, and $v$ is finite almost everywhere, so there is a point $a\in Q$ with $v(a)>-\infty$ and
+\[
+ |v(a)|\leq2|Q|^{-1}\|v\|_{L^1(D^n)}.
+\]
+The polydisc of radius $4/5$ centered at $a$ lies in $D^n$, and the polydisc of radius $2/5$ centered at $a$ contains $(\tfrac14D)^n$, since $\tfrac14+\tfrac1{10}<\tfrac25$. We apply the first estimate to the plurisubharmonic function $\zeta\mapsto v(a+\tfrac45\zeta)\leq0$ on $D^n$ and change variables:
+\[
+ \|v\|_{L^p((\frac14D)^n)}\leq\bigl(\tfrac45\bigr)^{2n/p}C_{n,p}|v(a)|\leq2\bigl(\tfrac45\bigr)^{2n/p}C_{n,p}|Q|^{-1}\|v\|_{L^1(D^n)}.
+\]
+This is \eqref{eq:negative-psh-lp-lone-bound}.
 \end{proof}
 
 \begin{theorem}\label{thm:psh-local-lp-integrability}
-On a complex manifold, every psh function belongs to $L^p_{\loc}$ for $1\leq p<\infty$. A sequence of psh functions converging in $L^1_{\loc}$ converges in $L^p_{\loc}$ for every such $p$.
+Let $X$ be a complex manifold and $1\leq p<\infty$. Every plurisubharmonic function on $X$ belongs to $L^p_{\loc}(X)$. If a sequence of plurisubharmonic functions on $X$ converges in $L^1_{\loc}(X)$, then it converges in $L^p_{\loc}(X)$ to the same limit.
 \end{theorem}
 \begin{proof}
-In a relatively compact coordinate polydisc, subtract a constant upper bound to make the function negative. Local $L^1$ integrability and the rescaled estimate \eqref{eq:negative-psh-lp-lone-bound} give $L^p$ integrability on a smaller polydisc. These smaller polydiscs cover each compact subset, proving the first assertion.
+If $X$ has dimension zero, every compact subset of $X$ is finite, plurisubharmonic functions are real-valued, and convergence in $L^p_{\loc}$ is pointwise convergence; so both assertions hold. Let $X$ have dimension $n\geq1$. Every compact subset of $X$ is covered by finitely many coordinate polydiscs, so it suffices to work near a point $x\in X$ in a chart in which $x=0$ and the closed polydisc $\overline{(RD)^n}$ lies in the chart, for some $R>0$.
 
-Suppose $u_j\to u$ in $L^1_{\loc}$. Their norms on a fixed larger coordinate neighborhood are bounded. The ball submean inequality bounds $u_j$ uniformly above on each relatively compact smaller neighborhood; the same holds for the canonical limit $u$. Subtract a common upper bound and apply \eqref{eq:negative-psh-lp-lone-bound}. A finite covering gives uniform $L^{2p}$ bounds for $u_j,u$ on a given compact set $K$. For $p>1$, H\"older's inequality gives
+Let $u$ be plurisubharmonic. Being upper semicontinuous, $u$ is bounded above on $\overline{(RD)^n}$ by some $M$. The function $\zeta\mapsto u(R\zeta)-M$ is plurisubharmonic and nonpositive on $D^n$, and its $L^1$ norm on $D^n$ is finite because $u$ is locally integrable. By \eqref{eq:negative-psh-lp-lone-bound}, $u$ belongs to $L^p$ on the polydisc $(\tfrac R4D)^n$. This proves the first assertion.
+
+Now let $(u_j)$ be a sequence of plurisubharmonic functions converging in $L^1_{\loc}(X)$. By \cref{thm:psh-compactness-hartogs} applied in charts, together with the uniqueness in \cref{thm:psh-distribution-representative}, the limit is represented by a plurisubharmonic function $u$. The norms $\|u_j\|_{L^1((RD)^n)}$ are bounded because the sequence converges. If $y\in(\tfrac R2D)^n$, the ball $B(y,R/2)$ lies in $(RD)^n$, so the ball submean inequality gives $u_j(y)\leq|B(y,R/2)|^{-1}\|u_j\|_{L^1((RD)^n)}$. Hence there is a constant $M$, independent of $j$, with $u_j\leq M$ and $u\leq M$ on $(\tfrac R2D)^n$. Applying \eqref{eq:negative-psh-lp-lone-bound} to $\zeta\mapsto u_j(\tfrac R2\zeta)-M$ and to $\zeta\mapsto u(\tfrac R2\zeta)-M$, whose $L^1$ norms on $D^n$ are bounded independently of $j$, we obtain a bound for the $L^{2p}$ norms of $u_j$ and $u$ on $(\tfrac R8D)^n$ that is uniform in $j$. By a finite covering, for every compact set $K\subset X$ the norms $\|u_j\|_{L^{2p}(K)}$ and $\|u\|_{L^{2p}(K)}$ are bounded independently of $j$. For $p=1$ there is nothing to prove. For $p>1$, H\"older's inequality, with the exponents determined by $\frac1p=\frac1{2p-1}+\bigl(1-\frac1{2p-1}\bigr)\frac1{2p}$, gives
 \[
  \|u_j-u\|_{L^p(K)}
  \leq\|u_j-u\|_{L^1(K)}^{1/(2p-1)}
        \|u_j-u\|_{L^{2p}(K)}^{(2p-2)/(2p-1)}\longrightarrow0.
 \]
-For $p=1$ this is the given convergence. In dimension zero the assertion is the convergence of finite values on the finitely many points of each compact set.
 \end{proof}
 \index{plurisubharmonic function!local Lp integrability}
 \index{plurisubharmonic function!Lp convergence}

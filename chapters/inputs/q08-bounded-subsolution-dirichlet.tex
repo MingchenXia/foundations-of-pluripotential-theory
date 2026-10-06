@@ -1,118 +1,145 @@
 \subsection{A bounded subsolution and the limiting equation}
 \label{sec:bounded-subsolution-ball-equation}
-We can now identify the canonical limit. A bounded local subsolution supplies a zero-boundary barrier near the support of the prescribed measure. Comparison with a strict perturbation of that barrier gives a bound for the limit and recovers its boundary values.
+We can now solve the Dirichlet problem
+\[
+ (\ddc U)^n=\mu\quad\text{on }B,\qquad U=0\quad\text{on }\partial B,
+\]
+for a compactly supported measure $\mu$ dominated by the Monge--Amp\`ere measure of a bounded plurisubharmonic function, and show that the whole sequence of canonical approximants of $\mu$ (\cref{prop:canonical-grid-energy-control}) converges to the solution (\cref{thm:compact-bounded-subsolution-ball-dirichlet}). By \cref{thm:canonical-grid-capacity-convergence}, every $L^1$ limit $u$ of canonical approximants satisfies $(\ddc\max\{u,-T\})^n\to\mu$ as $T\to\infty$; it remains to show that $u$ is bounded and has zero boundary values. To this end we build from the bounded subsolution a barrier with zero boundary values and compare the approximants with a strict perturbation of this barrier. Since the comparison involves the masses that the moving measures $\mu_j$ give to moving sublevel sets, we first prove a convergence lemma for such masses.
 
 \begin{lemma}\label{lem:capacity-controlled-measure-weights}
-Let $\nu_j,\nu$ be finite positive measures supported in a fixed compact set $K_0\Subset B$, with uniformly bounded masses, and suppose $\nu_j\to\nu$ weakly. Assume there is a nondecreasing function $\eta:[0,+\infty]\to[0,+\infty]$ with $\eta(t)\to0$ as $t\downarrow0$ such that, for every Borel $E\subset B$,
+Let $K_0\Subset B$ be compact, and let $\nu_j,\nu$ be finite positive Borel measures on $B$, supported in $K_0$, with uniformly bounded masses and with $\nu_j\to\nu$ weakly. Assume that there is a nondecreasing function $\omega\colon[0,+\infty]\to[0,+\infty]$ with $\omega(t)\to0$ as $t\downarrow0$ such that
 \[
- \nu_j(E),\ \nu(E)\leq\eta(\operatorname{Cap}_B^*(E)).
+ \nu_j(E)\leq\omega(\operatorname{Cap}_B^*(E)),\qquad
+ \nu(E)\leq\omega(\operatorname{Cap}_B^*(E))
 \]
-Let $f_j,f$ be real Borel functions with a common finite bound, let $f$ be quasi-continuous near $K_0$, and suppose $f_j\to f$ in outer capacity on $K_0$. Then
+for all $j$ and every Borel set $E\subset B$. Let $f_j,f$ be real Borel functions on $B$ bounded by a common constant, with $f$ quasi-continuous on a neighborhood of $K_0$, and suppose that $\operatorname{Cap}_B^*(K_0\cap\{|f_j-f|>\delta\})\to0$ for every $\delta>0$. Then
 \[
  \int_Bf_j\,\mathrm d\nu_j\longrightarrow\int_Bf\,\mathrm d\nu.
 \]
-For every $c\in\mathbb R$ with $\nu(\{f=c\})=0$, also
+Moreover, for every $c\in\mathbb R$ with $\nu(\{f=c\})=0$,
 \begin{equation}\label{eq:capacity-controlled-moving-level-sets}
  \nu_j(\{f_j<c\})\longrightarrow\nu(\{f<c\}).
 \end{equation}
 \end{lemma}
 \begin{proof}
-Write $C$ for the common function bound and $M$ for the mass bound. First keep the weight $f$ fixed. On a compact neighborhood of $K_0$, remove an open $G$ of arbitrarily small capacity so that $f$ is continuous on the remaining compact set. Its continuous extension from \cref{sec:bt-quasicontinuity}, multiplied by a compact cutoff equal to one near $K_0$, gives $g\in C_c(B)$ with $|g|\leq C$ and $g=f$ on $K_0\setminus G$. Weak convergence applies to $g$, and the two replacement errors are at most $2C\nu_j(G)$ and $2C\nu(G)$. Let the capacity of $G$ tend to zero. This proves convergence for the fixed quasi-continuous weight.
+Let $C$ be a common bound for $|f_j|$ and $|f|$, and let $M$ be a common bound for the masses of $\nu_j$ and $\nu$. Note that $\omega(0)=0$, since $\omega$ is nonnegative and nondecreasing with $\omega(t)\to0$ as $t\downarrow0$.
 
-For the varying weights and $\delta>0$,
+We first consider the fixed weight $f$. Let $L\Subset B$ be a compact neighborhood of $K_0$ on which $f$ is quasi-continuous, and let $\kappa>0$. Choose an open set $G\subset B$ with $\operatorname{Cap}_B(G)<\kappa$ such that $f$ is continuous on the compact set $L\setminus G$. By the extension construction preceding \cref{lem:quasi-continuous-level-capacity}, this restriction extends to a continuous function on $\mathbb C^n$ bounded by $C$. Multiplying the extension by a cutoff in $C_c(\Int L)$ with values in $[0,1]$ and equal to one on $K_0$, we obtain $g\in C_c(B)$ with $|g|\leq C$ and $g=f$ on $K_0\setminus G$. Since $\nu_j$ and $\nu$ are carried by $K_0$,
+\[
+ \left|\int_Bf\,\mathrm d\nu_j-\int_Bg\,\mathrm d\nu_j\right|\leq2C\nu_j(G)\leq2C\omega(\kappa),
+\]
+and similarly for $\nu$. Since $\int g\,\mathrm d\nu_j\to\int g\,\mathrm d\nu$, we get $\limsup_j|\int f\,\mathrm d\nu_j-\int f\,\mathrm d\nu|\leq4C\omega(\kappa)$. Letting $\kappa\downarrow0$ proves the assertion for the fixed weight.
+
+For the varying weights, let $\delta>0$. Since $|f_j-f|\leq2C$ and $\nu_j$ is carried by $K_0$,
 \[
  \int_B|f_j-f|\,\mathrm d\nu_j
- \leq\delta M+2C\eta\left(
+ \leq\delta M+2C\omega\left(
        \operatorname{Cap}_B^*(K_0\cap\{|f_j-f|>\delta\})\right).
 \]
-Let $j\to\infty$, then $\delta\downarrow0$, and combine with the fixed-weight result.
+As $j\to\infty$, the capacity on the right tends to zero, and hence so does the second term. Letting $\delta\downarrow0$ gives $\int|f_j-f|\,\mathrm d\nu_j\to0$, which together with the fixed-weight case proves the first assertion.
 
-For the level-set assertion choose continuous piecewise linear functions $\sigma^-_s,\sigma^+_s$ with values in $[0,1]$ such that
+For the level sets, fix $s>0$ and let $\sigma^-_s,\sigma^+_s\colon\mathbb R\to[0,1]$ be the continuous piecewise linear functions such that $\sigma^-_s$ equals one on $(-\infty,c-s]$, zero on $[c,\infty)$ and is linear in between, and $\sigma^+_s$ equals one on $(-\infty,c]$, zero on $[c+s,\infty)$ and is linear in between. Then
 \[
  \mathbf1_{(-\infty,c-s)}\leq\sigma^-_s
  \leq\mathbf1_{(-\infty,c)}\leq\sigma^+_s
- \leq\mathbf1_{(-\infty,c+s]},\qquad s>0.
+ \leq\mathbf1_{(-\infty,c+s]}.
 \]
-For example the lower ramp falls linearly from one at $c-s$ to zero at $c$, and the upper one from one at $c$ to zero at $c+s$. Their compositions with $f_j$ converge in capacity to the corresponding compositions with $f$, whose quasi-continuity is preserved. Apply the first assertion to these compositions and squeeze. As $s\downarrow0$, dominated convergence and the null level set give \eqref{eq:capacity-controlled-moving-level-sets}.
+Since $\sigma^\pm_s$ are Lipschitz, $\sigma^\pm_s\circ f_j$ converge to $\sigma^\pm_s\circ f$ in the same sense as $f_j\to f$, and $\sigma^\pm_s\circ f$ is quasi-continuous. The first assertion therefore gives
+\[
+ \nu(\{f<c-s\})\leq\liminf_{j\to\infty}\nu_j(\{f_j<c\})
+ \leq\limsup_{j\to\infty}\nu_j(\{f_j<c\})\leq\nu(\{f\leq c+s\}).
+\]
+As $s\downarrow0$, the two outer terms tend to $\nu(\{f<c\})$ and $\nu(\{f\leq c\})$, which are equal since $\nu(\{f=c\})=0$. This proves \eqref{eq:capacity-controlled-moving-level-sets}.
 \end{proof}
 
 \begin{corollary}\label{cor:energy-controlled-fixed-measure-limit}
-Suppose $\varphi_j\in\mathcal E_0(B)$, $\sup_je_2(\varphi_j)<\infty$, and $\varphi_j\to u$ in local volume $L^1$, with the canonical nonpositive psh limit. If $\nu$ is a finite positive Borel measure and $\nu\leq(\ddc w)^n$ for a bounded $w\in\PSH(B)$, then $u\in L^2(\nu)$ and $\varphi_j\to u$ in $L^1(\nu)$.
+Let $\varphi_j\in\mathcal E_0(B)$ with $\sup_je_2(\varphi_j)<\infty$ converge in $L^1_{\loc}(B)$, and let $u$ be the canonical nonpositive plurisubharmonic representative of the limit. If $\nu$ is a finite positive Borel measure on $B$ with $\nu\leq(\ddc w)^n$ for some bounded $w\in\PSH(B)$, then $u\in L^2(\nu)$ and $\varphi_j\to u$ in $L^1(\nu)$.
 \end{corollary}
 \begin{proof}
-The moment theorem with $p=2$ gives uniform $L^2(\nu)$ bounds for $\varphi_j$. For fixed $T$, the bounded truncations converge in $L^1(\nu)$ by \cref{lem:bounded-psh-fixed-measure-continuity}, and their squares converge in integral. Letting $T\to\infty$ gives the same $L^2$ bound for $u$. The error between a negative function and its truncation has $L^1(\nu)$ norm at most $T^{-1}$ times its squared $L^2(\nu)$ norm. Apply this to $\varphi_j,u$, first taking $j\to\infty$ at fixed $T$ and then $T\to\infty$.
+By the moment estimate \eqref{eq:local-energy-measure-moment} with $p=2$, the integrals $\int_B\varphi_j^2\,\mathrm d\nu$ are bounded uniformly in $j$. Fix $T>0$. By \cref{lem:bounded-psh-fixed-measure-continuity}, the truncations $\max\{\varphi_j,-T\}$ converge to $\max\{u,-T\}$ in $L^1(\nu)$, and so do their squares, since squaring is Lipschitz on $[-T,0]$. Hence $\int_B\max\{u,-T\}^2\,\mathrm d\nu\leq\sup_j\int_B\varphi_j^2\,\mathrm d\nu$, and letting $T\to\infty$ shows that $u\in L^2(\nu)$ with the same bound. For a function $v\leq0$ we have $0\leq\max\{v,-T\}-v\leq v^2/T$, so the $L^1(\nu)$ distances between $\varphi_j,u$ and their truncations are at most $T^{-1}$ times a bound independent of $j$. Letting first $j\to\infty$ and then $T\to\infty$ proves that $\varphi_j\to u$ in $L^1(\nu)$.
 \end{proof}
 
 \begin{theorem}\label{thm:compact-bounded-subsolution-ball-dirichlet}
-Let $\mu$ be a finite positive measure of compact support in a ball $B\subset\mathbb C^n$, $n\geq1$. If $\mu\leq(\ddc w)^n$ for a bounded $w\in\PSH(B)$, there is a unique bounded psh function $U$ with
+Let $B\subset\mathbb C^n$ be a ball, $n\geq1$, and let $\mu$ be a finite positive Borel measure with compact support in $B$. Suppose that $\mu\leq(\ddc w)^n$ for some bounded $w\in\PSH(B)$. Then there is a unique bounded plurisubharmonic function $U$ on $B$ with
 \[
  (\ddc U)^n=\mu,\qquad
  \lim_{B\ni z\to\zeta}U(z)=0\quad(\zeta\in\partial B).
 \]
-It belongs to $\mathcal E_0(B)$ and is the pointwise envelope of bounded psh subsolutions with upper boundary limits at most zero. The entire canonical sequence in \cref{prop:canonical-grid-energy-control} converges to $U$ in $L^1(B)$ and locally in outer capacity, and satisfies
+It belongs to $\mathcal E_0(B)$, and it is the pointwise supremum of all bounded plurisubharmonic subsolutions $v$, that is, $(\ddc v)^n\geq\mu$, whose upper boundary limits are at most zero. Moreover, the whole sequence of canonical approximants $U_j$ of $\mu$ (\cref{prop:canonical-grid-energy-control}) converges to $U$ in $L^1(B)$ and locally in capacity, and
 \[
  \int_B|U_j-U|\,\mathrm d\mu
        +\int_B|U_j-U|\,\mathrm d\mu_j\longrightarrow0.
 \]
 \end{theorem}
 \begin{proof}
-If $\mu=0$, the homogeneous zero-boundary solution and all its canonical approximants are zero. The maximum principle identifies the stated envelope. Write $m=\mu(B)>0$ for the remaining case.
+If $\mu=0$, then all $\mu_j$ and all $U_j$ vanish, and $U=0$ is a solution. By the maximum principle, every plurisubharmonic function on $B$ whose upper boundary limits are at most zero is nonpositive, so $U=0$ is the stated supremum, and \cref{thm:bt-comparison}, applied in both directions, shows that any two bounded solutions coincide. We may therefore assume that $m=\mu(B)>0$.
 
-\emph{Step 1. A zero-boundary barrier.}
-Write $B=B(a,R)$, $\rho(z)=|z-a|^2-R^2$ and $w_0=w-\sup_Bw-1$. Then $-M-1\leq w_0\leq-1$, where $M$ is the oscillation of $w$. Choose $A>0$ so large that $A\rho<-M-2$ on a neighborhood of $\operatorname{supp}\mu$. The function
+\emph{Step 1. A barrier with zero boundary values.}
+Write $B=B(a,R)$ and $\rho(z)=|z-a|^2-R^2$, let $M=\sup_Bw-\inf_Bw$, and put $w_0=w-\sup_Bw-1$, so that $-M-1\leq w_0\leq-1$. Since $\Supp\mu$ is a compact subset of $B$, the function $\rho$ is bounded away from zero on an open neighborhood $N\Subset B$ of $\Supp\mu$, and we can choose $A>0$ with $A\rho<-M-2$ on $N$. Put
 \[
- W=\max\{w_0,A\rho\}
+ W=\max\{w_0,A\rho\}.
 \]
-equals $w_0$ on that neighborhood and equals $A\rho$ on a boundary collar. It is bounded, negative and has zero boundary values; maximum locality gives $(\ddc W)^n\geq\mu$.
+Then $W=w_0$ on $N$, while $W=A\rho$ near $\partial B$, because $A\rho\to0$ at $\partial B$ and $w_0\leq-1$. Thus $W$ is bounded and negative and has zero boundary values. By locality on the open set $N$ (\cref{prop:bt-positive-recursion}), $(\ddc W)^n=(\ddc w)^n\geq\mu$ there; as $\mu$ is carried by $N$, we get $(\ddc W)^n\geq\mu$ on $B$.
 
-Its total mass is finite, since the collar measure is smooth and the remaining interior measure is locally finite. Apply the compact-support polynomial-current identity in the proof of \cref{lem:zero-boundary-truncation-mass} to $W$ and $A\rho$. Their difference has compact support, so testing its $\ddc$ with a cutoff equal to one there gives
+The measure $(\ddc W)^n$ is smooth near $\partial B$ and finite on the remaining compact part of $B$, so it has finite total mass. Since $W-A\rho$ has compact support in $B$, the argument in the proof of \cref{lem:zero-boundary-truncation-mass} gives
 \[
  \int_B(\ddc W)^n=A^n\int_B(\ddc\rho)^n.
 \]
-The same argument gives finite mass for $W_\varepsilon=W+\varepsilon\rho$, $\varepsilon>0$, whose collar is $(A+\varepsilon)\rho$. Positivity of mixed products gives
+In the same way, for $\varepsilon>0$ the Monge--Amp\`ere measure of $W_\varepsilon=W+\varepsilon\rho$, which equals $(A+\varepsilon)\rho$ near $\partial B$, has finite total mass. Expanding $(\ddc W+\varepsilon\ddc\rho)^n$ and dropping the mixed terms, which are positive, we obtain
 \begin{equation}\label{eq:local-subsolution-strict-barrier}
  \nu_\varepsilon:=(\ddc W_\varepsilon)^n
                        \geq\mu+\varepsilon^n(\ddc\rho)^n.
 \end{equation}
 
-\emph{Step 2. Comparison along a canonical subsequence.}
-Choose an $L^1(B)$-convergent subsequence of $U_j$, with limit $u$. The preceding results give local outer-capacity convergence and a uniform second energy bound $E_2$. By the corollary, $U_j\to u$ in $L^1(\nu_\varepsilon)$ for each fixed $\varepsilon>0$.
+\emph{Step 2. Comparison along a convergent subsequence.}
+By \cref{prop:canonical-grid-energy-control}, a subsequence of the canonical approximants, still denoted $U_j$ (together with the corresponding measures $\mu_j$), converges in $L^1(B)$; let $u$ be the canonical nonpositive plurisubharmonic representative of the limit. By \cref{thm:canonical-grid-capacity-convergence}, $U_j\to u$ locally in capacity, and $E_2=\sup_je_2(U_j)<\infty$. By \cref{cor:energy-controlled-fixed-measure-limit} with $\nu=\nu_\varepsilon$, we have $U_j\to u$ in $L^1(\nu_\varepsilon)$ for every $\varepsilon>0$.
 
-The grid measures have supports in a fixed $K_0\Subset B$. They have a common capacity modulus by \eqref{eq:energy-measure-capacity-modulus}:
+We check that \cref{lem:capacity-controlled-measure-weights} applies to the measures $\mu_j$ and $\mu$. After discarding finitely many indices, these measures are supported in a fixed compact set $K_0\Subset B$; they have total mass $m$, and $\mu_j\to\mu$ weakly. By \eqref{eq:energy-measure-capacity-modulus} with $p=2$,
 \[
- \mu_j(E)\leq T^n\operatorname{Cap}_B^*(E)+E_2T^{-2}.
+ \mu_j(E)\leq T^n\operatorname{Cap}_B^*(E)+E_2T^{-2}
 \]
-The original measure satisfies $\mu(E)\leq M^n\operatorname{Cap}_B^*(E)$. Define $\eta(t)$ as the supremum of their masses on Borel sets of outer capacity at most $t$. First choosing $T$ large and then making the capacity small shows that this common nondecreasing modulus tends to zero. Thus the weight lemma applies to $\mu_j,\mu$.
+for every Borel set $E\subset B$ and every $T>0$. Moreover, $M>0$ since $\mu\neq0$, and $(w-\inf_Bw)/M$ is a competitor for $\operatorname{Cap}_B$; hence $\mu(E)\leq(\ddc w)^n(E)\leq M^n\operatorname{Cap}_B^*(E)$. Let $\omega(t)$ be the supremum of $\mu(E)$ and of all $\mu_j(E)$ over the Borel sets $E$ with $\operatorname{Cap}_B^*(E)\leq t$. Then $\omega$ is nondecreasing, and $\omega(t)\leq\max\{M^nt,\ T^nt+E_2T^{-2}\}$ for every $T>0$. Choosing first $T$ large and then $t$ small shows that $\omega(t)\to0$ as $t\downarrow0$.
 
-Fix $\varepsilon>0$. Choose $0<\delta<1$ such that the level set $\{u-W_\varepsilon=-\delta\}$ has zero mass for both $\mu$ and $\nu_\varepsilon$. Only countably many levels are excluded, since both measures are finite. For $T>\|W_\varepsilon\|_\infty+2$, the inequalities
+Fix $\varepsilon>0$. Since $\mu$ and $\nu_\varepsilon$ are finite, only countably many of the disjoint level sets of $u-W_\varepsilon$ have positive mass for one of them. Choose $\delta\in(0,1)$ such that
+\[
+ \mu(\{u-W_\varepsilon=-\delta\})=\nu_\varepsilon(\{u-W_\varepsilon=-\delta\})=0,
+\]
+and fix $T>\|W_\varepsilon\|_\infty+2$. Since $W_\varepsilon-\delta>-T$, the inequalities
 \[
  U_j<W_\varepsilon-\delta,\qquad u<W_\varepsilon-\delta
 \]
-are unchanged when $U_j,u$ are replaced by their truncations at $-T$. The bounded differences between those truncations and $W_\varepsilon$ are quasi-continuous and converge in capacity. Hence \eqref{eq:capacity-controlled-moving-level-sets} gives
+do not change when $U_j$ and $u$ are replaced by $a_j=\max\{U_j,-T\}$ and $b=\max\{u,-T\}$. The functions $a_j-W_\varepsilon$ and $b-W_\varepsilon$ are bounded and quasi-continuous; as in Step 4 of the proof of \cref{thm:canonical-grid-capacity-convergence}, $a_j-W_\varepsilon\to b-W_\varepsilon$ locally in capacity; and $\{b-W_\varepsilon=-\delta\}=\{u-W_\varepsilon=-\delta\}$. Thus \eqref{eq:capacity-controlled-moving-level-sets} gives
 \[
  \mu_j(\{U_j<W_\varepsilon-\delta\})
                        \longrightarrow\mu(\{u<W_\varepsilon-\delta\}).
 \]
-The fixed-measure $L^1(\nu_\varepsilon)$ convergence gives the corresponding convergence for $\nu_\varepsilon$. To see this directly, outside $\{|U_j-u|>s\}$ the two sublevel indicators can differ only in $\{|u-W_\varepsilon+\delta|\leq s\}$. The first set has mass tending to zero; let $s\downarrow0$ in the second, using the null level set.
+The analogous convergence holds for the fixed measure $\nu_\varepsilon$. Indeed, let $s>0$. Outside $\{|U_j-u|>s\}$, the indicators of $\{U_j<W_\varepsilon-\delta\}$ and $\{u<W_\varepsilon-\delta\}$ can differ only on $\{|u-W_\varepsilon+\delta|\leq s\}$. The $\nu_\varepsilon$-mass of the first set tends to zero as $j\to\infty$, by the convergence in $L^1(\nu_\varepsilon)$, and that of the second set tends to $\nu_\varepsilon(\{u-W_\varepsilon=-\delta\})=0$ as $s\downarrow0$. Hence
+\[
+ \nu_\varepsilon(\{U_j<W_\varepsilon-\delta\})\longrightarrow\nu_\varepsilon(\{u<W_\varepsilon-\delta\}).
+\]
 
-The comparison set for $U_j$ and $W_\varepsilon-\delta$ is relatively compact because $U_j$ has zero boundary limit and $W_\varepsilon-\delta\leq-\delta$. Bounded comparison gives
+Since $U_j$ has zero boundary values and $W_\varepsilon-\delta\leq-\delta$, the difference $U_j-(W_\varepsilon-\delta)$ has boundary limits $\delta>0$. The comparison theorem \cref{thm:bt-comparison} therefore gives
 \[
  \nu_\varepsilon(\{U_j<W_\varepsilon-\delta\})
                        \leq\mu_j(\{U_j<W_\varepsilon-\delta\}).
 \]
-Pass to the limit. By \eqref{eq:local-subsolution-strict-barrier}, the set $\{u<W_\varepsilon-\delta\}$ has zero Euclidean volume. Thus $u\geq W_\varepsilon-\delta$ almost everywhere, and canonical psh representatives preserve this ordering at every point. Let $\delta\downarrow0$ through admissible levels, then $\varepsilon\downarrow0$. We obtain $W\leq u\leq0$.
+Let $j\to\infty$ and put $S=\{u<W_\varepsilon-\delta\}$. By \eqref{eq:local-subsolution-strict-barrier},
+\[
+ \mu(S)+\varepsilon^n\int_S(\ddc\rho)^n\leq\nu_\varepsilon(S)\leq\mu(S).
+\]
+Since $\mu(S)$ is finite, $S$ has Lebesgue measure zero. Thus $u\geq W_\varepsilon-\delta$ almost everywhere, and hence everywhere, since an almost-everywhere inequality between plurisubharmonic functions holds everywhere (see the proof of \cref{thm:bt-comparison}). Letting $\delta\downarrow0$ through admissible values and then $\varepsilon\downarrow0$, we obtain $W\leq u\leq0$.
 
-The barrier makes $u$ bounded and gives its zero boundary limits. For every $T>\|u\|_\infty$, its truncation is $u$ itself. The estimate \eqref{eq:canonical-grid-truncated-measure-limit}, followed by $T\to\infty$, proves $(\ddc u)^n=\mu$. Its mass is $m$, so $u\in\mathcal E_0(B)$.
+As $W$ has zero boundary values, $u$ is bounded and has zero boundary values. For $T>\|u\|_\infty$ the truncation $\max\{u,-T\}$ is $u$ itself, so \eqref{eq:canonical-grid-truncated-measure-limit} gives $\|(\ddc u)^n-\mu\|_{\mathrm{TV}}\leq2E_2T^{-2}$ for all large $T$. Hence $(\ddc u)^n=\mu$. In particular $(\ddc u)^n$ has finite mass $m$, and $u\in\mathcal E_0(B)$.
 
-\emph{Step 3. Uniqueness and the full sequence.}
-Let $v$ be a bounded psh subsolution with upper boundary limits at most zero, and put $v_\varepsilon=v+\varepsilon\rho$. Then $(\ddc v_\varepsilon)^n\geq\mu+\varepsilon^n(\ddc\rho)^n$. Comparison with $u$ gives
+\emph{Step 3. Uniqueness and convergence of the whole sequence.}
+Let $v$ be a bounded plurisubharmonic subsolution whose upper boundary limits are at most zero, and put $v_\varepsilon=v+\varepsilon\rho$ for $\varepsilon>0$. As in Step 1, $(\ddc v_\varepsilon)^n\geq\mu+\varepsilon^n(\ddc\rho)^n$. Since $u-v_\varepsilon$ has nonnegative lower boundary limits, comparison with $u$ gives
 \[
  \mu(\{u<v_\varepsilon\})
        +\varepsilon^n\int_{\{u<v_\varepsilon\}}(\ddc\rho)^n
           \leq\mu(\{u<v_\varepsilon\}).
 \]
-The two $\mu$ integrals are finite. Their cancellation makes the strict set volume-null, so canonical representatives give $u\geq v_\varepsilon$ everywhere. Let $\varepsilon\downarrow0$. Since $u$ is itself a subsolution, this proves the pointwise envelope assertion. Interchanging two bounded solutions proves uniqueness; call the solution $U$.
+The two $\mu$-masses are finite, so the set $\{u<v_\varepsilon\}$ is Lebesgue null, and therefore $u\geq v_\varepsilon$ everywhere. Letting $\varepsilon\downarrow0$ gives $u\geq v$. Since $u$ is itself such a subsolution, it is the pointwise supremum in the statement. Any bounded solution with zero boundary values is such a subsolution, hence is at most $u$; exchanging the roles of the two solutions proves uniqueness. We denote the solution by $U$.
 
-Every subsequence of the canonical sequence has a further $L^1(B)$-convergent subsequence. The argument above identifies every such limit with $U$; \cref{thm:canonical-grid-self-integral-convergence,thm:canonical-grid-capacity-convergence} give its energy and capacity convergences. If any asserted full-sequence convergence failed, a subsequence separated from its stated limit would have such a further convergent subsequence, a contradiction. This proves all the assertions.
+Finally, by \cref{prop:canonical-grid-energy-control}, every subsequence of the canonical approximants has a further subsequence converging in $L^1(B)$. By Step 2 and uniqueness, its limit is $U$, and \cref{thm:canonical-grid-self-integral-convergence,thm:canonical-grid-capacity-convergence} give the asserted convergence of the integrals and convergence in capacity along it. If one of the asserted convergences failed for the whole sequence, some subsequence would stay away from the stated limit, and no further subsequence could converge as just described. This contradiction proves all the assertions.
 \end{proof}
 \index{Dirichlet problem!bounded subsolution and compact measure}

@@ -1,16 +1,18 @@
 \chapter{Non-pluripolar products}
 \label{chap:q09}
 
-The bounded Bedford--Taylor construction gives closed positive products. Limits with unbounded potentials can nevertheless carry mass at poles. Non-pluripolar products retain only the levels where all potentials are finite; plurifine locality makes these restrictions increase and makes their limit independent of the potentials. A bidisc example shows that local finiteness can fail. When it holds, cutoff-gradient estimates prove closedness. On a compact K\"ahler manifold, a smooth positive shift and bounded Stokes give finiteness for every tuple of closed positive $(1,1)$-currents.
+In \cref{chap:q08} we multiplied the currents $\ddc u_1,\ldots,\ddc u_p$ of locally bounded plurisubharmonic functions by the Bedford--Taylor recursion $\ddc u_1\wedge T=\ddc(u_1T)$. Many potentials that arise in global geometry are unbounded. On a compact K\"ahler manifold every closed positive $(1,1)$-current can be written as $\theta+\ddc\varphi$ with $\theta$ a smooth form and $\varphi$ quasi-plurisubharmonic (\cref{thm:global-ddc-lemma}), and $\varphi$ takes the value $-\infty$ wherever the current has a positive Lelong number, for instance along a hypersurface carrying a current of integration. For such potentials the recursion breaks down, because it multiplies the measure coefficients of a current by a function that is no longer bounded. In this chapter we construct a product for arbitrary plurisubharmonic potentials which keeps positivity, closedness, multilinearity and locality, at the price of ignoring everything that happens on pluripolar sets.
 
-The first-degree formula identifies the part of the distributional Hessian that survives. A diffuse polar measure on $\mathbb P^1$ gives a potential with zero Lelong numbers and trivial multiplier ideals at every positive scale, yet zero non-pluripolar mass. Bounded-factor compatibility and fibre integration connect this construction to recursive products and relative energy. The bounded common-measure inequality passes through the finite levels to give mixed lower bounds.
+The construction truncates the potentials and discards their poles. We replace each $u_j$ by $\max\{u_j,-k\}$, take the Bedford--Taylor product, and keep only its restriction to the set where all $u_j>-k$. On that set the truncated potentials coincide with the original ones. Since bounded products are local in the plurifine topology (\cref{thm:bt-plurifine-locality}), the restrictions obtained for different $k$ are therefore compatible and increase with $k$. Their limit is the \emph{non-pluripolar product} $\langle\ddc u_1\wedge\cdots\wedge\ddc u_p\rangle$; by construction it gives no mass to pluripolar sets. Two phenomena without counterpart in the bounded theory appear. The limit may have infinite mass on compact sets, as an example in a bidisc shows (\cref{ex:nonpluripolar-infinite-local-mass}). And the mass carried by the poles is lost: in degree one, $\langle\ddc u\rangle$ is the restriction of $\ddc u$ to $\{u>-\infty\}$ (\cref{prop:nonpluripolar-degree-one-restriction}), so the current of integration at a point of $\mathbb P^1$ has zero non-pluripolar product, and even a potential with zero Lelong numbers and trivial multiplier ideals can have zero non-pluripolar mass (\cref{ex:diffuse-polar-zero-nonpluripolar-mass}). When the local masses are finite, the product is a closed positive current (\cref{thm:nonpluripolar-product-closed}). Since the indicators of the level sets cannot be differentiated, the proof replaces them by bounded plurisubharmonic cutoff functions whose gradients are controlled by the masses.
 
-The remaining question is how mass changes with singularities. Capacity convergence gives a lower limit inequality and, under a total-mass hypothesis, continuity. Mass monotonicity first follows for potentials bounded outside one global pole set; projective fibres with simplex weights concentrating at an endpoint then handle arbitrary singularities. The consequences are mixed mass invariance under bounded changes, maximal masses in cohomology classes, and global comparison and domination. They supply the next chapter's envelope estimates. The converse from positive mass to bigness follows later, after the prescribed-measure equations. Sources and precise comparisons are in \cref{sec:history-nonpluripolar}.
+On a compact K\"ahler manifold $X$ the local masses are always finite: every tuple of closed positive $(1,1)$-currents has a non-pluripolar product, and its total mass is bounded by a cohomological quantity (\cref{thm:compact-nonpluripolar-finiteness}). The total mass is, however, no longer determined by the cohomology classes of the factors; it depends on the singularities of the potentials. The central result of the second half of the chapter is that it is monotone in the singularities: if $\theta$ is a smooth closed real $(1,1)$-form, $\varphi,\psi\in\PSH(X,\theta)$ and $\psi\leq\varphi+C$ for a constant $C$, then the less singular potential $\varphi$ has the larger mass (\cref{thm:nonpluripolar-self-mass-monotonicity}). When all potentials are bounded outside a common closed pluripolar set, this follows from Stokes' formula applied to differences of potentials that have compact support away from that set. Arbitrary singularities are reduced to this case by an auxiliary potential on $X\times\mathbb P^N$, whose total mass is an average of the masses along a segment of potentials, with weights $Nt^{N-1}\,\mathrm dt$ concentrating at the endpoint $t=1$ as $N\to\infty$. Along the way we prove that non-pluripolar products are lower semicontinuous under convergence in capacity, and continuous when no mass is lost in the limit (\cref{thm:nonpluripolar-capacity-lower-limit}).
+
+Monotonicity has several consequences that are used in the rest of the book. Mixed masses do not change under bounded perturbations of the potentials. In a big class, potentials with minimal singularities have the largest masses; these maximal masses define the positive intersection numbers and the volume of pseudo-effective classes. The full-mass classes, the comparison principle and the domination principle at the end of the chapter are basic tools for the envelopes of \cref{chap:q10}, and the fibre formula of \cref{sec:nonpluripolar-fibres} is used for relative energy in \cref{chap:q11}. Big classes have positive volume; the converse, that a pseudo-effective class of positive volume is big, requires solving Monge--Amp\`ere equations and is proved in \cref{sec:positive-mass-bigness}. References and historical remarks are collected in \cref{sec:history-nonpluripolar}.
 
 \Needspace{13\baselineskip}
 \section{Truncation and plurifine locality}
 \label{sec:nonpluripolar-construction}
-Let $X$ be a complex manifold of dimension $n\geq1$. On a coordinate domain $U\subset X$, fix an integer $1\leq p\leq n$ and let $u_1,\ldots,u_p$ be plurisubharmonic. For positive integers $k$ put
+Let $X$ be a complex manifold of dimension $n\geq1$, let $U\subset X$ be a coordinate domain, and fix an integer $1\leq p\leq n$. Let $u_1,\ldots,u_p$ be plurisubharmonic functions on $U$; we call $\{u_j=-\infty\}$ the \emph{pole set} of $u_j$. For each integer $k\geq1$ put
 \[
  \begin{gathered}
  u_{j,k}=\max\{u_j,-k\},\qquad
@@ -18,129 +20,176 @@ Let $X$ be a complex manifold of dimension $n\geq1$. On a coordinate domain $U\s
  S_k=\mathbf1_{O_k}\ddc u_{1,k}\wedge\cdots\wedge\ddc u_{p,k}.
  \end{gathered}
 \]
-The bounded products are those of \cref{def:bedford-taylor-product}, and the indicators restrict their coefficient measures. The sets $O_k$ are Borel and plurifine open. They need not be open in the ordinary topology.
+The functions $u_{j,k}$ are locally bounded and plurisubharmonic, so the product in $S_k$ is the Bedford--Taylor product of \cref{def:bedford-taylor-product}, and multiplication by $\mathbf1_{O_k}$ restricts its coefficient measures to $O_k$. The set $O_k$ is Borel, because plurisubharmonic functions are upper semicontinuous, and it is plurifine open, because they are plurifine continuous; it need not be open in the ordinary topology. On $O_k$ every $u_{j,k}$ coincides with $u_j$.
 
 \Needspace{14\baselineskip}
 \begin{lemma}\label{lem:nonpluripolar-truncation-limit}
-The positive measure-coefficient currents $S_k$ increase. Their limit is locally finite precisely when
+For $l\geq k$ the current $S_l-S_k$ is positive, and $\mathbf1_{O_k}S_l=S_k$. The currents $S_k$ converge weakly to a positive current $S$ if and only if
 \begin{equation}\label{eq:nonpluripolar-local-mass-condition}
  \sup_k\int_K S_k\wedge\beta^{n-p}<\infty
- \quad\text{for every }K\Subset U,
+ \quad\text{for every compact set }K\subset U,
 \end{equation}
-where $\beta$ is the Euclidean K\"ahler form. In that case $S$ annihilates pluripolar sets and $S_k\to S$ in coefficient variation on compact sets. For Borel $E_k\subset O_k$ with $\mathbf1_{E_k}\to1$ almost everywhere for the trace of $S$, one has $\mathbf1_{E_k}S_k\to S$ against bounded Borel tests with compact support.
+where $\beta$ is the Euclidean K\"ahler form \eqref{eq:euclidean-hermitian-form} of the coordinates. In that case $\mathbf1_{O_k}S=S_k$ for every $k$, the coefficient measures of $S_k$ converge to those of $S$ in total variation on compact subsets of $U$, and $S$ gives zero mass to every pluripolar set. Moreover, if $E_k\subset O_k$ are Borel sets such that $\mathbf1_{E_k}\to1$ almost everywhere for the trace measure of $S$, then the coefficient measures of $\mathbf1_{E_k}S_k$ converge to those of $S$ when integrated against any bounded Borel function with compact support in $U$. This is the case, in particular, if the sets $E_k$ increase and $U\setminus\bigcup_kE_k$ is pluripolar.
 \end{lemma}
 \begin{proof}
-For $l\geq k$, all corresponding bounded potentials agree on $O_k$. \Cref{thm:bt-plurifine-locality} gives $\mathbf1_{O_k}S_l=S_k$. On the complement of $O_k$, $S_k$ is zero and $S_l$ is positive. Thus $S_l-S_k\geq0$.
+Let $l\geq k$. On $O_k$ we have $u_{j,l}=u_j=u_{j,k}$ for every $j$, so by \cref{thm:bt-plurifine-locality} the level-$l$ and level-$k$ products have the same restriction to $O_k$. Since $O_k\subset O_l$, this is the identity $\mathbf1_{O_k}S_l=S_k$. Consequently $S_l-S_k=\mathbf1_{O_l\setminus O_k}\ddc u_{1,l}\wedge\cdots\wedge\ddc u_{p,l}$, and this current is positive. Indeed, if $R$ is a positive current with measure coefficients and $\varphi$ is a smooth compactly supported strongly positive test form of complementary bidegree, then $R\wedge\varphi$ is a positive measure, since $R(\chi\varphi)\geq0$ for every smooth $\chi\geq0$; hence $\int_ER\wedge\varphi\geq0$ for every Borel set $E$.
 
-Their trace measures increase, and \eqref{eq:nonpluripolar-local-mass-condition} gives a locally finite measure limit. The positive coefficient bounds of \cref{thm:positive-current-order-zero} bound the variation of each coefficient of $S_l-S_k$ by a fixed multiple of its trace. Hence every coefficient is Cauchy in variation on compact sets and defines the positive limit $S$. Conversely a locally finite positive limit bounds the traces of all $S_k$. Every bounded product here annihilates pluripolar sets by \cref{prop:bt-poles-zero-capacity,prop:bt-capacity-basic}, so its increasing limit does too. Its restriction to $O_k$ is exactly $S_k$; it is zero on $U\setminus\bigcup_kO_k$, a pluripolar set. Finally $\mathbf1_{E_k}S_k=\mathbf1_{E_k}S$. Dominated convergence against the locally finite coefficient variations proves the last assertion. The trace determines their null sets. In particular an increasing exhaustion whose complement is pluripolar satisfies the indicator condition.
+Suppose that \eqref{eq:nonpluripolar-local-mass-condition} holds. The trace measures $S_k\wedge\beta^{n-p}$ increase with $k$ and, by \eqref{eq:nonpluripolar-local-mass-condition}, converge to a locally finite measure. Hence the trace mass of the positive current $S_l-S_k$ on a compact set $K$ tends to zero as $k,l\to\infty$. By \cref{thm:positive-current-order-zero}, the total variation on $K$ of each coefficient measure of $S_l-S_k$ is at most a fixed multiple of this trace mass. Therefore each coefficient measure of $S_k$ is a Cauchy sequence in total variation on compact sets, and the limits are the coefficients of a current $S$, which is positive as a weak limit of positive currents. Conversely, suppose that $S_k\to S$ weakly for a positive current $S$. For every smooth compactly supported $\chi\geq0$, the numbers $\int\chi S_k\wedge\beta^{n-p}$ increase with $k$ and converge to $\int\chi S\wedge\beta^{n-p}$, which therefore bounds them; choosing $\chi=1$ on $K$ gives \eqref{eq:nonpluripolar-local-mass-condition}.
+
+Assume now that \eqref{eq:nonpluripolar-local-mass-condition} holds. Letting $l\to\infty$ in $\mathbf1_{O_k}S_l=S_k$ gives $\mathbf1_{O_k}S=S_k$. Every bounded product gives zero mass to pluripolar sets (\cref{prop:bt-poles-zero-capacity,prop:bt-capacity-basic,cor:psh-pluripolar-discrepancy}), hence so does every $S_k$, and by convergence in total variation so does $S$. In particular $S$ vanishes on $U\setminus\bigcup_kO_k$, the union of the pole sets of the $u_j$. Finally, let $E_k$ be as in the statement. Since $E_k\subset O_k$, we have $\mathbf1_{E_k}S_k=\mathbf1_{E_k}S$. By \cref{thm:positive-current-order-zero}, the total variation of each coefficient measure of $S$ is locally finite and absolutely continuous with respect to the trace measure. Hence $\mathbf1_{E_k}\to1$ almost everywhere for each of these variations, and dominated convergence proves the assertion. If the $E_k$ increase and $U\setminus\bigcup_kE_k$ is pluripolar, then $\mathbf1_{E_k}\to1$ outside this pluripolar Borel set, which $S$ does not charge.
 \end{proof}
 
 \begin{definition}\label{def:nonpluripolar-product}
-When \eqref{eq:nonpluripolar-local-mass-condition} holds, the limit is the \emph{non-pluripolar product}
+If \eqref{eq:nonpluripolar-local-mass-condition} holds, we say that the non-pluripolar product of $u_1,\ldots,u_p$ is \emph{locally finite}, and we call the limit $S$ of \cref{lem:nonpluripolar-truncation-limit} the \emph{non-pluripolar product}
 \[
  \langle\ddc u_1\wedge\cdots\wedge\ddc u_p\rangle=S.
 \]
-The angle brackets distinguish this construction from a product that retains polar mass. We omit them for bounded potentials, for which it is the Bedford--Taylor product. The empty product is $1$.
+The angle brackets distinguish this construction from a product that retains mass on pluripolar sets. The empty product ($p=0$) is $1$.
 \end{definition}
 \index{non-pluripolar product!truncation construction}
+If all $u_j$ are locally bounded, then every relatively compact open subset of $U$ is contained in $O_k$ for large $k$. In this case the non-pluripolar product is locally finite and coincides with the Bedford--Taylor product, and we omit the brackets.
 
 \begin{proposition}\label{prop:nonpluripolar-strong-positivity}
-Every locally finite non-pluripolar product is strongly positive: it is nonnegative on compactly supported smooth weakly positive test forms. This is the current version of the dual cones in \cref{prop:positivity-cones}.
+Every locally finite non-pluripolar product $S$ is strongly positive: $S(\varphi)\geq0$ for every compactly supported smooth weakly positive form $\varphi$ of bidegree $(n-p,n-p)$. This is the analogue for currents of the strongly positive cone of \cref{prop:positivity-cones}.
 \end{proposition}
 \begin{proof}
-Products of smooth decreasing regularizations of the bounded potentials are exterior products of semipositive $(1,1)$-forms, hence strongly positive. Decreasing Bedford--Taylor continuity in \cref{thm:bt-decreasing-continuity} preserves their nonnegative pairing with each weakly positive test form. This property is also preserved by restriction of coefficient measures. Indeed, relative to the trace, test the coefficient density against a countable dense family of constant weakly positive forms and nonnegative scalar tests. Outside one null set every such pairing is nonnegative; density and finite-dimensional cone duality give the strong cone condition pointwise. Restriction and an increasing locally finite limit preserve it. Apply this to the truncated products defining the non-pluripolar product.
+First let all potentials be locally bounded. Locally they are limits of decreasing sequences of smooth plurisubharmonic functions. The complex Hessians of these functions are semipositive $(1,1)$-forms, and an exterior product of such forms is strongly positive, so their products pair nonnegatively with every weakly positive form. By \cref{thm:bt-decreasing-continuity}, the Bedford--Taylor product is the weak limit of these smooth products, and therefore it pairs nonnegatively with every smooth compactly supported weakly positive test form.
+
+Next let $R$ be a strongly positive current with measure coefficients. We show that strong positivity is then a pointwise property of $R$, and therefore passes to the restrictions $\mathbf1_ER$ to Borel sets $E$. Since $R$ is in particular positive, it has a trace measure $\mu$. By \cref{thm:positive-current-order-zero,lem:dominated-measure-density}, we can write $R=H\mu$, where $H$ is a $\mu$-measurable function with values in the real $(p,p)$-forms. For a constant weakly positive $(n-p,n-p)$-form $c$ and a smooth compactly supported function $\chi\geq0$, the form $\chi c$ is a weakly positive test form, so $\int\chi\,(H\wedge c)\,\mathrm d\mu\geq0$; hence $H\wedge c\geq0$ $\mu$-almost everywhere. Letting $c$ run through a countable dense subset of the weakly positive cone, we obtain a $\mu$-null set $N$ such that $H(x)\wedge c\geq0$ for every $x\notin N$ and, by density, for every weakly positive $c$. By definition the weakly positive cone is dual to the strongly positive cone, and the latter is closed (\cref{prop:positivity-cones}); by finite-dimensional cone duality, $H(x)$ is strongly positive for $x\notin N$. Conversely, this pointwise property gives $\int_ER\wedge\varphi=\int_EH\wedge\varphi\,\mathrm d\mu\geq0$ for every Borel set $E$ and every smooth weakly positive test form $\varphi$. Thus $\mathbf1_ER$ is strongly positive.
+
+Applied to the bounded products in the definition of $S_k$, this shows that every $S_k$ is strongly positive. Since $S_k\to S$ weakly by \cref{lem:nonpluripolar-truncation-limit}, so is $S$.
 \end{proof}
 \index{positive current!strong positivity}
 
 \begin{proposition}\label{prop:nonpluripolar-local-calculus}
-Local finiteness and the product depend only on the currents $\ddc u_j$. The product is symmetric, local in the plurifine topology and multilinear in its positive current factors. For addition in one factor, the product of the sum is locally finite if and only if both summand products are locally finite. These assertions allow the local products of arbitrary closed positive $(1,1)$-currents to glue whenever their mass condition holds.
+Let $u_1,\ldots,u_p$ and $v_1,\ldots,v_p$ be plurisubharmonic on $U$. If $\ddc u_j=\ddc v_j$ for every $j$, then the non-pluripolar product of the $u_j$ is locally finite if and only if that of the $v_j$ is, and then the two products are equal; thus local finiteness and the product depend only on the currents $\ddc u_j$. The product is symmetric in its factors and local in the plurifine topology: if $u_j=v_j$ on a plurifine open set $O$ for every $j$ and both products are locally finite, then they have the same restriction to $O$. Finally, the product is multilinear. Namely, let $u_1'$ be plurisubharmonic on $U$. The product of $u_1+u_1',u_2,\ldots,u_p$ is locally finite if and only if the products of $u_1,u_2,\ldots,u_p$ and of $u_1',u_2,\ldots,u_p$ are, and in that case
+\[
+ \begin{aligned}
+ \langle\ddc(u_1+u_1')\wedge\ddc u_2\wedge\cdots\wedge\ddc u_p\rangle
+ &=\langle\ddc u_1\wedge\ddc u_2\wedge\cdots\wedge\ddc u_p\rangle\\
+ &\quad+\langle\ddc u_1'\wedge\ddc u_2\wedge\cdots\wedge\ddc u_p\rangle.
+ \end{aligned}
+\]
+Similarly, for real $c>0$ the product of $cu_1,u_2,\ldots,u_p$ is locally finite if and only if that of $u_1,u_2,\ldots,u_p$ is, and then it is $c$ times the latter.
 \end{proposition}
 \begin{proof}
-Symmetry holds at every bounded truncation. For locality, two tuples agreeing on a plurifine open $O$ have equal bounded products on
-$O\cap\bigcap_j\{u_j>-k\}\cap\bigcap_j\{v_j>-k\}$.
-These sets exhaust $O$ except for their pluripolar pole sets. Both limits give those sets zero mass, so the restrictions agree. The quasi-Lindel\"of argument in \cref{thm:bt-plurifine-locality} makes these restrictions measurable for the completed coefficient measures.
+In this proof we write $P^{(m)}(w_1,\ldots,w_p)=\ddc\max\{w_1,-m\}\wedge\cdots\wedge\ddc\max\{w_p,-m\}$ for plurisubharmonic $w_1,\ldots,w_p$ and an integer $m\geq1$.
 
-If $\ddc u_j=\ddc v_j$, the difference $w_j=v_j-u_j$ is smooth pluriharmonic: the trace equation and Weyl's lemma first make the distribution smooth, and its Hessian is zero. On a neighborhood $V$ of a compact test set choose $C$ with $|w_j|\leq C$. On $O_k(v)\cap V$, the bounded psh functions $\max\{v_j,-k\}$ and $\max\{u_j,-k-C\}+w_j$ coincide. Plurifine locality therefore identifies the restricted product with the corresponding restriction of the $u$-product at level $k+C$. Its trace is bounded by the mass of that product on a slightly larger compact neighborhood. Thus finiteness for $u$ implies finiteness for $v$; the reverse implication uses $-w_j$. Exhausting their common finite locus proves equality. Constants and real truncation levels cause no change, since a real level is bounded between adjacent integer levels.
+\emph{Symmetry and locality.} Each truncated product $S_k$ is symmetric in its factors, hence so is the limit. Suppose that $u_j=v_j$ on the plurifine open set $O$ for every $j$, and that both products are locally finite. The plurifine open sets
+$W_k=O\cap\bigcap_j\{u_j>-k\}=O\cap\bigcap_j\{v_j>-k\}$
+increase with $k$. On $W_k$ the truncations $\max\{u_j,-k\}$ and $\max\{v_j,-k\}$ coincide, so the two level-$k$ products agree on $W_k$ by \cref{thm:bt-plurifine-locality}, and by \cref{lem:nonpluripolar-truncation-limit} so do the two non-pluripolar products. The union of the $W_k$ is $O$ minus the union of the pole sets of the $u_j$; this union is pluripolar and carries no mass for either product. The quasi-Lindel\"of argument in the proof of \cref{thm:bt-plurifine-locality} (see \cref{thm:plurifine-quasi-lindelof}) shows that $O$ and the $W_k$ are measurable for the completed coefficient measures, so the restrictions to $O$ are well defined, and they agree.
+
+\emph{Dependence on the currents $\ddc u_j$.} Suppose that $\ddc u_j=\ddc v_j$ for every $j$. The distribution $v_j-u_j$ then has zero Laplacian, so by Weyl's lemma it is a smooth function $w_j$, and its complex Hessian vanishes: $w_j$ is pluriharmonic. The plurisubharmonic functions $v_j$ and $u_j+w_j$ agree almost everywhere, hence everywhere. Fix a relatively compact open set $V\subset U$ and an integer $C$ such that $|w_j|\leq C$ on $V$ for all $j$. Write $O_k(u),S_k(u)$ and $O_k(v),S_k(v)$ for the level sets and truncated products of the two tuples. On $V\cap O_k(v)$ we have $u_j=v_j-w_j>-k-C$, hence
+\[
+ \max\{v_j,-k\}=v_j=\max\{u_j,-k-C\}+w_j .
+\]
+Both sides are bounded plurisubharmonic functions on $V$, and adding the pluriharmonic function $w_j$ does not change Bedford--Taylor products. Since moreover $V\cap O_k(v)\subset O_{k+C}(u)$, plurifine locality gives on $V$
+\[
+ S_k(v)=\mathbf1_{O_k(v)}P^{(k+C)}(u_1,\ldots,u_p)=\mathbf1_{O_k(v)}S_{k+C}(u)\leq S_{k+C}(u).
+\]
+Thus \eqref{eq:nonpluripolar-local-mass-condition} for the $u_j$ implies \eqref{eq:nonpluripolar-local-mass-condition} for the $v_j$ on compact subsets of $V$, and exchanging the two tuples (that is, replacing $w_j$ by $-w_j$) gives the converse. If both products are locally finite, the display and \cref{lem:nonpluripolar-truncation-limit} give $\mathbf1_{O_k(v)}\langle\ddc v_1\wedge\cdots\wedge\ddc v_p\rangle=\mathbf1_{O_k(v)}\langle\ddc u_1\wedge\cdots\wedge\ddc u_p\rangle$ on $V$ for every $k$. The sets $O_k(v)$ exhaust the complement of the union of the pole sets, which are the same for the two tuples and carry no mass for either product. Hence the two products coincide.
 
 \Needspace{6\baselineskip}
-For additivity compare the positive bounded products on
+\emph{Additivity.} Let $u_1'$ be plurisubharmonic and put
 \[
- E_k=\{u_1>-k\}\cap\{v_1>-k\}
+ E_k=\{u_1>-k\}\cap\{u_1'>-k\}
                     \cap\bigcap_{j=2}^p\{u_j>-k\}.
 \]
-On this set $u_{1,k}+v_{1,k}=u_1+v_1$, whose truncation at $-2k$ has the same Hessian. Bounded multilinearity gives the sum of the two summand products there. For the other factors use level $2k$ on the sum side; they agree with their level-$k$ truncations on $E_k$. The sets $E_k$ increase and miss only the union of the pole sets. By \cref{prop:finite-locus-truncation}, each tuple has an increasing trace-measure limit even before local finiteness is known; this extended measure need not define a current. It annihilates every pluripolar set. Restricting each extended trace to $E_k$ gives its corresponding bounded-level trace, so the bounded identity just proved holds there. Monotone convergence as $k\to\infty$ gives equality of the extended traces on every Borel set. Positivity now shows that the uniform local mass condition for the sum is equivalent to the two separate conditions. Passing to the limits then gives equality of currents. Positive scaling follows by rescaling the levels, proving multilinearity. Ordinary open locality and potential independence give the gluing assertion. Local positive-current potentials exist by \cref{thm:local-positive-current-potential}.
+These plurifine open sets increase with $k$ and exhaust the complement of the union of the pole sets of $u_1,u_1',u_2,\ldots,u_p$. On $E_k$ we have $\max\{u_1+u_1',-2k\}=u_1+u_1'=\max\{u_1,-k\}+\max\{u_1',-k\}$ and $\max\{u_j,-2k\}=\max\{u_j,-k\}$ for $j\geq2$. Plurifine locality and the additivity of bounded products (\cref{prop:bt-positive-recursion}) therefore give
+\begin{equation}\label{eq:nonpluripolar-additivity-on-levels}
+ \begin{aligned}
+ \mathbf1_{E_k}P^{(2k)}(u_1+u_1',u_2,\ldots,u_p)
+ &=\mathbf1_{E_k}P^{(k)}(u_1,u_2,\ldots,u_p)\\
+ &\quad+\mathbf1_{E_k}P^{(k)}(u_1',u_2,\ldots,u_p).
+ \end{aligned}
+\end{equation}
+Before local finiteness is known we argue with trace measures. By \cref{prop:finite-locus-truncation}, for each of the three tuples the trace measures of the truncated products increase to a Borel measure, possibly infinite on compact sets, which gives zero mass to every pluripolar set; for a locally finite product it is the trace measure of the product. The set $E_k$ is contained in the level-$2k$ set of the first tuple and in the level-$k$ sets of the other two, so by the identity $\mathbf1_{O_k}S_l=S_k$ of \cref{lem:nonpluripolar-truncation-limit}, the restriction of each limit measure to $E_k$ is the restriction of the corresponding trace measure in \eqref{eq:nonpluripolar-additivity-on-levels}. Hence, on $E_k$, the limit measure of the first tuple is the sum of those of the other two. Letting $k\to\infty$, monotone convergence gives this equality on every Borel subset of $\bigcup_kE_k$, and hence everywhere, because the complement of $\bigcup_kE_k$ is pluripolar. Since all three measures are positive, the first is locally finite if and only if the other two are; this is the asserted equivalence of local finiteness. When the products are locally finite, \eqref{eq:nonpluripolar-additivity-on-levels} and \cref{lem:nonpluripolar-truncation-limit} give the additivity identity on each $E_k$, and letting $k\to\infty$ proves it. For $c>0$ the same argument applies to the sets $\{u_1>-k\}\cap\{cu_1>-k\}\cap\bigcap_{j\geq2}\{u_j>-k\}$, on which $\max\{cu_1,-k\}=c\max\{u_1,-k\}$, and proves the homogeneity assertion.
 \end{proof}
 
+Let now $T_1,\ldots,T_p$ be closed positive $(1,1)$-currents on the complex manifold $X$. By \cref{thm:local-positive-current-potential}, every point of $X$ has a coordinate neighborhood on which $T_j=\ddc u_j$ with $u_j$ plurisubharmonic. By \cref{prop:nonpluripolar-local-calculus}, local finiteness and the local non-pluripolar product do not depend on the choice of these potentials, and the construction is compatible with restriction to smaller open sets. We say that the non-pluripolar product of $T_1,\ldots,T_p$ is \emph{locally finite} if this holds near every point; the local products then glue to a positive current $\langle T_1\wedge\cdots\wedge T_p\rangle$ on $X$, which is closed by \cref{thm:nonpluripolar-product-closed} below. When $X$ is compact we also say simply that the product is \emph{finite}. Repeated factors are written as powers, as in $\langle T^j\wedge S^{r-j}\rangle$, and for $T_j=\theta_j+\ddc\varphi_j$ we also write $\langle(\theta_1+\ddc\varphi_1)\wedge\cdots\wedge(\theta_p+\ddc\varphi_p)\rangle$. The assertions of \cref{prop:nonpluripolar-local-calculus} carry over to these products, with multilinearity in the factors $T_j$.
+\index{non-pluripolar product!of closed positive currents}
+
 \begin{example}\label{ex:nonpluripolar-infinite-local-mass}
-On a small bidisc write $L=-\log|y|$ and
+Let $U=\{(x,y)\in\mathbb C^2:|x|^2<1/2,\ |y|<\mathrm e^{-1}\}$, put $L=-\log|y|$, and define
 \[
  u(x,y)=(|x|^2-1)\sqrt L\quad(y\ne0),\qquad u(x,0)=-\infty.
 \]
-Take $|x|^2<1/2$ and $|y|<\mathrm e^{-1}$. Off $y=0$ its complex Hessian has
+On $U\setminus\{y=0\}$ we have $L>1$, the function $u$ is smooth, and its complex second derivatives are
 \[
  u_{x\bar x}=\sqrt L,\qquad
  u_{y\bar y}=\frac{1-|x|^2}{16|y|^2L^{3/2}},\qquad
  u_{x\bar y}=-\frac{\bar x}{4\bar y\sqrt L},\qquad
  \det(u_{j\bar k})=\frac{1-2|x|^2}{16|y|^2L}.
 \]
-It is positive definite there. Bounded-above analytic removal in \cref{thm:psh-bounded-zero-extension} gives exactly the displayed value on the axis, so $u$ is psh. The smooth measure $(\ddc u)^2$ has a positive fixed multiple of this determinant as density. Its integral near the axis diverges, since normal radial integration contains $\int_0^r\mathrm dt/(t(-\log t))$. Truncation agrees with that smooth product off the axis, which the finite levels exhaust. Thus the local mass condition fails. Local non-pluripolar products of arbitrary potentials need not be finite.
+Since $u_{x\bar x}>0$ and $\det(u_{j\bar k})>0$, the complex Hessian is positive definite, so $u$ is plurisubharmonic off the axis $\{y=0\}$. Moreover $u<-\sqrt L/2$ is bounded above and tends to $-\infty$ at the axis. By \cref{thm:psh-bounded-zero-extension}, the plurisubharmonic extension across the axis takes the value $\limsup u=-\infty$ there, which is the displayed value; hence $u$ is plurisubharmonic on $U$.
+
+Off the axis, $(\ddc u)^2$ is the smooth measure with density a fixed positive multiple of $\det(u_{j\bar k})$, by \eqref{eq:bt-determinant-normalization}. The sets $O_k=\{u>-k\}$ are open, since $u$ is continuous as an extended-real function, and they increase to $U\setminus\{y=0\}$; on $O_k$ the truncation $\max\{u,-k\}$ equals $u$, so $S_k=\mathbf1_{O_k}(\ddc u)^2$. Take $K=\{|x|^2\leq1/4,\ |y|\leq r\}$ with $0<r<\mathrm e^{-1}$. On $K$ we have $1-2|x|^2\geq1/2$, and polar coordinates in $y$ give
+\[
+ \int_{|y|\leq r}\frac{\mathrm dA(y)}{|y|^2L}=2\pi\int_0^r\frac{\mathrm dt}{t(-\log t)}=\infty .
+\]
+Hence $\sup_k\int_KS_k=\int_{K\setminus\{y=0\}}(\ddc u)^2=\infty$, and \eqref{eq:nonpluripolar-local-mass-condition} fails. Thus the non-pluripolar product of an arbitrary plurisubharmonic function need not be locally finite.
 \end{example}
 
 \section{Closedness and cutoff gradients}
 \label{sec:nonpluripolar-closedness}
-The level indicators are not differentiable. We replace them by bounded psh cutoffs whose gradient energies are controlled by the restricted masses. Throughout this section $\mathrm d^{\mathrm c}=(\partial-\bar\partial)/(4\pi\mathrm i)$, as in \cref{sec:bt-monotone}; hence $\mathrm d\mathrm d^{\mathrm c}=\ddc$.
+The indicators $\mathbf1_{O_k}$ cannot be differentiated, so closedness of the non-pluripolar product does not follow directly from closedness of the truncated products. We replace the indicators by bounded plurisubharmonic cutoff functions and control the resulting error with the gradient estimates of \cref{sec:bt-current-gradients}. Here $\mathrm d^{\mathrm c}$ is the real operator of \eqref{eq:dc-operator}, so that $\mathrm d\mathrm d^{\mathrm c}=\ddc$.
 
 \begin{theorem}\label{thm:nonpluripolar-product-closed}
 Every locally finite non-pluripolar product is closed.
 \end{theorem}
 \begin{proof}
-Closedness is local. Work on a smaller coordinate neighborhood and subtract constants so that all local potentials $u_j\leq0$. If $p=n$, closedness holds by degree. Otherwise wedge the truncated products with a constant strongly positive $(n-p-1,n-p-1)$-form $\gamma$ and write
+Closedness is a local property, so we may shrink $U$ and subtract constants to assume that $u_j\leq0$ for every $j$. If $p=n$ the product has top degree and is closed for degree reasons, so let $p<n$. Fix a constant strongly positive $(n-p-1,n-p-1)$-form $\gamma$ and put
 \[
  \Theta_k=\gamma\wedge\bigwedge_j\ddc u_{j,k},\qquad
- S=\gamma\wedge\langle\bigwedge_j\ddc u_j\rangle.
+ S_\gamma=\gamma\wedge\Bigl\langle\bigwedge_j\ddc u_j\Bigr\rangle.
 \]
-These $\Theta_k$ are closed positive currents of bidimension $(1,1)$, and $\mathbf1_{O_k}\Theta_k\uparrow S$ with uniformly bounded restricted mass on compact sets.
+The $\Theta_k$ are closed positive currents of bidimension $(1,1)$. By \cref{lem:nonpluripolar-truncation-limit}, $\mathbf1_{O_k}\Theta_k=\mathbf1_{O_k}S_\gamma$ increases to $S_\gamma$, and in particular these restrictions have uniformly bounded mass on compact sets. We shall prove that $\mathrm dS_\gamma=0$.
 
-Set $u=\sum_j u_j$. Choose a smooth convex increasing $\chi$ with $\chi=0$ on $(-\infty,1/2]$ and $\chi(1)=1$, and put $w_k=\chi(\mathrm e^{u/k})$. It is bounded psh, $0\leq w_k\leq1$, increases to one at every finite point of $u$, and is zero outside $O_k$: there $u\leq-k$ and $\mathrm e^{-1}<1/2$. At the poles define its value to be zero. Composition followed by the canonical representative gives precisely these pointwise values. Choose smooth $0\leq\zeta\leq1$, zero on $(-\infty,1/2]$ and equal to one near $1$. Both $\zeta(w_k)$ and $\zeta'(w_k)$ vanish outside $O_k$. Dominated convergence against $S$ shows
+\emph{Cutoff functions.} Put $u=\sum_ju_j\leq0$. Choose a smooth convex increasing function $\chi$ on $\mathbb R$ with $\chi=0$ on $(-\infty,1/2]$ and $\chi(1)=1$, and put $w_k=\chi(\mathrm e^{u/k})$. Since $\mathrm e^{u/k}$ is plurisubharmonic with values in $[0,1]$, $w_k$ is plurisubharmonic and $0\leq w_k\leq1$. As $k\to\infty$, $w_k$ increases to $1$ at every point where $u>-\infty$, while $w_k=\chi(0)=0$ on the pole set of $u$. Moreover $w_k=0$ outside $O_k$: if $u_j\leq-k$ for some $j$, then $u\leq-k$ and $\mathrm e^{u/k}\leq\mathrm e^{-1}<1/2$. Choose a smooth function $\zeta$ on $\mathbb R$ with $0\leq\zeta\leq1$, $\zeta=0$ on $(-\infty,1/2]$ and $\zeta=1$ near $1$. Then $\zeta(w_k)$ and $\zeta'(w_k)$ vanish outside $O_k$, so that $\zeta(w_k)\Theta_k=\zeta(w_k)S_\gamma$. At every point where $u>-\infty$ we have $\zeta(w_k)\to1$ and $\zeta'(w_k)\to0$, and $S_\gamma$ gives the pole set of $u$ zero mass. Dominated convergence therefore gives
 \[
- \zeta(w_k)\Theta_k\longrightarrow S,
+ \zeta(w_k)\Theta_k\longrightarrow S_\gamma,
  \qquad \zeta'(w_k)\longrightarrow0
-                         \quad S\text{-almost everywhere}.
+                         \quad S_\gamma\text{-almost everywhere}.
 \]
-For the first assertion use $\mathbf1_{O_k}\Theta_k=S$ on $O_k$ and that $S$ gives the poles zero mass.
 
-For a compactly supported one-form $\eta$ and a cutoff $\tau\geq0$ equal to one near its support, the gradient identity and positivity give
+\emph{Gradient bound.} Let $\eta$ be a compactly supported smooth real one-form, and let $\tau\geq0$ be a smooth compactly supported function equal to one near $\Supp\eta$. By \eqref{eq:bounded-current-gradient-measure}, the gradient measure of $w_k$ with respect to $\Theta_k$ is $E_{\Theta_k}(w_k)=\frac12\ddc(w_k^2\Theta_k)-w_k\ddc w_k\wedge\Theta_k$, and the last term is a positive measure because $w_k\geq0$. Hence
 \[
  \int\tau E_{\Theta_k}(w_k)
  \leq\tfrac12\int w_k^2\ddc\tau\wedge\Theta_k
- \leq C\int_{\operatorname{supp}\tau}
+ \leq C\int_{\Supp\tau}
                            \mathbf1_{O_k}\Theta_k\wedge\beta\leq C'.
 \]
-The first inequality drops $w_k\ddc w_k\wedge\Theta_k\geq0$. The next uses $w_k=0$ off $O_k$, its bound by one, and the coefficient bound for the fixed smooth $\ddc\tau$. The mass hypothesis makes $C'$ independent of $k$. Apply \eqref{eq:current-gradient-cauchy-schwarz} with $a=\zeta'(w_k)$. Its second factor tends to zero, since
+The second inequality uses $w_k=0$ outside $O_k$, $w_k\leq1$, and the bound of the coefficients of $\ddc\tau\wedge\Theta_k$ by a constant times the trace measure (\cref{thm:positive-current-order-zero}). The constant $C'$ is independent of $k$ because $\mathbf1_{O_k}\Theta_k\leq S_\gamma$ and $S_\gamma$ is locally finite.
+
+\emph{Conclusion.} By the chain rule \eqref{eq:bounded-current-chain-rule}, $\mathrm d(\zeta(w_k)\Theta_k)=\zeta'(w_k)\,\mathrm dw_k\wedge\Theta_k$. We apply \eqref{eq:current-gradient-cauchy-schwarz} with $a=\zeta'(w_k)$. Its first factor is bounded by the gradient bound, and its second factor tends to zero, since
 \[
  |\zeta'(w_k)|^2\Theta_k\wedge\beta
        =|\zeta'(w_k)|^2\mathbf1_{O_k}\Theta_k\wedge\beta
-       \leq |\zeta'(w_k)|^2 S\wedge\beta,
+       \leq |\zeta'(w_k)|^2 S_\gamma\wedge\beta
 \]
-and the latter tends to zero by dominated convergence. The chain rule now gives $\mathrm d(\zeta(w_k)\Theta_k)\to0$, hence $\mathrm dS=0$. Constant strongly positive $\gamma$ span the real forms of this bidegree; wedging them with coordinate one-forms spans the test forms for the two types of $\mathrm d\langle\bigwedge_j\ddc u_j\rangle$. Thus the original product is closed.
+and the right side tends to zero on $\Supp\eta$ by dominated convergence. Hence the pairing of $\mathrm d(\zeta(w_k)\Theta_k)$ with $\eta$ tends to zero. Since $\zeta(w_k)\Theta_k\to S_\gamma$, the pairing of $\mathrm dS_\gamma$ with $\eta$ vanishes, so $\mathrm dS_\gamma=0$.
+
+Finally, $\gamma\wedge\mathrm d\langle\bigwedge_j\ddc u_j\rangle=\mathrm dS_\gamma=0$ for every constant strongly positive $\gamma$. These forms span the constant real $(n-p-1,n-p-1)$-forms (\cref{prop:positivity-cones}), and their products with smooth functions and the coordinate one-forms $\mathrm dz_i,\mathrm d\bar z_i$ span the test forms of the two bidegrees against which $\mathrm d\langle\bigwedge_j\ddc u_j\rangle$ is evaluated. Therefore the non-pluripolar product is closed.
 \end{proof}
 \index{non-pluripolar product!closedness}
 
 \section{Bounded factors and the first-degree product}
 \label{sec:nonpluripolar-bounded-factors}
-A bounded factor can be inserted by the recursive Bedford--Taylor construction. To identify that construction with truncation, its resulting current must still avoid the other factors' poles. A relative weighted estimate provides this control.
+Let $v$ be locally bounded and plurisubharmonic, and let $S=\langle\ddc u_2\wedge\cdots\wedge\ddc u_p\rangle$ be locally finite. Since $S$ is closed and positive, the recursion of \cref{def:bedford-taylor-product} defines $\ddc v\wedge S$, and we expect this to be the non-pluripolar product of $v,u_2,\ldots,u_p$. To prove it we must know that $\ddc v\wedge S$, like $S$, gives no mass to the pole sets of $u_2,\ldots,u_p$. This follows from a weighted form of the Chern--Levine--Nirenberg inequality. We then identify the non-pluripolar product in degree one, which requires a measurable form of Fubini's theorem for Bedford--Taylor products.
 
 \begin{lemma}\label{lem:relative-weighted-cln}
-Let $T$ be closed positive of bidimension $(r,r)$, $r\geq1$, on a coordinate domain $U$. For $K\Subset L^\circ\subset L\Subset U$, a nonpositive psh function $V$ integrable on $L$ for the trace of $T$, and a locally bounded psh function $v$, one has
+Let $T$ be a closed positive current of bidimension $(r,r)$, $r\geq1$, on a coordinate domain $U\subset\mathbb C^n$, and let $K,L$ be compact sets with $K\Subset\Int L\subset L\Subset U$. Let $V\leq0$ be plurisubharmonic on $U$ and integrable on $L$ with respect to the trace measure $T\wedge\beta^r$, and let $v$ be locally bounded and plurisubharmonic on $U$. Then
 \[
  \int_K(-V)\,\ddc v\wedge T\wedge\beta^{r-1}
        \leq C_{K,L}\|v\|_{L^\infty(L)}
-                             \int_L(-V)T\wedge\beta^r.
+                             \int_L(-V)T\wedge\beta^r,
 \]
-The constant depends on the neighborhoods and dimension, and is independent of $T,V,v$.
+where the constant $C_{K,L}$ depends only on $K$, $L$ and the dimension, and not on $T$, $V$ or $v$.
 \end{lemma}
 \begin{proof}
-First suppose $r\geq2$ and $V$ smooth. Cover $K$ by finitely many smaller balls inside balls whose closures lie in $L^\circ$. Normalize a nonzero bounded norm of $v$ and subtract a constant so that $-2\leq v\leq-1$ on each larger ball. If its norm is zero, its local Hessian is zero. On a larger ball $B=B(a,R)$ put $\psi=|z-a|^2-R^2$, $b=\ddc\psi$, and replace $v$ by $\widetilde v=\max\{v,A\psi\}$. Choose $A$ from the fixed radii so that it equals $v$ near the smaller ball and equals $A\psi$ on a fixed boundary collar. Its bounds depend only on these radii. Set $S=\ddc\widetilde v\wedge T$, and choose a smooth nonnegative cutoff $\rho$ supported in $B$ and equal to $-\psi$ on a neighborhood of the inner ball $B_\delta=\{\psi<-\delta\}$ containing all nonsmooth changes. On its complement $S=Ab\wedge T$. Put $Q=\ddc V\wedge T$. Consequently
+\emph{Step 1: $r\geq2$ and $V$ smooth.} If $\|v\|_{L^\infty(L)}=0$, then $v=0$ on $L$ and the left side vanishes. Otherwise both sides are homogeneous of degree one in $v$, and the left side does not change when a constant is added to $v$; replacing $v$ by $v/(2\|v\|_{L^\infty(L)})-3/2$, it suffices to prove the estimate with a constant on the right for functions satisfying $-2\leq v\leq-1$ on $L$. Cover $K$ by finitely many balls $B(a,r')$ such that $\overline{B(a,R)}\subset\Int L$ for some $R>r'$; it suffices to bound the integral over one ball $B(a,r')$.
+
+Put $B=B(a,R)$, $\psi=|z-a|^2-R^2$ and $b=\ddc\psi=\beta/\pi$. Fix $r'<r''<R$, put $A=2/(R^2-r''^2)$ and $\widetilde v=\max\{v,A\psi\}$. On $B(a,r'')$ we have $A\psi\leq-2\leq v$, so $\widetilde v=v$; on the collar $\{R^2-1/A<|z-a|^2<R^2\}$ we have $A\psi>-1\geq v$, so $\widetilde v=A\psi$. The function $\widetilde v$ is plurisubharmonic on $B$, and its bounds depend only on the radii. Choose $0<\delta<1/A$ and put $B_\delta=\{\psi<-\delta\}$, so that $\widetilde v=A\psi$ on $B\setminus B_\delta$ and $B(a,r')\subset B_\delta$. Choose a smooth function $\rho\geq0$ with compact support in $B$ and equal to $-\psi$ on a neighborhood of $\overline{B_\delta}$. Put $S=\ddc\widetilde v\wedge T$ and $Q=\ddc V\wedge T$; since $V$ is smooth and plurisubharmonic, $Q$ is a closed positive current of bidimension $(r-1,r-1)$. Since $\ddc\rho=-b$ near $\overline{B_\delta}$ and $S=Ab\wedge T$ on $B\setminus B_\delta$,
 \[
  \begin{aligned}
  \int_{B_\delta}(-V)S\wedge b^{r-1}
@@ -152,121 +201,143 @@ First suppose $r\geq2$ and $V$ smooth. Cover $K$ by finitely many smaller balls 
                           VT\wedge b^{r-1}\wedge\ddc\rho.
  \end{aligned}
 \]
-The integration by parts has a smooth compactly supported test and the smooth multiplier $V$; symmetry with the smooth factor gives the second line. The positive closed $Q$ has bidimension $(r-1,r-1)$. The bounded CLN estimate of \cref{thm:cln-bounded} bounds the first term by its trace mass on an intermediate compact neighborhood. Testing $Q$ with a nonnegative cutoff equal to one on that neighborhood bounds this mass by $C\int_L(-V)T\wedge\beta^r$, since the derivative of that cutoff has fixed bounded coefficients. The collar term has the same bound. Finite covering and undoing the normalization prove the displayed estimate.
+For the second line we integrate by parts against the smooth compactly supported function $\rho$: since $V$ is smooth and $\ddc\widetilde v\wedge T\wedge b^{r-2}$ is closed, $\ddc(V\ddc\widetilde v\wedge T\wedge b^{r-2})=\ddc V\wedge\ddc\widetilde v\wedge T\wedge b^{r-2}$, and the Bedford--Taylor product is symmetric with respect to the smooth factor.
 
-For nonsmooth $V\leq0$, use smooth radial approximations $V_l\downarrow V$ on slightly smaller neighborhoods. They remain nonpositive, and $0\leq-V_l\leq-V$. Their right-hand integrals are bounded by the specified finite integral against $T$. Monotone convergence against the fixed positive product $\ddc v\wedge T$ proves the assertion. For $r=1$, pull $T,V,v$ back to the product with a plane disc using \cref{prop:submersion-current-pullback}. The pulled-back current has bidimension $(2,2)$, so the established estimate applies. Integration in a fixed smaller disc cancels its positive area factor from the two trace integrals. A finite product-neighborhood cover supplies the same kind of constant and proves the remaining case.
+We bound the two terms on the right. Choose a compact set $L'$ with $\overline B\subset\Int L'$ and $L'\subset\Int L$. Since $0\leq\rho\leq R^2$, the Chern--Levine--Nirenberg inequality (\cref{thm:cln-bounded}) applied to $Q$ bounds the first term by a constant times the trace mass of $Q$ on $\overline B$. To bound this mass, test $Q$ against a smooth cutoff $0\leq\chi\leq1$ equal to one on $\overline B$ and supported in $L'$:
+\[
+ \int\chi\,\ddc V\wedge T\wedge\beta^{r-1}=\int V\,T\wedge\ddc\chi\wedge\beta^{r-1}\leq C\int_L(-V)T\wedge\beta^r,
+\]
+since $V\leq0$ and the coefficients of $T\wedge\ddc\chi\wedge\beta^{r-1}$ are bounded by a fixed multiple of the trace measure. The collar term has the same bound, because $\ddc\rho$ is a fixed smooth form. Finally, $S=\ddc v\wedge T$ on $B(a,r')$ and $-V\geq0$, so the left side of the display bounds $\pi^{1-r}\int_{B(a,r')}(-V)\ddc v\wedge T\wedge\beta^{r-1}$. Summing over the finitely many balls proves the estimate, with a constant depending only on the chosen radii.
+
+\emph{Step 2: $r\geq2$ and $V$ arbitrary.} Choose a compact set $L_1$ with $K\subset\Int L_1$ and $L_1\subset\Int L$, depending only on $K$ and $L$. The smooth radial regularizations $V_l$ of $V$ (\cref{thm:psh-distribution-representative}) are defined and plurisubharmonic near $L_1$ for large $l$, and decrease to $V$. They satisfy $0\leq-V_l\leq-V$, because $V\leq0$ and $V$ is bounded by its ball averages. Step 1 on $(K,L_1)$ gives
+\[
+ \int_K(-V_l)\,\ddc v\wedge T\wedge\beta^{r-1}\leq C_{K,L_1}\|v\|_{L^\infty(L)}\int_L(-V)T\wedge\beta^r .
+\]
+As $l\to\infty$, $-V_l$ increases to $-V$, and monotone convergence against the positive measure $\ddc v\wedge T\wedge\beta^{r-1}$ proves the estimate.
+
+\emph{Step 3: $r=1$.} Let $D''\Subset D\subset\mathbb C$ be discs and let $P\colon U\times D\to U$ be the projection. By \cref{prop:submersion-current-pullback}, $P^*T$ is a closed positive current of bidimension $(2,2)$, and $V\circ P$ and $v\circ P$ are plurisubharmonic. Apply the case $r=2$ to these data and the compact sets $K\times\overline{D'}\subset\Int(L\times\overline{D''})$, where $D'\Subset D''$. Since $P^*T$ and $\ddc(v\circ P)\wedge P^*T$ contain no differential of the disc variable, only the terms containing its area form survive in the trace integrals, and integration over the discs produces positive area factors on both sides. Cancelling them proves the case $r=1$, with a constant depending only on $K$, $L$ and the fixed discs.
 \end{proof}
 
 \index{Chern--Levine--Nirenberg inequality!relative weighted}
 
 \begin{lemma}\label{lem:bounded-product-preserves-nonpolar-current}
-If the trace of a closed positive current $T$ gives every pluripolar set zero mass, then the same holds for $\ddc v\wedge T$ for every locally bounded psh $v$ of admissible degree, and for iterated bounded-potential products with base $T$.
+Let $T$ be a closed positive current of bidimension $(r,r)$, $r\geq1$, on a coordinate domain, whose trace measure gives zero mass to every pluripolar set. Then for every locally bounded plurisubharmonic $v$, the trace measure of $\ddc v\wedge T$ also gives zero mass to every pluripolar set. Consequently the same holds for every Bedford--Taylor product $\ddc v_1\wedge\cdots\wedge\ddc v_q\wedge T$, $1\leq q\leq r$, of locally bounded plurisubharmonic functions with base $T$.
 \end{lemma}
 \begin{proof}
-Work near a compact set on which a given pluripolar set is contained in $\{V=-\infty\}$ for a nonpositive psh $V$. Write $\mu=T\wedge\beta^r$ on a compact larger neighborhood $L$. The measure is finite, and $t=-V$ is finite $\mu$-almost everywhere. Choose $R_j\geq2^j$ increasing so fast that
+Since pluripolar sets are locally contained in pole sets, it suffices to work near a compact set $K$ and to consider a set contained in $\{V=-\infty\}$, where $V\leq0$ is plurisubharmonic. Let $L$ be a compact neighborhood of $K$ and put $\mu=T\wedge\beta^r$ on $L$. This is a finite measure that does not charge $\{V=-\infty\}$, so $t=-V$ is finite $\mu$-almost everywhere. For each $j\geq1$, dominated convergence shows that $\int_L\min\{t/R,1\}\,\mathrm d\mu\to0$ as $R\to\infty$; we may therefore choose an increasing sequence $R_j\geq2^j$ such that
 \[
  \int_L\min\{t/R_j,1\}\,\mathrm d\mu\leq2^{-j}.
 \]
-Dominated convergence as $R_j\to\infty$ permits these choices. The function
-$g(t)=\sum_{j\geq1}\min\{t/R_j,1\}$ is finite, continuous, increasing and concave on $[0,\infty)$, and tends to infinity with $t$. Uniform convergence on bounded intervals proves continuity and concavity. Thus $\widetilde V=-g(-V)$ is nonpositive psh by convex increasing composition, remains $-\infty$ on the given pole set, and satisfies $\int_L(-\widetilde V)\,\mathrm d\mu\leq1$. \Cref{lem:relative-weighted-cln} makes it integrable for the trace of $\ddc v\wedge T$ on the smaller compact set. That trace must give its poles zero mass. A countable local cover proves the assertion for every pluripolar set. Repeating the argument proves the iterated assertion.
+The function
+$g(t)=\sum_{j\geq1}\min\{t/R_j,1\}$
+is finite, increasing and concave on $[0,\infty)$, continuous because the series converges uniformly on bounded intervals, and it tends to infinity with $t$. Hence $\widetilde V=-g(-V)$ is a convex increasing function of $V$ and therefore plurisubharmonic; it is nonpositive, equals $-\infty$ on $\{V=-\infty\}$, and satisfies $\int_L(-\widetilde V)\,\mathrm d\mu\leq1$. By \cref{lem:relative-weighted-cln}, $\widetilde V$ is integrable on $K$ for the trace measure of $\ddc v\wedge T$, which therefore gives the pole set of $\widetilde V$ zero mass. A countable cover proves the assertion for every pluripolar set, and induction on $q$ gives the assertion for iterated products.
 \end{proof}
 
 \Needspace{12\baselineskip}
 \begin{proposition}\label{prop:nonpluripolar-bounded-factor-compatibility}
-Suppose $u_1,\ldots,u_p$ are local psh functions, $1\leq p\leq n$, and $u_1,\ldots,u_q$ are locally bounded, $0\leq q\leq p$. If $S=\langle\ddc u_{q+1}\wedge\cdots\wedge\ddc u_p\rangle$ is locally finite, then the full non-pluripolar product is locally finite and
+Let $u_1,\ldots,u_p$ be plurisubharmonic on a coordinate domain, $1\leq p\leq n$, and suppose that $u_1,\ldots,u_q$ are locally bounded for some $0\leq q\leq p$. If $S=\langle\ddc u_{q+1}\wedge\cdots\wedge\ddc u_p\rangle$ is locally finite, then the non-pluripolar product of $u_1,\ldots,u_p$ is locally finite and
 \[
  \langle\ddc u_1\wedge\cdots\wedge\ddc u_p\rangle
               =\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge S,
 \]
-where the right side is the bounded recursive product with base $S$.
+where the right side is the Bedford--Taylor product of \cref{def:bedford-taylor-product} with base $S$.
 \end{proposition}
 \begin{proof}
-For $q=0$ the assertion is the definition. Otherwise it suffices to insert one bounded factor $v$ and then iterate. Let $S$ be the remaining finite product and $R=\ddc v\wedge S$. It is closed and positive, and has no polar mass by the preceding lemma. If no other factor remains, bounded Bedford--Taylor theory already gives the assertion. Otherwise normalize the other local potentials $u_j\leq0$, put
+For $q=0$ there is nothing to prove. Inserting the bounded factors $u_q,u_{q-1},\ldots,u_1$ one at a time, we reduce to the case $q=1$. So let $v=u_1$ be locally bounded and $S=\langle\ddc u_2\wedge\cdots\wedge\ddc u_p\rangle$ locally finite. By \cref{thm:nonpluripolar-product-closed}, $S$ is a closed positive current, so $R=\ddc v\wedge S$ is defined; it is closed and positive, and by \cref{lem:bounded-product-preserves-nonpolar-current} it gives zero mass to pluripolar sets, because $S$ does. If $p=1$, then $S=1$ and the assertion is that of bounded Bedford--Taylor theory. Let $p\geq2$. The assertion is local, so we may assume $u_j\leq0$ for $j\geq2$ and put
 \[
- O_k=\bigcap_j\{u_j>-k\},\qquad
- \Theta_k=\bigwedge_j\ddc\max\{u_j,-k\},\qquad
- w_k=\chi\bigl(\mathrm e^{\sum_j u_j/k}\bigr),
+ O_k=\bigcap_{j\geq2}\{u_j>-k\},\qquad
+ \Theta_k=\bigwedge_{j\geq2}\ddc\max\{u_j,-k\},\qquad
+ w_k=\chi\bigl(\mathrm e^{\sum_{j\geq2}u_j/k}\bigr),
 \]
-with the same smooth convex increasing $\chi$ as in the closedness proof. These $w_k$ are bounded psh, vanish off $O_k$, and their positive loci increase to the common finite locus. Take bounded smooth decreasing regularizations $v_l\downarrow v$ near the test support. Since $S=\Theta_k$ on $O_k$ and $\ddc v_l$ is smooth,
+with $\chi$ as in the proof of \cref{thm:nonpluripolar-product-closed}. As shown there, the $w_k$ are bounded plurisubharmonic functions that vanish outside $O_k$, and the sets $\{w_k>0\}$ increase to the set where all $u_j$, $j\geq2$, are finite.
+
+Take smooth plurisubharmonic functions $v_l$ decreasing to $v$ near a given compact set. By \cref{lem:nonpluripolar-truncation-limit}, $S$ and $\Theta_k$ have the same restriction to $O_k$; since $w_k$ vanishes outside $O_k$ and $\ddc v_l$ is smooth,
 \[
  w_k\ddc v_l\wedge S=w_k\ddc v_l\wedge\Theta_k.
 \]
-Apply weighted decreasing continuity from \cref{thm:bt-decreasing-continuity} with the fixed base $S$ on the left and fixed base $\Theta_k$ on the right. It gives $w_kR=w_k\ddc v\wedge\Theta_k$. Dividing on $\{w_k>0\}$ identifies the coefficient measures there. For fixed $j$ and $k\geq j$, bounded plurifine locality gives
-$\ddc v\wedge\Theta_k=\ddc v\wedge\Theta_j$ on $O_j$.
-The sets $\{w_k>0\}$, $k\geq j$, exhaust $O_j$, so $R=\ddc v\wedge\Theta_j$ on that entire set. For large $j$, the bounded $v$ needs no truncation on the chosen compact neighborhood. Its full finite-level product is therefore $\mathbf1_{O_j}R$. These restrictions have uniformly bounded local mass and increase to $R$, because $R$ gives the remaining pole sets zero mass. This proves the one-factor assertion and its iteration.
+The weighted form of \cref{thm:bt-decreasing-continuity}, applied with the fixed weight $w_k$ and the fixed base currents $S$ on the left and $\Theta_k$ on the right, gives $w_kR=w_k\ddc v\wedge\Theta_k$ in the limit $l\to\infty$. Hence $R$ and $\ddc v\wedge\Theta_k$ have the same restriction to $\{w_k>0\}$. Now fix $j$. For $k\geq j$, the bounded functions $\max\{u_i,-k\}$ and $\max\{u_i,-j\}$ coincide on $O_j$, so $\ddc v\wedge\Theta_k=\ddc v\wedge\Theta_j$ on $O_j$ by \cref{thm:bt-plurifine-locality}. Since the sets $\{w_k>0\}\cap O_j$, $k\geq j$, exhaust $O_j$, we conclude that $\mathbf1_{O_j}R=\mathbf1_{O_j}\ddc v\wedge\Theta_j$.
+
+Consider finally the full tuple $v,u_2,\ldots,u_p$ on a relatively compact open set on which $|v|<j_0$. For $j\geq j_0$, its level-$j$ set is $O_j$ and $v$ needs no truncation, so its truncated product at level $j$ is $\mathbf1_{O_j}\ddc v\wedge\Theta_j=\mathbf1_{O_j}R$. These restrictions are bounded by $R$, hence have locally bounded mass, and they increase to $R$ because $R$ gives the pole sets of $u_2,\ldots,u_p$ zero mass. Therefore the non-pluripolar product of $v,u_2,\ldots,u_p$ is locally finite and equals $R=\ddc v\wedge S$.
 \end{proof}
 \index{non-pluripolar product!bounded-factor compatibility}
 
-The first-degree identification will use planar measures on almost every fibre. We first establish the bounded fibre formula for the Borel tests used in truncation.
+To identify the first-degree product we shall integrate planar measures over almost every fibre of a coordinate projection. We first prove the fibre formula for bounded potentials, with the Borel weights needed for truncation.
 
 \Needspace{15\baselineskip}
 \begin{lemma}\label{lem:bounded-product-fibre-fubini}
-Let $r,m\geq0$ be integers, and let $Q\subset\mathbb C^r$ and $D\subset\mathbb C^m$ be domains, with projection $p_D:Q\times D\to D$. Let $u_1,\ldots,u_r$ be locally bounded psh on $Q\times D$, and put
+Let $r,m\geq0$ be integers, let $Q\subset\mathbb C^r$ and $D\subset\mathbb C^m$ be domains with coordinates $x$ and $z$, and let $p_D\colon Q\times D\to D$ be the projection. Let $u_1,\ldots,u_r$ be locally bounded plurisubharmonic functions on $Q\times D$, and put
 \[
  M=\ddc u_1\wedge\cdots\wedge\ddc u_r,\qquad
- M_z=\bigwedge_{j=1}^r\ddc_x u_j(\,\cdot\,,z).
+ M_z=\bigwedge_{j=1}^r\ddc_x u_j(\,\cdot\,,z),
 \]
-For a smooth real $(m,m)$-form $\eta$ on $D$ and a bounded Borel function $h$ of compact support, the fibre integral is Borel measurable and
+the Bedford--Taylor products on $Q\times D$ and on the fibres $Q\times\{z\}$. For every smooth real $(m,m)$-form $\eta$ on $D$ and every bounded Borel function $h$ on $Q\times D$ with compact support, the fibre integral $z\mapsto\int_Q h(x,z)\,M_z(x)$ is Borel measurable and
 \begin{equation}\label{eq:bounded-product-fibre-fubini}
  \int_{Q\times D}h\,p_D^*\eta\wedge M
        =\int_D\left(\int_Q h(x,z)\,M_z(x)\right)\eta(z).
 \end{equation}
-For nonnegative $h$ and $\eta$ the same identity holds with possibly infinite integrals.
+If $\eta\geq0$, the identity holds for every nonnegative Borel function $h$, with possibly infinite values.
 \end{lemma}
 \begin{proof}
-First take $\eta\geq0$ and $h$ continuous of compact support. Smooth decreasing regularizations of the $u_j$ exist on a product neighborhood of that support. In the smooth exterior product, wedging with $p_D^*\eta$ kills every term containing a base differential. Ordinary Fubini therefore gives \eqref{eq:bounded-product-fibre-fubini} for the regularizations. Decreasing Bedford--Taylor continuity gives weak convergence of the products on the total space and on every fibre. The common bounds on the potentials and \cref{thm:cln-bounded} give a uniform fibre mass bound on the compact projection of the support. Dominated convergence proves the continuous-test formula. A finite cover and a partition of unity handle supports requiring more than one such neighborhood.
+If $r=0$ or $m=0$, the products are empty or the base is a point, and the formula reduces to the ordinary Fubini theorem for counting measure or to a tautology. Let $r,m\geq1$.
 
-To justify the Borel tests, fix $U\Subset Q$ and $V\Subset D$. For $a\in C_c(U)$, $z\mapsto\int a\,M_z$ is Borel: it is the pointwise limit of the corresponding continuous smooth-regularization integrals. Every relatively open subset $A\subset U$ admits continuous functions $0\leq a_l\leq1$ of compact support in $U$ increasing to $\mathbf1_A$; construct them from distance to the complement and a compact exhaustion. Monotone convergence proves measurability of $M_z(A)$, including $A=U$. All these measures are finite on $U$, uniformly for $z\in V$. The sets $A$ for which $M_z(A)$ is Borel as a function of $z$ are therefore closed under complements in $U$ and countable disjoint unions. The intersection-closed open sets generate the Borel sets, so the class argument proved in \cref{prop:tonelli-fubini} gives measurability for every Borel $A$.
+\emph{Continuous weights.} First let $\eta\geq0$ and let $h$ be continuous with compact support. On a product neighborhood of $\Supp h$ there are smooth plurisubharmonic functions decreasing to the $u_j$. In the smooth exterior product, wedging with $p_D^*\eta$ kills every term containing a differential of the base variable $z$, so the ordinary Fubini theorem gives \eqref{eq:bounded-product-fibre-fubini} for the smooth approximations. By \cref{thm:bt-decreasing-continuity}, the approximating products converge weakly on the total space and on every fibre. Since the approximations are uniformly bounded, \cref{thm:cln-bounded} bounds the fibre masses uniformly for $z$ in the compact projection of $\Supp h$, and dominated convergence in $z$ proves the formula. A finite partition of unity treats supports that are not contained in one such neighborhood.
 
-Apply the same argument to sets $E\subset U\times V$: the class for which $z\mapsto M_z(E_z)$ is Borel contains the Borel rectangles and is closed under complements and countable disjoint unions. It contains all Borel sets. Increasing exhaustions of $Q$ and $D$ give the assertion on the whole product. Hence
+\emph{Measurability.} Fix $U\Subset Q$ and $V\Subset D$. For $a\in C_c(U)$, the function $z\mapsto\int a\,M_z$ is Borel, being the pointwise limit of the corresponding continuous functions defined by the smooth approximations. Every relatively open set $A\subset U$ admits continuous functions $0\leq a_l\leq1$ with compact support in $U$ increasing to $\mathbf1_A$; they can be built from the distance to the complement and a compact exhaustion. By monotone convergence, $z\mapsto M_z(A)$ is Borel, also for $A=U$, and these measures are finite on $U$, uniformly for $z\in V$. The class of Borel sets $A\subset U$ for which $z\mapsto M_z(A)$ is Borel is therefore closed under complements in $U$ and countable disjoint unions. It contains the open sets, which are closed under finite intersections and generate the Borel $\sigma$-algebra, so the monotone class argument in the proof of \cref{prop:tonelli-fubini} shows that it contains every Borel set. The same argument applies to sets $E\subset U\times V$: the class of Borel sets $E$ for which $z\mapsto M_z(E_z)$ is Borel contains the Borel rectangles and is closed under complements and countable disjoint unions, so it contains all Borel sets. Increasing exhaustions of $Q$ and $D$ extend this to the whole product.
+
+\emph{Borel weights.} Let $\eta\geq0$. By the previous step,
 \[
  \lambda(E)=\int_D M_z(E_z)\,\eta(z)
 \]
-is a Borel measure. Countable additivity follows from monotone convergence on each fibre and then on $D$. The uniform local fibre mass bound makes it locally finite, and \cref{prop:borel-regularity} makes it Radon. It agrees with $p_D^*\eta\wedge M$ on continuous compactly supported tests by the first paragraph. Radon uniqueness makes the measures equal. Simple approximation proves the formula for nonnegative Borel functions and then for bounded signed compactly supported functions. On a compact base neighborhood an arbitrary smooth real top form is a difference of two smooth nonnegative top forms, which proves the signed assertion. The cases $r=0$ or $m=0$ reduce to counting measure and the empty product.
+is defined for Borel sets $E\subset Q\times D$, and it is a measure: countable additivity follows from monotone convergence on each fibre and then on $D$. The uniform local bound for the fibre masses makes $\lambda$ locally finite, so it is a Radon measure by \cref{prop:borel-regularity}. By the first step, $\lambda$ and $p_D^*\eta\wedge M$ agree on continuous compactly supported functions, so they are equal. Approximation by simple functions proves the formula for nonnegative Borel $h$, and then for bounded real Borel $h$ with compact support. On a compact subset of $D$, every smooth real top-degree form is the difference of two smooth nonnegative ones, which proves the formula for signed $\eta$.
 \end{proof}
 \index{fibre integration!Bedford--Taylor products}
 
 \begin{proposition}\label{prop:nonpluripolar-degree-one-restriction}
-For every local psh $u$, its first-degree non-pluripolar product is defined and
+Let $u$ be plurisubharmonic on a coordinate domain. Then its non-pluripolar product of degree one is locally finite and
 \begin{equation}\label{eq:nonpluripolar-degree-one-restriction}
  \langle\ddc u\rangle=\mathbf1_{\{u>-\infty\}}\ddc u,
 \end{equation}
-where the Hessian on the right is distributional. In particular the indicated restriction is closed.
+where $\ddc u$ on the right is the distributional complex Hessian. In particular the current $\mathbf1_{\{u>-\infty\}}\ddc u$ is closed.
 \end{proposition}
 \begin{proof}
-On a smaller neighborhood normalize $u\leq0$. Its truncations $u_l=\max\{u,-l\}$ converge in $L^1$ to $u$, so $\ddc u_l\to\ddc u$ weakly, with locally bounded positive trace masses. For fixed $k$ and all $l\geq k$, plurifine locality gives
-$\mathbf1_{\{u>-k\}}\ddc u_k\leq\ddc u_l$.
-Passing to the weak limit makes each restricted current at most $\ddc u$. Their local masses are thus bounded, and their non-pluripolar limit $S$ exists with $0\leq S\leq\ddc u$. It has no polar mass; hence it is at most the right side of \eqref{eq:nonpluripolar-degree-one-restriction}.
+\emph{Upper bound.} The assertion is local, so we may assume $u\leq0$. The truncations $u_l=\max\{u,-l\}$ decrease to $u$ and converge to it in $L^1_{\loc}$, so $\ddc u_l\to\ddc u$ weakly. For fixed $k$ and every $l\geq k$, plurifine locality gives
+$\mathbf1_{\{u>-k\}}\ddc u_k=\mathbf1_{\{u>-k\}}\ddc u_l\leq\ddc u_l$,
+and letting $l\to\infty$ yields $\mathbf1_{\{u>-k\}}\ddc u_k\leq\ddc u$. Hence the truncated products have locally bounded mass, the non-pluripolar product $S=\langle\ddc u\rangle$ is locally finite, and $0\leq S\leq\ddc u$. Since $S$ gives no mass to the pole set of $u$, it follows that $S\leq\mathbf1_{\{u>-\infty\}}\ddc u$. It remains to prove the reverse inequality.
 
-First work in one complex dimension and write $\mu=\ddc u$, a positive measure. Choose a smooth nonnegative cutoff $\eta$ equal to one on a smaller open set $V$. With $\nu=\eta\mu$ and the fundamental kernel $E_2$, \Cref{thm:riesz-decomposition} gives
+\emph{One variable.} Let $n=1$ and put $\mu=\ddc u$, a positive measure. Let $V$ be a relatively compact open subset of the domain, and choose a smooth compactly supported function $\eta\geq0$ equal to one on $V$. With $\nu=\eta\mu$ and the fundamental solution $E_2$ of \eqref{eq:laplacian-fundamental-solution}, \cref{thm:riesz-decomposition} gives
 \[
  u=4\pi E_2*\nu+h\quad\text{on }V,
 \]
-where $h$ is harmonic. The factor $4\pi$ is fixed by $\ddc u=(\Delta u)/(4\pi)$ as a planar measure. Put $p=E_2*\nu$ and $\nu_f=\mathbf1_{\{p>-\infty\}}\nu$. Since the kernel is bounded above on compact sets of differences, removing positive mass can only increase its potential up to a bounded constant. Thus $E_2*\nu_f$ is finite $\nu_f$-almost everywhere. \Cref{thm:potential-continuity-principle} decomposes $\nu_f$ as a sum of compact restrictions with finite continuous potentials. A finite partial sum $\nu^{(N)}$ has a locally bounded continuous subharmonic potential $v_N=4\pi E_2*\nu^{(N)}$. On $V$, $\mu-\nu^{(N)}\geq0$, so $u-v_N$ is subharmonic: its Laplacian is positive, and its ball averages converge to its displayed pointwise values because $v_N$ is continuous. It is therefore the canonical representative. Multilinearity and the bounded-potential case give
+where $h$ is harmonic; the factor $4\pi$ appears because $\ddc u=(\Delta u)/(4\pi)$ as planar measures, while the Riesz measure is $\Delta u$. Put $p=E_2*\nu$ and $\nu_f=\mathbf1_{\{p>-\infty\}}\nu$; on $V$ we have $\{p>-\infty\}=\{u>-\infty\}$. The kernel $E_2$ is bounded above on the compact set of differences of points of $\Supp\nu$, so removing positive mass from $\nu$ raises its potential there by at most a constant. Hence $E_2*\nu_f$ is finite $\nu_f$-almost everywhere, and \cref{thm:potential-continuity-principle} writes $\nu_f=\sum_i\nu_i$ with compactly supported measures $\nu_i$ whose potentials are finite and continuous. For each $N$, the measure $\nu^{(N)}=\sum_{i\leq N}\nu_i$ has the continuous subharmonic potential $v_N=4\pi E_2*\nu^{(N)}$, with $\ddc v_N=\nu^{(N)}$. On $V$ we have $\mu=\nu\geq\nu_f\geq\nu^{(N)}$, so the distribution $u-v_N$ has positive Laplacian on $V$. As a pointwise function, $u-v_N$ is upper semicontinuous and its ball averages converge to its values, because those of $u$ do and $v_N$ is continuous; hence it is the canonical subharmonic representative, and it is subharmonic on $V$. Since $v_N$ is locally bounded, multilinearity (\cref{prop:nonpluripolar-local-calculus}) gives
 \[
  S=\langle\ddc v_N\rangle+\langle\ddc(u-v_N)\rangle
-                                  \geq\nu^{(N)}\quad\text{on }V.
+                                  \geq\ddc v_N=\nu^{(N)}\quad\text{on }V.
 \]
-Increasing $N$ gives $S\geq\nu_f=\mathbf1_{\{u>-\infty\}}\mu$ on $V$. Combined with the first inequality, this proves the planar assertion.
+Letting $N\to\infty$ yields $S\geq\nu_f=\mathbf1_{\{u>-\infty\}}\mu$ on $V$, which proves the proposition for $n=1$.
 
-For higher dimension work in a product polydisc and choose a coordinate direction $x\in\mathbb C$, with remaining coordinates $z$. Almost every fibre $u_z=u(\,\cdot\,,z)$ is not identically $-\infty$ and is locally integrable by Fubini. Its planar Hessian measure is $\mu_z=\ddc_xu_z$. The kernel measurability argument in \cref{lem:bounded-product-fibre-fubini} also applies to these measures: smooth decreasing regularizations converge weakly on every such fibre, giving Borel integrals on continuous tests and then all Borel tests by the same class argument. Their masses on a fixed smaller disc are bounded by $C\int_{Q'}(-u_z)\,\mathrm dA$, using a planar cutoff. This bound is integrable in $z$. Fubini applied to $u$ times the normal test Laplacian therefore identifies
+\emph{Several variables.} Let $n\geq2$ and work on a polydisc. Fix a coordinate direction with variable $x\in\mathbb C$, write $z\in\mathbb C^{n-1}$ for the remaining coordinates, and let $\mathrm dV_z$ denote the Euclidean volume form of the $z$-coordinates, viewed as an $(n-1,n-1)$-form on the polydisc. For almost every $z$, the fibre function $u_z=u(\,\cdot\,,z)$ is not identically $-\infty$ and is locally integrable, by Fubini's theorem; let $\mu_z=\ddc_xu_z$ be its planar Hessian measure. The measurability argument in the proof of \cref{lem:bounded-product-fibre-fubini} applies to these measures: smooth decreasing approximations of $u$ converge on every such fibre, which makes $z\mapsto\int a\,\mathrm d\mu_z$ Borel for continuous $a$ with compact support, and the monotone class argument extends this to all Borel sets. Testing $\mu_z$ against a planar cutoff shows that $\mu_z(D')\leq C\int_{D''}(-u_z)\,\mathrm dA$ for fixed discs $D'\Subset D''$, and this bound is integrable in $z$. Applying Fubini's theorem to $\int u\,\ddc_x\phi\wedge\mathrm dV_z$ for smooth test functions $\phi$, we therefore obtain the identity of Radon measures
 \[
- \ddc u\wedge\mathrm dV_z=\mu_z\,\mathrm dV_z
+ \ddc u\wedge\mathrm dV_z=\mu_z\,\mathrm dV_z,
 \]
-as Radon measures, including against bounded Borel tests; discarded base fibres form a null set and carry no mass in this identity. Here $\mathrm dV_z$ denotes the pulled-back Euclidean top form in the remaining coordinates.
+meaning that $\int g\,\ddc u\wedge\mathrm dV_z=\int(\int g\,\mathrm d\mu_z)\,\mathrm dV_z$ for every bounded Borel function $g$ with compact support; the discarded fibres form a null set of $z$.
 
-Apply the bounded fibre formula to $u_k$ with a compactly supported nonnegative Borel test multiplied by $\mathbf1_{\{u>-k\}}$. Its restricted measures increase. Monotone convergence and the planar assertion identify their fibre limit with $\mathbf1_{\{u_z>-\infty\}}\mu_z$. Thus
+Now let $g\geq0$ be bounded Borel with compact support, and apply \cref{lem:bounded-product-fibre-fubini}, with $r=1$, to the bounded function $u_k=\max\{u,-k\}$ and the weight $g\mathbf1_{\{u>-k\}}$:
+\[
+ \int g\mathbf1_{\{u>-k\}}\ddc u_k\wedge\mathrm dV_z
+ =\int\Bigl(\int g\mathbf1_{\{u_z>-k\}}\ddc_x\max\{u_z,-k\}\Bigr)\mathrm dV_z.
+\]
+As $k\to\infty$, the left side increases to $\int gS\wedge\mathrm dV_z$ by \cref{lem:nonpluripolar-truncation-limit}. On every fibre with $u_z\not\equiv-\infty$, the inner integrals increase to $\int g\,\mathrm d\langle\ddc_xu_z\rangle=\int g\mathbf1_{\{u_z>-\infty\}}\,\mathrm d\mu_z$, by the one-variable case. Monotone convergence in $z$ and the preceding identity of measures give
 $S\wedge\mathrm dV_z=\mathbf1_{\{u>-\infty\}}\ddc u\wedge\mathrm dV_z$.
-Repeat in every coordinate direction. The sum is the trace measure, up to the fixed positive normalization. Since $\mathbf1_{\{u>-\infty\}}\ddc u-S$ is positive and has zero trace, its coefficient bounds force it to be zero. This proves \eqref{eq:nonpluripolar-degree-one-restriction}. Closedness follows from \cref{thm:nonpluripolar-product-closed}.
+Summing over the $n$ coordinate directions, we find that the trace measures of $S$ and of $\mathbf1_{\{u>-\infty\}}\ddc u$ coincide, up to the same positive normalizing factor. Thus $\mathbf1_{\{u>-\infty\}}\ddc u-S$ is a positive current with zero trace measure, and it vanishes by \cref{thm:positive-current-order-zero}. This proves \eqref{eq:nonpluripolar-degree-one-restriction}; closedness follows from \cref{thm:nonpluripolar-product-closed}.
 \end{proof}
 \index{non-pluripolar product!first-degree polar restriction}
 
 \begin{proposition}\label{prop:projective-logarithmic-measure-potential}
-Let $\mu$ be a probability measure supported on a compact set $K\subset\mathbb C\subset\mathbb P^1$. For the unit-mass Fubini--Study form $\omega$, the formula
+Let $\mu$ be a probability measure supported on a compact set $K\subset\mathbb C\subset\mathbb P^1$, and let $\omega$ be the Fubini--Study form of \cref{ex:projective-fubini-study-curvature}, which has total mass one on $\mathbb P^1$. Then
 \[
  q(z)=\int_K\log\frac{|z-a|^2}{(1+|z|^2)(1+|a|^2)}\,\mathrm d\mu(a)
 \]
-defines a nonpositive $\omega$-psh potential on $\mathbb P^1$ with $\omega+\ddc q=\mu$. Its Lelong number at every point $x$ is $\mu\{x\}$, interpreting $\mu$ as a measure on $\mathbb P^1$.
+defines a nonpositive $\omega$-plurisubharmonic function on $\mathbb P^1$ with $\omega+\ddc q=\mu$. Its Lelong number at every point $x\in\mathbb P^1$ is $\mu(\{x\})$, where $\mu$ is regarded as a measure on $\mathbb P^1$.
 \end{proposition}
 \begin{proof}
 In the affine chart put $\rho(z)=\log(1+|z|^2)$. Direct differentiation gives
@@ -274,118 +345,127 @@ In the affine chart put $\rho(z)=\log(1+|z|^2)$. Direct differentiation gives
  \omega=\ddc\rho=\frac{\mathrm d x\wedge\mathrm d y}{\pi(1+|z|^2)^2},
  \qquad\int_{\mathbb P^1}\omega=1.
 \]
-The kernel is nonpositive since $|z-a|^2\leq(1+|z|^2)(1+|a|^2)$. Its logarithmic singularities have uniformly bounded local $L^1$ norms for $a\in K$. Fubini and the same upper semicontinuity and submean argument as in \cref{prop:diffuse-polar-cantor-measure} show that $q+\rho$ is its canonical subharmonic potential. The distributional identity $\ddc\log|z-a|^2=\delta_a$ from \cref{thm:poincare-lelong}, integrated against $\mu$, gives $\omega+\ddc q=\mu$ on this chart.
+The integrand is nonpositive, since $|z-a|^2\leq(1+|z|^2)(1+|a|^2)$ by the Cauchy--Schwarz inequality, and its logarithmic singularities have local $L^1$ norms bounded uniformly in $a\in K$. Hence, by Fubini's theorem and the upper semicontinuity and submean argument used in \cref{prop:diffuse-polar-cantor-measure}, $q+\rho$ is the canonical subharmonic function $\int_K\log|z-a|^2\,\mathrm d\mu(a)$ minus the constant $\int_K\log(1+|a|^2)\,\mathrm d\mu(a)$. Integrating the identity $\ddc\log|z-a|^2=\delta_a$ of \cref{thm:poincare-lelong} against $\mu$ gives $\omega+\ddc q=\mu$ on the affine chart.
 
-At infinity use $w=1/z$; the kernel becomes
+Near infinity use the coordinate $w=1/z$, in which the integrand becomes
 \[
  \log|1-aw|^2-\log(1+|w|^2)-\log(1+|a|^2).
 \]
-Since $K$ is bounded, this expression and its derivatives are bounded uniformly in $a$ for $w$ close to zero. It gives a smooth extension of $q$ there, and $q+\log(1+|w|^2)$ is harmonic. Thus the potential and measure identity hold globally. At infinity both the Lelong number and the point mass vanish. At an affine point, \eqref{eq:lelong-density-limit} applied to the local subharmonic potential $q+\rho$ gives $\nu(q,x)=\lim_{r\downarrow0}\mu(B(x,r))=\mu\{x\}$.
+Since $K$ is bounded, this expression and its derivatives are bounded uniformly in $a\in K$ for $w$ close to zero. Hence $q$ extends smoothly across infinity, and $q+\log(1+|w|^2)$ is harmonic there. Thus $q$ is $\omega$-plurisubharmonic on $\mathbb P^1$ and $\omega+\ddc q=\mu$ globally. At infinity both the Lelong number and the point mass vanish. At an affine point $x$, \eqref{eq:lelong-density-limit} applied to the local subharmonic function $q+\rho$ gives $\nu(q,x)=\lim_{r\downarrow0}\mu(B(x,r))=\mu(\{x\})$.
 \end{proof}
 \index{Fubini--Study form!logarithmic measure potential}\index{Lelong number!atoms on a curve}
 
 \Needspace{20\baselineskip}
 \begin{example}\label{ex:diffuse-polar-zero-nonpluripolar-mass}
-On $\mathbb P^1$ there is a nonpositive $\omega$-psh potential $q$ such that
+Let $\omega$ be as in \cref{prop:projective-logarithmic-measure-potential}. There is a nonpositive $\omega$-plurisubharmonic function $q$ on $\mathbb P^1$ such that
 \[
  \nu(q,x)=0\quad\text{for every }x,\qquad
  \mathcal I(tq)=\mathcal O_{\mathbb P^1}\quad(t>0),\qquad
  \langle\omega+\ddc q\rangle=0.
 \]
-Take the measure in \cref{prop:diffuse-polar-cantor-measure} and its potential from \cref{prop:projective-logarithmic-measure-potential}. Absence of atoms proves the Lelong assertion, and \cref{cor:zero-lelong-trivial-multiplier-ideal} proves the multiplier-ideal assertion. Its affine logarithmic potential is $-\infty$ on $K$; adding smooth terms leaves $q=-\infty$ there. The first-degree restriction in \cref{prop:nonpluripolar-degree-one-restriction}, applied to local potentials for $\omega+\ddc q$, gives
+Let $\mu$ be the atom-free probability measure on the compact polar set $K$ of \cref{prop:diffuse-polar-cantor-measure}, and let $q$ be its potential from \cref{prop:projective-logarithmic-measure-potential}. Since $\mu$ has no atoms, all Lelong numbers of $q$ vanish, and \cref{cor:zero-lelong-trivial-multiplier-ideal} gives the assertion on multiplier ideals. The logarithmic potential of $\mu$ equals $-\infty$ on $K$, and $q$ differs from it by smooth terms, so $q=-\infty$ on $K$. Applying \cref{prop:nonpluripolar-degree-one-restriction} to local potentials of $\omega+\ddc q$, we obtain
 \[
  \langle\omega+\ddc q\rangle
        =\mathbf1_{\{q>-\infty\}}\mu=0,
 \]
-because $\mu$ is supported on $K$. In comparison, the smooth potential zero has the same multiplier ideals and has non-pluripolar mass one. Thus exponential integrability at every scale does not determine non-pluripolar mass.
+because $\mu$ is carried by $K$. By contrast, the potential $0$ has the same multiplier ideals and non-pluripolar mass one. Thus exponential integrability at every scale does not determine the non-pluripolar mass.
 \end{example}
 \index{non-pluripolar mass!diffuse polar measure}\index{multiplier ideal!non-pluripolar mass}
 
 \section{Global finiteness and bounded cohomological mass}
 \label{sec:nonpluripolar-global-mass}
-Let $(X,\omega)$ now be connected compact K\"ahler of dimension $n\geq1$. In the remaining compact sections, every background $\theta$ or $\theta_j$ is a smooth closed real $(1,1)$-form. For a closed smooth real $(1,1)$-form $\theta$ and a locally bounded $\theta$-psh potential $\varphi$, the local bounded products of $\theta+\ddc\varphi$ glue by smooth-potential independence. Smooth closed forms can be wedged with these currents.
+From now on, $(X,\omega)$ is a connected compact K\"ahler manifold of dimension $n\geq1$, and in this and the following sections $\theta$ and $\theta_j$ always denote smooth closed real $(1,1)$-forms on $X$. (On a manifold of dimension zero nothing is discarded: the empty product is the counting measure, and there are no products of positive degree.) If $\varphi\in\PSH(X,\theta)$ is locally bounded, then near each point $\theta+\ddc\varphi=\ddc(h+\varphi)$, where $h$ is a smooth local potential of $\theta$ and $h+\varphi$ is bounded and plurisubharmonic. By \cref{prop:nonpluripolar-local-calculus}, the Bedford--Taylor products of such local potentials do not depend on the choice of $h$; hence they glue to closed positive currents $\bigwedge_j(\theta_j+\ddc\varphi_j)$ on $X$, which can be multiplied by smooth forms. We first prove Stokes' formula for these products and then show that non-pluripolar products on $X$ are always finite.
 
 \begin{proposition}\label{prop:bounded-global-cohomological-mass}
-Let $\varphi_j\in\PSH(X,\theta_j)$ be locally bounded, $1\leq j\leq p\leq n$, and let $\eta$ be a smooth closed $(n-p,n-p)$-form. Then
+Let $1\leq p\leq n$, let $\varphi_j\in\PSH(X,\theta_j)$ be locally bounded for $1\leq j\leq p$, and let $\eta$ be a smooth closed $(n-p,n-p)$-form on $X$. Then
 \[
  \int_X\bigwedge_{j=1}^p(\theta_j+\ddc\varphi_j)\wedge\eta
        =\int_X\theta_1\wedge\cdots\wedge\theta_p\wedge\eta.
 \]
 \end{proposition}
 \begin{proof}
-For any closed positive remaining bounded product $R$, local recursion gives
-$(\theta_j+\ddc\varphi_j)\wedge R=\theta_j\wedge R+\ddc(\varphi_jR)$.
-Both sides glue, since $\varphi_j$ is a global bounded function. The derivative term integrates to zero against any smooth closed complementary form: its distributional pairing is with that form's zero Hessian. Replace the first factor, then the second, and so on, absorbing the already replaced smooth closed forms into the test form. All remaining nonsmooth products are positive and closed. The last integral is the displayed smooth one.
+Fix $j$, let $R$ be the closed positive current $\bigwedge_{i>j}(\theta_i+\ddc\varphi_i)$, and let $\eta'$ be a smooth closed form of complementary degree. Locally $\theta_j=\ddc h_j$ with $h_j$ smooth, and since $R$ is closed, the recursion gives
+\[
+ (\theta_j+\ddc\varphi_j)\wedge R=\ddc((h_j+\varphi_j)R)=\theta_j\wedge R+\ddc(\varphi_jR).
+\]
+Both sides are globally defined, because $\varphi_j$ is a global bounded function. Moreover $\int_X\ddc(\varphi_jR)\wedge\eta'=\int_X\varphi_jR\wedge\ddc\eta'=0$, since $\eta'$ is closed. Hence $\int_X(\theta_j+\ddc\varphi_j)\wedge R\wedge\eta'=\int_X\theta_j\wedge R\wedge\eta'$. Apply this successively for $j=1,2,\ldots,p$, with $\eta'=\theta_1\wedge\cdots\wedge\theta_{j-1}\wedge\eta$ at the $j$th step, which is smooth and closed. After $p$ steps the integral becomes $\int_X\theta_1\wedge\cdots\wedge\theta_p\wedge\eta$.
 \end{proof}
+\index{Stokes' theorem!bounded potentials}
 
 \Needspace{20\baselineskip}
 \begin{lemma}\label{lem:bounded-global-integration-by-parts}
-Let $R$ be a closed positive current of bidimension $(1,1)$ on compact $X$. For bounded quasi-psh functions $a,b$, and by linearity for differences of such functions,
+Let $R$ be a closed positive current of bidimension $(1,1)$ on $X$, and let $a,b$ be bounded quasi-plurisubharmonic functions on $X$, or differences of such functions. Then
 \[
  \int_X a\,\ddc b\wedge R
    =\int_X b\,\ddc a\wedge R
    =-\int_X\mathrm da\wedge\mathrm d^{\mathrm c}b\wedge R.
 \]
-The Hessian products use bounded local recursion. The mixed gradient product is a finite signed measure obtained by polarizing the energy seminorm in \cref{lem:bounded-psh-current-chain-rule}.
+Here the Hessian products are defined locally by the Bedford--Taylor recursion, after adding smooth local functions that make $a$ and $b$ plurisubharmonic, and the mixed gradient $\mathrm da\wedge\mathrm d^{\mathrm c}b\wedge R$ is the finite signed measure obtained by polarizing the energy seminorm of \cref{lem:bounded-psh-current-chain-rule}.
 \end{lemma}
 \begin{proof}
-On a relatively compact coordinate chart add smooth local potentials to make $a,b$ bounded psh. The chain-rule lemma supplies their gradients and strong convergence of the gradients of smooth decreasing approximations. Subtracting the added smooth functions gives the same assertion for the original quasi-psh functions. Polarization and Cauchy--Schwarz give a locally finite mixed gradient measure; the finite chart cover makes its total variation finite. Its symmetry follows from the symmetry of the Hermitian energy pairing on real functions, or directly from the types of $\partial a,\bar\partial b$ after wedging with $R$.
+On a relatively compact coordinate chart, add smooth functions to make $a$ and $b$ bounded plurisubharmonic. By \cref{lem:bounded-psh-current-chain-rule} they have gradients with respect to $R$, and the gradients of smooth decreasing approximations $a_l\downarrow a$, $b_l\downarrow b$ converge strongly on compact sets. Subtracting the added smooth functions, the same holds for the original $a$ and $b$. Polarization of the energy seminorm and the Cauchy--Schwarz inequality show that the mixed gradient is a locally finite signed measure, and a finite cover of $X$ shows that its total variation is finite. It is symmetric in $a$ and $b$, because the energy pairing is symmetric on real functions; equivalently, only the $(1,1)$-components of $\mathrm da\wedge\mathrm d^{\mathrm c}b$ survive after wedging with $R$.
 
 For the smooth approximations the product rule reads
 \[
- \mathrm d(a\,\mathrm d^{\mathrm c}b\wedge R)
-       =\mathrm da\wedge\mathrm d^{\mathrm c}b\wedge R
-                                  +a\,\ddc b\wedge R.
+ \mathrm d(a_l\,\mathrm d^{\mathrm c}b_l\wedge R)
+       =\mathrm da_l\wedge\mathrm d^{\mathrm c}b_l\wedge R
+                                  +a_l\,\ddc b_l\wedge R.
 \]
-The weighted first derivatives converge in coefficient variation locally: the gradients converge strongly, the weights are uniformly bounded and converge pointwise, and dominated convergence applies to the limiting gradient energy. The mixed gradients converge in variation by Cauchy--Schwarz. The last term converges by bounded weighted Bedford--Taylor continuity, after expanding the smooth corrections; see \cref{cor:bt-polynomial-weights}. Thus the same product rule holds distributionally for $a,b$. It is independent of the local corrections, since its first derivative is the derivative of the global measure current $bR$. The local identities therefore glue. Pair the derivative with the constant test $1$ on compact $X$ to obtain the second equality. Interchanging $a,b$ and using symmetry proves the first. Linearity gives the assertion for differences.
+As $l\to\infty$, the coefficients of $a_l\,\mathrm d^{\mathrm c}b_l\wedge R$ converge locally in total variation: the gradients converge strongly, the weights $a_l$ are uniformly bounded and converge pointwise, and dominated convergence applies to the energy of the limit. The mixed gradient measures converge in total variation by the Cauchy--Schwarz inequality, and $a_l\ddc b_l\wedge R\to a\ddc b\wedge R$ by weighted decreasing continuity of bounded products, after expanding the smooth corrections (\cref{cor:bt-polynomial-weights}). Hence the product rule also holds for $a$ and $b$ in the sense of distributions. Since $R$ is closed of pure bidegree, $\mathrm d^{\mathrm c}b\wedge R=\mathrm d^{\mathrm c}(bR)$ is a global current that does not depend on the local corrections, so the local identities glue. Pairing the global identity with the constant function $1$ on the compact manifold $X$ kills the left side and gives $\int_Xa\,\ddc b\wedge R=-\int_X\mathrm da\wedge\mathrm d^{\mathrm c}b\wedge R$. Interchanging $a$ and $b$ and using the symmetry of the mixed gradient gives the other equality, and linearity extends both to differences.
 \end{proof}
 \index{integration by parts!bounded global potentials}
 
 \begin{theorem}\label{thm:compact-nonpluripolar-finiteness}
-Every tuple of closed positive $(1,1)$-currents $T_1,\ldots,T_p$, $1\leq p\leq n$, on a compact K\"ahler manifold has a finite non-pluripolar product. Write $T_j=\theta_j+\ddc\varphi_j$ and choose $C\geq0$ so that $\tau_j=\theta_j+C\omega$ are positive definite. Then
+Let $T_1,\ldots,T_p$, $1\leq p\leq n$, be closed positive $(1,1)$-currents on the compact K\"ahler manifold $X$. Then their non-pluripolar product is finite. More precisely, write $T_j=\theta_j+\ddc\varphi_j$ with $\varphi_j\in\PSH(X,\theta_j)$, and choose $C\geq0$ such that the forms $\tau_j=\theta_j+C\omega$ are positive definite. Then
 \begin{equation}\label{eq:shifted-cohomological-mass-bound}
  \int_X\langle T_1\wedge\cdots\wedge T_p\rangle\wedge\omega^{n-p}
        \leq\int_X\tau_1\wedge\cdots\wedge\tau_p\wedge\omega^{n-p}.
 \end{equation}
-If the chosen $\theta_j$ are already semipositive, the same bound holds with $C=0$.
+If the forms $\theta_j$ are semipositive, the same bound holds with $C=0$.
 \end{theorem}
 \begin{proof}
-The global potential decomposition is \cref{thm:global-ddc-lemma}. Since $\tau_j$ is positive and $\varphi_j$ is $\tau_j$-psh, the global bounded potentials $\max\{\varphi_j,-k\}$ give positive currents
+The decomposition $T_j=\theta_j+\ddc\varphi_j$ exists by \cref{thm:global-ddc-lemma}. Since $\tau_j\geq\theta_j$ is positive, $\varphi_j$ is $\tau_j$-plurisubharmonic, and so is every constant; hence $\max\{\varphi_j,-k\}$ is a bounded $\tau_j$-plurisubharmonic function, and
 \[
- R_{j,k}=\tau_j+\ddc\max\{\varphi_j,-k\}.
+ R_{j,k}=\tau_j+\ddc\max\{\varphi_j,-k\}
 \]
-Their full mixed trace mass is the right side of \eqref{eq:shifted-cohomological-mass-bound}, independent of $k$, by \cref{prop:bounded-global-cohomological-mass}.
+is a closed positive current. By \cref{prop:bounded-global-cohomological-mass}, the total mass $\int_XR_{1,k}\wedge\cdots\wedge R_{p,k}\wedge\omega^{n-p}$ equals the right side of \eqref{eq:shifted-cohomological-mass-bound} for every $k$.
 
-To bound the original local truncations, choose on a relatively compact coordinate chart smooth potentials $h_j$ for $\theta_j$ and $h$ for $\omega$. There $u_j=\varphi_j+h_j$ is psh. Choose $B$ with $h_j\leq B$ on a neighborhood of the compact test set. On $O_l(u)$, $\varphi_j>-l-B$. For any integer $k\geq l+B$, plurifine locality identifies $R_{j,k}$ there with the Hessian of $\max\{u_j,-l\}+Ch$: both local bounded psh potentials equal $u_j+Ch$ on that set. Their mixed bounded products agree there. Expanding the latter positive factors shows
+\emph{Local finiteness.} Let $W$ be a relatively compact coordinate chart, and choose smooth functions $h_j$ and $h$ near $\overline W$ with $\ddc h_j=\theta_j$ and $\ddc h=\omega$. Then $u_j=\varphi_j+h_j$ is a plurisubharmonic potential of $T_j$ on $W$. Let $B$ be an integer with $h_j\leq B$ on $W$ for all $j$, fix an integer $l\geq1$, and put $O_l(u)=\bigcap_j\{u_j>-l\}$. On $W\cap O_l(u)$ we have $\varphi_j>-l-B$, so for every integer $k\geq l+B$ the bounded plurisubharmonic functions $\max\{u_j,-l\}+Ch$ and $\max\{\varphi_j,-k\}+h_j+Ch$ both equal $u_j+Ch$ there; the second is a local potential of $R_{j,k}$. By plurifine locality,
+\[
+ \mathbf1_{O_l(u)}\bigwedge_j(\ddc\max\{u_j,-l\}+C\omega)=\mathbf1_{O_l(u)}\bigwedge_jR_{j,k}\quad\text{on }W.
+\]
+Expanding the left side into positive terms gives
 \[
  \mathbf1_{O_l(u)}\bigwedge_j\ddc\max\{u_j,-l\}
-       \leq\mathbf1_{O_l(u)}\bigwedge_j R_{j,k}.
+       \leq\mathbf1_{O_l(u)}\bigwedge_j R_{j,k}\leq\bigwedge_jR_{j,k}.
 \]
-The global mass bound therefore implies every local mass condition. The products glue and are closed by the preceding results. The same argument for $T_j+C\omega$ identifies their non-pluripolar product with the increasing common-global-level restrictions of $\bigwedge_jR_{j,k}$; these levels exhaust all finite points of the $\varphi_j$. It has mass at most the same smooth bound. Multilinearity and positivity give
+On a compact set $K\subset W$ we have $\beta^{n-p}\leq C_K\omega^{n-p}$, so the trace masses on $K$ of the truncated local products are bounded by $C_K$ times the right side of \eqref{eq:shifted-cohomological-mass-bound}, uniformly in $l$. Hence the non-pluripolar product is locally finite everywhere, and $\langle T_1\wedge\cdots\wedge T_p\rangle$ is a closed positive current by \cref{thm:nonpluripolar-product-closed}.
+
+\emph{Mass bound.} Apply the same argument to the currents $T_j+C\omega=\tau_j+\ddc\varphi_j$, whose local potentials are $u_j+Ch$. The sets $G_k=\bigcap_j\{\varphi_j>-k\}$ increase and exhaust the complement of the union of the pole sets of the $\varphi_j$. On $G_k$ the global truncations $\max\{\varphi_j,-k\}$ coincide with $\varphi_j$, and $G_k\cap W$ lies in a level set of the local potentials $u_j+Ch$; by plurifine locality and \cref{lem:nonpluripolar-truncation-limit}, $\mathbf1_{G_k}\bigwedge_jR_{j,k}=\mathbf1_{G_k}\langle\bigwedge_j(T_j+C\omega)\rangle$, and these restrictions increase to $\langle\bigwedge_j(T_j+C\omega)\rangle$. Their total masses against $\omega^{n-p}$ are at most the right side of \eqref{eq:shifted-cohomological-mass-bound}, hence so is that of the limit. Finally, multilinearity and positivity give
 $\langle\bigwedge_j T_j\rangle\leq\langle\bigwedge_j(T_j+C\omega)\rangle$,
-proving \eqref{eq:shifted-cohomological-mass-bound}. For semipositive $\theta_j$, the constant potentials and their maxima are $\theta_j$-psh, so the argument applies directly with $C=0$.
+which proves \eqref{eq:shifted-cohomological-mass-bound}. If the $\theta_j$ are semipositive, constants are $\theta_j$-plurisubharmonic, and the same argument works with $C=0$.
 \end{proof}
 \index{non-pluripolar product!global finiteness}
 
 \begin{example}\label{ex:nonpluripolar-divisor-zero-mass}
-On $\mathbb P^1$ the current $[0]$ has non-pluripolar product $\langle[0]\rangle=0$. Near zero its potential is $\log|z|^2$. The Hessian of its truncation is supported on the boundary level, excluded by $\{\log|z|^2>-k\}$. Away from zero the current is zero. Its ordinary mass is one, while its non-pluripolar mass is zero. Thus discarding poles can change even a first-degree cohomology class. In dimension zero the empty product is the counting measure and every positive-degree product is zero.
+On $\mathbb P^1$, the current of integration $[0]$ at the point $0$ satisfies $\langle[0]\rangle=0$. Indeed, near $0$ it has the potential $\log|z|^2$, whose truncation $\max\{\log|z|^2,-k\}$ is harmonic off the circle $\{\log|z|^2=-k\}$. The Hessian of the truncation is therefore carried by this circle, which is disjoint from $\{\log|z|^2>-k\}$; away from $0$ the current vanishes. Thus $[0]$ has mass one while $\langle[0]\rangle$ has mass zero: discarding the poles can change the cohomology class, even in degree one.
 \end{example}
 
 \input{chapters/inputs/q09-common-measure-mixed}
 
 \section{Fibre integration and modifications}
 \label{sec:nonpluripolar-fibres}
-The bounded fibre formula now passes through non-pluripolar truncation on compact manifolds. The resulting identity keeps the bounded difference weight needed for relative energy.
+We now pass the fibre formula of \cref{lem:bounded-product-fibre-fubini} through the truncations that define non-pluripolar products on a product of compact K\"ahler manifolds. The resulting identity, weighted by a bounded difference of potentials, is the form needed for relative energy in \cref{chap:q11}. We also show that non-pluripolar products commute with modifications.
 
 \Needspace{23\baselineskip}
 \begin{corollary}\label{cor:compact-nonpluripolar-fibre-fubini}
-Let $X,Z$ be connected compact K\"ahler manifolds of dimensions $r,m$, with projections $p_X,p_Z$. Let $\theta$ be a closed smooth real $(1,1)$-form on $X$, $\varphi\in\PSH(X,\theta)$, and let $\gamma\geq0$ be a closed smooth $(1,1)$-form on $Z$. Set
+Let $X$ and $Z$ be connected compact K\"ahler manifolds of dimensions $r$ and $m$, with projections $p_X,p_Z$ from $X\times Z$. Let $\theta$ be a smooth closed real $(1,1)$-form on $X$, let $\varphi\in\PSH(X,\theta)$, and let $\gamma\geq0$ be a smooth closed $(1,1)$-form on $Z$. Put
 \[
  \Theta=p_X^*\theta+p_Z^*\gamma,\qquad
  \Phi=p_X^*\varphi,\qquad
  T=\Theta+\ddc W,\quad S=\Theta+\ddc\Phi,
 \]
-where $W\in\PSH(X\times Z,\Theta)$ and $\Phi-C\leq W\leq\Phi+C$ for a finite $C\geq0$. Every $W_z=W(\,\cdot\,,z)$ belongs to $\PSH(X,\theta)$. For every integer $0\leq j\leq r$ and any smooth real $(m,m)$-form $\eta$ on $Z$,
+where $W\in\PSH(X\times Z,\Theta)$ satisfies $\Phi-C\leq W\leq\Phi+C$ for a constant $C\geq0$. Then for every $z\in Z$ the function $W_z=W(\,\cdot\,,z)$ belongs to $\PSH(X,\theta)$, and for every integer $0\leq j\leq r$ and every smooth real $(m,m)$-form $\eta$ on $Z$,
 \begin{equation}\label{eq:compact-nonpluripolar-fibre-fubini}
  \begin{aligned}
  &\int_{X\times Z}(W-\Phi)\,p_Z^*\eta\wedge
@@ -395,75 +475,90 @@ where $W\in\PSH(X\times Z,\Theta)$ and $\Phi-C\leq W\leq\Phi+C$ for a finite $C\
                          (\theta+\ddc\varphi)^{r-j}\rangle\right)\eta(z).
  \end{aligned}
 \end{equation}
-The same identity holds with both difference weights replaced by $1$. The difference weights may be assigned any bounded value at their common poles.
+The same identity holds with both difference weights replaced by $1$. The weights are undefined only on the common pole set of the two potentials involved, where they may be given any bounded values.
 \end{corollary}
 \Needspace{6\baselineskip}
 \begin{proof}
-In product charts choose smooth local potentials $a(x)$ for $\theta$ and $b(z)$ for $\gamma$. The restrictions of $W+a+b$ to fibres are psh, and $W_z$ is not identically $-\infty$ because $W_z\geq\varphi-C$ and $\varphi$ is finite somewhere. Thus the asserted fibre potentials are defined. All products are finite by \cref{thm:compact-nonpluripolar-finiteness}. That theorem also bounds their fibre masses uniformly in $z$: the shifted smooth background can be chosen from the fixed $\theta$, independently of $W_z$.
+In product charts choose smooth local potentials $a(x)$ of $\theta$ and $b(z)$ of $\gamma$. Then $W+a+b$ is plurisubharmonic, so its restriction $W_z+a+b(z)$ to a fibre is plurisubharmonic in $x$; moreover $W_z\geq\varphi-C$ is not identically $-\infty$. Hence $W_z\in\PSH(X,\theta)$. All the products in \eqref{eq:compact-nonpluripolar-fibre-fubini} are finite by \cref{thm:compact-nonpluripolar-finiteness}, and \eqref{eq:shifted-cohomological-mass-bound} bounds the fibre masses uniformly in $z$, because the shifted background can be chosen from the fixed form $\theta$, independently of $W_z$.
 
-Put $w=W+a+b$, $v=\Phi+a+b$ and $O_k=\{w>-k\}\cap\{v>-k\}$. Apply \eqref{eq:bounded-product-fibre-fubini} to the bounded truncations of $w,v$, with multiplicities $j,r-j$, and the Borel weight $\rho G\mathbf1_{O_k}$, where $\rho\geq0$ is a smooth compactly supported chart cutoff and $G\geq0$ is bounded Borel. Their restricted mixed measures increase to the non-pluripolar products on the total space and on every fibre. When one multiplicity is zero, the additional finite-level condition still exhausts that product: its omitted pole set is pluripolar and has zero mass. Monotone convergence gives the same fibre formula with the non-pluripolar limits and weight $\rho G$. Take $G=1$ for the unweighted formula and $G=W-\Phi+C$ on their common finite locus for the weighted formula; assign $G=C$ at their poles. Subtract the constant-weight identity. Sum over a finite nonnegative partition of unity and use linearity for signed $\eta$. The uniform mass bound and $|W-\Phi|\leq C$ justify every finite signed integral. Polar sets have zero product mass, so the assigned values do not affect them.
+Put $w=W+a+b$, $v=\Phi+a+b$ and $O_k=\{w>-k\}\cap\{v>-k\}$ in a product chart. Let $\rho\geq0$ be a smooth function with compact support in the chart, let $G\geq0$ be bounded and Borel, and let $\eta\geq0$. Apply \eqref{eq:bounded-product-fibre-fubini} to the bounded functions $\max\{w,-k\}$ and $\max\{v,-k\}$, with multiplicities $j$ and $r-j$, and to the weight $\rho G\mathbf1_{O_k}$. As $k\to\infty$, the restricted mixed measures increase to the non-pluripolar products, on the total space and on every fibre, by \cref{lem:nonpluripolar-truncation-limit}. (If $j=0$ or $j=r$, the condition defining $O_k$ involves a potential that does not occur in the product; the sets $O_k$ still increase and miss only a pluripolar set, which carries no mass, so the last assertion of that lemma applies.) Monotone convergence therefore gives the fibre formula for the non-pluripolar products with weight $\rho G$.
+
+Taking $G=1$ gives the unweighted identity. Since $|W-\Phi|\leq C$, the potentials $W$ and $\Phi$ have the same pole set; take $G=W-\Phi+C\in[0,2C]$ off this set and $G=C$ on it, and subtract $C$ times the unweighted identity. Summing over a finite partition of unity by such functions $\rho$, and writing a signed $\eta$ as a difference of nonnegative forms, gives \eqref{eq:compact-nonpluripolar-fibre-fubini}. All integrals are finite by the uniform mass bound and $|W-\Phi|\leq C$, and the values assigned on the common pole set do not matter, because this set is pluripolar and carries no mass for any of the products.
 \end{proof}
 \index{fibre integration!non-pluripolar products}
 
 \begin{proposition}\label{prop:nonpluripolar-modification-pushforward}
-Let $\pi:\widetilde X\to X$ be a modification between compact K\"ahler manifolds and let $T_1,\ldots,T_p$ be closed positive $(1,1)$-currents on $X$, $1\leq p\leq\dim X$. Then
+Let $\pi\colon\widetilde X\to X$ be a modification between compact K\"ahler manifolds, and let $1\leq p\leq\dim X$. For closed positive $(1,1)$-currents $T_1,\ldots,T_p$ on $X$,
 \[
  \pi_*\langle\pi^*T_1\wedge\cdots\wedge\pi^*T_p\rangle
-                  =\langle T_1\wedge\cdots\wedge T_p\rangle.
+                  =\langle T_1\wedge\cdots\wedge T_p\rangle,
 \]
-For closed positive $(1,1)$-currents $R_1,\ldots,R_p$ on $\widetilde X$ one also has
+and for closed positive $(1,1)$-currents $R_1,\ldots,R_p$ on $\widetilde X$,
 \[
  \pi_*\langle R_1\wedge\cdots\wedge R_p\rangle
                    =\langle\pi_*R_1\wedge\cdots\wedge\pi_*R_p\rangle.
 \]
-In top degree all corresponding masses agree.
+In particular, in top degree the corresponding total masses agree.
 \end{proposition}
 \begin{proof}
-Pullback is defined by pulling back local psh potentials; their pluriharmonic differences pull back as well. A potential cannot become identically $-\infty$ on a component, because a modification is a biholomorphism over a dense open set. Both products are finite. Choose a proper analytic set $A\subset X$ over whose complement $\pi$ is a biholomorphism, as in the definition of modification. Potential independence and coordinate invariance identify the products over $X\setminus A$. The downstairs product gives $A$ zero mass. The upstairs product gives the proper analytic set $\pi^{-1}(A)$ zero mass, so its pushforward also gives $A$ zero coefficient variation. Equality off $A$ therefore extends to all coefficient measures. Pushforward of a closed positive current is closed and positive, since smooth pullback commutes with differentiation and preserves strong positivity of test forms. The same argument on the biholomorphism locus therefore proves the second identity, with the $R_j$ in place of the pulled-back currents. Testing the constant function in top degree proves the mass assertions.
+The pullback $\pi^*T_j$ is defined by pulling back local plurisubharmonic potentials; their pluriharmonic differences pull back to pluriharmonic functions, so the result is well defined. A pulled-back potential is not identically $-\infty$ on any component, because $\pi$ is biholomorphic over a dense open set. Pushforward of a closed positive current is closed and positive, since pullback of smooth forms commutes with differentiation and preserves strong positivity. All products in the statement are therefore defined, and they are finite by \cref{thm:compact-nonpluripolar-finiteness}.
+
+Choose a proper analytic subset $A\subset X$ such that $\pi$ is a biholomorphism over $X\setminus A$. Over $X\setminus A$ the two sides of the first identity agree, because non-pluripolar products do not depend on the choice of potentials and are invariant under biholomorphic changes of coordinates. The right side gives the pluripolar set $A$ zero mass. The product upstairs gives the proper analytic set $\pi^{-1}(A)$ zero mass, so its pushforward gives $A$ zero mass as well, for the total variation of every coefficient. Hence the equality off $A$ extends to all coefficient measures. The same argument on the biholomorphism locus proves the second identity. Testing against the constant function $1$ in top degree proves the assertion on masses.
 \end{proof}
 \index{non-pluripolar product!modification pushforward}
 
 \section{Capacity convergence and loss of mass}
 \label{sec:nonpluripolar-capacity-limits}
-The bounded operator is continuous in capacity. An unbounded sequence can lose mass into its poles, so its non-pluripolar products satisfy a lower inequality before any total-mass hypothesis is imposed.
+Bedford--Taylor products of locally uniformly bounded potentials are continuous under convergence in capacity (\cref{thm:bt-capacity-continuity}). For unbounded potentials this fails, because mass can escape into the poles in the limit (\cref{ex:nonpluripolar-mass-loss}). What survives is a lower semicontinuity statement, which becomes continuity when the total masses do not drop in the limit. We first extend convergence in capacity to functions with poles.
 
 \begin{definition}\label{def:extended-psh-capacity-convergence}
-For $s,t\in[-\infty,\infty)$ put $d_*(s,t)=|\arctan s-\arctan t|$, with $\arctan(-\infty)=-\pi/2$. Local psh functions in a net $u_a$ converge in \emph{extended capacity} to $u$ if the outer capacity of
-$K\cap\{d_*(u_a,u)>\delta\}$ tends to zero for every compact $K$ and $\delta>0$. On a compact manifold this is required of their local psh potentials in a finite coordinate cover. Changing local potentials by the same smooth function does not affect it.
+For $s,t\in[-\infty,\infty)$ put $d_*(s,t)=|\arctan s-\arctan t|$, where $\arctan(-\infty)=-\pi/2$. A net $(u_a)$ of plurisubharmonic functions on an open set $D\subset\mathbb C^n$ converges in \emph{extended capacity} to a plurisubharmonic function $u$ if, for every compact set $K\subset D$ and every $\delta>0$, the outer capacity of
+$K\cap\{d_*(u_a,u)>\delta\}$ tends to zero, the capacity being taken as in \cref{def:local-capacity-convergence}. A net of $\theta$-plurisubharmonic functions on a compact manifold converges in extended capacity if the local plurisubharmonic functions obtained by adding smooth local potentials of $\theta$ do so on the charts of a finite coordinate cover. By \cref{lem:extended-capacity-truncations} below, this does not depend on the choice of local potentials.
 \end{definition}
 \index{convergence!capacity for unbounded potentials}
 
 \begin{lemma}\label{lem:extended-capacity-truncations}
-For locally uniformly bounded-above psh functions, extended capacity convergence is equivalent to capacity convergence of $\max\{u_k,-C\}$ to $\max\{u,-C\}$ for every $C>0$. Decreasing psh sequences with psh limit converge in this topology. A sequence of global $\theta$-psh potentials converging in extended capacity has a uniform upper bound.
+Let $(u_k)$ be a sequence of plurisubharmonic functions on an open set $D\subset\mathbb C^n$ that is locally uniformly bounded above, and let $u$ be plurisubharmonic on $D$. Then $u_k\to u$ in extended capacity if and only if $\max\{u_k,-C\}\to\max\{u,-C\}$ locally in capacity for every $C>0$. A decreasing sequence of plurisubharmonic functions with plurisubharmonic limit converges to it in extended capacity. If a sequence in $\PSH(X,\theta)$ converges in extended capacity to an element of $\PSH(X,\theta)$, then the suprema $\sup_Xu_k$ are bounded.
 \end{lemma}
 \begin{proof}
-On $[-\infty,M]$, the function $\max\{s,-C\}$ is a Lipschitz function of $\arctan s$: it is constant below $\arctan(-C)$, and the derivative of the inverse tangent is bounded on the remaining compact interval. Conversely, $|\arctan s-\arctan\max\{s,-C\}|\leq\pi/2-\arctan C$, uniformly in $s$. These two bounds prove the equivalence. Adding a bounded smooth function $h$ is harmless, since the derivative ratio
-$(1+s^2)/(1+(s+h)^2)$ is uniformly bounded when $h$ is bounded. The local capacity comparisons in \cref{prop:bt-capacity-basic} handle changes of charts.
+Fix a compact set $K$ and let $M$ be an upper bound for all $u_k$ and $u$ on $K$. On $[-\infty,M]$, the function $\max\{s,-C\}$ is a Lipschitz function of $\arctan s$: it is constant for $\arctan s\leq\arctan(-C)$, and the derivative of the tangent is bounded on the compact interval $[\arctan(-C),\arctan M]$. Hence extended capacity convergence implies capacity convergence of the truncations. Conversely, $|\arctan s-\arctan\max\{s,-C\}|\leq\pi/2-\arctan C$ for all $s$, so that
+\[
+ d_*(u_k,u)\leq|\max\{u_k,-C\}-\max\{u,-C\}|+2(\pi/2-\arctan C),
+\]
+where we also used $|\arctan s-\arctan t|\leq|s-t|$ for finite $s,t$. Choosing $C$ with $2(\pi/2-\arctan C)<\delta/2$, the set $\{d_*(u_k,u)>\delta\}$ is contained in $\{|\max\{u_k,-C\}-\max\{u,-C\}|>\delta/2\}$, which proves the equivalence.
 
-For a decreasing sequence, every fixed truncation decreases to a bounded psh limit. Apply \cref{prop:psh-decreasing-capacity} and the preceding equivalence. For the global assertion, normalize $v_k=u_k-\sup_Xu_k$. \Cref{prop:normalized-global-psh-compactness} gives a common bound for $\int_X|v_k|\,\omega^n$. If a subsequence had $\sup_Xu_k\to+\infty$, Markov's inequality would make $u_k\to+\infty$ in volume measure. This contradicts capacity convergence to a potential finite almost everywhere, since local capacity dominates volume. Therefore the suprema are bounded. Apply the argument componentwise if $X$ is disconnected.
+Adding the same bounded real function $h$ to $s$ and $t$ changes $d_*$ by at most a bounded factor: since $1+\sigma^2\leq2(1+h^2)(1+(\sigma+h)^2)$, the formula $\arctan t-\arctan s=\int_s^t\mathrm d\sigma/(1+\sigma^2)$ gives $d_*(s+h,t+h)\leq2(1+h^2)d_*(s,t)$. Hence extended capacity convergence of local potentials does not depend on the choice of smooth local potentials, and the local comparison of capacities in \cref{prop:bt-capacity-basic} handles changes of charts.
+
+If $u_k$ decreases to $u$, then for every $C$ the truncations decrease to the bounded plurisubharmonic function $\max\{u,-C\}$, so they converge in capacity by \cref{prop:psh-decreasing-capacity}; the equivalence just proved gives extended capacity convergence.
+
+For the global assertion, put $v_k=u_k-\sup_Xu_k$. By \cref{prop:normalized-global-psh-compactness}, $\int_X|v_k|\,\omega^n$ is bounded. Suppose that $s_k=\sup_Xu_k\to+\infty$ along a subsequence. By Markov's inequality, the volume of $\{u_k<s_k/2\}=\{v_k<-s_k/2\}$ tends to zero, so $u_k\to+\infty$ outside sets of small volume. On the other hand, on a compact subset $K$ of a chart with positive volume, the local potential of $u$ is bounded above, so $\{u_k\geq s_k/2\}\cap K$ is contained in a set $\{d_*>\delta_0\}$ for a fixed $\delta_0>0$ once $k$ is large; its capacity, and hence its volume, tends to zero, because capacity dominates volume (\cref{prop:bt-capacity-basic}). This is a contradiction, so the suprema are bounded. (If $X$ is disconnected, the argument applies to each component.)
 \end{proof}
 
 \begin{theorem}\label{thm:nonpluripolar-capacity-lower-limit}
-Let $T_{j,k}=\theta_j+\ddc u_{j,k}$ and $T_j=\theta_j+\ddc u_j$ be closed positive currents on compact K\"ahler $X$, $1\leq j\leq p\leq n$. Suppose $u_{j,k}\to u_j$ in extended capacity. Write $R_k=\langle T_{1,k}\wedge\cdots\wedge T_{p,k}\rangle$ and $R=\langle T_1\wedge\cdots\wedge T_p\rangle$. For every smooth strongly positive test form $\eta$ of complementary bidegree,
+Let $T_{j,k}=\theta_j+\ddc u_{j,k}$ and $T_j=\theta_j+\ddc u_j$ be closed positive currents on $X$, for $1\leq j\leq p\leq n$ and $k\geq1$, and suppose that $u_{j,k}\to u_j$ in extended capacity as $k\to\infty$, for every $j$. Put $R_k=\langle T_{1,k}\wedge\cdots\wedge T_{p,k}\rangle$ and $R=\langle T_1\wedge\cdots\wedge T_p\rangle$. Then for every smooth strongly positive $(n-p,n-p)$-form $\eta$ on $X$,
 \[
  \liminf_k\int_X R_k\wedge\eta\geq\int_X R\wedge\eta.
 \]
-If also $\limsup_k\int_X R_k\wedge\omega^{n-p}\leq\int_X R\wedge\omega^{n-p}$, then $R_k\to R$ weakly. The same lower inequality is local whenever the local products are finite and the potentials have common local upper bounds.
+If moreover $\limsup_k\int_X R_k\wedge\omega^{n-p}\leq\int_X R\wedge\omega^{n-p}$, then $R_k\to R$ weakly. The lower inequality also holds locally, on any complex manifold and for compactly supported $\eta$, whenever the local products are finite and the potentials converge in extended capacity and are locally uniformly bounded above.
 \end{theorem}
 \begin{proof}
-Work on a relatively compact coordinate ball, add fixed smooth potentials of the $\theta_j$, and denote the resulting psh functions by $v_{j,k},v_j$. They have common upper bounds by the preceding lemma. For $C,\varepsilon>0$ put
+\emph{Lower inequality.} Work on a relatively compact coordinate ball, add fixed smooth local potentials of the $\theta_j$, and denote the resulting plurisubharmonic functions by $v_{j,k}$ and $v_j$. They are uniformly bounded above, because the suprema of the $u_{j,k}$ are bounded by \cref{lem:extended-capacity-truncations}. For $C,\varepsilon>0$ put
 \[
  v_{j,k}^C=\max\{v_{j,k},-C\},\qquad
  a_{j,k}=\frac{v_{j,k}^C+C}{v_{j,k}^C+C+\varepsilon},\qquad
- a_k=\prod_j a_{j,k}.
+ a_k=\prod_j a_{j,k},
 \]
-The analogous limit weights $a_j,a$ are bounded and quasi-continuous. The bounded truncations and their weights converge in capacity. Since $a_k$ vanishes wherever any $v_{j,k}\leq-C$, plurifine locality gives
+and define $v_j^C$, $a_j$ and $a$ from the limits in the same way. These weights take values in $[0,1]$, and $a_j$ and $a$ are quasi-continuous. By \cref{lem:extended-capacity-truncations}, $v_{j,k}^C\to v_j^C$ in capacity, and since $s\mapsto(s+C)/(s+C+\varepsilon)$ is Lipschitz on $[-C,\infty)$, also $a_k\to a$ in capacity. The weight $a_k$ vanishes wherever some $v_{j,k}\leq-C$, and on the plurifine open set where all $v_{j,k}>-C$ the product $R_k$ coincides with the bounded product of the $v_{j,k}^C$, by \cref{lem:nonpluripolar-truncation-limit} and \cref{thm:bt-plurifine-locality}. Hence
 \[
- a_k R_k=a_k\bigwedge_j\ddc v_{j,k}^C.
+ a_k R_k=a_k\bigwedge_j\ddc v_{j,k}^C,
 \]
-For a nonnegative compactly supported test, weighted capacity continuity in \cref{thm:bt-capacity-continuity} identifies the limit of this expression with $a\bigwedge_j\ddc v_j^C=aR$. It is bounded above by $R_k$ in the positive-current order. Let $\varepsilon\downarrow0$ and then $C\to\infty$. The weights increase to one outside the common pole set, which $R$ annihilates. Monotone convergence proves the local lower inequality. A finite nonnegative partition of unity proves the global one.
+and likewise $aR=a\bigwedge_j\ddc v_j^C$. Let $\chi\geq0$ be a smooth function with compact support in the ball. By the weighted capacity continuity of \cref{thm:bt-capacity-continuity},
+\[
+ \int\chi\,aR\wedge\eta=\lim_k\int\chi\,a_kR_k\wedge\eta\leq\liminf_k\int\chi R_k\wedge\eta,
+\]
+where the inequality holds because $0\leq a_k\leq1$. Now let $\varepsilon\downarrow0$ and then $C\to\infty$. The weights $a$ increase to $1$ outside the union of the pole sets of the $v_j$, which $R$ does not charge, so monotone convergence gives $\int\chi R\wedge\eta\leq\liminf_k\int\chi R_k\wedge\eta$. This is the local lower inequality; it used only the finiteness of the local products and the local upper bounds. A finite partition of unity by such functions $\chi$ gives the global inequality.
 
-The shifted bound in \cref{thm:compact-nonpluripolar-finiteness} bounds all trace masses uniformly. Positive coefficient bounds and \cref{thm:local-measure-selection} give weak subsequential limits. Every such limit $R'$ is positive and satisfies $R'\geq R$ by the first assertion. The assumed trace inequality makes the positive difference $R'-R$ have zero total trace, so it vanishes. Every subsequence therefore has the same possible limit, proving weak convergence. The local proof needs no compactness assumption on the manifold.
+\emph{Convergence.} By \eqref{eq:shifted-cohomological-mass-bound}, the masses $\int_XR_k\wedge\omega^{n-p}$ are bounded, since the shifted backgrounds depend only on the fixed forms $\theta_j$. By \cref{thm:positive-current-order-zero,thm:local-measure-selection}, every subsequence of $(R_k)$ has a weakly convergent subsequence. Its limit $R'$ is positive, and $R'\geq R$ by the lower inequality applied to all strongly positive test forms. The additional hypothesis gives $\int_X(R'-R)\wedge\omega^{n-p}\leq0$, so the positive current $R'-R$ has zero trace mass and vanishes. Thus every subsequence of $(R_k)$ has a further subsequence converging weakly to $R$, which proves $R_k\to R$.
 \end{proof}
 \index{non-pluripolar product!lower semicontinuity}
 
@@ -471,94 +566,96 @@ The shifted bound in \cref{thm:compact-nonpluripolar-finiteness} bounds all trac
 
 \Needspace{8\baselineskip}
 \begin{example}\label{ex:nonpluripolar-mass-loss}
-On $\mathbb P^1$ with $\int\omega_{\mathrm{FS}}=1$, put $u=\log|z|^2-\log(1+|z|^2)$ and $u_k=\max\{u,-k\}$. The weight extends smoothly at infinity, and Poincar\'e--Lelong gives $\omega_{\mathrm{FS}}+\ddc u=[0]$. Each $u_k$ is bounded and $\omega_{\mathrm{FS}}$-psh, so its measure has mass one by bounded Stokes. The sequence decreases to $u$ in capacity, and its measures converge weakly to $[0]$ by distributional convergence. But $\langle[0]\rangle=0$ by \cref{ex:nonpluripolar-divisor-zero-mass}. The weak limit retains the mass that the non-pluripolar operator discards at the pole. A mass hypothesis is therefore needed for continuity.
+On $\mathbb P^1$ let $\omega_{\mathrm{FS}}$ be the Fubini--Study form, normalized by $\int\omega_{\mathrm{FS}}=1$, and put $u=\log|z|^2-\log(1+|z|^2)$ and $u_k=\max\{u,-k\}$. The function $u$ extends smoothly across infinity, and the Poincar\'e--Lelong formula gives $\omega_{\mathrm{FS}}+\ddc u=[0]$. Each $u_k$ is bounded and $\omega_{\mathrm{FS}}$-plurisubharmonic, so $\omega_{\mathrm{FS}}+\ddc u_k$ has mass one by \cref{prop:bounded-global-cohomological-mass}. The sequence $u_k$ decreases to $u$, hence converges to it in extended capacity (\cref{lem:extended-capacity-truncations}), and the measures $\omega_{\mathrm{FS}}+\ddc u_k$ converge weakly to $[0]$, because $u_k\to u$ in $L^1$. However, $\langle[0]\rangle=0$ by \cref{ex:nonpluripolar-divisor-zero-mass}. The weak limit retains the mass that the non-pluripolar product discards at the pole, so the mass hypothesis in \cref{thm:nonpluripolar-capacity-lower-limit} cannot be omitted.
 \end{example}
 
 \section{Mass comparison and projective fibres}
 \label{sec:nonpluripolar-mass-monotonicity}
-A common pole set first permits mass comparison by compactly supported differences. A projective construction then replaces arbitrary singularities by potentials bounded outside such a set. Its fibre mass records the original mass with a weight concentrating at the endpoint.
+We now prove that the total mass of a non-pluripolar product decreases when the potentials become more singular. If all potentials are locally bounded outside a common closed pluripolar set $A$, this follows from Stokes' formula, because the relevant difference of potentials can be arranged to have compact support in $X\setminus A$. The general case is reduced to this one by a construction on $X\times\mathbb P^N$: the new potential is bounded outside a fixed pole set, and its total mass is an average of masses along a segment of potentials, with weights that concentrate at the endpoint as $N\to\infty$.
 
 \begin{lemma}\label{lem:small-locus-mixed-mass-comparison}
-Let $\varphi_j,\psi_j\in\PSH(X,\theta_j)$, $1\leq j\leq p\leq n$, and put $T_j=\theta_j+\ddc\varphi_j$, $T'_j=\theta_j+\ddc\psi_j$. Suppose $\varphi_j\geq\psi_j-O(1)$. Assume that all these potentials are locally bounded outside a closed set $A=\{\tau=-\infty\}$, where $\tau$ is a global quasi-psh function locally bounded outside $A$. Then
+Let $\varphi_j,\psi_j\in\PSH(X,\theta_j)$ for $1\leq j\leq p\leq n$, and put $T_j=\theta_j+\ddc\varphi_j$ and $T'_j=\theta_j+\ddc\psi_j$. Suppose that $\varphi_j\geq\psi_j-O(1)$ for every $j$. Assume moreover that there is a quasi-plurisubharmonic function $\tau$ on $X$ such that $A=\{\tau=-\infty\}$ is closed and $\tau$ and all the $\varphi_j,\psi_j$ are locally bounded on $X\setminus A$. Then
 \[
  \int_X\langle T_1\wedge\cdots\wedge T_p\rangle\wedge\omega^{n-p}
  \geq\int_X\langle T'_1\wedge\cdots\wedge T'_p\rangle\wedge\omega^{n-p}.
 \]
-Bounded differences in every factor give equality.
+If every difference $\varphi_j-\psi_j$ is bounded, equality holds.
 \end{lemma}
 \begin{proof}
-Replace factors successively and absorb their finite non-pluripolar product and $\omega^{n-p}$ into a closed positive current $\Theta$ of bidimension $(1,1)$. It gives $A$ zero mass. Normalize the factor potentials so that $\varphi\geq\psi$ and $\tau\leq0$. For fixed $\varepsilon>0$ put
-$f_k=\max\{\psi+\varepsilon\tau,\varphi-k\}$. Their common quasi-psh lower bound is supplied by a sufficiently large multiple $\Omega$ of $\omega$. Since
-$\psi+\varepsilon\tau-\varphi\leq\varepsilon\tau\to-\infty$ near $A$, $f_k=\varphi-k$ in a neighborhood of $A$.
-
-The bounded function $f_k-\varphi+k$ has compact support in $X\setminus A$. Local recursion with the base $\Theta$ and distributional Stokes therefore give
+We replace the factors $T_j$ by $T'_j$ one at a time; it suffices to treat one step, in which a single factor changes. Write it as $\theta+\ddc\varphi$ before and $\theta+\ddc\psi$ after the change, and let $\Theta$ be the non-pluripolar product of the remaining factors (some primed, some not) wedged with $\omega^{n-p}$. By \cref{thm:compact-nonpluripolar-finiteness,thm:nonpluripolar-product-closed}, $\Theta$ is a closed positive current of bidimension $(1,1)$, and it gives zero mass to the pluripolar set $A$. On $X\setminus A$ all potentials are locally bounded, so there all the non-pluripolar products involved are Bedford--Taylor products, and the products of the two tuples are $(\theta+\ddc\varphi)\wedge\Theta$ and $(\theta+\ddc\psi)\wedge\Theta$. Since none of these products charges $A$, it suffices to prove
+\[
+ \int_{X\setminus A}(\theta+\ddc\psi)\wedge\Theta\leq\int_{X\setminus A}(\theta+\ddc\varphi)\wedge\Theta .
+\]
+After adding constants we may assume $\varphi\geq\psi$ and $\tau\leq0$. Fix $\varepsilon>0$ and put
+$f_k=\max\{\psi+\varepsilon\tau,\varphi-k\}$.
+Choose a K\"ahler form $\Omega$, a large multiple of $\omega$, such that $\theta+\Omega+\ddc(\psi+\varepsilon\tau)\geq0$; then $\theta+\Omega+\ddc f_k\geq0$ for every $k$. Since $\psi+\varepsilon\tau-\varphi\leq\varepsilon\tau$, we have $f_k=\varphi-k$ on the open neighborhood $\{\tau<-k/\varepsilon\}$ of $A$. Hence the function $f_k-\varphi+k=\max\{\psi+\varepsilon\tau-\varphi+k,0\}$ takes values in $[0,k]$ and has compact support in $X\setminus A$. By the recursion with base $\Theta$ and Stokes' formula on $X\setminus A$,
 \[
  \int_{X\setminus A}\ddc f_k\wedge\Theta
           =\int_{X\setminus A}\ddc\varphi\wedge\Theta.
 \]
-All signed measures here have finite mass: add their common smooth lower background and apply compact non-pluripolar finiteness, then subtract that background. On $X\setminus A$, the $f_k$ decrease to the locally bounded $\psi+\varepsilon\tau$. Fixed-base decreasing continuity and the lower inequality for positive measures give
+All the signed measures here have finite mass: adding the smooth form $\theta+\Omega$ makes them positive, and their total masses are then bounded by \cref{thm:compact-nonpluripolar-finiteness}. On $X\setminus A$ the functions $f_k$ decrease to the locally bounded function $\psi+\varepsilon\tau$ as $k\to\infty$. By decreasing continuity with the fixed base $\Theta$ (\cref{thm:bt-decreasing-continuity}), the positive measures $(\theta+\Omega+\ddc f_k)\wedge\Theta$ converge weakly on $X\setminus A$ to $(\theta+\Omega+\ddc(\psi+\varepsilon\tau))\wedge\Theta$, and the mass of the limit on the open set $X\setminus A$ is at most the lower limit of the masses. Therefore
 \[
- \int_{X\setminus A}(\ddc\psi+\varepsilon\ddc\tau+\Omega)\wedge\Theta
- \leq\int_{X\setminus A}(\ddc\varphi+\Omega)\wedge\Theta.
+ \int_{X\setminus A}(\theta+\Omega+\ddc\psi+\varepsilon\ddc\tau)\wedge\Theta
+ \leq\int_{X\setminus A}(\theta+\Omega+\ddc\varphi)\wedge\Theta.
 \]
-The $\Omega$ terms cancel. The measure $\ddc\tau\wedge\Theta$ likewise has finite variation by adding a smooth positive background. Let $\varepsilon\downarrow0$, restore the common $\theta$, and repeat for each factor. Reverse the roles when their differences are bounded.
+The terms containing $\theta+\Omega$ cancel. The measure $\ddc\tau\wedge\Theta$ on $X\setminus A$ also has finite total variation, as one sees by adding a smooth positive form, so letting $\varepsilon\downarrow0$ proves the desired inequality. If the differences are bounded, the same argument with the roles of $\varphi$ and $\psi$ exchanged gives equality.
 \end{proof}
 
 \Needspace{20\baselineskip}
 \begin{lemma}\label{lem:projective-simplex-fibre-formula}
-Let $u$ be smooth psh and $v$ locally bounded psh on an open set $U\subset\mathbb C^n$. For an integer $N\geq1$ write
-$\Sigma_N=\{x\in\mathbb R^N:x_i\geq0,\ t(x)=\sum_i x_i\leq1\}$ and define on $U\times\mathbb C^N$
+Let $U\subset\mathbb C^n$ be open, let $u$ be smooth and plurisubharmonic and $v$ locally bounded and plurisubharmonic on $U$, and let $N\geq1$ be an integer. Put
+$\Sigma_N=\{x\in\mathbb R^N:x_i\geq0,\ t(x)=\sum_i x_i\leq1\}$, and define on $U\times\mathbb C^N$
 \[
  F=\sup_{x\in\Sigma_N}
        \left((1-t(x))u+t(x)v+
-                    \sum_i x_i\log|z_i|^2-\sum_i x_i^2\right).
+                    \sum_i x_i\log|z_i|^2-\sum_i x_i^2\right),
 \]
-A zero coefficient times $-\infty$ is zero. The canonical extension of this function is locally bounded psh, and with $p:U\times\mathbb C^N\to U$,
+with the convention that a zero coefficient times $-\infty$ is zero. The canonical extension of this function is locally bounded and plurisubharmonic, and with $p\colon U\times\mathbb C^N\to U$ the projection,
 \begin{equation}\label{eq:projective-simplex-fibre-formula}
  p_*(\ddc F)^{n+N}
        =\binom{n+N}{n}N\int_0^1
                 (\ddc((1-t)u+tv))^n t^{N-1}\,\mathrm dt.
 \end{equation}
-The pushforward is locally finite; over compact subsets of $U$ the measures have a common bounded fibre support when $v-u$ is bounded below.
+The pushforward is locally finite: if $v-u\geq-C$ on a set $E\subset U$, then over $E$ the measure $(\ddc F)^{n+N}$ is carried by $\{|z_i|\leq\mathrm e^{1+C/2}\text{ for all }i\}$.
 \end{lemma}
 \begin{proof}
-First suppose $v$ smooth and work where every $z_i\ne0$. Put $a=v-u$ and $y_i=\log|z_i|^2$. The maximizing point is
+\emph{Step 1: structure of $F$ for smooth $v$.} Suppose first that $v$ is smooth, and work where every $z_i\ne0$. Put $a=v-u$, $y_i=\log|z_i|^2$ and $b_i=(y_i+a)/2$. Since
 \[
- x=P_{\Sigma_N}\bigl((y+a\mathbf1)/2\bigr),
+ (1-t(x))u+t(x)v+\sum_ix_iy_i-\sum_ix_i^2=u+|b|^2-|x-b|^2,
 \]
-where $P_{\Sigma_N}$ is the Euclidean closest-point projection. Existence follows from compactness and uniqueness from strict concavity. Its variational inequality
-$(b-Pb)\cdot(s-Pb)\leq0$ for $s\in\Sigma_N$ follows by differentiating the squared distance along the segment to $s$. Applying it twice proves $|Pb-Pb'|\leq|b-b'|$. Bounding the difference of two suprema with their respective maximizing points shows that the derivative in $y_i$ is $x_i$; the same argument gives the base differential. Consequently $F$ is $C^1$ with locally Lipschitz gradient.
+the supremum is attained exactly at the Euclidean closest point $x=P(b)$ of $\Sigma_N$ to $b=(b_1,\ldots,b_N)$; it exists by compactness and is unique by strict concavity. Differentiating the squared distance along the segment from $P(b)$ to a point $s\in\Sigma_N$ gives the variational inequality $(b-P(b))\cdot(s-P(b))\leq0$, and applying it twice gives $|P(b)-P(b')|\leq|b-b'|$. Comparing the two suprema at their respective maximizing points shows that the derivative of $F$ in $y_i$ is $x_i$, and the same argument gives its derivatives in the base variables. Consequently $F$ is of class $C^1$ with locally Lipschitz gradient.
 
-For $b=(y+a\mathbf1)/2$, the projection has coordinates $x_i=\max\{b_i-\lambda,0\}$. If $\sum_i\max\{b_i,0\}\leq1$, take $\lambda=0$; otherwise the strictly decreasing sum on its positive range determines $\lambda>0$ by $\sum_i\max\{b_i-\lambda,0\}=1$. These coordinates satisfy the variational inequality and hence give the projection. On a fixed active set $I$ in the latter case, $\lambda=(\sum_{i\in I}b_i-1)/|I|$. Thus the projection is affine on finitely many polyhedral regions, with rank $|I|$ when $\lambda=0$ and $|I|-1$ otherwise. On the region where $x_i>0$ and $t(x)<1$ for all $i$, one has $x_i=(y_i+a)/2$ and $F=u+\sum_i x_i^2$. On every other open region the fibre projection has rank less than $N$. Region boundaries have Lebesgue measure zero: each is a nonconstant linear equation in $y+a\mathbf1$, and Fubini applies with the base point fixed. The continuous Lipschitz gradient has bounded distributional derivatives, as is seen by testing its bounded difference quotients and using \cref{lem:dominated-measure-density}. Smooth convolution, Lebesgue differentiation and bounded determinant convergence, together with \cref{prop:bt-uniform-continuity} and \eqref{eq:bt-determinant-normalization}, identify the Bedford--Taylor measure with the ordinary measurable Hessian determinant. Thus these boundaries carry no mass. In the lower-rank regions its positive Hessian has a vertical null vector, and hence zero full determinant.
+The projection is explicit: $x_i=\max\{b_i-\lambda,0\}$, where $\lambda=0$ if $\sum_i\max\{b_i,0\}\leq1$, and otherwise $\lambda>0$ is the unique solution of $\sum_i\max\{b_i-\lambda,0\}=1$ (the left side is strictly decreasing on the range where it is positive). These coordinates satisfy the variational inequality and hence give the projection. On the region where the active set $I=\{i:x_i>0\}$ is fixed and $\lambda>0$, we have $\lambda=(\sum_{i\in I}b_i-1)/|I|$. Thus the projection is affine on finitely many polyhedral regions, with rank $|I|$ when $\lambda=0$ and $|I|-1$ when $\lambda>0$. On the \emph{interior region}, where all $x_i>0$ and $t(x)<1$, we have $x_i=(y_i+a)/2$ and $F=u+\sum_ix_i^2$. On every other region the dependence of $F$ on the fibre variables has rank less than $N$; in fact $F$ is there, up to a pluriharmonic function, the sum of a function of the base variables and a function of the fibre variables that is invariant in some fibre direction, so its positive semidefinite complex Hessian has a vertical null vector and zero determinant. The region boundaries have Lebesgue measure zero: for a fixed base point each is given by a nonconstant linear equation in $y$, and Fubini's theorem applies.
 
-On the interior region direct differentiation gives
+The continuous, locally Lipschitz gradient of $F$ has locally bounded distributional derivatives, as one sees by testing its bounded difference quotients and using \cref{lem:dominated-measure-density}. Convolution, Lebesgue differentiation and dominated convergence of the determinants, together with \cref{prop:bt-uniform-continuity} and \eqref{eq:bt-determinant-normalization}, identify the Bedford--Taylor measure $(\ddc F)^{n+N}$ with the measure given by the almost everywhere defined Hessian determinant. Hence the region boundaries carry no mass, and neither do the lower-rank regions.
+
+\emph{Step 2: the interior region.} There direct differentiation gives
 \[
  \ddc F=(1-t(x))\ddc u+t(x)\ddc v
                        +2\sum_i\mathrm dx_i\wedge\mathrm d^{\mathrm c}x_i.
 \]
-The first summand has only base differentials, while the second has rank at most $N$. Expansion of the $(n+N)$th power therefore retains exactly $n$ base factors and $N$ of these rank-one factors, with coefficient $\binom{n+N}{n}$. On a fibre write $z_i=r_i\mathrm e^{\mathrm i\alpha_i}$. Our normalization gives
-$\mathrm d^{\mathrm c}y_i=\mathrm d\alpha_i/(2\pi)$ and
-$2\,\mathrm dx_i\wedge\mathrm d^{\mathrm c}x_i=\mathrm dx_i\wedge\mathrm d\alpha_i/(2\pi)$ there. Integrating the angular variables pushes the $N$th power to $N!\,\mathrm dx$ on $\Sigma_N$. No general real Monge--Amp\`ere theorem is needed. Finally
-$|\{x\in\Sigma_N:t(x)\leq t\}|=t^N/N!$, by scaling the simplex and elementary iterated integration. Integration first in the level $t$ proves \eqref{eq:projective-simplex-fibre-formula}.
+The first two terms involve only the base variables, so their sum has vanishing $(n+1)$st power; each $\mathrm dx_i\wedge\mathrm d^{\mathrm c}x_i$ has vanishing square. Expanding the $(n+N)$th power, only the terms with $n$ base factors and the $N$ distinct factors $2\,\mathrm dx_i\wedge\mathrm d^{\mathrm c}x_i$ survive, with coefficient $\binom{n+N}{n}$. In such a term the base factors already have full base degree, so only the fibre parts of $\mathrm dx_i$ and $\mathrm d^{\mathrm c}x_i$ contribute. On a fibre write $z_i=r_i\mathrm e^{\mathrm i\alpha_i}$. With our normalization, $\mathrm d^{\mathrm c}y_i=\mathrm d\alpha_i/(2\pi)$, so $2\,\mathrm dx_i\wedge\mathrm d^{\mathrm c}x_i=\mathrm dx_i\wedge\mathrm d\alpha_i/(2\pi)$ there. Integrating over the angular variables pushes the $N$th power of $\sum_i\mathrm dx_i\wedge\mathrm d\alpha_i/(2\pi)$ forward to $N!\,\mathrm dx$ on $\Sigma_N$. Finally, $|\{x\in\Sigma_N:t(x)\leq t\}|=t^N/N!$, by scaling the simplex and an elementary iterated integration, so integrating first over the levels of $t$ turns $N!\,\mathrm dx$ into $Nt^{N-1}\,\mathrm dt$. This proves \eqref{eq:projective-simplex-fibre-formula} for smooth $v$.
 
-The support lies in the closure of the interior region. If $a\geq-C$, its equations give $y_i=2x_i-a\leq2+C$, hence $|z_i|\leq\mathrm e^{1+C/2}$. The function extends across coordinate hyperplanes as a bounded psh function, since the branch $x=0$ bounds it below and the displayed supremum bounds it locally above. Bounded analytic removal identifies the canonical extension. For general bounded $v$, take smooth decreasing approximations $v_l\downarrow v$ on a smaller base neighborhood. The corresponding $F_l$ decrease pointwise to $F$: at finite $v$ the suprema differ by at most $|v_l-v|$. They have common bounds and the same fibre-support bound. Bounded decreasing continuity passes their products and pushforwards to the limit. The right side passes by the same theorem and the uniform CLN bound in $t\in[0,1]$. Exhausting $U$ proves the lemma.
+\emph{Step 3: support and extension.} The measure is carried by the closure of the interior region. If $a\geq-C$ there, then $y_i=2x_i-a\leq2+C$, hence $|z_i|\leq\mathrm e^{1+C/2}$. Near the coordinate hyperplanes, $F$ is bounded below by the branch $x=0$, which equals $u$, and the displayed supremum bounds it locally from above. By \cref{thm:psh-bounded-zero-extension}, $F$ has a unique plurisubharmonic extension across the hyperplanes; this is the canonical extension, and the hyperplanes, being pluripolar, carry no mass for its Monge--Amp\`ere measure.
+
+\emph{Step 4: general $v$.} For locally bounded $v$, take smooth plurisubharmonic $v_l\downarrow v$ on a smaller base neighborhood, and let $F_l$ be the corresponding functions. They decrease pointwise to $F$, since at points where $v$ is finite the two suprema differ by at most $v_l-v$. They are locally uniformly bounded, and satisfy the same support bound because $v_l-u\geq v-u$. By \cref{thm:bt-decreasing-continuity}, their Monge--Amp\`ere measures converge weakly, and so do the pushforwards, because the supports lie in a fixed set that is compact over compact subsets of the base. The right side of \eqref{eq:projective-simplex-fibre-formula} converges by the same theorem and dominated convergence in $t$, using the uniform Chern--Levine--Nirenberg bound for $t\in[0,1]$. Exhausting $U$ proves the lemma.
 \end{proof}
 
 \Needspace{24\baselineskip}
 \begin{proposition}\label{prop:auxiliary-projective-mass}
-Suppose $\{\theta\}$ is big and $\varphi_0\in\PSH(X,\theta)$ is smooth outside its proper analytic pole set, with $\mathrm e^{m\varphi_0}$ smooth for some $m>0$. Fix an integer $N\geq1$ and let $p_X,p_{\mathbb P^N}$ be the projections of $X\times\mathbb P^N$. For $\varphi\in\PSH(X,\theta)$ and homogeneous coordinates $[Z_0:\cdots:Z_N]$, put
+Suppose that $\{\theta\}$ is big, and let $\varphi_0\in\PSH(X,\theta)$ be smooth outside its pole set, which is a proper analytic subset, with $\mathrm e^{m\varphi_0}$ smooth for some $m>0$. Fix an integer $N\geq1$, let $p_X,p_{\mathbb P^N}$ be the projections of $X\times\mathbb P^N$, and let $\omega_{\mathrm{FS}}$ be the Fubini--Study form of \cref{ex:projective-fubini-study-curvature}. For $\varphi\in\PSH(X,\theta)$ and homogeneous coordinates $[Z_0:\cdots:Z_N]$ put
 \[
  s_i=\log\frac{|Z_i|^2}{\sum_{l=0}^N|Z_l|^2},\qquad
  \widetilde\theta=p_X^*\theta+p_{\mathbb P^N}^*\omega_{\mathrm{FS}},
 \]
-and let $\Phi$ be the upper regularization of
+and let $\Phi$ be the upper semicontinuous regularization of
 \[
  \sup_{x\in\Sigma_N}
        \left((1-t(x))(\varphi_0+s_0)+t(x)\varphi
-                              +\sum_i x_i s_i-\sum_i x_i^2\right).
+                              +\sum_{i=1}^N x_i s_i-\sum_{i=1}^N x_i^2\right).
 \]
-Then $\Phi$ is $\widetilde\theta$-psh and locally bounded outside
-$A=(\{\varphi_0=-\infty\}\times\mathbb P^N)\cup(X\times\{Z_0=0\})$. Its mass satisfies
+Then $\Phi$ is $\widetilde\theta$-plurisubharmonic and locally bounded outside
+$A=(\{\varphi_0=-\infty\}\times\mathbb P^N)\cup(X\times\{Z_0=0\})$, and
 \begin{equation}\label{eq:auxiliary-projective-mass}
  \begin{aligned}
  &\int_{X\times\mathbb P^N}\langle(\widetilde\theta+\ddc\Phi)^{n+N}\rangle\\
@@ -567,138 +664,158 @@ $A=(\{\varphi_0=-\infty\}\times\mathbb P^N)\cup(X\times\{Z_0=0\})$. Its mass sat
                                       t^{N-1}\,\mathrm dt.
  \end{aligned}
 \end{equation}
-Such a reference $\varphi_0$ exists in every big class.
+A reference potential $\varphi_0$ with these properties exists in every big class.
 \end{proposition}
 \begin{proof}
-Each branch is $\widetilde\theta$-psh: the coefficients of its $X$ currents add to one, as do those of its projective hyperplane currents. The family is locally uniformly bounded above. Its zero branch $\varphi_0+s_0$ is finite off $A$, so its envelope is defined and is locally bounded there. The same branch is a global quasi-psh function with exact pole set $A$ and a smooth lower background. For existence, start with a strict current in the big class and apply \cref{lem:logarithmic-cutoff-sum} with sufficiently large $m$, retaining positivity. Its exponential is smooth and its zeros form the proper analytic multiplier-ideal pole set.
+\emph{The potential $\Phi$.} Each function in the supremum is $\widetilde\theta$-plurisubharmonic: its coefficients of $\theta$-plurisubharmonic functions on $X$ add up to one, and so do its coefficients of the $\omega_{\mathrm{FS}}$-plurisubharmonic functions $s_i$. The family is locally uniformly bounded above, so its regularized supremum $\Phi$ is $\widetilde\theta$-plurisubharmonic. The branch $x=0$ is $\tau=\varphi_0+s_0$, which is finite off $A$; hence $\Phi\geq\tau$ is locally bounded outside $A$. The function $\tau$ is quasi-plurisubharmonic, its pole set is exactly $A$, and it is locally bounded outside $A$.
 
-Off that pole set choose $\ddc h=\theta$ and work in $Z_0\ne0$, with $z_i=Z_i/Z_0$. Adding $h+\log(1+\sum_i|z_i|^2)$ to $\Phi$ gives the preceding local supremum with $u=\varphi_0+h$ and $v=\varphi+h$. Replace $v$ by $v_C=\max\{v,u-C\}$, which is locally bounded. On the plurifine open base set $\{v>u-C\}$ the two constructions agree, so locality identifies their products over that set. The fibre formula applies to $v_C$. Let $C\to\infty$ in these restrictions. The base sets exhaust all finite points of $v$; both sides give their omitted pluripolar set zero mass. The upstairs product also gives the inverse image of the analytic pole set and the projective hyperplane zero mass. The measure-valued integrand is Borel in $t$: multilinearity makes it a polynomial with finite mixed-current coefficients. Increasing Borel restrictions, monotone convergence and a finite chart partition therefore prove the pushforward formula and then \eqref{eq:auxiliary-projective-mass}. The local suprema equal their canonical extensions: decreasing bounded truncations have pointwise limits by compact maximization; at $v=-\infty$ the limit is the zero branch $u$. No envelope discrepancy changes the restricted products.
+\emph{Existence of $\varphi_0$.} Since the class is big, it contains a K\"ahler current $\theta+\ddc\psi\geq\delta\omega$, $\delta>0$. Apply \cref{lem:logarithmic-cutoff-sum} to $\psi\in\PSH(X,\theta-\delta\omega)$: for every $m$ it gives a function $G_m$ with $\mathrm e^{mG_m}$ smooth and $\theta-\delta\omega+\ddc G_m\geq-(c'/m)\omega$. For $m>c'/\delta$, $\varphi_0=G_m$ is $\theta$-plurisubharmonic; its pole set is the zero set of the multiplier ideal $\mathcal I(m\psi)$, a proper analytic subset, and $\varphi_0$ is smooth outside it.
+
+\emph{The mass formula.} Off the pole set of $\varphi_0$ choose $h$ with $\ddc h=\theta$, and work in the chart $Z_0\ne0$ with coordinates $z_i=Z_i/Z_0$. There $s_0=-\log(1+|z|^2)$ and $s_i=\log|z_i|^2-\log(1+|z|^2)$, so adding $h+\log(1+|z|^2)$ to $\Phi$ gives the function $F$ of \cref{lem:projective-simplex-fibre-formula} with $u=\varphi_0+h$ and $v=\varphi+h$. The latter need not be locally bounded, so we replace it by $v_C=\max\{v,u-C\}$, which is locally bounded. Over the plurifine open base set $\{v>u-C\}$ the two constructions coincide, so by plurifine locality their Monge--Amp\`ere measures agree there, and \cref{lem:projective-simplex-fibre-formula} applies to $v_C$. Let $C\to\infty$ in these restricted identities. The base sets exhaust the points where $v$ is finite, and both sides give the remaining pluripolar set zero mass. The product upstairs also gives zero mass to the pluripolar set $A$. The measure-valued integrand on the right is Borel in $t$: by multilinearity it is a polynomial in $t$ whose coefficients are finite mixed non-pluripolar products. Increasing Borel restrictions, monotone convergence and a finite partition of unity therefore give the pushforward formula over $X$, and integrating it gives \eqref{eq:auxiliary-projective-mass}. Finally, the local suprema coincide with their canonical extensions, so no regularization changes the restricted products: as $C\to\infty$, the bounded functions obtained from $v_C$ decrease pointwise to the supremum, by compactness of $\Sigma_N$, and at points where $v=-\infty$ the limit is the branch $u$.
 \end{proof}
 
 \Needspace{10\baselineskip}
 \begin{theorem}\label{thm:nonpluripolar-self-mass-monotonicity}
-If $\varphi,\psi\in\PSH(X,\theta)$ and $\varphi\geq\psi-O(1)$, then
+Let $\varphi,\psi\in\PSH(X,\theta)$ with $\varphi\geq\psi-O(1)$. Then
 \[
  \int_X\langle(\theta+\ddc\varphi)^n\rangle
        \geq\int_X\langle(\theta+\ddc\psi)^n\rangle.
 \]
 \end{theorem}
 \begin{proof}
-First let the class be big, choose the reference in the preceding proposition, and construct $\Phi_N,\Psi_N$. The inequality between the original potentials gives $\Phi_N\geq\Psi_N-O(1)$ with a constant independent of $N$, since $0\leq t(x)\leq1$. Both are bounded outside the same pole set $A$. Apply \cref{lem:small-locus-mixed-mass-comparison} upstairs and cancel the common binomial coefficient in \eqref{eq:auxiliary-projective-mass}. The two remaining integrals have weight $Nt^{N-1}\,\mathrm dt$.
+Suppose first that $\{\theta\}$ is big. Choose a reference potential $\varphi_0$ as in \cref{prop:auxiliary-projective-mass}, and construct the corresponding potentials $\Phi_N$ from $\varphi$ and $\Psi_N$ from $\psi$. Since $0\leq t(x)\leq1$, the inequality $\varphi\geq\psi-O(1)$ gives $\Phi_N\geq\Psi_N-O(1)$ with a constant independent of $N$, and both are locally bounded outside the same set $A$, which is the pole set of the quasi-plurisubharmonic function $\varphi_0+s_0$. Put
+\[
+ M_\varphi(t)=\int_X\langle(\theta+\ddc((1-t)\varphi_0+t\varphi))^n\rangle,
+\]
+and define $M_\psi$ in the same way. Applying \cref{lem:small-locus-mixed-mass-comparison} on $X\times\mathbb P^N$ and cancelling the common binomial coefficient in \eqref{eq:auxiliary-projective-mass}, we obtain
+\[
+ \int_0^1M_\varphi(t)\,Nt^{N-1}\,\mathrm dt\geq\int_0^1M_\psi(t)\,Nt^{N-1}\,\mathrm dt.
+\] Writing $\theta+\ddc((1-t)\varphi_0+t\varphi)=(1-t)T_0+tT_\varphi$ with $T_0=\theta+\ddc\varphi_0$ and $T_\varphi=\theta+\ddc\varphi$, multilinearity shows that $M_\varphi$ is a polynomial in $t$, in particular continuous on $[0,1]$, and $M_\varphi(1)$ is the mass of $\varphi$. The probability measures $Nt^{N-1}\,\mathrm dt$ concentrate at $1$ as $N\to\infty$, since their mass on $[0,1-\delta]$ is $(1-\delta)^N$. By uniform continuity the two integrals tend to $M_\varphi(1)$ and $M_\psi(1)$, which proves the theorem for big classes.
 
-By multilinearity, the mass of $\theta+\ddc((1-t)\varphi_0+t\varphi)$ is a polynomial in $t$: expand its positive current as $(1-t)T_0+tT_\varphi$. It is continuous on $[0,1]$. The probability measures $Nt^{N-1}\,\mathrm dt$ concentrate at $1$, since their mass on $[0,1-\delta]$ is $(1-\delta)^N$. Uniform continuity thus makes the weighted integrals tend to the original masses. This proves the big-class assertion.
-
-For a merely pseudo-effective class add $\varepsilon\omega$ to $\theta$. The class becomes big while the same potentials remain admissible. Apply the proved inequality. Multilinearity and compact finiteness make both resulting masses polynomials in $\varepsilon$ with finite coefficients. Let $\varepsilon\downarrow0$. This reduction requires no assertion that non-big classes have zero mass.
+If $\{\theta\}$ is merely pseudo-effective, then for $\varepsilon>0$ the class of $\theta+\varepsilon\omega$ is big, and $\varphi,\psi$ are $(\theta+\varepsilon\omega)$-plurisubharmonic. By the big case, the mass of $\varphi$ with respect to $\theta+\varepsilon\omega$ is at least that of $\psi$. By multilinearity and \cref{thm:compact-nonpluripolar-finiteness}, both masses are polynomials in $\varepsilon$ with finite coefficients, and letting $\varepsilon\downarrow0$ proves the theorem.
 \end{proof}
 \index{non-pluripolar product!mass monotonicity}
 
 \begin{corollary}\label{cor:nonpluripolar-bounded-type-mixed-mass}
-Let $u_j,v_j\in\PSH(X,\theta_j)$, $1\leq j\leq p\leq n$, and put $T_j=\theta_j+\ddc u_j$, $T'_j=\theta_j+\ddc v_j$. Bounded differences $u_j-v_j$ imply equality of their mixed masses against $\omega^{n-p}$. If only $u_j\geq v_j-O(1)$, then
+Let $u_j,v_j\in\PSH(X,\theta_j)$ for $1\leq j\leq p\leq n$, and put $T_j=\theta_j+\ddc u_j$ and $T'_j=\theta_j+\ddc v_j$. If every difference $u_j-v_j$ is bounded, then
 \[
  \int_X\langle T_1\wedge\cdots\wedge T_p\rangle\wedge\omega^{n-p}
- \geq\int_X\langle T'_1\wedge\cdots\wedge T'_p\rangle\wedge\omega^{n-p}.
+ =\int_X\langle T'_1\wedge\cdots\wedge T'_p\rangle\wedge\omega^{n-p}.
 \]
+If only $u_j\geq v_j-O(1)$ for every $j$, then the left side is at least the right side.
 \end{corollary}
 \begin{proof}
-For bounded differences, apply self-mass monotonicity in both directions to $\sum_j a_ju_j$ and $\sum_j a_jv_j$, with background $\sum_j a_j\theta_j$, for every tuple $a_j>0$. Add $n-p$ identical smooth $\omega$ factors if $p<n$. The equal degree-$n$ mass polynomials have equal coefficients: fixing all but one variable proves this successively by the elementary uniqueness of a one-variable polynomial. The coefficient of the product of the chosen variables is the mixed mass times its positive multinomial factor, proving equality.
+\emph{Bounded differences.} For real numbers $a_0,a_1,\ldots,a_p>0$, apply \cref{thm:nonpluripolar-self-mass-monotonicity} in both directions to the potentials $\sum_ja_ju_j$ and $\sum_ja_jv_j$, whose difference is bounded, with respect to the background $a_0\omega+\sum_ja_j\theta_j$. (If $p=n$, take $a_0=0$.) The two resulting masses are equal. By multilinearity, both are homogeneous polynomials of degree $n$ in $(a_0,\ldots,a_p)$, and they agree on an open set; fixing all but one variable and using the uniqueness of polynomials in one variable successively, we see that their coefficients agree. By \cref{prop:nonpluripolar-bounded-factor-compatibility}, the coefficient of $a_0^{n-p}a_1\cdots a_p$ is $n!/(n-p)!$ times the mixed mass in the statement, which proves equality.
 
-For the ordered case put $v_{j,k}=\max\{u_j-k,v_j\}$. After harmless constant shifts $v_j\leq u_j+C_j$, so $u_j-k\leq v_{j,k}\leq u_j+C_j$. Each tuple therefore has the mixed mass of the $u_j$. It decreases to $v_j$ and converges in extended capacity. The lower-limit theorem bounds the mixed mass of the limit by those equal masses. This proves the inequality, including smooth extra factors.
+\emph{The ordered case.} Put $v_{j,k}=\max\{u_j-k,v_j\}$. Since $v_j\leq u_j+C_j$ for constants $C_j$, we have $u_j-k\leq v_{j,k}\leq u_j+C_j$, so each tuple $(v_{j,k})_j$ has the same mixed mass as $(u_j)_j$, by the first part. As $k\to\infty$, $v_{j,k}$ decreases to $v_j$ and therefore converges to it in extended capacity (\cref{lem:extended-capacity-truncations}). The lower inequality of \cref{thm:nonpluripolar-capacity-lower-limit}, with test form $\omega^{n-p}$, bounds the mixed mass of the $v_j$ by these equal masses.
 \end{proof}
 \index{non-pluripolar product!bounded-perturbation invariance}
 
 \begin{corollary}\label{cor:nonpluripolar-increasing-continuity}
-Suppose $u_{j,k}\in\PSH(X,\theta_j)$ increase almost everywhere to $u_j\in\PSH(X,\theta_j)$, $1\leq j\leq p\leq n$. Then their non-pluripolar products converge weakly to the product of the limits, and their mixed masses against $\omega^{n-p}$ converge.
+Suppose that $u_{j,k}\in\PSH(X,\theta_j)$ increase almost everywhere to $u_j\in\PSH(X,\theta_j)$ as $k\to\infty$, for $1\leq j\leq p\leq n$. Then the non-pluripolar products $\langle\bigwedge_j(\theta_j+\ddc u_{j,k})\rangle$ converge weakly to $\langle\bigwedge_j(\theta_j+\ddc u_j)\rangle$, and their mixed masses against $\omega^{n-p}$ converge.
 \end{corollary}
 \begin{proof}
-Canonical representatives give $u_{j,k}\leq u_j$ pointwise, by applying uniqueness to their maximum. Add smooth local potentials on coordinate charts and truncate below a fixed constant. The resulting locally uniformly bounded psh sequences converge increasingly almost everywhere to the bounded truncations of the limits. \Cref{thm:bt-increasing-continuity,lem:extended-capacity-truncations} therefore give extended-capacity convergence of the original sequences. Mixed mass monotonicity bounds every trace mass by that of the limit product. The lower-limit theorem in \cref{thm:nonpluripolar-capacity-lower-limit} proves both weak convergence and convergence of the masses. This applies in particular to the canonical regularization of an increasing supremum, whose discrepancy set is pluripolar by \cref{cor:psh-pluripolar-discrepancy}.
+The inequality $u_{j,k}\leq u_j$ holds almost everywhere, hence everywhere, since $\max\{u_{j,k},u_j\}$ and $u_j$ are quasi-plurisubharmonic functions that agree almost everywhere. On coordinate charts add smooth local potentials and truncate below at a fixed level $-C$. The resulting locally uniformly bounded plurisubharmonic sequences increase almost everywhere to the truncations of the limits, so they converge in capacity by \cref{thm:bt-increasing-continuity}; by \cref{lem:extended-capacity-truncations}, the original sequences converge in extended capacity. Since $u_{j,k}\leq u_j$, \cref{cor:nonpluripolar-bounded-type-mixed-mass} bounds every mixed mass of the sequence by that of the limit, and \cref{thm:nonpluripolar-capacity-lower-limit} gives weak convergence and convergence of the masses. This applies in particular to the regularized supremum of an increasing sequence, which differs from the pointwise supremum only on a pluripolar set, by \cref{cor:psh-pluripolar-discrepancy}.
 \end{proof}
 \index{non-pluripolar product!increasing continuity}
 
 \section{Maximal mass and comparison}
 \label{sec:nonpluripolar-full-mass}
-Minimal singularities give the largest mixed mass in big classes. Perturbation by a K\"ahler class extends that number to the pseudo-effective boundary.
+By the monotonicity just proved, potentials with minimal singularities have the largest non-pluripolar masses in a big class, and these maximal masses are invariants of the classes. We extend them to pseudo-effective classes by perturbing with a K\"ahler class, and then derive the comparison and domination principles for non-pluripolar Monge--Amp\`ere measures. Recall that $V_\theta$ denotes the extremal potential of \cref{def:global-minimal-potential}.
 
 \begin{definition}\label{def:positive-mixed-intersection-number}
-For big classes $\alpha_j=\{\theta_j\}$, $1\leq j\leq p\leq n$, define the positive mixed intersection number, with the fixed test class $\{\omega\}$, by
+For big classes $\alpha_j=\{\theta_j\}$, $1\leq j\leq p\leq n$, the \emph{positive mixed intersection number} relative to the K\"ahler class $\{\omega\}$ is
 \[
  I_\omega(\alpha_1,\ldots,\alpha_p)
  =\int_X\left\langle\bigwedge_{j=1}^p
            (\theta_j+\ddc V_{\theta_j})\right\rangle\wedge\omega^{n-p}.
 \]
-For pseudo-effective classes define it by the decreasing limit of
-$I_\omega(\alpha_1+\varepsilon\{\omega\},\ldots,\alpha_p+\varepsilon\{\omega\})$ as $\varepsilon\downarrow0$. In top degree put $\operatorname{vol}(\alpha)=I_\omega(\alpha,\ldots,\alpha)$; the test factor is then the empty product.
+For pseudo-effective classes $\alpha_j$ we define $I_\omega(\alpha_1,\ldots,\alpha_p)$ as the decreasing limit of
+$I_\omega(\alpha_1+\varepsilon\{\omega\},\ldots,\alpha_p+\varepsilon\{\omega\})$ as $\varepsilon\downarrow0$; for big classes the two definitions agree, by \cref{prop:positive-mixed-mass-bound}. In top degree we put $\operatorname{vol}(\alpha)=I_\omega(\alpha,\ldots,\alpha)$, the \emph{volume} of $\alpha$; the factor $\omega^{n-p}$ is then absent.
 \end{definition}
 \index{positive intersection!mixed number}\index{volume!positive current class}
 
 \begin{proposition}\label{prop:positive-mixed-mass-bound}
-These definitions are independent of the chosen representatives and minimal potentials. The limit exists and is independent of the K\"ahler class used for the perturbation. For closed positive $T_j\in\alpha_j$,
+The numbers of \cref{def:positive-mixed-intersection-number} do not depend on the chosen smooth representatives or minimal potentials, nor on the K\"ahler form within its class. The limit defining them for pseudo-effective classes exists, does not depend on the K\"ahler class used for the perturbation, and agrees with the first definition when all $\alpha_j$ are big. For closed positive currents $T_j\in\alpha_j$,
 \[
  \int_X\langle T_1\wedge\cdots\wedge T_p\rangle\wedge\omega^{n-p}
                        \leq I_\omega(\alpha_1,\ldots,\alpha_p).
 \]
-The numbers are homogeneous in each class and increase when a pseudo-effective class is added to any big argument. For nef classes they equal the ordinary cohomological intersection numbers. Big classes have positive volume.
+The numbers are positively homogeneous in each class and increase when a pseudo-effective class is added to any big argument. For nef classes they equal the cohomological intersection numbers $\int_X\theta_1\wedge\cdots\wedge\theta_p\wedge\omega^{n-p}$. Big classes have positive volume.
 \end{proposition}
 \begin{proof}
-All minimal potentials in a fixed big class differ by a bounded function. Mixed bounded-type invariance proves independence, including a change of smooth representative, which changes each potential by a smooth function. The same theorem and minimality prove the upper bound in big classes.
+\emph{Big classes.} Any two potentials with minimal singularities in a fixed big class differ by a bounded function, and a change of smooth representative changes each potential by a smooth function. Hence \cref{cor:nonpluripolar-bounded-type-mixed-mass} shows that $I_\omega$ does not depend on these choices. The same corollary and minimality give the upper bound for closed positive currents in big classes. Changing $\omega$ within its class changes $\omega^{n-p}$ by a smooth exact form, whose integral against the closed current $\langle T_1\wedge\cdots\wedge T_p\rangle$ vanishes by Stokes' formula.
 
-If $S\geq0$ represents a pseudo-effective class $\gamma$, add it to a minimal current in a big class $\alpha$. The sum belongs to $\alpha+\gamma$ and is at least as singular as its minimal current. Mixed mass monotonicity and positivity of the expanded sum show that replacing $\alpha$ by $\alpha+\gamma$ increases the number. Scaling a minimal potential and its background proves homogeneity. In particular the perturbed numbers decrease as $\varepsilon\downarrow0$; they are nonnegative and bounded above by the shifted smooth bound in \cref{thm:compact-nonpluripolar-finiteness}. Their limit exists. Two K\"ahler forms satisfy $c^{-1}\omega\leq\omega'\leq c\omega$. Class monotonicity sandwiches perturbation by $\varepsilon\omega'$ between perturbations by $c^{-1}\varepsilon\omega$ and $c\varepsilon\omega$, with the same fixed test $\omega^{n-p}$. This proves perturbation independence. The same sandwich, replacing an allowance by its fixed scalar multiple in one argument, extends homogeneity to the boundary. Changing $\omega$ within its fixed class changes its powers by a smooth exact form, whose integral against the closed product is zero by Stokes. For arbitrary $T_j$, apply the big-class bound to $T_j+\varepsilon\omega$ and use multilinearity as $\varepsilon\downarrow0$.
+Let $\alpha$ be big and $\gamma$ pseudo-effective, represented by a closed positive current $S$. Adding $S$ to a current with minimal singularities in $\alpha$ gives a current in the big class $\alpha+\gamma$, which by the upper bound has mixed mass at most the number with $\alpha$ replaced by $\alpha+\gamma$. By multilinearity and positivity, its mixed mass is at least the number for $\alpha$. Hence replacing a big argument $\alpha$ by $\alpha+\gamma$ increases the number. Homogeneity follows by scaling a minimal potential together with its background.
 
-If the $\alpha_j$ are nef, their perturbations are K\"ahler. Minimal potentials there are bounded, so bounded global Stokes identifies the perturbed numbers with the smooth cup-product integrals. Their limits are the ordinary intersections. Finally choose a rational analytic strict current $T_0\in\alpha$ with $T_0\geq\delta\omega$, supplied by \cref{lem:logarithmic-cutoff-sum}. Its mass is at least $\delta^n\int_X\omega^n$ by positive multilinearity. Minimality and mass monotonicity bound the volume below by this positive number.
+\emph{Pseudo-effective classes.} By the monotonicity just proved, the perturbed numbers decrease as $\varepsilon\downarrow0$; they are nonnegative, so the limit exists. Two K\"ahler forms satisfy $c^{-1}\omega\leq\omega'\leq c\omega$ for some $c\geq1$, so monotonicity places the perturbation by $\varepsilon\omega'$ between the perturbations by $c^{-1}\varepsilon\omega$ and $c\varepsilon\omega$, with the same fixed test form $\omega^{n-p}$; this proves independence of the perturbing class. The same comparison shows that perturbing the arguments by different fixed multiples of $\varepsilon\omega$ gives the same limit, which extends homogeneity to pseudo-effective classes. If all $\alpha_j$ are big, choose $\delta>0$ such that each $\alpha_j$ contains a K\"ahler current $T_j\geq\delta\omega$. Then $(1+\varepsilon/\delta)\alpha_j-(\alpha_j+\varepsilon\{\omega\})=(\varepsilon/\delta)\{T_j-\delta\omega\}$ is pseudo-effective, so monotonicity and homogeneity give
+\[
+ I_\omega(\alpha_1,\ldots,\alpha_p)\leq I_\omega(\alpha_1+\varepsilon\{\omega\},\ldots,\alpha_p+\varepsilon\{\omega\})\leq(1+\varepsilon/\delta)^pI_\omega(\alpha_1,\ldots,\alpha_p),
+\]
+and the limit is $I_\omega(\alpha_1,\ldots,\alpha_p)$. For arbitrary closed positive currents $T_j\in\alpha_j$, the upper bound in the big classes $\alpha_j+\varepsilon\{\omega\}$, applied to $T_j+\varepsilon\omega$, and multilinearity give $\int_X\langle\bigwedge_jT_j\rangle\wedge\omega^{n-p}\leq I_\omega(\alpha_1+\varepsilon\{\omega\},\ldots)$, and letting $\varepsilon\downarrow0$ proves the upper bound.
+
+\emph{Nef and big classes.} If the $\alpha_j$ are nef, their perturbations are K\"ahler classes, whose minimal potentials are bounded. By \cref{prop:bounded-global-cohomological-mass}, the perturbed numbers are the integrals $\int_X\bigwedge_j(\theta_j+\varepsilon\omega)\wedge\omega^{n-p}$, and their limits are the cohomological intersection numbers. Finally, let $\alpha$ be big and $T_0\in\alpha$ a K\"ahler current with $T_0\geq\delta\omega$. Expanding $T_0=\delta\omega+(T_0-\delta\omega)$ by multilinearity gives $\langle T_0^n\rangle\geq\delta^n\omega^n$, so $\operatorname{vol}(\alpha)\geq\delta^n\int_X\omega^n>0$ by the upper bound.
 \end{proof}
 
-The converse, that positive volume implies bigness, needs a construction of a strictly positive current. We prove it after the prescribed-measure equations in \cref{sec:positive-mass-bigness}; the mass arguments here use only the direction already established.
+The converse, that a pseudo-effective class of positive volume is big, requires the construction of a K\"ahler current in the class. We prove it in \cref{sec:positive-mass-bigness}, after solving Monge--Amp\`ere equations with prescribed measures; the arguments of this chapter only use that big classes have positive volume.
 
 \begin{definition}\label{def:full-nonpluripolar-mass}
-A closed positive $(1,1)$-current $T\in\alpha$ has \emph{full Monge--Amp\`ere mass} if $\int_X\langle T^n\rangle=\operatorname{vol}(\alpha)$. For $\phi\in\PSH(X,\theta)$, the class $\mathcal E(X,\theta,\phi)$ consists of the $\theta$-psh potentials $u$ with $u\leq\phi+O(1)$ and
+A closed positive $(1,1)$-current $T\in\alpha$ has \emph{full Monge--Amp\`ere mass} if $\int_X\langle T^n\rangle=\operatorname{vol}(\alpha)$. We write $\mathcal E(X,\theta)$ for the set of $u\in\PSH(X,\theta)$ such that $\theta+\ddc u$ has full Monge--Amp\`ere mass. For $\phi\in\PSH(X,\theta)$, the class $\mathcal E(X,\theta,\phi)$ consists of the potentials $u\in\PSH(X,\theta)$ with $u\leq\phi+O(1)$ and
 \[
  \int_X\langle(\theta+\ddc u)^n\rangle
-     =\int_X\langle(\theta+\ddc\phi)^n\rangle.
+     =\int_X\langle(\theta+\ddc\phi)^n\rangle;
 \]
-These potentials have full mass relative to $\phi$. The notation $\mathcal E(X,\theta)$ denotes the absolute full-mass class. In a big class it equals $\mathcal E(X,\theta,V_\theta)$.
+these potentials have \emph{full mass relative to} $\phi$. In a big class, $\mathcal E(X,\theta)=\mathcal E(X,\theta,V_\theta)$.
 \end{definition}
 \index{full Monge--Amp\`ere mass}\index{full Monge--Amp\`ere mass!relative to a potential}
 
 \begin{corollary}\label{cor:relative-full-mass-capacity-convergence}
-Suppose $u_k\leq\phi+C_k$ are $\theta$-psh, $u\in\mathcal E(X,\theta,\phi)$, and $u_k\to u$ in extended capacity. Then
+Let $u_k\in\PSH(X,\theta)$ satisfy $u_k\leq\phi+C_k$ for constants $C_k$, let $u\in\mathcal E(X,\theta,\phi)$, and suppose that $u_k\to u$ in extended capacity. Then
 \[
  \langle(\theta+\ddc u_k)^n\rangle
                    \longrightarrow\langle(\theta+\ddc u)^n\rangle
 \]
-weakly and their masses converge. In particular this holds for decreasing sequences with full-mass limit, using absolute full mass in a big class.
+weakly, and the masses converge. In particular this holds for decreasing sequences whose limit has full mass in a big class.
 \end{corollary}
 \begin{proof}
-Monotonicity bounds every mass by that of $\phi$, which equals the limit mass. Apply \cref{thm:nonpluripolar-capacity-lower-limit}. In the absolute case use the positive mixed mass bound; no common constant $C_k$ is required.
+By \cref{thm:nonpluripolar-self-mass-monotonicity}, the mass of each $u_k$ is at most that of $\phi$, which equals the mass of $u$. Hence \cref{thm:nonpluripolar-capacity-lower-limit} applies. In the absolute case $u\in\mathcal E(X,\theta)$, the bound of every mass by the volume in \cref{prop:positive-mixed-mass-bound} plays the same role, and no constants $C_k$ are needed; decreasing sequences converge in extended capacity by \cref{lem:extended-capacity-truncations}.
 \end{proof}
 
 \Needspace{10\baselineskip}
 \begin{proposition}\label{prop:global-nonpluripolar-comparison}
-Write $\mu_u=\langle(\theta+\ddc u)^n\rangle$ for $u\in\PSH(X,\theta)$. For any $u,v\in\PSH(X,\theta)$ one has
+For $u\in\PSH(X,\theta)$ write $\mu_u=\langle(\theta+\ddc u)^n\rangle$. Then for all $u,v\in\PSH(X,\theta)$,
 \[
  \int_{\{u<v\}}\mu_v
  \leq\int_{\{u<v\}}\mu_u+\operatorname{vol}(\{\theta\})-\mu_u(X).
 \]
-The defect term may be omitted if $u$ has full mass, or if $u\geq v-O(1)$.
+The last two terms may be omitted if $u$ has full mass or if $u\geq v-O(1)$.
 \end{proposition}
 \begin{proof}
-For $\varepsilon>0$, $w=\max\{u,v-\varepsilon\}$ is $\theta$-psh. Locality on the disjoint plurifine open sets $\{u<v-\varepsilon\}$ and $\{u>v-\varepsilon\}$ gives
+Let $\varepsilon>0$. The function $w=\max\{u,v-\varepsilon\}$ is $\theta$-plurisubharmonic. The sets $\{u<v-\varepsilon\}$ and $\{u>v-\varepsilon\}$ are disjoint and plurifine open (\cref{prop:plurifine-difference-continuity}), and $w$ equals $v-\varepsilon$ on the first and $u$ on the second. By plurifine locality,
 \[
  \mu_w(X)\geq
  \mu_v(\{u<v-\varepsilon\})+\mu_u(\{u>v-\varepsilon\}).
 \]
-The left side is at most the volume. Subtract $\mu_u(X)$ and use
-$\{u\leq v-\varepsilon\}\subset\{u<v\}$. Let $\varepsilon\downarrow0$; the first sets increase to $\{u<v\}$ apart from common poles, which both measures annihilate. If $u$ has full mass the defect is zero. If $u\geq v-O(1)$, then $w-u$ is bounded, so $\mu_w(X)=\mu_u(X)$ and the same computation gives the zero-defect inequality directly.
+The left side is at most $\operatorname{vol}(\{\theta\})$ by \cref{prop:positive-mixed-mass-bound}. The complement of $\{u>v-\varepsilon\}$ consists of $\{u\leq v-\varepsilon\}$, which is contained in $\{u<v\}$ up to the common pole set of $u$ and $v$, and that pluripolar set carries no mass. Hence
+\[
+ \mu_v(\{u<v-\varepsilon\})\leq\operatorname{vol}(\{\theta\})-\mu_u(X)+\mu_u(\{u<v\}).
+\]
+As $\varepsilon\downarrow0$, the sets $\{u<v-\varepsilon\}$ increase to $\{u<v\}$, which proves the inequality. If $u$ has full mass, the last two terms cancel. If $u\geq v-O(1)$, then $w-u$ is bounded, so $\mu_w(X)=\mu_u(X)$ by \cref{cor:nonpluripolar-bounded-type-mixed-mass}, and the same computation with $\mu_u(X)$ in place of the volume gives the inequality without these terms.
 \end{proof}
 \index{comparison principle!non-pluripolar global measures}
 
 \begin{corollary}\label{cor:nonpluripolar-domination-transfer}
-Suppose $u,v,\rho\in\PSH(X,\theta)$, $u\geq v-O(1)$ and $u\geq\rho-O(1)$. If $u\geq v$ almost everywhere for $\mu_u$, then it holds almost everywhere for $\mu_\rho$. If the class is big and $u$ has minimal singularities, then $u\geq v$ everywhere.
+Let $u,v,\rho\in\PSH(X,\theta)$ with $u\geq v-O(1)$ and $u\geq\rho-O(1)$. If $u\geq v$ almost everywhere for $\mu_u$, then $u\geq v$ almost everywhere for $\mu_\rho$. If, in addition, the class $\{\theta\}$ is big and $u$ has minimal singularities, then $u\geq v$ everywhere on $X$.
 \end{corollary}
 \begin{proof}
-Shift $\rho$ so that $\rho\leq u$. For $0<t<1$ put $q_t=(1-t)v+t\rho$. Positivity and comparison give
+After adding a constant to $\rho$ we may assume $\rho\leq u$. For $0<t<1$ put $q_t=(1-t)v+t\rho$. Then $u\geq q_t-O(1)$, and $\{u<q_t\}\subset\{u<v\}$, because $u<(1-t)v+t\rho\leq(1-t)v+tu$ forces $u<v$. Multilinearity and \cref{prop:global-nonpluripolar-comparison} therefore give
 \[
  t^n\mu_\rho(\{u<q_t\})
    \leq\mu_{q_t}(\{u<q_t\})
-   \leq\mu_u(\{u<q_t\})=0,
+   \leq\mu_u(\{u<q_t\})\leq\mu_u(\{u<v\})=0.
 \]
-since $u$ is less singular than $q_t$ and $\{u<q_t\}\subset\{u<v\}$. As $t\downarrow0$, every finite point with $u<v$ eventually belongs to these sets; Fatou proves its zero $\mu_\rho$ mass. Poles have zero mass. For minimal $u$ in a big class choose the strict analytic reference $\rho$, which is more singular than $u$ and has $\mu_\rho\geq\delta^n\omega^n$. The first assertion gives $u\geq v$ in volume measure. Local psh ball averages, with the common smooth background added, then give the pointwise inequality everywhere.
+As $t\downarrow0$, every point where $u<v$ and $\rho>-\infty$ eventually lies in $\{u<q_t\}$, so Fatou's lemma, applied along a sequence $t\downarrow0$, gives $\mu_\rho(\{u<v\}\cap\{\rho>-\infty\})=0$. Since $\mu_\rho$ gives no mass to the pole set of $\rho$, this proves the first assertion.
+
+Now let the class be big and $u$ have minimal singularities. The class contains a K\"ahler current $\theta+\ddc\rho\geq\delta\omega$ with $\delta>0$. Then $u\geq\rho-O(1)$ by minimality, and $\mu_\rho\geq\delta^n\omega^n$, as in the proof of \cref{prop:positive-mixed-mass-bound}. The first assertion gives $u\geq v$ almost everywhere with respect to $\omega^n$, that is, almost everywhere for Lebesgue measure in charts. Since $u$ and $v$ become plurisubharmonic after adding a common smooth local potential, and plurisubharmonic functions are limits of their ball averages, it follows that $u\geq v$ everywhere.
 \end{proof}
+\index{domination principle!non-pluripolar measures}

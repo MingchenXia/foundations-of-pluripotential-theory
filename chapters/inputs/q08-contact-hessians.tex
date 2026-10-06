@@ -2,35 +2,43 @@
 \section{Bounded complex Hessians and contact sets}
 \label{sec:bounded-complex-hessian-contact}
 
-Equality of two potentials on a measurable set can determine their Hessians there even when that set has no interior. The derivatives used in this assertion are distributional derivatives with measurable densities. We first establish their locality on zero sets.
+Monge--Amp\`ere measures of envelopes are computed on contact sets: if a potential $u$ lies below an obstacle $f$ and $u=f$ on a set $E$, one expects the Monge--Amp\`ere measure of $u$ on $E$ to be determined by the Hessian of $f$. Contact sets usually have empty interior, so the locality of the products on open sets (\cref{prop:bt-positive-recursion}) says nothing about them. In this section we show that weak derivatives are local on arbitrary measurable sets: two functions whose weak derivatives up to order two are locally square-integrable have the same such derivatives almost everywhere on the set where they agree. For potentials with bounded complex Hessians this yields a formula for the Bedford--Taylor product restricted to a contact set (\cref{prop:bounded-complex-hessian-density}), which is used for envelopes in \cref{chap:q10}.
 
-For an open $D\subset\mathbb R^d$ and an integer $k\ge0$, write $W^{k,2}_{\loc}(D)$ for the locally square-integrable functions whose distributional derivatives of order at most $k$ are locally square-integrable. Mollification converges in this space on smaller open sets, since differentiation commutes with convolution and each of the finitely many derivatives converges in $L^2$.
+For an open set $D\subset\mathbb R^d$ and an integer $k\ge0$, let $W^{k,2}_{\loc}(D)$ be the space of functions in $L^2_{\loc}(D)$ whose distributional derivatives of order at most $k$ belong to $L^2_{\loc}(D)$. If $g\in W^{k,2}_{\loc}(D)$, its mollifications converge to $g$ in this space on every relatively compact open subset of $D$: differentiation commutes with convolution, and each of the finitely many derivatives of order at most $k$ converges in $L^2$ there by \cref{lem:mollifier-density}.
 \index{Sobolev space!local square-integrable derivatives}
 
 \begin{lemma}\label{lem:weak-derivative-zero-set}
-If $g\in W^{1,2}_{\loc}(D)$ is real, then $\nabla g=0$ almost everywhere on $\{g=0\}$. Consequently, if $g\in W^{2,2}_{\loc}(D)$, every first and second distributional derivative of $g$ vanishes almost everywhere on that set. Zero sets may be taken for any measurable representative; the assertions are unchanged by null sets.
+Let $D\subset\mathbb R^d$ be open and let $g\in W^{1,2}_{\loc}(D)$ be real. Then $\nabla g=0$ almost everywhere on $\{g=0\}$. If moreover $g\in W^{2,2}_{\loc}(D)$, then all first and second weak derivatives of $g$ vanish almost everywhere on $\{g=0\}$. Here $\{g=0\}$ may be formed with any measurable representative of $g$, since changing $g$ on a null set does not affect these assertions.
 \end{lemma}
 \begin{proof}
-For a $C^1$ function $\Phi\colon\mathbb R\to\mathbb R$ with bounded derivative, smoothing $g$ gives the weak chain rule
+We first prove the chain rule
 \[
- \partial_a\Phi(g)=\Phi'(g)\partial_a g.
+ \partial_a\Phi(g)=\Phi'(g)\,\partial_a g\qquad(1\le a\le d)
 \]
-Indeed, on a relatively compact open set the smoothings converge to $g$ with their first derivatives in $L^2$. The Lipschitz bound gives $L^2$ convergence of their compositions. Pass to a subsequence converging almost everywhere. The difference of the derivative products tends to zero in $L^2$: its term containing the derivative difference is bounded by $\|\Phi'\|_\infty$, while dominated convergence applies to the other term multiplied by the fixed $\partial_a g$. Passing the smooth identity against compactly supported tests proves the formula.
+for a $C^1$ function $\Phi\colon\mathbb R\to\mathbb R$ with bounded derivative. On a relatively compact open subset of $D$, the mollifications $g_\varepsilon$ of $g$ converge to $g$ together with their first derivatives in $L^2$; passing to a sequence $\varepsilon_k\to0$, we may also assume that $g_{\varepsilon_k}\to g$ almost everywhere. Since $\Phi$ is Lipschitz, $\Phi(g_{\varepsilon_k})\to\Phi(g)$ in $L^2$. Moreover,
+\[
+ \Phi'(g_{\varepsilon_k})\partial_ag_{\varepsilon_k}-\Phi'(g)\partial_ag
+ =\Phi'(g_{\varepsilon_k})(\partial_ag_{\varepsilon_k}-\partial_ag)
+  +\bigl(\Phi'(g_{\varepsilon_k})-\Phi'(g)\bigr)\partial_ag
+\]
+tends to zero in $L^2$: the first term is bounded by $\|\Phi'\|_\infty|\partial_ag_{\varepsilon_k}-\partial_ag|$, and the second tends to zero by dominated convergence, since $\Phi'$ is bounded and continuous. Passing to the limit in the classical chain rule for $g_{\varepsilon_k}$, tested against compactly supported smooth functions, proves the formula.
 
-Choose a smooth $\eta$ supported in $(-2,2)$, with $0\le\eta\le1$ and $\eta=1$ on $[-1,1]$, and set $\Phi_\varepsilon(t)=\int_0^t\eta(s/\varepsilon)\,\mathrm ds$. Then $|\Phi_\varepsilon|\le2\varepsilon$, whereas
+Choose a smooth function $\chi$ on $\mathbb R$ supported in $(-2,2)$, with $0\le\chi\le1$ and $\chi=1$ on $[-1,1]$, and put $\Phi_\varepsilon(t)=\int_0^t\chi(s/\varepsilon)\,\mathrm ds$. Then $|\Phi_\varepsilon|\le2\varepsilon$, and by the chain rule
 \[
- \nabla\Phi_\varepsilon(g)=\eta(g/\varepsilon)\nabla g
-       \longrightarrow\mathds{1}_{\{g=0\}}\nabla g
-       \quad\hbox{in }L^2_{\loc}.
+ \nabla\Phi_\varepsilon(g)=\chi(g/\varepsilon)\nabla g
+       \longrightarrow\mathbf1_{\{g=0\}}\nabla g
+       \quad\hbox{in }L^2_{\loc}(D)
 \]
-The left side tends to zero distributionally, since $|\Phi_\varepsilon(g)|\le2\varepsilon$. Its $L^2$ limit is therefore zero. This proves the first assertion. For the second, each $\partial_a g$ belongs to $W^{1,2}_{\loc}$ and is zero almost everywhere on $\{g=0\}$. Apply the first assertion to $\partial_a g$ and use the inclusion of these zero sets up to null sets. There are only finitely many derivatives, so their exceptional sets have a null union.
+as $\varepsilon\to0$, by dominated convergence, since $\chi(g/\varepsilon)\to\mathbf1_{\{g=0\}}$ pointwise. On the other hand, $\Phi_\varepsilon(g)\to0$ uniformly, so $\nabla\Phi_\varepsilon(g)\to0$ in the sense of distributions. Hence $\mathbf1_{\{g=0\}}\nabla g=0$ almost everywhere, which is the first assertion.
+
+If $g\in W^{2,2}_{\loc}(D)$, then each $\partial_ag$ belongs to $W^{1,2}_{\loc}(D)$ and, by the first assertion, vanishes almost everywhere on $\{g=0\}$. Applying the first assertion to $\partial_ag$ shows that $\nabla\partial_ag=0$ almost everywhere on $\{\partial_ag=0\}$, a set which contains $\{g=0\}$ up to a null set. Since there are finitely many derivatives, the union of the exceptional null sets is null.
 \end{proof}
 
 \begin{lemma}\label{lem:bounded-laplacian-weak-hessian}
-Let $f$ be real and continuous on an open $D\subset\mathbb R^d$. If its scalar distributional Laplacian has a locally bounded measurable density, then $f\in W^{2,2}_{\loc}(D)$.
+Let $f$ be a real continuous function on an open set $D\subset\mathbb R^d$. If the distributional Laplacian $\Delta f$ is a locally bounded measurable function, then $f\in W^{2,2}_{\loc}(D)$.
 \end{lemma}
 \begin{proof}
-Take smoothings $f_\varepsilon$ on a neighborhood of a compact set. They converge locally uniformly to $f$, and $\Delta f_\varepsilon\to\Delta f$ in $L^2$ there. If $\chi$ is a smooth compactly supported real cutoff, integration by parts gives, for a real smooth $h$,
+Let $f_\varepsilon$ be the mollifications of $f$ on a neighborhood of a compact set. They converge to $f$ locally uniformly, and $\Delta f_\varepsilon=(\Delta f)*\rho_\varepsilon\to\Delta f$ in $L^2$ on compact sets. We first show that the gradients converge. For a real smooth function $h$ and a real cutoff $\chi\in C^\infty_c$, integration by parts and the inequality $2xy\le x^2/2+2y^2$ give
 \[
  \begin{aligned}
  \int\chi^2|\nabla h|^2
@@ -39,54 +47,63 @@ Take smoothings $f_\varepsilon$ on a neighborhood of a compact set. They converg
        +\int\chi^2|h\Delta h|+2\int h^2|\nabla\chi|^2.
  \end{aligned}
 \]
-Apply this to $h=f_\varepsilon-f_\delta$. Uniform convergence and the local $L^2$ bound for its Laplacian show that the gradients form a Cauchy family in $L^2$ on every smaller compact set. Their limits are the distributional first derivatives of $f$.
+Apply this to $h=f_\varepsilon-f_\delta$. Since $f_\varepsilon-f_\delta\to0$ uniformly on the support of $\chi$ and $\Delta f_\varepsilon-\Delta f_\delta$ is bounded in $L^2$ there, the right side tends to zero as $\varepsilon,\delta\to0$. Hence the gradients $\nabla f_\varepsilon$ form a Cauchy family in $L^2$ on every compact set where $\chi=1$, and their limits are the distributional first derivatives of $f$.
 
-Now choose $\chi=1$ near the compact set under consideration. The functions $v_\varepsilon=\chi f_\varepsilon$, extended by zero, are smooth and compactly supported, and
+For the second derivatives, choose a cutoff $\chi$ equal to one near a given compact set, and put $v_\varepsilon=\chi f_\varepsilon$, extended by zero. These are smooth compactly supported functions, and
 \[
  \Delta v_\varepsilon
  =\chi\Delta f_\varepsilon+2\nabla\chi\cdot\nabla f_\varepsilon
                                       +f_\varepsilon\Delta\chi
 \]
-is Cauchy in $L^2(\mathbb R^d)$. For every real smooth compactly supported $v$, twice integrating by parts gives
+is a Cauchy family in $L^2(\mathbb R^d)$, by the first part. For every real $v\in C^\infty_c(\mathbb R^d)$, integrating by parts twice gives
 \[
  \sum_{a,b=1}^d\|\partial_a\partial_b v\|_2^2
  =\sum_{a,b=1}^d\int(\partial_a^2v)(\partial_b^2v)
  =\|\Delta v\|_2^2.
 \]
-Apply this identity to $v_\varepsilon-v_\delta$. All real second derivatives are Cauchy in $L^2$; passing against tests identifies their limits with the distributional derivatives of $\chi f$. Where $\chi=1$ these are the derivatives of $f$. A compact exhaustion proves the assertion.
+Applying this identity to $v_\varepsilon-v_\delta$, we see that all second derivatives of $v_\varepsilon$ form Cauchy families in $L^2$. Testing against compactly supported smooth functions identifies their limits with the distributional second derivatives of $\chi f$, which agree with those of $f$ where $\chi=1$. Exhausting $D$ by compact sets proves the lemma.
 \end{proof}
 
-Let $\Omega\subset\mathbb C^n$ be open. In the next results a continuous function has a bounded complex Hessian if its distributional coefficients $f_{j\bar k}=\partial^2 f/\partial z_j\partial\bar z_k$ have locally bounded measurable densities. Such a function satisfies the preceding lemma because the scalar Laplacian is $4\sum_jf_{j\bar j}$.
+Let $\Omega\subset\mathbb C^n$ be open. We say that a continuous function $f$ on $\Omega$ has a \emph{bounded complex Hessian} if its distributional derivatives $f_{j\bar k}=\partial^2 f/\partial z_j\partial\bar z_k$ are locally bounded measurable functions. Since the Laplacian of $\mathbb C^n=\mathbb R^{2n}$ is $4\sum_j\partial^2/\partial z_j\partial\bar z_j$, such a function belongs to $W^{2,2}_{\loc}(\Omega)$ by \cref{lem:bounded-laplacian-weak-hessian}.
 \index{Hessian!bounded complex coefficients}
 
 \begin{proposition}\label{prop:bounded-complex-hessian-contact}
-If real continuous $f,g$ belong to $W^{2,2}_{\loc}(\Omega)$, then their real weak first and second derivatives agree almost everywhere on $E=\{f=g\}$. In particular, their weak complex-Hessian coefficients satisfy
+Let $f,g\in W^{2,2}_{\loc}(\Omega)$ be real and continuous, and put $E=\{f=g\}$. Then the real weak first and second derivatives of $f$ and $g$ agree almost everywhere on $E$. In particular,
 \[
- \mathds{1}_E f_{j\bar k}=\mathds{1}_E g_{j\bar k}
- \quad\hbox{almost everywhere for all }j,k.
+ \mathbf1_E f_{j\bar k}=\mathbf1_E g_{j\bar k}
+ \quad\hbox{almost everywhere, for all }j,k.
 \]
 \end{proposition}
 \begin{proof}
-Apply \cref{lem:weak-derivative-zero-set} to $f-g$. Complex derivatives are fixed linear combinations of the real derivatives, giving the formula. In particular the result applies to continuous functions with bounded scalar Laplacians, by \cref{lem:bounded-laplacian-weak-hessian}, and to functions with bounded complex Hessians.
+Apply \cref{lem:weak-derivative-zero-set} to $f-g$. The complex derivatives $f_{j\bar k}$ and $g_{j\bar k}$ are fixed linear combinations of the real second derivatives, which gives the second assertion.
 \end{proof}
+By \cref{lem:bounded-laplacian-weak-hessian}, the proposition applies in particular to continuous functions with bounded Laplacians, and hence to continuous functions with bounded complex Hessians.
 
-For Hermitian $n\times n$ matrices $A_1,\dots,A_n$, let $D(A_1,\dots,A_n)$ be $1/n!$ times the coefficient of $t_1\cdots t_n$ in $\det(\sum_jt_jA_j)$. Thus $D(A,\dots,A)=\det A$; in dimension zero put $D()=1$.
+Recall from \cref{sec:positive-currents} the mixed discriminant of Hermitian $n\times n$ matrices: $D(A_1,\dots,A_n)$ is $1/n!$ times the coefficient of $t_1\cdots t_n$ in $\det(\sum_jt_jA_j)$, so that $D(A,\dots,A)=\det A$. In dimension zero we put $D()=1$.
 
 \begin{proposition}\label{prop:bounded-complex-hessian-density}
-Let $u_1,\dots,u_n$ be continuous plurisubharmonic functions with bounded complex Hessians on $\Omega$. With $A_j=((u_j)_{a\bar b})$, their Bedford--Taylor measure is
+Let $u_1,\dots,u_n$ be continuous plurisubharmonic functions with bounded complex Hessians on $\Omega$, and let $A_j=((u_j)_{a\bar b})$ be their complex Hessian matrices. Then
 \[
  \ddc u_1\wedge\cdots\wedge\ddc u_n
        =\frac{n!}{\pi^n}D(A_1,\dots,A_n)\,\mathrm dV_{2n}.
 \]
-If real continuous $v_1,\dots,v_n$ belong to $W^{2,2}_{\loc}(\Omega)$, put $B_j=((v_j)_{a\bar b})$ for their weak complex Hessians and $E=\bigcap_j\{u_j=v_j\}$. Then
+If $v_1,\dots,v_n\in W^{2,2}_{\loc}(\Omega)$ are real and continuous, with weak complex Hessian matrices $B_j=((v_j)_{a\bar b})$, and $E=\bigcap_j\{u_j=v_j\}$, then
 \[
- \mathds{1}_E\ddc u_1\wedge\cdots\wedge\ddc u_n
-       =\frac{n!}{\pi^n}\mathds{1}_E D(B_1,\dots,B_n)\,\mathrm dV_{2n}.
+ \mathbf1_E\,\ddc u_1\wedge\cdots\wedge\ddc u_n
+       =\frac{n!}{\pi^n}\mathbf1_E D(B_1,\dots,B_n)\,\mathrm dV_{2n}.
 \]
-The restricted density on the right is locally bounded even if the $v_j$ are not plurisubharmonic; no integrability of $D(B_1,\dots,B_n)$ off $E$ is needed. The empty product in dimension zero is counting measure, and both identities have that interpretation.
+The density on the right is locally bounded even if the $v_j$ are not plurisubharmonic; no integrability of $D(B_1,\dots,B_n)$ off $E$ is required. In dimension zero the empty product is counting measure, and both identities hold with this interpretation.
 \end{proposition}
 \begin{proof}
-For smooth $u_j$, polarize \eqref{eq:bt-determinant-normalization}. The coefficient of $t_1\cdots t_n$ on the exterior-product side is $n!\ddc u_1\wedge\cdots\wedge\ddc u_n$, giving the asserted normalization. For continuous $u_j$, take their local radial smoothings. They converge uniformly on compact subsets, so \cref{prop:bt-uniform-continuity} gives convergence of their products. Their complex-Hessian coefficients are the convolutions of the bounded densities $A_j$. At the common Lebesgue points they converge to $A_j$, and they are uniformly bounded near each test support. The polynomial $D$ therefore converges in $L^1$ there by dominated convergence. This identifies the limiting measure and proves the first formula. By \cref{prop:bounded-complex-hessian-contact}, $A_j=B_j$ almost everywhere on $\{u_j=v_j\}$, hence on $E$. Substitution proves the second formula. In dimension zero there are no Hessian coefficients or exceptional derivative sets, and the convention gives the assertions directly.
+For smooth $u_j$, polarize \eqref{eq:bt-determinant-normalization}: in the identity
+\[
+ \Bigl(\ddc\sum_jt_ju_j\Bigr)^n=\frac{n!}{\pi^n}\det\Bigl(\sum_jt_jA_j\Bigr)\,\mathrm dV_{2n},
+\]
+we compare the coefficients of $t_1\cdots t_n$. On the left this coefficient is $n!$ times the mixed product $\ddc u_1\wedge\cdots\wedge\ddc u_n$, and on the right it is $(n!)^2\pi^{-n}D(A_1,\dots,A_n)\,\mathrm dV_{2n}$. This gives the first formula.
+
+For continuous $u_j$, take their local radial mollifications. They converge to $u_j$ uniformly on compact sets, so their products converge weakly by \cref{prop:bt-uniform-continuity}. The complex Hessian coefficients of the mollifications are the mollifications of the bounded functions $A_j$. By \cref{thm:lebesgue-differentiation}, they converge to $A_j$ at all common Lebesgue points, hence almost everywhere, and they are uniformly bounded near the support of a given test function. Since $D$ is a polynomial, dominated convergence shows that the mixed discriminants of the mollified Hessian matrices, which are the densities of the smooth products by the first part, converge to $D(A_1,\dots,A_n)$ in $L^1$ there. This identifies the limit measure and proves the first formula.
+
+By \cref{prop:bounded-complex-hessian-contact}, which applies to $u_j$ by \cref{lem:bounded-laplacian-weak-hessian}, $A_j=B_j$ almost everywhere on $\{u_j=v_j\}$, hence on $E$. Substituting into the first formula proves the second, and also shows that $\mathbf1_ED(B_1,\dots,B_n)=\mathbf1_ED(A_1,\dots,A_n)$ is locally bounded. In dimension zero there are no Hessian coefficients, and both identities reduce to the stated convention.
 \end{proof}
 
-Smooth local potentials of closed real background forms may be added to both members of each contact pair. The last identity consequently applies in a holomorphic chart when the plurisubharmonic potentials have bounded complex Hessians and their contact barriers have real weak $W^{2,2}$ derivatives. Its weak-derivative argument does not require an almost-everywhere classical real Hessian.
+On a complex manifold, the second identity is applied in holomorphic charts to functions $u_j$ which become plurisubharmonic after the addition of a smooth local potential $g_j$ of a closed real $(1,1)$-form. If $g_j+u_j$ is plurisubharmonic with bounded complex Hessian, one applies the proposition to $g_j+u_j$ and $g_j+v_j$: adding the same smooth function to both members of a contact pair does not change the contact set, and $g_j+v_j$ belongs to $W^{2,2}_{\loc}$ whenever $v_j$ does.
