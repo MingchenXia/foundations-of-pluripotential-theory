@@ -1,251 +1,387 @@
 \chapter{Pluripolar sets and the plurifine topology}
 \label{chap:q03}
 
-Upper regularization repairs a supremum of plurisubharmonic functions, but can change its value at individual points. To use such envelopes in measure identities, we must understand the exceptional set. The capacity constructed in the preceding chapter gives the answer: its zero sets are exactly the sets contained in plurisubharmonic poles. Relative extremal functions connect the two descriptions. Their total Monge--Amp\`ere mass measures capacity, and a sequence of extremals with vanishing mass produces a pole function. A logarithmic gluing argument then proves Josefson's theorem on $\mathbb C^n$.
+The upper semicontinuous regularization of the supremum of a family of plurisubharmonic functions is plurisubharmonic, but it may differ from the supremum on an exceptional set. In \cref{chap:q08} we showed that this exceptional set has outer Monge--Amp\`ere capacity zero (\cref{cor:psh-envelope-zero-capacity}), and that the same holds for the pole set $\{V=-\infty\}$ of every plurisubharmonic function $V$ (\cref{prop:bt-poles-zero-capacity}). The first aim of this chapter is the converse: every set of outer capacity zero is contained in the pole set of a single plurisubharmonic function. Sets that are locally contained in pole sets are called pluripolar; they play in pluripotential theory the role that polar sets play in the classical theory of \cref{chap:p03,chap:p04,chap:p05}.
 
-There is a second consequence of this exceptional-set theory. The region where an unbounded potential exceeds a truncation level need not be Euclidean open, although it is open for the topology making plurisubharmonic functions continuous. We develop that plurifine topology far enough to prove locality of bounded products there. A countable selection outside a pluripolar set lets us pass from local superlevel identities to identities of completed measures. The resulting compatibility of truncations is the local foundation of the non-pluripolar products constructed later. We also establish how to compare two potentials across their separate pole sets, without assigning a value to their undefined difference at a common pole.
+The link between capacity and pole sets is the relative extremal function $H_E$ of a set $E$ in a ball $B$, namely the regularized upper envelope of the plurisubharmonic functions on $B$ that are nonpositive and at most $-1$ on $E$. For compact sets and for relatively compact open sets, the capacity of $E$ is the total Monge--Amp\`ere mass of $H_E$ (\cref{prop:relative-extremal-compact,prop:relative-extremal-open}). If $E$ has outer capacity zero, the extremal functions of small open neighborhoods of $E$ therefore have small mass, and the comparison principle shows that $H_E=0$; a convergent series of competitors in the definition of $H_E$ then has poles on all of $E$ (\cref{thm:zero-capacity-pluripolar}). It follows that countable unions of pluripolar sets are pluripolar and that the exceptional sets of upper envelopes are pluripolar (\cref{cor:psh-pluripolar-discrepancy}). On $\mathbb C^n$ the local pole functions can even be glued, by means of logarithmic collars, into a single plurisubharmonic function on the whole space; this is Josefson's theorem (\cref{thm:josefson}).
+
+The second half of the chapter studies the plurifine topology, the coarsest topology that makes all plurisubharmonic functions continuous. Unbounded potentials force us to use it: the set $\{u>-k\}$, on which a plurisubharmonic function $u$ coincides with its truncation $\max\{u,-k\}$, is plurifine open but in general not open. We prove that Bedford--Taylor products of locally bounded potentials are local for the plurifine topology (\cref{thm:bt-plurifine-locality}). The proof combines the maximum locality of these products with a quasi-Lindel\"of theorem: every union of plurifine open sets coincides with a countable subunion outside a pluripolar set (\cref{thm:plurifine-quasi-lindelof}). As a consequence, the products of the truncations $\max\{u_l,-k\}$ agree for different $k$ on the sets $\bigcap_l\{u_l>-k\}$ (\cref{prop:finite-locus-truncation}); this compatibility is the starting point of the non-pluripolar products of \cref{chap:q09}. Finally, we compare two plurisubharmonic functions near their poles. Their difference is undefined on the common pole set. Off this set it is plurifinely continuous, and its quasi-supremum and quasi-infimum on a plurifine open set, which ignore pluripolar sets, are its ordinary supremum and infimum off any pluripolar set containing the common poles (\cref{cor:quasi-extrema-common-poles}).
 
 \section{Pluripolar sets and relative extremal functions}
 \label{sec:pluripolar-extremals}
 
+We define pluripolar sets on complex manifolds and then introduce, on a ball, the relative extremal functions that connect them with the Monge--Amp\`ere capacity of \cref{sec:bt-capacity}.
+
 \begin{definition}\label{def:pluripolar-set}
-A subset $E$ of a complex manifold is pluripolar if every point has a connected coordinate neighborhood $U$ and a plurisubharmonic $V$ on $U$ such that $E\cap U\subset\{V=-\infty\}$. It is globally pluripolar on a connected domain $D$ if one $V\in\PSH(D)$ has $E\subset\{V=-\infty\}$. A statement holds quasi-everywhere if its exceptional set is pluripolar. These definitions do not require $E$ to be Borel.
+Let $X$ be a complex manifold. A subset $E\subset X$ is \emph{pluripolar}, or \emph{locally pluripolar}, if every point of $X$ has a connected coordinate neighborhood $U$ carrying a function $V\in\PSH(U)$ with $E\cap U\subset\{V=-\infty\}$. If $X$ is connected, a subset $E\subset X$ is \emph{globally pluripolar} in $X$ if there is a single $V\in\PSH(X)$ with $E\subset\{V=-\infty\}$. A property holds \emph{quasi-everywhere} if it holds outside a pluripolar set.
 \end{definition}
-\index{pluripolar set}\index{quasi-everywhere!pluripolar exception}
+\index{pluripolar set}\index{pluripolar set!globally}\index{quasi-everywhere!pluripolar exception}
 
-Pluripolar sets have Lebesgue measure zero in charts, by local integrability and a countable cover within each chart. In complex dimension one the local notion agrees with polarity. In dimension zero a plurisubharmonic function is finite on each point, so the only pluripolar set is empty. The arguments below concern $n\ge1$.
+Pluripolar sets are not required to be Borel, and subsets of pluripolar sets are pluripolar. Every pluripolar set $E$ has Lebesgue measure zero in every chart. Indeed, a chart domain has a countable basis, so it meets $E$ in a countable union of sets $E\cap U$ as in the definition; each of them lies in a pole set $\{V=-\infty\}$, which is Lebesgue null because $V$ is locally integrable (\cref{thm:psh-distribution-representative}). In complex dimension one, the plurisubharmonic functions on a domain are its nontrivial subharmonic functions, and the pluripolar subsets of an open set $\Omega\subset\mathbb C$ are exactly its polar subsets in the sense of \cref{def:polar-set}. A pluripolar set is polar by definition. Conversely, if $A\subset\Omega$ is polar and $D$ is a disc with $\overline D\subset\Omega$, then \cref{prop:polar-globalization} gives a fundamental potential on $\mathbb C$, a nontrivial subharmonic function by \cref{prop:fundamental-potential}, which equals $-\infty$ on $A\cap D$; so the condition of \cref{def:pluripolar-set} also holds at the points of $\Omega$ outside $A$. In dimension zero every plurisubharmonic function is finite, so the only pluripolar set is the empty set. From now on we assume $n\geq1$.
 
-Let $B$ be a bounded ball in $\mathbb C^n$. For any $E\subset B$ define
+For the rest of this section, $B$ denotes an open ball in $\mathbb C^n$. Recall from \cref{def:monge-ampere-capacity} the capacity $\operatorname{Cap}_B$ and the outer capacity $\operatorname{Cap}_B^*$. A function $v\in\PSH(B)$ with $0\le v\le1$ will be called a \emph{capacity competitor}; thus $\operatorname{Cap}_B(A)$ is the supremum of $\int_A(\ddc v)^n$ over all capacity competitors $v$, for every Borel set $A\subset B$. For a set $E\subset B$ we define
 \[
- h_E(z)=\sup\{v(z):v\in\PSH(B),\ v\le0,\ v|_E\le-1\},
+ h_E(z)=\sup\{v(z):v\in\PSH(B),\ v\le0\ \text{on }B,\ v\le-1\ \text{on }E\},
  \qquad H_E=h_E^*.
 \]
-The constant $-1$ is a competitor. Taking the maximum with it allows all competitors to lie in $[-1,0]$, without changing the envelope. Thus $-1\le h_E\le H_E\le0$, and $H_E$ is plurisubharmonic by \cref{thm:psh-upper-envelopes}. The exceptional set $\{h_E<H_E\}$ has zero outer capacity by \cref{cor:psh-envelope-zero-capacity}. We call $H_E$ the relative extremal function.
+The functions $v$ in this supremum are called \emph{competitors} for $E$. The constant $-1$ is a competitor, and the maximum of a competitor with $-1$ is again a competitor; hence we may restrict the supremum to competitors with values in $[-1,0]$, and $-1\le h_E\le H_E\le0$. By \cref{thm:psh-upper-envelopes}, $H_E$ is plurisubharmonic. We call $H_E$ the \emph{relative extremal function} of $E$ with respect to $B$.
 \index{relative extremal function!plurisubharmonic}
+
+We shall use the following properties of these functions repeatedly. If $E\subset F\subset B$, then every competitor for $F$ is a competitor for $E$, so $h_F\le h_E$ and $H_F\le H_E$. If $B=B(a,R)$ and $\overline E$ is a compact subset of $B$, then for a sufficiently large constant $A>0$ the function $A(|z-a|^2-R^2)$ is at most $-1$ on $E$, hence it is a competitor, and
+\begin{equation}\label{eq:relative-extremal-barrier}
+ A(|z-a|^2-R^2)\le h_E\le H_E\le0\quad\text{on }B;
+\end{equation}
+in particular $H_E(z)\to0$ as $z\to\partial B$. Next, Choquet's lemma (\cref{lem:choquet-selection}) gives competitors $w_1,w_2,\ldots$ for $E$ with $(\sup_kw_k)^*=H_E$. The finite maxima $v_j=\max\{-1,w_1,\ldots,w_j\}$ are competitors, and their limit $G=\lim_jv_j$ satisfies $G\le h_E\le H_E=G^*$. By \cref{thm:psh-upper-envelopes}, applied to the family $(v_j)$, we have $G=G^*$ almost everywhere. Thus there are competitors $v_j$ for $E$ with
+\begin{equation}\label{eq:relative-extremal-choquet}
+ -1\le v_1\le v_2\le\cdots\le0,\qquad \lim_jv_j=H_E\quad\text{almost everywhere on }B.
+\end{equation}
+Finally, by \cref{cor:psh-envelope-zero-capacity}, for every compact set $L\subset B$ the set $L\cap\{h_E<H_E\}$ has outer capacity zero in $B$. Exhausting $B$ by countably many compact sets and using the countable subadditivity of outer capacity (\cref{prop:bt-capacity-basic}), we obtain
+\begin{equation}\label{eq:relative-extremal-discrepancy}
+ \operatorname{Cap}_B^*(\{h_E<H_E\})=0.
+\end{equation}
+A set $N\subset B$ with $\operatorname{Cap}_B^*(N)=0$ has outer measure zero for $(\ddc v)^n$ whenever $v$ is a capacity competitor, since $\int_G(\ddc v)^n\le\operatorname{Cap}_B(G)$ for every open set $G\supset N$.
 
 \Needspace{10\baselineskip}
 \begin{proposition}\label{prop:relative-extremal-compact}
-If $K\Subset B$ is compact, then $H_K$ tends to zero at $\partial B$, its Monge--Amp\`ere measure is carried by $K\cap\{H_K=-1\}$, and
+Let $K\subset B$ be compact. Then $H_K(z)\to0$ as $z\to\partial B$, the Monge--Amp\`ere measure $(\ddc H_K)^n$ is carried by $K\cap\{H_K=-1\}$, and
 \[
  \operatorname{Cap}_B(K)=\int_B(\ddc H_K)^n.
 \]
-For decreasing compact sets $K_j$ with intersection $K$, the $H_{K_j}$ increase almost everywhere to $H_K$ and their capacities decrease to $\operatorname{Cap}_B(K)$. In particular $\operatorname{Cap}_B^*(K)=\operatorname{Cap}_B(K)$.
+If $(K_j)$ is a decreasing sequence of compact subsets of $B$ with intersection $K$, then the functions $H_{K_j}$ increase and converge to $H_K$ almost everywhere, and $\operatorname{Cap}_B(K_j)$ decreases to $\operatorname{Cap}_B(K)$. In particular $\operatorname{Cap}_B^*(K)=\operatorname{Cap}_B(K)$.
 \end{proposition}
 \begin{proof}
-Write $B=B(a,R)$. A sufficiently large multiple $\rho=A(|z-a|^2-R^2)$ is at most $-1$ on $K$, so $\rho\le H_K\le0$. This proves the boundary limit.
+The boundary behavior of $H_K$ follows from \eqref{eq:relative-extremal-barrier}. Since $H_K$ is bounded, its Monge--Amp\`ere measure is defined (\cref{def:bedford-taylor-product}).
 
-Choquet selection gives bounded competitors $v_j$ increasing almost everywhere to $H_K$. For a ball $D\Subset B\setminus K$, replace each $v_j$ on $D$ by its canonical homogeneous balayage from \cref{cor:homogeneous-psh-balayage}. The replacements are still competitors for $K$, dominate $v_j$, and increase. They consequently have the same almost-everywhere limit $H_K$. Their measures vanish on $D$; increasing continuity gives $(\ddc H_K)^n=0$ there. A countable ball cover shows that this measure is carried by $K$. On $K$, the raw envelope equals $-1$. Thus $K\cap\{H_K>-1\}$ lies in the zero-outer-capacity discrepancy set. The competitor $H_K+1$ shows that its measure gives this set zero mass, proving the support assertion.
+We first show that $(\ddc H_K)^n$ vanishes on $B\setminus K$. Choose competitors $v_j$ for $K$ as in \eqref{eq:relative-extremal-choquet}. Let $D$ be a ball with $\overline D\subset B\setminus K$, and let $\widehat v_j$ be the function obtained from $v_j$ by \cref{cor:homogeneous-psh-balayage}: it is plurisubharmonic on $B$, equals $v_j$ outside $D$, satisfies $\widehat v_j\ge v_j$ and $(\ddc\widehat v_j)^n=0$ on $D$. In particular $\widehat v_j=v_j\le-1$ on $K$. Moreover $\widehat v_j\le0$: outside $D$ this holds because $\widehat v_j=v_j$, and on $D$ it follows from the maximum principle (\cref{prop:subharmonic-maximum}), because by upper semicontinuity the upper limit of $\widehat v_j$ at each point $x\in\partial D$ is at most $\widehat v_j(x)=v_j(x)\le0$. Thus each $\widehat v_j$ is a competitor for $K$. Since the construction of \cref{cor:homogeneous-psh-balayage} is increasing in the function, the $\widehat v_j$ increase, and $v_j\le\widehat v_j\le h_K\le H_K$ shows that $\widehat v_j\to H_K$ almost everywhere. The functions $\widehat v_j$ take values in $[-1,0]$, so \cref{thm:bt-increasing-continuity} gives $(\ddc\widehat v_j)^n\to(\ddc H_K)^n$ weakly, and therefore $(\ddc H_K)^n=0$ on $D$. Covering the open set $B\setminus K$ by countably many such balls $D$, we conclude that $(\ddc H_K)^n$ is carried by $K$.
 
-Since $H_K+1$ is a capacity competitor, the total mass, which is carried by $K$, is at most $\operatorname{Cap}_B(K)$. Conversely take any competitor $0\le v\le1$ and put $w=(1-2\varepsilon)(v-1)-\varepsilon$ for $0<\varepsilon<1/2$. Then $-1<w<0$. Outside the discrepancy set, $H_K=-1<w$ on $K$. The measure of $w$ does not charge that discrepancy, by its zero capacity. The boundary limit of $H_K$ permits comparison with $w$, giving
+On $K$ every competitor is at most $-1$, and $-1$ is a competitor, so $h_K=-1$ on $K$. Hence the Borel set $K\cap\{H_K>-1\}$ is contained in $\{h_K<H_K\}$, which has outer capacity zero by \eqref{eq:relative-extremal-discrepancy}. Since $H_K+1$ is a capacity competitor and $(\ddc(H_K+1))^n=(\ddc H_K)^n$, this measure does not charge $K\cap\{H_K>-1\}$. Thus $(\ddc H_K)^n$ is carried by $K\cap\{H_K=-1\}$.
+
+We now prove the capacity formula. As $H_K+1$ is a capacity competitor and $(\ddc H_K)^n$ is carried by $K$, we have $\int_B(\ddc H_K)^n=\int_K(\ddc(H_K+1))^n\le\operatorname{Cap}_B(K)$. Conversely, let $v$ be a capacity competitor, let $0<\varepsilon<1/2$, and put $w=(1-2\varepsilon)(v-1)-\varepsilon$. Then $-1+\varepsilon\le w\le-\varepsilon$. In particular $w>-1$, so $K\cap\{H_K\ge w\}\subset K\cap\{H_K>-1\}$; this set has outer capacity zero and is therefore null for $(\ddc w)^n=(1-2\varepsilon)^n(\ddc v)^n$. Moreover $H_K(z)\to0$ as $z\to\partial B$ while $w\le-\varepsilon$, so $\liminf_{z\to x}(H_K(z)-w(z))\ge\varepsilon>0$ for every $x\in\partial B$, and the comparison principle (\cref{thm:bt-comparison}) applies to $H_K$ and $w$ on $B$. We obtain
 \[
  (1-2\varepsilon)^n\int_K(\ddc v)^n
+ =\int_{K\cap\{H_K<w\}}(\ddc w)^n
  \le\int_{\{H_K<w\}}(\ddc w)^n
+ \le\int_{\{H_K<w\}}(\ddc H_K)^n
  \le\int_B(\ddc H_K)^n.
 \]
-Let $\varepsilon\downarrow0$ and take the supremum over $v$.
+Letting $\varepsilon\downarrow0$ and taking the supremum over $v$, we get $\operatorname{Cap}_B(K)\le\int_B(\ddc H_K)^n$.
 
-For decreasing $K_j$, the extremals increase and their canonical almost-everywhere limit $H$ satisfies $H\le H_K$. For a competitor $v$ for $K$ and $0<\varepsilon<1$, the open set $\{v<-1+\varepsilon\}$ contains $K$ and hence contains $K_j$ eventually. Therefore $v/(1-\varepsilon)$ is a competitor for those $K_j$, so $v\le(1-\varepsilon)H_{K_j}\le(1-\varepsilon)H$. Let $\varepsilon\downarrow0$ and then take the upper regularization of the supremum over $v$. It follows that $H_K\le H$, proving equality. Increasing continuity gives weak convergence of their measures. All are carried by the fixed compact $K_1$, so their total masses converge. The mass identity proves capacity convergence. Finally choose compact thickenings of $K$ decreasing to it and with interiors containing it. Their capacities bound the outer capacity from above and tend to $\operatorname{Cap}_B(K)$, proving the last equality.
+Now let $(K_j)$ be compact subsets of $B$ decreasing to $K$. Since $K\subset K_{j+1}\subset K_j$, the functions $H_{K_j}$ increase and are bounded above by $H_K$. Put $H=(\sup_jH_{K_j})^*$. By \cref{thm:psh-upper-envelopes}, $H$ is plurisubharmonic and equals $\sup_jH_{K_j}$ almost everywhere, and $H\le H_K$ because $H_K$ is upper semicontinuous. For the reverse inequality, let $v$ be a competitor for $K$ and let $0<\varepsilon<1$. The open set $\{v<-1+\varepsilon\}$ contains $K$, so by compactness it contains $K_j$ for all large $j$. For such $j$ the function $v/(1-\varepsilon)$ is a competitor for $K_j$, and hence $v\le(1-\varepsilon)H_{K_j}\le(1-\varepsilon)H$. Letting $\varepsilon\downarrow0$ gives $v\le H$, and taking the supremum over all competitors $v$ gives $h_K\le H$. As $H$ is upper semicontinuous, $H_K\le H$. Therefore $H=H_K$, and $H_{K_j}\to H_K$ almost everywhere.
+
+By \cref{thm:bt-increasing-continuity}, $(\ddc H_{K_j})^n\to(\ddc H_K)^n$ weakly. All these measures are carried by the fixed compact set $K_1$, so testing with a function in $C_c(B)$ equal to one on $K_1$ shows that their total masses converge. By the capacity formula, $\operatorname{Cap}_B(K_j)\to\operatorname{Cap}_B(K)$, and this convergence is decreasing because capacity is increasing.
+
+Finally, $\operatorname{Cap}_B(K)\le\operatorname{Cap}_B^*(K)$ because capacity is increasing. Conversely, choose $\delta>0$ such that the compact sets $K_j=\{z:\operatorname{dist}(z,K)\le\delta/j\}$ lie in $B$. They decrease to $K$, and each contains $K$ in its interior. Hence $\operatorname{Cap}_B^*(K)\le\operatorname{Cap}_B(\Int K_j)\le\operatorname{Cap}_B(K_j)$, and the right-hand side tends to $\operatorname{Cap}_B(K)$ by what we have just proved.
 \end{proof}
 
 \begin{proposition}\label{prop:relative-extremal-open}
-If $G\Subset B$ is open, then $h_G=H_G$, it equals $-1$ on $G$, tends to zero on $\partial B$, and
+Let $G$ be an open set with $G\Subset B$. Then $h_G=H_G$, $H_G=-1$ on $G$, $H_G(z)\to0$ as $z\to\partial B$, the measure $(\ddc H_G)^n$ is carried by $\overline G$, and
 \[
  \operatorname{Cap}_B(G)=\int_B(\ddc H_G)^n.
 \]
-The measure is carried by $\overline G$.
 \end{proposition}
 \begin{proof}
-Exhaust $G$ by increasing compact neighborhoods $K_j$ with $K_j\subset\Int K_{j+1}$. The $H_{K_j}$ decrease to a bounded plurisubharmonic $H$. Every point of $G$ eventually lies in the interior of $K_j$, where the raw envelope and its regularization both equal $-1$. Thus $H=-1$ on $G$ and belongs to its competitor class. Conversely every competitor for $G$ is a competitor for every $K_j$, so $h_G\le H$. Hence $h_G=H=H_G$. A quadratic barrier for $\overline G$ gives the boundary value. Decreasing continuity passes the measures to the limit; their supports lie in the common compact $\overline G$. Taking total masses and using Borel capacity continuity from below gives the formula and the support assertion.
+Choose compact sets $K_j$ with $K_j\subset\Int K_{j+1}$ and $\bigcup_jK_j=G$. Since the $K_j$ increase, the functions $H_{K_j}$ decrease. They take values in $[-1,0]$, so their limit $H$ is plurisubharmonic by \cref{thm:psh-decreasing-nets}. Every point of $G$ lies in $\Int K_j$ for all large $j$. On $\Int K_j$ we have $h_{K_j}=-1$, as in the previous proof, and hence also $H_{K_j}=-1$, because the upper regularization at a point only involves the values of $h_{K_j}$ near that point. Therefore $H=-1$ on $G$, so $H$ is a competitor for $G$ and $H\le h_G$. Conversely, every competitor for $G$ is a competitor for each $K_j$, hence bounded above by every $H_{K_j}$ and thus by $H$; so $h_G\le H$. We have shown $h_G=H$. As $H$ is upper semicontinuous, $H_G=h_G^*=H$; in particular $H_G=-1$ on $G$. The boundary behavior follows from \eqref{eq:relative-extremal-barrier}.
+
+By \cref{thm:bt-decreasing-continuity}, $(\ddc H_{K_j})^n\to(\ddc H_G)^n$ weakly. By \cref{prop:relative-extremal-compact}, these measures are carried by $K_j\subset\overline G$. Hence the limit measure vanishes on the open set $B\setminus\overline G$, that is, it is carried by the compact set $\overline G$, and testing with a function in $C_c(B)$ equal to one on $\overline G$ shows that the total masses converge. Since the Borel sets $K_j$ increase to $G$, \cref{prop:bt-capacity-basic} gives $\operatorname{Cap}_B(K_j)\to\operatorname{Cap}_B(G)$. Together with the capacity formula of \cref{prop:relative-extremal-compact} for the $K_j$, this yields $\operatorname{Cap}_B(G)=\lim_j\int_B(\ddc H_{K_j})^n=\int_B(\ddc H_G)^n$.
 \end{proof}
 
 \begin{theorem}\label{thm:zero-capacity-pluripolar}
-For a subset $E$ of a bounded ball $B$, the following are equivalent:
+Let $E$ be a subset of an open ball $B\subset\mathbb C^n$. The following conditions are equivalent:
 \begin{enumerate}
-\item $E$ has zero outer Monge--Amp\`ere capacity in $B$;
-\item $E$ is contained in the pole set of a nonpositive plurisubharmonic function on $B$;
+\item $\operatorname{Cap}_B^*(E)=0$;
+\item $E\subset\{V=-\infty\}$ for some $V\in\PSH(B)$ with $V\le0$;
 \item $H_E=0$ on $B$.
 \end{enumerate}
-Consequently local pluripolarity on $B$ also implies one global pole function on $B$. Countable unions of pluripolar sets are pluripolar on every complex manifold.
+Every pluripolar subset of $B$ satisfies these conditions; in particular it is globally pluripolar in $B$. Consequently, on every complex manifold, a countable union of pluripolar sets is pluripolar.
 \end{theorem}
 \begin{proof}
-The implication from a pole to zero outer capacity is \cref{prop:bt-poles-zero-capacity} and a countable compact exhaustion. First suppose $E\Subset B$ and its outer capacity is zero. Choose decreasing open sets $G_j$ containing $E$, with closures in one fixed compact subset of $B$, and $\operatorname{Cap}_B(G_j)\to0$. The extremals $H_{G_j}$ increase almost everywhere to a bounded plurisubharmonic $H$. By \cref{prop:relative-extremal-open} their measures have total masses tending to zero; increasing continuity gives $(\ddc H)^n=0$. Their common quadratic lower barrier makes $H$ tend to zero at the boundary. Comparison with the constant zero gives $H=0$. Since $H_{G_j}\le H_E\le0$, it follows that $H_E=0$ almost everywhere; canonical uniqueness gives equality everywhere.
+(2)$\Rightarrow$(1). Let $V$ be as in (2). For every compact set $L\subset B$, the estimate of \cref{prop:bt-poles-zero-capacity}, with $s\to\infty$, gives $\operatorname{Cap}_B^*(L\cap\{V=-\infty\})=0$. Exhausting $B$ by countably many compact sets and using countable subadditivity, we obtain $\operatorname{Cap}_B^*(E)=0$.
 
-Whenever $H_E=0$, Choquet selection supplies bounded competitors $v_j$ increasing almost everywhere to zero. Choose a point where this convergence holds and a subsequence $v_{j_l}$ with $v_{j_l}(a)>-2^{-l}$. The decreasing partial sums converge to a nonpositive plurisubharmonic function, since their limit is finite at $a$. Each summand is at most $-1$ on $E$, so that function is $-\infty$ on $E$.
+(1)$\Rightarrow$(3) when $E\Subset B$. Fix an open set $W$ with $\overline E\subset W\Subset B$. Since $\operatorname{Cap}_B^*(E)=0$, there are open sets $G_j'\supset E$ with $\operatorname{Cap}_B(G_j')<1/j$. The open sets $G_j=W\cap G_1'\cap\cdots\cap G_j'$ decrease, contain $E$, lie in $W$, and satisfy $\operatorname{Cap}_B(G_j)\to0$. Since the $G_j$ decrease, the functions $H_{G_j}$ increase; put $H=(\sup_jH_{G_j})^*$. By \cref{thm:psh-upper-envelopes}, $H$ is plurisubharmonic, takes values in $[-1,0]$, and is the almost-everywhere limit of the $H_{G_j}$. By \cref{prop:relative-extremal-open}, $\int_B(\ddc H_{G_j})^n=\operatorname{Cap}_B(G_j)\to0$, and by \cref{thm:bt-increasing-continuity} these measures converge weakly to $(\ddc H)^n$; hence $(\ddc H)^n=0$. The barrier \eqref{eq:relative-extremal-barrier} for $W$ bounds every $H_{G_j}$, and hence $H$, from below by the same function tending to zero at $\partial B$, so $H(z)\to0$ as $z\to\partial B$. The last assertion of the comparison principle (\cref{thm:bt-comparison}), applied to $u=H$ and $v=0$, gives $H\ge0$, and therefore $H=0$. Finally, $E\subset G_j$ gives $H_{G_j}\le H_E$ for all $j$; since $H_E$ is upper semicontinuous, $0=H\le H_E\le0$.
 
-For general zero-capacity $E$, intersect it with a compact exhaustion of $B$. The preceding argument gives nonpositive pole functions $V_l$ for these intersections. Choose a point $a$ where all $V_l$ are finite; their pole sets form a countable Lebesgue null union. Positive coefficients $c_l$ with $c_l|V_l(a)|\le2^{-l}$ make $\sum_lc_lV_l$ a nonpositive plurisubharmonic pole function for $E$, finite at $a$. If $V$ is any such nonpositive pole function, then $\varepsilon V\le h_E\le H_E\le0$ for every $\varepsilon>0$. Letting $\varepsilon\downarrow0$ gives $H_E=0$ almost everywhere, and canonical uniqueness gives equality everywhere. This proves all three equivalences.
+(3)$\Rightarrow$(2). Suppose $H_E=0$, and choose competitors $v_j$ for $E$ as in \eqref{eq:relative-extremal-choquet}. Fix a point $a\in B$ with $v_j(a)\to0$, and choose indices $j_1<j_2<\cdots$ with $v_{j_l}(a)>-2^{-l}$. The partial sums of $V=\sum_lv_{j_l}$ are plurisubharmonic and decrease, since every term is nonpositive, and $V(a)\ge-1$. By \cref{thm:psh-decreasing-nets}, $V$ is plurisubharmonic on $B$. Clearly $V\le0$, and $V=-\infty$ on $E$ because every term is at most $-1$ there.
 
-A locally pluripolar set has zero outer capacity on compact neighborhoods by \cref{prop:bt-poles-zero-capacity}; a countable cover and domain restriction give zero outer capacity in $B$. Finally a countable union of locally pluripolar sets has zero outer capacity in each coordinate ball, by subadditivity. The equivalence supplies a pole function there, proving local pluripolarity of the union.
+(1)$\Rightarrow$(2) in general. Let $\operatorname{Cap}_B^*(E)=0$, and let $(L_l)$ be an exhaustion of $B$ by compact sets. Each set $E\cap L_l$ has outer capacity zero and closure in $B$, so the two preceding steps give $V_l\in\PSH(B)$ with $V_l\le0$ and $E\cap L_l\subset\{V_l=-\infty\}$. The pole sets of the $V_l$ are Lebesgue null, so there is a point $a\in B$ at which all $V_l$ are finite. Choose constants $c_l>0$ with $c_l|V_l(a)|\le2^{-l}$. The partial sums of $\sum_lc_lV_l$ decrease and are at least $-1$ at $a$, so, as before, $V=\sum_lc_lV_l$ is plurisubharmonic, nonpositive, and equal to $-\infty$ on $E$.
+
+(2)$\Rightarrow$(3). If $V$ is as in (2), then $\varepsilon V$ is a competitor for $E$ for every $\varepsilon>0$, so $\varepsilon V\le h_E\le0$. Letting $\varepsilon\downarrow0$, we get $h_E=0$ on the set $\{V>-\infty\}$. This set has full measure and is therefore dense in $B$, so every neighborhood of a point contains points where $h_E=0$. Hence $H_E=h_E^*\ge0$, and $H_E=0$. This completes the proof of the equivalences.
+
+Now let $E\subset B$ be pluripolar. Each $z\in B$ has a connected coordinate neighborhood $U$ and a function $V\in\PSH(U)$ with $E\cap U\subset\{V=-\infty\}$. Choose a ball $D$ centered at $z$ with $\overline D\subset U\cap B$, and a compact neighborhood $L$ of $z$ in $D$. Applied in $D$ to the restriction of $V$, \cref{prop:bt-poles-zero-capacity} gives $\operatorname{Cap}_D^*(E\cap L)=0$. Every capacity competitor on $B$ restricts to one on $D$, so $\operatorname{Cap}_B^*(E\cap L)\le\operatorname{Cap}_D^*(E\cap L)=0$ (see \cref{prop:bt-capacity-basic}). Countably many of these compact neighborhoods $L$ cover $B$, so $\operatorname{Cap}_B^*(E)=0$ by countable subadditivity.
+
+Finally, let $X$ be a complex manifold and $E=\bigcup_mE_m$, where each $E_m\subset X$ is pluripolar. Let $x\in X$, and let $B$ be a coordinate ball around $x$, identified with an open ball in $\mathbb C^n$. Each $E_m\cap B$ is a pluripolar subset of $B$; to see this, restrict the functions of \cref{def:pluripolar-set} to small balls in $B$. By the previous paragraph $\operatorname{Cap}_B^*(E_m\cap B)=0$ for every $m$, so $\operatorname{Cap}_B^*(E\cap B)=0$ by countable subadditivity. By (1)$\Rightarrow$(2), the set $E\cap B$ lies in the pole set of a plurisubharmonic function on the connected coordinate neighborhood $B$ of $x$. Hence $E$ is pluripolar.
 \end{proof}
-\index{capacity!zero and pluripolarity}
+\index{capacity!zero and pluripolarity}\index{pluripolar set!countable unions}
 
 \section{Global poles on Euclidean space}
 \label{sec:josefson}
 
-A pole function on a ball cannot simply be extended by zero: that operation generally violates the submean inequality. A negative logarithmic collar allows gluing while keeping the sum integrable on every fixed compact set.
+On $\mathbb C^n$ the local pole functions provided by \cref{thm:zero-capacity-pluripolar} can be combined into a single plurisubharmonic function. A pole function on a ball cannot simply be extended by zero, since the extended function would in general violate the submean inequality at the boundary of the ball. Instead, we glue each local pole function to a small multiple of $\log^+|z|-\log R$, where $\log^+t=\max\{\log t,0\}$; this function is negative on the ball $B(0,R)$ and vanishes on its boundary. The small multiples keep the sum of the glued functions locally integrable.
 
 \begin{theorem}[Josefson]\label{thm:josefson}
-For every pluripolar $E\subset\mathbb C^n$ there is a global plurisubharmonic $V$ such that $E\subset\{V=-\infty\}$. One can arrange $V(z)\le\log^+|z|$ for all $z$.
+Let $E\subset\mathbb C^n$ be pluripolar. Then there is $V\in\PSH(\mathbb C^n)$ with $E\subset\{V=-\infty\}$ and $V(z)\le\log^+|z|$ for all $z\in\mathbb C^n$.
 \end{theorem}
 \begin{proof}
-Choose countably many subsets $E_m$ covering $E$, each relatively compact in a bounded ball $D_m$ and of zero outer capacity there. This follows from local pluripolarity, \cref{prop:bt-poles-zero-capacity}, and a countable ball cover with compact neighborhoods. Choose a sequence $m_j$ in which every positive integer occurs infinitely often. Choose $R_j\uparrow\infty$, $R_j>1$, such that $D_{m_j}\Subset B_j=B(0,R_j)$ and
+\emph{Step 1: local pieces.} Choose a sequence of open balls $D_m$ and compact sets $L_m\subset D_m$ whose interiors cover $\mathbb C^n$, and put $E_m=E\cap L_m$. Each $E\cap D_m$ is a pluripolar subset of the ball $D_m$, so $\operatorname{Cap}_{D_m}^*(E_m)=0$ by \cref{thm:zero-capacity-pluripolar}.
+
+\emph{Step 2: the glued functions.} Choose a sequence $(m_j)_{j\ge1}$ in which every positive integer occurs infinitely often. Since each $E_m$ is bounded, we can choose radii $R_j>1$ increasing to $\infty$ such that $D_{m_j}\Subset B_j=B(0,R_j)$ and
 \[
- 2^{-j}(\log^+|z|-\log R_j)\le-1\quad\hbox{on }E_{m_j}.
+ \rho_j(z)=2^{-j}(\log^+|z|-\log R_j)\le-1\quad\text{on }E_{m_j}.
 \]
-Domain restriction gives zero outer capacity of $E_{m_j}$ in $B_j$. Its extremal is zero by \cref{thm:zero-capacity-pluripolar}. Bounded Choquet competitors increasing almost everywhere to zero and bounded convergence therefore supply $u_j\in\PSH(B_j)$ with
+Every capacity competitor on $B_j$ restricts to one on $D_{m_j}$, so $\operatorname{Cap}_{B_j}^*(E_{m_j})\le\operatorname{Cap}_{D_{m_j}}^*(E_{m_j})=0$. By \cref{thm:zero-capacity-pluripolar}, the relative extremal function of $E_{m_j}$ with respect to $B_j$ vanishes identically. The competitors of \eqref{eq:relative-extremal-choquet} for $E_{m_j}$ in $B_j$ therefore converge to zero almost everywhere on $B_j$, and by bounded convergence their integrals over $B_j$ tend to zero. A competitor with values in $[-1,0]$ equals $-1$ on $E_{m_j}$. Hence one of these competitors, which we call $u_j$, satisfies
 \[
- -1\le u_j\le0,\qquad u_j=-1\ \hbox{on }E_{m_j},
+ -1\le u_j\le0,\qquad u_j=-1\ \text{on }E_{m_j},
  \qquad\int_{B_j}(-u_j)\,\mathrm dV<2^{-j}.
 \]
-The function $\log^+|z|$ is plurisubharmonic: the Hessian of $\log(|z|^2+\varepsilon)$ is nonnegative by Cauchy--Schwarz, and decreasing limits followed by a maximum with zero prove the assertion. Put $\rho_j=2^{-j}(\log^+|z|-\log R_j)$, paste $\max\{u_j,\rho_j\}$ inside $B_j$ to $\rho_j$ outside, and call the result $V_j$. The upper boundary limit of $u_j$ is at most zero, which equals $\rho_j$ on the sphere, so \cref{prop:psh-max-gluing} applies. Also $V_j=-1$ on $E_{m_j}$ and $V_j\le2^{-j}\log^+|z|$ everywhere.
+The function $\log^+|z|=\max\{\tfrac12\log|z|^2,0\}$ is plurisubharmonic on $\mathbb C^n$ by \cref{prop:holomorphic-tuple-logarithm,prop:psh-max-gluing}, and so is $\rho_j$. On $\partial B_j$ we have $|z|=R_j>1$, hence $\rho_j=0$, while the upper limit of $u_j$ at every point of $\partial B_j$ is at most $0$. By \cref{prop:psh-max-gluing}, the function $V_j$ equal to $\max\{u_j,\rho_j\}$ on $B_j$ and to $\rho_j$ on $\mathbb C^n\setminus B_j$ is plurisubharmonic on $\mathbb C^n$. Since $\rho_j\le-1=u_j$ on $E_{m_j}$, we have $V_j=-1$ on $E_{m_j}$. On $B_j$ both $u_j$ and $\rho_j$ are nonpositive, so $V_j\le0$ there, while $V_j=\rho_j$ outside $B_j$; hence
+\[
+ \rho_j\le V_j\le2^{-j}\log^+|z|\quad\text{on }\mathbb C^n.
+\]
+In particular $V_j$ is locally bounded.
 
-On any fixed compact ball, all sufficiently late $V_j$ are nonpositive and their negative integrals are at most $2^{-j}$. Their partial sums decrease to a nontrivial plurisubharmonic limit there, with finite $L^1$ norm by Tonelli. The finitely many earlier terms are locally bounded, so these local limits define $V=\sum_jV_j\in\PSH(\mathbb C^n)$. Every point of $E_m$ has infinitely many summands equal to $-1$, and all sufficiently late summands are nonpositive at that point. Thus $V=-\infty$ on $E$. Summing the upper growth bounds gives $V\le\log^+|z|$.
+\emph{Step 3: the sum.} Fix $r>0$ and choose $j_0$ with $R_{j_0}>r$. For $j\ge j_0$ the ball $B(0,r)$ lies in $B_j$, so $V_j\le0$ on $B(0,r)$, and since $V_j\ge u_j$ there,
+\[
+ \int_{B(0,r)}(-V_j)\,\mathrm dV\le\int_{B_j}(-u_j)\,\mathrm dV<2^{-j}.
+\]
+Hence the partial sums of $\sum_{j\ge j_0}V_j$ decrease on $B(0,r)$, and by monotone convergence their limit $W_r$ satisfies $\int_{B(0,r)}(-W_r)\,\mathrm dV\le\sum_j2^{-j}<\infty$. Thus $W_r$ is not identically $-\infty$, and $W_r\in\PSH(B(0,r))$ by \cref{thm:psh-decreasing-nets}. Since the finitely many functions $V_j$ with $j<j_0$ are locally bounded and plurisubharmonic, the series $V=\sum_jV_j$ defines a plurisubharmonic function $\sum_{j<j_0}V_j+W_r$ on $B(0,r)$. As $r$ is arbitrary and plurisubharmonicity is a local property, $V\in\PSH(\mathbb C^n)$.
+
+Let $z\in E$, so that $z\in E_m$ for some $m$. Since $m=m_j$ for infinitely many $j$, infinitely many terms $V_j(z)$ equal $-1$, while all terms with $R_j>|z|$ are nonpositive. Hence $V(z)=-\infty$. Finally, summing the upper bounds of Step 2 gives $V\le\sum_j2^{-j}\log^+|z|=\log^+|z|$.
 \end{proof}
 \index{Josefson's theorem}
 
 \begin{corollary}\label{cor:psh-pluripolar-discrepancy}
-The discrepancy between a nonempty locally uniformly bounded-above plurisubharmonic supremum and its upper regularization is pluripolar. The pointwise supremum of an increasing locally bounded-above sequence equals its canonical plurisubharmonic limit quasi-everywhere. Bounded-potential products and their trace measures give every pluripolar set zero outer measure.
+Let $X$ be a complex manifold of dimension $n$.
+\begin{enumerate}
+\item If $(u_i)_{i\in I}$ is a nonempty family in $\PSH(X)$ that is locally uniformly bounded above and $F=\sup_iu_i$, then the set $\{F<F^*\}$ is pluripolar.
+\item If $(u_j)$ is an increasing sequence in $\PSH(X)$ that is locally uniformly bounded above, then $\lim_ju_j=(\sup_ju_j)^*$ quasi-everywhere; here $(\sup_ju_j)^*$ is plurisubharmonic by \cref{thm:psh-upper-envelopes}.
+\item If $u_1,\ldots,u_q$, $1\le q\le n$, are locally bounded plurisubharmonic functions on $X$, then the product $\ddc u_1\wedge\cdots\wedge\ddc u_q$ does not charge any Borel pluripolar set. More precisely, in every chart, every pluripolar set has outer measure zero for the trace measure of this product and for the total variations of its coefficient measures.
+\end{enumerate}
 \end{corollary}
 \begin{proof}
-\Cref{cor:psh-envelope-zero-capacity} and \cref{thm:zero-capacity-pluripolar} prove the discrepancy assertion in coordinate balls. The increasing sequence is an envelope of its terms. Local pole-zero capacity and \cref{lem:bounded-product-capacity-domination} prove the trace assertion. Coefficient variations are controlled by that trace, so the full order-zero products do not charge the set either.
+(1) Let $x\in X$, and let $B$ be a coordinate ball around $x$, identified with an open ball in $\mathbb C^n$. On $B$ the regularization $F^*$ is the regularization of $F|_B$, so by \cref{cor:psh-envelope-zero-capacity} the set $L\cap\{F<F^*\}$ has outer capacity zero in $B$ for every compact set $L\subset B$. Exhausting $B$ by countably many compact sets, we obtain $\operatorname{Cap}_B^*(B\cap\{F<F^*\})=0$. By \cref{thm:zero-capacity-pluripolar}, $B\cap\{F<F^*\}$ lies in the pole set of a plurisubharmonic function on $B$. Hence $\{F<F^*\}$ is pluripolar.
+
+(2) For an increasing sequence, $\lim_ju_j=\sup_ju_j$, so this is the special case of (1) for the family $(u_j)$.
+
+(3) Let $E$ be pluripolar, and work in a chart, identified with an open set $\Omega\subset\mathbb C^n$. Let $B'\Subset B\Subset\Omega$ be concentric open balls. By \cref{thm:zero-capacity-pluripolar}, $\operatorname{Cap}_B^*(E\cap B)=0$. Let $\mu$ be the trace measure of the product, or the total variation of one of its coefficient measures. By \cref{lem:bounded-product-capacity-domination} there is a constant $C$ with $\mu(A)\le C\operatorname{Cap}_B(A)$ for every Borel set $A\subset\overline{B'}$. Given $\varepsilon>0$, choose an open set $G\supset E\cap B$ with $\operatorname{Cap}_B(G)<\varepsilon$; then the outer measure of $E\cap B'$ satisfies $\mu^*(E\cap B')\le\mu(G\cap B')\le C\operatorname{Cap}_B(G)<C\varepsilon$. Hence $\mu^*(E\cap B')=0$. Since $\Omega$ is covered by countably many such balls $B'$, the set $E\cap\Omega$ has outer measure zero for $\mu$. For a Borel set $E$ this means that the product does not charge $E$.
 \end{proof}
 
 \begin{example}\label{ex:real-polar-not-pluripolar}
-The product torus $\mathbb T^2=\{|z_1|=|z_2|=1\}\subset\mathbb C^2$ is real polar but not pluripolar. For real polarity, let $\mu$ be its normalized product arc measure. By \cref{prop:fundamental-potential}, the function
-\[
- u(z)=-\int_{\mathbb T^2}|z-\zeta|^{-2}\,\mathrm d\mu(\zeta)
-\]
-is subharmonic on $\mathbb R^4$ and finite off the torus. Near a point of the torus, its two angle parameters satisfy $|z-\zeta|\le C|\theta|$. Thus the integral is bounded below by a positive multiple of $\int_{|\theta|<r}|\theta|^{-2}\,\mathrm d\theta=\infty$, proving $u=-\infty$ there.
+The torus $\mathbb T^2=\{z\in\mathbb C^2:|z_1|=|z_2|=1\}$ is real polar, in the sense of \cref{sec:psh-limits-envelopes}, but not pluripolar.
 
-If the torus were pluripolar, Josefson's theorem would give a global plurisubharmonic $V$ with those poles. Fix $|z_2|=1$. Its first-coordinate restriction is subharmonic or identically $-\infty$, and is $-\infty$ on the unit circle. Upper semicontinuity and compactness make every finite negative constant an upper bound near that circle; comparison makes the restriction $-\infty$ throughout the unit disc. Now fix $|z_1|<1$ and apply the same argument in the second coordinate. It makes $V=-\infty$ on the bidisc, contradicting local integrability. This proves the distinction.
+To see that $\mathbb T^2$ is real polar, let $\mu$ be the probability measure on $\mathbb T^2$ obtained as the image of $(2\pi)^{-2}\,\mathrm d\theta$ on $[-\pi,\pi)^2$ under $\theta\mapsto(\mathrm e^{\mathrm i\theta_1},\mathrm e^{\mathrm i\theta_2})$, and put
+\[
+ u(z)=-\int_{\mathbb T^2}|z-\zeta|^{-2}\,\mathrm d\mu(\zeta).
+\]
+If we identify $\mathbb C^2$ with $\mathbb R^4$, then $u$ is a positive multiple of the fundamental potential $E_4*\mu$, so it is subharmonic on $\mathbb R^4$ by \cref{prop:fundamental-potential}. It is finite off $\mathbb T^2$, where $|z-\zeta|$ is bounded below for $\zeta\in\mathbb T^2$. Now let $z=(\mathrm e^{\mathrm i\alpha_1},\mathrm e^{\mathrm i\alpha_2})\in\mathbb T^2$. By rotation invariance, $\mu$ is also the image of $(2\pi)^{-2}\,\mathrm d\theta$ under $\theta\mapsto\zeta(\theta)=(\mathrm e^{\mathrm i(\alpha_1+\theta_1)},\mathrm e^{\mathrm i(\alpha_2+\theta_2)})$, and
+\[
+ |z-\zeta(\theta)|^2=|1-\mathrm e^{\mathrm i\theta_1}|^2+|1-\mathrm e^{\mathrm i\theta_2}|^2\le|\theta|^2.
+\]
+Hence
+\[
+ -u(z)\ge\frac1{(2\pi)^2}\int_{|\theta|<\pi}\frac{\mathrm d\theta}{|\theta|^2}
+ =\frac1{2\pi}\int_0^\pi\frac{\mathrm dr}{r}=\infty,
+\]
+so $\mathbb T^2\subset\{u=-\infty\}$, and $\mathbb T^2$ is real polar.
+
+Suppose that $\mathbb T^2$ were pluripolar. By \cref{thm:josefson} there would be $V\in\PSH(\mathbb C^2)$ with $\mathbb T^2\subset\{V=-\infty\}$. Fix $w$ with $|w|=1$. By \cref{prop:psh-holomorphic-pullback}, the function $f(\zeta)=V(\zeta,w)$ is either identically $-\infty$ or subharmonic on $\mathbb C$, and $f=-\infty$ on the unit circle. In the second case, upper semicontinuity gives $\limsup_{\zeta\to\zeta_0}f(\zeta)\le f(\zeta_0)=-\infty$ at every point $\zeta_0$ of the unit circle, and the maximum principle (\cref{prop:subharmonic-maximum}), applied to $f+M$ on the unit disc for every $M>0$, shows that $f=-\infty$ on the unit disc. Hence $V=-\infty$ on $\{|z_1|\le1,\ |z_2|=1\}$. Now fix $z_1$ with $|z_1|<1$; the function $w\mapsto V(z_1,w)$ equals $-\infty$ on the unit circle, and the same argument shows that it equals $-\infty$ on the unit disc. Thus $V=-\infty$ on the open bidisc $\{|z_1|<1,\ |z_2|<1\}$, contradicting the local integrability of $V$ (\cref{thm:psh-distribution-representative}).
 \end{example}
 \index{polar set!not pluripolar}
 
 \section{Thinness and plurifine neighborhoods}
 \label{sec:plurifine-neighborhoods}
 
+The classical fine topology of \cref{chap:p05} is the coarsest topology that makes all subharmonic functions continuous. Using plurisubharmonic functions instead, we obtain a topology adapted to the complex structure; by \cref{prop:classical-plurifine-distinction}, it differs from the classical fine topology of $\mathbb C^n=\mathbb R^{2n}$ when $n\ge2$. The results of this section are the plurifine counterparts of \cref{prop:thin-fine-neighborhood,prop:fine-positive-measure}.
+
 \begin{definition}\label{def:plurifine-topology}
-The plurifine topology on a complex manifold is the coarsest topology containing the Euclidean chart topology and making every local plurisubharmonic function continuous with values in $[-\infty,\infty)$. A set $E$ is plurithin at $a$ if $a$ is not an accumulation point of $E\setminus\{a\}$, or if some plurisubharmonic $\psi$, finite at $a$ and defined near it, satisfies
+Let $X$ be a complex manifold. The \emph{plurifine topology} on $X$ is the coarsest topology on $X$ that contains the topology of $X$, which we call the Euclidean topology, and makes every $u\in\PSH(V)$, for every open set $V\subset X$, continuous as a map from $V$ with the induced topology to $[-\infty,\infty)$. Sets that are open in this topology are called \emph{plurifine open}, and neighborhoods in this topology are called \emph{plurifine neighborhoods}. A set $E\subset X$ is \emph{plurithin} at a point $a\in X$ if either $a$ does not belong to the Euclidean closure of $E\setminus\{a\}$, or there is a plurisubharmonic function $\psi$ on a Euclidean open neighborhood of $a$ such that $\psi(a)$ is finite and
 \[
- \limsup_{E\setminus\{a\}\ni z\to a}\psi(z)<\psi(a).
+ \limsup_{E\setminus\{a\}\ni z\to a}\psi(z)<\psi(a),
 \]
-The limits in this definition use the Euclidean topology.
+where the upper limit is taken with respect to the Euclidean topology.
 \end{definition}
 \index{plurifine topology}\index{thinness!plurithin}
 
-Only finite plurisubharmonic generators are needed locally. If $u(a)>t$, truncation below $t$ preserves the superlevel set. If $u(a)=-\infty$, a neighborhood of that value is a sublevel set, which is Euclidean open by upper semicontinuity. On a Euclidean domain, local bounded truncations can moreover be extended to finite global plurisubharmonic functions on $\mathbb C^n$: on a ball where the truncation is bounded, paste its maximum with a quadratic function below its lower bound near the chosen point and above its upper bound on a boundary collar. Outside the ball use that quadratic function. The maximum gluing theorem proves the extension. Thus on $\mathbb C^n$ the finite global plurisubharmonic functions generate this same topology; real coordinate functions also generate the Euclidean topology.
+Since the sublevel sets $\{u<s\}$ of upper semicontinuous functions are Euclidean open, the plurifine topology has a subbasis consisting of the Euclidean open sets and the sets $\{z\in V:u(z)>t\}$, where $V\subset X$ is open, $u\in\PSH(V)$ and $t\in\mathbb R$. Because $\{u>t\}=\{\max\{u,t-1\}>t\}$, it suffices to use locally bounded functions $u$ here. On $\mathbb C^n$ one may even use plurisubharmonic functions that are finite and defined on all of $\mathbb C^n$. Indeed, let $u$ be plurisubharmonic on a neighborhood of a closed ball $\overline{B(a,r)}$ with $m\le u\le M$ on $B(a,r)$. Choose $A>0$ so large that the function $q(z)=m-1+A(|z-a|^2-r^2/16)$ exceeds $M$ when $|z-a|\ge r/2$; note that $q<m$ on $B(a,r/4)$. By \cref{prop:psh-max-gluing}, the function equal to $\max\{u,q\}$ on $B(a,r)$ and to $q$ outside is plurisubharmonic on $\mathbb C^n$; it is finite and coincides with $u$ on $B(a,r/4)$. Since the functions $\pm\Real z_j$ and $\pm\Img z_j$ are finite and plurisubharmonic on $\mathbb C^n$ and generate the Euclidean topology, it follows that the plurifine topology of $\mathbb C^n$ is the coarsest topology that makes all finite plurisubharmonic functions on $\mathbb C^n$ continuous.
 
 \begin{proposition}\label{prop:plurifine-base}
-A set $U$ containing $a$ is a plurifine neighborhood of $a$ if and only if its complement is plurithin there. A local base consists of sets $B\cap\{\psi>0\}$ containing $a$, where $B$ is a sufficiently small Euclidean ball and $\psi$ is bounded plurisubharmonic on a neighborhood of $\overline B$. This topology restricts to the same topology on Euclidean open subdomains, is preserved by biholomorphic charts, and makes holomorphic maps plurifinely continuous.
+Let $X$ be a complex manifold and $a\in X$.
+\begin{enumerate}
+\item A set $U\subset X$ containing $a$ is a plurifine neighborhood of $a$ if and only if $X\setminus U$ is plurithin at $a$.
+\item In a chart around $a$, the sets $B\cap\{\psi>0\}$ containing $a$, where $B$ is a sufficiently small coordinate ball centered at $a$ and $\psi$ is a bounded plurisubharmonic function on a neighborhood of $\overline B$, form a base of plurifine neighborhoods of $a$.
+\item The plurifine topology of an open subset of $X$ is the topology induced by the plurifine topology of $X$. Biholomorphic maps are homeomorphisms for the plurifine topologies, and holomorphic maps between complex manifolds are continuous for the plurifine topologies.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-A finite intersection of generating neighborhoods at $a$ imposes finitely many lower bounds $u_i>c_i$; upper bounds are Euclidean open and can be incorporated into a small ball. Truncate the $u_i$ below their thresholds. Put $\delta_i=u_i(a)-c_i>0$. Upper semicontinuity permits a smaller ball on which $(u_i-u_i(a))/\delta_i<1/(2k)$, where $k$ is the number of lower bounds. The bounded plurisubharmonic
-\[
- \psi=\tfrac14+\sum_{i=1}^k\frac{u_i-u_i(a)}{\delta_i}
-\]
-is positive at $a$. If any lower bound fails, its value is at most $1/4-1+(k-1)/(2k)<0$. Thus its positive superlevel set in that ball lies in the given intersection. If there are no lower bounds, use the constant one. This proves the stated base. On the complement of such a base neighborhood, near $a$ the witness is at most zero and has positive value at $a$, so the complement is plurithin.
+We begin with the first two assertions of (3). Let $W\subset X$ be open. Every subbasic set of the plurifine topology of $W$ is a subbasic set of the plurifine topology of $X$. Conversely, the intersection of a subbasic set of $X$ with $W$ is subbasic for $W$, because the restriction of a function $u\in\PSH(V)$ to $V\cap W$ is plurisubharmonic. Hence the plurifine topology of $W$ is the induced topology. A biholomorphism $F$ maps subbasic sets to subbasic sets, since $u\circ F$ is plurisubharmonic whenever $u$ is (\cref{prop:psh-holomorphic-pullback}), and so does $F^{-1}$. In particular, we may compute plurifine neighborhoods of $a$ in a chart, as if $X$ were an open subset of $\mathbb C^n$.
 
-Conversely a strict thinness gap gives, after choosing a threshold between its two sides and shrinking the ball, a positive superlevel neighborhood avoiding the complement. A nonaccumulation point has an ordinary ball neighborhood. Restriction to subdomains is built into the local generators, and biholomorphic invariance follows from composition. For a holomorphic map the pullback of a generating potential is plurisubharmonic or identically $-\infty$ on a component by \cref{prop:psh-holomorphic-pullback}; in the latter case it is a continuous constant. Ordinary continuity handles the Euclidean generators. This proves continuity for the generated topologies.
+(2) Each set $B\cap\{\psi>0\}$ as in (2) is plurifine open, as the intersection of a Euclidean open set with a subbasic set. Now let $N$ be a plurifine neighborhood of $a$. By the definition of the topology, $N$ contains a set
+\[
+ N_0=W_0\cap\{u_1>c_1\}\cap\cdots\cap\{u_k>c_k\}
+\]
+containing $a$, where $W_0$ is a Euclidean open neighborhood of $a$, $k\ge0$, each $u_i$ is plurisubharmonic on a Euclidean open neighborhood $V_i$ of $a$, and $c_i\in\mathbb R$. If $k=0$, every coordinate ball $B\subset W_0$ centered at $a$ works, with $\psi=1$. Let $k\ge1$. Replacing $u_i$ by $\max\{u_i,c_i-1\}$, which does not change $\{u_i>c_i\}$, we may assume that the $u_i$ are locally bounded. Put $\delta_i=u_i(a)-c_i>0$. By upper semicontinuity there is a coordinate ball $B'$ centered at $a$, contained in $W_0$ and in every $V_i$, on which every $u_i$ is bounded and satisfies $u_i<u_i(a)+\delta_i/(2k)$. Let $B$ be any coordinate ball centered at $a$ with $\overline B\subset B'$, and put
+\[
+ \psi=\frac14+\sum_{i=1}^k\frac{u_i-u_i(a)}{\delta_i}.
+\]
+This is a bounded plurisubharmonic function on $B'$ with $\psi(a)=1/4>0$. If $z\in B$ and $u_i(z)\le c_i$ for some $i$, then the $i$-th term of the sum is at most $-1$ and each of the other $k-1$ terms is less than $1/(2k)$, so $\psi(z)<1/4-1+(k-1)/(2k)<0$. Hence $B\cap\{\psi>0\}\subset N_0\subset N$, which proves (2).
+
+(1) Let $U$ be a plurifine neighborhood of $a$, and put $E=X\setminus U$; note that $a\notin E$. By (2), $U$ contains a set $B\cap\{\psi>0\}$ with $\psi(a)>0$, so $\psi\le0$ on $E\cap B$. Hence either $a$ is not in the Euclidean closure of $E$, or $\limsup_{E\ni z\to a}\psi(z)\le0<\psi(a)$; in both cases $E$ is plurithin at $a$. Conversely, suppose that $E=X\setminus U$ is plurithin at $a\in U$. If $a$ is not in the Euclidean closure of $E$, then $U$ contains a Euclidean neighborhood of $a$. Otherwise let $\psi$ be as in \cref{def:plurifine-topology}, and choose $c$ with $\limsup_{E\ni z\to a}\psi(z)<c<\psi(a)$. Then $\psi<c$ on $E\cap B$ for a small ball $B$ centered at $a$, so the plurifine open set $B\cap\{\psi>c\}$ contains $a$ and is contained in $U$.
+
+(3) It remains to prove that a holomorphic map $F\colon Y\to X$ is continuous for the plurifine topologies. Preimages of Euclidean open sets are Euclidean open. Let $u\in\PSH(V)$ with $V\subset X$ open, let $t\in\mathbb R$, and let $y\in F^{-1}(\{u>t\})$. Choose a connected coordinate neighborhood $Y'$ of $y$ such that $F(Y')$ lies in a coordinate neighborhood contained in $V$. By \cref{prop:psh-holomorphic-pullback}, $u\circ F$ is either identically $-\infty$ or plurisubharmonic on $Y'$; the first alternative is excluded because $u(F(y))>t$. Thus $Y'\cap\{u\circ F>t\}$ is a plurifine open neighborhood of $y$ contained in $F^{-1}(\{u>t\})$. Hence preimages of subbasic sets are plurifine open.
 \end{proof}
+\index{plurifine topology!neighborhood base}
 
 \begin{proposition}\label{prop:plurifine-positive-volume}
-Every nonempty plurifine open set contains a Borel subset of positive Lebesgue measure in a chart. The complement of any pluripolar set is plurifinely dense. The finite locus of any plurisubharmonic function is plurifine open.
+Let $X$ be a complex manifold.
+\begin{enumerate}
+\item Every nonempty plurifine open subset of $X$ contains a Borel set of positive Lebesgue measure in some chart.
+\item The complement of every pluripolar set is dense for the plurifine topology.
+\item For every $u\in\PSH(X)$, the set $\{u>-\infty\}$ is plurifine open.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-Take a base neighborhood $B\cap\{\psi>0\}$ at a point where $\psi>0$. If it were Lebesgue null, $\psi\le0$ almost everywhere on $B$. Canonical uniqueness applied to $\max\{\psi,0\}$ would give $\psi\le0$ everywhere, a contradiction. The neighborhood is Borel and has positive volume. A pluripolar set is Lebesgue null, so cannot contain a nonempty fine open set; its complement is dense. The finite locus is $\bigcup_m\{u>-m\}$, a union of generating open sets.
+(1) Let $O$ be a nonempty plurifine open set and $a\in O$. By \cref{prop:plurifine-base}, $O$ contains a set $A=B\cap\{\psi>0\}$ with $a\in A$, where $B$ is a coordinate ball and $\psi$ is a bounded plurisubharmonic function on a neighborhood of $\overline B$. This set is Borel because $\psi$ is upper semicontinuous. If $A$ had measure zero, then $\max\{\psi,0\}=0$ almost everywhere on $B$; since both functions are plurisubharmonic on $B$, they would coincide everywhere by the uniqueness in \cref{thm:psh-distribution-representative}, contradicting $\psi(a)>0$.
+
+(2) A pluripolar set is Lebesgue null in every chart, so by (1) it contains no nonempty plurifine open set. Equivalently, its complement meets every nonempty plurifine open set.
+
+(3) The set $\{u>-\infty\}=\bigcup_m\{u>-m\}$ is a union of subbasic plurifine open sets.
 \end{proof}
 
 \begin{example}\label{ex:pluripolar-hyperplane-not-discrete}
-For $n\ge2$, the hyperplane $\{z_1=0\}$ is pluripolar, with pole function $\log|z_1|^2$, but has no isolated point in its induced plurifine topology. A base witness positive at such a point restricts to a plurisubharmonic function on the hyperplane; its positive superlevel neighborhood has positive volume there by the preceding proposition. Thus the classical fine discreteness of polar sets from \cref{chap:p05} does not transfer to arbitrary complex pluripolar sets.
+Let $n\ge2$ and $H=\{z\in\mathbb C^n:z_1=0\}$. Then $H$ is pluripolar, being the pole set of $\log|z_1|^2$ (\cref{prop:holomorphic-tuple-logarithm}), but no point of $H$ is isolated in the topology induced on $H$ by the plurifine topology. Indeed, let $a\in H$ and let $N$ be a plurifine neighborhood of $a$ in $\mathbb C^n$. By \cref{prop:plurifine-base}, $N$ contains a set $B\cap\{\psi>0\}$ containing $a$, where $\psi$ is a bounded plurisubharmonic function on a neighborhood of $\overline B$. Identify $H$ with $\mathbb C^{n-1}$. The restriction of $\psi$ to $H$ is bounded, and hence plurisubharmonic by \cref{prop:psh-holomorphic-pullback}. Thus $H\cap B\cap\{\psi>0\}$ is a nonempty plurifine open subset of $\mathbb C^{n-1}$, and by \cref{prop:plurifine-positive-volume} it has positive $(2n-2)$-dimensional Lebesgue measure. In particular it contains points of $H$ other than $a$, and these points lie in $N$. In contrast, a polar set is discrete in the classical fine topology (\cref{prop:polar-fine-discrete}); this property of polar sets therefore does not carry over to pluripolar sets when $n\ge2$. \Cref{prop:classical-plurifine-distinction} derives the same phenomenon from complex lines.
 \end{example}
 
 \section{Countable selections and plurifine locality}
 \label{sec:plurifine-selection-locality}
 
-\begin{theorem}\label{thm:plurifine-quasi-lindelof}
-On a complex manifold with a countable basis, for any family of plurifine open sets, a countable subfamily has the same union outside a pluripolar set. Each plurifine open set differs from a Borel subset of itself by a pluripolar set.
-\end{theorem}
-\begin{proof}
-Use a countable Euclidean coordinate-ball base. The preceding local base theorem expresses the union by positive superlevel sets of bounded plurisubharmonic functions on these balls, each superlevel set contained in an original member. The ball can be chosen with closure in the witness's domain. For each fixed ball divide every witness by a positive constant and truncate below $-1$, so all lie in $[-1,1]$ without changing their positive superlevel sets.
+The plurifine topology is not second countable. In dimension one it is the classical fine topology of $\mathbb C=\mathbb R^2$, which induces the discrete topology on polar sets and is therefore not Lindel\"of (\cref{ex:uncountable-polar-cantor}). As in \cref{thm:fine-quasi-lindelof}, countability is recovered outside an exceptional set, which is now pluripolar. Since bounded Bedford--Taylor products do not charge pluripolar sets, this is what we need to pass from the local identity of \cref{lem:bt-superlevel-locality} to locality on arbitrary plurifine open sets.
 
-Choquet selection and \cref{cor:psh-pluripolar-discrepancy} give a countable selection of these witnesses whose supremum and the full supremum equal their common regularization outside a pluripolar set. There the full supremum is positive if and only if the selected supremum is positive, which is equivalent to positivity of some selected witness. Choose the corresponding original open sets. Repeat over the countably many balls. The union of all exceptional sets is pluripolar by \cref{thm:zero-capacity-pluripolar}, proving the first assertion. The union of the selected superlevel sets is Borel, lies in the original union and differs from it only within that exceptional set. This proves the second assertion. The empty family uses the empty selection.
-\end{proof}
+\begin{theorem}\label{thm:plurifine-quasi-lindelof}
+Let $X$ be a complex manifold with a countable basis.
+\begin{enumerate}
+\item For every family $(U_i)_{i\in I}$ of plurifine open subsets of $X$, there is a countable set $J\subset I$ such that $\bigcup_{i\in I}U_i\setminus\bigcup_{j\in J}U_j$ is pluripolar.
+\item Every plurifine open set $U\subset X$ contains a Borel set $V$ such that $U\setminus V$ is pluripolar.
+\end{enumerate}
+\end{theorem}
 \index{quasi-Lindel\"of principle!plurifine}
+\begin{proof}
+Since $X$ has a countable basis, it is covered by countably many charts; in each chart, the coordinate balls with rational centers and radii and with closure in the chart domain form a countable basis. Let $\mathcal Q$ be the union of these countable families; it is a countable basis of $X$.
+
+(1) Let $U=\bigcup_iU_i$; if $I$ is empty, take $J$ empty. Call a pair $(Q,\psi)$ admissible if $Q\in\mathcal Q$, $\psi$ is a bounded plurisubharmonic function on a neighborhood of $\overline Q$, and $Q\cap\{\psi>0\}$ is contained in some $U_i$. Every point $a\in U$ lies in a set $Q\cap\{\psi>0\}$ with $(Q,\psi)$ admissible. Indeed, if $a\in U_i$, then \cref{prop:plurifine-base} gives a ball $B$ and a bounded plurisubharmonic function $\psi$ on a neighborhood of $\overline B$ with $a\in B\cap\{\psi>0\}\subset U_i$, and it suffices to choose $Q\in\mathcal Q$ with $a\in Q\subset B$.
+
+Fix $Q\in\mathcal Q$, and let $\Psi_Q$ be the set of functions $\psi$ such that $(Q,\psi)$ is admissible; we may assume that $\Psi_Q$ is nonempty. Replacing each $\psi\in\Psi_Q$ by $\max\{\psi/c,-1\}$, where $c\ge1$ bounds $|\psi|$ on $Q$, does not change $Q\cap\{\psi>0\}$, so we may assume that all members of $\Psi_Q$ take values in $[-1,1]$ on $Q$. Let $F_Q$ be their pointwise supremum on $Q$. By Choquet's lemma (\cref{lem:choquet-selection}) there are $\psi_{Q,1},\psi_{Q,2},\ldots$ in $\Psi_Q$ whose supremum $F_Q'$ satisfies $(F_Q')^*=F_Q^*$. By \cref{cor:psh-pluripolar-discrepancy}, the set $P_Q=\{F_Q<F_Q^*\}\cup\{F_Q'<(F_Q')^*\}$ is pluripolar. If $z\in Q\setminus P_Q$ and $\psi(z)>0$ for some $\psi\in\Psi_Q$, then $F_Q'(z)=F_Q^*(z)=F_Q(z)>0$, so $\psi_{Q,k}(z)>0$ for some $k$. Therefore
+\[
+ \bigcup_{\psi\in\Psi_Q}\bigl(Q\cap\{\psi>0\}\bigr)\subset P_Q\cup\bigcup_k\bigl(Q\cap\{\psi_{Q,k}>0\}\bigr).
+\]
+For each $Q$ and $k$ choose an index $i(Q,k)\in I$ with $Q\cap\{\psi_{Q,k}>0\}\subset U_{i(Q,k)}$, and let $J$ be the countable set of these indices. Every point of $U$ lies in some $Q\cap\{\psi>0\}$ with $\psi\in\Psi_Q$, so $U\setminus\bigcup_{j\in J}U_j$ is contained in $\bigcup_QP_Q$. This set is pluripolar by \cref{thm:zero-capacity-pluripolar}, as a countable union of pluripolar sets.
+
+(2) Apply the construction of (1) to the family consisting of the single set $U$. The selected sets $Q\cap\{\psi_{Q,k}>0\}$ are contained in $U$ and are Borel, because the $\psi_{Q,k}$ are upper semicontinuous. Their union $V$ is a countable union, hence Borel, and $U\setminus V\subset\bigcup_QP_Q$ is pluripolar.
+\end{proof}
 
 \begin{lemma}\label{lem:bt-superlevel-locality}
-Let $u,v,t$ be bounded plurisubharmonic functions on a Euclidean neighborhood, $t\ge0$, and suppose $u=v$ on $\{t>0\}$. For a fixed positive closed current $T$ of bidimension $(r,r)$ and every integer $0\le p\le r$,
+Let $\Omega\subset\mathbb C^n$ be open, let $T$ be a positive closed current of bidimension $(r,r)$ on $\Omega$, and let $u,v,t$ be bounded plurisubharmonic functions on $\Omega$ such that $t\ge0$ and $u=v$ on $\{t>0\}$. Then, for every integer $0\le p\le r$,
 \[
  \mathbf1_{\{t>0\}}(\ddc u)^p\wedge T
        =\mathbf1_{\{t>0\}}(\ddc v)^p\wedge T.
 \]
 \end{lemma}
 \begin{proof}
-Put $w_\varepsilon=\max\{u+\varepsilon t,v\}$. On $\{t>0\}$, $u=v$ makes the first branch strictly larger, so maximum locality gives equality there with $(\ddc(u+\varepsilon t))^p\wedge T$. Multiply by $t$; the equality then holds everywhere, since this weight vanishes on the complement. As $\varepsilon\downarrow0$ both potentials decrease, and weighted continuity yields
-$t(\ddc\max\{u,v\})^p\wedge T=t(\ddc u)^p\wedge T$.
-Interchange $u,v$ and obtain the analogous identity with $v$. Dividing by $t+\delta$ and then letting $\delta\downarrow0$ gives the assertion against coefficient variations.
+For $\varepsilon>0$ put $w_\varepsilon=\max\{u+\varepsilon t,v\}$. On $\{t>0\}$ we have $u+\varepsilon t>u=v$, so $\{t>0\}\subset\{u+\varepsilon t>v\}$, and maximum locality (\cref{prop:bt-maximum-locality}) gives
+\[
+ \mathbf1_{\{t>0\}}(\ddc w_\varepsilon)^p\wedge T=\mathbf1_{\{t>0\}}(\ddc(u+\varepsilon t))^p\wedge T.
+\]
+Multiplying by $t$, which vanishes outside $\{t>0\}$, we obtain $t(\ddc w_\varepsilon)^p\wedge T=t(\ddc(u+\varepsilon t))^p\wedge T$. As $\varepsilon$ decreases to zero along a sequence, $w_\varepsilon$ decreases to $\max\{u,v\}$ and $u+\varepsilon t$ decreases to $u$, because $t\ge0$. The weighted form of \cref{thm:bt-decreasing-continuity}, with the fixed weight $t$, therefore yields
+\[
+ t(\ddc\max\{u,v\})^p\wedge T=t(\ddc u)^p\wedge T.
+\]
+Interchanging the roles of $u$ and $v$, we also get $t(\ddc\max\{u,v\})^p\wedge T=t(\ddc v)^p\wedge T$, and hence $t(\ddc u)^p\wedge T=t(\ddc v)^p\wedge T$. Finally, multiply the coefficient measures of both sides by $1/(t+\delta)$ and let $\delta\downarrow0$. Since $t/(t+\delta)\to\mathbf1_{\{t>0\}}$ pointwise and boundedly, dominated convergence with respect to the total variations of the coefficient measures gives the assertion.
 \end{proof}
 
+Bedford--Taylor products are local in the plurifine topology, in the following sense.
+
 \begin{theorem}\label{thm:bt-plurifine-locality}
-Bounded-potential products with base current $1$ are local in the plurifine topology. Precisely, on a complex manifold of dimension $n$, let $u_l,v_l$, $1\le l\le q$, be locally bounded plurisubharmonic functions equal on a plurifine open $W$, where $1\le q\le n$ is an integer. Then
+Let $X$ be a complex manifold of dimension $n$, let $1\le q\le n$ be an integer, and let $u_1,\ldots,u_q$ and $v_1,\ldots,v_q$ be locally bounded plurisubharmonic functions on $X$. If $u_l=v_l$ on a plurifine open set $W\subset X$ for every $l$, then
 \[
  \mathbf1_W\ddc u_1\wedge\cdots\wedge\ddc u_q
      =\mathbf1_W\ddc v_1\wedge\cdots\wedge\ddc v_q.
 \]
-The restriction uses the completed coefficient measures; it has an unambiguous Borel representative modulo their null sets.
+Here $W$ need not be Borel. It is measurable for the completions of the total variations of the coefficient measures of both products, and $\mathbf1_W$ acts on these completed measures; up to null sets of these measures, $W$ coincides with a Borel set.
 \end{theorem}
 \begin{proof}
-Work in a coordinate ball; equality of currents can be checked locally. Write $W$ for its intersection with that ball. Cover $W$ by local base sets $\{\psi>0\}$ in coordinate balls, and put $t=\max\{\psi,0\}$. On each such set the preceding lemma proves equality of powers. Polarization gives equality of mixed products: expand powers of the sums of the $q$ potentials and take the alternating sum over subsets, which isolates $q!$ times their mixed product. The same argument applies after restricting to a smaller ball where every potential and $t$ is bounded.
+Equality of currents of order zero is a local property, so we may assume that $X$ is an open ball in $\mathbb C^n$; by \cref{prop:plurifine-base}, the intersection of $W$ with this ball is plurifine open in the ball. Write $S_u=\ddc u_1\wedge\cdots\wedge\ddc u_q$ and $S_v=\ddc v_1\wedge\cdots\wedge\ddc v_q$.
 
-The quasi-Lindel\"of theorem selects countably many such base sets covering $W$ outside a pluripolar set. Their union is Borel. Bounded-product coefficient variations do not charge the exception by \cref{cor:psh-pluripolar-discrepancy}. Thus $W$ is measurable for their completions, and equality on the countable union gives equality on $W$. The base current is $1$ in this last argument: an arbitrary singular current could charge the pluripolar exception.
+\emph{Step 1: base sets.} Let $Q$ be a ball with $\overline Q\subset X$, and let $\psi$ be a bounded plurisubharmonic function on a neighborhood of $\overline Q$ such that $A=Q\cap\{\psi>0\}\subset W$. Put $t=\max\{\psi,0\}$. The functions $u_l$, $v_l$ and $t$ are bounded on $Q$. For every nonempty set $I\subset\{1,\ldots,q\}$, the functions $u_I=\sum_{l\in I}u_l$ and $v_I=\sum_{l\in I}v_l$ are bounded and plurisubharmonic on $Q$, and they coincide on $Q\cap\{t>0\}=A$. By \cref{lem:bt-superlevel-locality}, applied on $Q$ with $T=1$ and $p=q$, we have $\mathbf1_A(\ddc u_I)^q=\mathbf1_A(\ddc v_I)^q$. Since bounded products are additive in each factor (\cref{prop:bt-positive-recursion}) and symmetric (\cref{thm:bt-decreasing-continuity}), the polarization identity
+\[
+ q!\,\ddc u_1\wedge\cdots\wedge\ddc u_q
+ =\sum_{\varnothing\ne I\subset\{1,\ldots,q\}}(-1)^{q-|I|}(\ddc u_I)^q
+\]
+holds, as in the proof of \cref{cor:bt-polynomial-weights}: after expansion, a product in which some index is missing cancels in the alternating sum, and the product containing every index once occurs $q!$ times. The same identity holds for the $v_l$. Hence $\mathbf1_AS_u=\mathbf1_AS_v$.
+
+\emph{Step 2: countable selection.} The proof of \cref{thm:plurifine-quasi-lindelof}, applied to the ball $X$ and the family consisting of $W$ alone, provides countably many sets $A_k=Q_k\cap\{\psi_k>0\}\subset W$ as in Step 1 whose union $V$ is Borel and such that $W\setminus V$ is pluripolar. By \cref{cor:psh-pluripolar-discrepancy}, $W\setminus V$ has outer measure zero for the total variations of the coefficient measures of $S_u$ and $S_v$. Hence $W$ is measurable for their completions, and $\mathbf1_WS_u=\mathbf1_VS_u$, $\mathbf1_WS_v=\mathbf1_VS_v$. The Borel sets $A_k'=A_k\setminus(A_1\cup\cdots\cup A_{k-1})$ partition $V$, and Step 1 gives $\mathbf1_{A_k'}S_u=\mathbf1_{A_k'}\mathbf1_{A_k}S_u=\mathbf1_{A_k'}\mathbf1_{A_k}S_v=\mathbf1_{A_k'}S_v$. Summing over $k$, by countable additivity of the coefficient measures, we obtain $\mathbf1_VS_u=\mathbf1_VS_v$, which proves the theorem.
+
+Only Step 2 uses that the base current is $1$: \cref{lem:bt-superlevel-locality} holds for every positive closed current $T$, but such a current may charge the pluripolar set $W\setminus V$.
 \end{proof}
 \index{Bedford--Taylor product!plurifine locality}
 
 \begin{proposition}\label{prop:finite-locus-truncation}
-For plurisubharmonic $u_1,\ldots,u_q$ on a coordinate domain in $\mathbb C^n$, with integer $1\le q\le n$, and for each integer $m\ge1$, put $u_l^{(m)}=\max\{u_l,-m\}$ and $E_m=\bigcap_l\{u_l>-m\}$. If $k\ge m$ is an integer, then
+Let $\Omega\subset\mathbb C^n$ be a domain, let $1\le q\le n$ be an integer, and let $u_1,\ldots,u_q\in\PSH(\Omega)$. For every integer $m\ge1$ put
 \[
- \mathbf1_{E_m}\ddc u_1^{(k)}\wedge\cdots\wedge\ddc u_q^{(k)}
- =\mathbf1_{E_m}\ddc u_1^{(m)}\wedge\cdots\wedge\ddc u_q^{(m)}.
+ u_l^{(m)}=\max\{u_l,-m\},\qquad E_m=\bigcap_{l=1}^q\{u_l>-m\},\qquad S_m=\ddc u_1^{(m)}\wedge\cdots\wedge\ddc u_q^{(m)}.
 \]
-The trace measures of the products restricted to $E_m$ increase with $m$ and give every pluripolar set zero mass. Their increasing limit is a measure, potentially of infinite mass on compact sets.
+Then, for all integers $k\ge m\ge1$,
+\[
+ \mathbf1_{E_m}S_k=\mathbf1_{E_m}S_m.
+\]
+The restrictions $\mu_m=\mathbf1_{E_m}\mu_{S_m}$ of the trace measures $\mu_{S_m}$ increase with $m$ and give zero mass to every pluripolar set. Their increasing limit $\mu=\lim_m\mu_m$ is a Borel measure on $\Omega$, possibly of infinite mass on compact sets, which also gives zero mass to every pluripolar set.
 \end{proposition}
 \begin{proof}
-The Borel $E_m$ is plurifine open. On it all the specified truncations equal the original finite potentials, so \cref{thm:bt-plurifine-locality} gives the equality. Since $E_m\subset E_k$, positivity gives increase of the trace measures. Each bounded product avoids pluripolar sets, and restriction preserves that property. Monotone convergence defines the limiting measure and proves countable additivity, by interchange of the increasing limit and the nonnegative countable sum. It also preserves zero mass on every pluripolar set. Local finiteness requires a separate mass estimate before this limit can define an order-zero current.
+Each set $\{u_l>-m\}$ is a subbasic plurifine open set, so $E_m$ is plurifine open; it is also Borel. On $E_m$ we have $u_l>-m$, and hence $u_l^{(k)}=u_l=u_l^{(m)}$ for all $l$ and all $k\ge m$. The truncations are locally bounded plurisubharmonic functions, so \cref{thm:bt-plurifine-locality} gives $\mathbf1_{E_m}S_k=\mathbf1_{E_m}S_m$. Since $E_m\subset E_k$ and the trace measure of $S_k$ is positive, $\mu_m=\mathbf1_{E_m}\mu_{S_k}\le\mathbf1_{E_k}\mu_{S_k}=\mu_k$. By \cref{cor:psh-pluripolar-discrepancy}, every pluripolar subset of $\Omega$ has outer measure zero for $\mu_{S_m}$, and hence for $\mu_m$.
+
+For a Borel set $A\subset\Omega$ put $\mu(A)=\lim_m\mu_m(A)\in[0,\infty]$. If $A$ is the disjoint union of Borel sets $A_i$, then
+\[
+ \mu(A)=\lim_m\sum_i\mu_m(A_i)=\sum_i\lim_m\mu_m(A_i)=\sum_i\mu(A_i),
+\]
+by monotone convergence for series of nonnegative terms that increase with $m$. Thus $\mu$ is a Borel measure. Every pluripolar subset of $\Omega$ is contained in a Borel pluripolar set: cover $\Omega$ by countably many balls $B_k\subset\Omega$, choose by \cref{thm:zero-capacity-pluripolar} functions $V_k\in\PSH(B_k)$ whose pole sets contain the given set within $B_k$, and take the union of these pole sets, which is pluripolar by the same theorem. Since $\mu_m$ vanishes on this Borel set for every $m$, so does $\mu$. In general $\mu$ is not locally finite (\cref{ex:nonpluripolar-infinite-local-mass}); a current of order zero can be obtained from the $S_m$ only under an additional local mass bound, which is the subject of \cref{chap:q09}.
 \end{proof}
 \index{plurisubharmonic function!finite locus}\index{truncation!plurifine compatibility}
 
 \section{Common poles and quasi-extrema}
 \label{sec:plurifine-quasi-extrema}
 
-The difference of two plurisubharmonic functions is undefined where both are $-\infty$. Removing that common pole set makes it a continuous extended-real function for the plurifine topology. Further pluripolar deletions do not change its extrema on a fine open set.
+Let $\varphi$ and $\psi$ be plurisubharmonic. Their difference $\varphi-\psi$ is defined, with values in $[-\infty,\infty]$, at every point outside the common pole set $\{\varphi=\psi=-\infty\}$, where it would be the meaningless expression $-\infty-(-\infty)$; we assign no value there. We show that $\varphi-\psi$ is plurifinely continuous off the common pole set, and that its supremum and infimum over a plurifine open set do not change if an arbitrary pluripolar set containing the common poles is removed. This allows us to compare potentials with different singularities without discarding more than a pluripolar set.
 
 \begin{proposition}\label{prop:plurifine-difference-continuity}
-For plurisubharmonic $\varphi,\psi$ on a coordinate domain, put $P=\{\varphi=\psi=-\infty\}$. Then $P$ is plurifine closed and pluripolar, and $\varphi-\psi$ is continuous with values in $[-\infty,\infty]$ on its plurifine open complement. This remains true after adding a smooth real function.
+Let $\Omega\subset\mathbb C^n$ be a domain, let $\varphi,\psi\in\PSH(\Omega)$, and put $P=\{\varphi=\psi=-\infty\}$. Then $P$ is plurifine closed and pluripolar, and the function $\varphi-\psi$ is continuous from the plurifine open set $\Omega\setminus P$, with the plurifine topology, to $[-\infty,\infty]$. The same holds for $\varphi-\psi+b$, for every smooth real function $b$ on $\Omega$.
 \end{proposition}
 \begin{proof}
-Each pole set is the inverse image of the closed singleton $\{-\infty\}$ under a generating continuous function. Their intersection is closed and lies in a plurisubharmonic pole set. At a point where both potentials are finite, subtraction is continuous. If only $\varphi$ is $-\infty$, a finite bound for $\psi$ from both sides in a fine neighborhood, together with arbitrarily small upper bounds for $\varphi$, proves continuity to $-\infty$. If only $\psi$ is $-\infty$, the same argument gives continuity to $+\infty$. A smooth function is Euclidean continuous and hence plurifinely continuous, so addition preserves these conclusions.
+The function $\varphi$ is plurifinely continuous with values in $[-\infty,\infty)$, and $\{-\infty\}$ is closed in $[-\infty,\infty)$; hence the pole set $\{\varphi=-\infty\}$ is plurifine closed. The same holds for $\psi$, so $P$ is plurifine closed. It is pluripolar because it lies in the pole set of $\varphi$.
+
+The subtraction $(s,t)\mapsto s-t$ is continuous from $[-\infty,\infty)^2\setminus\{(-\infty,-\infty)\}$ to $[-\infty,\infty]$. At points where $s$ and $t$ are finite, this is the continuity of subtraction on $\mathbb R^2$. If $s=-\infty$ and $t$ is finite, then for every $M>0$ we have $s'-t'<-M$ whenever $t'>t-1$ and $s'<t-1-M$; this is continuity with the value $-\infty$. Symmetrically, if $s$ is finite and $t=-\infty$, then $s'-t'>M$ whenever $s'>s-1$ and $t'<s-1-M$. Since $z\mapsto(\varphi(z),\psi(z))$ is plurifinely continuous on $\Omega\setminus P$ with values in this domain, $\varphi-\psi$ is plurifinely continuous on $\Omega\setminus P$. Finally, $b$ is continuous for the Euclidean topology, hence for the plurifine topology, and addition is continuous from $[-\infty,\infty]\times\mathbb R$ to $[-\infty,\infty]$.
 \end{proof}
 
 \begin{definition}\label{def:pluripolar-quasi-extrema}
-If an extended-real $f$ is defined outside a pluripolar $Z$ in a nonempty plurifine open $W$, define
+Let $X$ be a complex manifold, let $W\subset X$ be a nonempty plurifine open set, let $Z\subset X$ be pluripolar, and let $f\colon W\setminus Z\to[-\infty,\infty]$. The \emph{quasi-supremum} and the \emph{quasi-infimum} of $f$ on $W$ are
 \[
- \operatorname{q\!\sup}_W f
-   =\inf_{N\supset Z,\ N\text{ pluripolar}}\sup_{W\setminus N}f,
+ \qsup_W f
+   =\inf_{N}\,\sup_{W\setminus N}f,
  \qquad
- \operatorname{q\!\inf}_W f
-   =\sup_{N\supset Z,\ N\text{ pluripolar}}\inf_{W\setminus N}f.
+ \qinf_W f
+   =\sup_{N}\,\inf_{W\setminus N}f,
 \]
-The sets over which these extrema are taken are nonempty by positive volume. All extrema use the extended-real order.
+where $N$ ranges over the pluripolar subsets of $X$ containing $Z$, and all suprema and infima are taken in $[-\infty,\infty]$.
 \end{definition}
 \index{quasi-supremum!pluripolar exception}\index{quasi-infimum!pluripolar exception}
 
+The sets $W\setminus N$ in this definition are nonempty: by \cref{prop:plurifine-positive-volume}, $W$ contains a Borel set of positive Lebesgue measure in some chart, whereas $N$ is Lebesgue null in every chart.
+
 \begin{corollary}\label{cor:quasi-extrema-common-poles}
-Let $\varphi,\psi$ be plurisubharmonic on a coordinate domain and $f=\varphi-\psi+b$, where $b$ is real and smooth, and let $Z$ be any pluripolar set containing their common poles. For a nonempty plurifine open $W$,
+Let $\Omega\subset\mathbb C^n$ be a domain, let $\varphi,\psi\in\PSH(\Omega)$, let $b$ be a smooth real function on $\Omega$, and let $f=\varphi-\psi+b$ on $\Omega\setminus P$, where $P=\{\varphi=\psi=-\infty\}$. Let $Z$ be a pluripolar set containing $P$, and let $W\subset\Omega$ be a nonempty plurifine open set. Then
 \[
- \operatorname{q\!\sup}_W f=\sup_{W\setminus Z}f,
+ \qsup_W f=\sup_{W\setminus Z}f,
  \qquad
- \operatorname{q\!\inf}_W f=\inf_{W\setminus Z}f.
+ \qinf_W f=\inf_{W\setminus Z}f.
 \]
-The values are independent of the chosen $Z$.
+In particular, the right-hand sides do not depend on the choice of $Z$.
 \end{corollary}
 \begin{proof}
-The common-pole complement $W\setminus P$ is fine open and the difference is continuous there. For any pluripolar $N\supset P$, its complement is dense in this open set by \cref{prop:plurifine-positive-volume}. A continuous extended-real function has the same supremum and infimum on a dense subset: any strict finite level below the supremum or above the infimum is attained in a nonempty open level set, which meets the dense subset. Thus all the displayed extrema equal the extrema on $W\setminus P$. This proves both identities and their independence. No value is assigned to the undefined subtraction at common poles.
+The set $W'=W\setminus P$ is plurifine open, and $f$ is plurifinely continuous on $W'$, by \cref{prop:plurifine-difference-continuity}. Let $N$ be a pluripolar set containing $P$. Then $W'\setminus N$ is dense in $W'$ for the plurifine topology, because a nonempty plurifine open subset of $W'$ is not contained in $N$, by \cref{prop:plurifine-positive-volume}. We claim that $\sup_{W'\setminus N}f=\sup_{W'}f$. The inequality $\le$ holds because $W'\setminus N\subset W'$. If $s\in\mathbb R$ and $s<\sup_{W'}f$, then $\{z\in W':f(z)>s\}$ is a nonempty plurifine open set, which therefore meets $W'\setminus N$; hence $\sup_{W'\setminus N}f>s$. This proves the claim, and the same argument with the sets $\{f<s\}$ gives $\inf_{W'\setminus N}f=\inf_{W'}f$.
+
+Since $W\setminus N=W'\setminus N$ whenever $N\supset P$, every pluripolar set $N\supset Z$ gives $\sup_{W\setminus N}f=\sup_{W\setminus P}f$; taking $N=Z$, we also get $\sup_{W\setminus Z}f=\sup_{W\setminus P}f$. Hence $\qsup_Wf=\sup_{W\setminus Z}f=\sup_{W\setminus P}f$, and similarly $\qinf_Wf=\inf_{W\setminus Z}f=\inf_{W\setminus P}f$. The common values do not involve $Z$.
 \end{proof}
