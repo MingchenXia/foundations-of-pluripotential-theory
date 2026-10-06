@@ -11,10 +11,11 @@ root = Path(__file__).resolve().parents[1]
 destination = root / 'build/release'
 destination.mkdir(parents=True, exist_ok=True)
 tracked = subprocess.check_output(['git', 'ls-files', '-z'], cwd=root).decode().split('\0')
+excluded = {'plan/SESSION_LOG.md'}  # Local operational handoff, outside the book source package.
 archive = destination / 'foundations-source.tar.gz'
 with tarfile.open(archive, 'w:gz') as stream:
     for name in tracked:
-        if name:
+        if name and name not in excluded:
             stream.add(root / name, arcname=name, recursive=False)
 with tempfile.TemporaryDirectory(prefix='foundations-release-') as folder:
     fresh = Path(folder)
