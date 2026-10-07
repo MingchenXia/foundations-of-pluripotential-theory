@@ -946,3 +946,5 @@ At the author's request every result mentioned in the book now has a complete pr
 - **Validation:** the forced build gives 932 physical pages (last printed page 918), with no unresolved references and no overfull or underfull boxes; the audit shows 0 errors. Citations with locators are identical to `6e7fde0`, and no label or index entry was lost. The release archive was not regenerated.
 
 Record: `research/reviews/2026-10-07-complete-proofs-round3.md` and `.json`.
+
+The author accepted the recommendations on the round-3 points: the notes title for Chapter 4 is unchanged, the two normal-coordinates lemmas stay separate, the special-case theorem is kept, and the standard facts stay prerequisites (the preface now names the change of variables formula). `make release` rebuilt the source archive in an empty directory with matching page text (932 pages). The archive is in the untracked `build/release/`, and nothing was published.

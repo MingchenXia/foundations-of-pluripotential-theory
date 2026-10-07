@@ -332,4 +332,18 @@ Builds and audits do not certify mathematics.
   - `cor:zero-lelong-trivial-multiplier-ideal` for quasi-psh $tu$;
   - the Lelong-number reminder before `prop:smooth-target-psh-modification`.
 - **Length.** The book grew from 742 to 932 physical pages.
-- **Release archive.** It has not been regenerated.
+- **Release archive.** Regenerated after the author's decision; see below.
+
+## Author decisions after the round
+
+The author accepted the recommendations on the points above:
+- the notes section title for Chapter 4 stays as it is;
+- the two normal-coordinates lemmas stay separate;
+- `thm:bounded-density-relative-exponential-equation` is kept;
+- the listed standard facts stay reader prerequisites; the preface now also names the change of variables formula among them.
+
+The source archive was then regenerated with `make release`. The release target first runs `make verify` and then rebuilds the archive of tracked files in an empty directory; the page text matches the current draft (932 pages). The archive and the PDF are in the untracked `build/release/`, with checksums:
+- `foundations-source.tar.gz`: `6298f65a24d351b8a1f269832853dd30ed94d7c4eaf35c7cd472570ecceae9b6`;
+- `foundations-draft.pdf`: `527ff1f475c3e2bf49237542b6c655e2a61bedd6c3c7b23dd3c48307979eefb2`.
+
+Nothing was published.
