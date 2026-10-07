@@ -3,7 +3,7 @@
 
 Let $d\geq1$. For a function $v$ on $\mathbb R^d$ we write $D^2v=(\partial_a\partial_bv)_{a,b=1}^d$ for its real Hessian. In $L^p$ norms of vector-valued and matrix-valued functions, vectors carry the Euclidean norm and matrices the Hilbert--Schmidt norm $|M|=(\sum_{a,b}|M_{ab}|^2)^{1/2}$. Constants denoted by $C_d$ and $C_{d,p}$ depend only on the indicated parameters and may change from line to line.
 
-The Laplacian $\Delta v$ is the trace of $D^2v$, so a bound for $\Delta v$ does not bound $D^2v$ pointwise. We show that it does bound $D^2v$ in $L^p$ for $1<p<\infty$ (\cref{thm:hessian-multiplier-lp}). On the Fourier side, $\partial_a\partial_bv$ is obtained from $-\Delta v$ by multiplication with the bounded function $-\xi_a\xi_b/|\xi|^2$, so the case $p=2$ follows from Plancherel's theorem. For the other exponents we represent the corresponding operator away from the support of a function by a kernel that is smooth off the diagonal, and we use the Calder\'on--Zygmund decomposition: on each cube of the decomposition the function minus its average has mean zero, and this cancellation makes the image of that part integrable far from the cube. The section ends with Sobolev spaces and Morrey's inequality, which turn $L^p$ bounds for second derivatives into H\"older continuity of first derivatives.
+The Laplacian $\Delta v$ is the trace of $D^2v$. If $d\geq2$, a bound for $\Delta v$ does not bound $D^2v$ pointwise: a test function equal to $x_1^2-x_2^2$ near the origin has vanishing Laplacian and nonzero Hessian there. We show that $\Delta v$ does bound $D^2v$ in $L^p$ for $1<p<\infty$ (\cref{thm:hessian-multiplier-lp}). On the Fourier side, $\partial_a\partial_bv$ is obtained from $-\Delta v$ by multiplication with the bounded function $-\xi_a\xi_b/|\xi|^2$, so the case $p=2$ follows from Plancherel's theorem. For the other exponents we represent the corresponding operator away from the support of a function by a kernel that is smooth off the diagonal, and we use the Calder\'on--Zygmund decomposition: on each cube of the decomposition the function minus its average has mean zero, and this cancellation makes the image of that part integrable far from the cube. The section ends with Sobolev spaces and Morrey's inequality, which turn $L^p$ bounds for second derivatives into H\"older continuity of first derivatives.
 
 \begin{lemma}\label{lem:hessian-multiplier-kernel}
 \index{singular integral!kernel of Hessian multipliers}Let $1\leq a,b\leq d$, and define an operator $T_{ab}$ on $L^2(\mathbb R^d)$ by
@@ -48,11 +48,18 @@ For $z\neq0$ define
 \[
  K_{ab}(z)=\int_0^\infty\partial_a\partial_bH_t(z)\,\mathrm d t.
 \]
-Since $H_t(z)=t^{-d/2}H_1(z/\sqrt t)$, every derivative satisfies $\partial^\gamma H_t(z)=t^{-(d+|\gamma|)/2}(\partial^\gamma H_1)(z/\sqrt t)$, and induction on $|\gamma|$ shows that $\partial^\gamma H_1(w)=P_\gamma(w)\mathrm e^{-|w|^2/4}$ for a polynomial $P_\gamma$, of degree $m_\gamma$ say. Fix $0<c\leq c'$, and let $c\leq|z|\leq c'$ and $|\gamma|\geq2$. For $0<t\leq1$ we have $|P_\gamma(z/\sqrt t)|\leq C_\gamma(1+c'/\sqrt t)^{m_\gamma}$ and $\mathrm e^{-|z|^2/(4t)}\leq\mathrm e^{-c^2/(4t)}$; for $t\geq1$ we have $|P_\gamma(z/\sqrt t)|\leq C_\gamma(1+c')^{m_\gamma}$. Hence $|\partial^\gamma H_t(z)|\leq g_\gamma(t)$, where
+Since $H_t(z)=t^{-d/2}H_1(z/\sqrt t)$, every derivative satisfies
 \[
- g_\gamma(t)=C_\gamma t^{-(d+|\gamma|)/2}(1+c'/\sqrt t)^{m_\gamma}\mathrm e^{-c^2/(4t)}\ \ (0<t\leq1),\qquad g_\gamma(t)=C_\gamma(1+c')^{m_\gamma}t^{-(d+|\gamma|)/2}\ \ (t\geq1).
+ \partial^\gamma H_t(z)=t^{-(d+|\gamma|)/2}(\partial^\gamma H_1)(z/\sqrt t),
 \]
-This function is integrable on $(0,\infty)$ and does not depend on $z$: near $t=0$ the factor $\mathrm e^{-c^2/(4t)}$ dominates every power of $t^{-1}$, and for $t\geq1$ the exponent satisfies $(d+|\gamma|)/2\geq3/2>1$. By the mean value theorem and dominated convergence, we may therefore differentiate under the integral sign any number of times, so $K_{ab}$ is smooth on $\mathbb R^d\setminus\{0\}$, its derivatives are the integrals of the corresponding derivatives of $\partial_a\partial_bH_t$, and the integrals $\int_0^\varepsilon$ and $\int_R^\infty$ of $|\partial_a\partial_bH_t(z)|$ tend to zero as $\varepsilon\downarrow0$ and $R\uparrow\infty$, uniformly for $c\leq|z|\leq c'$. Differentiating the identity $H_{r^2s}(rz)=r^{-d}H_s(z)$ twice in $z$ and substituting $t=r^2s$, we find that $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Thus $K_{ab}$ is homogeneous of degree $-d$ and $\nabla K_{ab}$ is homogeneous of degree $-d-1$, and the bounds in (1) follow from the boundedness of the continuous functions $K_{ab}$ and $\nabla K_{ab}$ on the unit sphere. The same scaling shows that the function $z\mapsto\int_0^\infty|\partial_a\partial_bH_t(z)|\,\mathrm d t$ is homogeneous of degree $-d$; it is bounded on the unit sphere by $\int_0^\infty g_\gamma(t)\,\mathrm d t$ with $c=c'=1$, so it is at most $C_d|z|^{-d}$.
+and induction on $|\gamma|$ shows that $\partial^\gamma H_1(w)=P_\gamma(w)\mathrm e^{-|w|^2/4}$ for a polynomial $P_\gamma$, of degree $m_\gamma$ say. Fix $0<c\leq c'$, and let $c\leq|z|\leq c'$ and $|\gamma|\geq2$. Since $|P_\gamma(w)|\leq C_\gamma(1+|w|)^{m_\gamma}$ and $\mathrm e^{-|z|^2/(4t)}\leq\mathrm e^{-c^2/(4t)}$, we obtain $|\partial^\gamma H_t(z)|\leq g_\gamma(t)$, where
+\[
+ g_\gamma(t)=\begin{cases}
+ C_\gamma t^{-(d+|\gamma|)/2}(1+c't^{-1/2})^{m_\gamma}\mathrm e^{-c^2/(4t)}, & 0<t\leq1,\\
+ C_\gamma(1+c')^{m_\gamma}t^{-(d+|\gamma|)/2}, & t\geq1.
+ \end{cases}
+\]
+This function is integrable on $(0,\infty)$ and does not depend on $z$: near $t=0$ the factor $\mathrm e^{-c^2/(4t)}$ dominates every power of $t^{-1}$, and for $t\geq1$ the exponent satisfies $(d+|\gamma|)/2\geq3/2>1$. By the mean value theorem and dominated convergence, we may therefore differentiate under the integral sign any number of times, so $K_{ab}$ is smooth on $\mathbb R^d\setminus\{0\}$, its derivatives are the integrals of the corresponding derivatives of $\partial_a\partial_bH_t$, and the integrals $\int_0^\varepsilon$ and $\int_R^\infty$ of $|\partial_a\partial_bH_t(z)|$ tend to zero as $\varepsilon\downarrow0$ and $R\uparrow\infty$, uniformly for $c\leq|z|\leq c'$. Differentiating the identity $H_{r^2s}(rz)=r^{-d}H_s(z)$ twice in $z$ and substituting $t=r^2s$, we find that $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Thus $K_{ab}$ is homogeneous of degree $-d$ and $\nabla K_{ab}$ is homogeneous of degree $-d-1$, and the bounds in (1) follow from the boundedness of the continuous functions $K_{ab}$ and $\nabla K_{ab}$ on the unit sphere. The same scaling shows that the function $z\mapsto\int_0^\infty|\partial_a\partial_bH_t(z)|\,\mathrm d t$ is homogeneous of degree $-d$; it is bounded on the unit sphere by $\int_0^\infty g_\gamma(t)\,\mathrm d t$, where $\partial^\gamma=\partial_a\partial_b$ and $c=c'=1$, so it is at most $C_d|z|^{-d}$.
 
 To prove (2), let $f$ and $F$ be as there. By the Cauchy--Schwarz inequality on $F$, the function $f$ is integrable, so $f\in L^1\cap L^2$. Let $L$ be a compact set disjoint from $F$. For $x\in L$,
 \[
@@ -157,7 +164,10 @@ Thus $\partial_j(\chi v)=\chi\partial_jv+(\partial_j\chi)v$. The functions $\par
 
 Now let $\Supp\chi$ be a compact subset of $U$, and let $W$ be as in the statement. By the Leibniz formula, $\chi v$ and its derivatives of order at most $k$ vanish almost everywhere outside $\Supp\chi$, and there they are bounded by $C\sum_{|\beta|\leq k}|\partial^\beta v|$, where $C$ depends on $d$, $k$ and the derivatives of $\chi$ of order at most $k$. Hence their $L^p$ norms are at most $C\|v\|_{W^{k,p}(W)}$. To identify the derivatives of the extension by zero, let $\phi$ be a test function on $\mathbb R^d$, and choose a smooth cutoff function $\zeta$ for $\Supp\chi$ in $U$ which equals $1$ on a neighborhood $N$ of $\Supp\chi$ (\cref{lem:mollifier-density}(4)). Then $\zeta\phi$ is a test function on $U$, and $\partial^\alpha(\zeta\phi)=\partial^\alpha\phi$ on $N$. Since $\chi v$ and $\partial^\alpha(\chi v)$ vanish almost everywhere outside $\Supp\chi$,
 \[
- \int\chi v\,\partial^\alpha\phi\,\mathrm d x=\int\chi v\,\partial^\alpha(\zeta\phi)\,\mathrm d x=(-1)^{|\alpha|}\int\partial^\alpha(\chi v)\,\zeta\phi\,\mathrm d x=(-1)^{|\alpha|}\int\partial^\alpha(\chi v)\,\phi\,\mathrm d x.
+\begin{split}
+ \int\chi v\,\partial^\alpha\phi\,\mathrm d x&=\int\chi v\,\partial^\alpha(\zeta\phi)\,\mathrm d x\\
+ &=(-1)^{|\alpha|}\int\partial^\alpha(\chi v)\,\zeta\phi\,\mathrm d x=(-1)^{|\alpha|}\int\partial^\alpha(\chi v)\,\phi\,\mathrm d x.
+\end{split}
 \]
 This proves (1).
 
@@ -174,11 +184,14 @@ Assume first that $v$ vanishes almost everywhere outside the compact set $K$. By
 for every measurable function $g$ on $U$ that vanishes outside $K'$. The smooth functions $w_\varepsilon=v_\varepsilon\circ\Phi$ vanish outside $\Phi^{-1}(K')$. Applying this inequality to $v_\varepsilon-v$ and its derivatives, we find that $w_\varepsilon\to v\circ\Phi$ and, for $1\leq|\alpha|\leq k$,
 \[
  \partial^\alpha w_\varepsilon\to G_\alpha=\sum_{1\leq|\beta|\leq|\alpha|}c_{\alpha\beta}\,(\partial^\beta v)\circ\Phi\qquad\text{in }L^p(V),
- \qquad\|G_\alpha\|_p\leq MJ^{1/p}\sum_{1\leq|\beta|\leq|\alpha|}\|\partial^\beta v\|_p.
 \]
+with $\|G_\alpha\|_p\leq MJ^{1/p}\sum_{1\leq|\beta|\leq|\alpha|}\|\partial^\beta v\|_p$.
 For a test function $\phi$ on $V$, we obtain
 \[
- \int(v\circ\Phi)\,\partial^\alpha\phi\,\mathrm d y=\lim_{\varepsilon\to0}\int w_\varepsilon\,\partial^\alpha\phi\,\mathrm d y=(-1)^{|\alpha|}\lim_{\varepsilon\to0}\int\partial^\alpha w_\varepsilon\,\phi\,\mathrm d y=(-1)^{|\alpha|}\int G_\alpha\phi\,\mathrm d y.
+\begin{split}
+ \int(v\circ\Phi)\,\partial^\alpha\phi\,\mathrm d y&=\lim_{\varepsilon\to0}\int w_\varepsilon\,\partial^\alpha\phi\,\mathrm d y\\
+ &=(-1)^{|\alpha|}\lim_{\varepsilon\to0}\int\partial^\alpha w_\varepsilon\,\phi\,\mathrm d y=(-1)^{|\alpha|}\int G_\alpha\phi\,\mathrm d y.
+\end{split}
 \]
 Hence $\partial^\alpha(v\circ\Phi)=G_\alpha\in L^p(V)$. These functions, and $v\circ\Phi$, vanish almost everywhere outside $\Phi^{-1}(K)$, and summing the bounds over $|\alpha|\leq k$ gives $\|v\circ\Phi\|_{W^{k,p}(V)}\leq C\|v\|_{W^{k,p}(U)}$, with $C$ depending only on $k$, $p$, $J$ and $M$, that is, on $k$, $p$, $\Phi$ and $K$ once $\delta$ has been fixed in terms of $K$ and $U$.
 

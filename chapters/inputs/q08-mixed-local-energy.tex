@@ -1,6 +1,6 @@
 \subsection{Mixed energy and truncation}
 \label{sec:mixed-local-energy}
-In the next section we approximate several potentials at once by canonical approximants and pass to the limit in their mixed Monge--Amp\`ere products. The approximants converge in capacity and have bounded energies, but they need not be uniformly bounded, so \cref{thm:bt-capacity-continuity} does not apply to them directly. We therefore compare the mixed products with those of the truncated potentials, and for this we need to know that the sets where one of the potentials is very negative carry little mass of a mixed product. This follows from the mixed energy inequality of \cref{thm:bounded-mixed-local-energy}, which bounds a mixed energy by a constant multiple of the geometric mean of the energies $e_1$ of \cref{def:bounded-zero-boundary-energy}.
+In the next section we approximate several potentials at once by canonical approximants and pass to the limit in their mixed Monge--Amp\`ere products. The approximants converge in capacity and have bounded energies, but we have no uniform bound for them, so \cref{thm:bt-capacity-continuity} does not apply to them directly. We therefore compare the mixed products with those of the truncated potentials, and for this we need to know that the sets where one of the potentials is very negative carry little mass of a mixed product. This follows from the mixed energy inequality of \cref{thm:bounded-mixed-local-energy}, which bounds a mixed energy by a constant multiple of the geometric mean of the energies $e_1$ of \cref{def:bounded-zero-boundary-energy}.
 
 \begin{theorem}\label{thm:bounded-mixed-local-energy}
 Let $u_0,\ldots,u_n\in\mathcal E_0(B)$. Then
@@ -20,23 +20,35 @@ In this step we assume that each $u_l$ equals $c_l\rho$ on a neighborhood of $\p
  I(b_0,\ldots,b_n)
        =\int_B(-b_0)\,\ddc b_1\wedge\cdots\wedge\ddc b_n,
 \]
-and use the same expression when the $b_l$ are smooth plurisubharmonic functions on a neighborhood of $\overline B$ vanishing on $\partial B$.
+and use the same expression when $b_0,b_1$ are smooth real functions and $b_2,\ldots,b_n$ smooth plurisubharmonic functions on a neighborhood of $\overline B$; in that case the integrand is a smooth form on a neighborhood of $\overline B$, and the integral is finite.
 
-Consider first such smooth functions, and put $S=\ddc b_2\wedge\cdots\wedge\ddc b_n$, with $S=1$ if $n=1$. With $\mathrm d^{\mathrm c}$ as in \eqref{eq:dc-operator}, we have $\mathrm d(b_0\,\mathrm d^{\mathrm c}b_1\wedge S)=\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S+b_0\,\ddc b_1\wedge S$, and the boundary term in Stokes' formula contains the factor $b_0=0$; hence
-\[
+Consider first such smooth functions, assume that $b_0=0$ on $\partial B$, and put $S=\ddc b_2\wedge\cdots\wedge\ddc b_n$, with $S=1$ if $n=1$. With $\mathrm d^{\mathrm c}$ as in \eqref{eq:dc-operator}, we claim that
+\begin{equation}\label{eq:mixed-local-energy-gradient-form}
  I(b_0,b_1,b_2,\ldots,b_n)
           =\int_B\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S.
+\end{equation}
+Fix a smooth function $\theta\colon\mathbb R\to[0,1]$ with $\theta=1$ on $(-\infty,-2]$ and $\theta=0$ on $[-1,\infty)$, and put $\chi_k=\theta(k\rho)$ for $k\geq1$; then $\chi_k\in C^\infty_c(B)$. The $(2n-1)$-form $\chi_kb_0\,\mathrm d^{\mathrm c}b_1\wedge S$ is smooth with compact support in $B$, and $S$ is closed, so \cref{prop:manifold-cutoffs-stokes} and the Leibniz rule give
+\[
+ 0=\int_B\chi_k\,\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S
+   +\int_Bb_0\,\mathrm d\chi_k\wedge\mathrm d^{\mathrm c}b_1\wedge S
+   +\int_B\chi_kb_0\,\ddc b_1\wedge S.
 \]
-As observed at the beginning of \cref{sec:bt-monotone}, $\mathrm db\wedge\mathrm d^{\mathrm c}c\wedge S=\mathrm dc\wedge\mathrm d^{\mathrm c}b\wedge S$ for smooth real functions $b,c$, and $\mathrm db\wedge\mathrm d^{\mathrm c}b=(\mathrm i/2\pi)\partial b\wedge\bar\partial b$ is a positive form. Since $S$ is a positive form of bidegree $(n-1,n-1)$, the real bilinear form
+As $k\to\infty$, $\chi_k\to1$ pointwise on $B$, and the forms $\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S$ and $b_0\,\ddc b_1\wedge S$ have bounded coefficients on $B$; by dominated convergence, the first and the last integral tend to $\int_B\mathrm db_0\wedge\mathrm d^{\mathrm c}b_1\wedge S$ and $-I(b_0,\ldots,b_n)$. In the middle integral, $\mathrm d\chi_k=k\theta'(k\rho)\,\mathrm d\rho$ vanishes outside the set where $-2\leq k\rho\leq-1$. Let $\Lambda$ be the maximum of $|\nabla b_0|$ on $\overline B$. If $z\in B$ and $\zeta\in\partial B$ is a nearest boundary point, then $b_0(\zeta)=0$ and $|z-\zeta|=R-|z-a|$, so the mean value theorem on the segment from $z$ to $\zeta$ gives
+\[
+ |b_0(z)|\leq\Lambda(R-|z-a|)\leq\frac{\Lambda}{R}(R^2-|z-a|^2)=\frac{\Lambda}{R}|\rho(z)|.
+\]
+Hence $|b_0\,k\theta'(k\rho)|\leq(\Lambda/R)|k\rho|\,|\theta'(k\rho)|\leq2\Lambda\sup|\theta'|/R$ on $B$, uniformly in $k$, and $b_0\,k\theta'(k\rho)\to0$ pointwise on $B$. Since $\mathrm d\rho\wedge\mathrm d^{\mathrm c}b_1\wedge S$ has bounded coefficients on $B$, dominated convergence shows that the middle integral tends to zero. This proves \eqref{eq:mixed-local-energy-gradient-form}.
+
+As observed at the beginning of \cref{sec:bt-monotone}, $\mathrm db\wedge\mathrm d^{\mathrm c}c\wedge S=\mathrm dc\wedge\mathrm d^{\mathrm c}b\wedge S$ for smooth real $b,c$, and $\mathrm db\wedge\mathrm d^{\mathrm c}b=(\mathrm i/2\pi)\partial b\wedge\bar\partial b$ is a strongly positive $(1,1)$-form. Each $\ddc b_l$ is a positive $(1,1)$-form, because the complex Hessian of a smooth plurisubharmonic function is positive semidefinite (\cref{sec:psh-hessian-maps}), and positive $(1,1)$-forms are strongly positive (\cref{sec:positive-currents}). By \cref{prop:positivity-cones}, the $(n,n)$-form $\mathrm db\wedge\mathrm d^{\mathrm c}b\wedge S$ is therefore a nonnegative multiple of the volume form. Consequently the real bilinear form
 \[
  (b,c)\longmapsto\int_B\mathrm db\wedge\mathrm d^{\mathrm c}c\wedge S,
 \]
-defined for smooth real $b,c$ vanishing on $\partial B$, is therefore symmetric and positive semidefinite. Expanding its value at $b+tc$, $t\in\mathbb R$, gives the Cauchy--Schwarz inequality, also when one of the diagonal terms vanishes:
+defined for smooth real functions $b,c$ on a neighborhood of $\overline B$ vanishing on $\partial B$, is symmetric and positive semidefinite, and by \eqref{eq:mixed-local-energy-gradient-form} its value at $(b,c)$ is $I(b,c,b_2,\ldots,b_n)$. Its value at $(b+tc,b+tc)$, $t\in\mathbb R$, is a nonnegative polynomial of degree at most two in $t$. If the coefficient of $t^2$ is positive, the discriminant of this polynomial is not positive; if that coefficient vanishes, the coefficient of $t$ vanishes as well. In both cases we obtain the Cauchy--Schwarz inequality
 \begin{equation}\label{eq:mixed-local-energy-two-slot}
  I(b,c,b_2,\ldots,b_n)^2
  \leq I(b,b,b_2,\ldots,b_n)I(c,c,b_2,\ldots,b_n).
 \end{equation}
-The symmetry of the bilinear form allows us to interchange the first two arguments of $I$, and the symmetry of the products allows us to permute the last $n$ arguments. Hence $I$ is symmetric in all $n+1$ arguments.
+The symmetry of the bilinear form allows us to interchange the first two arguments of $I$, and the symmetry of the products allows us to permute the last $n$ arguments. Hence $I$ is symmetric in all $n+1$ arguments when they are smooth plurisubharmonic functions on a neighborhood of $\overline B$ vanishing on $\partial B$.
 
 These assertions persist for potentials with quadratic collars. Extend each $u_l$ by $c_l\rho$ to a plurisubharmonic function on a neighborhood of $\overline B$. Let $\vartheta_\varepsilon$ be the radial mollifiers of \cref{sec:convolution}, denoted $\rho_\varepsilon$ there; we change the letter because $\rho$ is now the quadratic function above. Because $\rho$ is a quadratic polynomial and $\vartheta_\varepsilon$ is radial, $\rho*\vartheta_\varepsilon=\rho+\gamma\varepsilon^2$ with the constant $\gamma=\int|y|^2\vartheta_1(y)\,\mathrm dV(y)$. Hence
 \[
@@ -58,7 +70,7 @@ Let $u\in\mathcal E_0(B)$, put $m_\rho=\int_B(\ddc\rho)^n$, and for $j\geq1$ let
 \[
  \delta_j=j^{-n-1},\qquad v_j=\max\{u-\delta_j,j\rho\}.
 \]
-Since $u-\delta_j\leq-\delta_j$ while $j\rho>-\delta_j$ near $\partial B$, the function $v_j$ equals $j\rho$ on a neighborhood of $\partial B$ in $B$. Since $v_j-j\rho$ has compact support in $B$, the argument in the proof of \cref{lem:zero-boundary-truncation-mass} gives
+Since $u-\delta_j\leq-\delta_j$ while $j\rho>-\delta_j$ near $\partial B$, the function $v_j$ equals $j\rho$ on a neighborhood of $\partial B$ in $B$. Since $v_j$ and $j\rho$ coincide outside a compact subset of $B$, \cref{lem:compact-perturbation-mass} gives
 \[
  \int_B(\ddc v_j)^n=j^n m_\rho,
 \]
@@ -100,7 +112,7 @@ Letting $\chi$ increase to one proves \eqref{eq:bounded-mixed-local-energy}. Van
 \index{local energy!mixed inequality}
 
 \begin{corollary}\label{cor:mixed-products-energy-capacity-continuity}
-Let $E<\infty$, and for $1\leq l\leq n$ and $j\geq1$ let $u_{l,j}\in\mathcal E_0(B)$ with $e_1(u_{l,j})\leq E$. Suppose that, for each $l$, $u_{l,j}\to u_l$ locally in capacity as $j\to\infty$, where $u_l$ is a bounded nonpositive plurisubharmonic function on $B$. Then
+Let $E<\infty$, and for $1\leq l\leq n$ and $j\geq1$ let $u_{l,j}\in\mathcal E_0(B)$ with $e_1(u_{l,j})\leq E$. Suppose that, for each $l$, $u_{l,j}\to u_l$ locally in capacity as $j\to\infty$, where $u_l$ is a locally bounded plurisubharmonic function on $B$. Then
 \[
  \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{n,j}
           \longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_n
@@ -121,15 +133,15 @@ Let $D_{j,T}=\bigcup_{l=1}^n\{u_{l,j}\leq-T\}$. On $\{u_{l,j}\leq-T\}$ both $-u_
 \[
  R_j(D_{j,T})\leq nC_nE/T,\qquad R_{j,T}(D_{j,T})\leq nC_nE/T.
 \]
-On the complement of $D_{j,T}$, every $u_{l,j}$ is greater than $-T$. Maximum locality (\cref{prop:bt-maximum-locality} with $p=1$), applied to one factor at a time with the help of the symmetry of the products, shows that $R_j=R_{j,T}$ there. Hence, for every $\chi\in C_c(B)$,
+On the complement of $D_{j,T}$, every $u_{l,j}$ is greater than $-T$. For $0\leq k\leq n$ put $P_k=\ddc a_{1,j}\wedge\cdots\wedge\ddc a_{k,j}\wedge\ddc u_{k+1,j}\wedge\cdots\wedge\ddc u_{n,j}$, so that $P_0=R_j$ and $P_n=R_{j,T}$. By the symmetry of the products, $P_k=\ddc a_{k,j}\wedge\Theta_k$ and $P_{k-1}=\ddc u_{k,j}\wedge\Theta_k$ with the same closed positive current $\Theta_k$ formed by the other $n-1$ factors, and maximum locality (\cref{prop:bt-maximum-locality} with $p=1$, $u=u_{k,j}$, $v=-T$ and base current $\Theta_k$) gives $P_k=P_{k-1}$ on $\{u_{k,j}>-T\}$. Hence $R_j=R_{j,T}$ on the complement of $D_{j,T}$, and for every $\chi\in C_c(B)$,
 \[
  \left|\int_B\chi\,(R_j-R_{j,T})\right|
                     \leq2nC_nE\|\chi\|_\infty/T.
 \]
-Now fix $T>\max_l\|u_l\|_\infty$. Then the uniformly bounded functions $a_{l,j}$ converge to $\max\{u_l,-T\}=u_l$ locally in capacity, so \cref{thm:bt-capacity-continuity} shows that $R_{j,T}\to\ddc u_1\wedge\cdots\wedge\ddc u_n$ weakly. Consequently
+Now fix $\chi\in C_c(B)$, choose an open set $B'\Subset B$ containing $\Supp\chi$, and let $T>\max_l\sup_{B'}|u_l|$. For $\delta>0$ we have $\{a_{l,j}>\max\{u_l,-T\}+\delta\}\subset\{u_{l,j}>u_l+\delta\}$ and $\{a_{l,j}<\max\{u_l,-T\}-\delta\}\subset\{u_{l,j}<u_l-\delta\}$: in the first case $a_{l,j}>-T$, so $u_{l,j}=a_{l,j}$; in the second $\max\{u_l,-T\}>-T$, so it equals $u_l$, and $u_{l,j}\leq a_{l,j}$. Hence the uniformly bounded functions $a_{l,j}$ converge to the locally bounded plurisubharmonic function $\max\{u_l,-T\}$ locally in capacity, and \cref{thm:bt-capacity-continuity} shows that $R_{j,T}\to\bigwedge_l\ddc\max\{u_l,-T\}$ weakly on $B$. On $B'$ we have $\max\{u_l,-T\}=u_l$, so by locality (\cref{prop:bt-positive-recursion}) this limit equals $\ddc u_1\wedge\cdots\wedge\ddc u_n$ there. Consequently
 \[
- \limsup_{j\to\infty}\left|\int_B\chi\,R_j-\int_B\chi\,\ddc u_1\wedge\cdots\wedge\ddc u_n\right|\leq2nC_nE\|\chi\|_\infty/T,
+ \limsup_{j\to\infty}\left|\int_B\chi\,R_j-\int_B\chi\,\ddc u_1\wedge\cdots\wedge\ddc u_n\right|\leq2nC_nE\|\chi\|_\infty/T
 \]
-and letting $T\to\infty$ completes the proof.
+for all large $T$, and letting $T\to\infty$ completes the proof.
 \end{proof}
 \index{Bedford--Taylor product!energy-controlled continuity}
