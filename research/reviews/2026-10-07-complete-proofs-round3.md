@@ -233,7 +233,8 @@ Each change was verified by the reviser and by the referee, including every call
   - Hermitian $\omega$ in `lem:kahler-bundle-l2-estimate` and `lem:twisted-kahler-line-estimate`;
   - `lem:local-critical-gain-extension`;
   - in the inputs: `thm:holder-positive-potential-extension`, `lem:hermitian-extremal-pole-alternative`, `lem:hermitian-bounded-products`(2);
-  - `lem:l2-bounded-holomorphic-compactness` and `lem:compact-section-hilbert-space`: any compact complex manifold, if the final check confirms it.
+  - `lem:l2-bounded-holomorphic-compactness`(2),(3): any compact complex manifold;
+  - `lem:compact-section-hilbert-space`: any compact complex manifold, except the gentleness assertion, which needs the Kähler setting of `def:gentle-analytic-singularities`.
 - **Ch. 15:**
   - `lem:relative-weighted-cln`;
   - `thm:compact-nonpluripolar-finiteness`: semipositive $\tau_j$;
