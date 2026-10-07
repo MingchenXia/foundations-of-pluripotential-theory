@@ -340,20 +340,27 @@ The functions $w_j$ decrease to $w=\max\{u,v\}$. Applying \cref{thm:bt-decreasin
 To see that $\{u>v\}$ need not be open, let $D=\{z\in\mathbb C^n:|z_1|<1/2\}$, put $a_j=\mathrm e^{-j}$ for $j\ge1$, and let $w=\sum_{j\ge1}2^{-j}\log|z_1-a_j|$ on $D$. Each term is a positive multiple of $\log|z_1-a_j|^2$, which is plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}, and it is negative on $D$, because $|z_1-a_j|<1/2+\mathrm e^{-1}<1$. Hence the partial sums form a decreasing sequence of plurisubharmonic functions (\cref{prop:psh-max-gluing}), and since $w(0)=-\sum_jj2^{-j}=-2$ is finite, $w$ is plurisubharmonic on the domain $D$ by \cref{thm:psh-decreasing-nets}. The function $u=\max\{w,-4\}$ is plurisubharmonic with values in $[-4,0]$, and for the constant $v=-3$ the set $\{u>v\}=\{w>-3\}$ contains the origin but none of the points $(a_j,0,\ldots,0)$, at which $w=-\infty$; these points converge to the origin. Since $u(0)=-2$ while $u=-4$ at these points, $u$ is also an example of a bounded plurisubharmonic function which is not continuous.
 
 \begin{theorem}\label{thm:bt-comparison}
-Let $D\subset\mathbb{C}^n$ be a bounded open set, and let $u$ and $v$ be bounded plurisubharmonic functions on $D$ such that $\liminf_{D\ni z\to x}(u(z)-v(z))\ge0$ for every $x\in\partial D$. Then
+Let $D\subset\mathbb{C}^n$ be a bounded open set, and let $u$ and $v$ be locally bounded plurisubharmonic functions on $D$ such that $\liminf_{D\ni z\to x}(u(z)-v(z))\ge0$ for every $x\in\partial D$. Then
 \[
  \int_{\{u<v\}}(\ddc v)^n\le\int_{\{u<v\}}(\ddc u)^n,
 \]
 where both sides may be infinite. If $(\ddc u)^n=0$, then $u\ge v$ on $D$.
 \end{theorem}
 \begin{proof}
-Let $\varepsilon>0$. Every $x\in\partial D$ has a neighborhood $U_x$ with $u>v-\varepsilon$ on $U_x\cap D$, and finitely many of them cover the compact set $\partial D$. Hence $w=\max\{u,v-\varepsilon\}$ equals $u$ outside a compact subset of $D$, which contains $\{u\le v-\varepsilon\}$. By symmetry and additivity of the products,
+Let $\varepsilon>0$. Every $x\in\partial D$ has an open neighborhood $U_x$ with $u>v-\varepsilon$ on $U_x\cap D$, and finitely many of them cover the compact set $\partial D$; let $U$ be their union. Then $F=D\setminus U=\overline D\setminus U$ is a compact subset of $D$, it contains $\{u\le v-\varepsilon\}$, and $w=\max\{u,v-\varepsilon\}$ equals $u$ on $D\setminus F$. For $0\le l\le n-1$ put $R_l=(\ddc w)^l\wedge(\ddc u)^{n-1-l}$. By additivity and symmetry of the products (\cref{prop:bt-positive-recursion,thm:bt-decreasing-continuity}),
+\[
+ \ddc\bigl((w-u)R_l\bigr)=\ddc w\wedge R_l-\ddc u\wedge R_l=(\ddc w)^{l+1}\wedge(\ddc u)^{n-1-l}-(\ddc w)^l\wedge(\ddc u)^{n-l},
+\]
+and summing over $l$, the right-hand sides telescope:
 \[
  (\ddc w)^n-(\ddc u)^n
- =\ddc\Bigl((w-u)\sum_{l=0}^{n-1}
-           (\ddc w)^l\wedge(\ddc u)^{n-1-l}\Bigr),
+ =\ddc\Bigl((w-u)\sum_{l=0}^{n-1}R_l\Bigr).
 \]
-because the sum on the right telescopes. The current in parentheses has compact support. Testing with a cutoff equal to $1$ on a neighborhood of that support shows that the signed measure $(\ddc w)^n-(\ddc u)^n$, which is supported in the same compact set, has total mass zero. Choose a relatively compact open set $D'\subset D$ containing this compact set. Then both measures are finite on $D'$, and $\int_{D'}(\ddc w)^n=\int_{D'}(\ddc u)^n$. By \cref{prop:bt-maximum-locality}, $(\ddc w)^n$ coincides with $(\ddc v)^n$ on $\{u<v-\varepsilon\}$ and with $(\ddc u)^n$ on $\{u>v-\varepsilon\}$. Therefore
+The current in parentheses vanishes outside $F$, since $w-u$ does. Hence the signed measure $(\ddc w)^n-(\ddc u)^n$ is supported in $F$, and if $\chi\in C^\infty_c(D)$ equals $1$ on a neighborhood of $F$, then its total mass is
+\[
+ \int\chi\,\mathrm d\bigl((\ddc w)^n-(\ddc u)^n\bigr)=\Bigl((w-u)\sum_lR_l\Bigr)(\ddc\chi)=0,
+\]
+because $\ddc\chi=0$ on a neighborhood of $F$. Choose a relatively compact open set $D'\subset D$ containing $F$. Both measures are finite on $D'$, and $\int_{D'}(\ddc w)^n=\int_{D'}(\ddc u)^n$. By \cref{prop:bt-maximum-locality}, $(\ddc w)^n$ coincides with $(\ddc v)^n$ on $\{u<v-\varepsilon\}$ and with $(\ddc u)^n$ on $\{u>v-\varepsilon\}$; here we use that adding the constant $-\varepsilon$ does not change $(\ddc v)^n$. Since $\{u<v-\varepsilon\}$ and $D'\cap\{u>v-\varepsilon\}$ are disjoint Borel subsets of $D'$, and $\{u\le v-\varepsilon\}\subset F\subset D'$,
 \[
  \begin{aligned}
  \int_{\{u<v-\varepsilon\}}(\ddc v)^n
@@ -365,16 +372,20 @@ because the sum on the right telescopes. The current in parentheses has compact 
 \]
 As $\varepsilon\downarrow0$, the sets $\{u<v-\varepsilon\}$ increase to $\{u<v\}$, and monotone convergence proves the comparison inequality.
 
-For the last assertion choose $R$ with $D\subset B(0,R)$, and for $\eta>0$ put $v_\eta=v+\eta(|z|^2-R^2)$. Since $v_\eta\le v$, the boundary condition still holds for $u$ and $v_\eta$. Expanding $(\ddc v_\eta)^n$ by additivity and symmetry, all terms are positive, so $(\ddc v_\eta)^n\ge\eta^n(\beta/\pi)^n$. The comparison inequality gives
+For the last assertion choose $R$ with $D\subset B(0,R)$, and for $\eta>0$ put $v_\eta=v+\eta(|z|^2-R^2)$. Since $v_\eta\le v$, the boundary condition still holds for $u$ and $v_\eta$. By additivity, positive homogeneity and symmetry,
 \[
- \eta^n\int_{\{u<v_\eta\}}(\beta/\pi)^n\le\int_{\{u<v_\eta\}}(\ddc u)^n=0,
+ (\ddc v_\eta)^n=\sum_{k=0}^n\binom nk\eta^k(\ddc v)^{n-k}\wedge(\ddc|z|^2)^k\ge\eta^n(\ddc|z|^2)^n=\eta^n\frac{n!}{\pi^n}\,\mathrm dV_{2n},
 \]
-so $\{u<v_\eta\}$ is a Lebesgue null set. Hence $\max\{u,v_\eta\}=u$ almost everywhere. Both functions are plurisubharmonic, so the uniqueness of plurisubharmonic representatives in \cref{thm:psh-distribution-representative}, applied on each connected component, gives $\max\{u,v_\eta\}=u$ everywhere, that is, $u\ge v_\eta$. Letting $\eta\downarrow0$ gives $u\ge v$.
+since every term of the sum is a positive measure, and by \eqref{eq:bt-determinant-normalization}. The comparison inequality gives
+\[
+ \eta^n\frac{n!}{\pi^n}\bigl|\{u<v_\eta\}\bigr|\le\int_{\{u<v_\eta\}}(\ddc v_\eta)^n\le\int_{\{u<v_\eta\}}(\ddc u)^n=0,
+\]
+so $\{u<v_\eta\}$ is a Lebesgue null set. Hence $\max\{u,v_\eta\}=u$ almost everywhere. Both functions are plurisubharmonic, so the uniqueness of plurisubharmonic representatives in \cref{thm:psh-distribution-representative}, applied on each connected component of $D$, gives $\max\{u,v_\eta\}=u$ everywhere, that is, $u\ge v_\eta$. Letting $\eta\downarrow0$ gives $u\ge v$.
 \end{proof}
 \index{comparison principle!bounded plurisubharmonic functions}
 
 \begin{corollary}\label{cor:bt-local-domination}
-Let $D\subset\mathbb C^n$ be a bounded domain, $n\geq1$, and let $u$ and $v$ be locally bounded plurisubharmonic functions on $D$. Suppose that
+Let $D\subset\mathbb C^n$ be a bounded open set, $n\geq1$, and let $u$ and $v$ be locally bounded plurisubharmonic functions on $D$. Suppose that
 \[
  \liminf_{D\ni z\to x}(v(z)-u(z))\geq0
        \quad(x\in\partial D),\qquad
@@ -383,13 +394,13 @@ Let $D\subset\mathbb C^n$ be a bounded domain, $n\geq1$, and let $u$ and $v$ be 
 Then $u\leq v$ everywhere on $D$.
 \end{corollary}
 \begin{proof}
-Choose $R$ with $D\subset B(0,R)$, and for $\varepsilon,\delta>0$ put $u_{\varepsilon,\delta}=u-\varepsilon+\delta(|z|^2-R^2)$. By the boundary assumption and compactness of $\partial D$, there is an open set $U\supset\partial D$ such that $v>u-\varepsilon/2$ on $U\cap D$. Then $K_0=D\setminus U$ is compact, and $A=\{v<u_{\varepsilon,\delta}\}\subset\{v<u-\varepsilon\}$ lies in $K_0$. Choose a relatively compact open set $D'\subset D$ containing $K_0$; its boundary lies in $D\setminus K_0\subset U$. Both functions are bounded on $D'$, and $v-u_{\varepsilon,\delta}>\varepsilon/2$ on $U\cap D$, so the comparison inequality of \cref{thm:bt-comparison} applies on $D'$ and gives
+Choose $R$ with $D\subset B(0,R)$, and for $\varepsilon,\delta>0$ put $u_{\varepsilon,\delta}=u-\varepsilon+\delta(|z|^2-R^2)$, a locally bounded plurisubharmonic function. Since $u_{\varepsilon,\delta}\le u-\varepsilon$ on $D$, we have $\liminf_{D\ni z\to x}(v(z)-u_{\varepsilon,\delta}(z))\ge\varepsilon>0$ for $x\in\partial D$, and the set $A=\{v<u_{\varepsilon,\delta}\}$ is contained in $\{v<u\}$. The comparison inequality of \cref{thm:bt-comparison}, applied to $v$ and $u_{\varepsilon,\delta}$, and the expansion of $(\ddc u_{\varepsilon,\delta})^n$ used in the proof of that theorem give
 \[
  \delta^n\int_A(\ddc|z|^2)^n
  \leq\int_A(\ddc u_{\varepsilon,\delta})^n
- \leq\int_A(\ddc v)^n=0.
+ \leq\int_A(\ddc v)^n=0,
 \]
-The first inequality follows by expanding $(\ddc u_{\varepsilon,\delta})^n$ as in the proof of \cref{thm:bt-comparison}, and the last equality holds because $A\subset\{v<u\}$. Thus $u_{\varepsilon,\delta}\leq v$ almost everywhere, and the uniqueness of plurisubharmonic representatives, applied to $\max\{u_{\varepsilon,\delta},v\}$ and $v$, gives $u_{\varepsilon,\delta}\leq v$ everywhere. Letting $\delta\downarrow0$ and then $\varepsilon\downarrow0$ gives $u\le v$.
+where the last equality holds because $A\subset\{v<u\}$ and $u\le v$ almost everywhere for $(\ddc v)^n$. By \eqref{eq:bt-determinant-normalization}, $A$ is a Lebesgue null set. Thus $\max\{u_{\varepsilon,\delta},v\}=v$ almost everywhere, and the uniqueness of plurisubharmonic representatives (\cref{thm:psh-distribution-representative}), applied on each connected component of $D$, gives $u_{\varepsilon,\delta}\leq v$ everywhere. Letting $\delta\downarrow0$ and then $\varepsilon\downarrow0$ gives $u\le v$.
 \end{proof}
 \index{domination principle!locally bounded potentials}
 
@@ -408,15 +419,15 @@ Let $\Omega\subset\mathbb C^n$ be open, $n\ge1$, let $K,L\subset\Omega$ be compa
 In particular, the function $V$, with its values $-\infty$ on the pole set $\{V=-\infty\}$, is locally integrable with respect to the trace measure $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}$.
 \end{theorem}
 \begin{proof}
-\emph{Step 1: reductions.} For $q=0$ the left-hand side equals $n!\int_K|V|\,\mathrm{d}V_{2n}\le n!\|V\|_{L^1(L)}$. Let $q\ge1$. If $\|u_l\|_{L^\infty(L)}=0$ for some $l$, then $u_l=0$ on $\Int L$, so the product vanishes on $\Int L\supset K$ by locality. Otherwise we replace each $u_l$ by $u_l/(2\|u_l\|_{L^\infty(L)})-3/2$, which takes values in $[-2,-1]$ on $L$; this multiplies the left-hand side by $\prod_l(2\|u_l\|_{L^\infty(L)})^{-1}$. Covering $K$ by finitely many balls, we see that it suffices to prove the following: for concentric balls $B'=B(a,R')$ and $B=B(a,R)$ with $R'<R$ and $\overline B\subset\Int L$, there is a constant $C$, depending only on $B'$, $B$ and $L$, such that
+\emph{Step 1: reductions.} By \cref{thm:psh-distribution-representative}, $V$ is locally integrable, so $\|V\|_{L^1(L)}<\infty$. For $q=0$ the left-hand side equals $n!\int_K|V|\,\mathrm{d}V_{2n}\le n!\|V\|_{L^1(L)}$, by \eqref{eq:euclidean-hermitian-form}. Let $q\ge1$. If $\|u_l\|_{L^\infty(L)}=0$ for some $l$, then $u_l=0$ on $\Int L$, so the product vanishes on $\Int L\supset K$ by locality. Otherwise we replace each $u_l$ by $u_l/(2\|u_l\|_{L^\infty(L)})-3/2$, which takes values in $[-2,-1]$ on $L$; by \cref{prop:bt-positive-recursion}(3) this multiplies the left-hand side by $\prod_l(2\|u_l\|_{L^\infty(L)})^{-1}$. For each $a\in K$ choose $R_a>0$ with $\overline{B(a,R_a)}\subset\Int L$; finitely many of the balls $B(a,R_a/2)$ cover $K$, and this choice depends only on $K$ and $L$. Hence it suffices to prove the following: for concentric balls $B'=B(a,R')$ and $B=B(a,R)$ with $R'<R$ and $\overline B\subset\Int L$, there is a constant $C$, depending only on $B'$, $B$, $L$, $n$ and $q$, such that
 \[
  \int_{B'}|V|\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}\le C\|V\|_{L^1(L)}
 \]
-whenever $u_1,\ldots,u_q$ are plurisubharmonic on a neighborhood of $L$ with values in $[-2,-1]$ on $L$.
+whenever $u_1,\ldots,u_q$ are plurisubharmonic on $\Omega$ with values in $[-2,-1]$ on $L$.
 
-\emph{Step 2: a common collar.} Put $\psi=|z-a|^2-R^2$ and $b=\ddc\psi=\beta/\pi$, choose $\delta>0$ with $\overline{B'}\subset\{\psi<-\delta\}$, and set $A=2/\delta$. As in Step 2 of the proof of \cref{thm:bt-decreasing-continuity}, replacing each $u_l$ by $\max\{u_l,A\psi\}$ leaves it unchanged on $\{\psi<-\delta\}$ and makes it equal to $A\psi$ on a collar of $\partial B$ containing $\{-\delta/2<\psi\le0\}$; the modified functions take values in $[-2,0)$ on $B$. Let $S$ be the product $\ddc u_1\wedge\cdots\wedge\ddc u_q$ of the modified functions. With $\tau=\delta/4$ and $B_\tau=\{\psi<-\tau\}$, we have $B'\subset B_\tau$ and $S=A^qb^q$ on a neighborhood of $\overline B\setminus B_\tau$. Choose a smooth function $\chi\ge0$ with compact support in $B$ such that $\chi=-\psi$ on a neighborhood of $\overline{B_\tau}$.
+\emph{Step 2: a common collar.} Put $\psi=|z-a|^2-R^2$ and $b=\ddc\psi=\beta/\pi$, choose $\delta>0$ with $\overline{B'}\subset\{\psi<-\delta\}$, and set $A=2/\delta$. The open set $V_0=\{z\in\Int L:\psi(z)>-\delta/2\}$ is a collar of $\partial B$, since $\overline B\subset\Int L$. Since $u_l\in[-2,-1]$ on $L$, we have $A\psi<-2\le u_l$ on $\{\psi<-\delta\}\cap L$ and $A\psi>-1\ge u_l$ on $V_0$. Hence replacing each $u_l$ by $\max\{u_l,A\psi\}$, which is plurisubharmonic on $\Omega$ by \cref{prop:psh-max-gluing}, leaves it unchanged on $\{\psi<-\delta\}$, which lies in $B\subset L$, and makes it equal to $A\psi$ on $V_0$; on $B$ the modified functions take values in $[-2,0)$, since $\psi<0$ there. Let $S=\ddc u_1\wedge\cdots\wedge\ddc u_q$ be the product of the modified functions. Put $\tau=\delta/4$ and $B_\tau=\{\psi<-\tau\}$. Then $\overline{B'}\subset B_\tau$, and on the neighborhood $V_0$ of $\overline B\setminus B_\tau$ we have $S=(A\,\ddc\psi)^q=A^qb^q$ by \cref{prop:bt-positive-recursion}(1),(2). By \cref{lem:mollifier-density}(4) there is $\theta\in C^\infty_c(B)$ with $0\le\theta\le1$ and $\theta=1$ on a neighborhood of $\overline{B_\tau}$; the function $\chi=-\psi\theta$ is smooth, nonnegative, has compact support in $B$, and equals $-\psi$ on a neighborhood of $\overline{B_\tau}$. All these choices depend only on $B'$, $B$ and $L$.
 
-\emph{Step 3: smooth $V$ and $q\le n-1$.} Suppose that $q\le n-1$ and that $V$ is smooth and plurisubharmonic on a neighborhood of $\overline B$ with $V\le0$ on $B_\tau$. Since $\ddc\chi=-b$ near $\overline{B_\tau}$ and $S=A^qb^q$ on $B\setminus B_\tau$,
+\emph{Step 3: smooth $V$ and $q\le n-1$.} Suppose that $q\le n-1$ and that $V$ is smooth and plurisubharmonic on a neighborhood of $\overline B$ with $V\le0$ on $B_\tau$. The signed measure $S\wedge b^{n-q-1}\wedge\ddc\chi$ has compact support in $B$. Splitting its integral against $V$ over $B_\tau$, where $\ddc\chi=-b$, and over $B\setminus B_\tau\subset V_0$, where $S=A^qb^q$, we obtain
 \[
  \begin{aligned}
  \int_{B_\tau}(-V)S\wedge b^{n-q}
@@ -426,16 +437,24 @@ whenever $u_1,\ldots,u_q$ are plurisubharmonic on a neighborhood of $L$ with val
        -A^q\int_{B\setminus B_\tau}V b^{n-1}\wedge\ddc\chi.
  \end{aligned}
 \]
-The second equality is the definition of $\ddc$ on currents, since $\ddc(VS\wedge b^{n-q-1})=\ddc V\wedge S\wedge b^{n-q-1}$ for smooth $V$. Choose a compact set $L'\subset B$ whose interior contains $\Supp\chi$. By \cref{thm:cln-bounded}, applied with the closed positive base current $\ddc V$ of bidimension $(n-1,n-1)$, the first term is at most $C\|\ddc V\|_{L'}$. Testing $\ddc V$ against a cutoff $\chi'\in C^\infty_c(B)$ equal to $1$ on $L'$, as in the proof of \cref{thm:cln-bounded}, gives $\|\ddc V\|_{L'}\le\int V\,\ddc\chi'\wedge\beta^{n-1}/(n-1)!\le C\int_B|V|\,\mathrm{d}V_{2n}$. The collar term is bounded by the same quantity, because $b^{n-1}\wedge\ddc\chi$ has bounded smooth coefficients. Hence
+The second equality holds because the first integral is $(VS\wedge b^{n-q-1})(\ddc\chi)=\bigl(\ddc(VS\wedge b^{n-q-1})\bigr)(\chi)$, and $\ddc(VS\wedge b^{n-q-1})=\ddc V\wedge S\wedge b^{n-q-1}$ by \eqref{eq:bt-smooth-factor-leibniz}, the current $S\wedge b^{n-q-1}$ being closed. The smooth form $\ddc V$ is closed and strongly positive, so by \cref{prop:bt-positive-recursion}(4), with $T=1$ and $\gamma=\ddc V$, the current $\ddc V\wedge S$ is the product $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\ddc V$ with the closed positive base current $\ddc V$ of bidimension $(n-1,n-1)$. Choose a compact set $L'\subset B$ whose interior contains $\Supp\chi$. Since $0\le\chi\le\sup\chi$ and the modified $u_l$ take values in $[-2,0)$ on $B$, \cref{thm:cln-bounded}, applied to $\Supp\chi\subset\Int L'$, shows that the first term is at most $C\|\ddc V\|_{L'}$, with $C$ depending only on $\chi$, $L'$, $n$ and $q$. Let $\chi'\in C^\infty_c(B)$ satisfy $0\le\chi'\le1$ and $\chi'=1$ on $L'$. Since $\ddc V\wedge\beta^{n-1}\ge0$,
+\[
+ \|\ddc V\|_{L'}\le\int\chi'\,\ddc V\wedge\frac{\beta^{n-1}}{(n-1)!}=\int V\,\ddc\chi'\wedge\frac{\beta^{n-1}}{(n-1)!}\le C\int_B|V|\,\mathrm{d}V_{2n},
+\]
+where $C$ bounds the coefficient of the smooth $(n,n)$-form $\ddc\chi'\wedge\beta^{n-1}/(n-1)!$. The collar term is bounded by the same quantity, because $b^{n-1}\wedge\ddc\chi$ has bounded smooth coefficients. Hence
 \[
  \int_{B_\tau}(-V)S\wedge b^{n-q}\le C\int_B|V|\,\mathrm{d}V_{2n}.
 \]
 
-\emph{Step 4: general $V$ and $q\le n-1$.} Let $V\in\PSH(\Omega)$, and choose $r_0>0$ with $2r_0<\operatorname{dist}(\overline B,\mathbb C^n\setminus\Int L)$. By the submean inequality, $V(x)\le c_0\|V\|_{L^1(L)}$ for every $x$ within distance $r_0$ of $\overline B$, where $c_0=|B(0,r_0)|^{-1}$; put $c=c_0\|V\|_{L^1(L)}$. For $0<\varepsilon<r_0$ the regularization $V_\varepsilon=V*\rho_\varepsilon$ is smooth and plurisubharmonic near $\overline B$, satisfies $V_\varepsilon\le c$ on $\overline B$, and $\int_B|V_\varepsilon|\,\mathrm{d}V_{2n}\le\|V\|_{L^1(L)}$ by Fubini's theorem. Applying Step 3 to $V_\varepsilon-c$ gives
+\emph{Step 4: general $V$ and $q\le n-1$.} Let $V\in\PSH(\Omega)$, and choose $r_0>0$ with $2r_0<\operatorname{dist}(\overline B,\mathbb C^n\setminus\Int L)$. The function $V$ is subharmonic (\cref{thm:psh-distribution-representative}). If $x$ lies within distance $r_0$ of $\overline B$, then $\overline{B(x,r_0)}\subset\Int L$, and the ball submean inequality of \cref{thm:subharmonic-comparison}(2) gives
+\[
+ V(x)\le\frac1{|B(x,r_0)|}\int_{B(x,r_0)}V\,\mathrm dV_{2n}\le c_0\|V\|_{L^1(L)},\qquad c_0=|B(0,r_0)|^{-1};
+\]
+put $c=c_0\|V\|_{L^1(L)}$. For $0<\varepsilon<r_0$ the regularization $V_\varepsilon=V*\rho_\varepsilon$ is smooth and plurisubharmonic on the neighborhood $\{z:\operatorname{dist}(z,\overline B)<r_0\}$ of $\overline B$ (see the proof of \cref{prop:bt-positive-recursion}). It satisfies $V_\varepsilon\le c$ on $\overline B$, since $V_\varepsilon(x)$ is an average of values of $V$ at points within distance $\varepsilon$ of $x$, and $\int_B|V_\varepsilon|\,\mathrm{d}V_{2n}\le\int\rho_\varepsilon(y)\int_B|V(x-y)|\,\mathrm dV_{2n}(x)\,\mathrm dV_{2n}(y)\le\|V\|_{L^1(L)}$ by Tonelli's theorem, since $B-y\subset L$ for $|y|\le\varepsilon$. Applying Step 3 to $V_\varepsilon-c$ gives
 \[
  \int_{B_\tau}(c-V_\varepsilon)\,S\wedge b^{n-q}\le C\bigl(\|V\|_{L^1(L)}+c|B|\bigr)\le C'\|V\|_{L^1(L)}.
 \]
-As $\varepsilon\downarrow0$, the nonnegative functions $c-V_\varepsilon$ increase to $c-V$, so monotone convergence gives the same bound for $\int_{B_\tau}(c-V)\,S\wedge b^{n-q}$. Since $V\le c$ on $B_\tau$, we have $|V|\le(c-V)+c$ there, and the mass of $S\wedge b^{n-q}$ on $B_\tau$ is bounded by \cref{thm:cln-bounded}. Since $S$ coincides with the original product on $B'\subset B_\tau$, this proves the estimate of Step 1 for $q\le n-1$. By the finite cover and the normalizations of Step 1, the theorem holds for $q\le n-1$, in every dimension.
+As $\varepsilon\downarrow0$, the nonnegative functions $c-V_\varepsilon$ increase to $c-V$, by \eqref{eq:canonical-subharmonic}, so monotone convergence gives the same bound for $\int_{B_\tau}(c-V)\,S\wedge b^{n-q}$. Since $V\le c$ on $B_\tau$, we have $|V|\le(c-V)+c$ there, and the mass of $S\wedge b^{n-q}$ on $B_\tau$ is bounded by a constant depending only on $B'$, $B$, $n$ and $q$, by \cref{thm:cln-bounded} applied to $\overline{B_\tau}\subset B=\Int\overline B$, since the modified $u_l$ take values in $[-2,0]$ on $\overline B$. Since $S$ coincides with the original product on $B'\subset B_\tau$, by locality, this proves the estimate of Step 1 for $q\le n-1$. By the finite cover and the normalizations of Step 1, the theorem holds for $q\le n-1$, in every dimension.
 
 \emph{Step 5: the case $q=n$.} Consider $\mathbb C^{n+1}$ with coordinates $(z,w)$, the unit disc $\Delta\subset\mathbb C$, and the projection $p(z,w)=z$. The functions $u_l\circ p$ and $V\circ p$ are plurisubharmonic on $\Omega\times\Delta$. Let $\mu=\ddc u_1\wedge\cdots\wedge\ddc u_n$. We claim that the trace of $\ddc(u_1\circ p)\wedge\cdots\wedge\ddc(u_n\circ p)$ with respect to the form $\beta_z+\beta_w$ of $\mathbb C^{n+1}$ is the product measure $\mu\otimes\mathrm{d}V_2$. For smooth $u_l$ this holds because the product is the pullback of $\mu$, its wedge product with $\beta_z$ has bidegree $(n+1,n+1)$ in $z$ and vanishes, and $\beta_w=\mathrm{d}V_2$. In general, apply \cref{thm:bt-decreasing-continuity} in $\mathbb C^{n+1}$ and in $\mathbb C^n$ to the regularizations of the $u_l$ in $z$; the product measures converge as well, since integrating a test function on $\Omega\times\Delta$ over $w$ gives a test function on $\Omega$. Applying the theorem in $\mathbb C^{n+1}$, in the case $q=n\le(n+1)-1$ already proved, to the compact sets $K\times\{|w|\le1/2\}$ and $L\times\{|w|\le3/4\}$, and using Fubini's theorem on both sides, we obtain the estimate in $\mathbb C^n$; the areas of the two discs only change the constant. This proves the case $q=n$.
 \end{proof}
