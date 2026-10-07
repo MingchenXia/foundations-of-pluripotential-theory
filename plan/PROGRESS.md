@@ -13,7 +13,7 @@ Scope: self-contained foundations for SGPT Part I, plus the explicitly requested
 | P01 | Measures and distributions | required | verified | 5/5 | — |
 | P02 | Harmonic functions and the Dirichlet problem | required | verified | 4/4 | P01 |
 | P03 | Subharmonic functions | required | verified | 4/4 | P02 |
-| P04 | Riesz potentials, energy and capacity | required | verified | 5/5 | P03 |
+| P04 | Potentials, energy and capacity | required | verified | 5/5 | P03 |
 | P05 | Fine topology and balayage | required | verified | 4/4 | P04 |
 | P06 | Fourier analysis and incidence of complex lines | required | verified | 5/5 | P04 |
 | Q01 | Complex differential forms and positive currents | required | verified | 4/4 | P03 |

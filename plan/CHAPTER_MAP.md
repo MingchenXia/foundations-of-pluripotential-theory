@@ -9,7 +9,7 @@ Required units form the current prequel; excluded units preserve historical work
 | P01 | I | required | Measures and distributions | — | [chapters/p01-measures-and-distributions.tex](../chapters/p01-measures-and-distributions.tex) |
 | P02 | I | required | Harmonic functions and the Dirichlet problem | P01 | [chapters/p02-harmonic-functions-and-the-dirichlet-problem.tex](../chapters/p02-harmonic-functions-and-the-dirichlet-problem.tex) |
 | P03 | I | required | Subharmonic functions | P02 | [chapters/p03-subharmonic-functions.tex](../chapters/p03-subharmonic-functions.tex) |
-| P04 | I | required | Riesz potentials, energy and capacity | P03 | [chapters/p04-riesz-potentials-energy-and-capacity.tex](../chapters/p04-riesz-potentials-energy-and-capacity.tex) |
+| P04 | I | required | Potentials, energy and capacity | P03 | [chapters/p04-riesz-potentials-energy-and-capacity.tex](../chapters/p04-riesz-potentials-energy-and-capacity.tex) |
 | P05 | I | required | Fine topology and balayage | P04 | [chapters/p05-fine-topology-and-balayage.tex](../chapters/p05-fine-topology-and-balayage.tex) |
 | P06 | I | required | Fourier analysis and incidence of complex lines | P04 | [chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex](../chapters/p06-fourier-energy-and-incidence-of-complex-lines.tex) |
 | Q01 | II | required | Complex differential forms and positive currents | P03 | [chapters/q01-complex-differential-forms-and-positive-currents.tex](../chapters/q01-complex-differential-forms-and-positive-currents.tex) |

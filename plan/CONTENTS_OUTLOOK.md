@@ -7,7 +7,7 @@ The English prequel to SGPT Part I has two main parts and eighteen chapters, fol
 1. **Measures and distributions.** Radon measures; integration, nets and convergence; distributions and weak derivatives; the functional-analytic tools used later.
 2. **Harmonic functions and the Dirichlet problem.** Mean values and the maximum principle; Poisson kernels; Perron solutions and barriers; Green functions.
 3. **Subharmonic functions.** Mean inequalities and canonical representatives; Riesz measures and decomposition; convergence, compactness and Hartogs estimates; exceptional sets.
-4. **Riesz potentials, energy and capacity.** Kernel energy; extremal functions and capacity; equilibrium measures; polarity and negligible sets; polar Cantor sets carrying atom-free probability measures.
+4. **Potentials, energy and capacity.** Kernel energy; extremal functions and capacity; equilibrium measures; polarity and negligible sets; polar Cantor sets carrying atom-free probability measures.
 5. **Fine topology and balayage.** Thinness and fine neighborhoods; reduction and sweeping; Green energy and harmonic measure; countable selection and quasi-open sets.
 6. **Fourier analysis and incidence of complex lines.** Fourier transforms; Hessian multipliers and the required Sobolev estimates; unitary invariant measures; measurable circle selection and incidence of complex lines.
 

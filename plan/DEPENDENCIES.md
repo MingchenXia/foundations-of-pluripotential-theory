@@ -11,7 +11,7 @@ flowchart TD
   P01 --> P02
   P03["P03 Subharmonic functions"]
   P02 --> P03
-  P04["P04 Riesz potentials, energy and capacity"]
+  P04["P04 Potentials, energy and capacity"]
   P03 --> P04
   P05["P05 Fine topology and balayage"]
   P04 --> P05
