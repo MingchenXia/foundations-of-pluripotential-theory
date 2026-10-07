@@ -6,7 +6,9 @@ We now show that, for a K\"ahler background, the envelope of the minimum of fini
 \]
 where $\beta>0$ is a large parameter. On the set where $a>f$ the right side is very large, which forces the solution to lie essentially below $f$; on the set where $a<f$ it is very small, just as the Monge--Amp\`ere measure of the envelope vanishes off the contact set. As $\beta\to\infty$ the solutions converge uniformly to $P_\kappa(f)$, with an explicit rate (\cref{prop:penalized-envelope-uniform-limit}).
 
-The main estimate is a bound for the Laplacian of $a_\beta$ that is uniform in $\beta$ and depends on the obstacle $f$ only through its supremum norm and an \emph{upper} bound for the trace $\Lambda\ddc f=-Lf/(4\pi)$ of its complex Hessian, that is, a \emph{lower} bound for its metric Laplacian (\cref{lem:penalized-equation-trace}). This one-sided dependence is what makes finite minima accessible: the complex Hessian of $\min_jf_j$ has in general a singular negative part where two of the $f_j$ cross, but the smooth approximations $-\delta\log\sum_j\mathrm e^{-f_j/\delta}$ of the minimum have complex Hessians whose traces are uniformly bounded above. The existence of smooth solutions is proved by the continuity method (\cref{thm:smooth-penalized-kahler-equation}).
+The main estimate is a bound for the Laplacian of $a_\beta$ that is uniform in $\beta$ and depends on the obstacle $f$ only through its supremum norm and an \emph{upper} bound for the trace $\Lambda\ddc f=-Lf/(4\pi)$ of its complex Hessian, that is, a \emph{lower} bound for its metric Laplacian (\cref{lem:penalized-equation-trace}). This one-sided dependence is what makes finite minima accessible. The complex Hessian of $\min_jf_j$ can have a negative singular part on the set where two of the $f_j$ cross. For instance, in a chart, with $x_1=\Real z_1$ and $y_1=\Img z_1$, the function $\min\{x_1,-x_1\}=-|x_1|$ satisfies $\partial_{z_1}\partial_{\bar z_1}(-|x_1|)=-\frac12\sigma$, where $\sigma$ is Lebesgue measure on the hyperplane $\{x_1=0\}$: indeed $\partial_{z_1}\partial_{\bar z_1}=\frac14(\partial_{x_1}^2+\partial_{y_1}^2)$, integration by parts on the two half-lines gives $\int_{\mathbb R}|s|\chi''(s)\,\mathrm ds=2\chi(0)$ for every test function $\chi$ on $\mathbb R$, and $\int_{\mathbb R}\partial_{y_1}^2\chi\,\mathrm dy_1=0$. But the smooth approximations $-\delta\log\sum_j\mathrm e^{-f_j/\delta}$ of the minimum have complex Hessians whose traces are uniformly bounded above (Step 2 of the proof of \cref{thm:kahler-metric-laplacian-rooftop}).
+
+We solve the penalized equation by the continuity method (\cref{thm:smooth-penalized-kahler-equation}). Besides the trace bound, the a priori estimates require control of the third derivatives of the solutions. We obtain it from Calabi's maximum principle for the squared norm of the difference of two Chern connections (\cref{lem:penalized-third-order}). The higher derivatives, and the smoothness of the solutions produced by perturbation, are then controlled by the elliptic $L^p$ estimates of \cref{sec:metric-laplacian-obstacles} (\cref{lem:penalized-local-regularity}).
 
 In local holomorphic coordinates we put $\partial_i=\partial_{z_i}$ and $\partial_{\bar j}=\partial_{\bar z_j}$, sum over repeated indices, and write
 \[
@@ -16,7 +18,7 @@ In local holomorphic coordinates we put $\partial_i=\partial_{z_i}$ and $\partia
  \kappa=\frac{\mathrm i}{2\pi}k_{i\bar j}\,
                  \mathrm dz_i\wedge\mathrm d\bar z_j,
 \]
-so that $h=(h_{i\bar j})$ and $k=(k_{i\bar j})$ are the coefficient matrices of $2\pi\omega$ and $2\pi\kappa$. As in \eqref{eq:complex-laplacian-trace}, let $(h^{i\bar j})$ be the inverse matrix of $h$, normalized by $h^{i\bar j}h_{l\bar j}=\delta_{il}$, and for a Hermitian matrix $m=(m_{i\bar j})$ put $\operatorname{tr}_hm=h^{i\bar j}m_{i\bar j}$. For a real function $a$ write $a_{i\bar j}=\partial_i\partial_{\bar j}a$. The operator $D_h=h^{i\bar j}\partial_i\partial_{\bar j}$ is the operator $D_g$ of \eqref{eq:complex-laplacian-trace} for the K\"ahler form $\omega'=\omega$, so that
+so that $h=(h_{i\bar j})$ and $k=(k_{i\bar j})$ are the coefficient matrices of $2\pi\omega$ and $2\pi\kappa$. As in \eqref{eq:complex-laplacian-trace}, let $(h^{i\bar j})$ be the inverse matrix of $h$, normalized by $h^{i\bar j}h_{l\bar j}=\delta_{il}$ (then also $h^{j\bar i}h_{j\bar l}=\delta_{il}$), and for a Hermitian matrix $m=(m_{i\bar j})$ put $\operatorname{tr}_hm=h^{i\bar j}m_{i\bar j}$. For a real function $a$ write $a_{i\bar j}=\partial_i\partial_{\bar j}a$. The operator $D_h=h^{i\bar j}\partial_i\partial_{\bar j}$ is the operator $D_g$ of \eqref{eq:complex-laplacian-trace} for the K\"ahler form $\omega'=\omega$, so that
 \[
  D_ha=h^{i\bar j}a_{i\bar j}=\Lambda\ddc a=-\frac{La}{4\pi}.
 \]
@@ -24,10 +26,32 @@ Hence $D_h$ is the metric Laplacian up to the factor $-1/(4\pi)$; in particular,
 \[
  H=\operatorname{tr}_hg=\operatorname{tr}_hk+D_ha.
 \]
-All these quantities are independent of the holomorphic coordinates. Finally $\operatorname{osc}_Xf=\max_Xf-\min_Xf$ denotes the oscillation of a continuous function $f$. For smooth $f$, Stokes' formula gives $\int_XD_hf\,\mathrm dV=-(4\pi)^{-1}\int_XLf\,\mathrm dV=0$, so that
+The \emph{eigenvalues of $g$ relative to $h$} are the eigenvalues of the matrix $h^{-1}g$; they are positive, their sum is $H$, the sum of their inverses is $\operatorname{tr}_gh$, and their product is $\det g/\det h$. Since $\omega$ is an arbitrary K\"ahler form on $X$, everything in this subsection holds with $\omega$ replaced by any K\"ahler form, for instance by $\kappa$.
+
+Under a holomorphic change of coordinates $z=z(w)$ with Jacobian matrix $J=(\partial z_a/\partial w_b)$, the coefficient matrices change by $k\mapsto J^{\mathrm T}k\bar J$, so $\det k$ is multiplied by $|\det J|^2$, and $\log\det k$ changes by the function $\log|\det J|^2$. This function is pluriharmonic: for a nonvanishing holomorphic function $F$, $\partial_{\bar j}\log|F|^2=\overline{\partial_jF}/\bar F$ is antiholomorphic, so $\partial_i\partial_{\bar j}\log|F|^2=0$. Consequently the ratios $\det k/\det h$ and $\det g/\det k$ are smooth positive functions on $X$, and the functions $D_h\log\det k$ and $D_h\log\det g$, as well as the Ricci form coefficients $\operatorname{Ric}(k)_{i\bar j}=-\partial_i\partial_{\bar j}\log\det k$, do not depend on the coordinates. By the computation of $\omega_A^n$ in \cref{sec:positive-currents}, $(\kappa+\ddc a)^n/\kappa^n=\det g/\det k$. Moreover, if a smooth real function $b$ has a local maximum at a point $x$, then its complex Hessian is negative semidefinite at $x$: for $\xi\in\mathbb C^n$ the function $s\mapsto b(x+s\xi)$ of one complex variable has a local maximum at $s=0$, so its Laplacian $4b_{i\bar j}\xi_i\bar\xi_j$ is nonpositive there. Consequently $D_gb\leq0$ at $x$, since the trace of the product of a positive definite and a negative semidefinite Hermitian matrix is nonpositive.
+
+Finally $\operatorname{osc}_Xf=\max_Xf-\min_Xf$ denotes the oscillation of a continuous function $f$. For smooth $f$, Stokes' formula gives $\int_XD_hf\,\mathrm dV=-(4\pi)^{-1}\int_XLf\,\mathrm dV=-(4\pi)^{-1}\int_X\langle\mathrm df,\mathrm d1\rangle\,\mathrm dV=0$, so that
 \begin{equation}\label{eq:penalized-upper-laplacian-nonnegative}
  \sup_XD_hf\geq0.
 \end{equation}
+
+The maximum principle arguments below are carried out at a point in coordinates adapted to a K\"ahler metric.
+
+\begin{lemma}\label{lem:kahler-normal-coordinates}
+Let $U\subset\mathbb C^n$ be open, and let $e=(e_{i\bar j})$ be a smooth function on $U$ with values in the positive definite Hermitian matrices such that the form $\frac{\mathrm i}{2\pi}e_{i\bar j}\,\mathrm dz_i\wedge\mathrm d\bar z_j$ is closed. For every $z_0\in U$ there is a polynomial map $\Phi_{z_0}\colon\mathbb C^n\to\mathbb C^n$ of degree at most two, with $\Phi_{z_0}(0)=z_0$, which is a biholomorphism from a neighborhood of $0$ onto a neighborhood of $z_0$, such that the coefficient matrix $\tilde e$ of the form in the coordinates $w$ given by $z=\Phi_{z_0}(w)$ satisfies $\tilde e(0)=I$ and $\mathrm d\tilde e(0)=0$. For every compact set $K\subset U$ and every integer $m\geq0$, the derivatives of order at most $m$ of $\tilde e$ at $0$ are bounded independently of $z_0\in K$. These properties persist if $\Phi_{z_0}$ is composed with a unitary linear map.
+\end{lemma}
+\begin{proof}
+The form is closed if and only if its $(2,1)$-part $\frac{\mathrm i}{2\pi}\partial_le_{i\bar j}\,\mathrm dz_l\wedge\mathrm dz_i\wedge\mathrm d\bar z_j$ and the conjugate $(1,2)$-part vanish, that is, if and only if $\partial_le_{i\bar j}=\partial_ie_{l\bar j}$; this holds in all holomorphic coordinates. If $z=\Phi(w)$ with $\Phi$ holomorphic and $J=D\Phi$ its complex Jacobian matrix, then $\mathrm dz_i=J_{ia}\,\mathrm dw_a$, so the new coefficients are $\tilde e(w)=J(w)^{\mathrm T}e(\Phi(w))\overline{J(w)}$.
+
+Let $A=\overline{e(z_0)^{-1/2}}$, where $e(z_0)^{-1/2}$ is the positive square root of the inverse matrix; it depends continuously on $z_0$, and $A^{\mathrm T}e(z_0)\bar A=e(z_0)^{-1/2}e(z_0)e(z_0)^{-1/2}=I$. In the coordinates $v$ with $z=z_0+Av$ the coefficient matrix $e'$ satisfies $e'(0)=I$. Put $c^m_{ij}=\partial_{v_i}e'_{j\bar m}(0)$, which is symmetric in $i$ and $j$ by the closedness, and define $v=w-\frac12c(w,w)$, that is, $v_m=w_m-\frac12c^m_{ij}w_iw_j$. Then $J_{ia}=\partial v_i/\partial w_a=\delta_{ia}-c^i_{aj}w_j$, so $J(0)=I$ and $\partial_{w_p}J_{ia}(0)=-c^i_{ap}$. Differentiating $\tilde e_{a\bar b}=J_{ia}e'_{i\bar j}(v(w))\overline{J_{jb}}$ at $w=0$, and using that $\overline{J_{jb}}$ and $\bar v$ are antiholomorphic in $w$, we find
+\[
+ \partial_{w_p}\tilde e_{a\bar b}(0)=-c^b_{ap}+\partial_{v_p}e'_{a\bar b}(0)=-\partial_{v_a}e'_{p\bar b}(0)+\partial_{v_p}e'_{a\bar b}(0)=0,
+\]
+by the closedness, and $\partial_{\bar w_p}\tilde e_{a\bar b}(0)=\overline{\partial_{w_p}\tilde e_{b\bar a}(0)}=0$. Put $\Phi_{z_0}(w)=z_0+A(w-\frac12c(w,w))$. Its derivative at $0$ is the invertible matrix $A$, so it is a biholomorphism near $0$ by the holomorphic inverse function theorem (\cref{sec:complex-exterior-calculus}).
+
+By the chain rule, the derivatives of $\tilde e$ at $0$ are polynomials in the derivatives of $e$ at $z_0$ and in the entries of $A$, $\bar A$ and $c$; these depend continuously on $z_0$, hence are bounded on compact sets. Finally, if $Q$ is unitary, replacing $\Phi_{z_0}(w)$ by $\Phi_{z_0}(Qw)$ replaces $\tilde e(w)$ by $Q^{\mathrm T}\tilde e(Qw)\bar Q$, which equals $Q^{\mathrm T}\bar Q=\overline{Q^*Q}=I$ at $0$, still has vanishing differential at $0$, and has derivatives at $0$ bounded by a constant depending only on $n$ times those of $\tilde e$.
+\end{proof}
+\index{normal coordinates!for a K\"ahler metric}
 
 \begin{lemma}\label{lem:penalized-equation-trace}
 Let $f$ be a smooth real function on $X$ and $\beta>0$, and let $a$ be a smooth real function satisfying
@@ -35,36 +59,37 @@ Let $f$ be a smooth real function on $X$ and $\beta>0$, and let $a$ be a smooth 
  (\kappa+\ddc a)^n=\mathrm e^{\beta(a-f)}\kappa^n,
  \qquad \kappa+\ddc a>0.
 \end{equation}
-Then $\min_Xf\leq a\leq\max_Xf$, and the metrics $g$ and $h$ are uniformly equivalent: $C^{-1}h\leq g\leq Ch$ on $X$, with $C$ depending only on $X$, $\omega$, $\kappa$, $\beta$, $\|f\|_\infty$ and $\sup_XD_hf$. Moreover, there is $\beta_0>0$, depending only on $X$, $\omega$ and $\kappa$, such that for $\beta>\beta_0$
+Then $\min_Xf\leq a\leq\max_Xf$, and the metrics $g$ and $h$ are uniformly equivalent: $C^{-1}h\leq g\leq Ch$ on $X$, with $C$ depending only on $X$, $\omega$, $\kappa$, $\beta$ and upper bounds for $\|f\|_\infty$ and $\sup_XD_hf$. Moreover, there is $\beta_0>0$, depending only on $X$, $\omega$ and $\kappa$, such that for $\beta>\beta_0$
 \[
  H\leq2B\,\mathrm e^{A\operatorname{osc}_Xf}\quad\text{on }X,
  \qquad B=\sup_X\operatorname{tr}_hk+\sup_XD_hf,
 \]
-where $A>0$ depends only on $X$, $\omega$ and $\kappa$. In particular, for $\beta>\beta_0$ the trace $H$ is bounded by a constant depending only on $X$, $\omega$, $\kappa$, $\|f\|_\infty$ and $\sup_XD_hf$.
+where $A>0$ depends only on $X$, $\omega$ and $\kappa$. In particular, for $\beta>\beta_0$ the trace $H$ is bounded by a constant depending only on $X$, $\omega$, $\kappa$ and upper bounds for $\|f\|_\infty$ and $\sup_XD_hf$.
 \end{lemma}
 \begin{proof}
-\emph{Step 1: the value bounds.} Since $(\kappa+\ddc a)^n/\kappa^n=\det g/\det k$, the equation says that $\det g=\mathrm e^{\beta(a-f)}\det k$. At a maximum point of $a$ the complex Hessian $(a_{i\bar j})$ is negative semidefinite, so $0<g\leq k$ and $\det g\leq\det k$ there. Hence $a\leq f\leq\max_Xf$ at that point, and therefore everywhere. At a minimum point of $a$ the inequalities are reversed, and $a\geq\min_Xf$.
+\emph{Step 1: the value bounds.} Since $(\kappa+\ddc a)^n/\kappa^n=\det g/\det k$, the equation says that $\det g=\mathrm e^{\beta(a-f)}\det k$. At a maximum point of $a$ the complex Hessian $(a_{i\bar j})$ is negative semidefinite, so $0<g\leq k$ and therefore $\det g\leq\det k$ there, the eigenvalues of $k^{-1/2}gk^{-1/2}$ lying in $(0,1]$. Hence $a\leq f\leq\max_Xf$ at that point, and therefore everywhere. At a minimum point of $a$ the inequalities are reversed, and $a\geq\min_Xf$.
 
-\emph{Step 2: a differential inequality for $\log H$.} Fix a point of $X$. Since $\omega$ is K\"ahler, there are holomorphic coordinates centered at this point in which $h_{i\bar j}=\delta_{ij}$ and all first derivatives of $h$ vanish at the point (see the proof of \cref{lem:kahler-trace-star}); after a unitary change of coordinates we may also assume that $g$ is diagonal at the point, with eigenvalues $\lambda_1,\ldots,\lambda_n>0$. On the compact manifold $X$ these coordinates can be chosen with derivatives bounded independently of the point. At the point $H=\sum_i\lambda_i$ and $\operatorname{tr}_gh=\sum_i\lambda_i^{-1}$, so the Cauchy--Schwarz inequality gives
+\emph{Step 2: a differential inequality for $\log H$.} Until the equation is used below, we only need that $a$ is smooth and $\kappa+\ddc a>0$. Fix finitely many charts and compact subsets of their domains whose union is $X$, and let $x\in X$. By \cref{lem:kahler-normal-coordinates}, applied to $h$ in one of these charts, followed by a unitary change of coordinates that diagonalizes $g$ at $x$, there are holomorphic coordinates centered at $x$ in which $h_{i\bar j}=\delta_{ij}$ and all first derivatives of $h$ vanish at $x$, $g$ is diagonal at $x$ with eigenvalues $\lambda_1,\ldots,\lambda_n>0$, and the derivatives of order at most two of $h$ at $x$ are bounded by a constant depending only on $X$ and $\omega$. All the following computations are at $x$, in these coordinates. Here $H=\sum_i\lambda_i$ and $\operatorname{tr}_gh=\sum_i\lambda_i^{-1}$, so the Cauchy--Schwarz inequality gives
 \[
  H\operatorname{tr}_gh\geq n^2.
 \]
-Locally $\kappa$ and $\kappa+\ddc a$ have K\"ahler potentials, so the derivatives $\partial_pg_{i\bar q}$ are symmetric in $p$ and $i$, and the second derivatives $\partial_p\partial_{\bar l}g_{i\bar q}$ are symmetric in $p,i$ and in $\bar l,\bar q$. All the following computations are at the chosen point. Differentiating $H=h^{i\bar q}g_{i\bar q}$ twice, and using that the first derivatives of $h$ vanish, we get
+Locally $\kappa$ and $\kappa+\ddc a$ have K\"ahler potentials (\cref{lem:smooth-potential-on-ball}): $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$ with $\varphi$ smooth. Hence the derivatives $\partial_pg_{i\bar q}$ are symmetric in $p$ and $i$, and the second derivatives $\partial_p\partial_{\bar l}g_{i\bar q}$ are symmetric in $p,i$ and in $\bar l,\bar q$. Differentiating $H=h^{i\bar q}g_{i\bar q}$ twice, and using that the first derivatives of $h$, hence of $h^{-1}$, vanish at $x$, we get
 \[
  D_gH=\sum_p\lambda_p^{-1}\sum_i\partial_p\partial_{\bar p}g_{i\bar i}+E,
  \qquad E=\sum_p\lambda_p^{-1}\bigl(\partial_p\partial_{\bar p}h^{i\bar q}\bigr)g_{i\bar q}.
 \]
-Since $g$ is diagonal with positive eigenvalues, $|E|\leq CH\operatorname{tr}_gh$, with $C$ depending only on the second derivatives of $h^{-1}$. On the other hand, differentiating the identity $\partial_p\log\det g=g^{i\bar q}\partial_pg_{i\bar q}$ and using $\partial(g^{-1})=-g^{-1}(\partial g)g^{-1}$ gives
+Since $g$ is diagonal with positive eigenvalues, $|E|\leq C_EH\operatorname{tr}_gh$, where $C_E$ bounds the second derivatives of $h^{-1}$ at $x$; these are $-\partial_p\partial_{\bar p}h$ at $x$, so $C_E$ depends only on $X$ and $\omega$. On the other hand, differentiating the identity $\partial_p\log\det g=g^{i\bar q}\partial_pg_{i\bar q}$ and using $\partial(g^{-1})=-g^{-1}(\partial g)g^{-1}$ gives
 \[
  \partial_p\partial_{\bar p}\log\det g
  =\sum_i\lambda_i^{-1}\partial_p\partial_{\bar p}g_{i\bar i}
   -\sum_{i,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}.
 \]
-By the symmetry of the second derivatives, $\partial_p\partial_{\bar p}g_{i\bar i}=\partial_i\partial_{\bar i}g_{p\bar p}$. Summing over $p$ and comparing with the formula for $D_gH$, we obtain
-\[
- D_gH=\sum_p\partial_p\partial_{\bar p}\log\det g
-       +\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}+E.
-\]
+By the symmetry of the second derivatives, $\partial_p\partial_{\bar p}g_{i\bar i}=\partial_i\partial_{\bar i}g_{p\bar p}$. Summing over $p$, comparing with the formula for $D_gH$, and noting that $\sum_p\partial_p\partial_{\bar p}=D_h$ at $x$, we obtain
+\begin{equation}\label{eq:penalized-trace-laplacian}
+ D_gH=D_h\log\det g
+       +\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}+E,
+ \qquad |E|\leq C_EH\operatorname{tr}_gh.
+\end{equation}
 Moreover $\partial_pH=\sum_i\partial_pg_{i\bar i}=\sum_i\partial_ig_{p\bar i}$ by the symmetry of the first derivatives. The Cauchy--Schwarz inequality with weights $\lambda_i$ therefore gives
 \[
  |\partial H|_g^2
@@ -74,56 +99,258 @@ Moreover $\partial_pH=\sum_i\partial_pg_{i\bar i}=\sum_i\partial_ig_{p\bar i}$ b
  \leq H\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}
                            {\lambda_i\lambda_q},
 \]
-the last sum containing the previous one. Since $D_g\log H=H^{-1}D_gH-H^{-2}|\partial H|_g^2$, the quadratic term in $D_gH$ absorbs the negative term, and
+the last sum containing the previous one (take $p=q$ in the term of index $(i,p,q)$ and rename). Since $D_g\log H=H^{-1}D_gH-H^{-2}|\partial H|_g^2$, the quadratic term in $D_gH$ absorbs the negative term, and
 \[
- D_g\log H\geq\frac1H\Bigl(\sum_p\partial_p\partial_{\bar p}\log\det g+E\Bigr).
+ D_g\log H\geq\frac1H\bigl(D_h\log\det g+E\bigr).
 \]
-Now we use the equation in the form $\log\det g=\log\det k+\beta(a-f)$. At the point, $\sum_p\partial_p\partial_{\bar p}=D_h$ and $D_ha=H-\operatorname{tr}_hk$, so
+Now we use the equation in the form $\log\det g=\log\det k+\beta(a-f)$, valid in every chart. Since $D_ha=H-\operatorname{tr}_hk$,
 \[
- \sum_p\partial_p\partial_{\bar p}\log\det g
+ D_h\log\det g
  =D_h\log\det k+\beta\bigl(H-\operatorname{tr}_hk-D_hf\bigr).
 \]
-Under a holomorphic change of coordinates, $\log\det k$ changes by the logarithm of the squared modulus of the Jacobian determinant, a pluriharmonic function. Hence $D_h\log\det k$ is a smooth function on $X$, bounded by a constant depending only on $\omega$ and $\kappa$. Dividing by $H$ and using $H^{-1}\leq\operatorname{tr}_gh/n^2$ and $|E|/H\leq C\operatorname{tr}_gh$, we arrive at
+The function $D_h\log\det k$ is a smooth function on $X$, so it is bounded by a constant depending only on $X$, $\omega$ and $\kappa$. Dividing by $H$ and using $H^{-1}\leq\operatorname{tr}_gh/n^2$ and $|E|/H\leq C_E\operatorname{tr}_gh$, we arrive at
 \begin{equation}\label{eq:penalized-log-trace}
  D_g\log H\geq\beta\left(1-\frac{\operatorname{tr}_h k+D_hf}{H}\right)
                                   -C_0\operatorname{tr}_g h,
 \end{equation}
 where $C_0$ depends only on $X$, $\omega$ and $\kappa$. Both sides are independent of the coordinates, so \eqref{eq:penalized-log-trace} holds everywhere on $X$.
 
-\emph{Step 3: the maximum principle.} By \eqref{eq:penalized-upper-laplacian-nonnegative}, $B>0$. For a constant $A>0$, to be chosen, let $x_0$ be a maximum point of $Q=\log H-Aa$. Since
+\emph{Step 3: the maximum principle.} Let $B'$ be a constant with $B'\geq B$. By \eqref{eq:penalized-upper-laplacian-nonnegative}, $B>0$, and $\operatorname{tr}_hk+D_hf\leq B'$ on $X$. For a constant $A>0$, to be chosen, let $x_0$ be a maximum point of $Q=\log H-Aa$. Since
 \[
  D_ga=g^{i\bar j}(g_{i\bar j}-k_{i\bar j})=n-\operatorname{tr}_gk
  \quad\text{and}\quad
  \operatorname{tr}_gk\geq\gamma\operatorname{tr}_gh,
 \]
-inequality \eqref{eq:penalized-log-trace} and $\operatorname{tr}_hk+D_hf\leq B$ give at $x_0$, where the complex Hessian of $Q$ is negative semidefinite,
+inequality \eqref{eq:penalized-log-trace} gives at $x_0$, where the complex Hessian of $Q$ is negative semidefinite,
 \begin{equation}\label{eq:penalized-trace-maximum}
- 0\geq D_gQ\geq\beta\left(1-\frac B H\right)
+ 0\geq D_gQ\geq\beta\left(1-\frac{B'}H\right)
              +(A\gamma-C_0)\operatorname{tr}_g h-An.
 \end{equation}
 
-First let $\beta$ be fixed, and take $A=(C_0+\beta B/n^2+1)/\gamma$. Since $1/H\leq\operatorname{tr}_gh/n^2$, the right side of \eqref{eq:penalized-trace-maximum} is at least $\beta+\operatorname{tr}_gh-An$, so $\operatorname{tr}_gh\leq An$ at $x_0$. Thus every eigenvalue of $g$ relative to $h$ is at least $(An)^{-1}$ at $x_0$. By Step 1, $|a-f|\leq\operatorname{osc}_Xf\leq2\|f\|_\infty$, and therefore, by the equation, the product of the eigenvalues satisfies
+First let $\beta$ be fixed, let $M\geq\|f\|_\infty$ and $N\geq\sup_XD_hf$ be given, take $B'=\sup_X\operatorname{tr}_hk+N$, and $A=(C_0+\beta B'/n^2+1)/\gamma$. Since $1/H\leq\operatorname{tr}_gh/n^2$, the right side of \eqref{eq:penalized-trace-maximum} is at least $\beta+\operatorname{tr}_gh-An$, so $\operatorname{tr}_gh\leq An$ at $x_0$. Thus every eigenvalue of $g$ relative to $h$ is at least $(An)^{-1}$ at $x_0$. By Step 1, $|a-f|\leq\operatorname{osc}_Xf\leq2M$, and therefore, by the equation, the product of the eigenvalues satisfies
 \[
- \Bigl(\inf_X\frac{\det k}{\det h}\Bigr)\mathrm e^{-2\beta\|f\|_\infty}
+ \Bigl(\inf_X\frac{\det k}{\det h}\Bigr)\mathrm e^{-2\beta M}
  \leq\frac{\det g}{\det h}=\frac{\det k}{\det h}\,\mathrm e^{\beta(a-f)}
- \leq\Bigl(\sup_X\frac{\det k}{\det h}\Bigr)\mathrm e^{2\beta\|f\|_\infty}
+ \leq\Bigl(\sup_X\frac{\det k}{\det h}\Bigr)\mathrm e^{2\beta M}
 \]
 everywhere on $X$. Together with the lower bound for the eigenvalues at $x_0$, the upper bound for their product bounds each eigenvalue above at $x_0$, and hence bounds $H(x_0)$. For every $x\in X$, since $Q(x)\leq Q(x_0)$ and $\min_Xf\leq a\leq\max_Xf$,
 \[
  \log H(x)\leq\log H(x_0)+A\bigl(a(x)-a(x_0)\bigr)
  \leq\log H(x_0)+A\operatorname{osc}_Xf.
 \]
-Thus $H$ is bounded on $X$, so every eigenvalue of $g$ relative to $h$ is bounded above on $X$, and the lower bound for their product then bounds every eigenvalue below. All the constants depend only on $X$, $\omega$, $\kappa$, $\beta$, $\|f\|_\infty$ and $\sup_XD_hf$, which proves the uniform equivalence of $g$ and $h$.
+Thus $H$ is bounded on $X$, so every eigenvalue of $g$ relative to $h$ is bounded above on $X$, and the lower bound for their product then bounds every eigenvalue below. All the constants depend only on $X$, $\omega$, $\kappa$, $\beta$, $M$ and $N$, which proves the uniform equivalence of $g$ and $h$.
 
-Now let $A=(C_0+1)/\gamma$ and $\beta_0=2An$; both depend only on $X$, $\omega$ and $\kappa$. Suppose that $\beta>\beta_0$, and let $x_0$ be a maximum point of $Q=\log H-Aa$ for this $A$. If $H(x_0)>2B$, then $1-B/H>1/2$ at $x_0$, and the right side of \eqref{eq:penalized-trace-maximum} is at least $\beta/2+\operatorname{tr}_gh-An>0$, a contradiction. Hence $H(x_0)\leq2B$, and the same argument as above gives
+Now take $B'=B$, $A=(C_0+1)/\gamma$ and $\beta_0=2An$; both $A$ and $\beta_0$ depend only on $X$, $\omega$ and $\kappa$. Suppose that $\beta>\beta_0$, and let $x_0$ be a maximum point of $Q=\log H-Aa$ for this $A$. If $H(x_0)>2B$, then $1-B/H>1/2$ at $x_0$, and the right side of \eqref{eq:penalized-trace-maximum} is at least $\beta/2+\operatorname{tr}_gh-An>0$, a contradiction. Hence $H(x_0)\leq2B$, and the same argument as above gives
 \[
  H\leq2B\,\mathrm e^{A\operatorname{osc}_X f}\quad\text{on }X.
 \]
-Since $\operatorname{osc}_Xf\leq2\|f\|_\infty$, this proves the last assertion.
+Since $\operatorname{osc}_Xf\leq2\|f\|_\infty$ and $B\leq\sup_X\operatorname{tr}_hk+N$, this proves the last assertion.
 \end{proof}
 \index{Monge--Amp\`ere equation!trace estimate for an exponential penalty}
 
-We solve the penalized equation by the continuity method. Besides the trace bound, its a priori estimates require control of the third derivatives of the potential. We obtain it from a maximum principle for the squared norm of the difference of the Chern connections of $g$ and $h$, and then bootstrap with the elliptic $L^p$ estimates of \cref{prop:compact-metric-laplacian-lp}.
+The third-order estimate uses a little tensor calculus, which we now set up. Let $z=z(w)$ be a holomorphic change of coordinates on an open subset of $X$, with Jacobian matrix $J=(J_{ab})$, $J_{ab}=\partial z_a/\partial w_b$. A \emph{tensor} is given, in every holomorphic chart, by functions $T^{m_1\cdots m_r\bar n_1\cdots\bar n_{r'}}_{i_1\cdots i_s\bar j_1\cdots\bar j_{s'}}$ of upper and lower, holomorphic and antiholomorphic indices in $\{1,\ldots,n\}$, whose components in the coordinates $w$ are obtained from those in $z$ by contracting each upper holomorphic index $m$ with $(J^{-1})_{m'm}$, each lower holomorphic index $i$ with $J_{ii'}$, and each upper or lower antiholomorphic index with the complex conjugate of the corresponding factor; for instance $T'^{m'}_{i'\bar j'}=(J^{-1})_{m'm}J_{ii'}\overline{J_{jj'}}\,T^m_{i\bar j}$. Examples are the first derivatives $\partial_iu$ of a function, the matrices $h_{i\bar j}$, $k_{i\bar j}$, $g_{i\bar j}$, the complex Hessian $u_{i\bar j}$ of a function and $\operatorname{Ric}(k)_{i\bar j}$ (all with lower indices, since $\mathrm dz_i=J_{ii'}\,\mathrm dw_{i'}$), the inverse matrices $h^{i\bar j}$, $g^{i\bar j}$ (with upper indices), and the identity $\delta^i_j$. The complex conjugate of a tensor is a tensor, with the roles of holomorphic and antiholomorphic indices exchanged; products of tensors are tensors, and so are contractions of an upper with a lower index of the same kind. For a Hermitian metric $g$ and a tensor $T$, the pointwise norm $|T|_g$ is defined by $|T|_g^2=$ the complete contraction of $T$ with $\overline T$ in which the lower indices are paired by $g^{\cdot\bar\cdot}$ and the upper ones by $g_{\cdot\bar\cdot}$; for instance $|T|_g^2=g^{i\bar a}g_{m\bar c}T^m_i\overline{T^c_a}$. At a point, in coordinates in which $g_{i\bar j}=\delta_{ij}$ there, $|T|_g^2$ is the sum of the squared moduli of the components. Hence the contraction of one index of $T$ with one index of $U$ satisfies $|T\cdot U|_g\leq|T|_g|U|_g$, contraction of two indices of $T$ with $g^{p\bar q}$ or $g_{p\bar q}$ changes the norm at most by the factor $\sqrt n$, and, diagonalizing $g$ and $h$ simultaneously, $C^{-1}h\leq g\leq Ch$ implies $|T|_g\leq C^{N/2}|T|_h$ for a tensor with $N$ indices.
+
+Let $g$ be the coefficient matrix of $2\pi\eta$, where $\eta$ is a K\"ahler form on an open subset of $X$. Its \emph{Chern connection}\index{Chern connection} has the coefficients
+\[
+ \Gamma^m_{ij}=g^{m\bar l}\partial_ig_{j\bar l},
+\]
+which are symmetric in $i$ and $j$ because $\partial_ig_{j\bar l}=\partial_jg_{i\bar l}$. For a tensor $T$, the covariant derivative $\nabla_pT$ is obtained from $\partial_pT$ by adding, for each upper holomorphic index $m$, the term $\Gamma^m_{pa}$ contracted with $T$ in that index, and subtracting, for each lower holomorphic index $i$, the term $\Gamma^a_{pi}$ contracted with $T$ in that index; antiholomorphic indices receive no term. For instance $\nabla_pT^m_{i\bar j}=\partial_pT^m_{i\bar j}+\Gamma^m_{pa}T^a_{i\bar j}-\Gamma^a_{pi}T^m_{a\bar j}$. We put $\nabla_{\bar q}T=\overline{\nabla_q\overline T}$; thus $\nabla_{\bar q}$ acts by $\partial_{\bar q}$ and conjugate terms for the antiholomorphic indices only. We write $\widehat\Gamma$, $\widehat\nabla$ for the Chern connection of $h$.
+
+\begin{lemma}\label{lem:chern-connection-identities}
+Let $g$ be as above, on an open set $O\subset X$.
+\begin{enumerate}
+\item If $T$ is a tensor, then $\nabla_pT$ and $\nabla_{\bar q}T$ are tensors, with one more lower index $p$, respectively $\bar q$. The covariant derivatives satisfy the Leibniz rule for products, they commute with contractions, and $\nabla g=0$, $\nabla g^{-1}=0$. Consequently, if $S$ is a complete contraction of a product of tensors, then $\partial_pS$ is the sum of the contractions in which one factor is replaced by its covariant derivative $\nabla_p$, and similarly for $\partial_{\bar q}$.
+\item The functions $\Psi^m_{ij}=\Gamma^m_{ij}-\widehat\Gamma^m_{ij}$ form a tensor, and $\Psi^m_{ij}=g^{m\bar l}\widehat\nabla_ig_{j\bar l}$.
+\item The functions $R^m{}_{i\bar qj}=-\partial_{\bar q}\Gamma^m_{ij}$ form a tensor, symmetric in $i$ and $j$. The \emph{Ricci tensor}\index{Ricci tensor} $R_{i\bar j}=R^m{}_{i\bar jm}$ equals $-\partial_i\partial_{\bar j}\log\det g$, and with $R_i{}^m=g^{m\bar l}R_{i\bar l}$ we have
+\[
+ g^{p\bar q}R^m{}_{i\bar qp}=R_i{}^m,
+ \qquad
+ g^{p\bar q}\nabla_pR^m{}_{i\bar qj}=\nabla_iR_j{}^m.
+\]
+\item If $T$ has only holomorphic indices, then $\nabla_{\bar q}T=\partial_{\bar q}T$, and, for instance for $T=(T^m_{ij})$,
+\[
+ (\nabla_{\bar q}\nabla_p-\nabla_p\nabla_{\bar q})T^m_{ij}
+ =-R^m{}_{a\bar qp}T^a_{ij}+R^a{}_{i\bar qp}T^m_{aj}+R^a{}_{j\bar qp}T^m_{ia}.
+\]
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) By the transformation rules $g'_{a\bar b}=J_{ia}g_{i\bar j}\overline{J_{jb}}$ and $g'^{d\bar b}=(J^{-1})_{dm}\overline{(J^{-1})_{bl}}g^{m\bar l}$, and the chain rule $\partial_{w_c}(F\circ z)=J_{kc}\,(\partial_{z_k}F)\circ z$, which holds because $\partial_{w_c}\bar z_k=0$, we have $\partial_{w_c}g'_{a\bar b}=(\partial_{w_c}J_{ia})g_{i\bar j}\overline{J_{jb}}+J_{ia}J_{kc}\,\partial_kg_{i\bar j}\,\overline{J_{jb}}$, and hence
+\begin{equation}\label{eq:chern-symbol-change}
+ \Gamma'^d_{ca}=(J^{-1})_{dm}J_{kc}J_{ia}\Gamma^m_{ki}+(J^{-1})_{dm}\partial_{w_c}J_{ma}.
+\end{equation}
+Let $T$ be a tensor, and differentiate its transformation rule by $\partial_{w_c}$. By the product rule, this gives the transformed array $J_{kc}\partial_kT$, plus one term for each holomorphic index, in which $\partial_{w_c}$ falls on the Jacobian factor of that index; the factors of the antiholomorphic indices are antiholomorphic and are not differentiated. For an upper holomorphic index, the term contains $\partial_{w_c}(J^{-1})_{dm}=-(J^{-1})_{dm'}(\partial_{w_c}J_{m'b})(J^{-1})_{bm}$, and it cancels against the contribution of the second term of \eqref{eq:chern-symbol-change} to $\Gamma'^d_{cb}T'^{\cdots b\cdots}$; for a lower holomorphic index $a$, the term contains $\partial_{w_c}J_{ia}$, and it cancels against the contribution of the second term of \eqref{eq:chern-symbol-change} to $-\Gamma'^b_{ca}T'_{\cdots b\cdots}$. The contributions of the first term of \eqref{eq:chern-symbol-change} are the transforms of the connection terms of $T$. Hence $\nabla_cT'$ is the transform of $\nabla_kT$, contracted with $J_{kc}$, so $\nabla_pT$ is a tensor; by conjugation, so is $\nabla_{\bar q}T$. The Leibniz rule follows from the product rule for $\partial_p$ and the additivity of the connection terms over the indices. If an upper and a lower holomorphic index of $T$ are contracted, their connection terms $\Gamma^m_{pa}T^{a\cdots}{}_{\cdots m}$ and $-\Gamma^a_{pm}T^{m\cdots}{}_{\cdots a}$ cancel, so $\nabla$ commutes with contractions. Next,
+\[
+ \nabla_pg_{i\bar j}=\partial_pg_{i\bar j}-\Gamma^a_{pi}g_{a\bar j}=\partial_pg_{i\bar j}-g^{a\bar l}\partial_pg_{i\bar l}\,g_{a\bar j}=0,
+\]
+because $g^{a\bar l}g_{a\bar j}=\delta_{lj}$, and $\nabla_{\bar q}g_{i\bar j}=\overline{\nabla_qg_{j\bar i}}=0$, since $\overline{g_{i\bar j}}=g_{j\bar i}$. The connection terms of the identity tensor cancel, so $\nabla\delta=0$, and the Leibniz rule applied to $g^{i\bar j}g_{l\bar j}=\delta^i_l$ gives $(\nabla g^{i\bar j})g_{l\bar j}=0$, hence $\nabla g^{-1}=0$. For a complete contraction $S$, a function, $\nabla_pS=\partial_pS$, and the last assertion follows from the Leibniz rule and the commutation with contractions.
+
+(2) By \eqref{eq:chern-symbol-change} for $g$ and for $h$, the inhomogeneous terms of $\Gamma'$ and $\widehat\Gamma'$ coincide, so the difference transforms as a tensor. Moreover $\widehat\nabla_ig_{j\bar l}=\partial_ig_{j\bar l}-\widehat\Gamma^p_{ij}g_{p\bar l}$, and contracting with $g^{m\bar l}$ gives $\Gamma^m_{ij}-\widehat\Gamma^m_{ij}$.
+
+(3) The second term of \eqref{eq:chern-symbol-change} is holomorphic in $w$, so it is annihilated by $\partial_{\bar w_e}=\overline{J_{le}}\,\partial_{\bar z_l}$, and $R$ transforms as a tensor; it is symmetric in $i$ and $j$ because $\Gamma$ is. Since $\Gamma^m_{im}=g^{m\bar l}\partial_ig_{m\bar l}=\partial_i\log\det g$, we get $R_{i\bar j}=-\partial_{\bar j}\partial_i\log\det g$. Both sides of each of the two identities are tensors, so it suffices to prove them at a point $x$ in coordinates in which $g_{i\bar j}(x)=\delta_{ij}$ and $\mathrm dg(x)=0$, which exist by \cref{lem:kahler-normal-coordinates}. There $\Gamma=0$, so covariant derivatives at $x$ are ordinary derivatives, and $\partial g^{-1}=-g^{-1}(\partial g)g^{-1}$ and $\bar\partial g^{-1}$ vanish at $x$. Using a local K\"ahler potential $\varphi$, $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$, whose derivatives commute, we find at $x$
+\[
+ g^{p\bar q}R^m{}_{i\bar qp}=-\sum_p\partial_i\partial_{\bar p}g_{p\bar m}=-\sum_p\partial_i\partial_{\bar m}g_{p\bar p}=R_i{}^m,
+\]
+and
+\[
+ g^{p\bar q}\nabla_pR^m{}_{i\bar qj}=-\sum_p\partial_p\partial_{\bar p}\partial_ig_{j\bar m}
+ =-\sum_p\partial_i\partial_j\partial_{\bar m}g_{p\bar p}=\nabla_iR_j{}^m;
+\]
+in each case all terms containing a first derivative of $g$ or of $g^{-1}$ vanish at $x$.
+
+(4) A tensor with only holomorphic indices receives no connection term from $\nabla_{\bar q}$, so $\nabla_{\bar q}T=\partial_{\bar q}T$. The tensor $\nabla_pT$ again has only holomorphic indices, so $\nabla_{\bar q}\nabla_pT^m_{ij}$ is the $\partial_{\bar q}$-derivative of $\partial_pT^m_{ij}+\Gamma^m_{pa}T^a_{ij}-\Gamma^a_{pi}T^m_{aj}-\Gamma^a_{pj}T^m_{ia}$. On the other hand, $\nabla_{\bar q}T=\partial_{\bar q}T$ has the additional antiholomorphic index $\bar q$, which receives no term from $\nabla_p$, so $\nabla_p\nabla_{\bar q}T^m_{ij}=\partial_p\partial_{\bar q}T^m_{ij}+\Gamma^m_{pa}\partial_{\bar q}T^a_{ij}-\Gamma^a_{pi}\partial_{\bar q}T^m_{aj}-\Gamma^a_{pj}\partial_{\bar q}T^m_{ia}$. The difference consists of the terms in which $\partial_{\bar q}$ falls on $\Gamma$; since $\partial_{\bar q}\Gamma^m_{pa}=-R^m{}_{a\bar qp}$ by the symmetry of $R$, this is the asserted formula.
+\end{proof}
+\index{Chern connection!curvature identities}
+
+\begin{lemma}\label{lem:penalized-third-order}
+Let $f$ be a smooth real function on $X$, let $\beta>0$ and $0\leq t\leq1$, and let $a$ be a smooth real function with $\kappa+\ddc a>0$ and
+\[
+ (\kappa+\ddc a)^n=\mathrm e^{\beta(a-tf)}\kappa^n.
+\]
+Suppose that $C_0^{-1}h\leq g\leq C_0h$ on $X$ for a constant $C_0\geq1$, and let $\Psi$ be the tensor of \cref{lem:chern-connection-identities}(2) for $g$. Then
+\[
+ S=|\Psi|_g^2=g^{i\bar p}g^{j\bar q}g_{m\bar l}\,\Psi^m_{ij}\overline{\Psi^l_{pq}}\leq C,
+\]
+where $C$ depends only on $X$, $\omega$, $\kappa$, $\beta$, $C_0$ and $f$, but not on $t$ or $a$. Consequently, in each chart of a fixed finite atlas, the first derivatives of the functions $g_{i\bar j}$ are bounded on every compact subset by a constant of the same kind.
+\end{lemma}
+\begin{proof}
+In this proof $C,C_1,C_2,\ldots$ denote constants depending only on $X$, $\omega$, $\kappa$, $\beta$, $C_0$ and $f$. By \cref{lem:chern-connection-identities}(1),(2), $S$ is a smooth function on $X$. The fixed smooth tensors $\widehat R$ (the tensor of \cref{lem:chern-connection-identities}(3) for $h$), $\widehat\nabla\widehat R$, $\tau=\operatorname{Ric}(k)+\beta k+\beta t(f_{i\bar j})$ and $\widehat\nabla\tau$ have $h$-norms bounded on $X$ independently of $t\in[0,1]$, being continuous functions on the compact manifold $X$ that depend affinely on $t$; by the assumption on $g$, their $g$-norms are bounded as well.
+
+\emph{The Laplacian of $\Psi$.} Let $R$ be the tensor of \cref{lem:chern-connection-identities}(3) for $g$. Since $\Psi$ has only holomorphic indices,
+\[
+ \nabla_{\bar q}\Psi^m_{ij}=\partial_{\bar q}\Psi^m_{ij}=\widehat R^m{}_{i\bar qj}-R^m{}_{i\bar qj}.
+\]
+Put $D_gT=g^{p\bar q}\nabla_p\nabla_{\bar q}T$ and $\overline D_gT=g^{p\bar q}\nabla_{\bar q}\nabla_pT$ for tensors $T$. On a function $u$ both operators reduce to $D_gu=g^{p\bar q}\partial_p\partial_{\bar q}u$, since $\nabla_p$ adds no term to the antiholomorphic index of $\partial_{\bar q}u$, and $\nabla_{\bar q}$ none to the holomorphic index of $\partial_pu$. Applying $g^{p\bar q}\nabla_p$ to the last identity and using $\nabla g^{-1}=0$ and \cref{lem:chern-connection-identities}(3), we obtain
+\begin{equation}\label{eq:elliptic-calabi-tensor}
+ D_g\Psi^m_{ij}
+  =g^{p\bar q}\nabla_p\widehat R^m{}_{i\bar qj}
+                                      -\nabla_iR_j{}^m.
+\end{equation}
+By \cref{lem:chern-connection-identities}(4) and the first identity of (3), $\overline D_g\Psi=D_g\Psi+\mathcal R\Psi$, where
+\[
+ (\mathcal R\Psi)^m_{ij}
+   =-R_a{}^m\Psi^a_{ij}+R_i{}^a\Psi^m_{aj}+R_j{}^a\Psi^m_{ia}.
+\]
+
+\emph{The Laplacian of $S$.} By \cref{lem:chern-connection-identities}(1) and $\nabla_p\overline{\Psi^l_{pq}}=\overline{\nabla_{\bar p}\Psi^l_{pq}}$,
+\[
+ \partial_rS=g^{i\bar p}g^{j\bar q}g_{m\bar l}\bigl(\nabla_r\Psi^m_{ij}\,\overline{\Psi^l_{pq}}+\Psi^m_{ij}\,\overline{\nabla_{\bar r}\Psi^l_{pq}}\bigr).
+\]
+The right side is a tensor with one lower holomorphic index $r$, on which $\nabla_{\bar s}$ acts as $\partial_{\bar s}$. Applying \cref{lem:chern-connection-identities}(1) once more and contracting with $g^{r\bar s}$, we obtain, with the inner products and norms defined by $g$,
+\[
+ D_gS=|\nabla\Psi|_g^2+|\overline\nabla\Psi|_g^2+\langle\overline D_g\Psi,\Psi\rangle_g+\langle\Psi,D_g\Psi\rangle_g,
+\]
+where $\nabla\Psi=(\nabla_r\Psi^m_{ij})$ and $\overline\nabla\Psi=(\nabla_{\bar s}\Psi^m_{ij})$; for the last term we used $\overline{g^{r\bar s}}=g^{s\bar r}$. Inserting $\overline D_g\Psi=D_g\Psi+\mathcal R\Psi$, we get
+\begin{equation}\label{eq:elliptic-calabi-norm}
+ D_gS=|\nabla\Psi|_g^2+|\overline\nabla\Psi|_g^2
+       +2\Real\langle D_g\Psi,\Psi\rangle_g
+       +\langle\mathcal R\Psi,\Psi\rangle_g;
+\end{equation}
+in particular $\langle\mathcal R\Psi,\Psi\rangle_g$ is real.
+
+\emph{Bounds from the equation.} In every chart, $\log\det g=\log\det k+\beta(a-tf)$, so
+\[
+ R_{i\bar j}=-\partial_i\partial_{\bar j}\log\det g=\operatorname{Ric}(k)_{i\bar j}-\beta a_{i\bar j}+\beta tf_{i\bar j}=\tau_{i\bar j}-\beta g_{i\bar j}.
+\]
+Hence $R_i{}^m=g^{m\bar l}\tau_{i\bar l}-\beta\delta^m_i$ is bounded in $g$-norm, and so $|\langle\mathcal R\Psi,\Psi\rangle_g|\leq CS$. Moreover $\nabla_iR_j{}^m=g^{m\bar l}\nabla_i\tau_{j\bar l}$, because $\nabla g^{-1}=0$ and $\nabla\delta=0$. For a tensor the difference $\nabla_p-\widehat\nabla_p$ consists of the connection terms with $\Gamma-\widehat\Gamma=\Psi$ in place of $\Gamma$; thus $\nabla_i\tau_{j\bar l}=\widehat\nabla_i\tau_{j\bar l}-\Psi^a_{ij}\tau_{a\bar l}$ and
+\[
+ \nabla_p\widehat R^m{}_{i\bar qj}=\widehat\nabla_p\widehat R^m{}_{i\bar qj}+\Psi^m_{pa}\widehat R^a{}_{i\bar qj}-\Psi^a_{pi}\widehat R^m{}_{a\bar qj}-\Psi^a_{pj}\widehat R^m{}_{i\bar qa}.
+\]
+By \eqref{eq:elliptic-calabi-tensor} it follows that $|D_g\Psi|_g\leq C(1+S^{1/2})$. Discarding the two nonnegative gradient terms in \eqref{eq:elliptic-calabi-norm}, we conclude that
+\[
+ D_gS\geq-2C(1+S^{1/2})S^{1/2}-CS\geq-C_1(S+1).
+\]
+
+\emph{A compensating term.} We use the trace $H=\operatorname{tr}_hg$. Let $x\in X$, and take the coordinates of Step 2 of the proof of \cref{lem:penalized-equation-trace} at $x$. Identity \eqref{eq:penalized-trace-laplacian} holds at $x$, with $|E|\leq C_EH\operatorname{tr}_gh\leq C$ by the assumption on $g$, and $D_h\log\det g=D_h\log\det k+\beta(H-\operatorname{tr}_hk-tD_hf)$ is bounded by $C$. At $x$ the coefficients $\widehat\Gamma$ vanish, so $\Psi^m_{ij}=\lambda_m^{-1}\partial_ig_{j\bar m}$ and
+\[
+ S=\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_p\lambda_i\lambda_q}.
+\]
+Hence the quadratic sum in \eqref{eq:penalized-trace-laplacian} is at least $(\min_p\lambda_p)S\geq C_0^{-1}S$, and $D_gH\geq C_0^{-1}S-C_2$ at $x$. Both sides are functions on $X$, so this inequality holds everywhere.
+
+\emph{The maximum principle.} Choose $K$ with $KC_0^{-1}\geq C_1+1$, and let $x_0$ be a maximum point of $S+KH$. There the complex Hessian of $S+KH$ is negative semidefinite, so
+\[
+ 0\geq D_g(S+KH)\geq(KC_0^{-1}-C_1)S-C_1-KC_2\geq S-C_1-KC_2.
+\]
+Thus $S\leq C_1+KC_2$ at $x_0$. Since $H\leq nC_0$ on $X$, the function $S+KH$, and hence $S$, is bounded on $X$.\index{Monge--Amp\`ere equation!third-order estimate}
+
+\emph{First derivatives of $g$.} In a chart of the fixed atlas, $\partial_pg_{i\bar q}=\widehat\nabla_pg_{i\bar q}+\widehat\Gamma^l_{pi}g_{l\bar q}=g_{m\bar q}\Psi^m_{pi}+\widehat\Gamma^l_{pi}g_{l\bar q}$ by \cref{lem:chern-connection-identities}(2). On a compact subset of the chart, $h$ lies between two positive multiples of the identity matrix and $\widehat\Gamma$ is bounded, so both terms are bounded, by the bounds for $S$ and $g$. Finally $\partial_{\bar p}g_{i\bar q}=\overline{\partial_pg_{q\bar i}}$, so all first derivatives of the $g_{i\bar j}$ in the underlying real coordinates are bounded.
+\end{proof}
+
+The perturbation argument uses Sobolev spaces that are algebras.
+
+\begin{lemma}\label{lem:sobolev-multiplication}
+Let $d\geq1$, let $s>d/2$ be an integer, and for $v\in\mathcal S(\mathbb R^d)$ put
+\[
+ \|v\|_{(s)}=\Bigl(\int_{\mathbb R^d}(1+|\xi|^2)^s|\widehat v(\xi)|^2\,\mathrm d\xi\Bigr)^{1/2}.
+\]
+Then $\|vw\|_{(s)}\leq C_s\|v\|_{(s)}\|w\|_{(s)}$ for $v,w\in\mathcal S(\mathbb R^d)$, with $C_s$ depending only on $d$ and $s$.
+\end{lemma}
+\begin{proof}
+By the inversion formula of \cref{thm:plancherel} and Fubini's theorem, $\widehat{vw}=\widehat v*\widehat w$. With $\langle\xi\rangle=(1+|\xi|^2)^{1/2}$ we have $\langle\xi\rangle\leq\langle\eta\rangle+\langle\xi-\eta\rangle$, since $(1,\xi)=(1,\eta)+(0,\xi-\eta)$ in $\mathbb R^{1+d}$; hence $\langle\xi\rangle^s\leq2^s(\langle\eta\rangle^s+\langle\xi-\eta\rangle^s)$, and therefore
+\[
+ \langle\xi\rangle^s|\widehat v*\widehat w|(\xi)
+ \leq2^s\Bigl(\bigl(\langle\cdot\rangle^s|\widehat v|\bigr)*|\widehat w|
+        +|\widehat v|*\bigl(\langle\cdot\rangle^s|\widehat w|\bigr)\Bigr)(\xi).
+\]
+Young's inequality $\|F*G\|_2\leq\|F\|_2\|G\|_1$ follows from the Cauchy--Schwarz inequality $|F*G(x)|^2\leq\|G\|_1\int|F(x-y)|^2|G(y)|\,\mathrm dy$ by integration in $x$ and Fubini's theorem. It therefore remains to bound $\|\widehat w\|_1$ and $\|\widehat v\|_1$ by the norms $\|\cdot\|_{(s)}$. This follows from the Cauchy--Schwarz inequality, $\|\widehat w\|_1\leq\|\langle\cdot\rangle^{-s}\|_2\|\langle\cdot\rangle^s\widehat w\|_2$, since $\langle\xi\rangle^{-2s}$ is integrable on $\mathbb R^d$ for $2s>d$.
+\end{proof}
+\index{Sobolev space!multiplication estimate}\index{Young's inequality!for convolutions}
+
+The next lemma gives the regularity of solutions of the penalized equation, and the estimates for their higher derivatives, in a chart. For a function $G=(G_{i\bar j})$ with values in the positive definite Hermitian matrices we write $(g^{i\bar j})$ for its inverse in the normalization above and $D_Gw=g^{i\bar j}\partial_i\partial_{\bar j}w$; by Jacobi's formula $\frac{\mathrm d}{\mathrm d\tau}\log\det M(\tau)=\operatorname{tr}(M^{-1}M')$, we have $\partial\log\det G=g^{i\bar j}\partial G_{i\bar j}$ for every first-order derivative $\partial$.
+
+\begin{lemma}\label{lem:penalized-local-regularity}
+Let $U\subset\mathbb C^n$ be open, let $k=(k_{i\bar j})$ be a smooth function on $U$ with values in the positive definite Hermitian matrices, let $\phi_0$ be a smooth real function on $U$, and let $\beta\in\mathbb R$. Let $u\in C^2(U)$ be real, suppose that $G=(k_{i\bar j}+u_{i\bar j})$ is positive definite on $U$, and that
+\begin{equation}\label{eq:penalized-local-equation}
+ \log\det G=\phi_0+\beta u\qquad\text{on }U.
+\end{equation}
+Then $u$ is smooth. Moreover, let $V\Subset U$ be open, let $\ell\geq3$ be an integer and $2\leq p<\infty$, and suppose that $\lambda I\leq G\leq\Lambda I$ on $U$ for constants $0<\lambda\leq\Lambda$, that $|G(x)-G(y)|\leq\varpi(|x-y|)$ for $x,y\in U$, where $\varpi(r)\to0$ as $r\to0$, and that $\|u\|_{C^1(U)}+\|D^2u\|_{L^q(U)}\leq M$, where $q=2^\ell(p+2n)$. Then $\|u\|_{W^{\ell,p}(V)}\leq C$, where $C$ depends only on $n$, $\ell$, $p$, $V$, $U$, $\lambda$, $\Lambda$, $\varpi$, $M$, $|\beta|$ and bounds on $U$ for the derivatives of order at most $\ell$ of $k$ and $\phi_0$.
+\end{lemma}
+\begin{proof}
+For the quantitative assertion, $C$ denotes constants depending only on the quantities listed there; $O'\Subset O\Subset O_1\Subset U$ denote open sets, and the constants may also depend on them. The qualitative assertion follows from the quantitative one: if $V\Subset U'\Subset U$ with $U'$ open, then on $U'$ the matrix $G$ is bounded above and below and uniformly continuous, and $u$ has finite $C^1$ norm and bounded second derivatives, so the quantitative assertion, applied on $U'$, gives $u\in W^{\ell,p}(V)$ for all $\ell$ and $p$; by Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the derivatives of $u$, all derivatives of $u$ are continuous on $V$.
+
+\emph{Step 0: an interior estimate.} Let $(a^{i\bar j})$ be a function on $O$ with $\overline{a^{i\bar j}}=a^{j\bar i}$, $\Lambda^{-1}|\zeta|^2\leq a^{i\bar j}\zeta_i\bar\zeta_j\leq\lambda^{-1}|\zeta|^2$ and $|a(x)-a(y)|\leq\varpi'(|x-y|)$, where $\varpi'(r)\to0$ as $r\to0$. We claim that every real $w\in W^{2,p}_{\loc}(O)$ with $w\in W^{1,p}(O)$ satisfies
+\[
+ \|D^2w\|_{L^p(O')}\leq C\bigl(\|a^{i\bar j}\partial_i\partial_{\bar j}w\|_{L^p(O)}+\|w\|_{W^{1,p}(O)}\bigr),
+\]
+with $C$ depending also on $\varpi'$. Indeed, by \eqref{eq:complex-hessian-real-form}, $a^{i\bar j}\partial_i\partial_{\bar j}w=\alpha:D^2w$ with a real symmetric $\alpha\geq(4\Lambda)^{-1}I$, $|\alpha|\leq C\lambda^{-1}$ and $|\alpha(x)-\alpha(y)|\leq\varpi'(|x-y|)$. Let $\delta_0$ and $C_A$ be the constants of \cref{lem:frozen-coefficient-lp} for $d=2n$, $p$ and $(4\Lambda)^{-1}$, and choose $r>0$ with $\varpi'(r)\leq\delta_0$ and $r<\operatorname{dist}(O',\mathbb R^{2n}\setminus O)$. Cover $\overline{O'}$ by finitely many balls $B(x_k,r/2)$ with $x_k\in\overline{O'}$, and let $\chi_k=\chi(\cdot-x_k)$, where $\chi\in C_c^\infty(B(0,r))$ equals $1$ on $B(0,r/2)$. By \cref{lem:sobolev-leibniz-chain}(1) and \cref{lem:frozen-coefficient-lp},
+\[
+ \|D^2(\chi_kw)\|_p\leq C_A\|\alpha:D^2(\chi_kw)\|_{L^p(B(x_k,r))},
+\]
+and $\alpha:D^2(\chi_kw)=\chi_k\,\alpha:D^2w+2\sum_{\mu,\sigma}\alpha^{\mu\sigma}\partial_\mu\chi_k\,\partial_\sigma w+w\,\alpha:D^2\chi_k$. Summing over $k$ proves the claim.
+
+\emph{Step 1: $u\in W^{3,p}_{\loc}$.} Let $e$ be a real coordinate unit vector, and let $0<|h|<\operatorname{dist}(O,\mathbb R^{2n}\setminus O_1)$, with the notation $\tau_h$, $\delta_h$ of \cref{lem:difference-quotients}. For $x\in O$ and $0\leq\tau\leq1$ the matrix $G_\tau(x)=(1-\tau)G(x)+\tau G(x+he)$ satisfies $\lambda I\leq G_\tau\leq\Lambda I$; let $(g_\tau^{i\bar j})$ be its inverse and $a_h^{i\bar j}=\int_0^1g_\tau^{i\bar j}\,\mathrm d\tau$. By Jacobi's formula, $\frac{\mathrm d}{\mathrm d\tau}\log\det G_\tau=g_\tau^{i\bar j}(G_{i\bar j}(x+he)-G_{i\bar j}(x))$, so integration over $0\leq\tau\leq1$ gives $\delta_h\log\det G=a_h^{i\bar j}\delta_hG_{i\bar j}$. Since $\delta_hG_{i\bar j}=\delta_hk_{i\bar j}+\partial_i\partial_{\bar j}\delta_hu$, equation \eqref{eq:penalized-local-equation} gives
+\[
+ a_h^{i\bar j}\partial_i\partial_{\bar j}(\delta_hu)=\delta_h\phi_0+\beta\,\delta_hu-a_h^{i\bar j}\delta_hk_{i\bar j}\qquad\text{on }O.
+\]
+The right side is bounded by $\sup_U|\nabla\phi_0|+|\beta|\sup_U|\nabla u|+C\lambda^{-1}\sup_U|\nabla k|$. The matrices $a_h$ satisfy the hypotheses of Step 0 with $\varpi'=2\lambda^{-2}\varpi$, because they are averages of inverses of matrices between $\lambda I$ and $\Lambda I$, and $|M^{-1}-N^{-1}|=|M^{-1}(N-M)N^{-1}|\leq\lambda^{-2}|M-N|$ for such matrices. By \cref{lem:difference-quotients}(1), $\|\delta_hu\|_{W^{1,p}(O)}\leq\|u\|_{W^{2,p}(O_1)}$. Step 0 therefore gives $\|D^2\delta_hu\|_{L^p(O')}\leq C$, uniformly in $h$. Since $\delta_h\partial_\mu\partial_\sigma u=\partial_\mu\partial_\sigma\delta_hu$, \cref{lem:difference-quotients}(2), applied to $Z=\partial_\mu\partial_\sigma u$, shows that $\partial_e\partial_\mu\partial_\sigma u\in L^p(O')$, with norm at most $C$. Thus $\|u\|_{W^{3,p}(O')}\leq C$, where $C$ depends on $M$ through $\|u\|_{C^1(U)}$ and $\|D^2u\|_{L^p(U)}$.
+
+\emph{Step 2: from $W^{\ell}$ to $W^{\ell+1}$.} Let $\ell\geq3$ and suppose that $u\in W^{\ell,q'}(O_1)$ for some $q'\geq2p+2n$. By Morrey's inequality, applied to the derivatives of $u$ of order at most $\ell-1$, these derivatives are continuous on $O_1$, and on a slightly smaller set, which we again call $O_1$, they are bounded by $C\|u\|_{W^{\ell,q'}}$. Thus $G\in C^{\ell-3}(O_1)$, its derivatives of order at most $\ell-3$ lie in $W^{1,2p}(O_1)$, and those of order $\ell-2$ lie in $L^{2p}(O_1)$.
+
+We first record a formula for the derivatives of $\log\det G$. For a smooth function $G$ with values in the positive definite Hermitian matrices and a multi-index $\gamma$ with $|\gamma|\geq1$,
+\[
+ \partial^\gamma\log\det G=\operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G),
+\]
+where $P_\gamma(G)$ is a linear combination, with coefficients depending only on $\gamma$, of functions $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\,G^{-1}\partial^{\beta_2}G\cdots G^{-1}\partial^{\beta_r}G)$ with $r\geq2$, $|\beta_i|\geq1$ and $\beta_1+\cdots+\beta_r=\gamma$; in particular $|\beta_i|\leq|\gamma|-1$. For $|\gamma|=1$ this is Jacobi's formula, with $P_\gamma=0$. If it holds for $\gamma$, differentiate once more: by the Leibniz rule and $\partial_\mu(G^{-1})=-G^{-1}(\partial_\mu G)G^{-1}$, the derivative of each term $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\cdots)$ is a sum of terms of the same form, with $r$ or $r+1$ factors and total multi-index $\gamma+e_\mu$, and the derivative of $\operatorname{tr}(G^{-1}\partial^\gamma G)$ is $\operatorname{tr}(G^{-1}\partial^{\gamma+e_\mu}G)-\operatorname{tr}(G^{-1}\partial_\mu G\,G^{-1}\partial^\gamma G)$. Note that $\operatorname{tr}(G^{-1}\partial^\gamma G)=g^{i\bar j}\partial^\gamma G_{i\bar j}$.
+
+Now fix $\gamma$ with $|\gamma|=\ell-2\geq1$. We claim that, almost everywhere on $O_1$,
+\[
+ \operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G)=\partial^\gamma\phi_0+\beta\,\partial^\gamma u,
+\]
+where $\partial^\gamma G$ is formed with weak derivatives. Let $K\subset O_1$ be compact, and let $u_\varepsilon=u*\rho_\varepsilon$ and $G_\varepsilon=k+(\partial_i\partial_{\bar j}u_\varepsilon)$. By \cref{prop:distribution-smoothing}(1) and \cref{lem:mollifier-density}(1),(2), as $\varepsilon\to0$ the derivatives of $u_\varepsilon$ of order at most $\ell-1$ converge uniformly on $K$ to those of $u$, and those of order $\ell$ converge in $L^{2p}(K)$. Hence $G_\varepsilon$ is positive definite on $K$ for small $\varepsilon$, its derivatives of order at most $\ell-3$ converge uniformly on $K$ to those of $G$, and $\partial^\gamma G_\varepsilon\to\partial^\gamma G$ in $L^{2p}(K)$. The formula above holds for the smooth functions $G_\varepsilon$ on the interior of $K$. Its left side converges to $\partial^\gamma\log\det G=\partial^\gamma\phi_0+\beta\partial^\gamma u$ in the sense of distributions, since $\log\det G_\varepsilon\to\log\det G$ uniformly on $K$ and $\log\det G=\phi_0+\beta u$, and its right side converges in $L^1(K)$, since every factor of $P_\gamma(G_\varepsilon)$ involves derivatives of $G_\varepsilon$ of order at most $\ell-3$. This proves the claim.
+
+Put $v=\partial^\gamma u\in W^{2,2p}(O_1)$. Since $\operatorname{tr}(G^{-1}\partial^\gamma G)=D_Gv+g^{i\bar j}\partial^\gamma k_{i\bar j}$, the claim says that
+\[
+ D_Gv=R:=\partial^\gamma\phi_0+\beta v-g^{i\bar j}\partial^\gamma k_{i\bar j}-P_\gamma(G)\qquad\text{almost everywhere on }O_1.
+\]
+For $x\in O$ and small $h$, as in Step 1, the discrete product rule $\delta_h(FF')=(\tau_hF)\delta_hF'+(\delta_hF)F'$ gives
+\[
+ (\tau_hg^{i\bar j})\,\partial_i\partial_{\bar j}(\delta_hv)=\delta_hR-(\delta_hg^{i\bar j})\,\partial_i\partial_{\bar j}v\qquad\text{almost everywhere on }O.
+\]
+We bound the right side in $L^p(O)$ uniformly in $h$, using \cref{lem:difference-quotients}(1) on $O\Subset O_1$. First, $\delta_h(G^{-1})=-(\tau_hG)^{-1}(\delta_hG)G^{-1}$, so $\|\delta_hG^{-1}\|_{L^{2p}(O)}\leq\lambda^{-2}\|\partial_eG\|_{L^{2p}(O_1)}\leq C$, as $\partial_eG$ involves derivatives of $u$ of order three. Hence the last term is bounded by $\|\delta_hG^{-1}\|_{L^{2p}}\|\partial\bar\partial v\|_{L^{2p}}\leq C$. Next, $\|\delta_h\partial^\gamma\phi_0\|_\infty\leq C$ and $\|\delta_hv\|_{L^p(O)}\leq\|\partial_ev\|_{L^p(O_1)}\leq C$. Finally, $g^{i\bar j}\partial^\gamma k_{i\bar j}$ and $P_\gamma(G)$ are sums of products of bounded continuous factors, namely entries of $G^{-1}$, derivatives of $k$, and derivatives of $G$ of order at most $\ell-3$, each of which has difference quotients bounded in $L^p(O)$; by the discrete product rule their difference quotients are bounded in $L^p(O)$. Thus the right side is bounded in $L^p(O)$, and $\|\delta_hv\|_{W^{1,p}(O)}\leq\|\partial_ev\|_{W^{1,p}(O_1)}\leq C$. The matrices $\tau_hG^{-1}$ satisfy the hypotheses of Step 0 with $\varpi'=\lambda^{-2}\varpi$. By Step 0, $\|D^2\delta_hv\|_{L^p(O')}\leq C$ uniformly in $h$, and \cref{lem:difference-quotients}(2), applied to the second derivatives of $v$, shows that the third derivatives of $v$ lie in $L^p(O')$, with norm at most $C$. Every multi-index of length $\ell+1$ is the sum of a multi-index of length $\ell-2$ and of three coordinate unit vectors, so $\|u\|_{W^{\ell+1,p}(O')}\leq C$, where $C$ depends on $u$ only through $\|u\|_{W^{\ell,q'}(O_1)}$.
+
+\emph{Step 3: conclusion.} Choose open sets $V=O_{3\ell}\Subset O_{3\ell-1}\Subset\cdots\Subset O_0=U$, depending only on $V$, $U$ and $\ell$. Step 1, applied with the exponent $q$ in place of $p$ and $O'=O_3$, bounds $\|u\|_{W^{3,q}(O_3)}$. Applying Step 2 successively for $3\leq m<\ell$, with the exponent $2^{-(m-2)}q\geq2\cdot2^{\ell-m-1}(p+2n)$ in place of $p$ and with three consecutive sets $O_{3m}\Supset O_{3m+1}\Supset O_{3m+2}\Supset O_{3m+3}$ in the roles of $O_1$, $O$, $O'$ (after shrinking $O_1$ as in Step 2), we bound $\|u\|_{W^{m+1,2^{-(m-1)}q}(O_{3m+3})}$. For $m=\ell-1$ this bounds $\|u\|_{W^{\ell,p}(V)}$, since $2^{-(\ell-2)}q\geq p$.
+\end{proof}
+\index{Monge--Amp\`ere equation!interior regularity}
 
 \begin{theorem}\label{thm:smooth-penalized-kahler-equation}
 For every smooth real function $f$ on $X$ and every $\beta>0$, equation \eqref{eq:penalized-kahler-equation} has a unique smooth real solution $a_\beta$.
@@ -134,134 +361,54 @@ For $0\leq t\leq1$ consider the equation
  (\kappa+\ddc a)^n=\mathrm e^{\beta(a-tf)}\kappa^n,
  \qquad \kappa+\ddc a>0,
 \]
-and let $T\subset[0,1]$ be the set of $t$ for which it has a smooth real solution. For $t=0$ the solution is $a=0$, so $T\neq\varnothing$. We show that $T$ is open and closed in $[0,1]$; then $T=[0,1]$, and the case $t=1$ gives existence. Uniqueness is proved at the end.
+and let $T\subset[0,1]$ be the set of $t$ for which it has a smooth real solution. For $t=0$ the solution is $a=0$, so $T\neq\varnothing$. We show that $T$ is open and closed in $[0,1]$; then $T=[0,1]$, since $[0,1]$ is connected, and the case $t=1$ gives existence. Uniqueness is proved at the end.
 
-\emph{Step 1: the second-order estimate.} Let $a$ be a smooth solution for some $t\in[0,1]$. Since $\|tf\|_\infty\leq\|f\|_\infty$ and, by \eqref{eq:penalized-upper-laplacian-nonnegative}, $\sup_XD_h(tf)=t\sup_XD_hf\leq\sup_XD_hf$, \cref{lem:penalized-equation-trace} gives $C^{-1}h\leq g\leq Ch$ with $C$ independent of $t$; indeed, the constants in its proof increase with $\|f\|_\infty$ and $\sup_XD_hf$. In Steps 1--3, constants may depend on $X$, $\omega$, $\kappa$, $\beta$ and finitely many derivatives of $f$, but not on $t$ or on the solution.
+\emph{Step 1: a priori estimates.} Let $a$ be a smooth solution for some $t\in[0,1]$, with metric $g$. In this step, constants depend only on $X$, $\omega$, $\kappa$, $\beta$ and $f$, but not on $t$ or on the solution. Since $\|tf\|_\infty\leq\|f\|_\infty$ and, by \eqref{eq:penalized-upper-laplacian-nonnegative}, $\sup_XD_h(tf)=t\sup_XD_hf\leq\sup_XD_hf$, \cref{lem:penalized-equation-trace}, applied to $tf$, gives $|a|\leq\|f\|_\infty$ and $C_0^{-1}h\leq g\leq C_0h$ with $C_0$ independent of $t$. Hence $La=-4\pi D_ha=-4\pi(H-\operatorname{tr}_hk)$ is bounded, and \cref{prop:compact-metric-laplacian-lp} bounds $a$ in $W^{2,p}(X)$ for every finite $p$; by \eqref{eq:sobolev-chart-restriction} and Morrey's inequality, this bounds $\|a\|_{C^1}$ and $\|D^2a\|_{L^p}$ on compact subsets of charts. By \cref{lem:penalized-third-order}, the first derivatives of the $g_{i\bar j}$ are bounded on compact subsets of the charts of a fixed finite atlas.
 
-\emph{Step 2: the third-order estimate.} Let $\nabla$ and $\widehat\nabla$ be the Chern connections\index{Chern connection} of the K\"ahler metrics $g$ and $h$ on the holomorphic tangent bundle. In holomorphic coordinates their coefficients are
-\[
- \Gamma^m_{ij}=g^{m\bar l}\partial_ig_{j\bar l},
- \qquad
- \widehat\Gamma^m_{ij}=h^{m\bar l}\partial_ih_{j\bar l},
-\]
-both symmetric in $i$ and $j$. On a tensor with holomorphic and antiholomorphic indices, $\nabla_p$ acts by $\partial_p$, plus a term $\Gamma^m_{pl}$ contracted with each upper holomorphic index, minus a term $\Gamma^l_{pi}$ contracted with each lower holomorphic index; antiholomorphic indices receive no connection term from $\nabla_p$. The operator $\nabla_{\bar q}$ is given by the conjugate rule. With this rule and the formula for the derivative of an inverse matrix one checks that $\nabla g=0$. Put
-\[
- \Psi^m_{ij}=\Gamma^m_{ij}-\widehat\Gamma^m_{ij}
-             =g^{m\bar l}\widehat\nabla_i g_{j\bar l},
- \qquad S=|\Psi|_g^2=g^{i\bar p}g^{j\bar q}g_{m\bar l}\,\Psi^m_{ij}\overline{\Psi^l_{pq}};
-\]
-the second expression for $\Psi$ follows from $\widehat\nabla_ig_{j\bar l}=\partial_ig_{j\bar l}-\widehat\Gamma^p_{ij}g_{p\bar l}$. The difference $\Psi$ of the two connections is a tensor, since the inhomogeneous terms in the transformation rules of $\Gamma$ and $\widehat\Gamma$ cancel; hence $S$ is a smooth function on $X$.
+Fix finitely many coordinate balls $U_\nu$ whose closures lie in chart domains, and open sets $V'_\nu\Subset V_\nu\Subset U_\nu$ such that the $V'_\nu$ cover $X$. In the coordinates of $U_\nu$, the function $a$ solves \eqref{eq:penalized-local-equation} with $\phi_0=\log\det k-\beta tf$, whose derivatives are bounded independently of $t$. By the preceding paragraph, on $U_\nu$ the matrix $G=g$ lies between two fixed positive multiples of the identity, it is Lipschitz with a fixed constant, so that we may take $\varpi(r)=Cr$, and $\|a\|_{C^1(U_\nu)}+\|D^2a\|_{L^q(U_\nu)}$ is bounded for every finite $q$. By \cref{lem:penalized-local-regularity}, $\|a\|_{W^{\ell,p}(V_\nu)}$ is bounded for all $\ell\geq3$ and $p<\infty$, and by Morrey's inequality every derivative of $a$ is bounded on $V'_\nu$. Thus every $C^\ell$ norm of $a$, computed in these coordinates on the sets $V'_\nu$, is bounded independently of $t$.
 
-We need some curvature identities. Put $R^m{}_{i\bar qj}=-\partial_{\bar q}\Gamma^m_{ij}$, define $\widehat R^m{}_{i\bar qj}$ in the same way from $h$, and let
-\[
- R_{i\bar j}=R^m{}_{i\bar jm}=-\partial_i\partial_{\bar j}\log\det g,
- \qquad R_j{}^m=g^{m\bar l}R_{j\bar l},
-\]
-be the Ricci tensor\index{Ricci tensor} and the Ricci endomorphism of $g$; the formula for $R_{i\bar j}$ follows from $\Gamma^m_{im}=\partial_i\log\det g$. Since $\nabla_{\bar q}$ acts on holomorphic indices as $\partial_{\bar q}$,
-\[
- \nabla_{\bar q}\Psi^m_{ij}=\widehat R^m{}_{i\bar qj}-R^m{}_{i\bar qj}.
-\]
-The K\"ahler condition also gives the contracted Bianchi identity $g^{p\bar q}\nabla_pR^m{}_{i\bar qj}=\nabla_iR_j{}^m$. To check it at a point, use holomorphic coordinates in which the first derivatives of $g$ vanish at that point. There all connection coefficients vanish, so covariant derivatives at the point are coordinate derivatives. Since $R^m{}_{i\bar qj}=-g^{m\bar l}\partial_i\partial_{\bar q}g_{j\bar l}$ and $R_{j\bar l}=-g^{p\bar q}\partial_j\partial_{\bar l}g_{p\bar q}$ up to terms quadratic in the first derivatives of $g$, both sides of the identity are equal at the point to $-g^{m\bar l}g^{p\bar q}\partial_i\partial_p\partial_{\bar q}g_{j\bar l}$, because the derivatives of a local K\"ahler potential commute.
+\emph{Step 2: openness.} Let $t_0\in T$, with smooth solution $a$ and metric $g$; thus $\kappa+\ddc a$ is a K\"ahler form. Fix an integer $s>n$. We use the spaces $H^r$ of \cref{sec:global-trace-equation}, defined with a finite atlas $(U_\nu)$ and a partition of unity $(\chi_\nu)$; for a smooth function $v$ with compact support in $U_\nu$, written in the coordinates of $U_\nu$, let $\|v\|_{(r)}$ be as in \cref{lem:sobolev-multiplication} with $d=2n$, so that $\|u\|_{H^r}^2=\sum_\nu\|\chi_\nu u\|_{(r)}^2$ for smooth $u$. Choose smooth functions $\tilde\chi_\nu$, $\check\chi_\nu$ on $X$ with values in $[0,1]$ and compact supports in $U_\nu$ such that $\tilde\chi_\nu=1$ near $\Supp\chi_\nu$ and $\check\chi_\nu=1$ near $\Supp\tilde\chi_\nu$. We use three facts.
+\begin{enumerate}
+\item[(i)] Since $s>n$, Step 1 of the proof of \cref{lem:compact-elliptic-foundations} gives continuous inclusions $H^{s+2}\subset C^2(X)$ and $H^s\subset C^0(X)$.
+\item[(ii)] For a smooth function $\psi$ with compact support in $U_\nu$, multiplication by $\psi$ is bounded for $\|\cdot\|_{(s)}$, by \cref{lem:sobolev-multiplication}; and $\|\partial_\mu v\|_{(r)}\leq2\pi\|v\|_{(r+1)}$ for real coordinate derivatives, since $\widehat{\partial_\mu v}=2\pi\mathrm i\xi_\mu\widehat v$.
+\item[(iii)] $\|\check\chi_\nu b\|_{(s+2)}\leq C\|b\|_{H^{s+2}}$ for smooth $b$. Indeed, $\Sigma=\sum_\mu\check\chi_\mu\geq1$, because $\check\chi_\mu=1$ wherever $\chi_\mu>0$; so the functions $\check\chi_\mu/\Sigma$ form a partition of unity subordinate to the same charts, and by Step 1 of the proof of \cref{lem:compact-elliptic-foundations} the norm of $H^{s+2}$ computed with them is equivalent to the given one. Moreover $\check\chi_\nu b=\eta_\nu\cdot(\check\chi_\nu/\Sigma)b$, where $\eta_\nu$ is a smooth function with compact support in $U_\nu$ equal to $\Sigma$ near $\Supp\check\chi_\nu$, and multiplication by $\eta_\nu$ is bounded for $\|\cdot\|_{(s+2)}$ by \cref{lem:sobolev-multiplication}.
+\end{enumerate}
 
-On tensors we extend the operator $D_g$ by $D_g\Psi=g^{p\bar q}\nabla_p\nabla_{\bar q}\Psi$, and we put $\overline D_g\Psi=g^{p\bar q}\nabla_{\bar q}\nabla_p\Psi$, with the derivatives in the opposite order. On a function $u$ both operators reduce to $D_gu=g^{p\bar q}\partial_p\partial_{\bar q}u$, since $\nabla_p$ adds no connection term to the antiholomorphic index of $\partial_{\bar q}u$, and $\nabla_{\bar q}$ none to the holomorphic index of $\partial_pu$. Applying $g^{p\bar q}\nabla_p$ to the formula for $\nabla_{\bar q}\Psi$ and using the contracted Bianchi identity, we obtain
-\begin{equation}\label{eq:elliptic-calabi-tensor}
- D_g\Psi^m_{ij}
-  =g^{p\bar q}\nabla_p\widehat R^m{}_{i\bar qj}
-                                      -\nabla_iR_j{}^m.
-\end{equation}
-The commutator $[\nabla_p,\nabla_{\bar q}]$ acts on an upper holomorphic index through $R^m{}_{p\bar ql}$ and on a lower one through $-R^l{}_{p\bar qi}$. Contracting with $g^{p\bar q}$ and using the K\"ahler symmetry $g^{p\bar q}R^m{}_{p\bar ql}=R_l{}^m$, we find $\overline D_g\Psi=D_g\Psi+\mathcal R\Psi$, where
+For a real function $b\in C^2(X)$, let $Y$ be the tensor $Y^m{}_j=g^{m\bar l}b_{j\bar l}$. In a chart, with the matrices $G=(g_{i\bar j})$ and $B=(b_{i\bar j})$, the traces of the powers of $Y$ are those of $BG^{-1}$, which is similar to the Hermitian matrix $G^{-1/2}BG^{-1/2}$; let $\mu_1,\ldots,\mu_n$ be their real eigenvalues. Then $\det(G+B)=\det G\prod_i(1+\mu_i)$ and $\operatorname{tr}Y=\sum_i\mu_i=g^{i\bar j}b_{i\bar j}=D_gb$. By (i), there is $r_0>0$ such that $\|b\|_{H^{s+2}}\leq r_0$ implies $|\mu_i|\leq1/2$; then $G+B>0$, that is, $\kappa+\ddc(a+b)>0$, and
 \[
- (\mathcal R\Psi)^m_{ij}
-   =R_i{}^l\Psi^m_{lj}+R_j{}^l\Psi^m_{il}
-                                  -R_l{}^m\Psi^l_{ij}.
+ \mathcal Q(b):=\log\det(G+B)-\log\det G-D_gb=\sum_i\bigl(\log(1+\mu_i)-\mu_i\bigr)=\sum_{k\geq2}\frac{(-1)^{k+1}}k\operatorname{tr}(Y^k).
 \]
-Write $\nabla\Psi=(\nabla_p\Psi^m_{ij})$ and $\overline\nabla\Psi=(\nabla_{\bar q}\Psi^m_{ij})$. Since $\nabla g=0$, the product rule gives $D_gS=|\nabla\Psi|_g^2+|\overline\nabla\Psi|_g^2+\langle D_g\Psi,\Psi\rangle_g+\langle\Psi,\overline D_g\Psi\rangle_g$. The Ricci endomorphism is Hermitian with respect to $g$, so $\langle\Psi,\mathcal R\Psi\rangle_g=\langle\mathcal R\Psi,\Psi\rangle_g$ is real, and we obtain
-\begin{equation}\label{eq:elliptic-calabi-norm}
- D_gS=|\nabla\Psi|_g^2+|\overline\nabla\Psi|_g^2
-       +2\Real\langle D_g\Psi,\Psi\rangle_g
-       +\langle\mathcal R\Psi,\Psi\rangle_g.
-\end{equation}
-
-The equation determines the Ricci tensor: applying $-\partial_i\partial_{\bar j}$ to $\log\det g=\log\det k+\beta(a-tf)$ gives
-\[
- R_{i\bar j}=-\partial_i\partial_{\bar j}\log\det k
-       -\beta\bigl(g_{i\bar j}-k_{i\bar j}-tf_{i\bar j}\bigr).
-\]
-Here $-\partial_i\partial_{\bar j}\log\det k$ is the Ricci tensor $\operatorname{Ric}(k)$ of $\kappa$. Thus the Ricci tensor of $g$ is a combination of $g$ and of the fixed smooth tensors $k$, $\operatorname{Ric}(k)$ and $(f_{i\bar j})$, and by Step 1 it is bounded in $g$-norm. For a fixed smooth tensor $\tau$, the difference $\nabla\tau-\widehat\nabla\tau$ is a contraction of $\Psi$ with $\tau$, while $\widehat\nabla\tau$ is bounded in $h$-norm and hence in $g$-norm; therefore $|\nabla\tau|_g\leq C(1+|\Psi|_g)$. Since moreover $\nabla g=0$, we obtain $|\nabla R_j{}^m|_g\leq C(1+S^{1/2})$, and the same bound holds for $\nabla\widehat R$. By \eqref{eq:elliptic-calabi-tensor}, $|D_g\Psi|_g\leq C(1+S^{1/2})$, and $|\langle\mathcal R\Psi,\Psi\rangle_g|\leq CS$ because the Ricci endomorphism is bounded. Discarding the two nonnegative gradient terms in \eqref{eq:elliptic-calabi-norm}, we conclude that
-\[
- D_gS\geq-2C(1+S^{1/2})S^{1/2}-CS\geq-C_1(S+1).
-\]
-
-To compensate this term we use the trace $H$. Step 2 of the proof of \cref{lem:penalized-equation-trace}, with $f$ replaced by $tf$ and with the quadratic term retained, gives at the center of the coordinates used there
-\[
- D_gH=D_h\log\det g+\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}+E,
-\]
-where $|E|\leq CH\operatorname{tr}_gh\leq C$ by Step 1, and $D_h\log\det g=D_h\log\det k+\beta(H-\operatorname{tr}_hk-tD_hf)$ is bounded, again by Step 1. At that point $\partial_pg_{i\bar q}=\widehat\nabla_pg_{i\bar q}$ and $g$ is diagonal, so
-\[
- S=\sum_{i,p,q}\frac{|\widehat\nabla_pg_{i\bar q}|^2}{\lambda_p\lambda_i\lambda_q},
-\]
-and the quadratic sum is at least $(\min_p\lambda_p)S$. By Step 1 the eigenvalues are bounded below, so $D_gH\geq cS-C_2$ with $c>0$ at the chosen point, and hence everywhere on $X$, since both sides are independent of the coordinates and every point is the center of such coordinates. Choose $K$ with $Kc\geq C_1+1$. At a maximum point of $S+KH$,
-\[
- 0\geq D_g(S+KH)\geq(Kc-C_1)S-C_1-KC_2\geq S-C_1-KC_2,
-\]
-so $S$ is bounded at that point. Since $H$ is bounded on $X$, the function $S+KH$, and hence $S$, is bounded on $X$.\index{Monge--Amp\`ere equation!third-order estimate}
-
-\emph{Step 3: the higher-order estimates.} The bound for $S$ controls all first derivatives of $g$: the holomorphic ones by $\widehat\nabla_ig_{j\bar l}=g_{m\bar l}\Psi^m_{ij}$ and the metric equivalence, and the antiholomorphic ones as their complex conjugates. In particular the first derivatives of $H$ are bounded, and $g^{-1}$ is uniformly Lipschitz. Since $|a|\leq\|f\|_\infty$ by \cref{lem:penalized-equation-trace} and $La=-4\pi D_ha=-4\pi(H-\operatorname{tr}_hk)$ is bounded, \cref{prop:compact-metric-laplacian-lp} bounds $a$ in $W^{2,p}(X)$ for every finite $p>1$. To bound the third derivatives, let $\chi$ be a cutoff function supported in a chart, let $\partial_\mu$ be a real coordinate derivative, and apply \eqref{eq:compact-metric-laplacian-lp} to $v=\chi\partial_\mu a$, extended by zero. Since
-\[
- Lv=\chi\partial_\mu(La)+[L,\chi\partial_\mu]a,
-\]
-where $\partial_\mu(La)=-4\pi\partial_\mu(H-\operatorname{tr}_hk)$ is bounded and the commutator is a second-order operator with smooth coefficients, $Lv$ is bounded in $L^p$ by the $W^{2,p}$ bound for $a$. Hence $a$ is bounded in $W^{3,p}(X)$ for every finite $p$, and Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the first derivatives of $a$, gives a uniform $C^{2,\alpha}$ bound when $p>2n/(1-\alpha)$.
-
-For the fourth derivatives we differentiate the equation itself. Differentiating $\log\det g=\log\det k+\beta(a-tf)$ in the direction of a real coordinate $x_\mu$, we find that $v=\partial_\mu a$ satisfies
-\[
- g^{i\bar j}\partial_i\partial_{\bar j}v
-   =\beta(v-t\partial_\mu f)+\partial_\mu\log\det k
-                           -g^{i\bar j}\partial_\mu k_{i\bar j}.
-\]
-In real coordinates, $D_g=g^{i\bar j}\partial_i\partial_{\bar j}$ is a real elliptic operator without lower-order terms whose coefficients satisfy uniform ellipticity bounds, by Step 1, and a uniform Lipschitz bound, by Step 2. Therefore Step 1 of the proof of \cref{prop:compact-metric-laplacian-lp} applies to $-D_g$ in place of $L$, with balls of a fixed radius, and gives $\|D^2w\|_p\leq C(\|D_gw\|_p+\|\nabla w\|_p)$ for smooth $w$ supported in such a ball. Differentiating the last equation in the direction of $x_\nu$, we see that $D_g(\partial_\nu v)$ equals $-(\partial_\nu g^{i\bar j})\partial_i\partial_{\bar j}v$ plus the $x_\nu$-derivative of the right side. The latter is bounded, and the coefficient derivative $\partial_\nu g^{i\bar j}$ is bounded and multiplies a third derivative of $a$, which is already bounded in $L^p$. Applying the estimate to $w=\chi\partial_\nu v$, with $\chi$ a cutoff function supported in one of these balls, and noting that the cutoff commutators involve only third derivatives of $a$, we obtain bounds for $a$ in $W^{4,p}$ for every finite $p$.
-
-Now assume inductively that $a$ is bounded in $W^{\ell,p}$ for every finite $p$, where $\ell\geq4$. By Morrey's inequality the derivatives of $a$ of order at most $\ell-1$ are bounded. Differentiate the equation $\log\det g=\log\det k+\beta(a-tf)$ $\ell-1$ times in real coordinate directions, and keep on the left its single highest-order term, which is $D_g$ applied to an $(\ell-1)$st derivative of $a$. Every other term is either bounded, being a product of entries of $g^{-1}$ with derivatives of $\log\det k$, of $k$, of $f$, or of $a$ of order at most $\ell-1$, or it is a product of entries of $g^{-1}$ with at least two derivatives of $g$ whose positive orders add up to at most $\ell-1$. In such a product each factor has order at most $\ell-2$, corresponding to a derivative of $a$ of order at most $\ell$, and at most one factor has this order, since $2(\ell-2)>\ell-1$; all other factors involve derivatives of $a$ of order at most $\ell-1$ and are bounded. Hence all these terms are bounded in $L^p$. The estimate for $D_g$ just described, whose balls have a fixed radius by the uniform Lipschitz bound for $g^{-1}$, now gives bounds in $W^{\ell+1,p}$; the cutoff commutators involve only derivatives of order at most $\ell$, which are already bounded. If a solution is a priori only known to lie in $W^{\ell,p}$, we replace the equation differentiated $\ell-1$ times by difference quotients of the equation differentiated $\ell-2$ times. The same estimate then bounds the difference quotients of the derivatives of order $\ell-2$ in $W^{2,p}$, uniformly in the increment, so that the derivatives of order $\ell-1$ lie in $W^{2,p}$ with the same bound. By induction and Morrey's inequality, every $C^\ell$ norm of $a$ is bounded independently of $t$.
-
-\emph{Step 4: openness.} We use the Sobolev spaces $H^s$ of \cref{sec:global-trace-equation} and fix an integer $s>n+6$. These spaces satisfy the multiplication estimate
-\[
- \|vw\|_{H^s}\leq C_s\|v\|_{H^s}\|w\|_{H^s}.
-\]
-After a finite partition of unity it suffices to prove this for functions with compact support in one chart, written as functions on $\mathbb R^{2n}$. The Fourier transform of $vw$ is a constant multiple of the convolution $\hat v*\hat w$. With $\langle\xi\rangle=(1+|\xi|^2)^{1/2}$ we have $\langle\xi\rangle\leq\langle\eta\rangle+\langle\xi-\eta\rangle$, hence $\langle\xi\rangle^s\leq2^s(\langle\eta\rangle^s+\langle\xi-\eta\rangle^s)$, and therefore
-\[
- \langle\xi\rangle^s|\hat v*\hat w|(\xi)
- \leq2^s\Bigl(\bigl(\langle\cdot\rangle^s|\hat v|\bigr)*|\hat w|
-        +|\hat v|*\bigl(\langle\cdot\rangle^s|\hat w|\bigr)\Bigr)(\xi).
-\]
-By Young's inequality $\|F*G\|_2\leq\|F\|_2\|G\|_1$, it remains to bound $\|\hat w\|_1$ and $\|\hat v\|_1$ by the $H^s$ norms. This follows from the Cauchy--Schwarz inequality, $\|\hat w\|_1\leq\|\langle\cdot\rangle^{-s}\|_2\|\langle\cdot\rangle^s\hat w\|_2$, since $\langle\xi\rangle^{-s}$ is square integrable on $\mathbb R^{2n}$ for $s>n$. Young's inequality in this form follows from the Cauchy--Schwarz inequality $|F*G(x)|^2\leq\|G\|_1\int|F(x-y)|^2|G(y)|\,\mathrm dy$ by integration in $x$ and Fubini's theorem.
-\index{Sobolev space!multiplication estimate}\index{Young's inequality!for convolutions}
-
-Let $t_0\in T$, with solution $a$, and let $g$ be the metric of $a$. For a real function $b\in H^{s+2}$ let $Y$ be the matrix with entries $Y^m{}_j=g^{m\bar l}b_{j\bar l}$, so that
-\[
- \det\bigl(k_{i\bar j}+a_{i\bar j}+b_{i\bar j}\bigr)=\det g\,\det(I+Y),
- \qquad \operatorname{tr}Y=D_gb.
-\]
-Since $H^{s+2}\subset C^2$, the matrix $k+(a_{i\bar j}+b_{i\bar j})$ is positive definite when $\|b\|_{H^{s+2}}$ is small. Then, by the multiplication estimate, the power series of $\log(I+Y)$ converges in $H^s$, and $\operatorname{tr}\log(I+Y)=\log\det(I+Y)$. For such $b$ we put
-\[
- \mathcal N_t(a+b)=\log\frac{\det(k_{i\bar j}+a_{i\bar j}+b_{i\bar j})}{\det k}
-                                                 -\beta(a+b-tf)\in H^s,
-\]
-so that $a+b$ solves the equation for $t$ exactly when $\mathcal N_t(a+b)=0$. Since $\mathcal N_{t_0}(a)=0$, we obtain
+Put $\mathcal N_t(a+b)=\log(\det(G+B)/\det k)-\beta(a+b-tf)$, so that $a+b$ solves the equation for $t$ exactly when $\mathcal N_t(a+b)=0$. Since $\log(\det G/\det k)=\beta(a-t_0f)$,
 \[
  \mathcal N_t(a+b)=\beta(t-t_0)f+\mathcal Db+\mathcal Q(b),
- \qquad \mathcal D=D_g-\beta,
+ \qquad \mathcal D=D_g-\beta.
 \]
-where $\mathcal Q(b)=\operatorname{tr}(\log(I+Y)-Y)$ satisfies $\|\mathcal Q(b)\|_{H^s}\leq C\|b\|_{H^{s+2}}^2$ and $\|\mathcal Q(b)-\mathcal Q(b')\|_{H^s}\leq C(\|b\|_{H^{s+2}}+\|b'\|_{H^{s+2}})\|b-b'\|_{H^{s+2}}$ for small $b$, $b'$. The operator $\mathcal D\colon H^{s+2}\to H^s$ is invertible, with bounded inverse. Indeed, $\kappa+\ddc a=\frac{\mathrm i}{2\pi}g_{i\bar j}\,\mathrm dz_i\wedge\mathrm d\bar z_j$ is a K\"ahler form, and by \eqref{eq:complex-laplacian-trace} and the discussion following it, applied with $\omega'=\kappa+\ddc a$, the operator $D_g-\beta$ maps $H^{s+2}$ isomorphically onto $H^s$ because $\beta>0$.
 
-The solutions of $\mathcal N_t(a+b)=0$ are the fixed points of
+We estimate $\mathcal Q$ in $H^s$. Let $b$ be smooth and real with $\|b\|_{H^{s+2}}\leq r_0$. In the chart $U_\nu$ let $Y_\nu=\tilde\chi_\nu Y$, a matrix of smooth functions with compact support, and $\|Y_\nu\|_{(s)}=\max_{m,j}\|\tilde\chi_\nu Y^m{}_j\|_{(s)}$. Since $\tilde\chi_\nu Y^m{}_j=(\tilde\chi_\nu g^{m\bar l})\,\partial_j\partial_{\bar l}(\check\chi_\nu b)$, facts (ii) and (iii) give $\|Y_\nu\|_{(s)}\leq C_Y\|b\|_{H^{s+2}}$. For matrices $M$, $N$ of smooth compactly supported functions, \cref{lem:sobolev-multiplication} gives $\|(MN)_{mj}\|_{(s)}\leq nC_s\max\|M_{\cdot\cdot}\|_{(s)}\max\|N_{\cdot\cdot}\|_{(s)}$, and therefore
 \[
- \Phi_t(b)=b-\mathcal D^{-1}\mathcal N_t(a+b)
- =-\mathcal D^{-1}\bigl(\beta(t-t_0)f+\mathcal Q(b)\bigr).
+ \|\chi_\nu\operatorname{tr}(Y_\nu^k)\|_{(s)}\leq C_\chi n(nC_s)^{k-1}\|Y_\nu\|_{(s)}^k,
 \]
-By the bounds for $\mathcal Q$, there is $r>0$, small enough for the above expansion to be valid on the closed ball of radius $r$ in $H^{s+2}$, such that, whenever $|t-t_0|$ is sufficiently small, $\Phi_t$ maps this ball into itself and has Lipschitz constant at most $1/2$ there. The iterates $b_0=0$, $b_{\ell+1}=\Phi_t(b_\ell)$ then form a Cauchy sequence, since their successive differences decrease geometrically, and their limit $b$ is a fixed point of $\Phi_t$, that is, $\mathcal N_t(a+b)=0$. By the Sobolev embedding $H^{s+2}\subset C^6$ (Step 1 of the proof of \cref{lem:compact-elliptic-foundations}), $a+b$ has six continuous derivatives, and $\kappa+\ddc(a+b)>0$ if $r$ is small. The regularity argument of Step 3, in its difference-quotient form, shows that $a+b$ is smooth. Hence $T$ contains a neighborhood of $t_0$ in $[0,1]$, and $T$ is open.
+where $C_\chi$ bounds multiplication by $\chi_\nu$. Since $Y_\nu=Y$ on $\Supp\chi_\nu$, the function $\chi_\nu\mathcal Q(b)$ is the sum of the series $\sum_{k\geq2}\frac{(-1)^{k+1}}k\chi_\nu\operatorname{tr}(Y_\nu^k)$, which converges uniformly, with supports in $\Supp\chi_\nu$. Decreasing $r_0$, we may assume that $\rho=nC_sC_Yr_0\leq1/2$. Then the series converges absolutely for $\|\cdot\|_{(s)}$; since its partial sums converge in $L^2$, their Fourier transforms converge in $L^2$ (\cref{thm:plancherel}), a subsequence converges almost everywhere, and Fatou's lemma gives
+\[
+ \|\chi_\nu\mathcal Q(b)\|_{(s)}\leq\sum_{k\geq2}\frac1kC_\chi n(nC_s)^{k-1}\|Y_\nu\|_{(s)}^k\leq2C_\chi n^2C_s\|Y_\nu\|_{(s)}^2.
+\]
+Summing over $\nu$, we obtain $\|\mathcal Q(b)\|_{H^s}\leq C_Q\|b\|_{H^{s+2}}^2$. In the same way, using $Y^k-Y'^k=\sum_{i=0}^{k-1}Y^i(Y-Y')Y'^{k-1-i}$, we obtain
+\[
+ \|\mathcal Q(b)-\mathcal Q(b')\|_{H^s}\leq C_Q\bigl(\|b\|_{H^{s+2}}+\|b'\|_{H^{s+2}}\bigr)\|b-b'\|_{H^{s+2}}
+\]
+for two such functions $b$, $b'$. Let $H^{s+2}_{\mathbb R}$ be the closed subspace of real elements of $H^{s+2}$. Smooth real functions are dense in it, since taking real parts does not increase the norms: $|\widehat{\chi\Real v}(\xi)|^2\leq\frac12(|\widehat{\chi v}(\xi)|^2+|\widehat{\chi v}(-\xi)|^2)$ for real $\chi$. If $b\in H^{s+2}_{\mathbb R}$ with $\|b\|_{H^{s+2}}<r_0$, and smooth real $b_j$ converge to $b$ in $H^{s+2}$, with norms less than $r_0$, then the $\mathcal Q(b_j)$ form a Cauchy sequence in $H^s$; by (i), $b_j\to b$ in $C^2$, so $\mathcal Q(b_j)\to\mathcal Q(b)$ uniformly, and, again by (i), the limit in $H^s$ is $\mathcal Q(b)$. Hence the two estimates for $\mathcal Q$ hold on the ball $\|b\|_{H^{s+2}}<r_0$ of $H^{s+2}_{\mathbb R}$.
 
-\emph{Step 5: closedness.} Let $t_k\in T$ converge to $t_*\in[0,1]$, with solutions $a_k$. By Steps 1--3, every $C^\ell$ norm of $a_k$ is bounded independently of $k$. By the Arzel\`a--Ascoli theorem and a diagonal argument, a subsequence converges in every $C^\ell$ norm to a smooth function $a_*$. The uniform lower bound for the eigenvalues of $g$ relative to $h$ gives $\kappa+\ddc a_*>0$, and $a_*$ solves the equation for $t_*$. Thus $T$ is closed, and $T=[0,1]$ since $[0,1]$ is connected.
+The operator $\mathcal D\colon H^{s+2}\to H^s$ is invertible, with bounded inverse. Indeed, $\kappa+\ddc a=\frac{\mathrm i}{2\pi}g_{i\bar j}\,\mathrm dz_i\wedge\mathrm d\bar z_j$ is a K\"ahler form, and by \eqref{eq:complex-laplacian-trace} and the discussion following it, applied with $\omega'=\kappa+\ddc a$, the operator $D_g-\beta$ maps $H^{s+2}$ isomorphically onto $H^s$, because $\beta>0$. Let $M_{\mathcal D}$ be the norm of its inverse. Since $\mathcal D$ is a real operator, its inverse maps real elements to real elements. For $b\in C^2(X)$, the element $\mathcal Db$ of $H^s$ is the continuous function $D_gb-\beta b$, by approximation and (i).
 
-\emph{Step 6: uniqueness.} Let $a$ and $a'$ be smooth solutions of \eqref{eq:penalized-kahler-equation}. At a maximum point of $a-a'$ the complex Hessian of $a-a'$ is negative semidefinite, so $0<k+(a_{i\bar j})\leq k+(a'_{i\bar j})$ and the equations give $\mathrm e^{\beta(a-f)}\leq\mathrm e^{\beta(a'-f)}$ there. Hence $a-a'\leq0$ at that point, and therefore everywhere. Interchanging $a$ and $a'$ proves that $a=a'$.
+The solutions of $\mathcal N_t(a+b)=0$ with $\|b\|_{H^{s+2}}<r_0$ are the fixed points of
+\[
+ \Phi_t(b)=-\mathcal D^{-1}\bigl(\beta(t-t_0)f+\mathcal Q(b)\bigr).
+\]
+Choose $0<r<r_0$ with $4M_{\mathcal D}C_Qr\leq1$, and suppose that $|t-t_0|\leq\delta$, where $2M_{\mathcal D}\beta\delta\|f\|_{H^s}\leq r$. On the closed ball $\overline B_r$ of radius $r$ in $H^{s+2}_{\mathbb R}$ we then have $\|\Phi_t(b)\|_{H^{s+2}}\leq M_{\mathcal D}(\beta\delta\|f\|_{H^s}+C_Qr^2)\leq r/2+r/4$ and $\|\Phi_t(b)-\Phi_t(b')\|_{H^{s+2}}\leq2M_{\mathcal D}C_Qr\|b-b'\|_{H^{s+2}}\leq\frac12\|b-b'\|_{H^{s+2}}$. The iterates $b_0=0$, $b_{\ell+1}=\Phi_t(b_\ell)$ therefore stay in $\overline B_r$, their successive differences decrease geometrically, so they form a Cauchy sequence, and their limit $b$ is a fixed point of $\Phi_t$, by the Lipschitz bound. Thus $\mathcal Db=-\beta(t-t_0)f-\mathcal Q(b)$ in $H^s$, hence pointwise by (i), that is, $\mathcal N_t(a+b)=0$. The function $u=a+b$ is of class $C^2$, satisfies $\kappa+\ddc u>0$, and in every chart it solves \eqref{eq:penalized-local-equation} with $\phi_0=\log\det k-\beta tf$. By \cref{lem:penalized-local-regularity}, $u$ is smooth. Hence $T$ contains $[t_0-\delta,t_0+\delta]\cap[0,1]$, and $T$ is open in $[0,1]$.
+
+\emph{Step 3: closedness.} Let $t_k\in T$ converge to $t_*\in[0,1]$, with solutions $a_k$. By Step 1, every $C^\ell$ norm of $a_k$ on the compact sets $\overline{V'_\nu}$ is bounded independently of $k$. Hence, for every $\ell$, the derivatives of order at most $\ell$ of the $a_k$ are uniformly bounded and equicontinuous on each $\overline{V'_\nu}$. By the Arzel\`a--Ascoli theorem (\cref{prop:arzela-ascoli}) and a diagonal argument over $\ell$ and $\nu$, a subsequence converges, together with all its derivatives, uniformly on each $\overline{V'_\nu}$. The limit $a_*$ is smooth, and its derivatives are the limits of the derivatives of the $a_k$, because uniform convergence of functions and of their first derivatives on a ball implies that the limit is continuously differentiable with the limit derivatives. The uniform lower bound $g_k\geq C_0^{-1}h$ of Step 1 gives $\kappa+\ddc a_*>0$, and $a_*$ solves the equation for $t_*$. Thus $t_*\in T$, and $T$ is closed.
+
+\emph{Step 4: uniqueness.} Let $a$ and $a'$ be smooth solutions of \eqref{eq:penalized-kahler-equation}. At a maximum point of $a-a'$ the complex Hessian of $a-a'$ is negative semidefinite, so $0<k+(a_{i\bar j})\leq k+(a'_{i\bar j})$, and the equations give $\mathrm e^{\beta(a-f)}\leq\mathrm e^{\beta(a'-f)}$ there. Hence $a-a'\leq0$ at that point, and therefore everywhere. Interchanging $a$ and $a'$ proves that $a=a'$.
 \end{proof}
 \index{Monge--Amp\`ere equation!smooth exponential penalty}\index{continuity method}
 
@@ -274,18 +421,22 @@ Let $f$ be a smooth real function on $X$, and for $\beta>0$ let $a_\beta$ be the
  d_0=\inf_X\frac{\det k}{\det h},\qquad
  K_0=\frac{B^n}{n^nd_0}.
 \]
-Then $K_0\geq1$, and for every $\beta\geq1$
+Then $K_0\geq1$, $a_\beta\leq P_\kappa(f)+\beta^{-1}\log K_0$ for every $\beta>0$, and for every $\beta\geq1$
 \[
  P_\kappa(f)-\frac{\operatorname{osc}_Xf+n\log\beta}{\beta}
   \leq a_\beta
   \leq P_\kappa(f)+\frac{\log K_0}{\beta}.
 \]
-In particular $a_\beta\to P_\kappa(f)$ uniformly on $X$ as $\beta\to\infty$. Moreover $P_\kappa(f)$ has bounded metric Laplacian, with a bound depending only on $X$, $\omega$, $\kappa$, $\|f\|_\infty$ and $\sup_XD_hf$.
+In particular $a_\beta\to P_\kappa(f)$ uniformly on $X$ as $\beta\to\infty$. Moreover $P_\kappa(f)$ has bounded metric Laplacian: with the constant $A$ of \cref{lem:penalized-equation-trace},
+\begin{equation}\label{eq:penalized-envelope-laplacian-bound}
+ -\sup_X\operatorname{tr}_hk\leq D_hP_\kappa(f)\leq2B\,\mathrm e^{2A\|f\|_\infty}
+\end{equation}
+in the sense of distributions, that is, $\langle D_hP_\kappa(f),\chi\rangle$ lies between $-\sup_X\operatorname{tr}_hk\int_X\chi\,\mathrm dV$ and $2B\mathrm e^{2A\|f\|_\infty}\int_X\chi\,\mathrm dV$ for every smooth function $\chi\geq0$. Finally, $P_\kappa(f)\in C^{1,\alpha}(X)$ for every $0<\alpha<1$.
 \end{proposition}
 \begin{proof}
 At each point, the eigenvalues of $k$ relative to $h$ are positive, and the arithmetic--geometric mean inequality gives $\operatorname{tr}_hk\geq n(\det k/\det h)^{1/n}\geq nd_0^{1/n}$. Since $\sup_XD_hf\geq0$ by \eqref{eq:penalized-upper-laplacian-nonnegative}, it follows that $B\geq nd_0^{1/n}$, that is, $K_0\geq1$.
 
-\emph{The upper bound.} Write $a=a_\beta$ and $g=k+(a_{i\bar j})$, and let $x_0$ be a maximum point of $a-f$. There the complex Hessian of $a-f$ is negative semidefinite, so $0<g\leq k+(f_{i\bar j})$. In particular $k+(f_{i\bar j})$ is positive definite at $x_0$, and the arithmetic--geometric mean inequality for its eigenvalues relative to $h$ gives
+\emph{The upper bound.} Let $\beta>0$, write $a=a_\beta$ and $g=k+(a_{i\bar j})$, and let $x_0$ be a maximum point of $a-f$. There the complex Hessian of $a-f$ is negative semidefinite, so $0<g\leq k+(f_{i\bar j})$. In particular $k+(f_{i\bar j})$ is positive definite at $x_0$, and the arithmetic--geometric mean inequality for its eigenvalues relative to $h$ gives
 \[
  \mathrm e^{\beta(a-f)}=\frac{\det g}{\det k}
  \leq\frac{\det(k+(f_{i\bar j}))}{\det h}\cdot\frac{\det h}{\det k}
@@ -294,15 +445,15 @@ At each point, the eigenvalues of $k$ relative to $h$ are positive, and the arit
 \]
 at $x_0$. Hence $a-f\leq\log K_0/\beta$ on $X$. The function $a-\log K_0/\beta$ is therefore a smooth $\kappa$-psh function below $f$, that is, a competitor for $P_\kappa(f)$, and so $a\leq P_\kappa(f)+\log K_0/\beta$.
 
-\emph{The lower bound.} Put $v=P_\kappa(f)$; as noted at the beginning of this subsection, $\min_Xf\leq v\leq f$. For $0<t\leq1$ put
+\emph{The lower bound.} Let $\beta\geq1$ and put $v=P_\kappa(f)$; as noted at the beginning of this subsection, $\min_Xf\leq v\leq f$. For $0<t\leq1$ put
 \[
  w=(1-t)v+t\min_Xf-\frac{n\log(1/t)}{\beta}.
 \]
-This is a bounded $\kappa$-psh function, and $\kappa+\ddc w=(1-t)(\kappa+\ddc v)+t\kappa$. Expanding the $n$th power by multilinearity of the Monge--Amp\`ere operator on bounded potentials and discarding the positive mixed terms, we get $(\kappa+\ddc w)^n\geq t^n\kappa^n$. On the other hand $w\leq f-n\log(1/t)/\beta$, so $\mathrm e^{\beta(w-f)}\leq t^n$. We claim that $w\leq a$. Let $E=\{a<w\}$. Since $a$ and $w$ are bounded, $a\geq w-O(1)$, so \cref{prop:global-nonpluripolar-comparison} applies without the correction terms; together with the two inequalities just proved and the equation for $a$ it gives
+This is a bounded $\kappa$-psh function. For a bounded $\kappa$-psh function $b$ write $\mu_b=\langle(\kappa+\ddc b)^n\rangle$, the non-pluripolar Monge--Amp\`ere measure, which is the Bedford--Taylor measure since $b$ is bounded (\cref{chap:q09}), and equals the smooth form $(\kappa+\ddc b)^n$ if $b$ is smooth (\cref{prop:bt-positive-recursion}(1)). Locally $\kappa=\ddc\rho$ with $\rho$ smooth, and $\kappa+\ddc w=\ddc\bigl((1-t)(\rho+v)+t\rho\bigr)$. Expanding the $n$th power by multilinearity and positive homogeneity (\cref{prop:nonpluripolar-local-calculus}), and discarding the mixed terms, which are positive measures, we get $\mu_w\geq t^n\kappa^n$. On the other hand $w\leq f-n\log(1/t)/\beta$, so $\mathrm e^{\beta(w-f)}\leq t^n$. We claim that $w\leq a$. Let $E=\{a<w\}$, a Borel set. Since $a$ and $w$ are bounded, $a\geq w-O(1)$, so \cref{prop:global-nonpluripolar-comparison} applies without the correction terms; together with the two inequalities just proved and the equation for $a$ it gives
 \[
  \int_E\mathrm e^{\beta(w-f)}\kappa^n
- \leq\int_E(\kappa+\ddc w)^n
- \leq\int_E(\kappa+\ddc a)^n
+ \leq\int_E\mu_w
+ \leq\int_E\mu_a
  =\int_E\mathrm e^{\beta(a-f)}\kappa^n.
 \]
 On $E$ the first integrand is strictly larger than the last one, so $E$ has volume zero. Thus $w\leq a$ almost everywhere, and hence everywhere, since both functions are quasi-plurisubharmonic (see \cref{sec:global-obstacle-envelopes}). Now take $t=1/\beta$, which is allowed since $\beta\geq1$. Since $\min_Xf-v\geq\min_Xf-\max_Xf=-\operatorname{osc}_Xf$, we obtain
@@ -311,11 +462,11 @@ On $E$ the first integrand is strictly larger than the last one, so $E$ has volu
  \geq v-\frac{\operatorname{osc}_Xf+n\log\beta}{\beta}.
 \]
 
-\emph{The Laplacian bound.} Let $A$ and $\beta_0$ be as in \cref{lem:penalized-equation-trace}. For $\beta>\beta_0$ that lemma and $D_ha_\beta=H-\operatorname{tr}_hk$ with $H>0$ give
+\emph{The Laplacian bound.} Let $\beta_0$ be the constant of \cref{lem:penalized-equation-trace}. For $\beta>\beta_0$ that lemma, together with $D_ha_\beta=H-\operatorname{tr}_hk$, $H>0$ and $\operatorname{osc}_Xf\leq2\|f\|_\infty$, gives
 \[
  -\sup_X\operatorname{tr}_hk\leq D_ha_\beta\leq2B\,\mathrm e^{2A\|f\|_\infty}.
 \]
-Since $a_\beta\to v$ uniformly, $D_ha_\beta\to D_hv$ in the sense of distributions, and the same two inequalities hold for the distribution $D_hv$. In a chart, $D_hv+\sup_X\operatorname{tr}_hk$ is therefore a positive distribution, hence a positive measure, dominated by a constant multiple of Lebesgue measure; by \cref{lem:dominated-measure-density} it is a bounded function. Hence $Lv=-4\pi D_hv$ is a bounded function, with a bound depending only on $X$, $\omega$, $\kappa$, $\|f\|_\infty$ and $\sup_XD_hf$. Finally $v$ is continuous, as a uniform limit of continuous functions, so by \cref{prop:compact-metric-laplacian-lp} it belongs to $C^{1,\alpha}(X)$ for every $0<\alpha<1$.
+Since $D_h=-L/(4\pi)$ is formally self-adjoint and $a_\beta\to v$ uniformly, $\langle D_hv,\chi\rangle=\int_Xv\,D_h\chi\,\mathrm dV=\lim_{\beta\to\infty}\int_X(D_ha_\beta)\chi\,\mathrm dV$ for smooth $\chi$, which proves \eqref{eq:penalized-envelope-laplacian-bound}. In a chart, where $\mathrm dV=\varrho\,\mathrm dV_{2n}$ with $\varrho$ smooth and positive, it follows that the real distribution $D_hv$, paired with test functions through Lebesgue measure, satisfies $|\langle D_hv,\chi\rangle|\leq c\int\chi\,\mathrm dV_{2n}$ for nonnegative test functions $\chi$, where $c=\max\{\sup_X\operatorname{tr}_hk,2B\mathrm e^{2A\|f\|_\infty}\}$. By \cref{cor:distribution-bounded-density}(1), $D_hv$ is a Borel function with $|D_hv|\leq c$. Hence $Lv=-4\pi D_hv$ is a bounded function, with a bound depending only on $X$, $\omega$, $\kappa$ and upper bounds for $\|f\|_\infty$ and $\sup_XD_hf$. Finally $v$ is continuous, as a uniform limit of continuous functions, so by \cref{prop:compact-metric-laplacian-lp} it belongs to $C^{1,\alpha}(X)$ for every $0<\alpha<1$.
 \end{proof}
 \index{envelope!penalized approximation}
 
@@ -329,22 +480,22 @@ Let $r\geq1$ be an integer, and let $f_1,\ldots,f_r$ be continuous real function
 has bounded metric Laplacian, with a bound depending only on $X$, $\omega$, $\kappa$, and on bounds for $\|f_j\|_\infty$ and $\|Lf_j\|_{L^\infty}$, $1\leq j\leq r$. In particular $u$ belongs to $C^{1,\alpha}(X)$ for every $0<\alpha<1$, and the positive current $\kappa+\ddc u$ has bounded coefficients.
 \end{theorem}
 \begin{proof}
-\emph{Step 1: smoothing the obstacles.} By \cref{prop:compact-metric-laplacian-lp}, each $f_j$ belongs to $W^{2,p}(X)$ for every finite $p$; fix $p>2n$. Choose a finite smooth partition of unity $(\chi_\nu)$ with each $\chi_\nu$ supported in the interior of a coordinate chart. For small $\varepsilon>0$, let $f_{j,\nu,\varepsilon}$ be the convolution of $f_j$, written in the chart of $\chi_\nu$, with the mollifier $\rho_\varepsilon$ of \cref{sec:convolution}; it is defined on a neighborhood of the support of $\chi_\nu$. Put $f_{j,\varepsilon}=\sum_\nu\chi_\nu f_{j,\nu,\varepsilon}$. These are smooth functions with $\|f_{j,\varepsilon}\|_\infty\leq\|f_j\|_\infty$, and $f_{j,\varepsilon}\to f_j$ in $C^1$, because $f_j$ is of class $C^1$ by \cref{prop:compact-metric-laplacian-lp} and convolutions of a $C^1$ function converge to it in $C^1$ on compact sets.
+\emph{Step 1: smoothing the obstacles.} By \cref{prop:compact-metric-laplacian-lp}, each $f_j$ belongs to $W^{2,p}(X)$ for every finite $p$, and it is of class $C^1$; fix $p>2n$. Choose a finite smooth partition of unity $(\chi_\nu)$ with each $\chi_\nu$ supported in the interior of a coordinate chart. For small $\varepsilon>0$, let $f_{j,\nu,\varepsilon}$ be the convolution of $f_j$, written in the chart of $\chi_\nu$, with the mollifier $\rho_\varepsilon$ of \cref{sec:convolution}; it is defined on a neighborhood of the support of $\chi_\nu$. Put $f_{j,\varepsilon}=\sum_\nu\chi_\nu f_{j,\nu,\varepsilon}$. These are smooth functions with $\|f_{j,\varepsilon}\|_\infty\leq\|f_j\|_\infty$, and $f_{j,\varepsilon}\to f_j$ in $C^1$, because the convolutions of the $C^1$ function $f_j$ and of its first derivatives converge to them uniformly on compact sets (\cref{lem:mollifier-density}(1)), and $\partial_\mu(f_j*\rho_\varepsilon)=(\partial_\mu f_j)*\rho_\varepsilon$.
 
-We bound the Laplacians of the approximations. In the real coordinates $x_1,\ldots,x_{2n}$ underlying a holomorphic chart, with $\partial_\mu=\partial/\partial x_\mu$, we have $D_h=\sum_{\mu,\sigma}c^{\mu\sigma}(x)\partial_\mu\partial_\sigma$ with smooth real coefficients; there are no first-order terms. The commutator of $D_h$ with convolution is
+We bound the Laplacians of the approximations. By \eqref{eq:complex-hessian-real-form}, in the real coordinates $x_1,\ldots,x_{2n}$ underlying a holomorphic chart, with $\partial_\mu=\partial/\partial x_\mu$, we have $D_h=\sum_{\mu,\sigma}c^{\mu\sigma}(x)\partial_\mu\partial_\sigma$ on real functions, with smooth real coefficients; there are no first-order terms. Since $f_j\in W^{2,p}_{\loc}$ in the chart, by \eqref{eq:sobolev-chart-restriction}, and $\partial_\mu\partial_\sigma(f_j*\rho_\varepsilon)=(\partial_\mu\partial_\sigma f_j)*\rho_\varepsilon$, the commutator of $D_h$ with convolution is
 \[
  \begin{aligned}
  &D_h(f_j*\rho_\varepsilon)(x)-\bigl((D_hf_j)*\rho_\varepsilon\bigr)(x)\\
  &\qquad=\int\sum_{\mu,\sigma}\bigl(c^{\mu\sigma}(x)-c^{\mu\sigma}(y)\bigr)
-     \partial_\mu\partial_\sigma f_j(y)\,\rho_\varepsilon(x-y)\,\mathrm dy.
+     \partial_\mu\partial_\sigma f_j(y)\,\rho_\varepsilon(x-y)\,\mathrm dy,
  \end{aligned}
 \]
-Since $|c^{\mu\sigma}(x)-c^{\mu\sigma}(y)|\leq C\varepsilon$ on the support of $\rho_\varepsilon(x-\cdot)$ and $\|\rho_\varepsilon\|_{L^{p'}}=\varepsilon^{-2n/p}\|\rho\|_{L^{p'}}$ with $p'=p/(p-1)$, H\"older's inequality bounds this commutator by $C\varepsilon^{1-2n/p}\|f_j\|_{W^{2,p}}$, which tends to zero because $p>2n$. As $(D_hf_j)*\rho_\varepsilon$ lies between the essential infimum and the essential supremum of $D_hf_j$, we obtain on a neighborhood of the support of $\chi_\nu$
+where $D_hf_j=-Lf_j/(4\pi)$ is a bounded function. Since $|c^{\mu\sigma}(x)-c^{\mu\sigma}(y)|\leq C\varepsilon$ on the support of $\rho_\varepsilon(x-\cdot)$ and $\|\rho_\varepsilon\|_{L^{p'}}=\varepsilon^{-2n/p}\|\rho\|_{L^{p'}}$ with $p'=p/(p-1)$, H\"older's inequality and \eqref{eq:sobolev-chart-restriction} bound this commutator by $C\varepsilon^{1-2n/p}\|f_j\|_{W^{2,p}(X)}$, which tends to zero because $p>2n$. As $(D_hf_j)*\rho_\varepsilon$ lies between the essential infimum and the essential supremum of $D_hf_j$, since $\rho_\varepsilon\geq0$ has integral one, we obtain on a neighborhood of the support of $\chi_\nu$
 \[
  \operatorname*{ess\,inf}_XD_hf_j-o(1)\leq D_hf_{j,\nu,\varepsilon}
             \leq\operatorname*{ess\,sup}_XD_hf_j+o(1)\qquad(\varepsilon\to0).
 \]
-Next, $D_hf_{j,\varepsilon}=\sum_\nu\chi_\nu D_hf_{j,\nu,\varepsilon}+\sum_\nu[D_h,\chi_\nu]f_{j,\nu,\varepsilon}$, where each commutator $[D_h,\chi_\nu]$ is a first-order operator. Since $\sum_\nu\chi_\nu=1$, we have $\sum_\nu[D_h,\chi_\nu]f_j=0$, so the second sum equals $\sum_\nu[D_h,\chi_\nu](f_{j,\nu,\varepsilon}-f_j)$, which involves only $f_{j,\nu,\varepsilon}-f_j$ and its first derivatives and tends to zero uniformly. Hence $|D_hf_{j,\varepsilon}|\leq\|D_hf_j\|_{L^\infty}+1$ for all sufficiently small $\varepsilon$.
+Next, $D_hf_{j,\varepsilon}=\sum_\nu\chi_\nu D_hf_{j,\nu,\varepsilon}+\sum_\nu[D_h,\chi_\nu]f_{j,\nu,\varepsilon}$, where each commutator $[D_h,\chi_\nu]$ is a first-order operator with coefficients supported in $\Supp\chi_\nu$. Since $\sum_\nu\chi_\nu=1$, we have $\sum_\nu[D_h,\chi_\nu]f_j=D_hf_j-D_hf_j=0$, so the second sum equals $\sum_\nu[D_h,\chi_\nu](f_{j,\nu,\varepsilon}-f_j)$, which involves only $f_{j,\nu,\varepsilon}-f_j$ and its first derivatives and tends to zero uniformly. The first sum is a convex combination. Hence $|D_hf_{j,\varepsilon}|\leq\|D_hf_j\|_{L^\infty}+1$ for all sufficiently small $\varepsilon$.
 
 \emph{Step 2: smoothing the minimum.} For $\delta>0$ set
 \[
@@ -355,7 +506,7 @@ Next, $D_hf_{j,\varepsilon}=\sum_\nu\chi_\nu D_hf_{j,\nu,\varepsilon}+\sum_\nu[D
  p_j=\frac{\mathrm e^{-f_{j,\varepsilon}/\delta}}
                    {\sum_l\mathrm e^{-f_{l,\varepsilon}/\delta}}.
 \]
-The weights $p_j$ are positive with $\sum_jp_j=1$, and $\min_jf_{j,\varepsilon}-\delta\log r\leq F_{\varepsilon,\delta}\leq\min_jf_{j,\varepsilon}$. A direct computation with the chain rule gives
+The weights $p_j$ are positive with $\sum_jp_j=1$, and $\min_jf_{j,\varepsilon}-\delta\log r\leq F_{\varepsilon,\delta}\leq\min_jf_{j,\varepsilon}$, because the sum lies between $\mathrm e^{-\min_jf_{j,\varepsilon}/\delta}$ and $r$ times this number. By the chain rule, $\partial_iF_{\varepsilon,\delta}=\sum_jp_j\partial_if_{j,\varepsilon}$ and $\partial_{\bar k}p_j=-\delta^{-1}p_j\bigl(\partial_{\bar k}f_{j,\varepsilon}-\sum_lp_l\partial_{\bar k}f_{l,\varepsilon}\bigr)$; differentiating once more and contracting with $h^{i\bar k}$, we get
 \[
  D_hF_{\varepsilon,\delta}
  =\sum_jp_jD_hf_{j,\varepsilon}
@@ -363,8 +514,8 @@ The weights $p_j$ are positive with $\sum_jp_j=1$, and $\min_jf_{j,\varepsilon}-
                     -\left|\sum_jp_j\partial f_{j,\varepsilon}\right|_h^2\right)
  \leq\max_j\sup_XD_hf_{j,\varepsilon},
 \]
-where $|\xi|_h^2=h^{i\bar j}\xi_i\bar\xi_j$. The term in parentheses is nonnegative by the Cauchy--Schwarz inequality, as the variance of the vectors $\partial f_{j,\varepsilon}$ with respect to the probability weights $p_j$. Choose sequences $\varepsilon_k,\delta_k\to0$ with $\varepsilon_k$ small as in Step 1, and put $F_k=F_{\varepsilon_k,\delta_k}$. Then $F_k\to\min_jf_j$ uniformly on $X$, while $\|F_k\|_\infty\leq\max_j\|f_j\|_\infty+\delta_k\log r$ and $\sup_XD_hF_k\leq\max_j\|D_hf_j\|_{L^\infty}+1$ remain bounded.
+where $|\xi|_h^2=h^{i\bar j}\xi_i\bar\xi_j$. The term in parentheses equals $\sum_jp_j|\partial f_{j,\varepsilon}-\sum_lp_l\partial f_{l,\varepsilon}|_h^2\geq0$, the variance of the vectors $\partial f_{j,\varepsilon}$ with respect to the probability weights $p_j$. Choose sequences $\varepsilon_k,\delta_k\to0$ with $\varepsilon_k$ small as in Step 1, and put $F_k=F_{\varepsilon_k,\delta_k}$. Then $F_k\to\min_jf_j$ uniformly on $X$, since $|\min_jf_{j,\varepsilon_k}-\min_jf_j|\leq\max_j\|f_{j,\varepsilon_k}-f_j\|_\infty$, while $\|F_k\|_\infty\leq\max_j\|f_j\|_\infty+\delta_k\log r$ and $\sup_XD_hF_k\leq\max_j\|D_hf_j\|_{L^\infty}+1$ remain bounded.
 
-\emph{Step 3: passage to the limit.} The proof of \cref{prop:penalized-envelope-uniform-limit} shows that $-\sup_X\operatorname{tr}_hk\leq D_hP_\kappa(F_k)\leq2B_k\mathrm e^{2A\|F_k\|_\infty}$ in the sense of distributions, where $A$ depends only on $X$, $\omega$, $\kappa$, and $B_k=\sup_X\operatorname{tr}_hk+\sup_XD_hF_k$. By Step 2 these bounds are uniform in $k$ and depend only on the asserted data. By the stability of envelopes in \cref{prop:obstacle-envelope-maximal-member}(4), $\|P_\kappa(F_k)-u\|_\infty\leq\|F_k-\min_jf_j\|_\infty\to0$. Therefore $D_hP_\kappa(F_k)\to D_hu$ in the sense of distributions, and the same two-sided bound holds for $D_hu$. As in the proof of \cref{prop:penalized-envelope-uniform-limit}, \cref{lem:dominated-measure-density} shows that $D_hu$, and hence $Lu=-4\pi D_hu$, is a bounded function with the asserted bound. The function $u$ is continuous, as a uniform limit of the continuous functions $P_\kappa(F_k)$, so \cref{prop:compact-metric-laplacian-lp} shows that $u\in C^{1,\alpha}(X)$ for every $0<\alpha<1$. Finally, $\kappa+\ddc u$ is a positive current whose trace $\Lambda(\kappa+\ddc u)=\Lambda\kappa+D_hu$ is bounded, and, as in the proof of \cref{prop:metric-laplacian-regular-contact-density}, its coefficients are bounded.
+\emph{Step 3: passage to the limit.} By \eqref{eq:penalized-envelope-laplacian-bound}, applied to the smooth obstacles $F_k$, we have $-\sup_X\operatorname{tr}_hk\leq D_hP_\kappa(F_k)\leq2B_k\mathrm e^{2A\|F_k\|_\infty}$ in the sense of distributions, where $A$ depends only on $X$, $\omega$, $\kappa$, and $B_k=\sup_X\operatorname{tr}_hk+\sup_XD_hF_k$. By Step 2 these bounds are uniform in $k$ and depend only on the asserted data. By the stability of envelopes in \cref{prop:obstacle-envelope-maximal-member}(4), $\|P_\kappa(F_k)-u\|_\infty\leq\|F_k-\min_jf_j\|_\infty\to0$. Therefore $D_hP_\kappa(F_k)\to D_hu$ in the sense of distributions, and the same two-sided bound holds for $D_hu$. As in the proof of \cref{prop:penalized-envelope-uniform-limit}, \cref{cor:distribution-bounded-density}(1) shows that $D_hu$, and hence $Lu=-4\pi D_hu$, is a bounded function with the asserted bound. The function $u$ is continuous, as a uniform limit of the functions $P_\kappa(F_k)$, which are continuous by \cref{prop:penalized-envelope-uniform-limit}; so \cref{prop:compact-metric-laplacian-lp} shows that $u\in C^{1,\alpha}(X)$ for every $0<\alpha<1$. Finally, $u$ is a continuous $\kappa$-psh function with bounded metric Laplacian, so by \cref{prop:metric-laplacian-regular-contact-density}, applied with $U=X$ and $\theta_j=\kappa$, $u_j=f_j=u$ for all $j$, the coefficients of $\kappa+\ddc u$ are bounded on every coordinate ball $W\Subset X$, hence on $X$.
 \end{proof}
 \index{rooftop envelope!metric-Laplacian regularity}\index{envelope!metric-Laplacian regularity}
