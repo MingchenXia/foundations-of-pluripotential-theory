@@ -59,7 +59,7 @@ We collect the elementary properties of these classes.
 \begin{lemma}\label{lem:quasi-psh-basic}
 Let $X$ be a complex manifold and let $\theta$ be a smooth closed real $(1,1)$-form on $X$.
 \begin{enumerate}
-\item Every quasi-plurisubharmonic function on $X$ is locally integrable, hence finite almost everywhere. If $X$ has positive dimension, a quasi-plurisubharmonic function is, at every point, the limit of its averages over small coordinate balls centered at that point; consequently two quasi-plurisubharmonic functions on an open set $V\subset X$ that agree almost everywhere on $V$ agree everywhere on $V$.
+\item Every quasi-plurisubharmonic function on $X$ is locally integrable, hence finite almost everywhere. If $X$ has positive dimension, a quasi-plurisubharmonic function is, at every point, the limit of its averages over small coordinate balls centered at that point. Consequently, if $\varphi$ and $\psi$ are quasi-plurisubharmonic functions on an open set $V\subset X$ with $\varphi\leq\psi$ almost everywhere on $V$, then $\varphi\leq\psi$ everywhere on $V$; in particular, two quasi-plurisubharmonic functions on $V$ that agree almost everywhere on $V$ agree everywhere on $V$.
 \item Let $V\subset X$ be open and let $h$ be a smooth real function on $V$ with $\ddc h=\theta$. Then a quasi-plurisubharmonic function $\varphi$ on $V$ satisfies $\theta+\ddc\varphi\geq0$ on $V$ if and only if $\varphi+h$ is plurisubharmonic on $V$.
 \item If $\varphi_1,\ldots,\varphi_k\in\PSH(X,\theta)$, $k\geq1$, then $\max_i\varphi_i\in\PSH(X,\theta)$.
 \item If $X$ is compact and $\omega$ is a Hermitian form on $X$, then for every quasi-plurisubharmonic function $\varphi$ on $X$ there is a constant $C\geq0$ with $\ddc\varphi\geq-C\omega$.
@@ -69,7 +69,7 @@ Let $X$ be a complex manifold and let $\theta$ be a smooth closed real $(1,1)$-f
 \begin{proof}
 At points where $X$ has dimension zero, which are isolated, all functions are smooth and $\ddc$ vanishes, so every assertion is trivial there; we may therefore assume that $X$ has positive dimension.
 
-(1) Near each point, $\varphi=u+f$ with $u$ plurisubharmonic and $f$ smooth, and $u$ is locally integrable by \cref{thm:psh-distribution-representative}. Moreover $u$ is subharmonic, by the same theorem, so at every point it is the limit of its averages over small balls, by \eqref{eq:canonical-subharmonic}; the continuous function $f$ has the same property, and hence so has $\varphi$. Two functions with this property that agree almost everywhere have the same ball averages, and therefore agree everywhere.
+(1) Near each point, $\varphi=u+f$ with $u$ plurisubharmonic and $f$ smooth, and $u$ is locally integrable by \cref{thm:psh-distribution-representative}. Moreover $u$ is subharmonic, by the same theorem, so at every point it is the limit of its averages over small balls, by \eqref{eq:canonical-subharmonic}; the continuous function $f$ has the same property, and hence so has $\varphi$. Now let $\varphi$ and $\psi$ be quasi-plurisubharmonic on $V$ with $\varphi\leq\psi$ almost everywhere, and let $x\in V$. Since both functions are locally integrable, their averages over small coordinate balls centered at $x$, in a chart at $x$, are finite, and those of $\varphi$ are at most those of $\psi$; letting the radius tend to zero gives $\varphi(x)\leq\psi(x)$. Applying this in both directions, we see that two quasi-plurisubharmonic functions that agree almost everywhere agree everywhere.
 
 (2) Let $\varphi$ be quasi-plurisubharmonic on $V$. If $\varphi+h$ is plurisubharmonic, then $\theta+\ddc\varphi=\ddc(\varphi+h)\geq0$ by \cref{thm:psh-distribution-representative}. Conversely, suppose that $\ddc(\varphi+h)\geq0$ on $V$. On a coordinate ball $B\subset V$, \cref{thm:psh-distribution-representative} gives a plurisubharmonic function on $B$ that agrees almost everywhere with $\varphi+h$; both are quasi-plurisubharmonic on $B$, so they agree everywhere on $B$ by (1). Hence $\varphi+h$ is plurisubharmonic on $V$.
 
@@ -150,7 +150,32 @@ A holomorphic line bundle $L$ on $X$ is given by an open cover $(V_i)$ of $X$ an
 \end{definition}
 \index{line bundle!holomorphic}\index{Hermitian metric!quadratic}\index{curvature!of a line bundle}
 
-The curvature is well defined, since $\log|e_i|^2-\log|e_j|^2=\log|g_{ij}|^2$ is pluriharmonic, $g_{ij}$ being holomorphic and nowhere zero (\cref{sec:local-complex-potentials}). Smooth metrics exist: let $(\rho_k)$ be a smooth partition of unity with $\Supp\rho_k\subset V_k$, obtained from \cref{prop:manifold-cutoffs-stokes} by grouping the members of a partition of unity subordinate to $(V_k)$, write a vector $\xi$ in the fiber at $x$ as $\xi=\sigma_ke_k(x)$ for each $k$ with $x\in V_k$, and put $|\xi|^2=\sum_k\rho_k(x)|\sigma_k|^2$. Then $|e_i|^2=\sum_k\rho_k|g_{ik}|^2$ is smooth and positive on $V_i$, and the cocycle relation $g_{ik}=g_{ij}g_{jk}$ gives $|e_i|^2=|g_{ij}|^2|e_j|^2$.
+When several metrics occur, we write $|e_i|_h^2$ for the squared norms of a metric $h$. Smooth metrics always exist, and any two of them differ by a smooth positive factor.
+
+\begin{lemma}\label{lem:smooth-line-bundle-metric-exists}
+Let $L$ be a holomorphic line bundle on a complex manifold $X$, given by frames $e_i$ over an open cover $(V_i)$ with transition functions $g_{ij}$ as in \cref{def:quadratic-line-bundle-metric}.
+\begin{enumerate}
+\item $L$ carries a smooth quadratic Hermitian metric.
+\item The curvature of a smooth quadratic Hermitian metric on $L$ is well defined, and it is a smooth closed real $(1,1)$-form on $X$.
+\item Let $h_0$ be a smooth quadratic Hermitian metric on $L$ with curvature $\eta_0$. For every smooth real function $f$ on $X$, the squared norms $|e_i|_{h_0}^2\mathrm e^{-f}$ define a smooth quadratic Hermitian metric $h_0\mathrm e^{-f}$ on $L$, whose curvature is $\eta_0+\ddc f$. Conversely, every smooth quadratic Hermitian metric on $L$ equals $h_0\mathrm e^{-f}$ for exactly one smooth real function $f$ on $X$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) By \cref{prop:manifold-cutoffs-stokes} there is a smooth partition of unity $(\chi_a)$ subordinate to the cover $(V_i)$; for each $a$ choose an index $k(a)$ with $\Supp\chi_a\subset V_{k(a)}$, and put $\rho_k=\sum_{k(a)=k}\chi_a$. Since the family $(\chi_a)$ is locally finite, each $\rho_k$ is smooth, the family $(\rho_k)$ is locally finite, $\sum_k\rho_k=1$, and $\Supp\rho_k\subset V_k$, because a locally finite union of closed sets is closed. For each $i$ put
+\[
+ |e_i|^2=\sum_k\rho_k|g_{ik}|^2\qquad\text{on }V_i,
+\]
+where the $k$th term, defined on $V_i\cap V_k$, is extended by zero to the rest of $V_i$. Each term is smooth on $V_i$, since it is smooth on $V_i\cap V_k$ and vanishes on the open set $V_i\setminus\Supp\rho_k$, and these two open sets cover $V_i$. By local finiteness, $|e_i|^2$ is smooth on $V_i$, and it is positive, because the $\rho_k$ are nonnegative with sum one and every $g_{ik}$ is nowhere zero. On $V_i\cap V_j$, the cocycle relation $g_{ik}=g_{ij}g_{jk}$ holds on $V_i\cap V_j\cap V_k$, hence wherever $\rho_k\neq0$, so
+\[
+ |e_i|^2=\sum_k\rho_k|g_{ij}|^2|g_{jk}|^2=|g_{ij}|^2|e_j|^2.
+\]
+Thus these squared norms form a smooth quadratic Hermitian metric on $L$.
+
+(2) On $V_i\cap V_j$ we have $\log|e_i|^2-\log|e_j|^2=\log|g_{ij}|^2$, which is pluriharmonic, since $g_{ij}$ is holomorphic and nowhere zero (\cref{sec:local-complex-potentials}). Hence the forms $-\ddc\log|e_i|^2$ on $V_i$ agree on the overlaps and define a $(1,1)$-form $\eta$ on $X$. It is smooth, because each $\log|e_i|^2$ is a smooth real function. Moreover $\eta=-\mathrm d(\mathrm d^{\mathrm c}\log|e_i|^2)$ on $V_i$, by \eqref{eq:dc-operator}, and $\mathrm d^{\mathrm c}$ maps real forms to real forms; hence $\eta$ is real, and it is closed because $\mathrm d^2=0$.
+
+(3) The functions $|e_i|_{h_0}^2\mathrm e^{-f}$ are smooth and positive on $V_i$, and they satisfy the compatibility condition of \cref{def:quadratic-line-bundle-metric} because the functions $|e_i|_{h_0}^2$ do. The curvature of $h_0\mathrm e^{-f}$ is $-\ddc\log\bigl(|e_i|_{h_0}^2\mathrm e^{-f}\bigr)=-\ddc\log|e_i|_{h_0}^2+\ddc f=\eta_0+\ddc f$ on $V_i$. Conversely, let $h_1$ be a smooth quadratic Hermitian metric on $L$. On $V_i$ the function $|e_i|_{h_1}^2/|e_i|_{h_0}^2$ is smooth and positive, and on $V_i\cap V_j$ it equals $|e_j|_{h_1}^2/|e_j|_{h_0}^2$, since both numerator and denominator are multiplied by $|g_{ij}|^2$. Hence these quotients define a smooth positive function on $X$, which we write as $\mathrm e^{-f}$ with $f$ smooth and real; then $h_1=h_0\mathrm e^{-f}$. The function $f$ is unique, since $\mathrm e^{-f}$ must equal these quotients.
+\end{proof}
+\index{Hermitian metric!quadratic!existence}\index{line bundle!smooth metrics}
 
 \begin{proposition}\label{prop:kahler-smooth-center-blowup}
 Let $X$ be a compact K\"ahler manifold with K\"ahler form $\omega$, let $W\subset X$ be a closed submanifold of positive codimension, and let $\pi\colon Y\to X$ be the blowup of $X$ along $W$, with exceptional divisor $E=\pi^{-1}(W)$. Then $Y$ is a compact complex manifold, and there are a smooth function $\rho\colon X\to[0,\infty)$ with $\rho^{-1}(0)=W$ and a smooth closed real $(1,1)$-form $\eta$ on $Y$ with $\eta=\ddc\log(\rho\circ\pi)$ on $Y\setminus E$, such that $\pi^*\omega+\varepsilon\eta$ is a K\"ahler form on $Y$ for every sufficiently small $\varepsilon>0$. The form $\eta$ is the curvature of a smooth quadratic Hermitian metric on the line bundle $\mathcal O_Y(-E)$, whose local frames are the function $1$ on $Y\setminus E$ and the local equations of $E$ near $E$. In particular $Y$ is a compact K\"ahler manifold. Consequently every log resolution of a coherent ideal on $X$, as above, is a compact K\"ahler manifold.
@@ -478,15 +503,14 @@ By \cref{lem:geometry-uniform-kernel-overlap}, the functions $v_{j,m}\in\PSH(B_j
 The maximum in \cref{thm:quantitative-lower-bound-regularization} destroys smoothness, and that theorem does not compare the functions $\varphi_m$ for different values of $m$. To obtain the regularity required of gentle singularities and, later, a decreasing sequence, we glue the local kernels instead by a sum with smooth cutoffs and control the curvature of its logarithm by a direct computation. We keep the notation of the previous section.
 
 \begin{lemma}\label{lem:logarithmic-cutoff-sum}
-Let $\theta$ be a smooth closed real $(1,1)$-form on $X$, let $\varphi\in\PSH(X,\theta)$, let $m\geq1$ be an integer, and put
+\begin{enumerate}
+\item Let $\theta$ be a smooth closed real $(1,1)$-form on $X$, let $\varphi\in\PSH(X,\theta)$, let $m\geq1$ be an integer, and put
 \[
  R_m=\sum_j\chi_j^2a_{j,m},\qquad G_m=m^{-1}\log R_m,
 \]
 each summand being extended by zero outside the support of $\chi_j$. There is a constant $c'>0$, depending only on the fixed geometry, such that
 $\theta+\ddc G_m\geq-(c'/m)\omega$. Moreover $R_m$ is smooth on $X$, and $G_m$ has gentle analytic singularities of type $(m^{-1},\mathcal I(m\varphi))$.
-\end{lemma}
-\begin{proof}
-\emph{Step 1: a Hessian identity.} Let $w_j$ be smooth real functions and $\chi_j$ nonnegative smooth functions on an open set, with $S=\sum_j\chi_j^2\mathrm e^{w_j}>0$, and put $\alpha_j=\chi_j\partial w_j+2\partial\chi_j$, so that $\partial S=\sum_j\chi_j\mathrm e^{w_j}\alpha_j$. Differentiating twice gives
+\item Let $W$ be an open subset of a complex manifold, let $N\geq1$, and let $w_1,\ldots,w_N$ and $\chi_1,\ldots,\chi_N$ be smooth real functions on $W$ such that $S=\sum_{j=1}^N\chi_j^2\mathrm e^{w_j}$ is positive on $W$. Put $\alpha_j=\chi_j\partial w_j+2\partial\chi_j$. Then, on $W$,
 \begin{equation}\label{eq:cutoff-sum-hessian}
 \begin{aligned}
  \ddc\log S={}&\frac{\mathrm i}{2\pi S^2}
@@ -496,10 +520,14 @@ $\theta+\ddc G_m\geq-(c'/m)\omega$. Moreover $R_m$ is smooth on $X$, and $G_m$ h
  &+\frac{\sum_j\chi_j^2\mathrm e^{w_j}\ddc w_j}{S}
  +2\frac{\sum_j\mathrm e^{w_j}
   \bigl(\chi_j\ddc\chi_j-\frac{\mathrm i}{2\pi}
-                         \partial\chi_j\wedge\bar\partial\chi_j\bigr)}{S}.
+                         \partial\chi_j\wedge\bar\partial\chi_j\bigr)}{S},
 \end{aligned}
 \end{equation}
-Indeed, put $f_j=\chi_j^2\mathrm e^{w_j}$. Since $\chi_j$ and $w_j$ are real, $\bar\partial f_j=\overline{\partial f_j}=\chi_j\mathrm e^{w_j}\bar\alpha_j$ with $\bar\alpha_j=\chi_j\bar\partial w_j+2\bar\partial\chi_j$, and
+and the first term on the right of \eqref{eq:cutoff-sum-hessian} is a semipositive $(1,1)$-form.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+\emph{Step 1: proof of \textup{(2)}.} Let $w_j$, $\chi_j$, $S$ and $\alpha_j$ be as in (2), and put $f_j=\chi_j^2\mathrm e^{w_j}$, so that $S=\sum_jf_j$. Then $\partial f_j=\chi_j\mathrm e^{w_j}(\chi_j\partial w_j+2\partial\chi_j)=\chi_j\mathrm e^{w_j}\alpha_j$, so that $\partial S=\sum_j\chi_j\mathrm e^{w_j}\alpha_j$. Since $\chi_j$ and $w_j$ are real, $\bar\partial f_j=\overline{\partial f_j}=\chi_j\mathrm e^{w_j}\bar\alpha_j$ with $\bar\alpha_j=\chi_j\bar\partial w_j+2\bar\partial\chi_j$, and
 \[
  \begin{aligned}
  \partial\bar\partial f_j&=\partial(\chi_j\mathrm e^{w_j})\wedge\bar\alpha_j+\chi_j\mathrm e^{w_j}\,\partial\bar\alpha_j\\
@@ -513,7 +541,9 @@ where the last line follows by expanding $\alpha_j\wedge\bar\alpha_j=\chi_j^2\pa
  \sum_j\frac{\mathrm e^{w_j}\alpha_j\wedge\bar\alpha_j}S-\frac{\partial S\wedge\bar\partial S}{S^2}
  =\frac1{S^2}\sum_{j,l}\mathrm e^{w_j+w_l}\bigl(\chi_l^2\,\alpha_j\wedge\bar\alpha_j-\chi_j\chi_l\,\alpha_j\wedge\bar\alpha_l\bigr).
 \]
-In the last sum the terms with $j=l$ vanish, and for $j<l$ the terms with indices $(j,l)$ and $(l,j)$ add up to $\mathrm e^{w_j+w_l}(\chi_j\alpha_l-\chi_l\alpha_j)\wedge\overline{(\chi_j\alpha_l-\chi_l\alpha_j)}$. Multiplying by $\mathrm i/2\pi$ and using $\ddc=\frac{\mathrm i}{2\pi}\partial\bar\partial$, we obtain \eqref{eq:cutoff-sum-hessian}. The first term on the right of \eqref{eq:cutoff-sum-hessian} is semipositive, because for a $(1,0)$-form $\gamma=\sum_k\gamma_k\,\mathrm dz_k$ the coefficient matrix $(\gamma_k\bar\gamma_{k'})$ of $\mathrm i\gamma\wedge\bar\gamma$ is positive semidefinite.
+In the last sum the terms with $j=l$ vanish, and for $j<l$ the terms with indices $(j,l)$ and $(l,j)$ add up to $\mathrm e^{w_j+w_l}(\chi_j\alpha_l-\chi_l\alpha_j)\wedge\overline{(\chi_j\alpha_l-\chi_l\alpha_j)}$. Multiplying by $\mathrm i/2\pi$ and using $\ddc=\frac{\mathrm i}{2\pi}\partial\bar\partial$, we obtain \eqref{eq:cutoff-sum-hessian}. The first term on the right of \eqref{eq:cutoff-sum-hessian} is semipositive, because the coefficients $\mathrm e^{w_j+w_l}/(2\pi S^2)$ are positive and, for a $(1,0)$-form $\gamma=\sum_k\gamma_k\,\mathrm dz_k$, the coefficient matrix $(\gamma_k\bar\gamma_{k'})$ of $\mathrm i\gamma\wedge\bar\gamma$ is positive semidefinite.
+
+We now prove (1) in three steps.
 
 \emph{Step 2: a curvature estimate.} By \cref{lem:hermitian-form-comparison}, applied on the compact manifold $X$ to the finitely many smooth forms below, there is a constant $A>0$, depending only on the fixed geometry, such that $\chi_j\ddc\chi_j-\frac{\mathrm i}{2\pi}\partial\chi_j\wedge\bar\partial\chi_j\geq-A\omega$ for every $j$. Let $W\subset X$ be open, and for the indices $j$ with $W\cap\Supp\chi_j\neq\varnothing$ let $w_j$ be smooth real functions on $W$ such that
 \[
@@ -524,7 +554,7 @@ for all such $i,j$. We claim that $S=\sum_j\chi_j^2\mathrm e^{w_j}$ is positive 
 \[
  \theta+\frac1m\ddc\log S\geq-\frac{2JA\mathrm e^{C_B}}m\omega\qquad\text{on }W.
 \]
-Let $x\in W$ and choose $i$ with $x\in U_i$. Then $\chi_i(x)=1$, so $S(x)\geq\mathrm e^{w_i(x)}>0$, and $\mathrm e^{w_j}/S\leq\mathrm e^{C_B}$ at $x$ for every $j$ with $\chi_j(x)\neq0$. If $\chi_j(x)=0$, the $j$th summand of the last term in \eqref{eq:cutoff-sum-hessian} vanishes at $x$, because the nonnegative function $\chi_j$ attains its minimum at $x$, so that $\partial\chi_j(x)=0$. Hence the last term is at least $-2JA\mathrm e^{C_B}\omega$ at $x$. The coefficients $\chi_j^2\mathrm e^{w_j}/S$ are nonnegative with sum one, so the middle term is at least $-m\theta$, and the first term is semipositive. This proves the claim.
+Let $x\in W$ and choose $i$ with $x\in U_i$. Then $\chi_i(x)=1$, so $S(x)\geq\mathrm e^{w_i(x)}>0$, and $\mathrm e^{w_j}/S\leq\mathrm e^{C_B}$ at $x$ for every $j$ with $\chi_j(x)\neq0$. Since $S>0$ on $W$, the identity \eqref{eq:cutoff-sum-hessian} of (2) holds on $W$. If $\chi_j(x)=0$, the $j$th summand of the last term in \eqref{eq:cutoff-sum-hessian} vanishes at $x$, because the nonnegative function $\chi_j$ attains its minimum at $x$, so that $\partial\chi_j(x)=0$. Hence the last term is at least $-2JA\mathrm e^{C_B}\omega$ at $x$. The coefficients $\chi_j^2\mathrm e^{w_j}/S$ are nonnegative with sum one, so the middle term is at least $-m\theta$, and the first term is semipositive. This proves the claim.
 
 \emph{Step 3: application to the kernels.} The kernels $a_{j,m}$ may vanish, so we approximate them. Fix $x_0\in X$ and a small coordinate ball $W$ about $x_0$ such that $W\subset U'_j$ whenever $x_0\in\Supp\chi_j$, and $W\cap\Supp\chi_j=\varnothing$ otherwise; then the indices $j$ with $W\cap\Supp\chi_j\neq\varnothing$ are those with $x_0\in\Supp\chi_j$. Choose a smooth function $g$ on $W$ with $\ddc g=\theta$, and for each such $j$ write $h_j-g=\Real b_j$ on $W$ with $b_j$ holomorphic, by \cref{lem:smooth-potential-on-ball}. Since $h_j=g+\Real b_j$ on $W$, we have $a_{j,m}=\mathrm e^{-mh_j}K_{j,m}=\mathrm e^{-mg}k_j$ on $W$, where, by \eqref{eq:bergman-kernel-basis} and since $|\mathrm e^{-mb_j/2}|^2=\mathrm e^{-m\Real b_j}$, $k_j=\mathrm e^{-m\Real b_j}K_{j,m}=\sum_\ell|\mathrm e^{-mb_j/2}e_\ell|^2$ for an orthonormal basis $(e_\ell)$ of the space defining $K_{j,m}$. For $\delta>0$ the function $\log(k_j+\delta)$ is smooth, by \cref{lem:bergman-smoothness-and-resolution}, and plurisubharmonic: it is the increasing limit of the logarithms of the finite partial sums of these squared moduli together with $|\sqrt\delta|^2$, which are plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}, and since the limit is continuous, \cref{thm:psh-upper-envelopes} applies. Put $w_j^\delta=\log(k_j+\delta)-mg$, so that $\ddc w_j^\delta\geq-m\theta$. On $W\cap U_i\cap\Supp\chi_j$, which lies in $\overline{U'_j}\cap\overline{U'_i}$, \cref{lem:geometry-uniform-kernel-overlap} and the identities $a_{j,m}=\mathrm e^{-mg}k_j$, $a_{i,m}=\mathrm e^{-mg}k_i$ give $k_j\leq\mathrm e^{C_B}k_i$, and since $\mathrm e^{C_B}\geq1$ also $k_j+\delta\leq\mathrm e^{C_B}(k_i+\delta)$. By Step 2 the function
 \[
