@@ -18,7 +18,7 @@ the multiplier being zero at the origin. Then $T_{ab}$ is self-adjoint and has n
  |K_{ab}(z)|\leq C_d|z|^{-d},\qquad
  |\nabla K_{ab}(z)|\leq C_d|z|^{-d-1}.
 \]
-\item If $f\in L^1\cap L^2$ has compact support, then for almost every $x\in\mathbb R^d\setminus\Supp f$,
+\item If $f\in L^2(\mathbb R^d)$ vanishes almost everywhere outside a compact set $F$, then $f$ is integrable, and for almost every $x\in\mathbb R^d\setminus F$,
 \[
  T_{ab}f(x)=\int K_{ab}(x-y)f(y)\,\mathrm d y.
 \]
@@ -32,7 +32,11 @@ To construct the kernel we use the heat kernel\index{heat kernel} $H_t(z)=(4\pi 
 \[
  k_{\varepsilon,R}=\int_\varepsilon^R\partial_a\partial_bH_t\,\mathrm d t.
 \]
-Since $|\partial_a\partial_bH_t(z)|\leq C_dt^{-d/2-1}(1+|z|^2/t)\mathrm e^{-|z|^2/(4t)}$, the kernel $k_{\varepsilon,R}$ is bounded and integrable, and Fubini's theorem gives its Fourier transform:
+Since $\partial_a\partial_bH_t(z)=\bigl(z_az_b/(4t^2)-\delta_{ab}/(2t)\bigr)H_t(z)$, where $\delta_{ab}$ is the Kronecker symbol, we have
+\[
+ |\partial_a\partial_bH_t(z)|\leq C_dt^{-d/2-1}(1+|z|^2/t)\mathrm e^{-|z|^2/(4t)}.
+\]
+Hence $\sup_z|\partial_a\partial_bH_t(z)|\leq C_dt^{-d/2-1}$, and the substitution $z=\sqrt t\,w$ gives $\int|\partial_a\partial_bH_t(z)|\,\mathrm d z\leq C_dt^{-1}$. Therefore the kernel $k_{\varepsilon,R}$ is bounded and integrable, and Fubini's theorem, applied with the integrable majorant $|\partial_a\partial_bH_t(z)|$ on $\mathbb R^d\times[\varepsilon,R]$, gives its Fourier transform:
 \[
  \widehat{k_{\varepsilon,R}}(\xi)=-\frac{\xi_a\xi_b}{|\xi|^2}
     \bigl(\mathrm e^{-4\pi^2\varepsilon|\xi|^2}
@@ -44,13 +48,17 @@ For $z\neq0$ define
 \[
  K_{ab}(z)=\int_0^\infty\partial_a\partial_bH_t(z)\,\mathrm d t.
 \]
-After $l$ further derivatives in $z$, the integrand is bounded by a polynomial in $|z|/\sqrt t$ times $Ct^{-(d+2+l)/2}\mathrm e^{-|z|^2/(4t)}$. For $z$ in a compact subset of $\mathbb R^d\setminus\{0\}$, these bounds are integrable in $t$, uniformly in $z$: the exponential factor controls $t\downarrow0$, and the power $t^{-(d+2+l)/2}$ controls $t\uparrow\infty$ because $(d+2+l)/2>1$. Hence $K_{ab}$ is smooth on $\mathbb R^d\setminus\{0\}$ and may be differentiated under the integral sign. Differentiating the identity $H_{r^2s}(rz)=r^{-d}H_s(z)$ twice in $z$ and substituting $t=r^2s$, we find that $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Thus $K_{ab}$ is homogeneous of degree $-d$ and $\nabla K_{ab}$ is homogeneous of degree $-d-1$, and the bounds in (1) follow from the boundedness of $K_{ab}$ and $\nabla K_{ab}$ on the unit sphere. The same scaling shows that $\int_0^\infty|\partial_a\partial_bH_t(z)|\,\mathrm d t\leq C_d|z|^{-d}$.
+Since $H_t(z)=t^{-d/2}H_1(z/\sqrt t)$, every derivative satisfies $\partial^\gamma H_t(z)=t^{-(d+|\gamma|)/2}(\partial^\gamma H_1)(z/\sqrt t)$, and induction on $|\gamma|$ shows that $\partial^\gamma H_1(w)=P_\gamma(w)\mathrm e^{-|w|^2/4}$ for a polynomial $P_\gamma$, of degree $m_\gamma$ say. Fix $0<c\leq c'$, and let $c\leq|z|\leq c'$ and $|\gamma|\geq2$. For $0<t\leq1$ we have $|P_\gamma(z/\sqrt t)|\leq C_\gamma(1+c'/\sqrt t)^{m_\gamma}$ and $\mathrm e^{-|z|^2/(4t)}\leq\mathrm e^{-c^2/(4t)}$; for $t\geq1$ we have $|P_\gamma(z/\sqrt t)|\leq C_\gamma(1+c')^{m_\gamma}$. Hence $|\partial^\gamma H_t(z)|\leq g_\gamma(t)$, where
+\[
+ g_\gamma(t)=C_\gamma t^{-(d+|\gamma|)/2}(1+c'/\sqrt t)^{m_\gamma}\mathrm e^{-c^2/(4t)}\ \ (0<t\leq1),\qquad g_\gamma(t)=C_\gamma(1+c')^{m_\gamma}t^{-(d+|\gamma|)/2}\ \ (t\geq1).
+\]
+This function is integrable on $(0,\infty)$ and does not depend on $z$: near $t=0$ the factor $\mathrm e^{-c^2/(4t)}$ dominates every power of $t^{-1}$, and for $t\geq1$ the exponent satisfies $(d+|\gamma|)/2\geq3/2>1$. By the mean value theorem and dominated convergence, we may therefore differentiate under the integral sign any number of times, so $K_{ab}$ is smooth on $\mathbb R^d\setminus\{0\}$, its derivatives are the integrals of the corresponding derivatives of $\partial_a\partial_bH_t$, and the integrals $\int_0^\varepsilon$ and $\int_R^\infty$ of $|\partial_a\partial_bH_t(z)|$ tend to zero as $\varepsilon\downarrow0$ and $R\uparrow\infty$, uniformly for $c\leq|z|\leq c'$. Differentiating the identity $H_{r^2s}(rz)=r^{-d}H_s(z)$ twice in $z$ and substituting $t=r^2s$, we find that $K_{ab}(rz)=r^{-d}K_{ab}(z)$ for $r>0$. Thus $K_{ab}$ is homogeneous of degree $-d$ and $\nabla K_{ab}$ is homogeneous of degree $-d-1$, and the bounds in (1) follow from the boundedness of the continuous functions $K_{ab}$ and $\nabla K_{ab}$ on the unit sphere. The same scaling shows that the function $z\mapsto\int_0^\infty|\partial_a\partial_bH_t(z)|\,\mathrm d t$ is homogeneous of degree $-d$; it is bounded on the unit sphere by $\int_0^\infty g_\gamma(t)\,\mathrm d t$ with $c=c'=1$, so it is at most $C_d|z|^{-d}$.
 
-To prove (2), let $f$ have compact support, and let $L$ be a compact set disjoint from $\Supp f$. For $x\in L$,
+To prove (2), let $f$ and $F$ be as there. By the Cauchy--Schwarz inequality on $F$, the function $f$ is integrable, so $f\in L^1\cap L^2$. Let $L$ be a compact set disjoint from $F$. For $x\in L$,
 \[
  k_{\varepsilon,R}*f(x)=\int f(y)\int_\varepsilon^R\partial_a\partial_bH_t(x-y)\,\mathrm d t\,\mathrm d y.
 \]
-The differences $x-y$, with $x\in L$ and $y\in\Supp f$, form a compact set not containing the origin. By the uniform integrability just proved, the inner integral converges to $K_{ab}(x-y)$ uniformly on this set, and it is bounded by $C_d|x-y|^{-d}$. Hence $k_{\varepsilon,R}*f$ converges uniformly on $L$ to $\int K_{ab}(x-y)f(y)\,\mathrm d y$. Since it also converges to $T_{ab}f$ in $L^2$, a subsequence converges almost everywhere to $T_{ab}f$, and the two limits agree almost everywhere on $L$. Covering $\mathbb R^d\setminus\Supp f$ by countably many such compact sets proves (2). (For $d=1$ we have $T_{11}=-1$, and $K_{11}=0$, because $\partial_z^2H_t=\partial_tH_t$ and $H_t(z)\to0$ both as $t\downarrow0$ and as $t\uparrow\infty$ for $z\neq0$.)
+where the outer integral may be taken over $F$. The differences $x-y$, with $x\in L$ and $y\in F$, form a compact set not containing the origin, on which $c\leq|x-y|\leq c'$ for some $0<c\leq c'$. By the uniform estimates just proved, the inner integral converges to $K_{ab}(x-y)$ uniformly on this set, and it is bounded by $\int_0^\infty|\partial_a\partial_bH_t(x-y)|\,\mathrm d t\leq C_dc^{-d}$. Hence $k_{\varepsilon,R}*f$ converges uniformly on $L$ to $\int K_{ab}(x-y)f(y)\,\mathrm d y$. Since it also converges to $T_{ab}f$ in $L^2$, a subsequence converges almost everywhere to $T_{ab}f$, and the two limits agree almost everywhere on $L$. Covering the open set $\mathbb R^d\setminus F$ by countably many such compact sets proves (2). (For $d=1$ we have $T_{11}=-1$, and $K_{11}=0$: a direct differentiation gives $\partial_z^2H_t=\bigl(z^2/(4t^2)-1/(2t)\bigr)H_t=\partial_tH_t$, so $K_{11}(z)=\lim_{t\uparrow\infty}H_t(z)-\lim_{t\downarrow0}H_t(z)=0$ for $z\neq0$.)
 \end{proof}
 
 \begin{lemma}\label{lem:hessian-multiplier-weak-one}
