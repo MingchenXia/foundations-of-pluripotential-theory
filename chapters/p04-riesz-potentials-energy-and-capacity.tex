@@ -31,22 +31,26 @@ with $k_D$ in place of $k$ when $d=2$; when the scale must be specified, we writ
 The potential $U^\mu$ is lower semicontinuous on $\mathbb R^d$: the kernel is a lower semicontinuous function of $x$ with values in $(-\infty,\infty]$, and it is bounded below for $x$ in a compact set and $y\in K$, so Fatou's lemma applies after adding a constant. Moreover, $U^\mu$ is the negative of the fundamental potential $E_d*\mu$ of \cref{prop:fundamental-potential}, up to an additive constant when $d=2$: we have $U^\mu=-E_d*\mu$ if $d\geq3$, and $U^\mu=-E_2*\mu+(2\pi)^{-1}\mu(K)\log D$ if $d=2$. Replacing $D$ by another scale $D'>\operatorname{diam}K$ adds $(2\pi)^{-1}\mu(K)^2\log(D'/D)$ to the energy; in particular, whether $\mu$ has finite energy does not depend on the scale.
 
 \begin{lemma}\label{lem:gaussian-energy}
-Let $\sigma$ be a finite real signed measure on $\mathbb R^d$, and for $t>0$ put
+Let $\sigma$ and $\tau$ be finite real signed measures on $\mathbb R^d$, and for $t>0$ put
 \[
- Q_t(\sigma)=\iint\mathrm e^{-t|x-y|^2}\,\mathrm d\sigma(x)\,\mathrm d\sigma(y).
+ Q_t(\sigma,\tau)=\iint\mathrm e^{-t|x-y|^2}\,\mathrm d\sigma(x)\,\mathrm d\tau(y),\qquad Q_t(\sigma)=Q_t(\sigma,\sigma),\qquad h_t^\sigma(z)=\int\mathrm e^{-2t|z-x|^2}\,\mathrm d\sigma(x).
 \]
-Then $Q_t(\sigma)\geq0$. If $Q_t(\sigma)=0$ for arbitrarily large $t$, then $\sigma=0$.
+Then $h_t^\sigma$ is a bounded continuous function, and
+\begin{equation}\label{eq:gaussian-energy-identity}
+ Q_t(\sigma,\tau)=\left(\frac{4t}{\pi}\right)^{d/2}\int_{\mathbb R^d}h_t^\sigma(z)\,h_t^\tau(z)\,\mathrm d z.
+\end{equation}
+In particular $Q_t(\sigma)\geq0$. If $Q_t(\sigma)=0$ for arbitrarily large $t$, then $\sigma=0$.
 \end{lemma}
 \begin{proof}
-Completing the square gives $|z-x|^2+|z-y|^2=2|z-\tfrac12(x+y)|^2+\tfrac12|x-y|^2$. Since $\int_{\mathbb R^d}\mathrm e^{-4t|w|^2}\,\mathrm dw=(\pi/4t)^{d/2}$, it follows that
+The function $h_t^\sigma$ is bounded by $|\sigma|(\mathbb R^d)$, and it is continuous by dominated convergence. Completing the square gives $|z-x|^2+|z-y|^2=2|z-\tfrac12(x+y)|^2+\tfrac12|x-y|^2$. Since $\int_{\mathbb R^d}\mathrm e^{-4t|w|^2}\,\mathrm dw=(\pi/4t)^{d/2}$, it follows that
 \[
  \mathrm e^{-t|x-y|^2}=\left(\frac{4t}{\pi}\right)^{d/2}\int_{\mathbb R^d}\mathrm e^{-2t|z-x|^2}\,\mathrm e^{-2t|z-y|^2}\,\mathrm d z.
 \]
-We integrate this identity against $\sigma\otimes\sigma$. Fubini's theorem applies, because the integral of the absolute value of the integrand with respect to $\mathrm dz\otimes|\sigma|\otimes|\sigma|$ is at most $(\pi/4t)^{d/2}|\sigma|(\mathbb R^d)^2$. We obtain
+We integrate this identity against $\sigma\otimes\tau$. Fubini's theorem applies, because the integral of the absolute value of the integrand with respect to $\mathrm dz\otimes|\sigma|\otimes|\tau|$ is at most $(\pi/4t)^{d/2}|\sigma|(\mathbb R^d)|\tau|(\mathbb R^d)$, and integrating first in $x$ and in $y$ gives \eqref{eq:gaussian-energy-identity}. With $\tau=\sigma$ and $h_t=h_t^\sigma$, it reads
 \[
- Q_t(\sigma)=\left(\frac{4t}{\pi}\right)^{d/2}\int_{\mathbb R^d}h_t(z)^2\,\mathrm d z,\qquad h_t(z)=\int\mathrm e^{-2t|z-x|^2}\,\mathrm d\sigma(x).
+ Q_t(\sigma)=\left(\frac{4t}{\pi}\right)^{d/2}\int_{\mathbb R^d}h_t(z)^2\,\mathrm d z.
 \]
-In particular $Q_t(\sigma)\geq0$. If $Q_t(\sigma)=0$, then $h_t=0$ almost everywhere, hence everywhere, because $h_t$ is continuous by dominated convergence.
+In particular $Q_t(\sigma)\geq0$. If $Q_t(\sigma)=0$, then $h_t=0$ almost everywhere, hence everywhere, because $h_t$ is continuous.
 
 Now suppose that $Q_{t_j}(\sigma)=0$ for a sequence $t_j\to\infty$. The functions $g_t(z)=(2t/\pi)^{d/2}\mathrm e^{-2t|z|^2}$ are nonnegative and have integral one, and $\int_{|z|\geq\delta}g_t\,\mathrm d z\to0$ as $t\to\infty$ for every $\delta>0$. Hence $g_t*f\to f$ uniformly on $\mathbb R^d$ for every $f\in C_c(\mathbb R^d)$: in the integral defining $g_t*f-f$ we use the uniform continuity of $f$ on the region $|z|<\delta$ and the smallness of the Gaussian tail on the region $|z|\geq\delta$. Since $g_{t_j}*\sigma=(2t_j/\pi)^{d/2}h_{t_j}=0$, Fubini's theorem and the symmetry of $g_t$ give
 \[
@@ -63,11 +67,7 @@ Let $\mu$ and $\nu$ be measures on $K$ with finite energy.\index{energy!positive
 \end{enumerate}
 \end{proposition}
 \begin{proof}
-For finite real signed measures $\sigma$ and $\tau$ on $\mathbb R^d$ we put
-\[
- Q_t(\sigma,\tau)=\iint\mathrm e^{-t|x-y|^2}\,\mathrm d\sigma(x)\,\mathrm d\tau(y),
-\]
-so that $Q_t(\sigma)=Q_t(\sigma,\sigma)$. Integrating the Gaussian identity from the proof of \cref{lem:gaussian-energy} against $\sigma\otimes\tau$ expresses $Q_t(\sigma,\tau)$ as $(4t/\pi)^{d/2}$ times the $L^2$ inner product of the corresponding functions $h_t$. Hence, by the Cauchy--Schwarz inequality in $z$,
+We use the bilinear expressions $Q_t(\sigma,\tau)$ and the functions $h_t^\sigma$ of \cref{lem:gaussian-energy}. By \eqref{eq:gaussian-energy-identity}, $Q_t(\sigma,\tau)$ is $(4t/\pi)^{d/2}$ times the $L^2$ inner product of $h_t^\sigma$ and $h_t^\tau$. Hence, by the Cauchy--Schwarz inequality in $z$,
 \begin{equation}\label{eq:gaussian-cauchy-schwarz}
  Q_t(\mu,\nu)\leq Q_t(\mu)^{1/2}Q_t(\nu)^{1/2}
 \end{equation}
