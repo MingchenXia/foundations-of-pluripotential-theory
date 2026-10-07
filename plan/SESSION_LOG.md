@@ -948,3 +948,5 @@ At the author's request every result mentioned in the book now has a complete pr
 Record: `research/reviews/2026-10-07-complete-proofs-round3.md` and `.json`.
 
 The author accepted the recommendations on the round-3 points: the notes title for Chapter 4 is unchanged, the two normal-coordinates lemmas stay separate, the special-case theorem is kept, and the standard facts stay prerequisites (the preface now names the change of variables formula). `make release` rebuilt the source archive in an empty directory with matching page text (932 pages). The archive is in the untracked `build/release/`, and nothing was published.
+
+At the author's instruction the compiled PDF (932 pages) is published as `Papers/FPT_vibe.pdf` on the author's homepage repository `MingchenXia/mingchenxia.github.io`. A new first entry in its "Vibe math" list gives the page count and update date. `AGENTS.md` records the standing instruction to repeat this after every full rebuild. Only the PDF is published; the sources stay private.
