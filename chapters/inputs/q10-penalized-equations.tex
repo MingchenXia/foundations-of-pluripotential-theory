@@ -37,7 +37,7 @@ Finally $\operatorname{osc}_Xf=\max_Xf-\min_Xf$ denotes the oscillation of a con
 
 The maximum principle arguments below are carried out at a point in coordinates adapted to a K\"ahler metric.
 
-\begin{lemma}\label{lem:kahler-normal-coordinates}
+\begin{lemma}\label{lem:kahler-normal-coordinates-uniform}
 Let $U\subset\mathbb C^n$ be open, and let $e=(e_{i\bar j})$ be a smooth function on $U$ with values in the positive definite Hermitian matrices such that the form $\frac{\mathrm i}{2\pi}e_{i\bar j}\,\mathrm dz_i\wedge\mathrm d\bar z_j$ is closed. For every $z_0\in U$ there is a polynomial map $\Phi_{z_0}\colon\mathbb C^n\to\mathbb C^n$ of degree at most two, with $\Phi_{z_0}(0)=z_0$, which is a biholomorphism from a neighborhood of $0$ onto a neighborhood of $z_0$, such that the coefficient matrix $\tilde e$ of the form in the coordinates $w$ given by $z=\Phi_{z_0}(w)$ satisfies $\tilde e(0)=I$ and $\mathrm d\tilde e(0)=0$. For every compact set $K\subset U$ and every integer $m\geq0$, the derivatives of order at most $m$ of $\tilde e$ at $0$ are bounded independently of $z_0\in K$. These properties persist if $\Phi_{z_0}$ is composed with a unitary linear map.
 \end{lemma}
 \begin{proof}
@@ -52,6 +52,49 @@ by the closedness, and $\partial_{\bar w_p}\tilde e_{a\bar b}(0)=\overline{\part
 By the chain rule, the derivatives of $\tilde e$ at $0$ are polynomials in the derivatives of $e$ at $z_0$ and in the entries of $A$, $\bar A$ and $c$, and the entries of $c$ are polynomials in the first derivatives of $e$ at $z_0$ and in the entries of $A$ and $\bar A$. The derivatives of $e$ are bounded on compact sets, and so are the entries of $A$, because the function $m$ is continuous and positive, as a minimum over the unit sphere of a function that is continuous in $(z,\xi)$; hence these polynomials are bounded for $z_0\in K$. Finally, if $Q$ is unitary, replacing $\Phi_{z_0}(w)$ by $\Phi_{z_0}(Qw)$ replaces $\tilde e(w)$ by $Q^{\mathrm T}\tilde e(Qw)\bar Q$, which equals $Q^{\mathrm T}\bar Q=\overline{Q^*Q}=I$ at $0$, still has vanishing differential at $0$, and has derivatives at $0$ bounded by a constant depending only on $n$ times those of $\tilde e$.
 \end{proof}
 \index{normal coordinates of a K\"ahler form}
+
+\begin{lemma}\label{lem:kahler-trace-laplacian}
+There is a constant $C_E$, depending only on $X$ and $\omega$, with the following property. Let $a$ be a smooth real function on $X$ with $\kappa+\ddc a>0$, and let $g$ and $H=\operatorname{tr}_hg$ be as above. Then $H\operatorname{tr}_gh\geq n^2$ on $X$. Moreover, every $x\in X$ is the center of holomorphic coordinates in which $h_{i\bar j}=\delta_{ij}$ and all first derivatives of $h$ vanish at $x$, and $g$ is diagonal at $x$, with eigenvalues $\lambda_1,\ldots,\lambda_n>0$, such that at $x$
+\begin{equation}\label{eq:penalized-trace-laplacian}
+ D_gH=D_h\log\det g
+       +\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}+E,
+ \qquad |E|\leq C_EH\operatorname{tr}_gh,
+\end{equation}
+and
+\[
+ D_g\log H\geq\frac1H\bigl(D_h\log\det g+E\bigr).
+\]
+\end{lemma}
+\begin{proof}
+At every point the eigenvalues of $g$ relative to $h$ are positive, their sum is $H$ and the sum of their inverses is $\operatorname{tr}_gh$, so the Cauchy--Schwarz inequality gives $H\operatorname{tr}_gh\geq n^2$.
+
+Fix finitely many charts and compact subsets of their domains whose union is $X$, and let $x\in X$. By \cref{lem:kahler-normal-coordinates-uniform}, applied to $h$ in one of these charts, followed by a unitary change of coordinates that diagonalizes $g$ at $x$, there are holomorphic coordinates centered at $x$ in which $h_{i\bar j}=\delta_{ij}$ and all first derivatives of $h$ vanish at $x$, $g$ is diagonal at $x$ with eigenvalues $\lambda_1,\ldots,\lambda_n>0$, and the derivatives of order at most two of $h$ at $x$ are bounded by a constant depending only on $X$ and $\omega$. All the following computations are at $x$, in these coordinates. Locally $\kappa$ and $\kappa+\ddc a$ have K\"ahler potentials (\cref{lem:smooth-potential-on-ball}): $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$ with $\varphi$ smooth. Hence the derivatives $\partial_pg_{i\bar q}$ are symmetric in $p$ and $i$, and the second derivatives $\partial_p\partial_{\bar l}g_{i\bar q}$ are symmetric in $p,i$ and in $\bar l,\bar q$. Differentiating $H=h^{i\bar q}g_{i\bar q}$ twice, and using that the first derivatives of $h$, hence of $h^{-1}$, vanish at $x$, we get
+\[
+ D_gH=\sum_p\lambda_p^{-1}\sum_i\partial_p\partial_{\bar p}g_{i\bar i}+E,
+ \qquad E=\sum_p\lambda_p^{-1}\bigl(\partial_p\partial_{\bar p}h^{i\bar q}\bigr)g_{i\bar q}.
+\]
+Since $g$ is diagonal with positive eigenvalues, $|E|\leq C_EH\operatorname{tr}_gh$, where $C_E$ bounds the second derivatives of $h^{-1}$ at $x$. As $h=I$ and $\mathrm dh=0$ at $x$, the formula $\partial(h^{-1})=-h^{-1}(\partial h)h^{-1}$ shows that these are the second derivatives of $-h$, up to transposition; so $C_E$ depends only on $X$ and $\omega$. On the other hand, differentiating the identity $\partial_p\log\det g=g^{i\bar q}\partial_pg_{i\bar q}$ and using $\partial(g^{-1})=-g^{-1}(\partial g)g^{-1}$ gives
+\[
+ \partial_p\partial_{\bar p}\log\det g
+ =\sum_i\lambda_i^{-1}\partial_p\partial_{\bar p}g_{i\bar i}
+  -\sum_{i,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}.
+\]
+By the symmetry of the second derivatives, $\partial_p\partial_{\bar p}g_{i\bar i}=\partial_i\partial_{\bar i}g_{p\bar p}$. Summing over $p$, comparing with the formula for $D_gH$, and noting that $\sum_p\partial_p\partial_{\bar p}=D_h$ at $x$, we obtain the identity \eqref{eq:penalized-trace-laplacian}, with the bound for $E$ just proved.
+Moreover $\partial_pH=\sum_i\partial_pg_{i\bar i}=\sum_i\partial_ig_{p\bar i}$ by the symmetry of the first derivatives. The Cauchy--Schwarz inequality with weights $\lambda_i$ therefore gives
+\[
+ |\partial H|_g^2
+ =\sum_p\frac1{\lambda_p}\Bigl|\sum_i\partial_ig_{p\bar i}\Bigr|^2
+ \leq H\sum_{p,i}\frac{|\partial_ig_{p\bar i}|^2}
+                           {\lambda_p\lambda_i}
+ \leq H\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}
+                           {\lambda_i\lambda_q},
+\]
+the last sum containing the previous one (take $p=q$ in the term of index $(i,p,q)$ and rename). Since $D_g\log H=H^{-1}D_gH-H^{-2}|\partial H|_g^2$, the quadratic term in $D_gH$ absorbs the negative term, and
+\[
+ D_g\log H\geq\frac1H\bigl(D_h\log\det g+E\bigr).
+\]
+\end{proof}
+\index{K\"ahler metric!trace of a second metric}
 
 \begin{lemma}\label{lem:penalized-equation-trace}
 Let $f$ be a smooth real function on $X$ and $\beta>0$, and let $a$ be a smooth real function satisfying
@@ -69,41 +112,11 @@ where $A>0$ depends only on $X$, $\omega$ and $\kappa$. In particular, for $\bet
 \begin{proof}
 \emph{Step 1: the value bounds.} Since $(\kappa+\ddc a)^n/\kappa^n=\det g/\det k$, the equation says that $\det g=\mathrm e^{\beta(a-f)}\det k$. At a maximum point of $a$ the complex Hessian $(a_{i\bar j})$ is negative semidefinite, so $0<g\leq k$ and therefore $\det g\leq\det k$ there, the eigenvalues of $k^{-1/2}gk^{-1/2}$ lying in $(0,1]$. Hence $a\leq f\leq\max_Xf$ at that point, and therefore everywhere. At a minimum point of $a$ the inequalities are reversed, and $a\geq\min_Xf$.
 
-\emph{Step 2: a differential inequality for $\log H$.} Until the equation is used below, we only need that $a$ is smooth and $\kappa+\ddc a>0$. Fix finitely many charts and compact subsets of their domains whose union is $X$, and let $x\in X$. By \cref{lem:kahler-normal-coordinates}, applied to $h$ in one of these charts, followed by a unitary change of coordinates that diagonalizes $g$ at $x$, there are holomorphic coordinates centered at $x$ in which $h_{i\bar j}=\delta_{ij}$ and all first derivatives of $h$ vanish at $x$, $g$ is diagonal at $x$ with eigenvalues $\lambda_1,\ldots,\lambda_n>0$, and the derivatives of order at most two of $h$ at $x$ are bounded by a constant depending only on $X$ and $\omega$. All the following computations are at $x$, in these coordinates. Here $H=\sum_i\lambda_i$ and $\operatorname{tr}_gh=\sum_i\lambda_i^{-1}$, so the Cauchy--Schwarz inequality gives
+\emph{Step 2: a differential inequality for $\log H$.} Let $x\in X$, and take the coordinates of \cref{lem:kahler-trace-laplacian} at $x$. By that lemma, at $x$
 \[
- H\operatorname{tr}_gh\geq n^2.
+ D_g\log H\geq\frac1H\bigl(D_h\log\det g+E\bigr),\qquad |E|\leq C_EH\operatorname{tr}_gh,
 \]
-Locally $\kappa$ and $\kappa+\ddc a$ have K\"ahler potentials (\cref{lem:smooth-potential-on-ball}): $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$ with $\varphi$ smooth. Hence the derivatives $\partial_pg_{i\bar q}$ are symmetric in $p$ and $i$, and the second derivatives $\partial_p\partial_{\bar l}g_{i\bar q}$ are symmetric in $p,i$ and in $\bar l,\bar q$. Differentiating $H=h^{i\bar q}g_{i\bar q}$ twice, and using that the first derivatives of $h$, hence of $h^{-1}$, vanish at $x$, we get
-\[
- D_gH=\sum_p\lambda_p^{-1}\sum_i\partial_p\partial_{\bar p}g_{i\bar i}+E,
- \qquad E=\sum_p\lambda_p^{-1}\bigl(\partial_p\partial_{\bar p}h^{i\bar q}\bigr)g_{i\bar q}.
-\]
-Since $g$ is diagonal with positive eigenvalues, $|E|\leq C_EH\operatorname{tr}_gh$, where $C_E$ bounds the second derivatives of $h^{-1}$ at $x$. As $h=I$ and $\mathrm dh=0$ at $x$, the formula $\partial(h^{-1})=-h^{-1}(\partial h)h^{-1}$ shows that these are the second derivatives of $-h$, up to transposition; so $C_E$ depends only on $X$ and $\omega$. On the other hand, differentiating the identity $\partial_p\log\det g=g^{i\bar q}\partial_pg_{i\bar q}$ and using $\partial(g^{-1})=-g^{-1}(\partial g)g^{-1}$ gives
-\[
- \partial_p\partial_{\bar p}\log\det g
- =\sum_i\lambda_i^{-1}\partial_p\partial_{\bar p}g_{i\bar i}
-  -\sum_{i,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}.
-\]
-By the symmetry of the second derivatives, $\partial_p\partial_{\bar p}g_{i\bar i}=\partial_i\partial_{\bar i}g_{p\bar p}$. Summing over $p$, comparing with the formula for $D_gH$, and noting that $\sum_p\partial_p\partial_{\bar p}=D_h$ at $x$, we obtain
-\begin{equation}\label{eq:penalized-trace-laplacian}
- D_gH=D_h\log\det g
-       +\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}{\lambda_i\lambda_q}+E,
- \qquad |E|\leq C_EH\operatorname{tr}_gh.
-\end{equation}
-Moreover $\partial_pH=\sum_i\partial_pg_{i\bar i}=\sum_i\partial_ig_{p\bar i}$ by the symmetry of the first derivatives. The Cauchy--Schwarz inequality with weights $\lambda_i$ therefore gives
-\[
- |\partial H|_g^2
- =\sum_p\frac1{\lambda_p}\Bigl|\sum_i\partial_ig_{p\bar i}\Bigr|^2
- \leq H\sum_{p,i}\frac{|\partial_ig_{p\bar i}|^2}
-                           {\lambda_p\lambda_i}
- \leq H\sum_{i,p,q}\frac{|\partial_pg_{i\bar q}|^2}
-                           {\lambda_i\lambda_q},
-\]
-the last sum containing the previous one (take $p=q$ in the term of index $(i,p,q)$ and rename). Since $D_g\log H=H^{-1}D_gH-H^{-2}|\partial H|_g^2$, the quadratic term in $D_gH$ absorbs the negative term, and
-\[
- D_g\log H\geq\frac1H\bigl(D_h\log\det g+E\bigr).
-\]
-Now we use the equation in the form $\log\det g=\log\det k+\beta(a-f)$, valid in every chart. Since $D_ha=H-\operatorname{tr}_hk$,
+and $H\operatorname{tr}_gh\geq n^2$. Now we use the equation in the form $\log\det g=\log\det k+\beta(a-f)$, valid in every chart. Since $D_ha=H-\operatorname{tr}_hk$,
 \[
  D_h\log\det g
  =D_h\log\det k+\beta\bigl(H-\operatorname{tr}_hk-D_hf\bigr).
@@ -191,7 +204,7 @@ because $g^{a\bar l}g_{a\bar j}=\delta_{lj}$, and $\nabla_{\bar q}g_{i\bar j}=\o
 
 (2) By \eqref{eq:chern-symbol-change} for $g$ and for $h$, the inhomogeneous terms of $\Gamma'$ and $\widehat\Gamma'$ coincide, so the difference transforms as a tensor. Moreover $\widehat\nabla_ig_{j\bar l}=\partial_ig_{j\bar l}-\widehat\Gamma^p_{ij}g_{p\bar l}$, and contracting with $g^{m\bar l}$ gives $\Gamma^m_{ij}-\widehat\Gamma^m_{ij}$.
 
-(3) The second term of \eqref{eq:chern-symbol-change} is holomorphic in $w$, so it is annihilated by $\partial_{\bar w_e}=\overline{J_{le}}\,\partial_{\bar z_l}$, and $R$ transforms as a tensor; it is symmetric in $i$ and $j$ because $\Gamma$ is. Since $\Gamma^m_{im}=g^{m\bar l}\partial_ig_{m\bar l}=\partial_i\log\det g$, we get $R_{i\bar j}=-\partial_{\bar j}\partial_i\log\det g$. Both sides of each of the two identities are tensors, so it suffices to prove them at a point $x$ in coordinates in which $g_{i\bar j}(x)=\delta_{ij}$ and $\mathrm dg(x)=0$, which exist by \cref{lem:kahler-normal-coordinates}. There $\Gamma=0$, so covariant derivatives at $x$ are ordinary derivatives, and $\partial g^{-1}=-g^{-1}(\partial g)g^{-1}$ and $\bar\partial g^{-1}$ vanish at $x$. Using a local K\"ahler potential $\varphi$, $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$, whose derivatives commute, we find at $x$
+(3) The second term of \eqref{eq:chern-symbol-change} is holomorphic in $w$, so it is annihilated by $\partial_{\bar w_e}=\overline{J_{le}}\,\partial_{\bar z_l}$, and $R$ transforms as a tensor; it is symmetric in $i$ and $j$ because $\Gamma$ is. Since $\Gamma^m_{im}=g^{m\bar l}\partial_ig_{m\bar l}=\partial_i\log\det g$, we get $R_{i\bar j}=-\partial_{\bar j}\partial_i\log\det g$. Both sides of each of the two identities are tensors, so it suffices to prove them at a point $x$ in coordinates in which $g_{i\bar j}(x)=\delta_{ij}$ and $\mathrm dg(x)=0$, which exist by \cref{lem:kahler-normal-coordinates-uniform}. There $\Gamma=0$, so covariant derivatives at $x$ are ordinary derivatives, and $\partial g^{-1}=-g^{-1}(\partial g)g^{-1}$ and $\bar\partial g^{-1}$ vanish at $x$. Using a local K\"ahler potential $\varphi$, $g_{i\bar j}=\partial_i\partial_{\bar j}\varphi$, whose derivatives commute, we find at $x$
 \[
  g^{p\bar q}R^m{}_{i\bar qp}=-\sum_p\partial_i\partial_{\bar p}g_{p\bar m}=-\sum_p\partial_i\partial_{\bar m}g_{p\bar p}=R_i{}^m,
 \]
