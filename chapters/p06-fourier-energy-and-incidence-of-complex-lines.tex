@@ -19,13 +19,17 @@ Let $d\geq1$. We develop the Fourier transform on $\mathbb R^d$ as far as Planch
 Both functions are bounded, by $\|f\|_1$ and by $\mu(\mathbb R^d)$, respectively, and they are continuous by dominated convergence. Integration in polar coordinates \eqref{eq:polar-coordinates} holds over all of $\mathbb R^d$, with $R=\infty$: let $R\to\infty$, using monotone convergence for nonnegative functions and then dominated convergence for integrable ones. The Schwartz space\index{Schwartz space} $\mathcal S(\mathbb R^d)$ consists of the smooth complex functions $f$ on $\mathbb R^d$ such that $x^\alpha\partial^\beta f$ is bounded for all multi-indices $\alpha,\beta$. By the Leibniz rule, $\mathcal S(\mathbb R^d)$ is stable under differentiation and under multiplication by polynomials, and $C_c^\infty(\mathbb R^d)\subset\mathcal S(\mathbb R^d)$. Every derivative $\partial^\beta f$ of a Schwartz function is integrable: $(1+|x|^2)^d\partial^\beta f$ is a finite sum of bounded functions $x^\alpha\partial^\beta f$, so $|\partial^\beta f|\leq C(1+|x|^2)^{-d}$, and $(1+|x|^2)^{-d}$ is integrable by polar coordinates, because $r^{d-1}(1+r^2)^{-d}\leq\min\{r^{d-1},r^{-d-1}\}$.
 
 \begin{lemma}\label{lem:fourier-gaussian}
-The Fourier transform maps $\mathcal S(\mathbb R^d)$ into itself. Moreover, for $t>0$,
+The Fourier transform maps $\mathcal S(\mathbb R^d)$ into itself, and for $f\in\mathcal S(\mathbb R^d)$ and $1\leq j\leq d$,
+\begin{equation}\label{eq:fourier-derivative-rules}
+ \widehat{\partial_jf}(\xi)=2\pi\mathrm i\xi_j\widehat f(\xi),\qquad \partial_{\xi_j}\widehat f=\widehat{(-2\pi\mathrm i x_jf)}.
+\end{equation}
+Moreover, for $t>0$,
 \[
  \widehat{\mathrm e^{-\pi t|x|^2}}(\xi)=t^{-d/2}\mathrm e^{-\pi|\xi|^2/t}.
 \]
 \end{lemma}
 \begin{proof}
-Let $f\in\mathcal S$. We first prove two rules. By the mean value theorem, the difference quotients of $\xi\mapsto\mathrm e^{-2\pi\mathrm i x\cdot\xi}$ in the direction of $\xi_j$ are bounded by $2\pi|x_j|$, and $x_jf$ is integrable. Hence dominated convergence allows us to differentiate under the integral sign: $\partial_{\xi_j}\widehat f$ exists and is the transform of $-2\pi\mathrm i x_jf$, which is continuous. Since $x_jf\in\mathcal S$, induction shows that $\widehat f$ is smooth and that $\partial^\beta\widehat f$ is the transform of $(-2\pi\mathrm i x)^\beta f$. Next, the transform of $\partial_jf$ is $2\pi\mathrm i\xi_j\widehat f$. Indeed, by Fubini's theorem we may integrate first in $x_j$; for almost every value of the other coordinates, $f$ and $\partial_jf$ are integrable on the corresponding line, and an integration by parts over $[-a,a]$ followed by $a\to\infty$ gives
+Let $f\in\mathcal S$. We first prove the two rules \eqref{eq:fourier-derivative-rules}. By the mean value theorem, the difference quotients of $\xi\mapsto\mathrm e^{-2\pi\mathrm i x\cdot\xi}$ in the direction of $\xi_j$ are bounded by $2\pi|x_j|$, and $x_jf$ is integrable. Hence dominated convergence allows us to differentiate under the integral sign: $\partial_{\xi_j}\widehat f$ exists and is the transform of $-2\pi\mathrm i x_jf$, which is continuous. Since $x_jf\in\mathcal S$, induction shows that $\widehat f$ is smooth and that $\partial^\beta\widehat f$ is the transform of $(-2\pi\mathrm i x)^\beta f$. Next, the transform of $\partial_jf$ is $2\pi\mathrm i\xi_j\widehat f$. Indeed, by Fubini's theorem we may integrate first in $x_j$; for almost every value of the other coordinates, $f$ and $\partial_jf$ are integrable on the corresponding line, and an integration by parts over $[-a,a]$ followed by $a\to\infty$ gives
 \[
  \int_{\mathbb R}\partial_jf(x)\,\mathrm e^{-2\pi\mathrm i x\cdot\xi}\,\mathrm d x_j=2\pi\mathrm i\xi_j\int_{\mathbb R}f(x)\,\mathrm e^{-2\pi\mathrm i x\cdot\xi}\,\mathrm d x_j,
 \]
@@ -112,6 +116,10 @@ and the point $\xi=0$ is a Lebesgue null set. Multiplying the constants gives th
 \end{proof}
 
 \begin{example}\label{ex:gaussian-riesz-energy}
+The area of the unit sphere $S^{d-1}\subset\mathbb R^d$\index{surface measure!area of the unit sphere} is
+\begin{equation}\label{eq:sphere-area}
+ s_{d-1}=\frac{2\pi^{d/2}}{\Gamma(d/2)}.
+\end{equation}
 For $0<s<d$, the probability measure $\mathrm d\mu=\mathrm e^{-\pi|x|^2}\,\mathrm d x$ on $\mathbb R^d$ satisfies
 \[
  I_s(\mu)=\left(\frac\pi2\right)^{s/2}\frac{\Gamma((d-s)/2)}{\Gamma(d/2)}.
@@ -122,7 +130,7 @@ Integrating in polar coordinates and substituting $v=\pi r^2$, we obtain
 \[
  1=\int\mathrm e^{-\pi|x|^2}\,\mathrm d x=s_{d-1}\int_0^\infty\mathrm e^{-\pi r^2}r^{d-1}\,\mathrm d r=\frac{s_{d-1}\Gamma(d/2)}{2\pi^{d/2}},
 \]
-so $s_{d-1}=2\pi^{d/2}/\Gamma(d/2)$. By \cref{lem:fourier-gaussian}, $\widehat\mu(\xi)=\mathrm e^{-\pi|\xi|^2}$. Hence \cref{thm:riesz-fourier-energy} and polar coordinates give
+which proves \eqref{eq:sphere-area}; the integral equals one by \cref{lem:fourier-gaussian} with $\xi=0$ and $t=1$. By \cref{lem:fourier-gaussian}, $\widehat\mu(\xi)=\mathrm e^{-\pi|\xi|^2}$. Hence \cref{thm:riesz-fourier-energy} and polar coordinates give
 \[
  I_s(\mu)=b_{d,s}\int\mathrm e^{-2\pi|\xi|^2}|\xi|^{s-d}\,\mathrm d\xi=b_{d,s}s_{d-1}\int_0^\infty\mathrm e^{-2\pi r^2}r^{s-1}\,\mathrm d r.
 \]
@@ -155,7 +163,7 @@ Now let $Y$ be as in the statement and fix $y_0\in Y$. By transitivity, $Y$ is t
 \[
  \int f(gy)\,\mathrm d\eta(g)=\int f(ghy_0)\,\mathrm d\eta(g)=\int f\,\mathrm d\sigma.
 \]
-Let $\tau$ be any invariant Borel probability measure on $Y$. We integrate the last identity against $\tau$ and apply Fubini's theorem to the bounded continuous function $(g,y)\mapsto f(gy)$ on $\mathrm U(n)\times Y$. This function is measurable for the product of the Borel $\sigma$-algebras. Indeed, if $Z_1$ and $Z_2$ are separable metric spaces, the products of open balls with centers in countable dense subsets and rational radii form a countable basis of $Z_1\times Z_2$, so every open subset of $Z_1\times Z_2$ is a countable union of such products. Since products of Borel sets are Borel, the Borel $\sigma$-algebra of $Z_1\times Z_2$ is therefore the $\sigma$-algebra generated by the products of Borel sets. We obtain
+Let $\tau$ be any invariant Borel probability measure on $Y$. We integrate the last identity against $\tau$ and apply Fubini's theorem to the bounded continuous function $(g,y)\mapsto f(gy)$ on $\mathrm U(n)\times Y$. This function is measurable for the product of the Borel $\sigma$-algebras by \cref{lem:borel-product-separable}, since $\mathrm U(n)$ and $Y$ are separable metric spaces. We obtain
 \[
  \int f\,\mathrm d\sigma=\int_{\mathrm U(n)}\int_Yf(gy)\,\mathrm d\tau(y)\,\mathrm d\eta(g)=\int f\,\mathrm d\tau.
 \]
@@ -203,7 +211,7 @@ To integrate functions that depend on $H$, we use orthonormal frames of $H$ that
 \[
  H\longmapsto\int_Hf(H,c)\,\mathrm d m_H(c)=\int_{\mathbb C^{n-1}}f(H,T_Hw)\,\mathrm d w
 \]
-is Borel, by Tonelli's theorem (\cref{prop:tonelli-fubini}) applied to the Borel function $(H,w)\mapsto f(H,T_Hw)$; this function is measurable for the product of the Borel $\sigma$-algebras of $\mathcal H$ and $\mathbb C^{n-1}$, by the description of the Borel sets of a product of separable metric spaces in the proof of \cref{prop:unitary-invariant-probability}. The value of the integral does not depend on the frame, because a change of orthonormal frame preserves Lebesgue measure.
+is Borel, by Tonelli's theorem (\cref{prop:tonelli-fubini}) applied to the Borel function $(H,w)\mapsto f(H,T_Hw)$; this function is measurable for the product of the Borel $\sigma$-algebras of $\mathcal H$ and $\mathbb C^{n-1}$ by \cref{lem:borel-product-separable}, because these spaces are separable metric spaces. The value of the integral does not depend on the frame, because a change of orthonormal frame preserves Lebesgue measure.
 
 \section{Circle selection and high-value sets}
 \label{sec:high-value-stars}
@@ -219,7 +227,7 @@ In the proof of \cref{thm:high-value-star-energy} we must choose, measurably in 
 \index{Borel selection!circle sections}Let $T$ be a separable metric space, and let $F\subset T\times[0,2\pi]$ be a Borel set whose sections $F_t=\{\theta:(t,\theta)\in F\}$ are closed and have positive Lebesgue measure for every $t\in T$. Then there is a Borel map $a\colon T\to[0,2\pi]$ such that $a(t)\in F_t$ for every $t\in T$.
 \end{lemma}
 \begin{proof}
-Write $|\cdot|$ for Lebesgue measure on $[0,2\pi]$, and put $\ell(t)=|F_t|$ and $A_t(b)=|F_t\cap[0,b]|$ for $b\in[0,2\pi]$. For fixed $b$, both $\ell(t)$ and $A_t(b)$ are Borel functions of $t$. Indeed, since $T$ and $[0,2\pi]$ are separable metric spaces, the Borel sets of $T\times[0,2\pi]$ form the $\sigma$-algebra generated by the products of Borel sets (see the proof of \cref{prop:unitary-invariant-probability}), so the sections $G_t$ of a Borel set $G$ are Borel: the sets all of whose sections are Borel form a $\sigma$-algebra containing these products. The class of Borel sets $G\subset T\times[0,2\pi]$ for which $t\mapsto|G_t\cap[0,b]|$ is Borel contains the products $A\times B$ of Borel sets, for which this function is $\mathbf1_A(t)|B\cap[0,b]|$. It is closed under complements, since the complement of $G$ gives $b-|G_t\cap[0,b]|$, and under countable disjoint unions, which give sums. Since the products of Borel sets are closed under finite intersections, \cref{lem:pi-lambda}(1) shows that the class contains every Borel set. For fixed $t$, the function $A_t$ is nondecreasing and $1$-Lipschitz, with $A_t(0)=0$ and $A_t(2\pi)=\ell(t)>0$. Define
+Write $|\cdot|$ for Lebesgue measure on $[0,2\pi]$, and put $\ell(t)=|F_t|$ and $A_t(b)=|F_t\cap[0,b]|$ for $b\in[0,2\pi]$. For fixed $b$, both $\ell(t)$ and $A_t(b)$ are Borel functions of $t$. Indeed, since $T$ and $[0,2\pi]$ are separable metric spaces, the Borel sets of $T\times[0,2\pi]$ form the $\sigma$-algebra generated by the products of Borel sets (\cref{lem:borel-product-separable}), so the sections $G_t$ of a Borel set $G$ are Borel: the sets all of whose sections are Borel form a $\sigma$-algebra containing these products. The class of Borel sets $G\subset T\times[0,2\pi]$ for which $t\mapsto|G_t\cap[0,b]|$ is Borel contains the products $A\times B$ of Borel sets, for which this function is $\mathbf1_A(t)|B\cap[0,b]|$. It is closed under complements, since the complement of $G$ gives $b-|G_t\cap[0,b]|$, and under countable disjoint unions, which give sums. Since the products of Borel sets are closed under finite intersections, \cref{lem:pi-lambda}(1) shows that the class contains every Borel set. For fixed $t$, the function $A_t$ is nondecreasing and $1$-Lipschitz, with $A_t(0)=0$ and $A_t(2\pi)=\ell(t)>0$. Define
 \[
  a(t)=\inf\{b\in\mathbb Q\cap[0,2\pi]:A_t(b)\geq\ell(t)/2\}.
 \]
@@ -312,7 +320,7 @@ On $H$ we use the Fourier transform defined by the Euclidean inner product $\Rea
 \]
 The inner integral is a Borel function of $H$, by the frame construction in \cref{sec:unitary-measures}; hence it is finite for $\nu$-almost every $H$. For each such $H$, we apply \cref{prop:measure-fourier-l2} on $\mathbb C^{n-1}=\mathbb R^{2n-2}$ to the image of $\mu$ under $T_H^{-1}P_H$. Since $T_H$ preserves $\Real\langle\cdot,\cdot\rangle$, the Fourier transform of this image is $w\mapsto\widehat\mu(T_Hw)$, whose squared $L^2$ norm is $\int_H|\widehat\mu|^2\,\mathrm d m_H<\infty$. Hence the image has a density in $L^1\cap L^2$, and composing it with $T_H^{-1}$ we obtain a density $g_H$ of $(P_H)_*\mu$ with respect to $m_H$, with $\|g_H\|_2^2=\int_H|\widehat\mu|^2\,\mathrm d m_H$. Integrating over $H$ proves the identity. The function $H\mapsto\|g_H\|_2^2$ is Borel, because it equals this Fourier integral; no measurable choice of the densities themselves is needed.
 
-To compute $\beta_n$, recall from the proof of \cref{ex:gaussian-riesz-energy} that $s_{k-1}=2\pi^{k/2}/\Gamma(k/2)$. Hence $a_n=\Gamma(n)/(\pi\Gamma(n-1))$, while $b_{2n,2n-2}=\pi^{n-2}/\Gamma(n-1)$, and therefore $\beta_n=\Gamma(n)/\pi^{n-1}$.
+To compute $\beta_n$, recall from \eqref{eq:sphere-area} in \cref{ex:gaussian-riesz-energy} that $s_{k-1}=2\pi^{k/2}/\Gamma(k/2)$ for every $k\geq1$. Hence $a_n=\Gamma(n)/(\pi\Gamma(n-1))$, while $b_{2n,2n-2}=\pi^{n-2}/\Gamma(n-1)$, and therefore $\beta_n=\Gamma(n)/\pi^{n-1}$.
 \end{proof}
 
 \begin{theorem}\label{thm:complex-line-incidence}
