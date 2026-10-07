@@ -7,10 +7,9 @@ We can now solve the Dirichlet problem
 for a compactly supported measure $\mu$ dominated by the Monge--Amp\`ere measure of a bounded plurisubharmonic function, and show that the whole sequence of canonical approximants of $\mu$ converges to the solution (\cref{thm:compact-bounded-subsolution-ball-dirichlet}). By \cref{thm:canonical-grid-capacity-convergence}, the limit $u$ of a subsequence of canonical approximants converging in $L^1(B)$ satisfies $(\ddc\max\{u,-T\})^n\to\mu$ as $T\to\infty$, so it remains to show that $u$ is bounded and has zero boundary values. For this we build from the bounded subsolution a barrier with zero boundary values and compare the approximants with a strict perturbation of the barrier. The comparison involves the masses that the varying measures $\mu_j$ give to varying sublevel sets, and we first prove a convergence lemma for such masses.
 
 \begin{lemma}\label{lem:capacity-controlled-measure-weights}
-Let $K_0\subset B$ be compact, and let $\nu_j,\nu$ be finite positive Borel measures on $B$, supported in $K_0$, with uniformly bounded masses and with $\nu_j\to\nu$ weakly. Assume that there is a nondecreasing function $\omega\colon[0,+\infty]\to[0,+\infty]$ with $\omega(t)\to0$ as $t\downarrow0$ such that
+Let $K_0\subset B$ be compact, and let $\nu_j,\nu$ be finite positive Borel measures on $B$, supported in $K_0$, with $\nu_j\to\nu$ weakly. Assume that there is a nondecreasing function $\omega\colon[0,+\infty]\to[0,+\infty]$ with $\omega(t)\to0$ as $t\downarrow0$ such that
 \[
- \nu_j(E)\leq\omega(\operatorname{Cap}_B^*(E)),\qquad
- \nu(E)\leq\omega(\operatorname{Cap}_B^*(E))
+ \nu_j(E)\leq\omega(\operatorname{Cap}_B^*(E))
 \]
 for all $j$ and every Borel set $E\subset B$. Let $f_j,f$ be real Borel functions on $B$ bounded by a common constant, with $f$ quasi-continuous on a neighborhood of $K_0$, and suppose that $\operatorname{Cap}_B^*(K_0\cap\{|f_j-f|>\delta\})\to0$ for every $\delta>0$. Then
 \[
@@ -22,13 +21,16 @@ Moreover, for every $c\in\mathbb R$ with $\nu(\{f=c\})=0$,
 \end{equation}
 \end{lemma}
 \begin{proof}
-Let $C$ be a common bound for $|f_j|$ and $|f|$, and let $M$ be a common bound for the masses of $\nu_j$ and $\nu$. Since $\omega$ is nonnegative and nondecreasing with $\omega(t)\to0$ as $t\downarrow0$, also $\omega(0)=0$; hence $\omega(t_j)\to0$ whenever $t_j\geq0$ and $t_j\to0$.
+Let $C$ be a common bound for $|f_j|$ and $|f|$. Since $\omega$ is nonnegative and nondecreasing with $\omega(t)\to0$ as $t\downarrow0$, also $\omega(0)=0$; hence $\omega(t_j)\to0$ whenever $t_j\geq0$ and $t_j\to0$. Choose $\chi\in C_c(B)$ with $0\leq\chi\leq1$ and $\chi=1$ on $K_0$. Since the measures are carried by $K_0$, we have $\nu_j(B)=\int\chi\,\mathrm d\nu_j\to\int\chi\,\mathrm d\nu=\nu(B)$, so the masses of the $\nu_j$ and of $\nu$ have a common bound $M$. The capacity bound passes to $\nu$ on open sets: if $G\subset B$ is open, then $\operatorname{Cap}^*_B(G)=\operatorname{Cap}_B(G)$, and \cref{prop:vague-set-inequalities} gives
+\[
+ \nu(G)\leq\liminf_{j\to\infty}\nu_j(G)\leq\omega(\operatorname{Cap}_B(G)).
+\]
 
 We first consider the fixed weight $f$. Let $L\subset B$ be a compact neighborhood of $K_0$ on which $f$ is quasi-continuous, and let $\kappa>0$. Choose an open set $G\subset B$ with $\operatorname{Cap}_B(G)<\kappa$ such that $f$ is continuous on the compact set $L\setminus G$. By the extension construction preceding \cref{lem:quasi-continuous-level-capacity}, this restriction extends to a continuous function on $\mathbb C^n$ bounded by $C$. Multiplying the extension by a cutoff in $C_c(\Int L)$ with values in $[0,1]$ and equal to one on $K_0$, we obtain $g\in C_c(B)$ with $|g|\leq C$ and $g=f$ on $K_0\setminus G$. Since $\nu_j$ and $\nu$ are carried by $K_0$,
 \[
  \left|\int_Bf\,\mathrm d\nu_j-\int_Bg\,\mathrm d\nu_j\right|\leq2C\nu_j(G)\leq2C\omega(\kappa),
 \]
-and similarly for $\nu$. Since $\int g\,\mathrm d\nu_j\to\int g\,\mathrm d\nu$, we get $\limsup_j|\int f\,\mathrm d\nu_j-\int f\,\mathrm d\nu|\leq4C\omega(\kappa)$. Letting $\kappa\downarrow0$ proves the assertion for the fixed weight.
+and similarly for $\nu$, since $\nu(G)\leq\omega(\operatorname{Cap}_B(G))\leq\omega(\kappa)$. Since $\int g\,\mathrm d\nu_j\to\int g\,\mathrm d\nu$, we get $\limsup_j|\int f\,\mathrm d\nu_j-\int f\,\mathrm d\nu|\leq4C\omega(\kappa)$. Letting $\kappa\downarrow0$ proves the assertion for the fixed weight.
 
 For the varying weights, let $\delta>0$. Since $|f_j-f|\leq2C$ and $\nu_j$ is carried by $K_0$,
 \[
@@ -92,11 +94,11 @@ For $\varepsilon>0$ put $W_\varepsilon=W+\varepsilon\rho$. It equals $(A+\vareps
 \emph{Step 2. Comparison along a convergent subsequence.}
 By \cref{prop:canonical-grid-energy-control}, a subsequence of the canonical approximants, still denoted $U_j$ (together with the corresponding measures $\mu_j$), converges in $L^1(B)$; let $u$ be the nonpositive plurisubharmonic representative of the limit. By \cref{thm:canonical-grid-capacity-convergence}, $U_j\to u$ locally in capacity, and $E_2=\sup_je_2(U_j)<\infty$. By \cref{cor:energy-controlled-fixed-measure-limit} with $\nu=\nu_\varepsilon$, we have $U_j\to u$ in $L^1(\nu_\varepsilon)$ for every $\varepsilon>0$.
 
-We check that \cref{lem:capacity-controlled-measure-weights} applies to the measures $\mu_j$ and $\mu$. After discarding finitely many indices, these measures are supported in a fixed compact set $K_0\subset B$, as the proof of \cref{prop:canonical-grid-energy-control} shows; they have total mass $m$, and $\mu_j\to\mu$ weakly. By \eqref{eq:energy-measure-capacity-modulus} with $p=2$,
+We check that \cref{lem:capacity-controlled-measure-weights} applies to the measures $\mu_j$ and $\mu$. Let $K$ be the support of $\mu$ and $d=\operatorname{dist}(K,\mathbb C^n\setminus B)>0$, and let $h_j$ be the side lengths of the cubes defining $\mu_j$. A cube $Q$ with $\mu_j(Q)>0$ satisfies $\mu(Q)>0$, so it meets $K$. Since $h_j\to0$, after discarding finitely many indices every such cube has diameter $\sqrt{2n}\,h_j<d/2$, and then $\mu_j$ is supported in the compact set $K_0=\{z:\operatorname{dist}(z,K)\leq d/2\}\subset B$, which also contains the support of $\mu$. By \cref{prop:canonical-grid-energy-control}, $\mu_j\to\mu$ weakly. By \eqref{eq:energy-measure-capacity-modulus} with $p=2$, and since $\operatorname{Cap}_B(E)\leq\operatorname{Cap}_B^*(E)$,
 \[
  \mu_j(E)\leq T^n\operatorname{Cap}_B^*(E)+E_2T^{-2}
 \]
-for every Borel set $E\subset B$ and every $T>0$. Moreover, $M>0$ since $\mu\neq0$, and $(w-\inf_Bw)/M$ is a competitor for $\operatorname{Cap}_B$; hence $\mu(E)\leq(\ddc w)^n(E)\leq M^n\operatorname{Cap}_B^*(E)$. Let $\omega(t)$ be the supremum of $\mu(E)$ and of all $\mu_j(E)$ over the Borel sets $E$ with $\operatorname{Cap}_B^*(E)\leq t$. Then $\omega$ is nondecreasing, and $\omega(t)\leq\max\{M^nt,\ T^nt+E_2T^{-2}\}$ for every $T>0$. Choosing first $T$ large and then $t$ small shows that $\omega(t)\to0$ as $t\downarrow0$.
+for every Borel set $E\subset B$ and every $T>0$. Let $\omega(t)$ be the supremum of $\mu_j(E)$ over all $j$ and all Borel sets $E\subset B$ with $\operatorname{Cap}_B^*(E)\leq t$. Then $\omega$ is nondecreasing with values in $[0,m]$, and $\omega(t)\leq T^nt+E_2T^{-2}$ for every $T>0$. Choosing first $T$ large and then $t$ small shows that $\omega(t)\to0$ as $t\downarrow0$.
 
 Fix $\varepsilon>0$. The level sets $\{u-W_\varepsilon=-\delta\}$, $0<\delta<1$, are disjoint, and $\mu$ and $\nu_\varepsilon$ are finite, so all but countably many of these sets are null for both measures. Choose $\delta\in(0,1)$ such that
 \[
@@ -106,7 +108,7 @@ and fix $T>\|W_\varepsilon\|_\infty+2$. Since $W_\varepsilon-\delta>-T$, the ine
 \[
  U_j<W_\varepsilon-\delta,\qquad u<W_\varepsilon-\delta
 \]
-do not change when $U_j$ and $u$ are replaced by $a_j=\max\{U_j,-T\}$ and $b=\max\{u,-T\}$. The functions $a_j-W_\varepsilon$ and $b-W_\varepsilon$ are bounded and quasi-continuous; as in Step 4 of the proof of \cref{thm:canonical-grid-capacity-convergence}, $a_j-W_\varepsilon\to b-W_\varepsilon$ locally in capacity; and $\{b-W_\varepsilon=-\delta\}=\{u-W_\varepsilon=-\delta\}$. Thus \eqref{eq:capacity-controlled-moving-level-sets} gives
+do not change when $U_j$ and $u$ are replaced by $a_j=\max\{U_j,-T\}$ and $b=\max\{u,-T\}$. The functions $a_j-W_\varepsilon$ and $b-W_\varepsilon$ are bounded by $T+\|W_\varepsilon\|_\infty$, and they are quasi-continuous by \cref{thm:psh-capacity-quasicontinuity} and the remark following \cref{def:quasi-continuity}. Moreover $a_j-W_\varepsilon\to b-W_\varepsilon$ locally in capacity. Indeed, for $\delta'>0$ we have $\{a_j>b+\delta'\}\subset\{U_j>u+\delta'\}$ and $\{a_j<b-\delta'\}\subset\{U_j<u-\delta'\}$: if $a_j>b+\delta'$, then $a_j>-T$, so $U_j=a_j>b+\delta'\geq u+\delta'$; if $a_j<b-\delta'$, then $b>-T$, so $u=b$ and $U_j\leq a_j<u-\delta'$. Since $U_j\to u$ locally in capacity and $W_\varepsilon$ is finite, the claim follows. Finally, $\{b-W_\varepsilon=-\delta\}=\{u-W_\varepsilon=-\delta\}$, because $b=u$ wherever $u\geq-T$, while $u-W_\varepsilon<-2$ and $b-W_\varepsilon\leq-T+\|W_\varepsilon\|_\infty<-2$ wherever $u<-T$. Thus \eqref{eq:capacity-controlled-moving-level-sets} gives
 \[
  \mu_j(\{U_j<W_\varepsilon-\delta\})
                        \longrightarrow\mu(\{u<W_\varepsilon-\delta\}).
@@ -136,7 +138,7 @@ Let $v$ be a bounded plurisubharmonic function on $B$ with $(\ddc v)^n\geq\mu$ a
        +\varepsilon^n\int_{\{u<v_\varepsilon\}}(\ddc\rho)^n
           \leq\mu(\{u<v_\varepsilon\}).
 \]
-The two $\mu$-masses are finite, so the set $\{u<v_\varepsilon\}$ is Lebesgue null, and therefore $u\geq v_\varepsilon$ everywhere, as in Step 2. Letting $\varepsilon\downarrow0$ gives $u\geq v$. Since $u$ is itself such a function, it is the pointwise supremum in the statement. Any bounded solution with zero boundary values is such a function, hence is at most $u$; exchanging the roles of the two solutions proves uniqueness. We denote the solution by $U$.
+The two $\mu$-masses are finite, so the set $\{u<v_\varepsilon\}$ is Lebesgue null. Therefore $u\geq v_\varepsilon$ everywhere, by the uniqueness assertion of \cref{thm:psh-distribution-representative} applied to $\max\{u,v_\varepsilon\}$ and $u$. Letting $\varepsilon\downarrow0$ gives $u\geq v$. Since $u$ is itself such a function, it is the pointwise supremum in the statement. Any bounded solution with zero boundary values is such a function, hence is at most $u$; exchanging the roles of the two solutions proves uniqueness. We denote the solution by $U$.
 
 Finally, by \cref{prop:canonical-grid-energy-control}, every subsequence of the canonical approximants has a further subsequence converging in $L^1(B)$. By Step 2 and uniqueness, its limit is $U$, and \cref{thm:canonical-grid-self-integral-convergence,thm:canonical-grid-capacity-convergence} give the asserted convergence of the integrals and convergence in capacity along it. If one of the asserted convergences failed for the whole sequence, some subsequence would stay away from the stated limit, and no further subsequence could converge as just described. This contradiction proves all the assertions.
 \end{proof}

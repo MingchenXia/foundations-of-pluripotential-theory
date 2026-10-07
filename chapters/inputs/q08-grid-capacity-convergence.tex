@@ -1,6 +1,6 @@
 \subsection{Capacity convergence and truncated measures}
 \label{sec:canonical-grid-capacity-convergence}
-In \cref{thm:bounded-density-ball-dirichlet}, a common bound for the densities forced the solutions to converge in capacity, and \cref{thm:bt-capacity-continuity} then identified the limiting equation. The canonical approximants $U_j$ of \cref{prop:canonical-grid-energy-control} have no common density bound and need not be uniformly bounded. We show that the convergence of the energy integrals in \cref{thm:canonical-grid-self-integral-convergence} takes the place of the density bound once we pass to the uniformly bounded truncations $\max\{U_j,-T\}$, whose Monge--Amp\`ere measures differ from $\mu_j$ by an error controlled by the energy (\cref{lem:zero-boundary-truncation-mass}). In this way we prove that a subsequence of canonical approximants which converges in $L^1(B)$ also converges locally in capacity, and that the Monge--Amp\`ere measures of the truncations of its limit approximate $\mu$ in total variation (\cref{thm:canonical-grid-capacity-convergence}).
+In \cref{thm:bounded-density-ball-dirichlet}, a common bound for the densities forced the solutions to converge in capacity, and \cref{thm:bt-capacity-continuity} then identified the limiting equation. The canonical approximants $U_j$ of \cref{prop:canonical-grid-energy-control} have in general no common density bound (a bound $\mu_j\leq M\,\mathrm dV$ for all $j$ would pass to the weak limit $\mu$), and we have no uniform bound for the functions $U_j$ themselves. We show that the convergence of the energy integrals in \cref{thm:canonical-grid-self-integral-convergence} takes the place of the density bound once we pass to the uniformly bounded truncations $\max\{U_j,-T\}$, whose Monge--Amp\`ere measures differ from $\mu_j$ by an error controlled by the energy (\cref{lem:zero-boundary-truncation-mass}). In this way we prove that a subsequence of canonical approximants which converges in $L^1(B)$ also converges locally in capacity, and that the Monge--Amp\`ere measures of the truncations of its limit approximate $\mu$ in total variation (\cref{thm:canonical-grid-capacity-convergence}).
 
 As throughout this section, $B$ is a ball in $\mathbb C^n$, $n\geq1$. For finite positive Borel measures $\nu_1,\nu_2$ on $B$ we use the total variation distance\index{measure!total variation distance}
 \[
@@ -9,6 +9,31 @@ As throughout this section, $B$ is a ball in $\mathbb C^n$, $n\geq1$. For finite
                    f\text{ real Borel},\ |f|\leq1\right\}.
 \]
 The supremum does not change if $f$ ranges only over the real functions in $C_c(B)$ with $|f|\leq1$. Indeed, given a real Borel function $f$ with $|f|\leq1$, \cref{prop:continuous-density} provides functions in $C_c(B)$ converging to $f$ in $L^1(\nu_1+\nu_2)$, which we may take real by passing to real parts; clamping them to $[-1,1]$ keeps them in $C_c(B)$ and does not increase their distance from $f$.
+
+Changing a locally bounded potential on a compact set does not change its total Monge--Amp\`ere mass.
+
+\begin{lemma}\label{lem:compact-perturbation-mass}
+Let $\Omega\subset\mathbb C^n$ be open, and let $\varphi,\psi$ be locally bounded plurisubharmonic functions on $\Omega$ which coincide outside a compact set $K\subset\Omega$. Then $(\ddc\varphi)^n$ and $(\ddc\psi)^n$ agree on $\Omega\setminus K$ and assign the same finite mass to $K$. In particular $\int_\Omega(\ddc\varphi)^n=\int_\Omega(\ddc\psi)^n$, where both sides may be infinite.
+\end{lemma}
+\begin{proof}
+The two measures agree on the open set $\Omega\setminus K$, because the products are local (\cref{prop:bt-positive-recursion}). For $0\leq k\leq n-1$ put $S_k=(\ddc\varphi)^k\wedge(\ddc\psi)^{n-1-k}$. By the symmetry of the products (\cref{thm:bt-decreasing-continuity}) and \cref{def:bedford-taylor-product},
+\[
+ \ddc(\varphi S_k)=(\ddc\varphi)^{k+1}\wedge(\ddc\psi)^{n-1-k},
+ \qquad
+ \ddc(\psi S_k)=(\ddc\varphi)^k\wedge(\ddc\psi)^{n-k},
+\]
+so the sum over $k$ telescopes and
+\[
+ (\ddc\varphi)^n-(\ddc\psi)^n=\ddc R,\qquad
+ R=(\varphi-\psi)\sum_{k=0}^{n-1}S_k.
+\]
+The coefficient measures of the current $R$ of order zero vanish on $\Omega\setminus K$, so $\Supp R\subset K$. By \cref{lem:mollifier-density} there is $\chi\in C^\infty_c(\Omega)$ with $0\leq\chi\leq1$ which equals one on a neighborhood of $K$. Then $\ddc\chi$ vanishes on a neighborhood of $\Supp R$, and therefore
+\[
+ \int\chi\,(\ddc\varphi)^n-\int\chi\,(\ddc\psi)^n=R(\ddc\chi)=0,
+\]
+where both integrals are finite. Since $\chi=1$ on $K$, the integral $\int\chi\,(\ddc\varphi)^n$ is the sum of $(\ddc\varphi)^n(K)$ and the integral of $\chi$ over $\Omega\setminus K$, and the latter is finite and the same for $(\ddc\psi)^n$. Hence $(\ddc\varphi)^n(K)=(\ddc\psi)^n(K)<\infty$, and adding the equal masses of $\Omega\setminus K$ gives the last assertion.
+\end{proof}
+\index{Monge--Amp\`ere measure!compactly supported perturbation}
 
 \begin{lemma}\label{lem:zero-boundary-truncation-mass}
 Let $\varphi\in\mathcal E_0(B)$ and $T>0$, and put $\varphi_T=\max\{\varphi,-T\}$. Then $\varphi_T\in\mathcal E_0(B)$, and for every $p\geq1$,
@@ -27,14 +52,7 @@ Moreover, for every Borel set $E\subset B$,
 \end{equation}
 \end{lemma}
 \begin{proof}
-Since $\varphi$ tends to zero uniformly at $\partial B$, there is an open neighborhood $V$ of $\partial B$ such that $\varphi>-T$ on $V\cap B$; there $\varphi_T=\varphi$. Thus $\varphi_T$ is bounded, nonpositive and plurisubharmonic, it has zero boundary values, and $\varphi_T-\varphi$ has compact support in $B$. Since the Bedford--Taylor products are local on open sets (\cref{prop:bt-positive-recursion}), the measures $(\ddc\varphi_T)^n$ and $(\ddc\varphi)^n$ agree on $V\cap B$; both are finite on the compact set $B\setminus V$, so $(\ddc\varphi_T)^n$ has finite total mass. To compare the total masses, we write the difference of the two $n$th powers as a telescoping sum, as in the proof of \cref{thm:bt-comparison}; by the symmetry of the products (\cref{thm:bt-decreasing-continuity}),
-\[
- (\ddc\varphi_T)^n-(\ddc\varphi)^n
- =\ddc\left((\varphi_T-\varphi)
-       \sum_{k=0}^{n-1}(\ddc\varphi_T)^k
-                              \wedge(\ddc\varphi)^{n-1-k}\right).
-\]
-The current in parentheses has compact support in $B$. Let $\chi\in C^\infty_c(B)$ be equal to one on a neighborhood of this support and of $B\setminus V$. Pairing the identity with $\chi$ gives $\int_B\chi(\ddc\varphi_T)^n=\int_B\chi(\ddc\varphi)^n$, because $\ddc\chi$ vanishes near the support of that current. Since $1-\chi$ is supported in $V\cap B$, where the two measures agree, the total masses are equal; in particular $\varphi_T\in\mathcal E_0(B)$.
+Since $\varphi$ tends to zero uniformly at $\partial B$, there is an open neighborhood $V$ of $\partial B$ such that $\varphi>-T$ on $V\cap B$; there $\varphi_T=\varphi$. Thus $\varphi_T$ is bounded, nonpositive and plurisubharmonic, it has zero boundary values, and it coincides with $\varphi$ outside the compact set $\overline B\setminus V\subset B$. By \cref{lem:compact-perturbation-mass}, the measures $(\ddc\varphi_T)^n$ and $(\ddc\varphi)^n$ have the same total mass, which is finite; in particular $\varphi_T\in\mathcal E_0(B)$.
 
 Put $F_T=\{\varphi\leq-T\}$. By maximum locality (\cref{prop:bt-maximum-locality}), the two measures agree on the complement $\{\varphi>-T\}$. Since their total masses are equal and finite, they also assign the same mass $m_T$ to $F_T$, and Chebyshev's inequality gives
 \[
@@ -55,32 +73,35 @@ The two measures differ only on $F_T$, where each has mass $m_T$; this proves \e
 \index{local energy!truncation mass and capacity}
 
 \begin{proposition}\label{prop:energy-controlled-local-capacity-tails}
-Let $\varphi_j\in\mathcal E_0(B)$ converge in $L^1_{\loc}(B)$, and let $u$ be the plurisubharmonic representative of the limit (\cref{thm:psh-compactness-hartogs}). Suppose that $E_p=\sup_je_p(\varphi_j)<\infty$ for some $p\geq1$. Then, for every $j$ and every $T>0$,
+Let $p\geq1$.
+\begin{enumerate}
+\item For every $\varphi\in\mathcal E_0(B)$ and every $T>0$,
 \[
- \operatorname{Cap}_B(\{\varphi_j<-T\})
-             \leq2^{n+p}(n+1)!E_pT^{-(n+p)}.
+ \operatorname{Cap}_B(\{\varphi<-T\})
+             \leq2^{n+p}(n+1)!\,e_p(\varphi)T^{-(n+p)}.
 \]
-For every compact set $K\subset B$ there is a constant $C_{K,p}$, independent of $j$, $u$ and $T$, such that
+\item Let $\varphi_j\in\mathcal E_0(B)$ converge in $L^1_{\loc}(B)$, let $u$ be the plurisubharmonic representative of the limit (\cref{thm:psh-compactness-hartogs}), and suppose that $E_p=\sup_je_p(\varphi_j)<\infty$. For every compact set $K\subset B$ there is a constant $C_{K,p}$, depending only on $K$, $p$ and the ball $B$, such that
 \begin{equation}\label{eq:energy-limit-capacity-tail}
  \operatorname{Cap}_B^*(K\cap\{u<-T\})
                 \leq C_{K,p}E_p^{p/(n+p)}T^{-p}\qquad(T>0).
 \end{equation}
-In particular, the pole set of $u$ has zero outer capacity locally.
+In particular, $\operatorname{Cap}^*_B(K\cap\{u=-\infty\})=0$ for every compact set $K\subset B$.
+\end{enumerate}
 \end{proposition}
 \begin{proof}
-Let $h$ be a competitor for $\operatorname{Cap}_B$, that is, $h\in\PSH(B)$ and $0\leq h\leq1$. Since $\varphi_j$ has zero boundary values, the open set $\{\varphi_j<-T\}$ is relatively compact in $B$, so $\nu=\mathbf1_{\{\varphi_j<-T\}}(\ddc h)^n$ is a finite measure. It is dominated by the Monge--Amp\`ere measure of $h$, whose oscillation is at most one. The tail estimate \eqref{eq:local-energy-measure-tail} of \cref{thm:bounded-subsolution-local-energy-moments}, whose constant $\kappa_{n,p}$ does not depend on the mass of $\nu$ and is at most $2^{n+p}(n+1)!$ here, therefore gives
+(1) Let $h$ be a competitor for $\operatorname{Cap}_B$, that is, $h\in\PSH(B)$ and $0\leq h\leq1$. The set $\{\varphi<-T\}$ is open, because $\varphi$ is upper semicontinuous, and it is relatively compact in $B$, because $\varphi$ has zero boundary values. Hence $\nu=\mathbf1_{\{\varphi<-T\}}(\ddc h)^n$ is a finite measure. It is dominated by the Monge--Amp\`ere measure of $h$, whose oscillation is at most one. The tail estimate \eqref{eq:local-energy-measure-tail} of \cref{thm:bounded-subsolution-local-energy-moments}, applied to $\nu$ and $w=h$, has the constant $\kappa_{n,p}=2^{n+p}(n+1)!M^n\leq2^{n+p}(n+1)!$, which does not depend on the mass of $\nu$; it therefore gives
 \[
- \int_{\{\varphi_j<-T\}}(\ddc h)^n=\nu(\{\varphi_j<-T\})
- \leq2^{n+p}(n+1)!\,e_p(\varphi_j)T^{-(n+p)}.
+ \int_{\{\varphi<-T\}}(\ddc h)^n=\nu(\{\varphi<-T\})
+ \leq2^{n+p}(n+1)!\,e_p(\varphi)T^{-(n+p)}.
 \]
-Taking the supremum over $h$ proves the first estimate. Since $\{\varphi_j<-T\}$ is open, the same bound holds for its outer capacity.
+Taking the supremum over $h$ proves (1).
 
-For the second estimate, choose an open set $U$ and a compact set $L\subset B$ with $K\subset U\Subset\Int L$. By the Chern--Levine--Nirenberg inequality (\cref{thm:cln-bounded}), the masses $\int_L(\ddc h)^n$ are bounded by a constant independent of $h$. Hence the moment estimate \eqref{eq:local-energy-measure-moment}, applied to the finite measure $\mathbf1_L(\ddc h)^n$ and to $\varphi_j$, gives
+(2) Choose an open set $U$ and compact sets $L,L'\subset B$ with $K\subset U\Subset\Int L$ and $L\subset\Int L'$. By the Chern--Levine--Nirenberg inequality (\cref{thm:cln-bounded}, with $T=1$ and the pair $L\subset\Int L'$), there is a constant $C_L$ with $\int_L(\ddc h)^n\leq C_L$ for every competitor $h$, since $\|h\|_{L^\infty(L')}\leq1$. The finite measure $\mathbf1_L(\ddc h)^n$ is dominated by $(\ddc h)^n$ and has mass at most $C_L$, so the constant $A_p$ of \cref{thm:bounded-subsolution-local-energy-moments} for this measure and $w=h$ is at most $(1+p/n)(2^{n+p}(n+1)!)^{p/(n+p)}C_L^{n/(n+p)}=:C_{K,p}$. Hence the moment estimate \eqref{eq:local-energy-measure-moment}, applied to $\varphi_j$, gives
 \[
  \int_L(-\varphi_j)^p(\ddc h)^n
-                         \leq C_{K,p}E_p^{p/(n+p)},
+                         \leq C_{K,p}E_p^{p/(n+p)}
 \]
-with $C_{K,p}$ independent of $j$ and $h$. We pass this bound to the limit $u$, which is nonpositive by the submean inequality, since the $\varphi_j$ are. Fix $S>0$. The truncations $\max\{\varphi_j,-S\}$ take values in $[-S,0]$ and converge to $\max\{u,-S\}$ in $L^1_{\loc}(B)$. Since $\mathbf1_L(\ddc h)^n\leq(\ddc h)^n$, \cref{lem:bounded-psh-fixed-measure-continuity} shows that they also converge in $L^1(\mathbf1_L(\ddc h)^n)$. As $t\mapsto t^p$ is Lipschitz on $[0,S]$, it follows that
+for all $j$ and all competitors $h$. We pass this bound to the limit $u$, which is nonpositive by the submean inequality, since the $\varphi_j$ are. Fix $S>0$. The truncations $\max\{\varphi_j,-S\}$ take values in $[-S,0]$ and converge to the plurisubharmonic function $\max\{u,-S\}$ in $L^1_{\loc}(B)$, since $t\mapsto\max\{t,-S\}$ is $1$-Lipschitz. Since $\mathbf1_L(\ddc h)^n\leq(\ddc h)^n$, \cref{lem:bounded-psh-fixed-measure-continuity} shows that they also converge in $L^1(\mathbf1_L(\ddc h)^n)$. As $t\mapsto t^p$ is Lipschitz on $[0,S]$ and $(-\max\{\varphi_j,-S\})^p\leq(-\varphi_j)^p$, it follows that
 \[
  \begin{aligned}
  \int_L(-\max\{u,-S\})^p(\ddc h)^n
@@ -132,7 +153,7 @@ Let $L\subset B$ be compact. By \cref{thm:psh-capacity-quasicontinuity}, for eve
 \]
 
 \emph{Step 3. Convergence in capacity.}
-Let $K\subset B$ be compact, and apply Step 2 to a compact set $L\subset B$ with $K\subset\Int L$. The bounded functions $a_j-b$ are quasi-continuous by \cref{thm:psh-capacity-quasicontinuity}. Therefore \cref{lem:quasi-continuous-level-capacity}, together with Steps 1 and 2 applied with $\delta/2$ in place of $\delta$, gives
+Let $K\subset B$ be compact, and apply Step 2 to a compact set $L\subset B$ with $K\subset\Int L$. The bounded functions $a_j-b$ are quasi-continuous by \cref{thm:psh-capacity-quasicontinuity} and the remark following \cref{def:quasi-continuity}. Therefore \cref{lem:quasi-continuous-level-capacity}, together with Steps 1 and 2 applied with $\delta/2$ in place of $\delta$, gives
 \[
  \operatorname{Cap}_B^*(K\cap\{|a_j-b|>\delta\})
  \leq\operatorname{Cap}_B(L\cap\{a_j>b+\delta/2\})
@@ -147,10 +168,10 @@ It remains to remove the truncation. Outside $\{U_j<-T\}\cup\{u<-T\}$ we have $a
 \[
  \bigl(K\cap\{|a_j-b|>\delta\}\bigr)\cup\{U_j<-T\}\cup\bigl(K\cap\{u<-T\}\bigr).
 \]
-By \cref{prop:energy-controlled-local-capacity-tails} with $p=2$, the outer capacities of the last two sets are at most $2^{n+2}(n+1)!E_2T^{-(n+2)}$ and $C_{K,2}E_2^{2/(n+2)}T^{-2}$. By subadditivity of the outer capacity, the upper limits as $j\to\infty$ of the outer capacities of the two sets in \cref{def:local-capacity-convergence} are bounded by the sum of three terms, each of which tends to zero as $T\to\infty$. Since these upper limits do not depend on $T$, they vanish. Thus $U_j\to u$ locally in capacity. (The sets $K\cap\{U_j>u+\delta\}$ always contain the pole set $K\cap\{u=-\infty\}$; it lies in $K\cap\{u<-T\}$ for every $T$ and has zero outer capacity.)
+By \cref{prop:energy-controlled-local-capacity-tails} with $p=2$, applied in part~(1) to $U_j$, whose energy $e_2(U_j)$ is at most $E_2$, and in part~(2) to the sequence $(U_j)$, the outer capacities of the last two sets are at most $2^{n+2}(n+1)!E_2T^{-(n+2)}$ and $C_{K,2}E_2^{2/(n+2)}T^{-2}$; recall that the outer capacity of the open set $\{U_j<-T\}$ equals its capacity. By subadditivity of the outer capacity, the upper limits as $j\to\infty$ of the outer capacities of the two sets in \cref{def:local-capacity-convergence} are bounded by the sum of three terms, each of which tends to zero as $T\to\infty$. Since these upper limits do not depend on $T$, they vanish. Thus $U_j\to u$ locally in capacity. (The sets $K\cap\{U_j>u+\delta\}$ always contain the pole set $K\cap\{u=-\infty\}$; it lies in $K\cap\{u<-T\}$ for every $T$ and has zero outer capacity.)
 
 \emph{Step 4. The truncated limit measure.}
-Fix $T>0$ again. The inclusions $\{a_j>b+\delta\}\subset\{U_j>u+\delta\}$ and $\{a_j<b-\delta\}\subset\{U_j<u-\delta\}$ show that the uniformly bounded functions $a_j$ converge to $b$ locally in capacity. By \cref{thm:bt-capacity-continuity},
+Fix $T>0$ again. For $\delta>0$ we have $\{a_j>b+\delta\}\subset\{U_j>u+\delta\}$ and $\{a_j<b-\delta\}\subset\{U_j<u-\delta\}$: if $a_j>b+\delta$, then $a_j>-T$, so $U_j=a_j>b+\delta\geq u+\delta$; if $a_j<b-\delta$, then $b>-T$, so $u=b$ and $U_j\leq a_j<u-\delta$. Hence the uniformly bounded functions $a_j$ converge to $b$ locally in capacity. By \cref{thm:bt-capacity-continuity},
 \[
  (\ddc a_j)^n\longrightarrow(\ddc u_T)^n
                                     \quad\text{weakly on }B.

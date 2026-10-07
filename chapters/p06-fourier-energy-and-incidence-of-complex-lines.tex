@@ -50,7 +50,7 @@ Let $f\in\mathcal S$ and $\varepsilon>0$. Insert the factor $\mathrm e^{-\pi\var
  \int\widehat f(\xi)\mathrm e^{2\pi\mathrm i x\cdot\xi}\mathrm e^{-\pi\varepsilon^2|\xi|^2}\,\mathrm d\xi=f*g_\varepsilon(x),
  \qquad g_\varepsilon(y)=\varepsilon^{-d}\mathrm e^{-\pi|y|^2/\varepsilon^2}.
 \]
-The functions $g_\varepsilon$ are positive with integral one, and the substitution $y=\varepsilon y'$ shows that their mass outside a fixed ball $B(0,\delta)$ tends to zero as $\varepsilon\to0$. Since $f$ is bounded and uniformly continuous, splitting the convolution integral into the regions $|y|<\delta$ and $|y|\geq\delta$ shows that $f*g_\varepsilon\to f$ uniformly. On the left-hand side, $\widehat f\in\mathcal S\subset L^1$ by \cref{lem:fourier-gaussian}, so dominated convergence lets $\varepsilon\to0$ under the frequency integral. This proves the inversion formula.
+The functions $g_\varepsilon$ are positive with integral one, and the substitution $y=\varepsilon y'$ shows that their mass outside a fixed ball $B(0,\delta)$ tends to zero as $\varepsilon\to0$. Since $f$ is bounded, and uniformly continuous because its gradient is bounded, splitting the convolution integral into the regions $|y|<\delta$ and $|y|\geq\delta$ shows that $f*g_\varepsilon\to f$ uniformly. On the left-hand side, $\widehat f\in\mathcal S\subset L^1$ by \cref{lem:fourier-gaussian}, so dominated convergence lets $\varepsilon\to0$ under the frequency integral. This proves the inversion formula.
 
 Write $\mathcal F$ for the Fourier transform on $\mathcal S$, $\mathcal F^*$ for the inverse integral transform $\mathcal F^*g(x)=\int g(\xi)\mathrm e^{2\pi\mathrm i x\cdot\xi}\,\mathrm d\xi$, and $Rf(x)=f(-x)$. The substitution $x\mapsto-x$ shows that $\mathcal F^*=R\mathcal F=\mathcal FR$ on $\mathcal S$. In particular $\mathcal F^*$ maps $\mathcal S$ into itself, and both compositions $\mathcal F^*\mathcal F$ and $\mathcal F\mathcal F^*$ equal $R\mathcal F\mathcal F$, which is the identity on $\mathcal S$ by the inversion formula. For $f,g\in\mathcal S$, applying inversion to $g$ and Fubini's theorem, we obtain Parseval's identity\index{Parseval's identity}
 \[
@@ -118,7 +118,7 @@ For $0<s<d$, the probability measure $\mathrm d\mu=\mathrm e^{-\pi|x|^2}\,\mathr
 \]
 \end{example}
 \begin{proof}
-Integrating in polar coordinates, we obtain
+Integrating in polar coordinates and substituting $v=\pi r^2$, we obtain
 \[
  1=\int\mathrm e^{-\pi|x|^2}\,\mathrm d x=s_{d-1}\int_0^\infty\mathrm e^{-\pi r^2}r^{d-1}\,\mathrm d r=\frac{s_{d-1}\Gamma(d/2)}{2\pi^{d/2}},
 \]
@@ -147,7 +147,7 @@ For invertible $X$ define
 \[
  Q(X)=X(X^*X)^{-1/2},
 \]
-where $(X^*X)^{1/2}$ is the positive square root of the positive definite matrix $X^*X$. By the spectral theorem for Hermitian matrices, this square root exists and is unique. It depends continuously on the matrix: along a convergent sequence of positive definite matrices the square roots are bounded, every convergent subsequence of them has a positive semidefinite limit whose square is the limiting matrix, and uniqueness identifies this limit. Since inversion is continuous on invertible matrices, $Q$ is continuous on the open set of invertible matrices, and $Q(X)^*Q(X)=(X^*X)^{-1/2}X^*X(X^*X)^{-1/2}=1$. Let $\eta$ be the image under $Q$ of the restriction of $\gamma$ to the invertible matrices; it is a Borel probability measure on $\mathrm U(n)$.
+where $(X^*X)^{1/2}$ is the positive square root of the positive definite matrix $X^*X$. By the spectral theorem for Hermitian matrices, this square root exists and is unique. It depends continuously on the matrix. Indeed, let $A_k\to A$ be positive definite matrices. The square roots $A_k^{1/2}$ are bounded, since $\operatorname{tr}(A_k^{1/2}A_k^{1/2})=\operatorname{tr}A_k$. Every convergent subsequence of them has a positive semidefinite limit $S$ with $S^2=A$; then $S$ is invertible, hence positive definite, and $S=A^{1/2}$ by uniqueness. A bounded sequence of matrices all of whose convergent subsequences have the same limit converges to it, so $A_k^{1/2}\to A^{1/2}$. Since inversion is continuous on invertible matrices, $Q$ is continuous on the open set of invertible matrices, and $Q(X)^*Q(X)=(X^*X)^{-1/2}X^*X(X^*X)^{-1/2}=1$. Let $\eta$ be the image under $Q$ of the restriction of $\gamma$ to the invertible matrices; it is a Borel probability measure on $\mathrm U(n)$.
 
 Fix $U,V\in\mathrm U(n)$. The map $X\mapsto UXV$ is real linear and preserves $\operatorname{tr}(X^*X)$, so it is orthogonal on $\mathbb R^{2n^2}$ and preserves $\gamma$. By uniqueness of positive square roots, $(V^*X^*XV)^{1/2}=V^*(X^*X)^{1/2}V$, and therefore $Q(UXV)=UQ(X)V$. Consequently the image of $\eta$ under $g\mapsto UgV$ is the image of $\gamma$ under $X\mapsto Q(UXV)$, which is $\eta$ because $X\mapsto UXV$ preserves $\gamma$. This proves the invariance of $\eta$ on both sides.
 
@@ -190,7 +190,7 @@ The metric $d$ is unitarily invariant, because unitary matrices preserve $\langl
 \[
  \int_{\{w\in\mathbb C:|w|^2>c\}}\mathrm e^{-\pi|w|^2}\,\mathrm d w=2\pi\int_{\sqrt c}^\infty r\mathrm e^{-\pi r^2}\,\mathrm d r=\mathrm e^{-\pi c}.
 \]
-The ball is the image of the set $\{z:|z_1|^2>\cot^2a\,|z'|^2\}$, whose $\gamma$-measure we compute by Fubini's theorem, integrating first in $z_1$ with $c=\cot^2a\,|z'|^2$. Using \cref{lem:fourier-gaussian} in $\mathbb C^{n-1}=\mathbb R^{2n-2}$ with $\xi=0$ and $t=1+\cot^2a$, we obtain
+Thus the preimage of the ball under $z\mapsto\mathbb Cz$ is the set of $z\neq0$ with $|z_1|^2>\cot^2a\,|z'|^2$. We compute its $\gamma$-measure by Fubini's theorem, integrating first in $z_1$ with $c=\cot^2a\,|z'|^2$. Using \cref{lem:fourier-gaussian} in $\mathbb C^{n-1}=\mathbb R^{2n-2}$ with $\xi=0$ and $t=1+\cot^2a$, we obtain
 \[
  \sigma\{\xi:d(\xi,\xi_0)<a\}=\int_{\mathbb C^{n-1}}\mathrm e^{-\pi(1+\cot^2a)|z'|^2}\,\mathrm d z'=(1+\cot^2a)^{-(n-1)}=(\sin a)^{2n-2}.
 \]
@@ -207,7 +207,7 @@ is Borel, by Tonelli's theorem (\cref{prop:tonelli-fubini}) applied to the Borel
 
 \section{Circle selection and high-value sets}
 \label{sec:high-value-stars}
-An affine complex line\index{complex line!affine section} in $\mathbb C^n$ is a set $L=a+\mathbb Cb$ with $a\in\mathbb C^n$ and $b\in\mathbb C^n\setminus\{0\}$. For an open set $D\subset\mathbb C^n$, we identify the section $D\cap L$ with the open set $\{\zeta\in\mathbb C:a+\zeta b\in D\}$, and we call a function on a connected component of $D\cap L$ subharmonic if its composite with $\zeta\mapsto a+\zeta b$ is subharmonic in the sense of \cref{def:subharmonic}. In the plane, the spherical means of \eqref{eq:subharmonic-submean} are averages with respect to arc length: the surface measure $S$ on the unit circle (\cref{sec:harmonic-mean-values}) is the image of Lebesgue measure on $[0,2\pi)$ under $\theta\mapsto\mathrm e^{\mathrm i\theta}$. Indeed, by the change of variables formula for $(t,\theta)\mapsto t\mathrm e^{\mathrm i\theta}$, whose Jacobian determinant is $t$, the cone over an arc $\{\mathrm e^{\mathrm i\theta}:\alpha\leq\theta<\beta\}$ with $0\leq\alpha\leq\beta\leq2\pi$ has area $(\beta-\alpha)/2$, so the arc has $S$-measure $\beta-\alpha$. These arcs are closed under finite intersections, and every open subset of the circle is a countable union of them, so they generate the Borel sets of the circle; so the class argument in the proof of \cref{prop:tonelli-fubini} identifies the two finite measures. Hence
+An affine complex line\index{complex line!affine section} in $\mathbb C^n$ is a set $L=a+\mathbb Cb$ with $a\in\mathbb C^n$ and $b\in\mathbb C^n\setminus\{0\}$. For an open set $D\subset\mathbb C^n$, we identify the section $D\cap L$ with the open set $\{\zeta\in\mathbb C:a+\zeta b\in D\}$, and we call a function on a connected component of $D\cap L$ subharmonic if its composite with $\zeta\mapsto a+\zeta b$ is subharmonic in the sense of \cref{def:subharmonic}. In the plane, the spherical means of \eqref{eq:subharmonic-submean} are averages with respect to arc length: the surface measure $S$ on the unit circle (\cref{sec:harmonic-mean-values}) is the image of Lebesgue measure on $[0,2\pi)$ under $\theta\mapsto\mathrm e^{\mathrm i\theta}$. Indeed, by the change of variables formula for $(t,\theta)\mapsto t\mathrm e^{\mathrm i\theta}$, whose Jacobian determinant is $t$, the cone over an arc $\{\mathrm e^{\mathrm i\theta}:\alpha\leq\theta<\beta\}$ with $0\leq\alpha\leq\beta\leq2\pi$ has area $(\beta-\alpha)/2$, so the arc has $S$-measure $\beta-\alpha$. These arcs are closed under finite intersections, and every open subset of the circle is a countable union of them, so they generate the Borel sets of the circle, and the class argument in the proof of \cref{prop:tonelli-fubini} identifies the two finite measures. Hence
 \[
  M_w(\zeta,r)=\frac1{2\pi}\int_0^{2\pi}w(\zeta+r\mathrm e^{\mathrm i\theta})\,\mathrm d\theta
 \]
@@ -323,8 +323,7 @@ Choose $M>0$ with $K\subset B(0,M)$. Every affine complex line can be written as
 \[
  \mathcal L_M=\{(H,c):H\in\mathcal H,\ c\in H,\ |c|\leq M\},
 \]
-which is compact, being closed in $\mathcal H\times\overline{B(0,M)}$ because $c\in H$ means $P_Hc=c$.
-We equip $\mathcal L_M$ with the finite measure $\lambda$ defined by
+which is compact, being closed in $\mathcal H\times\overline{B(0,M)}$ because $c\in H$ means $P_Hc=c$. We equip $\mathcal L_M$ with the finite measure $\lambda$ defined by
 \[
  \int h\,\mathrm d\lambda=\int_{\mathcal H}\int_{H\cap\overline{B(0,M)}}h(H,c)\,\mathrm d m_H(c)\,\mathrm d\nu(H)
 \]
