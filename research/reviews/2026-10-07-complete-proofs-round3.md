@@ -284,9 +284,33 @@ About twenty descriptions now match the book, among them:
 
 There are new one-sentence mentions of the π–λ theorem, Jensen's inequality, the Hilbert basis theorem with Artin–Rees and Krull, and Calabi's third-order estimate. Their locators (Tao, Lemma 35; Song–Weinkove, §2.5, p. 24) were verified in the retained sources and lie inside existing citations. No citation or locator was added or removed.
 
+## Coordinator edits
+
+- The preface states the prerequisites precisely.
+- Chapter 14 justifies the curvature formula for every local frame, since $\log|g|^2$ is pluriharmonic.
+- In Chapter 16 (main file), a Baire-category argument is replaced by the density statement of `prop:generic-divisorial-lelong`.
+- Citations of `lem:mixed-discriminant-basic` are added in Chapters 9 and 18.
+- Two stale pointers to a remark that became part of `lem:smooth-partition-unity` are repointed.
+- One overfull display in Chapter 14 is split.
+- In the Chapter 16 inputs, a long unbreakable display is split so that it no longer leaves a short page.
+
 ## Validation
 
-To be completed after the final build.
+- `make check`: integrity OK (27 chapter units, 139 obligations, 61 active TeX files).
+- `make audit`: 0 errors, 92 advisory warnings, of the same kinds as before (label prefixes, optional standard titles, arXiv-only entries).
+- Forced full build (`latexmk -g`) and `scripts/project.py check-log`: no unresolved references or citations, no fatal errors, no overfull or underfull boxes. Log: `research/reviews/logs/2026-10-07-complete-proofs-round3-final-build.log`.
+- **Length.** 932 physical pages, last printed page 918; the baseline had 742 and 728.
+- **Short pages.** A scan of all 932 pages finds short pages only at chapter ends, in the front matter, on part pages and in the references.
+- **Visual inspection.** I inspected these pages directly: printed 172 (`lem:mixed-discriminant-basic`), 206 (`prop:smooth-psh-criterion`), 451 (`lem:compact-sobolev-spaces`), 650–651 (`eq:chern-kernel-square-identity`) and 815 (`lem:finite-integral-algebra`).
+- **Preservation against `6e7fde0`.**
+  - The multiset of `\cite` commands with their locators is identical.
+  - No `\label` and no `\index` entry was lost.
+  - No label is duplicated.
+  - Labels went from 1166 to 1316, and `\index` commands from 993 to 1113.
+  - The two approved input theorems are byte-identical, and `plan/external-inputs.json` is unchanged.
+- **Source size.** The `.tex` sources of chapters and front matter grew from 325,764 to 422,968 words.
+
+Builds and audits do not certify mathematics.
 
 ## Points for the author
 
@@ -307,5 +331,5 @@ To be completed after the final build.
   - the hypotheses listed there;
   - `cor:zero-lelong-trivial-multiplier-ideal` for quasi-psh $tu$;
   - the Lelong-number reminder before `prop:smooth-target-psh-modification`.
-- **Length.** The book grew by roughly a quarter.
+- **Length.** The book grew from 742 to 932 physical pages.
 - **Release archive.** It has not been regenerated.

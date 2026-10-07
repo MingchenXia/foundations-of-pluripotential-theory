@@ -935,3 +935,14 @@ At the author's request the book had a second revision round that read it as one
 - **Validation:** forced `make verify` passes with 742 physical pages (last printed page 728), no unresolved references, no overfull or underfull boxes, and 0 audit errors. The release archive was not regenerated.
 
 Record: `research/reviews/2026-10-06-presentation-revision-round2.md` and `.json`.
+
+## 2026-10-07 — Round 3: complete proofs and natural hypotheses
+
+At the author's request every result mentioned in the book now has a complete proof in the book, and statements carry the hypotheses their proofs use. "Riesz potentials" is not used in the body, so Chapter 4 is now "Potentials, energy and capacity". Resolution of singularities and log principalization remain the only external inputs (EI-RES unchanged); the preface states the reader prerequisites precisely.
+
+- **Method:** each of the 26 units was completed and then refereed independently. A final sweep replaced references into other proofs by written-out steps or labelled statements, and each sweep group was checked independently; a cross-file pass and the notes were checked the same way.
+- **Shared statements added:** among them the holomorphic inverse function theorem, a metric on compact manifolds, pullback of order-zero currents, mixed discriminants, the smooth psh criterion with regularization, $\bar\partial$-closed distributions, Sobolev spaces on compact manifolds, quasi-psh basics, orders along divisors and smooth line-bundle metrics. The Chern kernel identity now has a hand proof.
+- **Corrections:** errors and gaps were fixed in most chapters; the record lists them, together with every weakened hypothesis.
+- **Validation:** the forced build gives 932 physical pages (last printed page 918), with no unresolved references and no overfull or underfull boxes; the audit shows 0 errors. Citations with locators are identical to `6e7fde0`, and no label or index entry was lost. The release archive was not regenerated.
+
+Record: `research/reviews/2026-10-07-complete-proofs-round3.md` and `.json`.
