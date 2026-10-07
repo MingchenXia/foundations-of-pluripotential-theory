@@ -3,13 +3,20 @@ We next show that plurisubharmonic functions belong to $L^p_{\loc}$ for every fi
 We write $D(a,r)=\{z\in\mathbb C:|z-a|<r\}$ and $D=D(0,1)$, and for $t>0$ we write $tD=D(0,t)$; thus $D^n$ is the unit polydisc in $\mathbb C^n$ and $(tD)^n$ the polydisc of radius $t$ centered at $0$. Integrals over discs and polydiscs are taken with respect to Lebesgue measure $\mathrm dV$.
 
 \begin{lemma}\label{lem:negative-subharmonic-disc-lp}
-For every $1\leq p<\infty$ there is a constant $C_p>0$ such that every subharmonic function $v\leq0$ on $D$ with $v(0)>-\infty$ satisfies
+There is a constant $C_0\geq1$ with the following property. Let $v\leq0$ be a subharmonic function on $D$ with $v(0)>-\infty$. Then there are a finite positive Borel measure $\nu$ with support in $D(0,9/10)$ and a harmonic function $h$ on $D(0,4/5)$ such that
+\begin{equation}\label{eq:negative-subharmonic-disc-riesz-bounds}
+ \begin{gathered}
+ v(z)=P(z)+h(z)\quad(z\in D(0,4/5)),\qquad P(z)=\frac1{2\pi}\int\log|z-\zeta|\,\mathrm d\nu(\zeta),\\
+ \nu(D)\leq C_0|v(0)|,\qquad\sup_{\overline{D(0,1/2)}}|h|\leq C_0|v(0)|.
+ \end{gathered}
+\end{equation}
+Moreover, for every $1\leq p<\infty$ there is a constant $C_p>0$ such that every such $v$ satisfies
 \[
  \|v\|_{L^p(D(0,1/2))}\leq C_p|v(0)|.
 \]
 \end{lemma}
 \begin{proof}
-In this proof $C$ denotes constants depending only on $p$ and on two cutoff functions fixed below; the constant $C_0$ introduced below depends only on the cutoff functions. Since $v(0)>-\infty$, the function $v$ is not identically $-\infty$, and hence it is locally integrable by \cref{prop:subharmonic-local-integrability}. For $0<r<1$, the ball submean inequality (\cref{thm:subharmonic-comparison}) and $v\leq0$ give
+In this proof $C$ denotes constants depending only on $p$ and on two cutoff functions $\chi$ and $\eta$ fixed below; the constants that do not depend on $p$ depend only on these cutoff functions, which are fixed once and for all. Since $v(0)>-\infty$, the function $v$ is not identically $-\infty$, and hence it is locally integrable by \cref{prop:subharmonic-local-integrability}. For $0<r<1$, the ball submean inequality (\cref{thm:subharmonic-comparison}) and $v\leq0$ give
 \begin{equation}\label{eq:negative-subharmonic-disc-lone}
  \|v\|_{L^1(D(0,r))}=-\int_{D(0,r)}v\,\mathrm dV\leq\pi r^2|v(0)|.
 \end{equation}
@@ -18,10 +25,10 @@ Let $\mu=\Delta v$ be the Riesz measure of $v$, and choose a smooth cutoff $\chi
  \mu(D(0,9/10))\leq\int\chi\,\mathrm d\mu
    =\int v\Delta\chi\,\mathrm dV\leq\sup|\Delta\chi|\,\|v\|_{L^1(D(0,19/20))}\leq C|v(0)|.
 \]
-Next choose a smooth cutoff $0\leq\eta\leq1$ supported in $D(0,9/10)$ and equal to one on a neighborhood of $\overline{D(0,4/5)}$. The fundamental solution in the plane is $(2\pi)^{-1}\log|z|$, so \cref{thm:riesz-decomposition} gives
+Next choose a smooth cutoff $0\leq\eta\leq1$ supported in $D(0,9/10)$ and equal to one on a neighborhood of $\overline{D(0,4/5)}$. The fundamental solution in the plane is $(2\pi)^{-1}\log|z|$, so \cref{thm:riesz-decomposition}, applied with the measure $\nu=\eta\mu$, which is finite and supported in $\Supp\eta\subset D(0,9/10)$, gives
 \[
  v(z)=P(z)+h(z),\qquad
- P(z)=\frac1{2\pi}\int\log|z-\zeta|\,\eta(\zeta)\,\mathrm d\mu(\zeta),
+ P(z)=\frac1{2\pi}\int\log|z-\zeta|\,\mathrm d\nu(\zeta),
 \]
 for every $z\in D(0,4/5)$, with $h$ harmonic on $D(0,4/5)$.
 
@@ -30,19 +37,15 @@ We estimate $P$. For $|\zeta|\leq9/10$, the translated disc $D(0,4/5)-\zeta$ lie
  \int_{D(0,4/5)}|\log|z-\zeta||^p\,\mathrm dV(z)
      \leq L_p=\int_{D(0,2)}|\log|z||^p\,\mathrm dV(z)<\infty;
 \]
-the integral $L_p$ is finite because its part over $D$ equals $2\pi\int_0^1r|\log r|^p\,\mathrm dr$, whose integrand is bounded on $(0,1]$, while $|\log|z||\leq\log2$ on the rest of $D(0,2)$. Let $m=\int\eta\,\mathrm d\mu$, so that $m\leq\mu(D(0,9/10))\leq C|v(0)|$, with a constant that does not depend on $p$. If $m=0$, then $P=0$. Otherwise, $|P(z)|\leq\frac m{2\pi}\int|\log|z-\zeta||\,\eta(\zeta)\,\mathrm d\mu(\zeta)/m$, and H\"older's inequality for the probability measure $\eta\mu/m$ gives
+the integral $L_p$ is finite because its part over $D$ equals $2\pi\int_0^1r|\log r|^p\,\mathrm dr$, whose integrand is bounded on $(0,1]$, while $|\log|z||\leq\log2$ on the rest of $D(0,2)$. Let $m=\nu(D)=\int\eta\,\mathrm d\mu$, so that $m\leq\mu(D(0,9/10))\leq C|v(0)|$, with a constant that does not depend on $p$. If $m=0$, then $P=0$. Otherwise, $|P(z)|\leq\frac m{2\pi}\int|\log|z-\zeta||\,\mathrm d\nu(\zeta)/m$, and H\"older's inequality for the probability measure $\nu/m$ gives
 \[
- |P(z)|^p\leq\Bigl(\frac m{2\pi}\Bigr)^p\int|\log|z-\zeta||^p\,\frac{\eta(\zeta)\,\mathrm d\mu(\zeta)}m,
+ |P(z)|^p\leq\Bigl(\frac m{2\pi}\Bigr)^p\int|\log|z-\zeta||^p\,\frac{\mathrm d\nu(\zeta)}m,
 \]
-and integrating over $z\in D(0,4/5)$ with Tonelli's theorem yields $\|P\|_{L^p(D(0,4/5))}\leq L_p^{1/p}m/(2\pi)\leq C|v(0)|$. The case $p=1$ of this bound and \eqref{eq:negative-subharmonic-disc-lone} give $\|h\|_{L^1(D(0,4/5))}\leq C|v(0)|$, again with a constant that does not depend on $p$. For $|z|\leq1/2$, the closed disc $\overline{D(z,1/4)}$ lies in $D(0,4/5)$, and the ball mean-value property of the harmonic function $h$ (\cref{prop:spherical-mean-derivative}) gives $|h(z)|\leq(16/\pi)\|h\|_{L^1(D(0,4/5))}$. We have thus found a constant $C_0\geq1$, depending only on the cutoff functions $\chi$ and $\eta$, such that
-\begin{equation}\label{eq:negative-subharmonic-disc-riesz-bounds}
- m=\int\eta\,\mathrm d\mu\leq C_0|v(0)|,\qquad\sup_{\overline{D(0,1/2)}}|h|\leq C_0|v(0)|.
-\end{equation}
-Adding the estimates for $P$ and $h$ on $D(0,1/2)$, we obtain
+and integrating over $z\in D(0,4/5)$ with Tonelli's theorem yields $\|P\|_{L^p(D(0,4/5))}\leq L_p^{1/p}m/(2\pi)\leq C|v(0)|$. The case $p=1$ of this bound and \eqref{eq:negative-subharmonic-disc-lone} give $\|h\|_{L^1(D(0,4/5))}\leq C|v(0)|$, again with a constant that does not depend on $p$. For $|z|\leq1/2$, the closed disc $\overline{D(z,1/4)}$ lies in $D(0,4/5)$, and the ball mean-value property of the harmonic function $h$ (\cref{prop:spherical-mean-derivative}) gives $|h(z)|\leq(16/\pi)\|h\|_{L^1(D(0,4/5))}$. We have thus found a constant $C_0\geq1$, depending only on the cutoff functions $\chi$ and $\eta$, such that $\nu(D)=m\leq C_0|v(0)|$ and $\sup_{\overline{D(0,1/2)}}|h|\leq C_0|v(0)|$; this proves \eqref{eq:negative-subharmonic-disc-riesz-bounds}. Adding the estimates for $P$ and $h$ on $D(0,1/2)$, we obtain
 \[
  \|v\|_{L^p(D(0,1/2))}\leq\|P\|_{L^p(D(0,4/5))}+(\pi/4)^{1/p}C_0|v(0)|\leq C|v(0)|,
 \]
-which proves the lemma.
+which proves the last assertion.
 \end{proof}
 
 \begin{proposition}\label{prop:negative-psh-polydisc-lp}
