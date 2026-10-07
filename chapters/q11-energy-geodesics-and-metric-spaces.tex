@@ -70,7 +70,7 @@ and show that both terms tend to zero. For the first term fix $\varepsilon>0$ an
 \]
 Since $\operatorname{Cap}_\omega(A_j)\to0$, uniform absolute continuity gives $\nu_j(A_j)\to0$. Thus the upper limit of the first term is at most $\varepsilon\sup_k\nu_k(X)$, and $\varepsilon$ is arbitrary.
 
-For the second term let $\eta>0$, and choose an open set $G$ with $\operatorname{Cap}_\omega(G)<\eta$ such that the restriction of $f$ to the compact set $X\setminus G$ is continuous. We extend this restriction to $X$, using a metric on $X$. Cover $X$ by finitely many coordinate charts $\kappa_\alpha\colon D_\alpha\to\mathbb R^{2n}$, $1\leq\alpha\leq N$, containing compact sets $K_\alpha\subset D_\alpha$ with $\bigcup_\alpha K_\alpha=X$ (for instance closed coordinate balls whose interiors cover $X$), and choose by \cref{prop:manifold-cutoffs-stokes} smooth functions $\rho_\alpha\colon X\to[0,1]$ with compact support in $D_\alpha$ and $\rho_\alpha=1$ on $K_\alpha$. Extending $\rho_\alpha\kappa_\alpha$ by zero outside $D_\alpha$, we obtain a continuous map $F=(\rho_\alpha,\rho_\alpha\kappa_\alpha)_{1\leq\alpha\leq N}\colon X\to\mathbb R^{N(2n+1)}$. It is injective: if $F(x)=F(y)$ and $x\in K_\alpha$, then $\rho_\alpha(y)=\rho_\alpha(x)=1$, so $y\in D_\alpha$ and $\kappa_\alpha(y)=\kappa_\alpha(x)$, whence $y=x$. A continuous injective map from a compact space to a Hausdorff space is a homeomorphism onto its image, so $d(x,y)=|F(x)-F(y)|$ is a metric inducing the topology of $X$. By \cref{lem:compact-tietze-extension}, applied in the metric space $(X,d)$, the restriction of $f$ to $X\setminus G$ extends to a continuous function $g$ on $X$ with $|g|\leq B$. Since weak convergence of measures on $X$ is convergence of the integrals of continuous functions (see the discussion following \cref{def:positive-current}), $\int_Xg\,\nu_j\to\int_Xg\,\nu$. Since $f=g$ outside $G$, we have $|\int_Xf\,\lambda-\int_Xg\,\lambda|\leq2B\lambda(G)$ for each $\lambda\in\{\nu,\nu_1,\nu_2,\ldots\}$. The upper limit of the second term is therefore at most $4B$ times the supremum of $\lambda(G)$ over the family, which tends to zero as $\eta\downarrow0$ by uniform absolute continuity.
+For the second term let $\eta>0$, and choose an open set $G$ with $\operatorname{Cap}_\omega(G)<\eta$ such that the restriction of $f$ to the compact set $X\setminus G$ is continuous. By \cref{lem:compact-manifold-metric}, there is a metric $d$ on $X$ which induces its topology, and by \cref{lem:compact-tietze-extension}, applied in the metric space $(X,d)$, the restriction of $f$ to $X\setminus G$ extends to a continuous function $g$ on $X$ with $|g|\leq B$. Since $X$ is compact, weak convergence of measures on $X$ is convergence of the integrals of all continuous functions (see the discussion following \cref{def:positive-current}, where weak convergence of measures is identified with convergence of the integrals of compactly supported continuous functions); hence $\int_Xg\,\nu_j\to\int_Xg\,\nu$. Since $f=g$ outside $G$, we have $|\int_Xf\,\lambda-\int_Xg\,\lambda|\leq2B\lambda(G)$ for each $\lambda\in\{\nu,\nu_1,\nu_2,\ldots\}$. The upper limit of the second term is therefore at most $4B$ times the supremum of $\lambda(G)$ over the family, which tends to zero as $\eta\downarrow0$ by uniform absolute continuity.
 \end{proof}
 
 \begin{lemma}\label{lem:singular-monge-ampere-difference-identity}
@@ -302,7 +302,7 @@ Moreover $|E_\theta^\phi(v)-E_\theta^\phi(u)|\leq m\sup|v-u|$, the supremum bein
 \end{proposition}
 \index{Monge--Amp\`ere energy!concavity}
 \begin{proof}
-Let $u_t=(1-t)u+tv$ and $h=v-u$. Differentiating \eqref{eq:bounded-type-energy-first-variation} once more, again as a polynomial in $t$, and using $\partial_t\mu_{u_t}=n\,\ddc h\wedge\langle\theta_{u_t}^{n-1}\rangle$, which follows from the identity $\partial_t((1-t)y+tz)^n=n(z-y)((1-t)y+tz)^{n-1}$ as in the preceding proof, gives
+Let $u_t=(1-t)u+tv$ and $h=v-u$. We have $\partial_t\mu_{u_t}=n\,\ddc h\wedge\langle\theta_{u_t}^{n-1}\rangle$. Indeed, by multilinearity and \eqref{eq:bounded-difference-hessian-product}, both sides of this identity expand into combinations of the mixed measures $\langle\theta_u^a\wedge\theta_v^{n-a}\rangle$, and these combinations are obtained by substituting $\langle\theta_u^a\wedge\theta_v^{n-a}\rangle$ for the monomial $y^az^{n-a}$ in the two sides of the polynomial identity $\partial_t((1-t)y+tz)^n=n(z-y)((1-t)y+tz)^{n-1}$ in commuting variables $y,z$. Differentiating \eqref{eq:bounded-type-energy-first-variation} once more, again as a polynomial in $t$, and using this identity, we obtain
 \[
  \frac{\mathrm d^2}{\mathrm dt^2}E_\theta^\phi(u_t)
          =n\int_Xh\,\ddc h\wedge
@@ -541,6 +541,20 @@ as $k\to\infty$, uniformly in $j$; the limit is zero by dominated convergence, s
 \end{proof}
 \index{Monge--Amp\`ere energy!increasing continuity}
 
+Upper semicontinuity of the energy for $L^1$ convergence rests on the following description of $L^1$ limits of potentials by decreasing sequences.
+
+\begin{lemma}\label{lem:global-lone-tail-envelopes}
+Let $\theta$ be a smooth closed real $(1,1)$-form on $X$, and let $q_k,q\in\PSH(X,\theta)$ satisfy $q_k\to q$ in $L^1(X)$. Then the functions $q_k$ are uniformly bounded above on $X$, the tail envelopes $a_j=(\sup_{k\geq j}q_k)^*$ belong to $\PSH(X,\theta)$, and $a_j$ decreases pointwise to $q$ as $j\to\infty$. In particular, if $\psi\colon X\to[-\infty,\infty)$ is upper semicontinuous and $q_k\leq\psi$ for every $k$, then $q\leq\psi$.
+\end{lemma}
+\index{quasi-plurisubharmonic function!tail envelopes of $L^1$ limits}
+\begin{proof}
+By \cref{prop:normalized-global-psh-compactness} the suprema $\sup_Xq_k$ converge to $\sup_Xq$, so they are bounded. Hence the tail envelopes $a_j$ are $\theta$-psh, by \cref{thm:psh-upper-envelopes} applied in charts after adding smooth local potentials of $\theta$, and they decrease as $j$ increases. A subsequence of $(q_k)$ converges to $q$ almost everywhere, so $a_j\geq q$ almost everywhere, hence everywhere, since both functions are $\theta$-psh (\cref{sec:global-obstacle-envelopes}).
+
+Conversely, let $x\in X$ and $\varepsilon>0$, let $h$ be a smooth local potential of $\theta$ on a coordinate ball $\Omega$ around $x$, and let $M>q(x)+h(x)$ be a real number. By upper semicontinuity there is a closed coordinate ball $K\subset\Omega$ around $x$ on which $q+h<M$ and $|h-h(x)|<\varepsilon$. The plurisubharmonic functions $q_k+h$ converge to $q+h$ in $L^1_{\loc}(\Omega)$, so Hartogs' lemma in the form of \cref{thm:psh-compactness-hartogs}, applied with the constant function $M$ on $K$, gives $q_k+h<M$ on $K$ for all large $k$. For such $k$ we have $q_k<M-h(x)+\varepsilon$ on $K$. Since $K$ is a neighborhood of $x$, it follows that $a_j(x)\leq M-h(x)+\varepsilon$ for all large $j$. Letting $\varepsilon\downarrow0$ and $M\downarrow q(x)+h(x)$, or $M\to-\infty$ if $q(x)=-\infty$, we obtain $\lim_ja_j(x)\leq q(x)$. Thus $a_j\downarrow q$.
+
+Finally, if $q_k\leq\psi$ for all $k$ with $\psi$ upper semicontinuous, then $\sup_{k\geq j}q_k\leq\psi$, so $a_j\leq\psi$ for every $j$, and therefore $q=\lim_ja_j\leq\psi$.
+\end{proof}
+
 \begin{proposition}\label{prop:relative-energy-lone-upper-semicontinuity}
 The set $\{u\in\PSH(X,\theta):u\preceq\phi\}$ is closed in $L^1(X)$, and $E_\theta^\phi$ is upper semicontinuous on it, with values in $[-\infty,\infty)$: if $u_j\to u$ in $L^1(X)$, then
 \[
@@ -548,9 +562,9 @@ The set $\{u\in\PSH(X,\theta):u\preceq\phi\}$ is closed in $L^1(X)$, and $E_\the
 \]
 \end{proposition}
 \begin{proof}
-Let $u_j\preceq\phi$ converge to $u$ in $L^1(X)$. By \cref{prop:normalized-global-psh-compactness} the suprema $\sup_Xu_j$ converge to $\sup_Xu$, so they are bounded, and \cref{lem:model-normalized-supremum} gives a constant $C$ with $u_j\leq\phi+C$ for all $j$. A subsequence converges almost everywhere, so $u\leq\phi+C$ almost everywhere, and hence everywhere, since both sides are $\theta$-psh. This proves closedness.
+Let $u_j\preceq\phi$ converge to $u$ in $L^1(X)$. By \cref{prop:normalized-global-psh-compactness} the suprema $\sup_Xu_j$ converge to $\sup_Xu$, so they are bounded, and \cref{lem:model-normalized-supremum} gives a constant $C$ with $u_j\leq\phi+C$ for all $j$. Since $\phi+C$ is upper semicontinuous, \cref{lem:global-lone-tail-envelopes} gives $u\leq\phi+C$. This proves closedness.
 
-Put $v_j=(\sup_{k\geq j}u_k)^*$. Since the $u_k$ are uniformly bounded above, these are $\theta$-psh potentials (\cref{thm:psh-upper-envelopes}, applied in charts after adding smooth local potentials of $\theta$), with $v_j\leq\phi+C$, and they decrease. We show that $\inf_jv_j=u$ pointwise; this part of the argument uses only that $u_k,u\in\PSH(X,\theta)$ and $u_k\to u$ in $L^1(X)$. A subsequence of $(u_k)$ converges to $u$ almost everywhere, so $v_j\geq u$ almost everywhere, hence everywhere. Conversely, let $x\in X$ and $\varepsilon>0$, and let $h$ be a smooth local potential of $\theta$ near $x$. If $u(x)$ is finite, choose a closed coordinate ball $K$ around $x$ on which $u+h<u(x)+h(x)+\varepsilon$ and $|h-h(x)|<\varepsilon$. The plurisubharmonic functions $u_k+h$ converge to $u+h$ in $L^1_{\loc}$, so by Hartogs' lemma in the form of \cref{thm:psh-compactness-hartogs}, applied with the constant majorant $u(x)+h(x)+\varepsilon$, we have $u_k+h<u(x)+h(x)+\varepsilon$ on $K$ for all large $k$. Hence $u_k<u(x)+2\varepsilon$ on $K$ for all large $k$, and so $v_j(x)\leq u(x)+2\varepsilon$ for large $j$. If $u(x)=-\infty$, the same argument with an arbitrary real constant in place of $u(x)+\varepsilon$ shows $\inf_jv_j(x)=-\infty$. Thus $v_j\downarrow u$.
+Put $v_j=(\sup_{k\geq j}u_k)^*$. By \cref{lem:global-lone-tail-envelopes}, these are $\theta$-psh potentials which decrease pointwise to $u$, and $v_j\leq\phi+C$ because $\phi+C$ is upper semicontinuous and dominates every $u_k$.
 
 Since $u_j\leq v_j$, monotonicity and \cref{prop:relative-energy-decreasing-continuity} give
 \[
@@ -566,10 +580,16 @@ For $B\geq0$, the set
 \[
  \{u\in\PSH(X,\theta):u\leq\phi,\quad E_\theta^\phi(u)\geq-B\}
 \]
-is compact in $L^1(X)$ and is contained in $\mathcal E^1(X,\theta,\phi)$.
+is compact in $L^1(X)$ and is contained in $\mathcal E^1(X,\theta,\phi)$. The set
+\[
+ K_\phi=\{u\in\PSH(X,\theta):u\leq\phi,\quad\sup_Xu=0\}
+\]
+is also compact in $L^1(X)$.
 \end{corollary}
 \begin{proof}
-For $u$ in the set, \cref{lem:model-normalized-supremum} gives $u\leq\phi+\sup_Xu$, so monotonicity and the shift formula give $-B\leq E_\theta^\phi(u)\leq m\sup_Xu$. Also $\sup_Xu\leq\sup_X\phi=0$. Hence the set lies in $\{u\in\PSH(X,\theta):-B/m\leq\sup_Xu\leq0\}$, which is compact in $L^1(X)$ by \cref{prop:normalized-global-psh-compactness}. The set is closed in $L^1(X)$: the inequality $u\leq\phi$ passes to $L^1$ limits, as in the proof of \cref{prop:relative-energy-lone-upper-semicontinuity}, and the energy bound passes to limits by upper semicontinuity. It is therefore compact. Its members have finite energy, so they lie in $\mathcal E^1(X,\theta,\phi)$ by \cref{thm:relative-finite-energy-characterization}.
+For $u$ in the first set, \cref{lem:model-normalized-supremum} gives $u\leq\phi+\sup_Xu$, so monotonicity and the shift formula give $-B\leq E_\theta^\phi(u)\leq m\sup_Xu$. Also $\sup_Xu\leq\sup_X\phi=0$. Hence the set lies in $\{u\in\PSH(X,\theta):-B/m\leq\sup_Xu\leq0\}$, which is compact in $L^1(X)$ by \cref{prop:normalized-global-psh-compactness}. The set is closed in $L^1(X)$: the inequality $u\leq\phi$ passes to $L^1$ limits by \cref{lem:global-lone-tail-envelopes}, since $\phi$ is upper semicontinuous, and the energy bound passes to limits by upper semicontinuity (\cref{prop:relative-energy-lone-upper-semicontinuity}). It is therefore compact. Its members have finite energy, so they lie in $\mathcal E^1(X,\theta,\phi)$ by \cref{thm:relative-finite-energy-characterization}.
+
+The set $K_\phi$ is contained in $\{u\in\PSH(X,\theta):\sup_Xu=0\}$, which is compact in $L^1(X)$ by \cref{prop:normalized-global-psh-compactness}, and it is closed in $L^1(X)$, because the supremum is continuous for $L^1$ convergence of potentials (by the same proposition) and the inequality $u\leq\phi$ passes to $L^1$ limits by \cref{lem:global-lone-tail-envelopes}. Hence $K_\phi$ is compact.
 \end{proof}
 \index{finite energy!compact energy sublevels}
 
