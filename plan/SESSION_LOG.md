@@ -954,3 +954,14 @@ At the author's instruction the compiled PDF (932 pages) is published as `Papers
 At the author's request the references no longer list an arXiv version and the published version of the same work as distinct entries. For each of the ten affected works, the notes now cite only the published entry. A locator checked against the preprint is marked "arXiv version". Each merged entry gives its arXiv identifier and date in a note. The ten preprint records stay in `ComplexGeometry.bib`, uncited, and the reference list drops from 75 to 65 entries. The book still has 932 pages, with no unresolved references and an audit of 0 errors.
 
 At the author's request the notation $M(u)$ for the total non-pluripolar mass is gone: masses are written $\int_X\langle\theta_u^n\rangle$, as in Chapter 15, with the background written out when it is not $\theta$. The symbol $C_\theta(u)$ for the singularity ceiling is replaced by $(\sup_{v\in\mathcal F_u}v)^*$, and every `\limsup` and `\liminf` is now `\varlimsup` or `\varliminf`. The forced build gives 934 pages (last printed page 920), with no unresolved references and no overfull or underfull boxes. The audit shows 0 errors.
+
+## 2026-10-13 — Round 4: proofreading for readability and presentation
+
+At the author's request the whole book had a proofreading round focused on readability and presentation. Each of 28 units (large files split by region) was proofread and then checked independently against `8549555`.
+
+- **Long proofs:** plans and step goals added, steps renumbered where steps were missing or empty, notation declared before use, and letters with two meanings in one proof renamed. The 14-page proof of the Chern smoothing lemma now has seven titled steps.
+- **Stated once:** facts derived two or three times became labelled displays or a lemma (17 new labels, among them the collar modification of Chapter 9 and `lem:extrapolation-obstacle-contact`). A few auxiliary lemmas moved, within their sections, to just before their first use; §A.1 was reordered; §7.1 is now "Complex manifolds and differential forms".
+- **Corrections:** no statement changed. Gaps in proofs were closed in Chapters 1, 7, 9, 12, 14, 16, 17 and Appendix A, and dropped reasons restored elsewhere; the record lists them.
+- **Validation:** the forced build gives 952 physical pages (last printed page 938), with no unresolved references and no overfull or underfull boxes; the audit shows 0 errors. Citations with locators are identical to `8549555`, no label or index entry was lost, and the two external-input theorems are byte-identical.
+
+Record: `research/reviews/2026-10-13-proofread-round4.md` and `.json`. Following the standing instruction, the compiled PDF was published as `Papers/FPT_vibe.pdf` on the author's homepage.
