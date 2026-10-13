@@ -52,11 +52,14 @@ No statement changed. The following gaps in proofs were closed, most of them alr
 - Short-page scan: pages more than a few lines short occur only before chapter and part openings and at the end of the references. Revised pages in Chapters 3, 14, 16 and 17 were inspected visually.
 - Preservation against `8549555`: no label lost (1316 → 1333, the additions are new displays and lemmas), the multiset of citations with their locators is identical (218), no index entry lost (1113 → 1130), and the page-break commands are unchanged. `thm:analytic-resolution-input` and `thm:marked-order-one-input` are byte-identical, and `plan/external-inputs.json` is unchanged.
 
-## Open points for the author
+## Author decisions after the round
 
-- `thm:bounded-density-relative-exponential-equation` is a special case of `thm:nonpluripolar-relative-exponential-equation`, and their coercivity paragraphs are nearly identical; the first is cited only in the notes. They could be merged.
-- The last assertion of `thm:subharmonic-quasicontinuity` (exhaustion of a Borel set by compact sets) does not involve $u$ and could stand on its own.
-- `lem:pseudoconvex-weighted-bergman-space` (Chapter 13) re-proves parts of `thm:multiplier-ideal-coherence` for a bounded density; stating the Chapter 12 result with a bounded density would allow a citation.
+The author asked to keep the current order of the homepage list and to carry out the three merges proposed at the end of the round as preferred. `AGENTS.md` now says that the homepage entry keeps the position the author chose.
+- **Chapter 17.** `thm:bounded-density-relative-exponential-equation` was a special case of `thm:nonpluripolar-relative-exponential-equation`, with a nearly identical coercivity argument, and was cited only in the notes. It is removed; a remark after the general theorem records that $\nu=g\,\mathrm dV$ with bounded $g\geq0$, $\int_Xg\,\mathrm dV>0$, is admissible, and the notes cite the general theorem. Its index entry moved to the general theorem, and its label was dropped from the result list of task Q11-01 in `plan/tasks.json`.
+- **Chapter 4.** The exhaustion of a Borel set by increasing compact sets, which did not involve the subharmonic function, moved from `thm:subharmonic-quasicontinuity` to the end of `thm:choquet-capacitability`, with its proof. No other statement cited it.
+- **Chapters 12 and 13.** `thm:multiplier-ideal-coherence` now treats a bounded pseudoconvex open set in a chart (a bounded polydisc being a special case), uses only local upper bounds of the weight, and allows a measure $\varrho\,\mathrm dV$ with $c_\varrho\leq\varrho\leq C_\varrho$. It states the evaluation bound, the Hilbert-space properties with Parseval's identity, and the generation of $\mathcal I(\varphi)$ as items (1)–(3). `lem:bounded-hilbert-ideal-generation` was generalized in the same way, and the dimension-zero cases are now covered explicitly. The proof of `lem:pseudoconvex-weighted-bergman-space` in Chapter 13 is now a citation of these results; every other citer is a special case. An independent check confirmed the generalized proofs and made three one-sentence fixes (the empty set in dimension zero, the place where the upper bound of $\varrho$ is used, and holomorphy of coefficients in dimension zero).
+
+After the merges: `make check` and `make audit` pass (0 errors), and the forced build gives 950 physical pages (last printed page 936) with no unresolved references and no overfull or underfull boxes (log: `research/reviews/logs/2026-10-13-proofread-round4-merges-build.log`). Compared with `8549555`, the only label removed is the merged theorem's; citations with locators are unchanged and no index entry was lost.
 
 ## Caveat
 
