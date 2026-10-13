@@ -237,7 +237,11 @@ For an upper bound, put $g_k=\min\{1,\max\{0,f/\delta-(k-1)\}\}$ for $1\leq k\le
 \[
  L(f)\leq\delta L(\eta)+\delta\sum_{k=2}^N\mu(U_{k-2}),
 \]
-and the upper bound exceeds the lower bound by $\delta L(\eta)+\delta(\mu(U_0)-\mu(U_{N-1})-\mu(U_N))\leq\delta(L(\eta)+\mu(\Supp f))$. On the other hand, the simple function $s_N=\delta\sum_{k=1}^N\mathbf1_{U_k}$ satisfies $0\leq f-s_N\leq\delta$ and vanishes outside $\Supp f$, so $\int f\,\mathrm d\mu$ exceeds the lower bound $\int s_N\,\mathrm d\mu$ by at most $\delta\mu(\Supp f)$. Hence $|L(f)-\int f\,\mathrm d\mu|\leq\delta(L(\eta)+\mu(\Supp f))$, and letting $N\to\infty$ gives $L(f)=\int f\,\mathrm d\mu$.
+and the upper bound exceeds the lower bound by
+\[
+ \delta L(\eta)+\delta\bigl(\mu(U_0)-\mu(U_{N-1})-\mu(U_N)\bigr)\leq\delta\bigl(L(\eta)+\mu(\Supp f)\bigr).
+\]
+On the other hand, the simple function $s_N=\delta\sum_{k=1}^N\mathbf1_{U_k}$ satisfies $0\leq f-s_N\leq\delta$ and vanishes outside $\Supp f$, so $\int f\,\mathrm d\mu$ exceeds the lower bound $\int s_N\,\mathrm d\mu$ by at most $\delta\mu(\Supp f)$. Hence $|L(f)-\int f\,\mathrm d\mu|\leq\delta(L(\eta)+\mu(\Supp f))$, and letting $N\to\infty$ gives $L(f)=\int f\,\mathrm d\mu$.
 
 \emph{Step 4: uniqueness.} Let $\nu$ be any Radon measure on $\Omega$ and $U\subset\Omega$ open. If $K\subset U$ is compact and $\eta$ is a cutoff function for $K$ in $U$, then $\nu(K)\leq\int\eta\,\mathrm d\nu\leq\nu(U)$, so inner regularity gives
 \begin{equation}\label{eq:measure-open-tests}
@@ -322,16 +326,24 @@ In the following assertions, limits are taken as $\varepsilon\to0$.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-(1) Since $\int\rho_\varepsilon=1$, we have $|u_\varepsilon(x)-u(x)|\leq\int|u(x-h)-u(x)|\rho_\varepsilon(h)\,\mathrm dh\leq\sup_{|h|\leq\varepsilon}|u(x-h)-u(x)|$. If $K\subset\Omega$ is compact, choose $\delta>0$ with $K'=\{x:\operatorname{dist}(x,K)\leq\delta\}\subset\Omega$. For $\varepsilon<\delta$ we have $K\subset\Omega_\varepsilon$, because the closed ball of radius $\delta$ about each point of $K$ lies in $\Omega$, and the bound tends to zero uniformly on $K$ by the uniform continuity of $u$ on the compact set $K'$.
+(1) Since $\int\rho_\varepsilon=1$, we have for $x\in\Omega_\varepsilon$
+\[
+ |u_\varepsilon(x)-u(x)|\leq\int|u(x-h)-u(x)|\rho_\varepsilon(h)\,\mathrm dh\leq\sup_{|h|\leq\varepsilon}|u(x-h)-u(x)|.
+\]
+If $K\subset\Omega$ is compact, choose $\delta>0$ with $K'=\{x:\operatorname{dist}(x,K)\leq\delta\}\subset\Omega$. For $\varepsilon<\delta$ we have $K\subset\Omega_\varepsilon$, because the closed ball of radius $\delta$ about each point of $K$ lies in $\Omega$, and the bound tends to zero uniformly on $K$ by the uniform continuity of $u$ on the compact set $K'$.
 
-(2) We first prove the continuity of translation. For $v\in C_c(\mathbb R^d)$ it follows from uniform continuity, since the functions $v(\cdot-h)$, $|h|\leq1$, are supported in a fixed compact set; the general case follows by approximating $v$ in $L^p$ by such functions (\cref{prop:continuous-density} for Lebesgue measure), since translation preserves the $L^p$ norm. Since $\int\rho_\varepsilon=1$, we have $v*\rho_\varepsilon(x)-v(x)=\int(v(x-h)-v(x))\rho_\varepsilon(h)\,\mathrm dh$. Hence Jensen's inequality (\cref{lem:jensen}), applied to the convex function $t\mapsto|t|^p$ on $\mathbb R$ and the probability measure $\rho_\varepsilon(h)\,\mathrm dh$, gives $|v*\rho_\varepsilon(x)-v(x)|^p\leq\int|v(x-h)-v(x)|^p\rho_\varepsilon(h)\,\mathrm dh$ for every $x$. We may take $v$ to be a Borel function, so that the integrand is a Borel function of $(x,h)$. Integrating in $x$ and using Tonelli's theorem, we obtain
+(2) We first prove the continuity of translation. For $v\in C_c(\mathbb R^d)$ it follows from uniform continuity, since the functions $v(\cdot-h)$, $|h|\leq1$, are supported in a fixed compact set; the general case follows by approximating $v$ in $L^p$ by such functions (\cref{prop:continuous-density} for Lebesgue measure), since translation preserves the $L^p$ norm. Since $\int\rho_\varepsilon=1$, we have $v*\rho_\varepsilon(x)-v(x)=\int(v(x-h)-v(x))\rho_\varepsilon(h)\,\mathrm dh$. Hence Jensen's inequality (\cref{lem:jensen}), applied to the convex function $t\mapsto|t|^p$ on $\mathbb R$ and the probability measure $\rho_\varepsilon(h)\,\mathrm dh$, gives
+\[
+ |v*\rho_\varepsilon(x)-v(x)|^p\leq\int|v(x-h)-v(x)|^p\rho_\varepsilon(h)\,\mathrm dh\qquad\text{for every }x.
+\]
+We may take $v$ to be a Borel function, so that the integrand is a Borel function of $(x,h)$. Integrating in $x$ and using Tonelli's theorem, we obtain
 \[
  \|v*\rho_\varepsilon-v\|_p^p
  \leq\int\rho_\varepsilon(h)\|v(\cdot-h)-v\|_p^p\,\mathrm d h\leq\sup_{|h|\leq\varepsilon}\|v(\cdot-h)-v\|_p^p\to0.
 \]
 Now let $u\in L^p_{\loc}(\Omega)$ and $K\subset\Omega$ compact, choose $\delta>0$ with $\{x:\operatorname{dist}(x,K)\leq2\delta\}\subset\Omega$, and let $v\in L^p(\mathbb R^d)$ equal $u$ on $W=\{x:\operatorname{dist}(x,K)<2\delta\}$ and $0$ elsewhere. For $\varepsilon<\delta$, the values of $u_\varepsilon$ on $K$ only involve $u$ on $W$, so $\|u_\varepsilon-u\|_{L^p(K)}\leq\|v*\rho_\varepsilon-v\|_p\to0$.
 
-(3) The function $\chi*\rho_\varepsilon$ vanishes outside the set of points at distance at most $\varepsilon$ from $\Supp\chi$, which is a compact subset of $\Omega$ for small $\varepsilon$. Differentiation under the integral sign gives $\partial^\alpha(\chi*\rho_\varepsilon)=(\partial^\alpha\chi)*\rho_\varepsilon$, and the bound $|w*\rho_\varepsilon(x)-w(x)|\leq\sup_{|h|\leq\varepsilon}|w(x-h)-w(x)|$ of (1), applied to the uniformly continuous function $w=\partial^\alpha\chi$ on $\mathbb R^d$, proves uniform convergence.
+(3) The function $\chi*\rho_\varepsilon$ vanishes outside the set of points at distance at most $\varepsilon$ from $\Supp\chi$, which is a compact subset of $\Omega$ for small $\varepsilon$. Differentiation under the integral sign gives $\partial^\alpha(\chi*\rho_\varepsilon)=(\partial^\alpha\chi)*\rho_\varepsilon$, and the bound displayed in (1), applied on $\mathbb R^d$ to the uniformly continuous function $\partial^\alpha\chi$ in place of $u$, proves uniform convergence.
 
 (4) Choose $\delta>0$ with $3\delta<\operatorname{dist}(K,\mathbb R^d\setminus U)$, and let $\eta$ be a cutoff function for $\{x:\operatorname{dist}(x,K)\leq2\delta\}$ in $\{x:\operatorname{dist}(x,K)<3\delta\}$. If $\varepsilon<\delta$ is smaller than the distance from $\Supp\eta$ to $\mathbb R^d\setminus U$, then $\eta*\rho_\varepsilon$ is smooth with values in $[0,1]$ and compact support in $U$, and it equals $1$ on $\{x:\operatorname{dist}(x,K)<\delta\}$, where the average only involves points at which $\eta=1$.
 
@@ -482,7 +494,7 @@ so $(\int f\,\mathrm d\mu_{j_k})_k$ is a Cauchy sequence. Its limit is a positiv
 
 \section{Nets and compactness}
 \label{sec:nets-compactness}
-Families of measures are not always indexed by the integers, and in a general topological space compactness cannot be tested with sequences alone. For instance, the product $[0,1]^{[0,1]}$ of copies of $[0,1]$, whose points are the functions $[0,1]\to[0,1]$, is compact by Tychonoff's theorem (\cref{lem:compact-product} below), and convergence of a sequence in it is pointwise convergence. Let $f_n(t)=\lfloor2^nt\rfloor-2\lfloor2^{n-1}t\rfloor$ be the $n$th binary digit of $t$. Given $n_1<n_2<\cdots$, the number $t=\sum_{k\text{ even}}2^{-n_k}$ has a binary expansion with infinitely many zeros, whose digit at the place $n_k$ is $1$ for even $k$ and $0$ for odd $k$. Hence $f_{n_k}(t)$ alternates between $1$ and $0$, and no subsequence of $(f_n)$ converges.
+In a general topological space, compactness cannot be tested with sequences alone. For instance, the product $[0,1]^{[0,1]}$ of copies of $[0,1]$, whose points are the functions $[0,1]\to[0,1]$, is compact by Tychonoff's theorem (\cref{lem:compact-product} below), and convergence of a sequence in it is pointwise convergence. Let $f_n(t)=\lfloor2^nt\rfloor-2\lfloor2^{n-1}t\rfloor$ be the $n$th binary digit of $t$. Given $n_1<n_2<\cdots$, the number $t=\sum_{k\text{ even}}2^{-n_k}$ has a binary expansion with infinitely many zeros, whose digit at the place $n_k$ is $1$ for even $k$ and $0$ for odd $k$. Hence $f_{n_k}(t)$ alternates between $1$ and $0$, and no subsequence of $(f_n)$ converges.
 
 For nets, subnets take the place of subsequences. Recall from the Conventions that subnets are Willard subnets\index{subnet!Willard}: if $(x_i)_{i\in I}$ is a net and $h\colon J\to I$ is an increasing map from a directed set $J$ which is final, meaning that for every $i_0\in I$ there is $j_0\in J$ with $h(j)\geq i_0$ for all $j\geq j_0$, then $(x_{h(j)})_{j\in J}$ is a subnet of $(x_i)$. Every subnet of a net converging to $x$ converges to $x$: given a neighborhood $U$ of $x$, choose $i_0$ with $x_i\in U$ for $i\geq i_0$, and then $j_0$ as in the definition of finality.
 
