@@ -316,7 +316,99 @@ Thus $S\leq C_1+KC_2$ at $x_0$. Since $H\leq nC_0$ on $X$, the function $S+KH$, 
 \emph{First derivatives of $g$.} In a chart of the fixed atlas, $\partial_pg_{i\bar q}=\widehat\nabla_pg_{i\bar q}+\widehat\Gamma^l_{pi}g_{l\bar q}=g_{m\bar q}\Psi^m_{pi}+\widehat\Gamma^l_{pi}g_{l\bar q}$ by \cref{lem:chern-connection-identities}(2). On a compact subset of the chart, $h$ lies between two positive multiples of the identity matrix and $\widehat\Gamma$ is bounded, so both terms are bounded, by the bounds for $S$ and $g$. Finally $\partial_{\bar p}g_{i\bar q}=\overline{\partial_pg_{q\bar i}}$, so all first derivatives of the $g_{i\bar j}$ in the underlying real coordinates are bounded.
 \end{proof}
 
-The perturbation argument uses Sobolev spaces that are algebras.
+The interior regularity of solutions is proved with difference quotients. For a coordinate unit vector $e$ of $\mathbb R^d$ and a real number $s\neq0$ we write $\tau_sZ(x)=Z(x+se)$ and $\delta_sZ=(\tau_sZ-Z)/s$.
+
+\begin{lemma}\label{lem:difference-quotients}
+Let $D'\Subset D$ be open subsets of $\mathbb R^d$, let $e$ be a coordinate unit vector, and put $s_0=\operatorname{dist}(D',\mathbb R^d\setminus D)$, with $s_0=\infty$ if $D=\mathbb R^d$.
+\begin{enumerate}
+\item Let $1\leq p<\infty$, and let $Z\in L^1_{\loc}(D)$ be such that the distribution $\partial_eZ$ belongs to $L^p(D)$. Then, for $0<|s|<s_0$, $\|\delta_sZ\|_{L^p(D')}\leq\|\partial_eZ\|_{L^p(D)}$, and $\delta_sZ\to\partial_eZ$ in $L^p(D')$ as $s\to0$.
+\item Let $2\leq p<\infty$, let $Z\in L^p(D)$, and suppose that $\|\delta_sZ\|_{L^p(D')}\leq M$ for $0<|s|<s_1$, where $0<s_1\leq s_0$. Then $\partial_eZ\in L^p(D')$ and $\|\partial_eZ\|_{L^p(D')}\leq M$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) Fix $s$ with $0<|s|<s_0$. We claim that $\delta_sZ(x)=\int_0^1\partial_eZ(x+tse)\,\mathrm dt$ for almost every $x\in D'$. For smooth $Z$ this is the fundamental theorem of calculus. In general, let $K\subset D'$ be compact; the set $K'=\{x+tse:x\in K,\ 0\leq t\leq1\}$ is a compact subset of $D$. The mollifications $Z_\varepsilon=Z*\rho_\varepsilon$ are smooth near $K'$ for small $\varepsilon$, they converge to $Z$ in $L^1(K')$, and $\partial_eZ_\varepsilon=(\partial_eZ)*\rho_\varepsilon\to\partial_eZ$ in $L^1(K')$, by \cref{prop:distribution-smoothing}(1) and \cref{lem:mollifier-density}(2). Hence the identity for $Z_\varepsilon$ passes to the limit in $L^1(K)$; for the right side we use $\int_K\int_0^1|F(x+tse)|\,\mathrm dt\,\mathrm dx\leq\int_{K'}|F|$, by Tonelli's theorem. This proves the claim. By H\"older's inequality on $[0,1]$ and Tonelli's theorem,
+\[
+ \int_{D'}|\delta_sZ|^p\leq\int_0^1\int_{D'}|\partial_eZ(x+tse)|^p\,\mathrm dx\,\mathrm dt\leq\|\partial_eZ\|_{L^p(D)}^p.
+\]
+Similarly, since $\delta_sZ(x)-\partial_eZ(x)=\int_0^1\bigl(\partial_eZ(x+tse)-\partial_eZ(x)\bigr)\,\mathrm dt$ for almost every $x\in D'$, H\"older's inequality and Tonelli's theorem give, with $F$ the extension of $\partial_eZ$ by zero to $\mathbb R^d$,
+\[
+ \|\delta_sZ-\partial_eZ\|_{L^p(D')}\leq\sup_{|r|\leq|s|}\|F(\cdot+re)-F\|_{L^p(\mathbb R^d)},
+\]
+which tends to zero as $s\to0$ by the continuity of translation in $L^p(\mathbb R^d)$ (\cref{lem:mollifier-density}(2)).
+
+(2) Let $\chi\in C_c^\infty(D')$ with $0\leq\chi\leq1$, extend $\chi Z$ by zero, and let $0<|s|<\min\{s_1,\operatorname{dist}(\Supp\chi,\mathbb R^d\setminus D')\}$. Then $\delta_s(\chi Z)$ vanishes outside $D'$, and on $D'$ it equals $(\tau_s\chi)\delta_sZ+(\delta_s\chi)Z$. Since $D'$ is bounded and $p\geq2$, H\"older's inequality gives
+\[
+ \|\delta_s(\chi Z)\|_{L^2(\mathbb R^d)}\leq|D'|^{1/2-1/p}\bigl(M+\|\nabla\chi\|_\infty\|Z\|_{L^p(D)}\bigr)=:M'.
+\]
+The function $\chi Z$ lies in $L^1\cap L^2$, so its $L^2$ Fourier transform is given by the integral (\cref{thm:plancherel}), and $\widehat{\delta_s(\chi Z)}=m_s\widehat{\chi Z}$ with $m_s(\xi)=(\mathrm e^{2\pi\mathrm is\xi_e}-1)/s$, where $\xi_e$ is the component of $\xi$ in the direction $e$. By Plancherel's theorem, $\int|m_s|^2|\widehat{\chi Z}|^2\leq M'^2$, and as $m_s(\xi)\to2\pi\mathrm i\xi_e$, Fatou's lemma gives $\int4\pi^2\xi_e^2|\widehat{\chi Z}|^2\leq M'^2$. Let $F\in L^2$ be the inverse $L^2$ transform of $2\pi\mathrm i\xi_e\widehat{\chi Z}$. For a test function $\phi$ we have $\widehat{\partial_e\phi}=2\pi\mathrm i\xi_e\widehat\phi$, by integration by parts, so Parseval's identity, which extends to $L^2$ because the transform is unitary, gives
+\[
+ \int F\,\overline\phi=\int2\pi\mathrm i\xi_e\widehat{\chi Z}\,\overline{\widehat\phi}=-\int\widehat{\chi Z}\,\overline{\widehat{\partial_e\phi}}=-\int\chi Z\,\overline{\partial_e\phi}.
+\]
+Thus $\partial_e(\chi Z)=F\in L^2$. Since $\chi$ may equal $1$ near any given compact subset of $D'$, it follows that $\partial_eZ\in L^2_{\loc}(D')$.
+
+Now let $D''\Subset D'''\Subset D'$ be open. By (1), applied with $D'''$ in place of $D$ and $p=2$, we have $\delta_sZ\to\partial_eZ$ in $L^2(D'')$, so along a sequence $s_j\to0$ the functions $\delta_{s_j}Z$ converge to $\partial_eZ$ almost everywhere on $D''$. Fatou's lemma gives $\|\partial_eZ\|_{L^p(D'')}\leq\varliminf_j\|\delta_{s_j}Z\|_{L^p(D'')}\leq M$. Exhausting $D'$ by such sets $D''$ and using monotone convergence, we obtain $\|\partial_eZ\|_{L^p(D')}\leq M$.
+\end{proof}
+\index{difference quotient}\index{Sobolev space!difference quotients}
+
+We now prove the interior regularity of solutions of the penalized equation in a chart, with estimates for their higher derivatives. For a function $G=(G_{i\bar j})$ with values in the positive definite Hermitian matrices we write $(g^{i\bar j})$ for its inverse in the normalization above and $D_Gw=g^{i\bar j}\partial_i\partial_{\bar j}w$; by Jacobi's formula, $\partial\log\det G=g^{i\bar j}\partial G_{i\bar j}=\operatorname{tr}(G^{-1}\partial G)$ for every first-order derivative $\partial$.
+
+\begin{lemma}\label{lem:penalized-local-regularity}
+Let $U\subset\mathbb C^n$ be open, let $k=(k_{i\bar j})$ be a smooth function on $U$ with values in the Hermitian matrices, let $\phi_0$ be a smooth real function on $U$, and let $\beta\in\mathbb R$. Let $u\in C^2(U)$ be real, suppose that $G=(k_{i\bar j}+u_{i\bar j})$ is positive definite on $U$, and that
+\begin{equation}\label{eq:penalized-local-equation}
+ \log\det G=\phi_0+\beta u\qquad\text{on }U.
+\end{equation}
+Then $u$ is smooth. Moreover, let $V\Subset U$ be open, let $\ell\geq3$ be an integer and $2\leq p<\infty$, and suppose that $\lambda I\leq G\leq\Lambda I$ on $U$ for constants $0<\lambda\leq\Lambda$, that $|G(x)-G(y)|\leq\varpi(|x-y|)$ for $x,y\in U$, where $\varpi(r)\to0$ as $r\to0$, and that $\|u\|_{C^1(U)}+\|D^2u\|_{L^q(U)}\leq M$, where $q=2^\ell(p+2n)$. Then $\|u\|_{W^{\ell,p}(V)}\leq C$, where $C$ depends only on $n$, $\ell$, $p$, $V$, $U$, $\lambda$, $\Lambda$, $\varpi$, $M$, $|\beta|$ and bounds on $U$ for the derivatives of order at most $\ell$ of $k$ and $\phi_0$.
+\end{lemma}
+\begin{proof}
+For the quantitative assertion, $C$ denotes constants depending only on the quantities listed there; $O'\Subset O\Subset O_1\Subset U$ denote open sets, and the constants may also depend on them. The qualitative assertion follows from the quantitative one: if $V\Subset U'\Subset U$ with $U'$ open, then on $U'$ the matrix $G$ is bounded above and below and uniformly continuous, and $u$ has finite $C^1$ norm and bounded second derivatives, so the quantitative assertion, applied on $U'$, gives $u\in W^{\ell,p}(V)$ for all $\ell$ and $p$; by Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the derivatives of $u$, all derivatives of $u$ are continuous on $V$.
+
+We prove the estimate by bootstrapping. An interior $L^p$ estimate for operators with continuous coefficients (Step~1), applied to difference quotients of $u$ and of its derivatives, raises the order of differentiability by one at a time (Steps~2 and~3), at the cost of a smaller exponent and a smaller domain (Step~4).
+
+\emph{Step 1: an interior estimate.} Let $(a^{i\bar j})$ be a function on $O$ with $\overline{a^{i\bar j}}=a^{j\bar i}$, $\Lambda^{-1}|\zeta|^2\leq a^{i\bar j}\zeta_i\bar\zeta_j\leq\lambda^{-1}|\zeta|^2$ and $|a(x)-a(y)|\leq\varpi'(|x-y|)$, where $\varpi'(r)\to0$ as $r\to0$. We claim that every real $w\in W^{2,p}_{\loc}(O)$ with $w\in W^{1,p}(O)$ satisfies
+\[
+ \|D^2w\|_{L^p(O')}\leq C\bigl(\|a^{i\bar j}\partial_i\partial_{\bar j}w\|_{L^p(O)}+\|w\|_{W^{1,p}(O)}\bigr),
+\]
+with $C$ depending also on $\varpi'$. Indeed, by \eqref{eq:complex-hessian-real-form}, $a^{i\bar j}\partial_i\partial_{\bar j}w=A:D^2w$ with a real symmetric $A\geq(4\Lambda)^{-1}I$, $|A|\leq C\lambda^{-1}$ and $|A(x)-A(y)|\leq\varpi'(|x-y|)$. Let $\delta_0$ and $C_1$ be the constants of \cref{lem:frozen-coefficient-lp} for $d=2n$, $p$ and $(4\Lambda)^{-1}$, and choose $r>0$ with $\varpi'(\varrho)\leq\delta_0$ for $0<\varrho<r$ and $r<\operatorname{dist}(O',\mathbb R^{2n}\setminus O)$. Cover $\overline{O'}$ by finitely many balls $B(x_\nu,r/2)$ with $x_\nu\in\overline{O'}$, and let $\chi_\nu=\chi(\cdot-x_\nu)$, where $\chi\in C_c^\infty(B(0,r))$ equals $1$ on $B(0,r/2)$. By \cref{lem:sobolev-leibniz-chain}(1) and \cref{lem:frozen-coefficient-lp},
+\[
+ \|D^2(\chi_\nu w)\|_p\leq C_1\|A:D^2(\chi_\nu w)\|_{L^p(B(x_\nu,r))},
+\]
+and $A:D^2(\chi_\nu w)=\chi_\nu\,A:D^2w+2\sum_{\mu,\sigma}A^{\mu\sigma}\partial_\mu\chi_\nu\,\partial_\sigma w+w\,A:D^2\chi_\nu$. Summing over $\nu$ proves the claim.
+
+\emph{Step 2: $u\in W^{3,p}_{\loc}$.} Let $e$ be a real coordinate unit vector, and let $0<|s|<\operatorname{dist}(O,\mathbb R^{2n}\setminus O_1)$, with the notation $\tau_s$, $\delta_s$ of \cref{lem:difference-quotients}. For $x\in O$ and $0\leq t\leq1$ the matrix $G_t(x)=(1-t)G(x)+tG(x+se)$ satisfies $\lambda I\leq G_t\leq\Lambda I$; let $(g_t^{i\bar j})$ be its inverse and $a_s^{i\bar j}=\int_0^1g_t^{i\bar j}\,\mathrm dt$. By Jacobi's formula, $\frac{\mathrm d}{\mathrm dt}\log\det G_t=g_t^{i\bar j}(G_{i\bar j}(x+se)-G_{i\bar j}(x))$, so integration over $0\leq t\leq1$ gives $\delta_s\log\det G=a_s^{i\bar j}\delta_sG_{i\bar j}$. Since $\delta_sG_{i\bar j}=\delta_sk_{i\bar j}+\partial_i\partial_{\bar j}\delta_su$, equation \eqref{eq:penalized-local-equation} gives
+\[
+ a_s^{i\bar j}\partial_i\partial_{\bar j}(\delta_su)=\delta_s\phi_0+\beta\,\delta_su-a_s^{i\bar j}\delta_sk_{i\bar j}\qquad\text{on }O.
+\]
+The right side is bounded by $\sup_U|\nabla\phi_0|+|\beta|\sup_U|\nabla u|+C\lambda^{-1}\sup_U|\nabla k|$. The matrices $a_s$ satisfy the hypotheses of Step 1 with $\varpi'=2\lambda^{-2}\varpi$, because they are averages of inverses of matrices between $\lambda I$ and $\Lambda I$, and $|M^{-1}-N^{-1}|=|M^{-1}(N-M)N^{-1}|\leq\lambda^{-2}|M-N|$ for such matrices. By \cref{lem:difference-quotients}(1), $\|\delta_su\|_{W^{1,p}(O)}\leq\|u\|_{W^{2,p}(O_1)}$. Step 1 therefore gives $\|D^2\delta_su\|_{L^p(O')}\leq C$, uniformly in $s$. Since $\delta_s\partial_\mu\partial_\sigma u=\partial_\mu\partial_\sigma\delta_su$, \cref{lem:difference-quotients}(2), applied to $Z=\partial_\mu\partial_\sigma u$, shows that $\partial_e\partial_\mu\partial_\sigma u\in L^p(O')$, with norm at most $C$. Thus $\|u\|_{W^{3,p}(O')}\leq C$, where $C$ depends on $M$ through $\|u\|_{C^1(U)}$ and $\|D^2u\|_{L^p(O_1)}$.
+
+\emph{Step 3: from $W^{\ell}$ to $W^{\ell+1}$.} Let $\ell\geq3$ and suppose that $u\in W^{\ell,q'}(O_1)$ for some $q'\geq2p+2n$. By Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the derivatives of $u$ of order at most $\ell-2$, which lie in $W^{2,q'}(O_1)$, the function $u$ is of class $C^{\ell-1}$ on $O_1$, and on a slightly smaller set, which we again call $O_1$, its derivatives of order at most $\ell-1$ are bounded by $C\|u\|_{W^{\ell,q'}}$. Thus $G\in C^{\ell-3}(O_1)$, its derivatives of order at most $\ell-3$ lie in $W^{1,2p}(O_1)$, and those of order $\ell-2$ lie in $L^{2p}(O_1)$.
+
+We first record a formula for the derivatives of $\log\det G$. For a smooth function $G$ with values in the positive definite Hermitian matrices and a multi-index $\gamma$ with $|\gamma|\geq1$,
+\[
+ \partial^\gamma\log\det G=\operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G),
+\]
+where $P_\gamma(G)$ is a linear combination, with coefficients depending only on $\gamma$, of functions $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\,G^{-1}\partial^{\beta_2}G\cdots G^{-1}\partial^{\beta_r}G)$ with $r\geq2$, $|\beta_i|\geq1$ and $\beta_1+\cdots+\beta_r=\gamma$; in particular $|\beta_i|\leq|\gamma|-1$. For $|\gamma|=1$ this is Jacobi's formula, with $P_\gamma=0$. If it holds for $\gamma$, differentiate once more: by the Leibniz rule and $\partial_\mu(G^{-1})=-G^{-1}(\partial_\mu G)G^{-1}$, the derivative of each term $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\cdots)$ is a sum of terms of the same form, with $r$ or $r+1$ factors and total multi-index $\gamma+e_\mu$, and the derivative of $\operatorname{tr}(G^{-1}\partial^\gamma G)$ is $\operatorname{tr}(G^{-1}\partial^{\gamma+e_\mu}G)-\operatorname{tr}(G^{-1}\partial_\mu G\,G^{-1}\partial^\gamma G)$. Note that $\operatorname{tr}(G^{-1}\partial^\gamma G)=g^{i\bar j}\partial^\gamma G_{i\bar j}$.
+
+Now fix $\gamma$ with $|\gamma|=\ell-2\geq1$. We claim that, almost everywhere on $O_1$,
+\[
+ \operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G)=\partial^\gamma\phi_0+\beta\,\partial^\gamma u,
+\]
+where $\partial^\gamma G$ is formed with weak derivatives. Let $K\subset O_1$ be compact, and let $u_\varepsilon=u*\rho_\varepsilon$ and $G_\varepsilon=k+(\partial_i\partial_{\bar j}u_\varepsilon)$. By \cref{prop:distribution-smoothing}(1) and \cref{lem:mollifier-density}(1),(2), as $\varepsilon\to0$ the derivatives of $u_\varepsilon$ of order at most $\ell-1$ converge uniformly on $K$ to those of $u$, and those of order $\ell$ converge in $L^{2p}(K)$. Hence $G_\varepsilon$ is positive definite on $K$ for small $\varepsilon$, its derivatives of order at most $\ell-3$ converge uniformly on $K$ to those of $G$, and $\partial^\gamma G_\varepsilon\to\partial^\gamma G$ in $L^{2p}(K)$. The formula above holds for the smooth functions $G_\varepsilon$ on the interior of $K$. Its left side converges to $\partial^\gamma\log\det G=\partial^\gamma\phi_0+\beta\partial^\gamma u$ in the sense of distributions, since $\log\det G_\varepsilon\to\log\det G$ uniformly on $K$ and $\log\det G=\phi_0+\beta u$, and its right side converges in $L^1(K)$, since every factor of $P_\gamma(G_\varepsilon)$ involves derivatives of $G_\varepsilon$ of order at most $\ell-3$. Hence the identity holds in the sense of distributions on the interior of $K$, and therefore almost everywhere (\cref{prop:distribution-smoothing}(4)). This proves the claim.
+
+Put $v=\partial^\gamma u\in W^{2,2p}(O_1)$. Since $\operatorname{tr}(G^{-1}\partial^\gamma G)=D_Gv+g^{i\bar j}\partial^\gamma k_{i\bar j}$, the claim says that
+\[
+ D_Gv=R:=\partial^\gamma\phi_0+\beta v-g^{i\bar j}\partial^\gamma k_{i\bar j}-P_\gamma(G)\qquad\text{almost everywhere on }O_1.
+\]
+For $x\in O$ and small $s$, as in Step 2, the discrete product rule $\delta_s(FF')=(\tau_sF)\delta_sF'+(\delta_sF)F'$ gives
+\[
+ (\tau_sg^{i\bar j})\,\partial_i\partial_{\bar j}(\delta_sv)=\delta_sR-(\delta_sg^{i\bar j})\,\partial_i\partial_{\bar j}v\qquad\text{almost everywhere on }O.
+\]
+We bound the right side in $L^p(O)$ uniformly in $s$, using \cref{lem:difference-quotients}(1) on $O\Subset O_1$. First, $\delta_s(G^{-1})=-(\tau_sG)^{-1}(\delta_sG)G^{-1}$, so $\|\delta_sG^{-1}\|_{L^{2p}(O)}\leq\lambda^{-2}\|\partial_eG\|_{L^{2p}(O_1)}\leq C$, as $\partial_eG$ involves derivatives of $u$ of order three. Hence the last term is bounded by $\|\delta_sG^{-1}\|_{L^{2p}}\|\partial\bar\partial v\|_{L^{2p}}\leq C$. Next, $\|\delta_s\partial^\gamma\phi_0\|_\infty\leq C$ and $\|\delta_sv\|_{L^p(O)}\leq\|\partial_ev\|_{L^p(O_1)}\leq C$. Finally, $g^{i\bar j}\partial^\gamma k_{i\bar j}$ and $P_\gamma(G)$ are sums of products of bounded continuous factors, namely entries of $G^{-1}$, derivatives of $k$, and derivatives of $G$ of order at most $\ell-3$, each of which has difference quotients bounded in $L^p(O)$; by the discrete product rule their difference quotients are bounded in $L^p(O)$. Thus the right side is bounded in $L^p(O)$, and $\|\delta_sv\|_{W^{1,p}(O)}\leq\|\partial_ev\|_{W^{1,p}(O_1)}\leq C$. The matrices $\tau_sG^{-1}$ satisfy the hypotheses of Step 1 with $\varpi'=\lambda^{-2}\varpi$. By Step 1, $\|D^2\delta_sv\|_{L^p(O')}\leq C$ uniformly in $s$, and \cref{lem:difference-quotients}(2), applied to the second derivatives of $v$, shows that the third derivatives of $v$ lie in $L^p(O')$, with norm at most $C$. Every multi-index of length $\ell+1$ is the sum of a multi-index of length $\ell-2$ and of three coordinate unit vectors, so $\|u\|_{W^{\ell+1,p}(O')}\leq C$, where $C$ depends on $u$ only through $\|u\|_{W^{\ell,q'}(O_1)}$.
+
+\emph{Step 4: conclusion.} Choose open sets $V=O_{3\ell}\Subset O_{3\ell-1}\Subset\cdots\Subset O_0=U$, depending only on $V$, $U$ and $\ell$, and put $e_m=2^{\ell-m}(p+2n)-2n$ for $3\leq m\leq\ell$. Then $e_\ell=p\geq2$, $e_m=2e_{m+1}+2n$, and $e_3\leq q$. Step 2, applied with the exponent $e_3$ in place of $p$ and with the sets $O_1$, $O_2$, $O_3$ in the roles of $O_1$, $O$, $O'$, bounds $\|u\|_{W^{3,e_3}(O_3)}$, since $\|D^2u\|_{L^{e_3}(O_1)}\leq|O_1|^{1/e_3-1/q}\|D^2u\|_{L^q(U)}$. For $m=3,\ldots,\ell-1$ we then apply Step 3 with $\ell$ replaced by $m$, with the exponent $e_{m+1}$ in place of $p$ and $q'=e_m$, and with the sets $O_{3m}$ (shrunk to $O_{3m+1}$), $O_{3m+2}$, $O_{3m+3}$ in the roles of $O_1$, $O$, $O'$; this bounds $\|u\|_{W^{m+1,e_{m+1}}(O_{3m+3})}$ in terms of $\|u\|_{W^{m,e_m}(O_{3m})}$. For $m=\ell-1$ we obtain the bound for $\|u\|_{W^{\ell,p}(V)}$.
+\end{proof}
+\index{Monge--Amp\`ere equation!interior regularity}
+
+The openness part of the continuity method is a perturbation argument in Sobolev spaces that are algebras.
 
 \begin{lemma}\label{lem:sobolev-multiplication}
 Let $d\geq1$, let $s>d/2$ be an integer, and for $v\in\mathcal S(\mathbb R^d)$ put
@@ -335,62 +427,6 @@ By the inversion formula of \cref{thm:plancherel} and Fubini's theorem, $\wideha
 Young's inequality $\|F*G\|_2\leq\|F\|_2\|G\|_1$ follows from the Cauchy--Schwarz inequality $|F*G(x)|^2\leq\|G\|_1\int|F(x-y)|^2|G(y)|\,\mathrm dy$ by integration in $x$ and Fubini's theorem. It therefore remains to bound $\|\widehat w\|_1$ and $\|\widehat v\|_1$ by the norms $\|\cdot\|_{\langle s\rangle}$. This follows from the Cauchy--Schwarz inequality, $\|\widehat w\|_1\leq\|\langle\cdot\rangle^{-s}\|_2\|\langle\cdot\rangle^s\widehat w\|_2$, since $\langle\xi\rangle^{-2s}$ is integrable on $\mathbb R^d$ for $2s>d$.
 \end{proof}
 \index{Sobolev space!multiplication estimate}\index{Young's inequality!for convolutions}
-
-The next lemma gives the regularity of solutions of the penalized equation, and the estimates for their higher derivatives, in a chart. For a function $G=(G_{i\bar j})$ with values in the positive definite Hermitian matrices we write $(g^{i\bar j})$ for its inverse in the normalization above and $D_Gw=g^{i\bar j}\partial_i\partial_{\bar j}w$; by Jacobi's formula, $\partial\log\det G=g^{i\bar j}\partial G_{i\bar j}=\operatorname{tr}(G^{-1}\partial G)$ for every first-order derivative $\partial$.
-
-\begin{lemma}\label{lem:penalized-local-regularity}
-Let $U\subset\mathbb C^n$ be open, let $k=(k_{i\bar j})$ be a smooth function on $U$ with values in the Hermitian matrices, let $\phi_0$ be a smooth real function on $U$, and let $\beta\in\mathbb R$. Let $u\in C^2(U)$ be real, suppose that $G=(k_{i\bar j}+u_{i\bar j})$ is positive definite on $U$, and that
-\begin{equation}\label{eq:penalized-local-equation}
- \log\det G=\phi_0+\beta u\qquad\text{on }U.
-\end{equation}
-Then $u$ is smooth. Moreover, let $V\Subset U$ be open, let $\ell\geq3$ be an integer and $2\leq p<\infty$, and suppose that $\lambda I\leq G\leq\Lambda I$ on $U$ for constants $0<\lambda\leq\Lambda$, that $|G(x)-G(y)|\leq\varpi(|x-y|)$ for $x,y\in U$, where $\varpi(r)\to0$ as $r\to0$, and that $\|u\|_{C^1(U)}+\|D^2u\|_{L^q(U)}\leq M$, where $q=2^\ell(p+2n)$. Then $\|u\|_{W^{\ell,p}(V)}\leq C$, where $C$ depends only on $n$, $\ell$, $p$, $V$, $U$, $\lambda$, $\Lambda$, $\varpi$, $M$, $|\beta|$ and bounds on $U$ for the derivatives of order at most $\ell$ of $k$ and $\phi_0$.
-\end{lemma}
-\begin{proof}
-For the quantitative assertion, $C$ denotes constants depending only on the quantities listed there; $O'\Subset O\Subset O_1\Subset U$ denote open sets, and the constants may also depend on them. The qualitative assertion follows from the quantitative one: if $V\Subset U'\Subset U$ with $U'$ open, then on $U'$ the matrix $G$ is bounded above and below and uniformly continuous, and $u$ has finite $C^1$ norm and bounded second derivatives, so the quantitative assertion, applied on $U'$, gives $u\in W^{\ell,p}(V)$ for all $\ell$ and $p$; by Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the derivatives of $u$, all derivatives of $u$ are continuous on $V$.
-
-\emph{Step 0: an interior estimate.} Let $(a^{i\bar j})$ be a function on $O$ with $\overline{a^{i\bar j}}=a^{j\bar i}$, $\Lambda^{-1}|\zeta|^2\leq a^{i\bar j}\zeta_i\bar\zeta_j\leq\lambda^{-1}|\zeta|^2$ and $|a(x)-a(y)|\leq\varpi'(|x-y|)$, where $\varpi'(r)\to0$ as $r\to0$. We claim that every real $w\in W^{2,p}_{\loc}(O)$ with $w\in W^{1,p}(O)$ satisfies
-\[
- \|D^2w\|_{L^p(O')}\leq C\bigl(\|a^{i\bar j}\partial_i\partial_{\bar j}w\|_{L^p(O)}+\|w\|_{W^{1,p}(O)}\bigr),
-\]
-with $C$ depending also on $\varpi'$. Indeed, by \eqref{eq:complex-hessian-real-form}, $a^{i\bar j}\partial_i\partial_{\bar j}w=\alpha:D^2w$ with a real symmetric $\alpha\geq(4\Lambda)^{-1}I$, $|\alpha|\leq C\lambda^{-1}$ and $|\alpha(x)-\alpha(y)|\leq\varpi'(|x-y|)$. Let $\delta_0$ and $C_A$ be the constants of \cref{lem:frozen-coefficient-lp} for $d=2n$, $p$ and $(4\Lambda)^{-1}$, and choose $r>0$ with $\varpi'(\varrho)\leq\delta_0$ for $0<\varrho<r$ and $r<\operatorname{dist}(O',\mathbb R^{2n}\setminus O)$. Cover $\overline{O'}$ by finitely many balls $B(x_k,r/2)$ with $x_k\in\overline{O'}$, and let $\chi_k=\chi(\cdot-x_k)$, where $\chi\in C_c^\infty(B(0,r))$ equals $1$ on $B(0,r/2)$. By \cref{lem:sobolev-leibniz-chain}(1) and \cref{lem:frozen-coefficient-lp},
-\[
- \|D^2(\chi_kw)\|_p\leq C_A\|\alpha:D^2(\chi_kw)\|_{L^p(B(x_k,r))},
-\]
-and $\alpha:D^2(\chi_kw)=\chi_k\,\alpha:D^2w+2\sum_{\mu,\sigma}\alpha^{\mu\sigma}\partial_\mu\chi_k\,\partial_\sigma w+w\,\alpha:D^2\chi_k$. Summing over $k$ proves the claim.
-
-\emph{Step 1: $u\in W^{3,p}_{\loc}$.} Let $e$ be a real coordinate unit vector, and let $0<|h|<\operatorname{dist}(O,\mathbb R^{2n}\setminus O_1)$, with the notation $\tau_h$, $\delta_h$ of \cref{lem:difference-quotients}. For $x\in O$ and $0\leq\tau\leq1$ the matrix $G_\tau(x)=(1-\tau)G(x)+\tau G(x+he)$ satisfies $\lambda I\leq G_\tau\leq\Lambda I$; let $(g_\tau^{i\bar j})$ be its inverse and $a_h^{i\bar j}=\int_0^1g_\tau^{i\bar j}\,\mathrm d\tau$. By Jacobi's formula, $\frac{\mathrm d}{\mathrm d\tau}\log\det G_\tau=g_\tau^{i\bar j}(G_{i\bar j}(x+he)-G_{i\bar j}(x))$, so integration over $0\leq\tau\leq1$ gives $\delta_h\log\det G=a_h^{i\bar j}\delta_hG_{i\bar j}$. Since $\delta_hG_{i\bar j}=\delta_hk_{i\bar j}+\partial_i\partial_{\bar j}\delta_hu$, equation \eqref{eq:penalized-local-equation} gives
-\[
- a_h^{i\bar j}\partial_i\partial_{\bar j}(\delta_hu)=\delta_h\phi_0+\beta\,\delta_hu-a_h^{i\bar j}\delta_hk_{i\bar j}\qquad\text{on }O.
-\]
-The right side is bounded by $\sup_U|\nabla\phi_0|+|\beta|\sup_U|\nabla u|+C\lambda^{-1}\sup_U|\nabla k|$. The matrices $a_h$ satisfy the hypotheses of Step 0 with $\varpi'=2\lambda^{-2}\varpi$, because they are averages of inverses of matrices between $\lambda I$ and $\Lambda I$, and $|M^{-1}-N^{-1}|=|M^{-1}(N-M)N^{-1}|\leq\lambda^{-2}|M-N|$ for such matrices. By \cref{lem:difference-quotients}(1), $\|\delta_hu\|_{W^{1,p}(O)}\leq\|u\|_{W^{2,p}(O_1)}$. Step 0 therefore gives $\|D^2\delta_hu\|_{L^p(O')}\leq C$, uniformly in $h$. Since $\delta_h\partial_\mu\partial_\sigma u=\partial_\mu\partial_\sigma\delta_hu$, \cref{lem:difference-quotients}(2), applied to $Z=\partial_\mu\partial_\sigma u$, shows that $\partial_e\partial_\mu\partial_\sigma u\in L^p(O')$, with norm at most $C$. Thus $\|u\|_{W^{3,p}(O')}\leq C$, where $C$ depends on $M$ through $\|u\|_{C^1(U)}$ and $\|D^2u\|_{L^p(O_1)}$.
-
-\emph{Step 2: from $W^{\ell}$ to $W^{\ell+1}$.} Let $\ell\geq3$ and suppose that $u\in W^{\ell,q'}(O_1)$ for some $q'\geq2p+2n$. By Morrey's inequality (\cref{lem:morrey-sobolev-representative}), applied to the derivatives of $u$ of order at most $\ell-2$, which lie in $W^{2,q'}(O_1)$, the function $u$ is of class $C^{\ell-1}$ on $O_1$, and on a slightly smaller set, which we again call $O_1$, its derivatives of order at most $\ell-1$ are bounded by $C\|u\|_{W^{\ell,q'}}$. Thus $G\in C^{\ell-3}(O_1)$, its derivatives of order at most $\ell-3$ lie in $W^{1,2p}(O_1)$, and those of order $\ell-2$ lie in $L^{2p}(O_1)$.
-
-We first record a formula for the derivatives of $\log\det G$. For a smooth function $G$ with values in the positive definite Hermitian matrices and a multi-index $\gamma$ with $|\gamma|\geq1$,
-\[
- \partial^\gamma\log\det G=\operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G),
-\]
-where $P_\gamma(G)$ is a linear combination, with coefficients depending only on $\gamma$, of functions $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\,G^{-1}\partial^{\beta_2}G\cdots G^{-1}\partial^{\beta_r}G)$ with $r\geq2$, $|\beta_i|\geq1$ and $\beta_1+\cdots+\beta_r=\gamma$; in particular $|\beta_i|\leq|\gamma|-1$. For $|\gamma|=1$ this is Jacobi's formula, with $P_\gamma=0$. If it holds for $\gamma$, differentiate once more: by the Leibniz rule and $\partial_\mu(G^{-1})=-G^{-1}(\partial_\mu G)G^{-1}$, the derivative of each term $\operatorname{tr}(G^{-1}\partial^{\beta_1}G\cdots)$ is a sum of terms of the same form, with $r$ or $r+1$ factors and total multi-index $\gamma+e_\mu$, and the derivative of $\operatorname{tr}(G^{-1}\partial^\gamma G)$ is $\operatorname{tr}(G^{-1}\partial^{\gamma+e_\mu}G)-\operatorname{tr}(G^{-1}\partial_\mu G\,G^{-1}\partial^\gamma G)$. Note that $\operatorname{tr}(G^{-1}\partial^\gamma G)=g^{i\bar j}\partial^\gamma G_{i\bar j}$.
-
-Now fix $\gamma$ with $|\gamma|=\ell-2\geq1$. We claim that, almost everywhere on $O_1$,
-\[
- \operatorname{tr}(G^{-1}\partial^\gamma G)+P_\gamma(G)=\partial^\gamma\phi_0+\beta\,\partial^\gamma u,
-\]
-where $\partial^\gamma G$ is formed with weak derivatives. Let $K\subset O_1$ be compact, and let $u_\varepsilon=u*\rho_\varepsilon$ and $G_\varepsilon=k+(\partial_i\partial_{\bar j}u_\varepsilon)$. By \cref{prop:distribution-smoothing}(1) and \cref{lem:mollifier-density}(1),(2), as $\varepsilon\to0$ the derivatives of $u_\varepsilon$ of order at most $\ell-1$ converge uniformly on $K$ to those of $u$, and those of order $\ell$ converge in $L^{2p}(K)$. Hence $G_\varepsilon$ is positive definite on $K$ for small $\varepsilon$, its derivatives of order at most $\ell-3$ converge uniformly on $K$ to those of $G$, and $\partial^\gamma G_\varepsilon\to\partial^\gamma G$ in $L^{2p}(K)$. The formula above holds for the smooth functions $G_\varepsilon$ on the interior of $K$. Its left side converges to $\partial^\gamma\log\det G=\partial^\gamma\phi_0+\beta\partial^\gamma u$ in the sense of distributions, since $\log\det G_\varepsilon\to\log\det G$ uniformly on $K$ and $\log\det G=\phi_0+\beta u$, and its right side converges in $L^1(K)$, since every factor of $P_\gamma(G_\varepsilon)$ involves derivatives of $G_\varepsilon$ of order at most $\ell-3$. Hence the identity holds in the sense of distributions on the interior of $K$, and therefore almost everywhere (\cref{prop:distribution-smoothing}(4)). This proves the claim.
-
-Put $v=\partial^\gamma u\in W^{2,2p}(O_1)$. Since $\operatorname{tr}(G^{-1}\partial^\gamma G)=D_Gv+g^{i\bar j}\partial^\gamma k_{i\bar j}$, the claim says that
-\[
- D_Gv=R:=\partial^\gamma\phi_0+\beta v-g^{i\bar j}\partial^\gamma k_{i\bar j}-P_\gamma(G)\qquad\text{almost everywhere on }O_1.
-\]
-For $x\in O$ and small $h$, as in Step 1, the discrete product rule $\delta_h(FF')=(\tau_hF)\delta_hF'+(\delta_hF)F'$ gives
-\[
- (\tau_hg^{i\bar j})\,\partial_i\partial_{\bar j}(\delta_hv)=\delta_hR-(\delta_hg^{i\bar j})\,\partial_i\partial_{\bar j}v\qquad\text{almost everywhere on }O.
-\]
-We bound the right side in $L^p(O)$ uniformly in $h$, using \cref{lem:difference-quotients}(1) on $O\Subset O_1$. First, $\delta_h(G^{-1})=-(\tau_hG)^{-1}(\delta_hG)G^{-1}$, so $\|\delta_hG^{-1}\|_{L^{2p}(O)}\leq\lambda^{-2}\|\partial_eG\|_{L^{2p}(O_1)}\leq C$, as $\partial_eG$ involves derivatives of $u$ of order three. Hence the last term is bounded by $\|\delta_hG^{-1}\|_{L^{2p}}\|\partial\bar\partial v\|_{L^{2p}}\leq C$. Next, $\|\delta_h\partial^\gamma\phi_0\|_\infty\leq C$ and $\|\delta_hv\|_{L^p(O)}\leq\|\partial_ev\|_{L^p(O_1)}\leq C$. Finally, $g^{i\bar j}\partial^\gamma k_{i\bar j}$ and $P_\gamma(G)$ are sums of products of bounded continuous factors, namely entries of $G^{-1}$, derivatives of $k$, and derivatives of $G$ of order at most $\ell-3$, each of which has difference quotients bounded in $L^p(O)$; by the discrete product rule their difference quotients are bounded in $L^p(O)$. Thus the right side is bounded in $L^p(O)$, and $\|\delta_hv\|_{W^{1,p}(O)}\leq\|\partial_ev\|_{W^{1,p}(O_1)}\leq C$. The matrices $\tau_hG^{-1}$ satisfy the hypotheses of Step 0 with $\varpi'=\lambda^{-2}\varpi$. By Step 0, $\|D^2\delta_hv\|_{L^p(O')}\leq C$ uniformly in $h$, and \cref{lem:difference-quotients}(2), applied to the second derivatives of $v$, shows that the third derivatives of $v$ lie in $L^p(O')$, with norm at most $C$. Every multi-index of length $\ell+1$ is the sum of a multi-index of length $\ell-2$ and of three coordinate unit vectors, so $\|u\|_{W^{\ell+1,p}(O')}\leq C$, where $C$ depends on $u$ only through $\|u\|_{W^{\ell,q'}(O_1)}$.
-
-\emph{Step 3: conclusion.} Choose open sets $V=O_{3\ell}\Subset O_{3\ell-1}\Subset\cdots\Subset O_0=U$, depending only on $V$, $U$ and $\ell$, and put $e_m=2^{\ell-m}(p+2n)-2n$ for $3\leq m\leq\ell$. Then $e_\ell=p\geq2$, $e_m=2e_{m+1}+2n$, and $e_3\leq q$. Step 1, applied with the exponent $e_3$ in place of $p$ and with the sets $O_1$, $O_2$, $O_3$ in the roles of $O_1$, $O$, $O'$, bounds $\|u\|_{W^{3,e_3}(O_3)}$, since $\|D^2u\|_{L^{e_3}(O_1)}\leq|O_1|^{1/e_3-1/q}\|D^2u\|_{L^q(U)}$. For $m=3,\ldots,\ell-1$ we then apply Step 2 with $\ell$ replaced by $m$, with the exponent $e_{m+1}$ in place of $p$ and $q'=e_m$, and with the sets $O_{3m}$ (shrunk to $O_{3m+1}$), $O_{3m+2}$, $O_{3m+3}$ in the roles of $O_1$, $O$, $O'$; this bounds $\|u\|_{W^{m+1,e_{m+1}}(O_{3m+3})}$ in terms of $\|u\|_{W^{m,e_m}(O_{3m})}$. For $m=\ell-1$ we obtain the bound for $\|u\|_{W^{\ell,p}(V)}$.
-\end{proof}
-\index{Monge--Amp\`ere equation!interior regularity}
 
 \begin{theorem}\label{thm:smooth-penalized-kahler-equation}
 For every smooth real function $f$ on $X$ and every $\beta>0$, equation \eqref{eq:penalized-kahler-equation} has a unique smooth real solution $a_\beta$.
