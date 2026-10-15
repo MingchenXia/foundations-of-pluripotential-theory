@@ -967,3 +967,8 @@ At the author's request the whole book had a proofreading round focused on reada
 Record: `research/reviews/2026-10-13-proofread-round4.md` and `.json`. Following the standing instruction, the compiled PDF was published as `Papers/FPT_vibe.pdf` on the author's homepage.
 
 The author asked to keep the current order of the homepage list (`AGENTS.md` updated) and approved the three proposed merges. The bounded-density exponential equation in Chapter 17 is now a remark after the theorem for non-pluripolar measures (its label is gone, also from `plan/tasks.json`); the exhaustion of Borel sets by compact sets moved from the quasi-continuity theorem to Choquet's theorem in Chapter 4; and `thm:multiplier-ideal-coherence` with `lem:bounded-hilbert-ideal-generation` now cover bounded pseudoconvex sets and bounded densities, so Chapter 13 cites them instead of repeating the proof. The Chapter 12/13 merge was checked independently. The forced build gives 950 physical pages (last printed page 936) with no unresolved references and no overfull or underfull boxes; `make check` and the audit pass. The compiled PDF was republished on the homepage.
+
+
+## 15 October 2026 — public source integration
+
+Consolidated both branches into main and merged PR #5 without source-tree loss. CI is disabled at the author's request. Local integrity, writing audit and full 952-page PDF build completed. Updated public-source instructions and README; the issue audit records retained completion evidence for #1–#4 and its limits. Gerby publication combines source contributions by topic. See research/reviews/2026-10-15-integration-issue-audit.md.

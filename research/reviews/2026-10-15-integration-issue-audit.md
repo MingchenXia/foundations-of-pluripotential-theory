@@ -1,0 +1,18 @@
+# Integration and issue audit — 15 October 2026
+
+The author requested consolidation into `main`, publication through Gerby, an audit of open issues, and no GitHub Actions CI. The author subsequently confirmed that the source repository is public. This record concerns integration and retained evidence, not a new independent review of the mathematical proofs.
+
+## Consolidation and local checks
+
+Merge commit `46b16b33fe5efd73d21c6163bcd11d689ac25c87` contains both former branch heads: `book/foundations-writing` (`746ef09033f73decae680a206e453df9f7fac65f`) and `claude/cool-tesla-hpipsr` (`145957e24a76246f0f36c6c2a387768cbade728b`). The latter already contained the former. The merge preserves its complete source tree. Pull request #5 was recognized as merged by GitHub; both non-main branches were deleted after ancestry verification.
+
+Local integrity checking passed: 27 chapter units, 139 obligations, 123 immutable source files, and 61 active TeX inputs. The writing audit reported zero errors and 82 warnings. The complete PDF built successfully to 952 physical pages, with no unresolved citations or references. The title page, an interior mathematics page, and a final references page were visually inspected. This selected inspection does not replace the earlier scoped chapter reviews. The system Make wrapper was unavailable because of the host's Xcode license state, so the underlying Python audit/integrity commands and latexmk were run directly.
+
+## Issue decisions
+
+- **#1 — P01:** P01-01 through P01-05 are recorded verified. `2026-10-03-p01.json` and `2026-10-03-p01-p03.md` record complete first/second reads, builds and visual inspection. Later continuation and correction records remain linked in `plan/tasks.json`. The active source contains the completed measure, distribution, convolution and compactness units. Acceptance evidence is present; close as completed.
+- **#2 — PSHD:** P06-01 through P06-04 and Q02-01 through Q02-04 have completed scoped reviews (`2026-10-03-p06.json`, `2026-10-03-q02.json` and their Markdown details). The active Q02 source preserves `def:plurisubharmonic` and proves `thm:automatic-psh-usc` beside it, including Borel measurability, the independent distributional representative and pointwise identification. P06 supplies the compact-circle Borel selection, energy, projection and incidence prerequisites. Attribution remains unsigned. Close as completed.
+- **#3 — quantitative regularization:** Q06-03 and Q06-04 have retained complete proof reviews in `2026-10-03-q06.json`/`.md`; their original prerequisite gate was subsequently closed by `2026-10-04-prequel-gate-consolidation.json`. The source's `thm:quantitative-lower-bound-regularization` has the geometric positivity-loss and multiplier-ideal lower-bound conclusions. Gentle/decreasing approximation is proved separately; Q06-05 records that separation. Source normalization conversions remain explicit. Close as completed.
+- **#4 — relevant GZ errata:** `2026-10-05-h01-final-semantic-audit.json`/`.md` reconciles the relevant errata with active internal proofs and exact source scopes. The candidate registry contains 11 accepted, two scope-limited and one rejected decision, each with downstream task IDs and evidence. The other 247 candidates are unused and remain unchecked; no verification of them is claimed. The issue requires adjudication when importing relevant results, not certification of all unused entries. Close as completed within that stated scope.
+
+Builds and issue status do not establish formal verification. Gerby must show **Not recorded** until a formalization repository and appropriate proof evidence are supplied.
