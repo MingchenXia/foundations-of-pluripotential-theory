@@ -1,0 +1,190 @@
+\subsection{Capacity convergence and truncated measures}
+\label{sec:canonical-grid-capacity-convergence}
+In \cref{thm:bounded-density-ball-dirichlet}, a common bound for the densities forced the solutions to converge in capacity, and \cref{thm:bt-capacity-continuity} then identified the limiting equation. The canonical approximants $U_j$ of \cref{prop:canonical-grid-energy-control} have no such bound unless $\mu$ itself has a bounded density, since a bound $\mu_j\leq M\,\mathrm dV$ for all $j$ would pass to the weak limit $\mu$; nor are the functions $U_j$ uniformly bounded. We show that the convergence of the energy integrals in \cref{thm:canonical-grid-self-integral-convergence} takes the place of the density bound once we pass to the uniformly bounded truncations $\max\{U_j,-T\}$, whose Monge--Amp\`ere measures differ from $\mu_j$ by an error controlled by the energy (\cref{lem:zero-boundary-truncation-mass}). Thus a subsequence of canonical approximants that converges in $L^1(B)$ also converges locally in capacity, and the Monge--Amp\`ere measures of the truncations of its limit approximate $\mu$ in total variation (\cref{thm:canonical-grid-capacity-convergence}).
+
+As throughout this section, $B$ is a ball in $\mathbb C^n$, $n\geq1$. For finite positive Borel measures $\nu_1,\nu_2$ on $B$ we use the total variation distance\index{measure!total variation distance}
+\[
+ \|\nu_1-\nu_2\|_{\mathrm{TV}}
+ =\sup\left\{\left|\int_Bf\,\mathrm d(\nu_1-\nu_2)\right|:
+                   f\text{ real Borel},\ |f|\leq1\right\}.
+\]
+The supremum does not change if $f$ ranges only over the real functions in $C_c(B)$ with $|f|\leq1$. Indeed, given a real Borel function $f$ with $|f|\leq1$, \cref{prop:continuous-density} provides functions in $C_c(B)$ converging to $f$ in $L^1(\nu_1+\nu_2)$, which we may take real by passing to real parts; clamping them to $[-1,1]$ keeps them in $C_c(B)$ and does not increase their distance from $f$.
+
+Let $T>0$ and $\delta>0$, and let $f,g$ be functions on $B$ with values in $[-\infty,\infty)$. Then
+\begin{equation}\label{eq:truncation-level-inclusions}
+ \begin{aligned}
+ \bigl\{\max\{f,-T\}>\max\{g,-T\}+\delta\bigr\}&\subset\{f>g+\delta\},\\
+ \bigl\{\max\{f,-T\}<\max\{g,-T\}-\delta\bigr\}&\subset\{f<g-\delta\}.
+ \end{aligned}
+\end{equation}
+Indeed, at a point of the first set we have $\max\{f,-T\}>-T$, so $f=\max\{f,-T\}>\max\{g,-T\}+\delta\geq g+\delta$; the second inclusion is the first with $f$ and $g$ interchanged. Consequently, truncation at a fixed level preserves convergence locally in capacity (\cref{def:local-capacity-convergence}): if $f_j\to f$, then $\max\{f_j,-T\}\to\max\{f,-T\}$.
+
+Modifying a locally bounded plurisubharmonic function on a compact set does not change its total Monge--Amp\`ere mass.
+
+\begin{lemma}\label{lem:compact-perturbation-mass}
+Let $\Omega\subset\mathbb C^n$ be open, and let $\varphi,\psi$ be locally bounded plurisubharmonic functions on $\Omega$ which coincide outside a compact set $K\subset\Omega$. Then $(\ddc\varphi)^n$ and $(\ddc\psi)^n$ agree on $\Omega\setminus K$ and assign the same finite mass to $K$. In particular $\int_\Omega(\ddc\varphi)^n=\int_\Omega(\ddc\psi)^n$, where both sides may be infinite.
+\end{lemma}
+\begin{proof}
+The two measures agree on the open set $\Omega\setminus K$, because the products are local (\cref{prop:bt-positive-recursion}). For $0\leq k\leq n-1$ put $S_k=(\ddc\varphi)^k\wedge(\ddc\psi)^{n-1-k}$. By the symmetry of the products (\cref{thm:bt-decreasing-continuity}) and \cref{def:bedford-taylor-product},
+\[
+ \ddc(\varphi S_k)=(\ddc\varphi)^{k+1}\wedge(\ddc\psi)^{n-1-k},
+ \qquad
+ \ddc(\psi S_k)=(\ddc\varphi)^k\wedge(\ddc\psi)^{n-k},
+\]
+so the sum over $k$ telescopes and
+\[
+ (\ddc\varphi)^n-(\ddc\psi)^n=\ddc R,\qquad
+ R=(\varphi-\psi)\sum_{k=0}^{n-1}S_k.
+\]
+The coefficient measures of the current $R$ of order zero vanish on $\Omega\setminus K$, so $\Supp R\subset K$. By \cref{lem:mollifier-density} there is $\chi\in C^\infty_c(\Omega)$ with $0\leq\chi\leq1$ which equals one on a neighborhood of $K$. Then $\ddc\chi$ vanishes on a neighborhood of $\Supp R$, and therefore
+\[
+ \int\chi\,(\ddc\varphi)^n-\int\chi\,(\ddc\psi)^n=R(\ddc\chi)=0,
+\]
+where both integrals are finite. Since $\chi=1$ on $K$ and the two measures agree on $\Omega\setminus K$, it follows that $(\ddc\varphi)^n(K)=(\ddc\psi)^n(K)<\infty$, and adding the equal masses of $\Omega\setminus K$ gives the last assertion.
+\end{proof}
+\index{Monge--Amp\`ere measure!compactly supported perturbation}
+
+\begin{lemma}\label{lem:zero-boundary-truncation-mass}
+Let $\varphi\in\mathcal E_0(B)$ and $T>0$, and put $\varphi_T=\max\{\varphi,-T\}$. Then $\varphi_T\in\mathcal E_0(B)$, and for every $p\geq1$,
+\[
+ \int_B(\ddc\varphi_T)^n=\int_B(\ddc\varphi)^n,
+ \qquad e_p(\varphi_T)\leq e_p(\varphi),
+\]
+\begin{equation}\label{eq:zero-boundary-truncation-variation}
+ \|(\ddc\varphi_T)^n-(\ddc\varphi)^n\|_{\mathrm{TV}}
+                         \leq2e_p(\varphi)T^{-p}.
+\end{equation}
+Moreover, for every Borel set $E\subset B$,
+\begin{equation}\label{eq:energy-measure-capacity-modulus}
+ \int_E(\ddc\varphi)^n
+       \leq T^n\operatorname{Cap}_B(E)+e_p(\varphi)T^{-p}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Since $\varphi$ tends to zero uniformly at $\partial B$, there is an open neighborhood $V$ of $\partial B$ such that $\varphi>-T$ on $V\cap B$; there $\varphi_T=\varphi$. Thus $\varphi_T$ is bounded, nonpositive and plurisubharmonic, it has zero boundary values, and it coincides with $\varphi$ outside the compact set $\overline B\setminus V\subset B$. By \cref{lem:compact-perturbation-mass}, the measures $(\ddc\varphi_T)^n$ and $(\ddc\varphi)^n$ have the same total mass, which is finite; in particular $\varphi_T\in\mathcal E_0(B)$.
+
+Put $F_T=\{\varphi\leq-T\}$. By maximum locality (\cref{prop:bt-maximum-locality}), the two measures agree on the complement $\{\varphi>-T\}$. Since their total masses are equal and finite, they also assign the same mass $m_T$ to $F_T$, and Chebyshev's inequality gives
+\[
+ m_T\leq T^{-p}\int_{F_T}(-\varphi)^p(\ddc\varphi)^n\leq e_p(\varphi)T^{-p}.
+\]
+As $\varphi_T=-T$ on $F_T$, we get
+\[
+ e_p(\varphi_T)=\int_{\{\varphi>-T\}}(-\varphi)^p(\ddc\varphi)^n+T^pm_T
+ \leq e_p(\varphi).
+\]
+The two measures differ only on $F_T$, where each has mass $m_T$; this proves \eqref{eq:zero-boundary-truncation-variation}. Finally, $(\varphi_T+T)/T$ is plurisubharmonic with values in $[0,1]$, so it is a competitor for $\operatorname{Cap}_B$ (\cref{def:monge-ampere-capacity}), and therefore $\int_E(\ddc\varphi_T)^n\leq T^n\operatorname{Cap}_B(E)$. Since the two measures agree on $E\setminus F_T$, we conclude
+\[
+ \int_E(\ddc\varphi)^n
+ \leq\int_{E\setminus F_T}(\ddc\varphi_T)^n+m_T
+ \leq T^n\operatorname{Cap}_B(E)+e_p(\varphi)T^{-p}.
+\]
+\end{proof}
+\index{local energy!truncation mass and capacity}
+
+\begin{proposition}\label{prop:energy-controlled-local-capacity-tails}
+Let $p\geq1$.
+\begin{enumerate}
+\item For every $\varphi\in\mathcal E_0(B)$ and every $T>0$,
+\[
+ \operatorname{Cap}_B(\{\varphi<-T\})
+             \leq2^{n+p}(n+1)!\,e_p(\varphi)T^{-(n+p)}.
+\]
+\item Let $\varphi_j\in\mathcal E_0(B)$ converge in $L^1_{\loc}(B)$, let $u$ be the plurisubharmonic representative of the limit (\cref{thm:psh-compactness-hartogs}), and suppose that $E_p=\sup_je_p(\varphi_j)<\infty$. For every compact set $K\subset B$ there is a constant $C_{K,p}$, depending only on $K$, $p$ and the ball $B$, such that
+\begin{equation}\label{eq:energy-limit-capacity-tail}
+ \operatorname{Cap}_B^*(K\cap\{u<-T\})
+                \leq C_{K,p}E_p^{p/(n+p)}T^{-p}\qquad(T>0).
+\end{equation}
+In particular, $\operatorname{Cap}^*_B(K\cap\{u=-\infty\})=0$ for every compact set $K\subset B$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) Let $h$ be a competitor for $\operatorname{Cap}_B$, that is, $h\in\PSH(B)$ and $0\leq h\leq1$. The set $\{\varphi<-T\}$ is open, because $\varphi$ is upper semicontinuous, and it is relatively compact in $B$, because $\varphi$ has zero boundary values. Hence $\nu=\mathbf1_{\{\varphi<-T\}}(\ddc h)^n$ is a finite measure, and it is dominated by $(\ddc h)^n$. The tail estimate \eqref{eq:local-energy-measure-tail} of \cref{thm:bounded-subsolution-local-energy-moments}, applied to $\nu$ and $w=h$, involves the constant $\kappa_{n,p}=2^{n+p}(n+1)!M^n$, where $M\leq1$ is the oscillation of $h$ on $B$, but not the mass of $\nu$; it gives
+\[
+ \int_{\{\varphi<-T\}}(\ddc h)^n=\nu(\{\varphi<-T\})
+ \leq2^{n+p}(n+1)!\,e_p(\varphi)T^{-(n+p)}.
+\]
+Taking the supremum over $h$ proves (1).
+
+(2) Choose an open set $U$ and compact sets $L,L'\subset B$ with $K\subset U\Subset\Int L$ and $L\subset\Int L'$. By the Chern--Levine--Nirenberg inequality (\cref{thm:cln-bounded}, with the base current $1$ and the pair $L\subset\Int L'$), there is a constant $C_L$ with $\int_L(\ddc h)^n\leq C_L$ for every competitor $h$, since $\|h\|_{L^\infty(L')}\leq1$. The finite measure $\mathbf1_L(\ddc h)^n$ is dominated by $(\ddc h)^n$ and has mass at most $C_L$, so the constant $A_p$ of \cref{thm:bounded-subsolution-local-energy-moments} for this measure and $w=h$ is at most
+\[
+ C_{K,p}=\Bigl(1+\frac pn\Bigr)\bigl(2^{n+p}(n+1)!\bigr)^{p/(n+p)}C_L^{n/(n+p)}.
+\]
+Hence the moment estimate \eqref{eq:local-energy-measure-moment}, applied to $\varphi_j$, gives
+\[
+ \int_L(-\varphi_j)^p(\ddc h)^n
+                         \leq C_{K,p}E_p^{p/(n+p)}
+\]
+for all $j$ and all competitors $h$.
+
+We pass this bound to the limit $u$. Since the $\varphi_j$ are nonpositive, $u\leq0$ almost everywhere, and hence everywhere by the submean inequality. Fix $S>0$. The truncations $\max\{\varphi_j,-S\}$ take values in $[-S,0]$ and converge to the plurisubharmonic function $\max\{u,-S\}$ in $L^1_{\loc}(B)$, since $t\mapsto\max\{t,-S\}$ is $1$-Lipschitz. Since $\mathbf1_L(\ddc h)^n\leq(\ddc h)^n$, \cref{lem:bounded-psh-fixed-measure-continuity} shows that they also converge in $L^1(\mathbf1_L(\ddc h)^n)$. As $t\mapsto t^p$ is Lipschitz on $[0,S]$ and $(-\max\{\varphi_j,-S\})^p\leq(-\varphi_j)^p$, it follows that
+\[
+ \begin{aligned}
+ \int_L(-\max\{u,-S\})^p(\ddc h)^n
+ &=\lim_{j\to\infty}\int_L(-\max\{\varphi_j,-S\})^p(\ddc h)^n\\
+ &\leq C_{K,p}E_p^{p/(n+p)}.
+ \end{aligned}
+\]
+Letting $S\to\infty$, monotone convergence gives the same bound for $\int_L(-u)^p(\ddc h)^n$. The set $U\cap\{u<-T\}$ is open, because $u$ is upper semicontinuous, and it contains $K\cap\{u<-T\}$. By Chebyshev's inequality its $(\ddc h)^n$-measure is at most $C_{K,p}E_p^{p/(n+p)}T^{-p}$. Taking the supremum over $h$ bounds $\operatorname{Cap}_B(U\cap\{u<-T\})$, and hence the outer capacity in \eqref{eq:energy-limit-capacity-tail}. Finally, $K\cap\{u=-\infty\}$ is contained in $K\cap\{u<-T\}$ for every $T$, so letting $T\to\infty$ shows that it has zero outer capacity.
+\end{proof}
+\index{local energy!capacity of sublevel sets}
+
+\begin{theorem}\label{thm:canonical-grid-capacity-convergence}
+Under the hypotheses of \cref{thm:canonical-grid-self-integral-convergence}, the relabeled subsequence $U_j$ converges to $u$ locally in capacity. Moreover, let $E_2=\sup_je_2(U_j)$, which is finite by \cref{prop:canonical-grid-energy-control}. For every $T>0$, the Monge--Amp\`ere measure of the bounded plurisubharmonic function $u_T=\max\{u,-T\}$ has total mass at most $m$, and
+\begin{equation}\label{eq:canonical-grid-truncated-measure-limit}
+ \|(\ddc u_T)^n-\mu\|_{\mathrm{TV}}\leq2E_2T^{-2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+We estimate the capacities of the sets where the truncation $\max\{U_j,-T\}$ lies far below or far above $u_T$ (Steps 1 and 2) and deduce convergence in capacity (Step 3). The estimate for $(\ddc u_T)^n$ then follows from the convergence of the truncated measures (Step 4). Fix $T>0$ and write $a_j=\max\{U_j,-T\}$ and $b=u_T$. These plurisubharmonic functions take values in $[-T,0]$, and $a_j\to b$ in $L^1_{\loc}(B)$ because truncation is $1$-Lipschitz. By \cref{thm:canonical-grid-self-integral-convergence}, $\varepsilon_j=\int_B|U_j-u|\,\mathrm d\mu_j\to0$.
+
+\emph{Step 1. The sets where $a_j<b-\delta$.}
+Let $\delta>0$. The set $\{a_j<b-\delta/2\}$ is relatively compact in $B$, because $b\leq0$ while $a_j$ tends to zero at $\partial B$. Applying \cref{lem:local-comparison-capacity-sublevels} with $s=t=\delta/2$ and then Chebyshev's inequality, we obtain
+\[
+ \begin{aligned}
+ \operatorname{Cap}_B(\{a_j<b-\delta\})
+ &\leq\left(\frac2\delta\right)^n\int_{\{a_j<b-\delta/2\}}(\ddc a_j)^n\\
+ &\leq2^{n+1}\delta^{-(n+1)}\int_B(b-a_j)_+(\ddc a_j)^n.
+ \end{aligned}
+\]
+The weight $(b-a_j)_+$ takes values in $[0,T]$, and it is at most $|U_j-u|$, since truncation does not increase distances. By \eqref{eq:zero-boundary-truncation-variation} with $p=2$, $\|(\ddc a_j)^n-\mu_j\|_{\mathrm{TV}}\leq2E_2T^{-2}$, where $\mu_j=(\ddc U_j)^n$. Hence
+\[
+ \int_B(b-a_j)_+(\ddc a_j)^n
+ \leq\int_B(b-a_j)_+\,\mathrm d\mu_j+T\cdot2E_2T^{-2}
+ \leq\varepsilon_j+\frac{2E_2}T,
+\]
+and therefore $\operatorname{Cap}_B(\{a_j<b-\delta\})\leq2^{n+1}\delta^{-(n+1)}(\varepsilon_j+2E_2/T)$.
+
+\emph{Step 2. The sets where $a_j>b+\delta$.}
+Let $L\subset B$ be compact. By \cref{thm:psh-capacity-quasicontinuity}, for every $\sigma>0$ there is an open set $G\subset B$ with $\operatorname{Cap}_B(G)<\sigma$ such that $b$ is continuous on $B\setminus G$. We claim that $L\cap\{a_j>b+\delta\}\subset G$ for all sufficiently large $j$. Let $z\in L\setminus G$. Since $b$ is upper semicontinuous, $b<b(z)+\delta/3$ on a closed ball $\overline{B(z,r)}\subset B$. Hartogs' lemma (\cref{thm:psh-compactness-hartogs}), applied to the sequence $a_j$ with the constant majorant $b(z)+\delta/3$, gives $a_j<b(z)+\delta/3$ on $\overline{B(z,r)}$ for all large $j$. Since $b$ is continuous on $B\setminus G$, after shrinking $r$ we also have $b>b(z)-\delta/3$ on $(L\setminus G)\cap B(z,r)$. Hence $a_j-b<2\delta/3$ on $(L\setminus G)\cap B(z,r)$ for all large $j$. As $L\setminus G$ is compact, finitely many such balls cover it, which proves the claim. Consequently $\varlimsup_j\operatorname{Cap}_B(L\cap\{a_j>b+\delta\})\leq\sigma$ for every $\sigma>0$, that is, $\operatorname{Cap}_B(L\cap\{a_j>b+\delta\})\to0$.
+
+\emph{Step 3. Convergence in capacity.}
+Let $K\subset B$ be compact, and apply Step 2 to a compact set $L\subset B$ with $K\subset\Int L$. The bounded functions $a_j-b$ are quasi-continuous by \cref{thm:psh-capacity-quasicontinuity} and the remark following \cref{def:quasi-continuity}. Therefore \cref{lem:quasi-continuous-level-capacity}, together with Steps 1 and 2 applied with $\delta/2$ in place of $\delta$, gives
+\[
+ \begin{aligned}
+ &\varlimsup_{j\to\infty}\operatorname{Cap}_B^*(K\cap\{|a_j-b|>\delta\})\\
+ &\qquad\leq\varlimsup_{j\to\infty}\bigl(\operatorname{Cap}_B(L\cap\{a_j>b+\delta/2\})
+     +\operatorname{Cap}_B(\{a_j<b-\delta/2\})\bigr)\\
+ &\qquad\leq2^{2n+3}\delta^{-(n+1)}\frac{E_2}T.
+ \end{aligned}
+\]
+
+It remains to remove the truncation. Outside $\{U_j<-T\}\cup\{u<-T\}$ we have $a_j=U_j$ and $b=u$. Hence both sets $K\cap\{U_j>u+\delta\}$ and $K\cap\{U_j<u-\delta\}$ in \cref{def:local-capacity-convergence} are contained in
+\[
+ \bigl(K\cap\{|a_j-b|>\delta\}\bigr)\cup\{U_j<-T\}\cup\bigl(K\cap\{u<-T\}\bigr).
+\]
+By \cref{prop:energy-controlled-local-capacity-tails} with $p=2$, applied in part~(1) to $U_j$, whose energy is at most $E_2$, and in part~(2) to the sequence $(U_j)$,
+\[
+ \operatorname{Cap}_B(\{U_j<-T\})\leq\frac{2^{n+2}(n+1)!\,E_2}{T^{n+2}},\qquad
+ \operatorname{Cap}_B^*(K\cap\{u<-T\})\leq\frac{C_{K,2}E_2^{2/(n+2)}}{T^2},
+\]
+and the capacity of the open set $\{U_j<-T\}$ equals its outer capacity. By subadditivity of the outer capacity, the upper limits as $j\to\infty$ of the outer capacities of the two sets in \cref{def:local-capacity-convergence} are bounded by the sum of three terms, each of which tends to zero as $T\to\infty$. Since these upper limits do not depend on $T$, they vanish. Thus $U_j\to u$ locally in capacity.
+
+\emph{Step 4. The truncated limit measure.}
+Fix $T>0$ again. By Step 3 and \eqref{eq:truncation-level-inclusions}, the uniformly bounded functions $a_j$ converge to $b$ locally in capacity, so $(\ddc a_j)^n\to(\ddc u_T)^n$ weakly on $B$ by \cref{thm:bt-capacity-continuity}. By \cref{lem:zero-boundary-truncation-mass}, each $(\ddc a_j)^n$ has total mass $\mu_j(B)=m$. Testing with functions $\chi\in C_c(B)$, $0\leq\chi\leq1$, and letting $\chi$ increase to one, we see that $(\ddc u_T)^n$ has total mass at most $m$. Moreover, \eqref{eq:zero-boundary-truncation-variation} gives
+\[
+ \left|\int_B\chi\,(\ddc a_j)^n-\int_B\chi\,\mathrm d\mu_j\right|\leq2E_2T^{-2}
+\]
+for every real $\chi\in C_c(B)$ with $|\chi|\leq1$. Since $\mu_j\to\mu$ weakly by \cref{prop:canonical-grid-energy-control}, letting $j\to\infty$ yields the same bound with $(\ddc u_T)^n$ and $\mu$ in place of $(\ddc a_j)^n$ and $\mu_j$. Both limit measures are finite, so by the remark following the definition of the total variation distance, the supremum over such $\chi$ equals $\|(\ddc u_T)^n-\mu\|_{\mathrm{TV}}$. This proves \eqref{eq:canonical-grid-truncated-measure-limit}.
+\end{proof}
+\index{convergence!capacity for energy-controlled potentials}
+\index{Monge--Amp\`ere measure!truncated canonical limit}

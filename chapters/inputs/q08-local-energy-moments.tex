@@ -1,0 +1,146 @@
+\section{Local energy moments}
+\label{sec:local-energy-moments}
+To solve $(\ddc u)^n=\mu$ for a measure $\mu$ which need not be absolutely continuous, we approximate $\mu$ by the measures $\mu_j$ obtained by averaging $\mu$ over the cubes of finer and finer grids, and we solve the equations for $\mu_j$ by \cref{thm:bounded-density-ball-dirichlet}. Each $\mu_j$ has a bounded density, but the bounds are not uniform in $j$, so the arguments of the preceding section do not apply.
+
+A bounded subsolution provides a substitute. If $\mu\le(\ddc w)^n$ for a bounded plurisubharmonic function $w$, then $\mu$ integrates the powers $(-\varphi)^p$ of plurisubharmonic functions $\varphi$ with zero boundary values, with a bound in terms of the local energy moments $\int(-\varphi)^p(\ddc\varphi)^n$ (\cref{thm:bounded-subsolution-local-energy-moments}). The cube averages inherit this control (\cref{prop:canonical-grid-energy-control}). In the subsections that follow, this control replaces the common density bound. It yields convergence of the energy integrals and convergence in capacity of the solutions for $\mu_j$, and hence the solution of the Dirichlet problem for compactly supported measures $\mu$ of this kind (\cref{thm:compact-bounded-subsolution-ball-dirichlet}). The section closes with an inequality for mixed energies (\cref{thm:bounded-mixed-local-energy}), which is needed in \cref{sec:common-measure-mixed-products}. Throughout this section, $B\subset\mathbb C^n$ is a ball, $n\geq1$.
+
+\begin{definition}\label{def:bounded-zero-boundary-energy}
+Let $B\subset\mathbb C^n$, $n\geq1$, be a ball. We denote by $\mathcal E_0(B)$ the class of bounded plurisubharmonic functions $\varphi\leq0$ on $B$ such that
+\[
+ \lim_{B\ni z\to\zeta}\varphi(z)=0\quad(\zeta\in\partial B),
+ \qquad \int_B(\ddc\varphi)^n<\infty.
+\]
+For $\varphi\in\mathcal E_0(B)$ and real $p\geq1$, the \emph{local energy moment} of order $p$ is
+\[
+ e_p(\varphi)=\int_B(-\varphi)^p(\ddc\varphi)^n.
+\]
+\end{definition}
+This class is due to Cegrell; see \cref{sec:history-bounded-products}. The zero function belongs to $\mathcal E_0(B)$. Since $\varphi$ is bounded and its Monge--Amp\`ere measure has finite mass, every moment $e_p(\varphi)$ is finite. Since $\partial B$ is compact, the boundary limit is uniform: for every $s>0$ there is a compact set $K_s\subset B$ such that $\varphi>-s$ on $B\setminus K_s$. Indeed, every $\zeta\in\partial B$ has an open neighborhood $N_\zeta$ with $\varphi>-s$ on $N_\zeta\cap B$; finitely many of these neighborhoods cover $\partial B$, and we may take for $K_s$ the complement of their union in $\overline B$. In particular, each set $\{\varphi\leq-s\}$, $s>0$, lies in a compact subset of $B$.
+\index{local energy!bounded zero-boundary class}\index{Cegrell class $\mathcal E_0(B)$}\index{local energy!moment $e_p$}
+
+\begin{theorem}\label{thm:bounded-subsolution-local-energy-moments}
+Let $B\subset\mathbb C^n$ be a ball, and let $\mu$ be a finite positive Borel measure on $B$ such that $\mu\leq(\ddc w)^n$ for some bounded plurisubharmonic function $w$ on $B$. Put $m=\mu(B)$ and $M=\sup_Bw-\inf_Bw$, and for real $p\geq1$ put
+\[
+ \kappa_{n,p}=2^{n+p}(n+1)!M^n,
+ \qquad A_p=\Bigl(1+\frac pn\Bigr)\kappa_{n,p}^{p/(n+p)}m^{n/(n+p)}.
+\]
+Then, for every $\varphi\in\mathcal E_0(B)$, every real $p\geq1$ and every $t>0$,
+\begin{equation}\label{eq:local-energy-measure-tail}
+ \mu(\{\varphi<-t\})
+         \leq\min\{m,\kappa_{n,p}e_p(\varphi)t^{-(n+p)}\}.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:local-energy-measure-moment}
+ \int_B(-\varphi)^p\,\mathrm d\mu
+ \leq A_p\,e_p(\varphi)^{p/(n+p)}.
+\end{equation}
+The constant $A_p$ depends only on $n$, $p$, $m$ and $M$.
+\end{theorem}
+\begin{proof}
+We prove the tail bound by applying B\l{}ocki's estimate (\cref{prop:blocki-difference-estimate}) to truncations of $\varphi$, and then integrate it. For $s>0$ let
+\[
+ h_s=\max\{\varphi,-s\},\qquad d_s=h_s-\varphi=(-\varphi-s)_+.
+\]
+By the remark following \cref{def:bounded-zero-boundary-energy}, there is a compact set $K_s\subset B$ with $\varphi>-s$ on $B\setminus K_s$, and since $K_s$ is compact there is a ball $B_s\Subset B$, concentric with $B$, which contains $K_s$. Thus $h_s=\varphi$ on $B_s\setminus K_s$, which is a collar of $\partial B_s$, and $d_s$ vanishes outside $K_s$. The functions $\varphi$, $h_s$ and $w$ are bounded and plurisubharmonic near $\overline{B_s}$, $\varphi\le h_s$, and the oscillation of $w$ on $B_s$ is at most $M$. B\l{}ocki's estimate on $B_s$, together with $\mu\leq(\ddc w)^n$, therefore gives
+\[
+ \int_B d_s^{n+1}\,\mathrm d\mu
+  \leq\int_{B_s}d_s^{n+1}(\ddc w)^n
+  \leq(n+1)!M^n\int_{B_s}d_s(\ddc\varphi)^n.
+\]
+Now take $s=t/2$. On $\{\varphi<-t\}$ we have $d_s>t/2$. On the other hand, $0\le d_s\le-\varphi$, and $d_s=0$ where $-\varphi\le t/2$; since $p\geq1$, we have $-\varphi\le(t/2)^{1-p}(-\varphi)^p$ where $-\varphi>t/2$, and hence
+\[
+ \int_{B_s}d_s(\ddc\varphi)^n
+  \leq\int_{\{-\varphi>t/2\}}(-\varphi)(\ddc\varphi)^n
+  \leq(t/2)^{1-p}e_p(\varphi).
+\]
+Combining the two estimates and dividing by $(t/2)^{n+1}$, we obtain
+\[
+ \mu(\{\varphi<-t\})\le(n+1)!M^n(t/2)^{-n-p}e_p(\varphi)=\kappa_{n,p}e_p(\varphi)t^{-(n+p)}.
+\]
+Since also $\mu(\{\varphi<-t\})\le m$, this proves \eqref{eq:local-energy-measure-tail}.
+
+If $m=0$, both sides of \eqref{eq:local-energy-measure-moment} vanish. If $\kappa_{n,p}e_p(\varphi)=0$, then \eqref{eq:local-energy-measure-tail} shows that $\mu(\{\varphi<-t\})=0$ for every $t>0$, so the left side of \eqref{eq:local-energy-measure-moment} vanishes. Otherwise put
+\[
+ T=\left(\frac{\kappa_{n,p}e_p(\varphi)}m\right)^{1/(n+p)}.
+\]
+The first equality below is the layer-cake formula, which follows from Tonelli's theorem applied to the nonnegative function $(z,t)\mapsto pt^{p-1}\mathbf1_{\{\varphi(z)<-t\}}$ on $B\times(0,\infty)$. Using \eqref{eq:local-energy-measure-tail} with the bound $m$ for $t<T$ and the second bound for $t\ge T$, we obtain
+\[
+ \begin{aligned}
+ \int_B(-\varphi)^p\,\mathrm d\mu
+ &=p\int_0^\infty t^{p-1}\mu(\{\varphi<-t\})\,\mathrm dt
+ \leq mT^p
+       +p\kappa_{n,p}e_p(\varphi)\int_T^\infty t^{-n-1}\,\mathrm dt\\
+ &=mT^p+\frac pn\kappa_{n,p}e_p(\varphi)T^{-n}.
+ \end{aligned}
+\]
+By the choice of $T$,
+\[
+ mT^p=\kappa_{n,p}e_p(\varphi)T^{-n}=\kappa_{n,p}^{p/(n+p)}m^{n/(n+p)}e_p(\varphi)^{p/(n+p)},
+\]
+so the right-hand side equals $(1+p/n)mT^p=A_pe_p(\varphi)^{p/(n+p)}$. This proves \eqref{eq:local-energy-measure-moment}.
+\end{proof}
+\index{local energy!measure moment estimate}
+\index{Monge--Amp\`ere measure!bounded subsolution}
+
+We now show that the cube averages of a compactly supported measure $\mu$ as in \cref{thm:bounded-subsolution-local-energy-moments} satisfy the same moment estimate up to a constant depending only on $n$ and $p$. We call the solutions $U_j$ of $(\ddc U_j)^n=\mu_j$ with zero boundary values constructed in the following proposition the \emph{canonical approximants} of $\mu$ (for the chosen grids).
+\index{canonical approximants}
+
+\begin{proposition}\label{prop:canonical-grid-energy-control}
+Let $\mu$, $w$, $m$ and $A_p$ be as in \cref{thm:bounded-subsolution-local-energy-moments}, and assume moreover that the support $K$ of $\mu$ is a compact subset of $B$. Extend $\mu$ by zero to $\mathbb C^n$. Let $h_j\downarrow0$, and for each $j$ let $\mathcal Q_j$ be a partition of $\mathbb C^n=\mathbb R^{2n}$ into half-open cubes of side length $h_j$. Put
+\[
+ \mu_j=\sum_{Q\in\mathcal Q_j}\frac{\mu(Q)}{|Q|}\mathbf1_Q\,\mathrm dV,
+\]
+where $|Q|=h_j^{2n}$ is the volume of $Q$ and $\mathrm dV=\mathrm dV_{2n}$ is Lebesgue measure. For $z\in\mathbb C^n$ and $r>0$ let $P(z,r)=\{\zeta\in\mathbb C^n:|\zeta_k-z_k|<r,\ 1\le k\le n\}$ be the polydisc of radius $r$ centered at $z$. Then $\mu_j\to\mu$ weakly. Moreover, there are an index $j_0$ and, for every real $p\geq1$, a constant $D_{n,p}>0$ depending only on $n$ and $p$, such that the following hold for all $j\geq j_0$ and $p\geq1$.
+\begin{enumerate}
+\item The measure $\mu_j$ has a bounded density and compact support in $B$, and $\mu_j(B)=m$.
+\item If $Q\in\mathcal Q_j$ is a cube which meets $K$ and $z\in Q$, then $P(z,4\sqrt2\,h_j)\subset B$, and every plurisubharmonic function $v\le0$ on $P(z,4\sqrt2\,h_j)$ satisfies
+\begin{equation}\label{eq:canonical-grid-polydisc-average}
+ \frac1{|Q|}\int_Q(-v)^p\,\mathrm dV
+                         \leq D_{n,p}(-v(z))^p,
+\end{equation}
+where the right side is $+\infty$ if $v(z)=-\infty$.
+\item Every $\varphi\in\mathcal E_0(B)$ satisfies
+\begin{equation}\label{eq:canonical-grid-energy-moment}
+ \int_B(-\varphi)^p\,\mathrm d\mu_j
+        \leq D_{n,p}A_p e_p(\varphi)^{p/(n+p)}.
+\end{equation}
+\item The bounded plurisubharmonic solution $U_j$ of $(\ddc U_j)^n=\mu_j$ with zero boundary values, given by \cref{thm:bounded-density-ball-dirichlet}, belongs to $\mathcal E_0(B)$ and satisfies $e_p(U_j)\leq(D_{n,p}A_p)^{(n+p)/n}$.
+\end{enumerate}
+Finally, the sequence $(U_j)_{j\geq j_0}$ is relatively compact in $L^1(B)$, and the limit of every subsequence converging in $L^1(B)$ has a nonpositive plurisubharmonic representative.
+\end{proposition}
+\begin{proof}
+If $m=0$, then $\mu_j=0$ and $U_j=0$ for all $j$, and all assertions hold. Assume that $m>0$, put $d=\operatorname{dist}(K,\mathbb C^n\setminus B)>0$, and choose $j_0$ such that $h_j<d/(6\sqrt{2n})$ for $j\geq j_0$; in the rest of the proof we consider only $j\geq j_0$. Since $\mu$ is a finite Borel measure, it is a Radon measure (\cref{prop:borel-regularity}), so $\mu$ vanishes outside its support $K$. Hence a cube $Q$ with $\mu(Q)>0$ meets $K$, and as its diameter is $\sqrt{2n}\,h_j<d/6$, it lies in the $(d/6)$-neighborhood of $K$, which is contained in $B$. These cubes are disjoint, each has volume $h_j^{2n}$, and they lie in a bounded set; so there are only finitely many of them. Therefore $\mu_j$ is a finite sum of measures with constant densities on cubes contained in $B$, so it has a bounded density and compact support in $B$, and $\mu_j(B)=\sum_Q\mu(Q)=m$. This proves (1).
+
+For the weak convergence, let $g$ be a continuous function on $\mathbb C^n$. Then
+\[
+ \int g\,\mathrm d\mu_j-\int g\,\mathrm d\mu=\sum_{Q\in\mathcal Q_j}\int_Q\left(\frac1{|Q|}\int_Qg\,\mathrm dV-g\right)\mathrm d\mu,
+\]
+and on every cube with $\mu(Q)>0$ the integrand is bounded by the modulus of continuity of $g$ at $\sqrt{2n}\,h_j$ on the closed $(d/6)$-neighborhood of $K$. Hence the difference tends to zero.
+
+To prove (2), fix a cube $Q\in\mathcal Q_j$ which meets $K$ and a point $z\in Q$, and put $\varrho=4\sqrt2\,h_j$. Every point of $Q$ differs from $z$ by less than $\sqrt2\,h_j$ in each complex coordinate, so $Q\subset P(z,\varrho/2)$. Moreover $P(z,\varrho)$ lies in the Euclidean ball of radius $4\sqrt{2n}\,h_j$ about $z$, and $\operatorname{dist}(z,K)\le\sqrt{2n}\,h_j$, so this polydisc lies in the $(5d/6)$-neighborhood of $K$ and hence in $B$. Let $v\le0$ be a plurisubharmonic function on $P(z,\varrho)$; if $v(z)=-\infty$, there is nothing to prove, so we assume that $v(z)>-\infty$. The function $\zeta\mapsto v(z+\varrho\zeta)$ is plurisubharmonic and nonpositive on the unit polydisc (\cref{prop:psh-holomorphic-pullback}), with the finite value $v(z)$ at the origin. The first estimate of \cref{prop:negative-psh-polydisc-lp}, with its constant $C_{n,p}$, and the change of variables $\zeta\mapsto z+\varrho\zeta$, whose Jacobian is $\varrho^{2n}$, give
+\[
+ \int_Q(-v)^p\,\mathrm dV\le\int_{P(z,\varrho/2)}(-v)^p\,\mathrm dV\le\varrho^{2n}C_{n,p}^p(-v(z))^p.
+\]
+Since $|Q|=h_j^{2n}$ and $(\varrho/h_j)^{2n}=32^n$, we obtain \eqref{eq:canonical-grid-polydisc-average} with $D_{n,p}=32^nC_{n,p}^p$.
+
+For (3), let $\varphi\in\mathcal E_0(B)$. Since $\varphi\le0$ is plurisubharmonic on $B$, \eqref{eq:canonical-grid-polydisc-average} applies to $v=\varphi$ at every point $z$ of every cube with $\mu(Q)>0$. Integrating over $z\in Q$ with respect to $\mu$ and summing over the cubes, we obtain
+\[
+ \int_B(-\varphi)^p\,\mathrm d\mu_j
+ =\sum_{Q\in\mathcal Q_j}\frac{\mu(Q)}{|Q|}\int_Q(-\varphi)^p\,\mathrm dV
+                  \leq D_{n,p}\int_B(-\varphi)^p\,\mathrm d\mu,
+\]
+and \eqref{eq:canonical-grid-energy-moment} follows from \eqref{eq:local-energy-measure-moment}.
+
+For (4), note that $\mu_j$ equals $f_j\eta^n$ for a bounded density $f_j\ge0$, so the solution $U_j$ exists by \cref{thm:bounded-density-ball-dirichlet}, applied with zero boundary values. Since $U_j$ is subharmonic (\cref{thm:psh-distribution-representative}) with boundary limits $0$, the maximum principle (\cref{prop:subharmonic-maximum}) gives $U_j\le0$, and its Monge--Amp\`ere measure has finite mass $\mu_j(B)=m$; hence $U_j\in\mathcal E_0(B)$. Taking $\varphi=U_j$ in \eqref{eq:canonical-grid-energy-moment}, we get
+\[
+ e_p(U_j)=\int_B(-U_j)^p\,\mathrm d\mu_j\le D_{n,p}A_pe_p(U_j)^{p/(n+p)}.
+\]
+If $e_p(U_j)>0$, dividing by $e_p(U_j)^{p/(n+p)}$ gives the asserted bound; if $e_p(U_j)=0$, there is nothing to prove.
+
+Finally write $B=B(a,R)$ and $\rho(z)=|z-a|^2-R^2$. The function $\rho$ is bounded and plurisubharmonic on $B$, and $(\ddc\rho)^n=\eta^n=n!\pi^{-n}\,\mathrm dV$. Applying \cref{thm:bounded-subsolution-local-energy-moments} to the finite measure $(\ddc\rho)^n$ on $B$, with $p=2$, and using the uniform bound for $e_2(U_j)$, we obtain $S=\sup_j\int_BU_j^2\,\mathrm dV<\infty$. Since $U_j\le0$, \cref{thm:psh-compactness-hartogs} shows that every subsequence has a further subsequence converging in $L^1_{\loc}(B)$ to a plurisubharmonic function $u$; convergence to $-\infty$ is excluded by the $L^2$ bound. Exhausting $B$ by compact sets and passing to a diagonal subsequence, we may assume that $U_j\to u$ almost everywhere on $B$, so Fatou's lemma gives $\int_Bu^2\,\mathrm dV\le S$. For a compact set $L\subset B$, the Cauchy--Schwarz inequality gives
+\[
+ \int_{B\setminus L}|U_j-u|\,\mathrm dV\le2S^{1/2}|B\setminus L|^{1/2},
+\]
+which is small when $|B\setminus L|$ is small. Since $U_j\to u$ in $L^1(L)$, it follows that $U_j\to u$ in $L^1(B)$ along this subsequence. In particular, if a subsequence of $(U_j)$ converges in $L^1(B)$, its limit is represented by such a function $u$. Finally $u\le0$ almost everywhere, hence everywhere, by the uniqueness assertion of \cref{thm:psh-distribution-representative} applied to $\max\{u,0\}$ and $0$.
+\end{proof}
+\index{Monge--Amp\`ere measure!canonical grid approximation}

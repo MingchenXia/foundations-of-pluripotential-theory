@@ -1,2 +1,953 @@
 \chapter{Lelong numbers and multiplier ideals}
 \label{chap:q05}
+
+A plurisubharmonic function can have a complicated pole set, but near each point its growth is governed by a single logarithmic rate. The \emph{Lelong number} $\nu(u,a)$ of a plurisubharmonic function $u$ at a point $a$ is the largest $c\geq0$ such that $u(z)\leq c\log|z-a|^2+O(1)$ near $a$; with this normalization $\nu(\log|z|^2,0)=1$. By the Jensen--Lelong formula, $\nu(u,a)$ is also the limiting density at $a$ of the positive current $\ddc u$, which links the pointwise growth of $u$ with the measures studied in the preceding chapters. Lelong numbers do not, however, determine the integrability properties of a singular weight $\varphi$ (\cref{ex:lelong-numbers-integrability}). These are recorded by the \emph{multiplier ideal} $\mathcal I(\varphi)$, which consists of the holomorphic germs $f$ for which $|f|^2\mathrm e^{-\varphi}$ is locally integrable.
+
+The $L^2$ estimates and extension theorems of \cref{chap:q04} make multiplier ideals accessible. Solving a $\bar\partial$-equation with a weight that has a logarithmic pole at a point, we approximate every germ of $\mathcal I(\varphi)$, to arbitrarily high order, by holomorphic functions on a polydisc that are square integrable against $\mathrm e^{-\varphi}$; with the Krull intersection theorem and the strong Noetherian property, this shows that $\mathcal I(\varphi)$ is a coherent sheaf (\cref{thm:multiplier-ideal-coherence}). Comparing the vanishing orders of the generators of $\mathcal I(m\varphi)$ with the growth of $\varphi$ (\cref{lem:multiplier-order-lelong-bounds}), we prove Siu's theorem that the sets where the Lelong number is at least $c>0$ are analytic. The same comparison shows that $\mathrm e^{-t\varphi}$ is integrable near a point $x$ for every $t>0$ if $\nu(\varphi,x)=0$, a fact used in \cref{chap:q09} for an example on the projective line.
+
+The Ohsawa--Takegoshi theorem gives the restriction and subadditivity properties of multiplier ideals. Since its constant does not depend on the weight, it can be applied along a moving family of hyperplanes; comparing the resulting extensions on one fixed holomorphic curve, we prove that multiplier ideals are stable under increasing limits of weights and deduce the strong openness theorem $\mathcal I(\varphi)=\bigcup_{\varepsilon>0}\mathcal I((1+\varepsilon)\varphi)$ (\cref{cor:strong-openness}).
+
+The last section studies integrability on modifications. For a weight with analytic singularities, the change of variables formula on a log resolution reduces membership in the multiplier ideal to explicit one-variable integrals (\cref{thm:analytic-log-resolution-integrability}). For a general weight, the ideals $\mathcal I(m\varphi)$ recover the generic Lelong numbers of $\varphi$ along all prime divisors over the ambient manifold, and strong openness gives a valuative criterion for membership in $\mathcal I(\varphi)$ in which one positive parameter serves for all divisors (\cref{thm:general-valuative-multiplier-criterion}). These results are the local foundation for comparing singularities through their multiplier ideals in later chapters.
+
+Historical remarks and references for this chapter are collected in \cref{sec:history-lelong-multiplier}.
+
+\section{Logarithmic growth and the Jensen formula}
+\label{sec:lelong-jensen}
+
+\begin{proposition}\label{prop:lelong-logarithmic-growth}
+Let $n\geq1$ and let $u$ be a plurisubharmonic function on a neighborhood of $a\in\mathbb C^n$. For sufficiently negative $t$ put
+\[
+ N(t)=\sup_{|z-a|<\exp(t/2)}u(z).
+\]
+Then $N$ is finite, nondecreasing and convex, $N(t)$ is also the supremum of $u$ over the sphere $|z-a|=\exp(t/2)$, and the limit
+\begin{equation}\label{eq:lelong-growth-definition}
+ \nu(u,a)=\lim_{t\to-\infty}\frac{N(t)}{t}
+\end{equation}
+exists in $[0,\infty)$; it is zero if $u(a)>-\infty$. For every $r_0>0$ such that $\overline{B(a,r_0)}$ lies in the domain of $u$,
+\begin{equation}\label{eq:lelong-attained-growth}
+ u(z)\leq\nu(u,a)\log\frac{|z-a|^2}{r_0^2}
+                +\sup_{B(a,r_0)}u,\qquad 0<|z-a|<r_0.
+\end{equation}
+Consequently $\nu(u,a)$ is the largest $c\geq0$ for which $u(z)\leq c\log|z-a|^2+O(1)$ near $a$; moreover, if $c\geq0$ and $u(z)\leq c\log|z-a|^2+C$ for all $z$ outside a Lebesgue null set in some neighborhood of $a$, then $\nu(u,a)\geq c$. The Lelong number does not change under a holomorphic change of coordinates, nor under the addition of a bounded function, provided the resulting function is plurisubharmonic.
+\end{proposition}
+\begin{proof}
+We may assume $a=0$. Let $R_*\in(0,\infty]$ be the supremum of the radii $r$ for which $\overline{B(0,r)}$ lies in the domain of $u$; since closed balls are compact, $\overline{B(0,r)}$ lies in the domain exactly when $0<r<R_*$. For such $r$ put $S(r)=\sup_{|z|=r}u(z)$. This number is less than $+\infty$ because $u$ is upper semicontinuous and hence bounded above on the compact sphere. It is also greater than $-\infty$. Otherwise, for every unit vector $e$, the function $\zeta\mapsto u(\zeta e)$, which is subharmonic or identically $-\infty$ near the closed disc $|\zeta|\leq r$, would be $-\infty$ on the circle $|\zeta|=r$ and hence, by upper semicontinuity, have upper limits $-\infty$ there; the maximum principle (\cref{prop:subharmonic-maximum}), applied to $\zeta\mapsto u(\zeta e)+k$ for every $k>0$, would give $u=-\infty$ on the disc. Thus $u$ would be identically $-\infty$ on $B(0,r)$, which is impossible because $u$ is locally integrable (\cref{thm:psh-distribution-representative}).
+
+Let $0<r_1<r_2<r_3<R_*$, and let $h(\zeta)=A+B\log|\zeta|^2$ be the harmonic function on $\mathbb C\setminus\{0\}$ equal to $S(r_1)$ on $|\zeta|=r_1$ and to $S(r_3)$ on $|\zeta|=r_3$. For every unit vector $e$, the function $\zeta\mapsto u(\zeta e)-h(\zeta)$ is subharmonic or identically $-\infty$ near the closed annulus $r_1\leq|\zeta|\leq r_3$, and by upper semicontinuity its upper limits at the two boundary circles are at most $0$; by the maximum principle (\cref{prop:subharmonic-maximum}) it is at most $0$ on the annulus. Taking the supremum over $e$ on the circle $|\zeta|=r_2$ gives $S(r_2)\leq h(r_2)$. Since $h(r_2)$ is the value at $\log r_2^2$ of the affine function of $\log r^2$ that equals $S(r_1)$ and $S(r_3)$ at $\log r_1^2$ and $\log r_3^2$, this says that $S$ is a convex function of $\log r^2$ on $(0,R_*)$.
+
+Applying the maximum principle in the same way to $\zeta\mapsto u(\zeta e)-S(r)$ on the disc $|\zeta|\leq r$, we obtain $u(\zeta e)\leq S(r)$ for $|\zeta|\leq r$; hence $S$ is nondecreasing and $u(0)\leq S(r)$. A finite convex function on an open interval is continuous, since on a compact subinterval its difference quotients are bounded between two fixed difference quotients taken outside the subinterval. Hence $\sup_{B(0,r)}u=\sup_{\rho<r}S(\rho)=S(r)$, so that $N(t)=S(\mathrm e^{t/2})$ for $t<\log R_*^2$; this proves the assertions about $N$.
+
+Fix $r_0$ as in the statement and put $t_0=\log r_0^2$. Since $N$ is convex and nondecreasing on $(-\infty,t_0]$, the difference quotients $(N(t_0)-N(t))/(t_0-t)$ are nonnegative and decrease as $t\downarrow-\infty$; let $c\in[0,\infty)$ be their limit. Writing $N(t)=N(t_0)-(t_0-t)\cdot\frac{N(t_0)-N(t)}{t_0-t}$ and dividing by $t$, we obtain $N(t)/t\to c$ as $t\to-\infty$. In particular $c$ does not depend on $t_0$, so for every fixed $s\leq t_0$ the quotients $(N(s)-N(s'))/(s-s')$ also tend to $c$ as $s'\to-\infty$. If $s'<s<t\leq t_0$, convexity gives $(N(t)-N(s))/(t-s)\geq(N(s)-N(s'))/(s-s')$; letting $s'\to-\infty$, we see that every difference quotient of $N$ on $(-\infty,t_0]$ is at least $c$. Hence $N(t)-ct$ is nondecreasing, and $N(t)\leq c(t-t_0)+N(t_0)$ for $t<t_0$. Since $u(z)\leq S(|z|)=N(\log|z|^2)$, this is \eqref{eq:lelong-attained-growth}.
+
+Since $u(0)\leq S(r)$ for all $r$, we have $N(t)\geq u(0)$, hence $N(t)/t\leq u(0)/t$ for $t<0$, and $c=0$ if $u(0)>-\infty$. Conversely, if $c'\geq0$ and $u(z)\leq c'\log|z|^2+C$ for $0<|z|<r'$, then $N(t)=S(\mathrm e^{t/2})\leq c't+C$ for all sufficiently negative $t$, and division by $t<0$ gives $c\geq c'$. This proves the characterization of $\nu(u,a)$ as the largest admissible coefficient.
+
+Now let $c\geq0$, and suppose that $u(z)\leq c\log|z|^2+C$ for all $z\in B(0,r)\setminus A$, where $\overline{B(0,r)}$ lies in the domain of $u$ and $A$ is a Lebesgue null set. Let $0<|z|<r/2$ and $0<\delta<|z|/2$. The function $u$ is subharmonic (\cref{thm:psh-distribution-representative}), so \cref{thm:subharmonic-comparison} gives $u(z)\leq|B(z,\delta)|^{-1}\int_{B(z,\delta)}u\,\mathrm dV$. Every $y\in B(z,\delta)\setminus A$ satisfies $u(y)\leq c\log(|z|+\delta)^2+C$, because $c\geq0$ and $|y|\leq|z|+\delta$; since $A$ is a null set, we obtain $u(z)\leq c\log(|z|+\delta)^2+C$. Letting $\delta\downarrow0$, we get $u(z)\leq c\log|z|^2+C$ for $0<|z|<r/2$, and the converse part of the characterization gives $\nu(u,0)\geq c$.
+
+Let $F$ be a biholomorphic map from a neighborhood of $a$ onto a neighborhood of $F(a)$; by \cref{prop:psh-holomorphic-pullback}, $u\circ F^{-1}$ is plurisubharmonic near $F(a)$. The maps $F$ and $F^{-1}$ are continuously differentiable, hence Lipschitz near $a$ and $F(a)$, so $\log|F(z)-F(a)|^2-\log|z-a|^2$ is bounded near $a$, $z\neq a$. Since adding a bounded function also changes $u$ by a bounded amount, in both cases the characterization just proved shows that the Lelong number is unchanged.
+\end{proof}
+
+\begin{definition}\label{def:lelong-number}
+The number $\nu(u,a)$ in \eqref{eq:lelong-growth-definition} is the \emph{Lelong number} of $u$ at $a$. If $u$ is plurisubharmonic on a complex manifold $X$ that has positive dimension at $a$, we compute $\nu(u,a)$ in a holomorphic chart at $a$; by \cref{prop:lelong-logarithmic-growth} the result does not depend on the chart. If $X$ has dimension zero at $a$, where plurisubharmonic functions are finite, we set $\nu(u,a)=0$. For a closed positive $(1,1)$-current $T$ on $X$ we put $\nu(T,a)=\nu(u,a)$, where $u$ is a plurisubharmonic potential of $T$ near $a$, that is, $\ddc u=T$. Such potentials exist, and two of them differ near $a$ by a smooth pluriharmonic function: by \cref{thm:psh-distribution-representative}, the plurisubharmonic potentials of $T$ on a coordinate ball are exactly its canonical local potentials, to which \cref{thm:local-positive-current-potential} applies. Since a smooth function is bounded near $a$, $\nu(T,a)$ does not depend on the choice of the potential.
+\end{definition}
+\index{Lelong number!logarithmic growth}\index{Lelong number!of a positive current}
+
+The Lelong number can also be read off from the mass of $\ddc u$ on small balls. We use the form
+\[
+ \ddc|z|^2=\frac{\beta}{\pi}=\frac1\pi\sum_{j=1}^n\mathrm dx_j\wedge\mathrm dy_j,
+\]
+where $\beta$ is the Euclidean K\"ahler form \eqref{eq:euclidean-hermitian-form}; note that $\ddc|z-a|^2=\ddc|z|^2$. By \eqref{eq:sphere-area} with $d=2n$, and since $\Gamma(n)=(n-1)!$, the area of the unit sphere $S^{2n-1}\subset\mathbb R^{2n}$ is $s_{2n-1}=2\pi^n/(n-1)!$.
+
+Let $u$ be plurisubharmonic on a neighborhood of a closed ball $\overline{B(a,R)}\subset\mathbb C^n$, $n\geq1$. By \cref{thm:psh-distribution-representative,thm:subharmonic-distribution}, $\mu=\Delta u$ is a positive Radon measure. For $0<r<R$ define
+\begin{equation}\label{eq:lelong-ball-density}
+ D_u(a,r)=\frac{\mu(B(a,r))}{2s_{2n-1}r^{2n-2}}
+    =\frac1{r^{2n-2}}\int_{B(a,r)}\ddc u\wedge(\ddc|z|^2)^{n-1}.
+\end{equation}
+Here $\ddc u\wedge(\ddc|z|^2)^{n-1}$ is the product of the current $\ddc u$ with a smooth form, as defined in \cref{chap:complex-currents}. To verify the second equality, assume first that $u$ is smooth. When $(\ddc|z|^2)^{n-1}$ is expanded, only the diagonal coefficients $u_{j\bar j}$ of $\ddc u$ contribute to the product, and since $\frac{\mathrm i}{2}\mathrm dz_j\wedge\mathrm d\bar z_j=\mathrm dx_j\wedge\mathrm dy_j$ and $\Delta u=4\sum_ju_{j\bar j}$, we obtain
+\[
+ \ddc u\wedge(\ddc|z|^2)^{n-1}=\frac{(n-1)!}{\pi^n}\sum_{j=1}^nu_{j\bar j}\,\mathrm dV
+       =\frac{(n-1)!}{4\pi^n}\Delta u\,\mathrm dV.
+\]
+Both sides are obtained from $u$ by the same constant-coefficient differential operator, so the identity holds for every distribution $u$. Since $2s_{2n-1}=4\pi^n/(n-1)!$, this gives \eqref{eq:lelong-ball-density}.
+
+\begin{theorem}[Jensen--Lelong]\label{thm:euclidean-jensen-lelong}
+Let $n\geq1$, $R>0$, and let $u$ be plurisubharmonic on a neighborhood of $\overline{B(a,R)}\subset\mathbb C^n$. Then the spherical mean $M_u(a,r)$ of $u$ over $\partial B(a,r)$ is finite for every $0<r<R$, the function $r\mapsto D_u(a,r)$ is nondecreasing on $(0,R)$, and
+\begin{equation}\label{eq:euclidean-jensen-lelong}
+ M_u(a,r_2)-M_u(a,r_1)
+       =\int_{\log r_1^2}^{\log r_2^2}D_u(a,\exp(t/2))\,\mathrm dt,
+       \qquad 0<r_1<r_2<R.
+\end{equation}
+In particular,
+\begin{equation}\label{eq:lelong-density-limit}
+ \nu(u,a)=\lim_{r\downarrow0}D_u(a,r)
+          =\lim_{r\downarrow0}\frac{M_u(a,r)}{\log r^2}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+\emph{Step 1: smooth functions.} Suppose first that $u$ is smooth. By \cref{prop:spherical-mean-derivative} in $\mathbb R^{2n}$ and the substitution $r=\mathrm e^{t/2}$, for which $\mathrm dr/\mathrm dt=r/2$,
+\[
+ \frac{\mathrm d}{\mathrm dt}M_u(a,\mathrm e^{t/2})
+ =\frac r2\cdot\frac{\mu(B(a,r))}{s_{2n-1}r^{2n-1}}
+ =D_u(a,\mathrm e^{t/2}),
+\]
+and \eqref{eq:euclidean-jensen-lelong} follows by integration, since $\mu=\Delta u\,\mathrm dV$ has a continuous density, so that the right side is continuous in $t$. To see that $D_u(a,\cdot)$ is nondecreasing, we show that $t\mapsto M_u(a,\mathrm e^{t/2})$ is a convex function on $(-\infty,\log R^2)$; the derivative of a differentiable convex function is nondecreasing. For a unit vector $\omega\in S^{2n-1}$, the function $v_\omega(\zeta)=u(a+\zeta\omega)$ is smooth on a neighborhood of the closed disc $|\zeta|\leq R$ in $\mathbb C$, and by \eqref{eq:complex-hessian-normalization} its Laplacian is
+\[
+ \Delta v_\omega(\zeta)=4\sum_{j,k}u_{j\bar k}(a+\zeta\omega)\,\omega_j\bar\omega_k\geq0,
+\]
+because the complex Hessian of the smooth plurisubharmonic function $u$ is positive semidefinite (\cref{prop:smooth-psh-criterion}(1)). Let $m_\omega(r)=(2\pi)^{-1}\int_0^{2\pi}v_\omega(r\mathrm e^{\mathrm i\theta})\,\mathrm d\theta$ be the circle means of $v_\omega$ about $0$; they are the spherical means of $v_\omega$ in $\mathbb R^2$, because surface measure on the unit circle is arc length (\cref{sec:high-value-stars}). By \cref{prop:spherical-mean-derivative} in $\mathbb R^2$, where $s_1=2\pi$, and the same substitution,
+\[
+ \frac{\mathrm d}{\mathrm dt}m_\omega(\mathrm e^{t/2})=\frac1{4\pi}\int_{|\zeta|<\mathrm e^{t/2}}\Delta v_\omega\,\mathrm dV_2,
+\]
+which is nondecreasing in $t$ because $\Delta v_\omega\geq0$. By the mean value theorem, a differentiable function with nondecreasing derivative is convex; so $t\mapsto m_\omega(\mathrm e^{t/2})$ is convex. Surface measure on $S^{2n-1}$ is invariant under the orthogonal transformations $\omega\mapsto\mathrm e^{\mathrm i\theta}\omega$ of $\mathbb R^{2n}$ (\cref{sec:harmonic-mean-values}), so $\int_{S^{2n-1}}u(a+r\omega)\,\mathrm dS(\omega)=\int_{S^{2n-1}}u(a+r\mathrm e^{\mathrm i\theta}\omega)\,\mathrm dS(\omega)$ for every $\theta$. Averaging over $\theta\in[0,2\pi]$ and using Fubini's theorem for the continuous integrand, we obtain
+\[
+ M_u(a,r)=\frac1{s_{2n-1}}\int_{S^{2n-1}}m_\omega(r)\,\mathrm dS(\omega),\qquad 0<r<R.
+\]
+An average of convex functions is convex, so $t\mapsto M_u(a,\mathrm e^{t/2})$ is convex, and $D_u(a,\cdot)$ is nondecreasing on $(0,R)$.
+
+\emph{Step 2: approximation.} For general $u$, let $u_\varepsilon=u*\rho_\varepsilon$ be the regularizations of \eqref{eq:canonical-subharmonic}. For small $\varepsilon$ they are defined on a neighborhood of the compact set $\overline{B(a,R)}$, and by \cref{prop:smooth-psh-criterion}(2) they are smooth and plurisubharmonic there and decrease to $u$ as $\varepsilon\downarrow0$. Subtracting a constant, which changes neither side of \eqref{eq:euclidean-jensen-lelong}, nor $D_u$, nor the Lelong number, we may assume $u_\varepsilon\leq0$ on $\overline{B(a,R)}$ for all small $\varepsilon$. For $0\leq\eta<1$ put $\kappa_\eta=(1-\eta)/(1+\eta)^{2n-1}$. If $0<r<R$ and $|x-a|\leq\eta r$, the explicit formula \eqref{eq:ball-poisson-kernel} shows that the Poisson kernel $P$ of $B(a,r)$ satisfies $P(x,\zeta)\geq\kappa_\eta P(a,\zeta)=\kappa_\eta/(s_{2n-1}r^{2n-1})$ for $\zeta\in\partial B(a,r)$.
+
+Fix $0<r<R$ and choose $b\in B(a,r)$ with $u(b)>-\infty$, which is possible since the pole set of $u$ has measure zero; let $\eta=|b-a|/r$. By the maximum principle (\cref{prop:subharmonic-maximum}), applied to $u_\varepsilon$ minus the Poisson integral of its boundary values (\cref{thm:ball-dirichlet}), we have $u_\varepsilon(x)\leq\int_{\partial B(a,r)}P(x,\zeta)u_\varepsilon(\zeta)\,\mathrm dS(\zeta)$ for $x\in B(a,r)$. At $x=b$, since $u_\varepsilon\leq0$, this gives
+\[
+ u(b)\leq u_\varepsilon(b)\leq\kappa_\eta M_{u_\varepsilon}(a,r).
+\]
+Thus the integrals of the nonnegative functions $-u_\varepsilon$ over the sphere are bounded independently of $\varepsilon$. As $-u_\varepsilon$ increases to $-u$, the monotone convergence theorem shows that $M_u(a,r)$ is finite and $M_{u_\varepsilon}(a,r)\to M_u(a,r)$. For fixed $x\in B(a,r)$ the kernel $P(x,\cdot)$ is positive and bounded on $\partial B(a,r)$, so the same argument, applied to the functions $-P(x,\cdot)u_\varepsilon$, lets us pass to the limit in the Poisson inequality, and we obtain $u(x)\leq\int_{\partial B(a,r)}P(x,\zeta)u(\zeta)\,\mathrm dS(\zeta)$ for $x\in B(a,r)$.
+
+Since the functions $u_\varepsilon$ decrease to the locally integrable function $u$, the monotone convergence theorem, applied to $u_{\varepsilon_0}-u_\varepsilon$ for a fixed $\varepsilon_0$, shows that $u_\varepsilon\to u$ in $L^1_{\loc}$; hence the positive measures $\Delta u_\varepsilon$ converge to $\mu$ in the sense of distributions, hence vaguely (\cref{prop:positive-distribution-convergence}). By \cref{prop:vague-set-inequalities}, $\Delta u_\varepsilon(B(a,r))\to\mu(B(a,r))$ for every radius $r$ with $\mu(\partial B(a,r))=0$; since the spheres $\partial B(a,r)$, $0<r<R$, are disjoint and $\mu$ is finite on $B(a,R)$, only countably many radii are excluded (\cref{lem:disjoint-positive-countable}). Moreover, if $r_2<R$ and $\chi\in C^\infty_c$ is a cutoff function with values in $[0,1]$, equal to one on $B(a,r_2)$, with support in a neighborhood of $\overline{B(a,R)}$ on which all $u_\varepsilon$ with small $\varepsilon$ are defined, then $\Delta u_\varepsilon(B(a,r_2))\leq\int\chi\,\Delta u_\varepsilon\to\int\chi\,\mathrm d\mu$, so these masses are bounded uniformly in $\varepsilon$.
+
+By Step 1 each $D_{u_\varepsilon}(a,\cdot)$ is nondecreasing; letting $\varepsilon\downarrow0$, we see that $D_u(a,\cdot)$ is nondecreasing on the dense set of radii with $\mu(\partial B(a,r))=0$, and hence on $(0,R)$, because $r\mapsto\mu(B(a,r))$ is left continuous. Finally, \eqref{eq:euclidean-jensen-lelong} holds for each $u_\varepsilon$ by Step 1. As $\varepsilon\downarrow0$, its left side converges to $M_u(a,r_2)-M_u(a,r_1)$, while the integrands on the right converge for all but countably many $t$ and are bounded uniformly in $\varepsilon$; dominated convergence gives \eqref{eq:euclidean-jensen-lelong} for $u$.
+
+\emph{Step 3: the limits.} The nondecreasing nonnegative function $D_u(a,\cdot)$ has a limit $\ell=\lim_{r\downarrow0}D_u(a,r)\in[0,\infty)$. Put $g(t)=M_u(a,\mathrm e^{t/2})$ and fix $t_0<\log R^2$. Given $\delta>0$, choose $s_\delta<\min\{t_0,0\}$ with $D_u(a,\mathrm e^{s/2})\leq\ell+\delta$ for $s\leq s_\delta$. For $t<s_\delta$, \eqref{eq:euclidean-jensen-lelong} and the monotonicity of $D_u(a,\cdot)$ give
+\[
+ \ell(t_0-t)\leq g(t_0)-g(t)\leq(\ell+\delta)(s_\delta-t)+(t_0-s_\delta)D_u(a,\mathrm e^{t_0/2}).
+\]
+Dividing by $-t>0$ and letting $t\to-\infty$, we see that all limit points of $g(t)/t$ lie in $[\ell,\ell+\delta]$. Hence $M_u(a,r)/\log r^2\to\ell$ as $r\downarrow0$. It remains to show that $\ell=\nu(u,a)$. Let $0<\eta<1$. For $x\in B(a,\eta r)$, the Poisson inequality of Step 2 and the kernel bound give, since $u\leq0$,
+\[
+ u(x)\leq\int_{\partial B(a,r)}P(x,\zeta)u(\zeta)\,\mathrm dS(\zeta)
+ \leq\kappa_\eta M_u(a,r).
+\]
+Together with $M_u(a,r)\leq\sup_{\partial B(a,r)}u=N(\log r^2)$, where $N$ is as in \cref{prop:lelong-logarithmic-growth}, we obtain
+\[
+ N(\log(\eta^2r^2))\leq\kappa_\eta M_u(a,r),
+ \qquad M_u(a,r)\leq N(\log r^2).
+\]
+We divide by $\log r^2<0$ and let $r\downarrow0$. Since $\log(\eta^2r^2)/\log r^2\to1$, this gives $\nu(u,a)\geq\kappa_\eta\ell$ and $\ell\geq\nu(u,a)$. Letting $\eta\downarrow0$, so that $\kappa_\eta\to1$, we conclude that $\ell=\nu(u,a)$, which proves \eqref{eq:lelong-density-limit}.
+\end{proof}
+\index{Jensen--Lelong formula}
+
+\begin{proposition}\label{prop:lelong-calculus}
+Let $n\geq1$, let $u$ and $v$ be plurisubharmonic on a neighborhood $U$ of $a\in\mathbb C^n$, and let $b>0$. Then
+\[
+ \begin{aligned}
+ \nu(u+v,a)&=\nu(u,a)+\nu(v,a),&\nu(bu,a)&=b\nu(u,a),\\
+ \nu(\max\{u,v\},a)&=\min\{\nu(u,a),\nu(v,a)\}.
+ \end{aligned}
+\]
+If $(u_i)_{i\in I}$ is a nonempty family of plurisubharmonic functions on $U$ that is locally uniformly bounded above, and $u=(\sup_iu_i)^*$, then $\nu(u,a)=\inf_i\nu(u_i,a)$. If $u_j$, $j\geq1$, and $u$ are plurisubharmonic on $U$, $u_j\to u$ in $L^1_{\loc}(U)$, and $a_j\to a$, then
+\begin{equation}\label{eq:lelong-upper-semicontinuity}
+ \varlimsup_j\nu(u_j,a_j)\leq\nu(u,a).
+\end{equation}
+Finally, for a holomorphic germ $f\not\equiv0$ at $a$, $\nu(\log|f|^2,a)=\operatorname{ord}_af$, where the \emph{order} $\operatorname{ord}_af$ of $f$ at $a$ is the degree of the first nonzero homogeneous term of its Taylor expansion at $a$ (\cref{sec:analytic-division}); moreover $\nu(\log|z-a|^2,a)=1$.
+\end{proposition}
+\begin{proof}
+By \eqref{eq:lelong-density-limit}, $\nu(w,a)=\lim_{r\downarrow0}M_w(a,r)/\log r^2$ for every plurisubharmonic $w$ near $a$, and the spherical means involved are finite and linear in $w$; this proves the formulas for $u+v$ and $bu$. If $w_1\leq w_2+O(1)$ near $a$, then $\nu(w_1,a)\geq\nu(w_2,a)$ by the characterization in \cref{prop:lelong-logarithmic-growth}; hence $\nu(\max\{u,v\},a)\leq\min\{\nu(u,a),\nu(v,a)\}$. Conversely, choose $r_0>0$ with $\overline{B(a,r_0)}\subset U$. By \eqref{eq:lelong-attained-growth}, and since the logarithm $\log(|z-a|^2/r_0^2)$ is negative on $B(a,r_0)\setminus\{a\}$, both $u$ and $v$, and hence $\max\{u,v\}$, are bounded there by $c\log(|z-a|^2/r_0^2)+C$ with $c=\min\{\nu(u,a),\nu(v,a)\}$ and a constant $C$. This gives the reverse inequality.
+
+For the family, $u$ is plurisubharmonic by \cref{thm:psh-upper-envelopes}. Choose $r_0$ as above, a common upper bound $C$ for the $u_i$ on $B(a,r_0)$, and put $c=\inf_i\nu(u_i,a)$. By \eqref{eq:lelong-attained-growth}, again using that the logarithm is negative, $u_i(z)\leq c\log(|z-a|^2/r_0^2)+C$ for $0<|z-a|<r_0$ and all $i$. The supremum of the $u_i$ satisfies the same bound, and so does its upper semicontinuous regularization $u$ on $B(a,r_0)\setminus\{a\}$, because the bound is continuous there. Hence $\nu(u,a)\geq c$ by the characterization in \cref{prop:lelong-logarithmic-growth}. Conversely $u\geq u_i$ gives $\nu(u,a)\leq\nu(u_i,a)$ for every $i$.
+
+For \eqref{eq:lelong-upper-semicontinuity}, note that $\Delta u_j\to\Delta u$ in the sense of distributions, because $u_j\to u$ in $L^1_{\loc}(U)$; hence the positive measures $\Delta u_j$ converge vaguely to $\Delta u$ (\cref{prop:positive-distribution-convergence}). Fix $0<r<R$ with $\overline{B(a,R)}\subset U$ and $\Delta u(\partial B(a,r))=0$, and let $0<\rho<r$. Then $B(a_j,\rho)\subset B(a,r)$ for all large $j$. Since $D_{u_j}(a_j,\cdot)$ is nondecreasing with limit $\nu(u_j,a_j)$ at $0$ (\cref{thm:euclidean-jensen-lelong}), and $\varlimsup_j\Delta u_j(K)\leq\Delta u(K)$ for the compact set $K=\overline{B(a,r)}$ (\cref{prop:vague-set-inequalities}), we obtain
+\[
+ \varlimsup_j\nu(u_j,a_j)
+ \leq\varlimsup_j\frac{\Delta u_j(\overline{B(a,r)})}{2s_{2n-1}\rho^{2n-2}}
+ \leq\frac{\Delta u(\overline{B(a,r)})}{2s_{2n-1}\rho^{2n-2}}.
+\]
+Let $\rho\uparrow r$; as $\Delta u(\partial B(a,r))=0$, the right side becomes $D_u(a,r)$. By \cref{lem:disjoint-positive-countable}, applied to the finite measure $\Delta u$ on $B(a,R)$ and the disjoint spheres $\partial B(a,r)$, all but countably many radii $r\in(0,R)$ satisfy $\Delta u(\partial B(a,r))=0$. Letting $r\downarrow0$ through such radii and using \eqref{eq:lelong-density-limit} proves \eqref{eq:lelong-upper-semicontinuity}.
+
+Finally, let $k=\operatorname{ord}_af$, and let $P_k\neq0$ be the homogeneous term of degree $k$ in the expansion of $f$ at $a$; the function $\log|f|^2$ is plurisubharmonic near $a$ by \cref{prop:holomorphic-tuple-logarithm}. By \eqref{eq:homogeneous-expansion-remainder} there is $C$ with $|f(a+w)-P_k(w)|\leq C|w|^{k+1}$ for small $w$. Put $c_1=\max_{|\omega|=1}|P_k(\omega)|$, which is positive because a homogeneous polynomial vanishing on the unit sphere vanishes identically. Since $|P_k(w)|\leq c_1|w|^k$, with equality for some $w$ on every sphere $|w|=r$, we obtain $r^k(c_1-Cr)\leq\sup_{|w|=r}|f(a+w)|\leq r^k(c_1+Cr)$. By \cref{prop:lelong-logarithmic-growth}, $N(\log r^2)$ is the supremum of $\log|f|^2$ over the sphere $|z-a|=r$, so $N(\log r^2)=k\log r^2+O(1)$ as $r\downarrow0$, and $\nu(\log|f|^2,a)=k$. For the last assertion, recall that $\log|z-a|^2$ is plurisubharmonic (\cref{prop:holomorphic-tuple-logarithm}). Since $\sup_{B(a,r)}\log|z-a|^2=\log r^2$, we have $N(t)=t$ for this function, and \eqref{eq:lelong-growth-definition} gives $\nu(\log|z-a|^2,a)=1$.
+\end{proof}
+\index{Lelong number!semicontinuity}\index{Lelong number!of a holomorphic function}\index{Lelong number!of sums and maxima}\index{order!of a holomorphic germ}
+
+\section{Coherent ideals from weighted integrability}
+\label{sec:multiplier-ideal-coherence}
+
+From now on $X$ denotes a complex manifold, and $n\geq0$ its dimension at the point under consideration. We also narrow a term of \cref{chap:q04}: a \emph{weight} on $X$ is now a plurisubharmonic function on $X$, a special case of the measurable weights of \cref{sec:weighted-dbar-estimate}; in particular, a weight is not identically $-\infty$ on any connected component of $X$. Restrictions of weights to submanifolds may be identically $-\infty$ on some components, and \cref{def:multiplier-ideal} allows this case. Local integrability on $X$ refers to Lebesgue measure in holomorphic charts, or equivalently to any smooth positive volume form, since the densities of two such measures with respect to each other are bounded above and below by positive constants on compact subsets of a chart.
+\index{weight!plurisubharmonic}
+
+To pass from a Hilbert space of holomorphic functions to a coherent ideal sheaf we need two facts from local algebra, the Krull intersection theorem and the strong Noetherian property of coherent sheaves. We prove them first, the second by induction on the dimension with the help of Weierstrass polynomials.
+
+\begin{lemma}\label{lem:analytic-krull-closure}
+Let $x\in X$, let $R=\mathcal O_{X,x}$ with maximal ideal $\mathfrak m$, and let $E$ be a submodule of a finitely generated $R$-module $F$. Then
+\[
+ \bigcap_{k\geq1}(E+\mathfrak m^kF)=E.
+\]
+In particular, if a sequence of holomorphic functions on a neighborhood of $x$ converges locally uniformly and the germs at $x$ of all its members belong to an ideal $J\subset R$, then the germ of the limit belongs to $J$.
+\end{lemma}
+\begin{proof}
+We derive the intersection formula from the Artin--Rees lemma, after collecting the facts about Noetherian rings that we need. A commutative ring $A$ is \emph{Noetherian} if all its ideals are finitely generated. Let $A$ be Noetherian.
+
+(i) Every submodule $N$ of $A^r$, $r\geq1$, is finitely generated. For $r=1$ this is the definition. Let $r\geq2$. The last coordinates of the elements of $N$ form an ideal of $A$; choose $v_1,\ldots,v_q\in N$ whose last coordinates generate it, and, by induction on $r$, finitely many generators of the submodule $N\cap(A^{r-1}\times\{0\})$, which is a submodule of $A^{r-1}$. If $v\in N$, subtracting from $v$ a combination of the $v_i$ with the same last coordinate leaves an element of $N\cap(A^{r-1}\times\{0\})$; hence these finitely many elements generate $N$.
+
+(ii) Every submodule $N$ of a finitely generated $A$-module $M$ is finitely generated. Indeed, let $\pi\colon A^r\to M$ map the standard basis to generators of $M$. By (i), the submodule $\pi^{-1}(N)$ of $A^r$ is finitely generated, and the images of its generators generate $N=\pi(\pi^{-1}(N))$.
+
+(iii) The polynomial ring $A[t]$ is Noetherian (Hilbert's basis theorem). Let $I\subset A[t]$ be a nonzero ideal. The leading coefficients of the nonzero elements of $I$, together with $0$, form an ideal of $A$: if $f,g\in I$ have degrees $d\leq e$ and leading coefficients $a,b$ with $a+b\neq0$, then $t^{e-d}f+g\in I$ has leading coefficient $a+b$, and if $c\in A$ with $ca\neq0$, then $cf\in I$ has leading coefficient $ca$. Choose $p_1,\ldots,p_k\in I$ whose leading coefficients generate this ideal, and let $d_0$ be the largest of their degrees. If $f\in I$ has degree $d\geq d_0$, its leading coefficient is $\sum_ia_ic_i$ for some $a_i\in A$, where $c_i$ is the leading coefficient of $p_i$, and $f-\sum_ia_it^{d-\deg p_i}p_i$ is an element of $I$ of smaller degree. Repeating this, we see that $f$ differs from an element of $I\cap(A+At+\cdots+At^{d_0-1})$ by an element of the ideal generated by $p_1,\ldots,p_k$. The set $I\cap(A+At+\cdots+At^{d_0-1})$ is a submodule of the $A$-module $A+At+\cdots+At^{d_0-1}\cong A^{d_0}$, finitely generated by (i). Hence $I$ is generated by $p_1,\ldots,p_k$ and finitely many further elements.
+
+(iv) If $I\subset A$ is an ideal, then $A/I$ is Noetherian, since the ideals of $A/I$ are the images of the ideals of $A$ containing $I$. Hence, by (iii) and induction on the number of variables, every quotient of a polynomial ring in finitely many variables over $A$ is Noetherian.
+
+All this applies to $A=R$, which is Noetherian by \cref{prop:analytic-noetherian}, since a holomorphic chart at $x$ identifies $R$ with $\mathcal O_n$.
+
+Next we prove the Artin--Rees lemma. If $\mathfrak m=0$, which happens only in dimension zero, the lemma is trivial; so let $\mathfrak m\neq0$, and choose generators $\xi_1,\ldots,\xi_p$ of $\mathfrak m$. Consider the subring $\mathcal R=\bigoplus_{k\geq0}\mathfrak m^kt^k$ of $R[t]$, consisting of the polynomials whose coefficient of $t^k$ lies in $\mathfrak m^k$, where $\mathfrak m^0=R$. Since $\mathfrak m^k$ is generated by the monomials of degree $k$ in $\xi_1,\ldots,\xi_p$, the ring $\mathcal R$ is the image of the homomorphism $R[T_1,\ldots,T_p]\to R[t]$, $T_i\mapsto\xi_it$, and it is Noetherian by (iii) and (iv).
+
+In the $\mathcal R$-module of polynomials in $t$ with coefficients in $F$, consider the submodule $\bigoplus_{k\geq0}\mathfrak m^kFt^k$. It is generated over $\mathcal R$ by generators of $F$ placed in degree zero, and it contains the submodule $\mathcal E=\bigoplus_{k\geq0}(E\cap\mathfrak m^kF)t^k$, because $\mathfrak m^j(E\cap\mathfrak m^kF)\subset E\cap\mathfrak m^{j+k}F$. By (ii), $\mathcal E$ is finitely generated. The homogeneous components of the elements of $\mathcal E$ again belong to $\mathcal E$, so the homogeneous components of finitely many generators generate $\mathcal E$; let these be $e_1t^{d_1},\ldots,e_lt^{d_l}$ with $e_i\in E\cap\mathfrak m^{d_i}F$, and let $s=\max_id_i$. For $k\geq s$ this gives the Artin--Rees equality
+\[
+ E\cap\mathfrak m^kF=\mathfrak m^{k-s}(E\cap\mathfrak m^sF).
+\]
+Indeed, let $y\in E\cap\mathfrak m^kF$, and write $yt^k=\sum_i\rho_ie_it^{d_i}$ with $\rho_i\in\mathcal R$. Comparing the coefficients of $t^k$, we may replace each $\rho_i$ by its term of degree $k-d_i$, which is $a_it^{k-d_i}$ with $a_i\in\mathfrak m^{k-d_i}$. Thus $y=\sum_ia_ie_i$, where $a_i\in\mathfrak m^{k-d_i}=\mathfrak m^{k-s}\mathfrak m^{s-d_i}$ and $\mathfrak m^{s-d_i}e_i\subset E\cap\mathfrak m^sF$; hence $y\in\mathfrak m^{k-s}(E\cap\mathfrak m^sF)$. The reverse inclusion is immediate.
+
+Now let $Q$ be a finitely generated $R$-module and $G=\bigcap_k\mathfrak m^kQ$. By (ii), $G$ is finitely generated. Let $s$ be the index of the Artin--Rees equality for $G\subset Q$. Since $G\subset\mathfrak m^kQ$ for all $k$, this equality with $k=s+1$ gives $G=G\cap\mathfrak m^{s+1}Q=\mathfrak m(G\cap\mathfrak m^sQ)=\mathfrak mG$. If $g_1,\ldots,g_r$ generate $G$, write $g_i=\sum_ja_{ij}g_j$ with $a_{ij}\in\mathfrak m$. Multiplying this system of equations by the adjugate of the matrix $(\delta_{ij}-a_{ij})$ gives $\det(\delta_{ij}-a_{ij})\,g_i=0$ for every $i$. Expanding the determinant, we see that it is congruent to $1$ modulo $\mathfrak m$, hence a unit of the local ring $R$, and therefore $G=0$. Applied to $Q=F/E$, for which $\mathfrak m^kQ=(E+\mathfrak m^kF)/E$, this proves the intersection formula.
+
+For the last assertion, let $f_l\to f$ locally uniformly near $x$, with germs $f_l\in J$, and work in a holomorphic chart centered at $x$. By \cref{sec:analytic-division}, a germ belongs to $\mathfrak m^k$ if and only if its Taylor coefficients of order less than $k$ vanish; hence these coefficients identify $R/\mathfrak m^k$ with a finite-dimensional vector space. By the integral formula for the coefficients in \eqref{eq:polydisc-power-series}, the Taylor coefficients of $f_l$ at $x$ converge to those of $f$, so the images of the $f_l$ in $R/\mathfrak m^k$ converge to the image of $f$. The image of $J$ there is a linear subspace of a finite-dimensional vector space, hence closed, so $f\in J+\mathfrak m^k$ for every $k$. The intersection formula with $F=R$ and $E=J$ gives $f\in J$.
+\end{proof}
+\index{Artin--Rees lemma}\index{Krull intersection theorem}\index{Hilbert basis theorem}\index{Noetherian ring}
+
+Recall from \cref{sec:analytic-division} that a sheaf of ideals $\mathcal I\subset\mathcal O_X$ is locally finitely generated if every point has a neighborhood $U$ with sections $g_1,\ldots,g_r\in\mathcal I(U)$ whose germs generate $\mathcal I_y$ for every $y\in U$. For such sheaves the identity theorem takes the following form.
+
+\begin{lemma}\label{lem:locally-finite-ideal-identity}
+Let $\mathcal I$ be a locally finitely generated sheaf of ideals on a connected complex manifold $W$. If $\mathcal I_y=0$ for some $y\in W$, then $\mathcal I_z=0$ for every $z\in W$.
+\end{lemma}
+\begin{proof}
+The set of points $z$ with $\mathcal I_z=0$ is open: near such a point, choose sections $g_1,\ldots,g_r$ generating all stalks of $\mathcal I$ on a neighborhood; their germs at $z$ vanish, so they vanish on a neighborhood $U'$ of $z$, and $\mathcal I$ has zero stalks on $U'$. The set of points with $\mathcal I_z\neq0$ is open as well: a section with nonzero germ at $z$, defined on a connected neighborhood of $z$, has nonzero germs at all points of this neighborhood, by the identity theorem. Since $W$ is connected, one of the two sets is empty.
+\end{proof}
+
+In the proof of the strong Noetherian property we reduce the number of variables by the following finiteness lemma for Weierstrass polynomials. For an open set $W'\subset\mathbb C^{n-1}$, a disc $\Delta\subset\mathbb C$, the projection $\pi\colon W'\times\Delta\to W'$, and a sheaf $\mathcal G$ of $\mathcal O_{W'\times\Delta}$-modules, the \emph{direct image} $\pi_*\mathcal G$ is the sheaf $V'\mapsto\mathcal G(V'\times\Delta)$ on $W'$; it is a sheaf of $\mathcal O_{W'}$-modules, a holomorphic function $c$ on $V'$ acting by multiplication with $c\circ\pi$.
+\index{direct image of a sheaf}
+
+\begin{lemma}\label{lem:weierstrass-finite-projection}
+Let $n\geq1$, let $W'\subset\mathbb C^{n-1}$ be open, let $\Delta=\{w\in\mathbb C:|w|<r\}$, and let
+\[
+ P(z',w)=w^\mu+a_1(z')w^{\mu-1}+\cdots+a_\mu(z'),\qquad\mu\geq1,
+\]
+with $a_1,\ldots,a_\mu$ holomorphic on $W'$, such that for some $\rho<r$ all roots of $P(z',\cdot)$, $z'\in W'$, lie in the disc $|w|\leq\rho$. Put $D=W'\times\Delta$ and $Z=\{P=0\}\subset D$, let $\pi\colon D\to W'$ be the projection, and let $P\mathcal O_D$ be the ideal generated by $P$.
+\begin{enumerate}
+\item Let $\mathcal G$ be a sheaf of $\mathcal O_D$-modules with $\mathcal G_z=0$ for $z\in D\setminus Z$. Then for every $b\in W'$ the map
+\[
+ (\pi_*\mathcal G)_b\to\bigoplus_{z\in Z\cap\pi^{-1}(b)}\mathcal G_z,
+\]
+which sends the germ at $b$ of a section over $V'\times\Delta$ to its germs at the points of the fiber, is bijective.
+\item The morphism $\Phi\colon\mathcal O_{W'}^\mu\to\pi_*(\mathcal O_D/P\mathcal O_D)$ that sends $(c_0,\ldots,c_{\mu-1})$ to the class of $\sum_kc_kw^k$ is an isomorphism.
+\item Let $\mathcal I\subset\mathcal O_D$ be a coherent ideal with $P\in\mathcal I(D)$, and let $\mathcal I/P\mathcal O_D$ denote its image in $\mathcal O_D/P\mathcal O_D$. Then $\mathcal M(\mathcal I)=\Phi^{-1}(\pi_*(\mathcal I/P\mathcal O_D))$ is a coherent subsheaf of $\mathcal O_{W'}^\mu$. If $\mathcal I'$ is a second such ideal and $\mathcal M(\mathcal I)=\mathcal M(\mathcal I')$ on an open set $V'\subset W'$, then $\mathcal I=\mathcal I'$ on $V'\times\Delta$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+For $z'\in W'$, the polynomial $P(z',\cdot)$ has at most $\mu$ roots, all in $\Delta$; so the fibers of $Z$ over $W'$ are finite. We first describe $Z$ near a fiber. Let $b\in W'$, let $w_1,\ldots,w_l$ be the distinct roots of $P(b,\cdot)$, and put $z_i=(b,w_i)$. Let $\delta>0$ be so small that the closed discs $|w-w_i|\leq2\delta$ are pairwise disjoint and contained in $\Delta$. The function $|P|$ is continuous and positive on the compact set $\{b\}\times K$, where $K=\{|w|\leq\rho\}\setminus\bigcup_i\{|w-w_i|<\delta\}$; hence it is positive on $V_b\times K$ for a neighborhood $V_b$ of $b$, and for $z'\in V_b$ all roots of $P(z',\cdot)$ lie in $\bigcup_i\{|w-w_i|<\delta\}$. Put $B_i=V_b\times\{|w-w_i|<2\delta\}$. These open sets are pairwise disjoint, and $Z\cap(V_b\times\Delta)\subset\bigcup_iB_i$. Moreover, given neighborhoods $N_i$ of the points $z_i$, we can achieve $V_b\times\{|w-w_i|\leq2\delta\}\subset N_i$ for all $i$: first decrease $\delta$ so that $\{b\}\times\{|w-w_i|\leq2\delta\}\subset N_i$, and then decrease $V_b$, using the compactness of these discs. We call such $\delta$ and $V_b$ adapted to $b$; a smaller neighborhood of $b$ remains adapted.
+
+(1) Let $s$ be a section of $\mathcal G$ over $V'\times\Delta$ whose germs at all the $z_i$ vanish. Then $s$ vanishes on neighborhoods $N_i$ of the $z_i$; choose $\delta$ and $V_b\subset V'$ adapted to $b$ with $B_i\subset N_i$. The open sets $B_1,\ldots,B_l$ and $(V_b\times\Delta)\setminus Z$ cover $V_b\times\Delta$, and $s$ vanishes on each of them, on the last one because all stalks of $\mathcal G$ vanish there. Hence $s=0$ on $V_b\times\Delta$, and the map is injective. Conversely, let $g_i\in\mathcal G_{z_i}$ be given, represented by sections $t_i$ on neighborhoods $N_i$ of the $z_i$, and choose $\delta$ and $V_b$ adapted to $b$ with $B_i\subset N_i$. On the open cover of $V_b\times\Delta$ formed by the $B_i$ and $(V_b\times\Delta)\setminus Z$, consider the sections $t_i|_{B_i}$ and $0$. They agree on the overlaps: the $B_i$ are pairwise disjoint, and $t_i$ vanishes on $B_i\setminus Z$, since $\mathcal G$ has zero stalks there. Gluing them, we obtain a section over $V_b\times\Delta$ with germs $g_i$ at the $z_i$. Hence the map is surjective.
+
+(2) The map $\Phi$ is a morphism of sheaves of $\mathcal O_{W'}$-modules. It is injective on sections: suppose that the class of $R=\sum_{k<\mu}c_kw^k$ vanishes on $V'\times\Delta$, and let $z'\in V'$. If $w_0$ is a root of $P(z',\cdot)$ of multiplicity $m$, then $R=Pq$ near $(z',w_0)$ with $q$ holomorphic, so the polynomial $R(z',\cdot)=P(z',\cdot)q(z',\cdot)$ vanishes to order at least $m$ at $w_0$. Thus $R(z',\cdot)$, a polynomial of degree less than $\mu$, has at least $\mu$ zeros counted with multiplicity, and therefore vanishes; that is, $c_k(z')=0$ for all $k$. To prove surjectivity on stalks, let $s$ be a section of $\mathcal O_D/P\mathcal O_D$ over $V'\times\Delta$ and $b\in V'$. Near each $z_i$, $s$ is the class of a holomorphic function $f_i$ on a neighborhood $N_i$ of $z_i$. Choose $\delta$ and $V_b\subset V'$ adapted to $b$ with $V_b\times\{|w-w_i|\leq2\delta\}\subset N_i$. On the circles $|\zeta-w_i|=2\delta$ the function $P(z',\zeta)$ does not vanish for $z'\in V_b$, since these circles have distance at least $\delta$ from all roots. For $z'\in V_b$ and $w\in\mathbb C$ put
+\[
+ R(z',w)=\frac1{2\pi\mathrm i}\sum_{i=1}^l\int_{|\zeta-w_i|=2\delta}
+ \frac{f_i(z',\zeta)}{P(z',\zeta)}\,\frac{P(z',\zeta)-P(z',w)}{\zeta-w}\,\mathrm d\zeta.
+\]
+The difference quotient is a polynomial in $w$ of degree $\mu-1$ whose coefficients are polynomials in $\zeta$ and in the $a_k(z')$; hence $R$ is a polynomial in $w$ of degree less than $\mu$ whose coefficients are holomorphic on $V_b$, by differentiation under the integral sign. For $z'\in V_b$ and $|w-w_i|<2\delta$ put
+\[
+ q_i(z',w)=\frac1{2\pi\mathrm i}\sum_{j=1}^l\int_{|\zeta-w_j|=2\delta}\frac{f_j(z',\zeta)}{P(z',\zeta)(\zeta-w)}\,\mathrm d\zeta,
+\]
+a holomorphic function on $B_i$. Adding the two integrals, we obtain
+\[
+ P(z',w)q_i(z',w)+R(z',w)=\frac1{2\pi\mathrm i}\sum_{j=1}^l\int_{|\zeta-w_j|=2\delta}\frac{f_j(z',\zeta)}{\zeta-w}\,\mathrm d\zeta=f_i(z',w),
+\]
+since the term $j=i$ equals $f_i(z',w)$ by Cauchy's formula, and the terms $j\neq i$ vanish by Cauchy's theorem, the point $w$ lying outside the closed disc $|\zeta-w_j|\leq2\delta$. Hence $f_i\equiv R$ modulo $P$ on $B_i$, so $s$ and the class of $R$ agree on each $B_i$; on $(V_b\times\Delta)\setminus Z$ both vanish, since $P$ is a unit there. Thus $s=\Phi(c)$ on $V_b\times\Delta$, where $c$ is the tuple of coefficients of $R$. Being injective, and surjective on all stalks, $\Phi$ is an isomorphism.
+
+(3) The sheaf $\mathcal M(\mathcal I)$ is a subsheaf of $\mathcal O_{W'}$-modules of $\mathcal O_{W'}^\mu$. Since $\mathcal O_{W'}$ is coherent (\cref{thm:oka-coherence}), the last assertion of \cref{lem:coherent-sheaf-algebra} shows that it suffices to prove that $\mathcal M(\mathcal I)$ is locally finitely generated. Note that $\mathcal I/P\mathcal O_D$ has zero stalks off $Z$, because $P$ is a unit there; so (1) applies to it as well as to $\mathcal O_D/P\mathcal O_D$.
+
+Fix $b\in W'$, with $z_i$ as above. Since $\mathcal I$ is coherent, there are neighborhoods $N_i$ of $z_i$ and sections $f_{i1},\ldots,f_{i\kappa}$ of $\mathcal I$ over $N_i$ generating all stalks of $\mathcal I$ on $N_i$. Choose $\delta$ and $V_b$ adapted to $b$ with $B_i\subset N_i$. For $1\leq i\leq l$, $1\leq\lambda\leq\kappa$ and $0\leq m<\mu$, let $\sigma_{i\lambda m}$ be the section of $\mathcal I/P\mathcal O_D$ over $V_b\times\Delta$ that equals the class of $w^mf_{i\lambda}$ on $B_i$ and $0$ on the other $B_j$ and on $(V_b\times\Delta)\setminus Z$. As in (1), these local sections glue, since the $B_j$ are pairwise disjoint and the class of $w^mf_{i\lambda}$ vanishes on $B_i\setminus Z$, where $P$ is a unit.
+
+We claim that the sections $\Phi^{-1}(\sigma_{i\lambda m})$ of $\mathcal M(\mathcal I)$ over $V_b$ generate all its stalks. Let $b'\in V_b$, and let $y_1,\ldots,y_p$ be the points of $Z$ over $b'$; each of them lies in exactly one $B_i$. By (1), every element of $\pi_*(\mathcal I/P\mathcal O_D)_{b'}$ is a sum of elements $e$ whose germs vanish at all points of the fiber except one point $y_q$, where the germ is some $g\in(\mathcal I/P\mathcal O_D)_{y_q}$. Let $y_q\in B_i$, and write $g$ as the class of $\sum_\lambda h_\lambda f_{i\lambda}$ with germs $h_\lambda$ at $y_q$. By (1) for $\mathcal O_D/P\mathcal O_D$ and by (2), for each $\lambda$ there is $c^{(\lambda)}\in\mathcal O_{W',b'}^\mu$ such that $R_\lambda=\sum_mc^{(\lambda)}_mw^m$ is congruent to $h_\lambda$ modulo $P$ at $y_q$ and to $0$ modulo $P$ at the other points of the fiber. Then the element $\sum_{\lambda,m}c^{(\lambda)}_m\sigma_{i\lambda m}$ of $\pi_*(\mathcal I/P\mathcal O_D)_{b'}$ has the germ $g$ at $y_q$ and the germ $0$ at every other point of the fiber: at the other points in $B_i$ its germ is the class of $\sum_\lambda R_\lambda f_{i\lambda}\in P\mathcal O_D$, and at the points outside $B_i$ it vanishes by construction. By the injectivity in (1), it equals $e$. This proves the claim, and $\mathcal M(\mathcal I)$ is coherent.
+
+Finally, let $\mathcal M(\mathcal I)=\mathcal M(\mathcal I')$ on $V'$, and let $z\in V'\times\Delta$. If $z\notin Z$, then $\mathcal I_z=\mathcal O_{D,z}=\mathcal I'_z$, since $P$ is a unit at $z$. Let $z\in Z$, $b=\pi(z)$, and $f\in\mathcal I_z$. By (1), there is an element of $\pi_*(\mathcal O_D/P\mathcal O_D)_b$ whose germ at $z$ is the class of $f$ and whose germs at the other points of the fiber vanish. It belongs to $\pi_*(\mathcal I/P\mathcal O_D)_b=\Phi(\mathcal M(\mathcal I)_b)=\Phi(\mathcal M(\mathcal I')_b)=\pi_*(\mathcal I'/P\mathcal O_D)_b$, so its germ at $z$ belongs to $(\mathcal I'/P\mathcal O_D)_z$. Hence $f\in\mathcal I'_z+P\mathcal O_{D,z}=\mathcal I'_z$. By symmetry, $\mathcal I_z=\mathcal I'_z$.
+\end{proof}
+
+\begin{lemma}[Strong Noetherian property]\label{lem:strong-analytic-noetherian}
+Let $\mathcal F$ be a coherent analytic sheaf on $X$. Every increasing sequence $\mathcal F_1\subset\mathcal F_2\subset\cdots$ of coherent subsheaves of $\mathcal F$ is stationary near every point: each $x\in X$ has a neighborhood $U$ such that $\mathcal F_j|_U=\mathcal F_{j_0}|_U$ for all $j\geq j_0$, for some index $j_0$. Consequently, on each compact subset of $X$ the sequence is stationary after one sufficiently large index. In particular, a sheaf of ideals generated by countably many holomorphic functions on $X$ is coherent, and near each point it is generated by finitely many of these functions, forming an initial segment of the sequence.
+\end{lemma}
+\begin{proof}
+The assertion on compact sets follows from the local one by covering a compact set with finitely many of the neighborhoods $U$ and taking the largest of the corresponding indices. To prove the local assertion at a point $x$, note that $\mathcal F$, being locally finitely generated, is near $x$ the image of a surjective morphism $\phi\colon\mathcal O^r\to\mathcal F$ defined by finitely many generators. The inverse images $\phi^{-1}(\mathcal F_j)$ form an increasing sequence of subsheaves of $\mathcal O^r$, and they are coherent by \cref{lem:coherent-sheaf-algebra}, being the kernels of the morphisms $\mathcal O^r\to\mathcal F/\mathcal F_j$ between coherent sheaves; here $\mathcal O^r$ is coherent by \cref{thm:oka-coherence}. Since $\mathcal F_j=\phi(\phi^{-1}(\mathcal F_j))$, the sequence $(\mathcal F_j)$ is stationary wherever $(\phi^{-1}(\mathcal F_j))$ is.
+
+We may therefore assume that $\mathcal F=\mathcal O^r$, and we reduce to the case of ideals, $r=1$, by induction on $r$. Let $p\colon\mathcal O^r\to\mathcal O$ be the projection to the last coordinate. The images $p(\mathcal F_j)$ form an increasing sequence of coherent ideals, and the kernels $\mathcal F_j\cap(\mathcal O^{r-1}\oplus0)$ of $p|_{\mathcal F_j}$ form an increasing sequence of coherent subsheaves of $\mathcal O^{r-1}$, by \cref{lem:coherent-sheaf-algebra}. Suppose that both sequences are constant for $j\geq j_0$ on a neighborhood $U$ of $x$. If $\sigma$ is a germ of $\mathcal F_j$ at a point of $U$, with $j\geq j_0$, choose a germ $\sigma'$ of $\mathcal F_{j_0}$ with $p(\sigma')=p(\sigma)$; then $\sigma-\sigma'$ lies in the kernel for the index $j$, which equals the kernel for $j_0$, so $\sigma\in\mathcal F_{j_0}$. Thus $\mathcal F_j=\mathcal F_{j_0}$ on $U$.
+
+For ideals $\mathcal I_1\subset\mathcal I_2\subset\cdots$ we argue by induction on the dimension $n$ of $X$ at $x$; by the reduction just made, the induction hypothesis applies to coherent subsheaves of $\mathcal O^\mu$ in dimension $n-1$. In dimension zero, $x$ is an open point of $X$ and the only ideals of $\mathcal O_{X,x}=\mathbb C$ are $0$ and $\mathbb C$, so the increasing sequence $(\mathcal I_{j,x})$ is eventually constant, and $U=\{x\}$ has the required property.
+
+Let $n\geq1$, and let $W$ be a connected coordinate neighborhood of $x$. If all stalks $\mathcal I_{j,x}$ vanish, then all $\mathcal I_j$ vanish on $W$ by \cref{lem:locally-finite-ideal-identity}, and there is nothing to prove. Otherwise some $\mathcal I_{j_1}$ has a nonzero germ $g$ at $x$. After a linear change of coordinates $z=(z',w)$ centered at $x$, in which $g$ is distinguished in $w$ (\cref{sec:analytic-division}), the Weierstrass preparation theorem (\cref{thm:local-weierstrass-preparation}) shows that $g$ is a unit times a Weierstrass polynomial $P(z',w)$ of some degree $\mu$, so that the germ of $P$ belongs to $\mathcal I_{j_1,x}$. If $\mu=0$, then $g$ is a unit, the section $1=g\cdot g^{-1}$ belongs to $\mathcal I_{j_1}$ near $x$, and $\mathcal I_j$ is the unit ideal near $x$ for all $j\geq j_1$.
+
+Let $\mu\geq1$. By \eqref{eq:monic-root-bound} the roots of $P(z',\cdot)$ tend to $0$ as $z'\to0$, so there is a product $D=W'\times\Delta\subset W$ of a polydisc $W'\subset\mathbb C^{n-1}$ centered at $0$ and a disc $\Delta=\{|w|<r\}$ such that the coefficients of $P$ are holomorphic on $W'$, $P$ is a section of $\mathcal I_{j_1}$ over $D$, and all roots of $P(z',\cdot)$, $z'\in W'$, lie in $\{|w|\leq\rho\}$ for some $\rho<r$. For $j\geq j_1$ the ideals $\mathcal I_j|_D$ contain $P$, and by \cref{lem:weierstrass-finite-projection}(3) the sheaves $\mathcal M(\mathcal I_j|_D)$ form an increasing sequence of coherent subsheaves of $\mathcal O_{W'}^\mu$. By the induction hypothesis, they are constant for $j\geq j_0$ on a neighborhood $V'$ of $0$, for some $j_0\geq j_1$, and \cref{lem:weierstrass-finite-projection}(3) gives $\mathcal I_j=\mathcal I_{j_0}$ on the neighborhood $V'\times\Delta$ of $x$ for all $j\geq j_0$. This proves the local assertion.
+
+Finally, let $h_1,h_2,\ldots$ be holomorphic functions on $X$. The ideals $\mathcal J_j$ generated by $h_1,\ldots,h_j$ are locally finitely generated subsheaves of $\mathcal O$, hence coherent by \cref{thm:oka-coherence,lem:coherent-sheaf-algebra}, and the stalk at $y$ of the ideal $\mathcal J$ generated by all the $h_l$ is the union of the stalks $\mathcal J_{j,y}$. By the local assertion, every point has a neighborhood $U$ and an index $j_0$ with $\mathcal J_j=\mathcal J_{j_0}$ on $U$ for $j\geq j_0$; then $\mathcal J=\mathcal J_{j_0}$ on $U$. Hence $\mathcal J$ is coherent, and near each point it is generated by $h_1,\ldots,h_{j_0}$.
+\end{proof}
+\index{Noetherian property!strong analytic}
+
+\begin{definition}\label{def:multiplier-ideal}
+Let $\varphi$ be a weight on $X$. Its \emph{multiplier ideal} is the subsheaf $\mathcal I(\varphi)\subset\mathcal O_X$ with stalks
+\[
+ \mathcal I(\varphi)_x
+ =\{f\in\mathcal O_{X,x}: |f|^2\mathrm e^{-\varphi}
+                              \text{ is integrable near }x\}.
+\]
+Here $|f|^2\mathrm e^{-\varphi}$ is taken to be $0$ where $f=0$, so the zero germ always belongs to $\mathcal I(\varphi)_x$. The same definition applies to a function $\varphi$ that is plurisubharmonic or identically $-\infty$ on each component, as happens for restrictions of weights; where $\varphi$ is identically $-\infty$, the multiplier ideal is zero.
+\end{definition}
+\index{multiplier ideal}
+
+These stalks define a subsheaf of $\mathcal O_X$: if $|f|^2\mathrm e^{-\varphi}$ is integrable on a neighborhood $V$ of $x$, then the germs of $f$ at all points of $V$ belong to $\mathcal I(\varphi)$. Each $\mathcal I(\varphi)_x$ is an ideal, because holomorphic germs are locally bounded and $|f+g|^2\leq2|f|^2+2|g|^2$. If $\varphi\leq\psi+C$ near $x$ for a constant $C$, then $\mathrm e^{-\psi}\leq\mathrm e^{C}\mathrm e^{-\varphi}$, and therefore $\mathcal I(\varphi)_x\subset\mathcal I(\psi)_x$. In particular, adding a bounded function to $\varphi$ does not change its multiplier ideal.
+
+We use two elementary estimates for holomorphic functions.
+
+\begin{lemma}\label{lem:holomorphic-mean-lowest-term}
+Let $F$ be a holomorphic function on an open set $D\subset\mathbb C^n$, $n\geq1$.
+\begin{enumerate}
+\item If $\overline{B(y,\delta)}\subset D$, then
+\begin{equation}\label{eq:holomorphic-ball-mean-bound}
+ |F(y)|^2\leq\frac1{|B(y,\delta)|}\int_{B(y,\delta)}|F|^2\,\mathrm dV.
+\end{equation}
+\item Let $x\in D$, suppose that the germ of $F$ at $x$ is not zero, and let $P_k\neq0$ be the first nonzero homogeneous term of the expansion of $F$ at $x$. Then for all sufficiently small $t>0$
+\begin{equation}\label{eq:sphere-lowest-term}
+ \int_{S^{2n-1}}|F(x+t\omega)|^2\,\mathrm dS(\omega)\geq t^{2k}\int_{S^{2n-1}}|P_k|^2\,\mathrm dS,
+ \qquad\int_{S^{2n-1}}|P_k|^2\,\mathrm dS>0.
+\end{equation}
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) The function $F$ is smooth with $\Delta F=4\sum_j\partial_{z_j}\partial_{\bar z_j}F=0$, by \eqref{eq:complex-hessian-normalization}; so its real and imaginary parts are harmonic and have the ball mean value property (\cref{prop:spherical-mean-derivative}). Thus $F(y)$ is the mean of $F$ over $B(y,\delta)$, and the Cauchy--Schwarz inequality gives \eqref{eq:holomorphic-ball-mean-bound}.
+
+(2) Homogeneous polynomials $P_l$, $P_{l'}$ of different degrees are orthogonal in $L^2$ of the unit sphere: $P_l(\mathrm e^{\mathrm i\theta}\omega)=\mathrm e^{\mathrm il\theta}P_l(\omega)$, and surface measure is invariant under the orthogonal maps $\omega\mapsto\mathrm e^{\mathrm i\theta}\omega$ (\cref{sec:harmonic-mean-values}), so $\int_{S^{2n-1}}P_l\overline{P_{l'}}\,\mathrm dS=\mathrm e^{\mathrm i(l-l')\theta}\int_{S^{2n-1}}P_l\overline{P_{l'}}\,\mathrm dS$ for every $\theta$. For small $t>0$ the homogeneous expansion $F(x+t\omega)=\sum_lt^lP_l(\omega)$ converges uniformly in $\omega\in S^{2n-1}$, by \eqref{eq:polydisc-power-series}; integrating term by term, we obtain $\int_{S^{2n-1}}|F(x+t\omega)|^2\,\mathrm dS(\omega)=\sum_{l\geq k}t^{2l}\int_{S^{2n-1}}|P_l|^2\,\mathrm dS$, which implies the first inequality. The last integral is positive, because $P_k$ does not vanish identically on the sphere, by homogeneity, and nonempty relatively open subsets of the sphere have positive surface measure.
+\end{proof}
+
+\begin{theorem}\label{thm:multiplier-ideal-coherence}
+For every weight $\varphi$ on $X$, the sheaf $\mathcal I(\varphi)$ is coherent. More precisely, let $\Omega\subset X$ be an open set that a holomorphic chart identifies with a bounded open subset of $\mathbb C^n$, pseudoconvex if $n\geq1$; for instance, $\Omega$ may be a bounded polydisc in a chart (\cref{cor:pseudoconvex-sublevels-products}). Let $\varrho$ be a measurable function on $\Omega$ with $c_\varrho\leq\varrho\leq C_\varrho$ for positive constants $c_\varrho$ and $C_\varrho$, and let
+\[
+ \mathcal H_\varphi(\Omega,\varrho)=\Bigl\{F\in\mathcal O(\Omega):
+             \|F\|_{\varphi,\varrho}^2=\int_\Omega|F|^2\mathrm e^{-\varphi}\varrho\,\mathrm dV<\infty\Bigr\},
+\]
+with the inner product $\langle F,G\rangle_{\varphi,\varrho}=\int_\Omega F\bar G\,\mathrm e^{-\varphi}\varrho\,\mathrm dV$, where $\mathrm dV$ is Lebesgue measure in the chart (the counting measure if $n=0$). For $\varrho=1$ we write $\mathcal H_\varphi(\Omega)$, $\|\cdot\|_\varphi$ and $\langle\cdot,\cdot\rangle_\varphi$. Then the following hold.
+\begin{enumerate}
+\item For every compact set $K\subset\Omega$ there is a constant $C_K$ such that $|F(z)|\leq C_K\|F\|_{\varphi,\varrho}$ for all $F\in\mathcal H_\varphi(\Omega,\varrho)$ and $z\in K$.
+\item The space $\mathcal H_\varphi(\Omega,\varrho)$ is a separable Hilbert space. It has orthonormal bases, that is, orthonormal families whose linear span is dense, and each of them is finite or countable. If $(e_j)_{j\geq1}$ is an enumeration of an orthonormal basis and $F\in\mathcal H_\varphi(\Omega,\varrho)$, then the partial sums $\sum_{j\leq N}\langle F,e_j\rangle_{\varphi,\varrho}e_j$ converge to $F$ in norm and locally uniformly on $\Omega$, and $\sum_j|\langle F,e_j\rangle_{\varphi,\varrho}|^2=\|F\|_{\varphi,\varrho}^2$.
+\item The sheaf $\mathcal I(\varphi)|_\Omega$ is generated by the germs of the elements of $\mathcal H_\varphi(\Omega,\varrho)$. In fact, if $(e_j)_{j\geq1}$ is as in (2), then the functions $e_j$ generate $\mathcal I(\varphi)|_\Omega$, and near each point of $\Omega$ already an initial segment $e_1,\ldots,e_k$ generates it.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+If $n=0$, then $\Omega$ is empty, and there is nothing to prove, or a point $x$; in the latter case $\varphi(x)$ is finite, $\mathcal H_\varphi(\Omega,\varrho)=\mathbb C$, and $\mathcal I(\varphi)_x=\mathbb C$ is generated by every nonzero element, so all assertions are immediate. Assume therefore $n\geq1$, and write $\mathcal H$, $\|\cdot\|$ and $\langle\cdot,\cdot\rangle$ for $\mathcal H_\varphi(\Omega,\varrho)$, its norm and its inner product. In the chart, $\varphi\in\PSH(\Omega)$ (\cref{sec:psh-hessian-maps}). We prove (1) and (2) by Hilbert space arguments, and (3) by solving a $\bar\partial$-equation with a weight that has a logarithmic pole.
+
+We first prove (1). Let $K\subset\Omega$ be compact, let $r>0$ be half the distance from $K$ to $\mathbb C^n\setminus\Omega$, and let $M$ be the maximum of the upper semicontinuous function $\varphi$ on the compact set $K_r=\{z:\operatorname{dist}(z,K)\leq r\}\subset\Omega$. Since $\mathrm e^{-\varphi}\varrho\geq c_\varrho\mathrm e^{-M}$ on $K_r$, the inequality \eqref{eq:holomorphic-ball-mean-bound} on $\overline{B(z,r)}\subset K_r$ gives, for $z\in K$ and $F\in\mathcal H$,
+\[
+ |F(z)|^2\leq\frac1{|B(z,r)|}\int_{B(z,r)}|F|^2\,\mathrm dV\leq\frac{\mathrm e^M}{c_\varrho|B(z,r)|}\|F\|^2.
+\]
+This proves (1).
+
+Next we show that $\mathcal H$ is a separable Hilbert space. The measurable function $\varphi-\log\varrho$ is bounded above on compact subsets of $\Omega$, and $L^2(\Omega,\mathrm e^{-\varphi+\log\varrho})$ is the $L^2$ space of the measure $\mathrm e^{-\varphi}\varrho\,\mathrm dV$. By \cref{lem:dbar-closed-distribution-holomorphic}(2), applied to this function, the elements of this space that are represented by holomorphic functions form a closed subspace. A holomorphic function is determined by its class, since continuous functions that agree almost everywhere agree everywhere; hence $\mathcal H$ is identified with this closed subspace and is a Hilbert space.
+
+Multiplication by $\mathrm e^{-\varphi/2}\varrho^{1/2}$ maps $L^2(\Omega,\mathrm e^{-\varphi+\log\varrho})$ isometrically into $L^2(\Omega)$, since $\varphi$ is locally integrable (\cref{thm:psh-distribution-representative}) and hence finite almost everywhere. The space $L^2(\Omega)$ is separable: by \cref{lem:mollifier-density}(5), $C_c(\Omega)$ is dense in it. Let $\mathcal S$ be the countable set of functions that take constant values in $\mathbb Q+\mathrm i\mathbb Q$ on finitely many half-open cubes $\prod_{i=1}^{2n}[m_i2^{-k},(m_i+1)2^{-k})$, $m_i\in\mathbb Z$, $k\geq1$, whose closures lie in $\Omega$, and vanish elsewhere. Let $g\in C_c(\Omega)$. For large $k$, the cubes of side $2^{-k}$ of this form that meet $\Supp g$ lie in a fixed compact subset $K'$ of $\Omega$. Assigning to each of them a value in $\mathbb Q+\mathrm i\mathbb Q$ within $2^{-k}$ of the value of $g$ at one of its points, we obtain $s_k\in\mathcal S$ vanishing outside $K'$ with $\sup|g-s_k|\leq2^{-k}+\sup\{|g(y)-g(y')|:|y-y'|\leq\sqrt{2n}\,2^{-k}\}$, which tends to zero by uniform continuity of $g$; hence $s_k\to g$ in $L^2(\Omega)$, and $\mathcal S$ is dense in $L^2(\Omega)$. A subset of a separable metric space is separable, so $\mathcal H$ is separable.
+
+Orthonormal bases of $\mathcal H$ exist: applying the Gram--Schmidt process to a countable dense sequence and discarding the vectors that depend linearly on the preceding ones, we obtain an orthonormal family whose linear span contains the dense sequence. Every orthonormal family is finite or countable, because two of its members have distance $\sqrt2$, so that the balls of radius $1/2$ around them are disjoint, and each of these balls contains a member of a fixed countable dense set. Let $(e_j)_{j\geq1}$ be an enumeration of an orthonormal basis, let $F\in\mathcal H$, and put $c_j=\langle F,e_j\rangle$ and $S_N=\sum_{j\leq N}c_je_j$. Since $F-S_N$ is orthogonal to the span $V_N$ of $e_1,\ldots,e_N$, every $v\in V_N$ satisfies $\|F-v\|^2=\|F-S_N\|^2+\|S_N-v\|^2\geq\|F-S_N\|^2$. Given $\varepsilon>0$, there is $v$ in some $V_{N_0}$ with $\|F-v\|<\varepsilon$, and since $V_{N_0}\subset V_N$ for $N\geq N_0$, we get $\|F-S_N\|<\varepsilon$ for all $N\geq N_0$. Thus $S_N\to F$ in $\mathcal H$, and hence locally uniformly on $\Omega$, by (1). Taking $v=0$ above gives $\|F\|^2=\|F-S_N\|^2+\sum_{j\leq N}|c_j|^2$, and letting $N\to\infty$ we obtain $\sum_j|c_j|^2=\|F\|^2$. This proves (2).
+
+We turn to (3). Let $\mathcal J$ be the ideal sheaf on $\Omega$ generated by the $e_j$. By \cref{lem:strong-analytic-noetherian} it is coherent and near each point generated by an initial segment $e_1,\ldots,e_k$. Every $F\in\mathcal H$ is the locally uniform limit of the partial sums $S_N$, whose germs lie in $\mathcal J$, so the germs of $F$ lie in $\mathcal J$ by \cref{lem:analytic-krull-closure}. Thus $\mathcal J$ is the ideal generated by $\mathcal H$, independently of the basis, and $\mathcal J\subset\mathcal I(\varphi)|_\Omega$ because $\int_\Omega|F|^2\mathrm e^{-\varphi}\,\mathrm dV\leq c_\varrho^{-1}\|F\|^2$ for $F\in\mathcal H$.
+
+It remains to prove that $\mathcal I(\varphi)_x\subset\mathcal J_x$ for $x\in\Omega$. Fix $f\in\mathcal I(\varphi)_x$ and an integer $s\geq0$; we construct $F\in\mathcal H$ with $f-F\in\mathfrak m_x^{s+1}$, where $\mathfrak m_x$ is the maximal ideal of $\mathcal O_{X,x}$. Choose a cutoff function $\chi\in C^\infty_c(\Omega)$, equal to one near $x$, such that $f$ is holomorphic and $|f|^2\mathrm e^{-\varphi}$ is integrable on a neighborhood of $\Supp\chi$. The $(0,1)$-form $\alpha=f\bar\partial\chi$, extended by zero, is smooth, $\bar\partial$-closed and vanishes near $x$.
+
+We apply \cref{thm:hormander-singular-lower-bound} on the pseudoconvex set $\Omega$ with the plurisubharmonic function $p=\varphi+(n+s)\log|z-x|^2$ (\cref{prop:holomorphic-tuple-logarithm,prop:psh-max-gluing}) and the smooth function $q=|z|^2$, whose complex Hessian is the identity matrix. Since $|z-x|^{-2(n+s)}$ and $|\bar\partial\chi|$ are bounded on the support of $\alpha$, we have $\int_\Omega|\alpha|^2\mathrm e^{-p-q}\,\mathrm dV\leq C\int_{\Supp\chi}|f|^2\mathrm e^{-\varphi}\,\mathrm dV<\infty$. Hence there is $u$ with $\bar\partial u=\alpha$ and
+\[
+ \int_\Omega |u|^2\mathrm e^{-\varphi-|z|^2}|z-x|^{-2(n+s)}\,\mathrm dV<\infty.
+\]
+Since $\mathrm e^{-p-q}$ is bounded below by a positive constant on compact sets, $u$ is locally square integrable. Near $x$ we have $\bar\partial u=0$, so, by \cref{lem:dbar-closed-distribution-holomorphic}(1), $u$ agrees almost everywhere near $x$ with a holomorphic function; we replace $u$ by this function near $x$. We claim that $u$ vanishes to order at least $s+1$ at $x$. Since $\varphi$ is bounded above near $x$, the last display gives $\int_{B(x,r)}|u|^2|z-x|^{-2(n+s)}\,\mathrm dV<\infty$ for small $r>0$. We may assume that the germ of $u$ at $x$ is not zero, and we let $P_{k_0}\neq0$ be the first nonzero homogeneous term of its expansion at $x$. Applying \eqref{eq:sphere-lowest-term} of \cref{lem:holomorphic-mean-lowest-term} to $u$ and integrating in polar coordinates \eqref{eq:polar-coordinates}, we obtain
+\[
+ \int_{B(x,r)}|u|^2|z-x|^{-2(n+s)}\,\mathrm dV\geq c\int_0^rt^{2k_0-2s-1}\,\mathrm dt
+\]
+with $c>0$. This is finite only if $k_0\geq s+1$, which proves the claim.
+
+Since $\Omega$ is bounded, $\mathrm e^{-|z|^2}|z-x|^{-2(n+s)}$ is bounded below on $\Omega$ by a positive constant, so $|u|^2\mathrm e^{-\varphi}$ is integrable on $\Omega$. The function $\chi f-u$ satisfies $\bar\partial(\chi f-u)=\alpha-\alpha=0$, so it agrees almost everywhere with a holomorphic function $F$ on $\Omega$, by \cref{lem:dbar-closed-distribution-holomorphic}(1). Since $|F|^2\leq2|\chi f|^2+2|u|^2$ almost everywhere, $|\chi f|^2\mathrm e^{-\varphi}$ is integrable by the choice of $\chi$, and $\varrho\leq C_\varrho$, we have $F\in\mathcal H$. Near $x$ the continuous functions $f-F$ and $u$ agree almost everywhere, hence everywhere, so $f-F=u\in\mathfrak m_x^{s+1}$ by \cref{sec:analytic-division}. Thus $f\in\mathcal J_x+\mathfrak m_x^{s+1}$ for every $s$, and \cref{lem:analytic-krull-closure} gives $f\in\mathcal J_x$. Hence $\mathcal I(\varphi)|_\Omega=\mathcal J$, which proves (3).
+
+Finally, every point of $X$ has a neighborhood $\Omega$ of the kind considered, namely a bounded polydisc in a chart. If $n\geq1$, such a polydisc is pseudoconvex by \cref{cor:pseudoconvex-sublevels-products}, being a product of discs, each of which is a sublevel set of the smooth plurisubharmonic exhaustion function $|\zeta-\zeta_0|^2$ of $\mathbb C$, where $\zeta_0$ is its center. By (3), $\mathcal I(\varphi)$ is generated near each point by finitely many holomorphic functions, so it is coherent by \cref{thm:oka-coherence} and the last assertion of \cref{lem:coherent-sheaf-algebra}.
+\end{proof}
+\index{multiplier ideal!coherence}\index{orthonormal basis}
+
+\begin{lemma}\label{lem:bounded-hilbert-ideal-generation}
+Let $\varphi$, $\Omega$, $\varrho$ and $\mathcal H_\varphi(\Omega,\varrho)$ be as in \cref{thm:multiplier-ideal-coherence}, let $x\in\Omega$, and let $g_1,\ldots,g_r\in\mathcal H_\varphi(\Omega,\varrho)$ be elements whose germs generate $\mathcal I(\varphi)$ on a neighborhood of $x$. Then there are a neighborhood $V$ of $x$ and a constant $C$ such that every $F\in\mathcal H_\varphi(\Omega,\varrho)$ can be written as $F=\sum_ig_ih_i$ on $V$ with $h_i\in\mathcal O(V)$ and
+\[
+ \sup_V|h_i|\leq C\|F\|_{\varphi,\varrho}.
+\]
+Consequently, if $m>0$ is real and $g_1,\ldots,g_r\in\mathcal H_{m\varphi}(\Omega)$ generate $\mathcal I(m\varphi)$ on a neighborhood of $x$, then there is a constant $C_m$ such that
+\begin{equation}\label{eq:weight-versus-multiplier-generators}
+ \varphi\leq\frac1m\log\sum_i|g_i|^2+C_m
+\end{equation}
+on a neighborhood of $x$, with the convention $\log0=-\infty$.
+\end{lemma}
+\begin{proof}
+We write $\mathcal H=\mathcal H_\varphi(\Omega,\varrho)$ and $\|\cdot\|=\|\cdot\|_{\varphi,\varrho}$. Choose balls $V_1\supset V_2\supset\cdots$ centered at $x$, with radii tending to zero, inside the neighborhood on which the $g_i$ generate $\mathcal I(\varphi)$. For positive integers $j$ and $k$ let $S_{j,k}$ be the set of $F\in\mathcal H$ that can be written as $F=\sum_ig_ih_i$ on $V_j$ with $h_i\in\mathcal O(V_j)$ and $\sup_{V_j}|h_i|\leq k$. These sets cover $\mathcal H$: by \cref{thm:multiplier-ideal-coherence}(3), the germ at $x$ of each $F\in\mathcal H$ lies in $\mathcal I(\varphi)_x$, so $F=\sum_ig_ih_i$ on some neighborhood of $x$ with holomorphic $h_i$, and these coefficients are bounded on a smaller ball $V_j$. We show that each $S_{j,k}$ is closed and then apply Baire's theorem.
+
+Let $F_l\in S_{j,k}$ converge to $F$ in $\mathcal H$, with coefficients $h_{i,l}$. Then $F_l\to F$ locally uniformly on $\Omega$, by \cref{thm:multiplier-ideal-coherence}(1). The coefficients are bounded by $k$ on $V_j$. Let $K\subset V_j$ be compact, and let $\varepsilon>0$ be such that the closed polydiscs of radius $2\varepsilon$ centered at points of $K$ lie in $V_j$. For $y\in K$ and $y'\in B(y,\varepsilon)$, the closed polydisc of radius $\varepsilon$ centered at $y'$ then lies in $V_j$, and the coefficient bound in \eqref{eq:polydisc-power-series} on this polydisc bounds all first partial derivatives of all $h_{i,l}$ at $y'$ by $k/\varepsilon$. So the $h_{i,l}$ are Lipschitz with a common constant on the balls of radius $\varepsilon$ centered at points of $K$, and they are equicontinuous on $K$. By \cref{prop:arzela-ascoli}, applied on a compact exhaustion of $V_j$, and a diagonal argument, a subsequence converges locally uniformly on $V_j$ to continuous functions $h_i$ with $|h_i|\leq k$. Locally uniform convergence implies convergence in the sense of distributions, so $\bar\partial h_i=0$, and the continuous functions $h_i$ are holomorphic by \cref{lem:dbar-closed-distribution-holomorphic}(1) (if $n=0$, every function on $V_j$ is holomorphic). Passing to the limit, we obtain $F=\sum_ig_ih_i$ on $V_j$, that is, $F\in S_{j,k}$.
+
+By Baire's theorem, a complete metric space is not a countable union of closed subsets with empty interior. (If all the sets had empty interior, we could choose closed balls of radii at most $2^{-l}$, each contained in the interior of the previous one and disjoint from the $l$th set, since the interior of a ball minus a closed set with empty interior is a nonempty open set; their centers would form a Cauchy sequence whose limit lies in every ball but in none of the sets.) Hence some $S_{j,k}$ contains a ball $\{F:\|F-F_0\|<\delta\}$. If $\|F\|<\delta$, then $F_0$ and $F_0+F$ both lie in $S_{j,k}$, and subtracting their representations writes $F$ on $V_j$ with coefficients bounded by $2k$. For $F\neq0$ we apply this to $\delta F/(2\|F\|)$ and obtain the first assertion with $V=V_j$ and $C=4k/\delta$; for $F=0$ we take zero coefficients.
+
+For the second assertion, apply the first part with $\varrho=1$ to the weight $m\varphi$, and let $V$ and $C$ be the resulting neighborhood and constant. Let $a\in V$ with $\varphi(a)>-\infty$. By \cref{cor:ot-point-value-bound}, applied on the pseudoconvex set $\Omega$ to the plurisubharmonic function $m\varphi$, there is $F\in\mathcal H_{m\varphi}(\Omega)$ with $F(a)=1$ and $\|F\|_{m\varphi}^2\leq C_\Omega\mathrm e^{-m\varphi(a)}$, where $C_\Omega$ depends only on $n$ and the diameter of $\Omega$; if $n=0$, then $F=1$ has these properties with $C_\Omega=1$. Writing $F=\sum_ig_ih_i$ on $V$ and using the Cauchy--Schwarz inequality, we obtain
+\[
+ 1=|F(a)|^2\leq rC^2\|F\|_{m\varphi}^2\sum_i|g_i(a)|^2
+   \leq rC^2C_\Omega\mathrm e^{-m\varphi(a)}\sum_i|g_i(a)|^2.
+\]
+Taking logarithms gives \eqref{eq:weight-versus-multiplier-generators} at $a$ with $C_m=m^{-1}\log(rC^2C_\Omega)$. At points where $\varphi=-\infty$ the left side is $-\infty$; by the last display, these points include all common zeros of the $g_i$.
+\end{proof}
+\index{multiplier ideal!bounded generation}\index{Baire category theorem}
+
+\section{Analytic Lelong level sets and generic values}
+\label{sec:siu-level-sets}
+
+We now compare multiplier ideals with Lelong numbers. Recall from \cref{prop:lelong-calculus} the order $\operatorname{ord}_xf$ of a nonzero germ $f$ at $x$, computed in local coordinates; since $\operatorname{ord}_xf\geq k$ if and only if $f\in\mathfrak m_x^k$, where $\mathfrak m_x$ is the maximal ideal of $\mathcal O_{X,x}$ (\cref{sec:analytic-division}), it does not depend on the coordinates. For a coherent ideal $\mathfrak a$ and a point $x$ with $\mathfrak a_x\neq0$, the \emph{order} of $\mathfrak a$ at $x$ is $\operatorname{ord}_x\mathfrak a=\min\{\operatorname{ord}_xf:f\in\mathfrak a_x,\ f\neq0\}$. If $g_1,\ldots,g_r$ generate $\mathfrak a$ near $x$, then $\operatorname{ord}_x\mathfrak a=\min_i\operatorname{ord}_xg_i$, the minimum being taken over the $g_i$ with nonzero germ at $x$, since every element $\sum_ih_ig_i$ has at least this order. By \cref{lem:locally-finite-ideal-identity}, a coherent ideal on a connected complex manifold that has a nonzero stalk at one point has nonzero stalks everywhere, so its order is finite at every point.
+\index{order!of a coherent ideal}
+
+\begin{lemma}\label{lem:multiplier-order-lelong-bounds}
+Let $\varphi$ be a weight on $X$, let $x\in X$ be a point at which $X$ has dimension $n\geq1$, and let $m>0$ be a real number. Then
+\begin{equation}\label{eq:multiplier-order-lelong-bounds}
+ m\nu(\varphi,x)-n
+       <\operatorname{ord}_x\mathcal I(m\varphi)
+       \leq m\nu(\varphi,x).
+\end{equation}
+\end{lemma}
+\begin{proof}
+We work on a bounded polydisc $\Omega$ around $x$ in a chart on which $\varphi$ is bounded above. Subtracting a constant changes neither side of \eqref{eq:multiplier-order-lelong-bounds}, so we may assume $\varphi\leq0$ on $\Omega$, and we write $\nu=\nu(\varphi,x)$. The space $\mathcal H_{m\varphi}(\Omega)$ is not zero: choose $a\in\Omega$ with $\varphi(a)>-\infty$ and apply \cref{cor:ot-point-value-bound}. By \cref{thm:multiplier-ideal-coherence}(3), $\mathcal I(m\varphi)_x$ is generated by germs of elements of $\mathcal H_{m\varphi}(\Omega)$; since $\Omega$ is connected, a nonzero element of $\mathcal H_{m\varphi}(\Omega)$ has a nonzero germ at $x$, by the identity theorem. Hence the order $k$ of $\mathcal I(m\varphi)$ at $x$ is the smallest vanishing order at $x$ of the nonzero elements of $\mathcal H_{m\varphi}(\Omega)$.
+
+For the lower bound, let $F\in\mathcal H_{m\varphi}(\Omega)$ vanish to order exactly $k$ at $x$, and let $P_k\neq0$ be its homogeneous term of degree $k$. By \eqref{eq:lelong-attained-growth}, computed in the coordinates of the chart, and since $\varphi\leq0$, we have $\varphi(z)\leq\nu\log(|z-x|^2/r_0^2)$ for $0<|z-x|<r_0$ and a suitable $r_0>0$; hence $\mathrm e^{-m\varphi(z)}\geq c|z-x|^{-2m\nu}$ there, with $c=r_0^{2m\nu}$. By \eqref{eq:sphere-lowest-term} and polar coordinates \eqref{eq:polar-coordinates}, for small $r>0$
+\[
+ \int_{B(x,r)}|F|^2\mathrm e^{-m\varphi}\,\mathrm dV
+ \geq c'\int_0^rt^{2k-2m\nu+2n-1}\,\mathrm dt
+\]
+with $c'>0$. The left side is finite, so $2k-2m\nu+2n>0$, that is, $k>m\nu-n$.
+
+For the upper bound, we use that every element of $\mathcal H_{m\varphi}(\Omega)$ vanishes to order at least $k$ at $x$. Choose $R>0$ such that the polydisc $\Delta$ of polyradius $(2R,\ldots,2R)$ centered at $x$ is relatively compact in $\Omega$. Let $\delta>0$ be half the distance from $\overline\Delta$ to the complement of $\Omega$. Put $A=|B(0,\delta)|^{-1/2}$. For $G\in\mathcal H_{m\varphi}(\Omega)$, \eqref{eq:holomorphic-ball-mean-bound} gives $\sup_{\overline\Delta}|G|\leq A\|G\|_{L^2(\Omega)}\leq A\|G\|_{m\varphi}$, and the coefficient bound in \eqref{eq:polydisc-power-series} gives $|c_\alpha|\leq(2R)^{-|\alpha|}\sup_{\overline\Delta}|G|$ for the Taylor coefficients $c_\alpha$ of $G$ at $x$. Since $c_\alpha=0$ for $|\alpha|<k$ and $|(a-x)^\alpha|\leq|a-x|^{|\alpha|}$, for $|a-x|<R$ we obtain
+\[
+ |G(a)|\leq A\|G\|_{m\varphi}\sum_{|\alpha|\geq k}\Bigl(\frac{|a-x|}{2R}\Bigr)^{|\alpha|}
+ \leq C_k|a-x|^k\|G\|_{m\varphi}.
+\]
+For the second inequality, note that there are $\binom{d+n-1}{n-1}$ multi-indices of length $d$; with $\rho=|a-x|/(2R)\leq1/2$ we get $\sum_{d\geq k}\binom{d+n-1}{n-1}\rho^d\leq\rho^k\sum_{e\geq0}\binom{e+k+n-1}{n-1}2^{-e}$, a convergent series. Now let $|a-x|<R$ with $\varphi(a)>-\infty$, and let $G$ be given by \cref{cor:ot-point-value-bound}, so that $G(a)=1$ and $\|G\|_{m\varphi}^2\leq C_\Omega\mathrm e^{-m\varphi(a)}$, where $C_\Omega$ depends only on $n$ and the diameter of $\Omega$. Then $1\leq C_k^2C_\Omega|a-x|^{2k}\mathrm e^{-m\varphi(a)}$, that is,
+\[
+ \varphi(a)\leq\frac km\log|a-x|^2+C';
+\]
+here $C'=m^{-1}\log(C_k^2C_\Omega)$, and the inequality holds trivially where $\varphi(a)=-\infty$. Since it holds for all $a$ with $|a-x|<R$, the characterization in \cref{prop:lelong-logarithmic-growth} gives $k/m\leq\nu$.
+\end{proof}
+\index{multiplier ideal!order and Lelong number}
+
+\begin{corollary}\label{cor:zero-lelong-trivial-multiplier-ideal}
+Let $x\in X$, and let $u$ be a function on a neighborhood of $x$ that near $x$ is the sum $u=v+h$ of a plurisubharmonic function $v$ and a bounded measurable function $h$. Put $\nu(u,x)=\nu(v,x)$; by \cref{prop:lelong-logarithmic-growth} this does not depend on the decomposition. If $\nu(u,x)=0$, then $\mathrm e^{-tu}$ is integrable on a neighborhood of $x$ for every $t>0$. This applies in particular to a function $u$ that is \emph{quasi-plurisubharmonic} near $x$, that is, the sum of a plurisubharmonic function and a smooth real function near $x$. For a weight $\varphi$ on $X$ with $\nu(\varphi,x)=0$ it says that $\mathcal I(t\varphi)_x=\mathcal O_{X,x}$ for every $t>0$.
+\end{corollary}
+\begin{proof}
+If $u=v+h=v'+h'$ are two such decompositions near $x$, then $v$ and $v'$ take the value $-\infty$ at the same points, and $v\leq v'+C$ and $v'\leq v+C$ near $x$, where $C$ bounds $|h|+|h'|$; so $\nu(v,x)=\nu(v',x)$ by \cref{prop:lelong-logarithmic-growth}. If $X$ has dimension zero at $x$, then $v(x)$ is finite and there is nothing to prove. Otherwise let $U$ be a connected neighborhood of $x$ on which $v$ is plurisubharmonic and $|h|\leq M$ for a constant $M$. Applying \cref{lem:multiplier-order-lelong-bounds} to the weight $v$ on $U$ and $m=t$, we obtain $\operatorname{ord}_x\mathcal I(tv)\leq t\nu(v,x)=0$. Hence $\mathcal I(tv)_x$ contains a germ that does not vanish at $x$; this germ is a unit, so $\mathcal I(tv)_x=\mathcal O_{X,x}$, that is, $\mathrm e^{-tv}$ is integrable on a neighborhood of $x$. Since $\mathrm e^{-tu}\leq\mathrm e^{tM}\mathrm e^{-tv}$ on $U$, the same holds for $\mathrm e^{-tu}$. For a weight $\varphi$, the integrability of $\mathrm e^{-t\varphi}$ near $x$ means that $1\in\mathcal I(t\varphi)_x$.
+\end{proof}
+\index{multiplier ideal!zero Lelong number}\index{Lelong number!of a quasi-plurisubharmonic function}\index{quasi-plurisubharmonic function}
+
+By \cref{lem:multiplier-order-lelong-bounds}, the Lelong number of $\varphi$ at $x$ determines the order of $\mathcal I(m\varphi)$ at $x$ up to an error less than $n$. The Lelong numbers do not determine the multiplier ideals themselves, even if they are known at all points, as the following example shows.
+
+\begin{example}\label{ex:lelong-numbers-integrability}
+On $\mathbb C^2$ consider the plurisubharmonic functions (\cref{prop:holomorphic-tuple-logarithm})
+\[
+ \psi=\log\bigl(|z_1|^2+|z_2|^2\bigr),\qquad \varphi=\log\bigl(|z_1|^2+|z_2|^4\bigr).
+\]
+They have the same Lelong numbers at every point. Off the origin both functions are finite, so their Lelong numbers vanish there by \cref{prop:lelong-logarithmic-growth}. At the origin, $\nu(\psi,0)=1$ by \cref{prop:lelong-calculus}. For $|z_2|\leq1$ we have $\varphi\leq\psi$, so $\nu(\varphi,0)\geq1$; conversely, the supremum of $\varphi$ over the ball $|z|<\mathrm e^{t/2}$ is at least $\sup_{|z_1|<\mathrm e^{t/2}}\log|z_1|^2=t$, so $\nu(\varphi,0)\leq1$ by \eqref{eq:lelong-growth-definition}. Nevertheless $\mathcal I(\frac32\psi)_0\neq\mathcal I(\frac32\varphi)_0$. Indeed, $\mathrm e^{-3\psi/2}=|z|^{-3}$ is integrable near $0\in\mathbb R^4$ by polar coordinates, since $\int_0^rt^{-3}t^3\,\mathrm dt<\infty$; so $\mathcal I(\frac32\psi)_0=\mathcal O_{\mathbb C^2,0}$. On the other hand, on the set $A_\delta=\{0<|z_2|<\delta,\ |z_1|<|z_2|^2\}$ we have $|z_1|^2+|z_2|^4<2|z_2|^4$, hence $\mathrm e^{-3\varphi/2}>2^{-3/2}|z_2|^{-6}$, and by Fubini's theorem
+\[
+ \int_{A_\delta}\mathrm e^{-3\varphi/2}\,\mathrm dV\geq2^{-3/2}\int_{0<|z_2|<\delta}\pi|z_2|^4\,|z_2|^{-6}\,\mathrm dV_2(z_2)=2^{-3/2}\pi\int_0^\delta2\pi t^{-1}\,\mathrm dt=\infty.
+\]
+Since every neighborhood of $0$ contains $A_\delta$ for small $\delta>0$, the function $\mathrm e^{-3\varphi/2}$ is not integrable near $0$, and $1\notin\mathcal I(\frac32\varphi)_0$.
+\end{example}
+\index{multiplier ideal!and Lelong numbers}
+
+\begin{theorem}[Siu]\label{thm:siu-lelong-level-sets}
+Let $\varphi$ be a weight on $X$ and let $c>0$. Then
+\[
+ E_c(\varphi)=\{x\in X:\nu(\varphi,x)\geq c\}
+\]
+is an analytic subset of $X$, and its intersection with every connected component of $X$ of positive dimension is a proper subset of that component. The same holds for the Lelong numbers of a closed positive $(1,1)$-current on $X$.
+\end{theorem}
+\begin{proof}
+Lelong numbers vanish on components of dimension zero, so we may assume that $X$ is connected of dimension $n\geq1$. We describe $E_c(\varphi)$ as an intersection of analytic sets defined by the orders of the ideals $\mathcal I(m\varphi)$ and then show that such an intersection is analytic. Let $\mathfrak a$ be a coherent ideal and $k$ an integer. The set of points $y$ where $\operatorname{ord}_y\mathfrak a\geq k$ (with $\operatorname{ord}_y\mathfrak a=\infty$ if $\mathfrak a_y=0$) is analytic. Indeed, let $g_1,\ldots,g_r$ generate $\mathfrak a$ on a coordinate neighborhood $W$. A germ has order at least $k$ at $y$ if and only if its derivatives of order less than $k$ vanish at $y$, since these derivatives are multiples of its Taylor coefficients, by \eqref{eq:polydisc-power-series}. Hence for $y\in W$ we have $\operatorname{ord}_y\mathfrak a\geq k$ if and only if $\partial^\alpha g_i(y)=0$ for all $i$ and all $|\alpha|<k$: the condition is necessary because the $g_i$ belong to $\mathfrak a_y$, and sufficient because, by the Leibniz rule, every element $\sum_ih_ig_i$ then vanishes to order at least $k$ at $y$. This is a finite system of holomorphic equations, and for $k\leq0$ the set is all of $W$. By \eqref{eq:multiplier-order-lelong-bounds},
+\begin{equation}\label{eq:siu-as-jet-intersection}
+ E_c(\varphi)=\bigcap_{m\geq1}
+ \left\{x:\operatorname{ord}_x\mathcal I(m\varphi)
+                          \geq\lfloor mc-n\rfloor+1\right\}.
+\end{equation}
+Indeed, if $\nu(\varphi,x)\geq c$, the lower bound in \eqref{eq:multiplier-order-lelong-bounds} gives the integer inequality $\operatorname{ord}_x\mathcal I(m\varphi)>mc-n$, that is, $\operatorname{ord}_x\mathcal I(m\varphi)\geq\lfloor mc-n\rfloor+1$, for every $m$. If $\nu(\varphi,x)<c$, the upper bound gives $\operatorname{ord}_x\mathcal I(m\varphi)\leq m\nu(\varphi,x)\leq mc-n<\lfloor mc-n\rfloor+1$ as soon as $m(c-\nu(\varphi,x))\geq n$.
+
+Thus $E_c(\varphi)$ is an intersection of analytic subsets of $X$. An arbitrary intersection $A=\bigcap_\lambda A_\lambda$ of analytic subsets of $X$ is analytic. Since $A$ is closed, it suffices to show that each $p\in A$ has a neighborhood $W$ such that $A\cap W$ is the intersection of $W$ with finitely many of the $A_\lambda$. Let $I_\lambda\subset\mathcal O_{X,p}$ be the ideal generated by the germs at $p$ of local defining functions of $A_\lambda$. By \cref{prop:analytic-noetherian} the sum $\sum_\lambda I_\lambda$ is finitely generated, so it equals $I_{\lambda_1}+\cdots+I_{\lambda_q}$ for finitely many indices; put $B=A_{\lambda_1}\cap\cdots\cap A_{\lambda_q}$. Every local defining function of each $A_\lambda$ is then a combination of defining functions of $A_{\lambda_1},\ldots,A_{\lambda_q}$ near $p$, so $A_\lambda$ contains a neighborhood of $p$ in $B$. This neighborhood may depend on $\lambda$, and we now remove this dependence.
+
+By \cref{cor:analytic-global-components}, the irreducible components of the analytic set $B$ form a locally finite family; so some neighborhood $N$ of $p$ meets only finitely many of them. Let $B_1,\ldots,B_l$ be those that contain $p$. The union of the other components meeting $N$ is closed and does not contain $p$, so there is an open neighborhood $W'\subset N$ of $p$ with $B\cap W'\subset B_1\cup\cdots\cup B_l$. Fix $\lambda$ and $i$. The regular locus $(B_i)_{\mathrm{reg}}$ is a connected manifold, dense in $B_i$ (\cref{cor:analytic-global-components}), and its analytic subset $A_\lambda\cap(B_i)_{\mathrm{reg}}$ has nonempty interior in it, because $A_\lambda$ contains a neighborhood of $p$ in $B_i$ and $p$ lies in the closure of $(B_i)_{\mathrm{reg}}$. By \cref{lem:proper-analytic-nowhere-dense}, $A_\lambda\cap(B_i)_{\mathrm{reg}}$ is therefore all of $(B_i)_{\mathrm{reg}}$, and $B_i\subset A_\lambda$ because $A_\lambda$ is closed. Therefore $B\cap W'\subset A_\lambda$ for every $\lambda$, and $A\cap W'=B\cap W'$. Applied to \eqref{eq:siu-as-jet-intersection}, this shows that $E_c(\varphi)$ is analytic.
+
+By \cref{prop:lelong-logarithmic-growth}, $\nu(\varphi,x)=0$ at every point where $\varphi(x)>-\infty$. Thus $E_c(\varphi)$ is contained in the pole set of $\varphi$, which has measure zero because $\varphi$ is locally integrable (\cref{thm:psh-distribution-representative}), and therefore has no interior points; so $E_c(\varphi)\neq X$.
+
+Finally, let $T$ be a closed positive $(1,1)$-current on $X$. Every point of $X$ at which $X$ has positive dimension has a coordinate ball $U$ on which $T=\ddc u$ with $u$ plurisubharmonic, and $\nu(T,y)=\nu(u,y)$ for $y\in U$ (\cref{def:lelong-number}). By what we have proved, applied to the weight $u$ on $U$, the set $\{y\in U:\nu(T,y)\geq c\}$ is an analytic subset of $U$ with empty interior. Since the components of $X$ of dimension zero do not meet $\{y:\nu(T,y)\geq c\}$, and analyticity is a local property, this set is an analytic subset of $X$ whose intersection with every component of positive dimension is proper.
+\end{proof}
+\index{Siu theorem!Lelong level sets}\index{Lelong number!upper level sets}
+
+\begin{proposition}\label{prop:generic-divisorial-lelong}
+Let $\varphi$ be a weight on $X$ and let $Z\subset X$ be an irreducible analytic subset. The \emph{generic Lelong number} of $\varphi$ along $Z$ is
+\[
+ \nu(\varphi,Z)=\inf_{x\in Z}\nu(\varphi,x).
+\]
+It is attained at every point of $Z$ outside a countable union of proper analytic subsets of $Z$. Moreover, the complement in $Z$ of every countable union of proper analytic subsets of $Z$ is dense in $Z$; in particular, $\nu(\varphi,Z)$ is attained on a dense subset of $Z$. The same definition and conclusions apply to the Lelong numbers of a closed positive $(1,1)$-current $T$ on $X$, and give the generic Lelong number $\nu(T,Z)$. If $\pi\colon Y\to X$ is a smooth model of $X$ (\cref{sec:connected-fibers-models}), that is, a proper bimeromorphic holomorphic map from a complex manifold $Y$, and $E\subset Y$ is a prime divisor, that is, an irreducible hypersurface, we define
+\[
+ \nu(\varphi,E)=\nu(\varphi\circ\pi,E).
+\]
+This number depends only on the prime divisor over $X$ represented by $E$ (\cref{def:prime-divisor-model}), not on the model.
+\end{proposition}
+\begin{proof}
+Put $\lambda=\nu(\varphi,Z)$. For every integer $j\geq1$, \cref{thm:siu-lelong-level-sets} shows that $Z\cap E_{\lambda+1/j}(\varphi)$ is an analytic subset of $Z$, and it is a proper subset by the definition of $\lambda$. At every point of $Z$ outside the union of these sets, $\nu(\varphi,x)<\lambda+1/j$ for all $j$, hence $\nu(\varphi,x)=\lambda$.
+
+We now show that the complement in $Z$ of an arbitrary countable union of proper analytic subsets of $Z$ is dense in $Z$; applied to the sets $Z\cap E_{\lambda+1/j}(\varphi)$, this shows that $\nu(\varphi,Z)$ is attained on a dense subset of $Z$. The density is clear if $Z$ is a point, for then the proper analytic subsets of $Z$ are empty. Let $\dim Z>0$. By \cref{cor:analytic-global-components}, applied to the family consisting of $Z$ alone, $Z$ is an irreducible component of itself; so its regular locus $Z_{\mathrm{reg}}$ is a connected manifold, dense in $Z$.
+
+Let $B$ be a proper analytic subset of $Z$. Then $B\cap Z_{\mathrm{reg}}$ is an analytic subset of $Z_{\mathrm{reg}}$, and it is proper, since otherwise the closed set $B$ would contain the closure $Z$ of $Z_{\mathrm{reg}}$. By \cref{lem:proper-analytic-nowhere-dense}, every point of $B\cap Z_{\mathrm{reg}}$ has a connected open neighborhood $U$ in $Z_{\mathrm{reg}}$ with a holomorphic function $g\not\equiv0$ on $U$ such that $B\cap U\subset\{g=0\}$; shrinking $U$ to a coordinate ball, on which $g\not\equiv0$ by the identity theorem, we see from \cref{lem:holomorphic-zero-null} that $B\cap U$ is a null set in the chart. Covering a chart $N$ of $Z_{\mathrm{reg}}$ by countably many such balls and by open sets disjoint from $B$, we see that $B\cap N$ is a null set. Consequently, a countable union of proper analytic subsets of $Z$ meets every chart of $Z_{\mathrm{reg}}$ in a null set, which has no interior points. Its complement is therefore dense in $Z_{\mathrm{reg}}$, and hence in $Z$. For a closed positive $(1,1)$-current the same argument applies, since \cref{thm:siu-lelong-level-sets} holds for its Lelong numbers.
+
+For the second assertion, note first that $\varphi\circ\pi$ is a weight on $Y$: by \cref{prop:psh-holomorphic-pullback} it is plurisubharmonic or identically $-\infty$ on each component of $Y$, and the second alternative is excluded. Indeed, since $\pi$ is bimeromorphic (\cref{sec:reduced-spaces-normalization}), there is a nowhere dense analytic subset $A\subset X$ such that $\pi^{-1}(A)$ is nowhere dense in $Y$ and $\pi$ maps $Y\setminus\pi^{-1}(A)$ biholomorphically onto $X\setminus A$. If $\varphi\circ\pi$ were identically $-\infty$ on a component $Y_0$ of $Y$, then $\varphi$ would be $-\infty$ on the nonempty open set $\pi(Y_0\setminus\pi^{-1}(A))$, which is impossible because $\varphi$ is locally integrable.
+
+Now let $E\subset Y$ and $E'\subset Y'$ be prime divisors on smooth models $\pi\colon Y\to X$ and $\pi'\colon Y'\to X$ that represent the same prime divisor over $X$, and let $\rho\colon Y''\to Y$ and $\rho'\colon Y''\to Y'$ be maps from a common smooth model on which the strict transforms of $E$ and $E'$ coincide, say with $E''$. By \cref{prop:smooth-bimeromorphic-divisor-locus}, $\rho$ is biholomorphic over $Y\setminus S$ for an analytic subset $S\subset Y$ of codimension at least two, so it maps the nonempty open subset $E''\cap\rho^{-1}(Y\setminus S)$ of $E''$ onto the nonempty open subset $E\setminus S$ of $E$, and $\nu(\varphi\circ\pi\circ\rho,q)=\nu(\varphi\circ\pi,\rho(q))$ for $q$ in this set, because Lelong numbers are invariant under biholomorphisms (\cref{prop:lelong-logarithmic-growth}). By the first part, the generic value along $E$ is attained on a dense subset of $E$, so it equals the infimum of the Lelong numbers over any nonempty open subset of $E$; the same holds for $E''$. Hence $\nu(\varphi\circ\pi,E)=\nu(\varphi\circ\pi\circ\rho,E'')$. The same argument for $\rho'$ gives $\nu(\varphi\circ\pi',E')=\nu(\varphi\circ\pi\circ\rho,E'')$, since $\pi\circ\rho=\pi'\circ\rho'$.
+\end{proof}
+\index{Lelong number!generic}\index{Lelong number!divisorial}
+
+\begin{proposition}\label{prop:generic-lelong-uniform-growth}
+Let $\varphi$ be a weight on $X$, let $Z\subset X$ be a connected closed complex submanifold of positive codimension, which is an irreducible analytic subset by \cref{cor:analytic-global-components}, and let $z=(z',z'')$ be local coordinates near a point of $Z$ in which $Z=\{z'=0\}$. Then near that point
+\[
+ \varphi(z)\leq\nu(\varphi,Z)\log|z'|^2+C,\qquad z'\neq0,
+\]
+for a constant $C$, and no bound of this form with a coefficient larger than $\nu(\varphi,Z)$ holds near any point of $Z$. If $\pi\colon Y\to X$ is the blowup of a point $x$ at which $X$ has positive dimension (\cref{prop:smooth-center-blowup}), and $E=\pi^{-1}(x)$, then $\nu(\varphi,E)=\nu(\varphi,x)$.
+\end{proposition}
+\begin{proof}
+Let $p\in Z$ be the given point and $\lambda=\nu(\varphi,Z)$. Choose $r_0>0$, a constant $C$ and a neighborhood $W$ of $p$ in $Z$ such that for every $y\in W$ the closed ball $\overline{B(y,r_0)}$ lies in the coordinate domain and $\varphi\leq C$ on it. By \eqref{eq:lelong-attained-growth} at $y$, we have $\varphi(z)\leq\nu(\varphi,y)\log(|z-y|^2/r_0^2)+C$ for $0<|z-y|<r_0$. Take $z=(z',z'')$ with $y=(0,z'')\in W$ and $0<|z'|<r_0$. Then $|z-y|=|z'|$, the logarithm is negative and $\nu(\varphi,y)\geq\lambda$, so $\varphi(z)\leq\lambda\log|z'|^2-\lambda\log r_0^2+C$. This is the asserted bound, with a constant independent of $z''$. Conversely, suppose that $\varphi(z)\leq c\log|z'|^2+C'$ for $z'\neq0$ near a point $q$ of $Z$, where we may assume $c\geq0$. For $y\in Z$ near $q$ we have $|z'|\leq|z-y|$, so $\varphi(z)\leq c\log|z-y|^2+C'$ for $z\notin Z$ near $y$. Since $Z=\{z'=0\}$ is a Lebesgue null set in the chart, \cref{prop:lelong-logarithmic-growth} gives $\nu(\varphi,y)\geq c$. By \cref{prop:generic-divisorial-lelong} there are points $y$ arbitrarily close to $q$ with $\nu(\varphi,y)=\lambda$, so $c\leq\lambda$.
+
+Now let $\pi$ be the blowup of $x$, and let $n=\dim_xX$. If $n=1$, then $\pi$ is the identity and $E=\{x\}$, so there is nothing to prove. Let $n\geq2$ and choose coordinates centered at $x$. The blowup is covered by $n$ charts; in the $k$th chart, $z_k=w_k$ and $z_j=w_kw_j$ for $j\neq k$, so that
+\[
+ |z|^2=|w_k|^2\Bigl(1+\sum_{j\neq k}|w_j|^2\Bigr),\qquad E=\{w_k=0\}.
+\]
+By \eqref{eq:lelong-attained-growth}, $\varphi\leq\nu(\varphi,x)\log|z|^2+C$ near $x$. Pulling back, we get $\varphi\circ\pi\leq\nu(\varphi,x)\log|w_k|^2+C'$ on compact subsets of the $k$th chart near $E$; since $|w_k|$ is at most the distance to any point of $E$ in that chart, $\nu(\varphi\circ\pi,q)\geq\nu(\varphi,x)$ for every $q\in E$, and $\nu(\varphi,E)\geq\nu(\varphi,x)$. Conversely, $E\cong\mathbb P^{n-1}$ is a compact connected submanifold of $Y$, so the first part of the proposition, applied to the weight $\varphi\circ\pi$ and $E$, gives $\varphi\circ\pi\leq\nu(\varphi,E)\log|w_k|^2+C$ near each point of $E$, in the coordinates of a chart containing it. Cover $E$ by finitely many such neighborhoods, on each of which $\log|w_k|^2-\log|z|^2$ is bounded. Since $\pi$ is proper, the inverse image of a small neighborhood of $x$ lies in their union, so $\varphi(z)\leq\nu(\varphi,E)\log|z|^2+C''$ near $x$, for $z\neq x$. Hence $\nu(\varphi,E)\leq\nu(\varphi,x)$.
+\end{proof}
+\index{Lelong number!along a submanifold}
+
+\section{Restriction, products and integral closure}
+\label{sec:multiplier-ideal-operations}
+
+The Ohsawa--Takegoshi theorem and the Hilbert spaces of \cref{thm:multiplier-ideal-coherence} determine how multiplier ideals behave under restriction, products and holomorphic pullback; we also show that multiplier ideals are integrally closed.
+
+For a holomorphic map $f\colon X\to Y$ and a coherent ideal $\mathfrak a\subset\mathcal O_Y$, we denote by $f^{-1}\mathfrak a\cdot\mathcal O_X$ the ideal of $\mathcal O_X$ generated by the compositions $g\circ f$ of local sections $g$ of $\mathfrak a$; it is locally generated by the compositions of local generators of $\mathfrak a$ with $f$. It is the ideal written $\mathfrak a\mathcal O_X$ in \cref{sec:analytic-blowups-resolution}; we keep $f$ in the notation when several maps occur. For a complex submanifold $Z\subset X$ with ideal sheaf $\mathcal I_Z$ and an ideal $\mathfrak a\subset\mathcal O_X$, the \emph{restriction} of $\mathfrak a$ to $Z$ is the image
+\[
+ \mathfrak a|_Z^{\mathrm{im}}
+ =\mathfrak a/(\mathfrak a\cap\mathcal I_Z)\subset\mathcal O_X/\mathcal I_Z=\mathcal O_Z,
+\]
+that is, the ideal of restrictions $g|_Z$ of local sections $g$ of $\mathfrak a$. Here $\mathcal O_X/\mathcal I_Z$ is identified with $\mathcal O_Z$ through restriction: in local coordinates $(v,w)$ with $Z=\{w=0\}$, every holomorphic function on $Z$ is the restriction of a function independent of $w$, and a function vanishing on $Z$ belongs to $\mathcal I_Z$ by definition. We use the image rather than the tensor product $\mathfrak a\otimes_{\mathcal O_X}\mathcal O_Z$, whose natural map to $\mathcal O_Z$ need not be injective. For instance, for $X=\mathbb C$, $Z=\{0\}$ and $\mathfrak a=(z)$, the element $z\otimes1$ of the stalk at $0$ is mapped to $z|_Z=0$, but it is not zero, since $(zf,g)\mapsto f(0)g(0)$ is a well-defined $\mathcal O_{X,0}$-balanced bilinear map $\mathfrak a_0\times\mathcal O_{Z,0}\to\mathbb C$ with value $1$ at $(z,1)$.
+\index{ideal!restriction to a submanifold}
+
+\begin{theorem}\label{thm:multiplier-restriction-subadditivity}
+Let $Z\subset X$ be a complex submanifold and $\varphi$ a weight on $X$. Then
+\begin{equation}\label{eq:multiplier-restriction}
+ \mathcal I(\varphi|_Z)\subset\mathcal I(\varphi)|_Z^{\mathrm{im}};
+\end{equation}
+on a connected component of $Z$ on which $\varphi|_Z\equiv-\infty$, the left side is zero. If $\varphi_1$ and $\varphi_2$ are weights on complex manifolds $X_1$ and $X_2$, and $p_i\colon X_1\times X_2\to X_i$ are the projections, then
+\begin{equation}\label{eq:multiplier-external-product}
+ \mathcal I(\varphi_1\circ p_1+\varphi_2\circ p_2)
+ =(p_1^{-1}\mathcal I(\varphi_1)\cdot\mathcal O)
+  (p_2^{-1}\mathcal I(\varphi_2)\cdot\mathcal O).
+\end{equation}
+In particular, for weights $\varphi$ and $\psi$ on $X$,
+\begin{equation}\label{eq:multiplier-subadditivity}
+ \mathcal I(\varphi+\psi)\subset\mathcal I(\varphi)\mathcal I(\psi).
+\end{equation}
+\end{theorem}
+\begin{proof}
+The inclusion \eqref{eq:multiplier-restriction} is a restatement of \cref{cor:integrable-germ-restriction}: if $f\in\mathcal I(\varphi|_Z)_x$, that corollary provides a holomorphic germ $F$ at $x$ with $F|_Z=f$ and $F\in\mathcal I(\varphi)_x$.
+
+The product formula is local. Near a point $(x_1,x_2)$ we choose bounded polydiscs $\Omega_i$ around $x_i$ in charts of $X_i$ on which $\varphi_i$ is bounded above; subtracting constants, which changes none of the multiplier ideals, we may assume that $\varphi_1,\varphi_2\leq0$. We write $\Phi=\varphi_1\circ p_1+\varphi_2\circ p_2$, a nonpositive weight on the polydisc $\Omega_1\times\Omega_2$. Let $(e_j)$ and $(g_k)$ be orthonormal bases of $\mathcal H_{\varphi_1}(\Omega_1)$ and $\mathcal H_{\varphi_2}(\Omega_2)$, which exist by \cref{thm:multiplier-ideal-coherence}(2). By Fubini's theorem the functions $e_j(z)g_k(w)$ form an orthonormal family in $\mathcal H_\Phi(\Omega_1\times\Omega_2)$. We show that its linear span is dense. Let $F\in\mathcal H_\Phi(\Omega_1\times\Omega_2)$. By Fubini's theorem, for almost every $w\in\Omega_2$ we have $\varphi_2(w)>-\infty$ and $F(\cdot,w)\in\mathcal H_{\varphi_1}(\Omega_1)$, and for such $w$ we put
+\[
+ a_j(w)=\int_{\Omega_1}F(z,w)\overline{e_j(z)}
+                                  \mathrm e^{-\varphi_1(z)}\,\mathrm dV_z.
+\]
+We claim that each $a_j$ agrees almost everywhere with an element of $\mathcal H_{\varphi_2}(\Omega_2)$ of norm at most $\|F\|_\Phi$. Choose compact sets $K_\ell\uparrow\Omega_1$ and put $E_\ell=K_\ell\cap\{\mathrm e^{-\varphi_1}\leq\ell\}$; these sets increase and exhaust $\Omega_1$ up to the pole set of $\varphi_1$, which has measure zero. The function $a_{j,\ell}$ obtained by integrating over $E_\ell$ instead of $\Omega_1$ is holomorphic on $\Omega_2$. Indeed, let $L\subset\Omega_2$ be compact. For $z\in E_\ell\subset K_\ell$ and $w\in L$, the integrand $F(z,w)\overline{e_j(z)}\mathrm e^{-\varphi_1(z)}$ and all its partial derivatives in $w$ are bounded, because $F$ and its derivatives are continuous on $K_\ell\times L$, $e_j$ is bounded on $K_\ell$, and $\mathrm e^{-\varphi_1}\leq\ell$ on $E_\ell$. Hence we may differentiate under the integral sign any number of times: $a_{j,\ell}$ is smooth, and $\partial a_{j,\ell}/\partial\bar w_m=0$ for all $m$, because $F$ is holomorphic in $w$. By the Cauchy--Schwarz inequality in $z$, followed by integration in $w$ against $\mathrm e^{-\varphi_2}$,
+\[
+ \|a_j-a_{j,\ell}\|_{\varphi_2}^2
+ \leq\|F\|_\Phi^2
+       \int_{\Omega_1\setminus E_\ell}|e_j|^2\mathrm e^{-\varphi_1}\,\mathrm dV_z
+ \longrightarrow0
+\]
+by dominated convergence, since the sets $\Omega_1\setminus E_\ell$ decrease to a null set and $|e_j|^2\mathrm e^{-\varphi_1}$ is integrable. Since $\varphi_2\leq0$, the holomorphic functions $a_{j,\ell}$ therefore converge to $a_j$ in $L^2(\Omega_2)$, and hence in the sense of distributions; so $\bar\partial a_j=0$, and $a_j$ agrees almost everywhere with a holomorphic function, by \cref{lem:dbar-closed-distribution-holomorphic}(1). The same Cauchy--Schwarz estimate over all of $\Omega_1$ gives $\|a_j\|_{\varphi_2}\leq\|F\|_\Phi$, which proves the claim.
+
+Now suppose that $F$ is orthogonal to all the products $e_jg_k$. By Fubini's theorem, whose use is justified by the Cauchy--Schwarz inequality, $\langle a_j,g_k\rangle_{\varphi_2}=\langle F,e_jg_k\rangle_\Phi=0$ for all $k$. Since the linear span of the $g_k$ is dense in $\mathcal H_{\varphi_2}(\Omega_2)$, the element $a_j$ of this space is orthogonal to itself, so $a_j=0$ almost everywhere, for every $j$. Hence for almost every $w$ all the coefficients $\langle F(\cdot,w),e_j\rangle_{\varphi_1}$ vanish, and $F(\cdot,w)=0$, because $F(\cdot,w)$ is the limit of the partial sums of its expansion (\cref{thm:multiplier-ideal-coherence}(2)). Thus $F=0$ almost everywhere, and therefore everywhere, since $F$ is continuous. Consequently, the closure $M$ of the linear span of the products $e_jg_k$ satisfies $M^\perp=0$, and $M=\mathcal H_\Phi(\Omega_1\times\Omega_2)$ by \cref{prop:hilbert-projection-representation}.
+
+We can now prove \eqref{eq:multiplier-external-product}. Denote its right side by $\mathfrak b$; it is the ideal generated by the products $(f_1\circ p_1)(f_2\circ p_2)$ of local sections $f_i$ of $\mathcal I(\varphi_i)$. Each product $e_jg_k$ is a section of $\mathfrak b$. Every $F\in\mathcal H_\Phi(\Omega_1\times\Omega_2)$ is the norm limit, hence by \eqref{eq:holomorphic-ball-mean-bound} the locally uniform limit, of a sequence of finite linear combinations of these products, so its germs lie in $\mathfrak b$ by \cref{lem:analytic-krull-closure}. Since $\mathcal I(\Phi)$ is generated by the germs of the elements of $\mathcal H_\Phi(\Omega_1\times\Omega_2)$ (\cref{thm:multiplier-ideal-coherence}(3)), we obtain $\mathcal I(\Phi)\subset\mathfrak b$. Conversely, if $|f_i|^2\mathrm e^{-\varphi_i}$ is integrable near $x_i$ for $i=1,2$, then $|f_1(z)f_2(w)|^2\mathrm e^{-\Phi(z,w)}$ is integrable near $(x_1,x_2)$ by Fubini's theorem; since $\mathcal I(\Phi)$ is an ideal, $\mathfrak b\subset\mathcal I(\Phi)$.
+
+Finally, let $\varphi$ and $\psi$ be weights on $X$, and apply \eqref{eq:multiplier-restriction} to the weight $\varphi\circ p_1+\psi\circ p_2$ on $X\times X$ and the diagonal, which we identify with $X$. The restriction of the weight is $\varphi+\psi$, and by \eqref{eq:multiplier-external-product} the restriction of its multiplier ideal is generated by the products $f_1f_2$ of local sections $f_1$ of $\mathcal I(\varphi)$ and $f_2$ of $\mathcal I(\psi)$, that is, it equals $\mathcal I(\varphi)\mathcal I(\psi)$. This proves \eqref{eq:multiplier-subadditivity}.
+\end{proof}
+\index{multiplier ideal!restriction}\index{multiplier ideal!subadditivity}
+
+\begin{corollary}\label{cor:multiplier-holomorphic-pullback}
+Let $f\colon X\to Y$ be a holomorphic map of complex manifolds and $\varphi$ a weight on $Y$. Then
+\[
+ \mathcal I(\varphi\circ f)\subset f^{-1}\mathcal I(\varphi)\cdot\mathcal O_X,
+\]
+with equality if $f$ is a submersion. On a connected component of $X$ on which $\varphi\circ f\equiv-\infty$, the left side is zero.
+\end{corollary}
+\begin{proof}
+Suppose first that $f$ is a submersion, and let $a\in X$. Choose holomorphic coordinates $y$ on $Y$ centered at $f(a)$. Since the differential of $f$ at $a$ is surjective, the complex Jacobian matrix at $a$ of the components of $y\circ f$, computed in a chart of $X$, has rank $\dim_{f(a)}Y$. By the holomorphic inverse function theorem (\cref{prop:holomorphic-inverse-function}(3)), these components are the first coordinates of a holomorphic chart $(z,w)=(y\circ f,w)$ of $X$ near $a$. In these coordinates $f$ is the projection $(z,w)\mapsto z$. Thus $\varphi\circ f=\varphi\circ p_1+0\circ p_2$, and \eqref{eq:multiplier-external-product}, together with $\mathcal I(0)=\mathcal O$, gives $\mathcal I(\varphi\circ f)=p_1^{-1}\mathcal I(\varphi)\cdot\mathcal O=f^{-1}\mathcal I(\varphi)\cdot\mathcal O_X$.
+
+In general, the graph $\Gamma=\{(x,f(x))\}$ is a complex submanifold of $X\times Y$, since in local coordinates $(x,y)$ the functions $(x,y-f(x))$ are holomorphic coordinates in which $\Gamma=\{y-f(x)=0\}$; and $\iota(x)=(x,f(x))$ is a biholomorphism of $X$ onto $\Gamma$. The projection $q\colon X\times Y\to Y$ is a submersion, so $\mathcal I(\varphi\circ q)=q^{-1}\mathcal I(\varphi)\cdot\mathcal O_{X\times Y}$ by the first case. Since $\varphi\circ q\circ\iota=\varphi\circ f$, \eqref{eq:multiplier-restriction} applied to $\Gamma$ gives $\mathcal I(\varphi\circ f)\subset(q^{-1}\mathcal I(\varphi)\cdot\mathcal O_{X\times Y})|_\Gamma^{\mathrm{im}}$ after transport by $\iota$. The right side is generated by the functions $g\circ q\circ\iota=g\circ f$ with $g$ a local section of $\mathcal I(\varphi)$, so it equals $f^{-1}\mathcal I(\varphi)\cdot\mathcal O_X$.
+\end{proof}
+\index{multiplier ideal!pullback}
+
+\begin{proposition}\label{prop:multiplier-integral-closure}
+Every multiplier ideal is integrally closed: if a germ $F\in\mathcal O_{X,x}$ satisfies an equation $F^d+a_1F^{d-1}+\cdots+a_d=0$ with $a_j\in\mathcal I(\varphi)_x^j$, then $F\in\mathcal I(\varphi)_x$. More explicitly, if $g_1,\ldots,g_r\in\mathcal I(\varphi)_x$ and a holomorphic germ $F$ satisfies $|F|\leq C(\sum_j|g_j|^2)^{1/2}$ near $x$ for a constant $C$, then $F\in\mathcal I(\varphi)_x$.
+\end{proposition}
+\begin{proof}
+The second assertion is immediate, since $|F|^2\mathrm e^{-\varphi}\leq C^2\sum_j|g_j|^2\mathrm e^{-\varphi}$ near $x$. For the first, choose generators $g_1,\ldots,g_r$ of $\mathcal I(\varphi)_x$ (\cref{thm:multiplier-ideal-coherence}), representatives of the $g_j$, of $F$ and of the $a_j$ on a common neighborhood, and put $|g|=(\sum_j|g_j|^2)^{1/2}$. Each $a_j$ is a finite sum of products of $j$ generators with holomorphic coefficients, which are bounded on a smaller neighborhood; hence $|a_j|\leq C_j|g|^j$ there. At a point where $|g|>0$, put $\lambda=|F|/|g|$. Dividing the equation by $|g|^d$ gives $\lambda^d\leq\sum_jC_j\lambda^{d-j}$, which forces $\lambda\leq C$ with $C=\max\{1,\sum_jC_j\}$. At a point where $|g|=0$, all the $a_j$ vanish, so $F^d=0$ and $F=0$. Thus $|F|\leq C|g|$ near $x$, and the second assertion applies.
+\end{proof}
+\index{integrally closed ideal!multiplier ideal}
+
+\section{Strong openness by extension from moving slices}
+\label{sec:strong-openness}
+
+The constant in the Ohsawa--Takegoshi theorem (\cref{thm:local-ot-extension}) depends only on the width of the normal direction, not on the weight. This uniformity allows us to extend a germ from a sequence of parallel hyperplanes approaching a point, with weights that vary along the sequence. If a germ were not in the expected ideal, we would obtain extensions whose norms are too small to be compatible with their behavior along a fixed holomorphic curve. The two lemmas below provide this curve and the corresponding norm estimate.
+
+\begin{lemma}\label{lem:bounded-domination-curve}
+Let $n\geq1$, let $F,g_1,\ldots,g_r$, $r\geq0$, be holomorphic functions near $0\in\mathbb C^n$ such that the germ of $F$ at $0$ is not zero, and put $|g|=(\sum_{j=1}^r|g_j|^2)^{1/2}$, with $|g|=0$ if $r=0$. Suppose that there are no neighborhood of $0$ and constant $C$ such that $|F|\leq C|g|$ on that neighborhood. Then, after a linear change of coordinates, there are an integer $q\geq1$, a constant $C$ and a holomorphic map
+\[
+ \gamma(t)=(t^q,\gamma_2(t),\ldots,\gamma_n(t)),\qquad
+ |\gamma_j(t)|\leq C|t|^q,
+\]
+defined on a disc around $0\in\mathbb C$, such that the function $F\circ\gamma$ has no zeros other than $t=0$, and each quotient $(g_j/F)\circ\gamma$ extends holomorphically across $t=0$ with value $0$ there.
+\end{lemma}
+\begin{proof}
+We first construct a nonconstant holomorphic map $\delta$ from a disc around $0\in\mathbb C$ to $\mathbb C^n$ with $\delta(0)=0$ such that $F\circ\delta$ has no zeros other than $\tau=0$ and each $(g_j/F)\circ\delta$ extends holomorphically across $\tau=0$ with value $0$.
+
+If $r=0$, choose a vector $v$ such that $\zeta\mapsto F(\zeta v)$ does not vanish identically near $0$; for instance, $v$ may be any vector at which the first nonzero homogeneous term of $F$ at $0$ does not vanish. The zeros of this one-variable function are isolated, so on a small disc it vanishes at most at $0$, and $\delta(\tau)=\tau v$ has the required properties.
+
+Let $r\geq1$. The bound $|F|\leq i|g|$ fails on the ball $B(0,1/i)$ for every large integer $i$, so there are points $z_i$ with $|z_i|<1/i$ and $|F(z_i)|>i|g(z_i)|$; in particular $F(z_i)\neq0$ and $|g(z_i)|/|F(z_i)|<1/i$. We may take $z_i\neq0$: if $z_i=0$, the strict inequality $|F|>i|g|$ at $0$ persists at points $z\neq0$ near $0$, because $F$ and $|g|$ are continuous.
+
+Let $U$ be a connected neighborhood of $0$ on which all functions are defined, and let $\sigma\colon\widetilde U\to U$ be the blowup of the ideal $(F,g_1,\ldots,g_r)$, which is not identically zero on $U$ (\cref{def:analytic-blowup}). Thus $\widetilde U\subset U\times\mathbb P^r$ is the closure of the graph of $z\mapsto[F(z):g_1(z):\cdots:g_r(z)]$ over the complement of the common zeros, and it is a complex space by \cref{prop:analytic-blowup-universal}. The graph points $\tilde z_i=(z_i,[F(z_i):g(z_i)])$ converge to $b=(0,[1:0:\cdots:0])$, because $g(z_i)/F(z_i)\to0$. On the part of $\widetilde U$ lying over the chart $\{\xi_0\neq0\}$ of $\mathbb P^r$, the functions $\xi_j/\xi_0$ are holomorphic and vanish at $b$, and the identities $g_j\circ\sigma=(\xi_j/\xi_0)(F\circ\sigma)$ hold on the graph, hence, both sides being continuous, on its closure, which is this part of $\widetilde U$.
+
+The germ of $\widetilde U$ at $b$ is the union of finitely many irreducible branches (\cref{prop:analytic-irreducible-germs}); passing to a subsequence, we may assume that all $\tilde z_i$ lie on a representative $W$ of one branch. The analytic subgerm of $(W,b)$ formed by $\sigma^{-1}(0)\cup\{F\circ\sigma=0\}$ is different from $(W,b)$, because $W$ contains the points $\tilde z_i$, arbitrarily close to $b$, at which $z_i\neq0$ and $F(z_i)\neq0$; for the same reason $(W,b)$ is not the point $b$ and has positive dimension. By \cref{prop:analytic-curve-selection} there is a nonconstant holomorphic map $c$ from a disc into $W$ with $c(0)=b$ such that $c(\tau)\notin\sigma^{-1}(0)$ and $F(\sigma(c(\tau)))\neq0$ for $\tau\neq0$; shrinking the disc, we may assume that $c$ takes values over the chart $\{\xi_0\neq0\}$. Put $\delta=\sigma\circ c$. Then $\delta(0)=0$, and for $\tau\neq0$ we have $\delta(\tau)\neq0$ and $F(\delta(\tau))\neq0$; so $\delta$ is not constant, and $F\circ\delta$ has no zeros other than $\tau=0$. For $\tau\neq0$ the identities above give $(g_j/F)(\delta(\tau))=(\xi_j/\xi_0)(c(\tau))$, and the right side is holomorphic on the whole disc with value $(\xi_j/\xi_0)(b)=0$ at $\tau=0$.
+
+Finally we choose the coordinates and the parameter. Let $q$ be the smallest vanishing order at $0$ of the coordinate functions of $\delta$; it is finite because $\delta$ is not constant, and $q\geq1$ because $\delta(0)=0$. Then $\delta(\tau)=\tau^qe+O(\tau^{q+1})$ with a vector $e\neq0$. Choose a linear form $\ell$ with $\ell(e)\neq0$ and linear coordinates in which $\ell$ is the first coordinate; then $\delta_1(\tau)=\tau^qu(\tau)$ with $u$ holomorphic and $u(0)=\ell(e)\neq0$, while the other coordinates satisfy $|\delta_j(\tau)|\leq C|\tau|^q$ near $0$. On a disc around $0$ on which $u$ has no zeros, $u$ has a holomorphic logarithm $h$, and $\kappa=\mathrm e^{h/q}$ is a holomorphic $q$th root of $u$. The function $s(\tau)=\tau\kappa(\tau)$ satisfies $s'(0)=\kappa(0)\neq0$, so by the holomorphic inverse function theorem in one variable (\cref{prop:holomorphic-inverse-function}(1) with $n=1$) it maps a neighborhood of $0$ biholomorphically onto a disc around $0$. Its inverse $s^{-1}$ is holomorphic and vanishes at $0$, so that $|s^{-1}(t)|\leq C'|t|$ after shrinking the disc. Put $\gamma=\delta\circ s^{-1}$ on this disc. Then $\gamma_1(t)=s^{-1}(t)^qu(s^{-1}(t))=s(s^{-1}(t))^q=t^q$, and $|\gamma_j(t)|\leq CC'^q|t|^q$ for $j\geq2$. Since $s^{-1}$ maps the punctured disc onto a punctured neighborhood of $0$, $F\circ\gamma$ has no zeros other than $t=0$, and each $(g_j/F)\circ\gamma=((g_j/F)\circ\delta)\circ s^{-1}$ extends holomorphically across $t=0$ with value $0$.
+\end{proof}
+
+\begin{lemma}\label{lem:curve-extension-norm-lower-bound}
+Let $q\geq1$, and let $\gamma(t)=(t^q,\gamma_2(t),\ldots,\gamma_n(t))$ be a holomorphic map from a disc around $0\in\mathbb C$ to $\mathbb C^n$ with $\gamma(0)=0$, for instance a map as in \cref{lem:bounded-domination-curve}. Let $\Omega=\Delta_R\times P\subset\mathbb C\times\mathbb C^{n-1}$, where $\Delta_R=\{|z_1|<R\}$, $R>0$, and $P$ is a polydisc centered at $0$, and let $F$ be holomorphic on $\Omega$ with $F(\gamma(t))\neq0$ for small $t\neq0$. Then there are $r,c>0$, depending only on $\gamma$, $F$ and $\Omega$, with the following property. If $0<|a|<r$ and $H\in\mathcal O(\Omega)$ satisfies
+\[
+ H(a,\cdot)=F(a,\cdot)\text{ on }P,\qquad
+ (H/F)\circ\gamma\text{ is holomorphic at }0\text{ with value }0,
+\]
+then
+\begin{equation}\label{eq:curve-extension-norm-lower-bound}
+ \int_\Omega|H|^2\,\mathrm dV\geq c|a|^{-2}.
+\end{equation}
+For $n=1$, the polydisc $P$ is a point and carries counting measure.
+\end{lemma}
+\begin{proof}
+We bound the norm of $H$ from below by a weighted norm of $H\circ\gamma$ on a disc, and then use that $H\circ\gamma=F\circ\gamma$ at the points $t$ with $t^q=a$.
+
+Choose $\rho>0$ with $\rho^q<R$ such that $\gamma$ is defined on a neighborhood of the closed disc $|t|\leq\rho$, $F\circ\gamma$ has no zeros for $0<|t|\leq\rho$, and, since $\gamma$ is continuous with $\gamma(0)=0$, $(\gamma_2(t),\ldots,\gamma_n(t))$ lies in a fixed polydisc $P'\Subset P$ centered at $0$ for $|t|\leq\rho$. Let $\delta>0$ be half the distance from $P'$ to the complement of $P$. For $0<|z_1|<\rho^q$, each of the $q$ points $\gamma(t)$ with $t^q=z_1$ has the form $(z_1,w)$ with $w\in P'$, and \eqref{eq:holomorphic-ball-mean-bound} for the holomorphic function $H(z_1,\cdot)$ on the ball $B(w,\delta)\subset P$ gives $|H(z_1,w)|^2\leq C_\delta\int_P|H(z_1,w')|^2\,\mathrm dV(w')$, where $C_\delta^{-1}$ is the volume of a ball of radius $\delta$ in $\mathbb C^{n-1}$. Summing over the $q$ points, we obtain $\sum_{t^q=z_1}|H(\gamma(t))|^2\leq qC_\delta\int_P|H(z_1,w')|^2\,\mathrm dV(w')$.
+
+Now we integrate over $|z_1|<\rho^q$. The map $t\mapsto t^q$ maps each of the $q$ half-open sectors $\{0<|t|<\rho,\ 2\pi k/q\leq\arg t<2\pi(k+1)/q\}$ bijectively onto the punctured disc $0<|z_1|<\rho^q$, and on the interior of the sector it is a diffeomorphism onto the complement of a ray, with real Jacobian $|qt^{q-1}|^2$. By the change of variables formula, applied on each sector, $\int_{|t|<\rho}\Phi(t)q^2|t|^{2q-2}\,\mathrm dV_2(t)=\int_{|z_1|<\rho^q}\sum_{t^q=z_1}\Phi(t)\,\mathrm dV_2(z_1)$ for every nonnegative measurable $\Phi$. Since $\Delta_{\rho^q}\times P\subset\Omega$, it follows that
+\[
+ \int_\Omega|H|^2\,\mathrm dV
+ \geq c_0\int_{|t|<\rho}|H(\gamma(t))|^2
+                           q^2|t|^{2q-2}\,\mathrm dV_2(t)
+\]
+with $c_0=1/(qC_\delta)$. If $n=1$, the same inequality holds with $c_0=1/q$, without the submean step.
+
+Write $F\circ\gamma(t)=t^mv(t)$ with an integer $m\geq0$ and $v$ without zeros on $|t|\leq\rho$, and put $h=(H/F)\circ\gamma$. This function is holomorphic for $0<|t|<\rho$, because $F\circ\gamma$ has no zeros there, and by hypothesis it extends holomorphically across $0$ with $h(0)=0$; thus $h(t)=\sum_{\ell\geq1}h_\ell t^\ell$ for $|t|<\rho$. Then $H\circ\gamma=t^mvh$, and $|v|$ is bounded below by a positive constant on the compact disc $|t|\leq\rho$, being continuous and without zeros there. On each circle $|t|=s<\rho$ the power series of $h$ converges uniformly, and the monomials $t^\ell$ are orthogonal there, so $\int_0^{2\pi}|h(s\mathrm e^{\mathrm i\theta})|^2\,\mathrm d\theta=2\pi\sum_\ell|h_\ell|^2s^{2\ell}$. Integrating in polar coordinates and using the monotone convergence theorem, we obtain
+\[
+ \int_\Omega|H|^2\,\mathrm dV
+ \geq c_1\sum_{\ell\geq1}
+                \frac{|h_\ell|^2\rho^{2(\ell+m+q)}}{\ell+m+q}
+\]
+with $c_1=\pi q^2c_0\min_{|t|\leq\rho}|v(t)|^2$. Now let $0<|a|<\rho^q$. For each of the $q$ roots $b$ of $b^q=a$, the point $\gamma(b)$ lies on the slice $\{z_1=a\}$, where $H=F$, and $F(\gamma(b))\neq0$; hence $h(b)=1$. The average $q^{-1}\sum_{b^q=a}b^\ell$ equals $a^{\ell/q}$ if $q$ divides $\ell$ and $0$ otherwise, so averaging $h$ over these roots gives $\sum_{j\geq1}h_{qj}a^j=1$. By the Cauchy--Schwarz inequality,
+\[
+ 1\leq c_1^{-1}\|H\|_{L^2(\Omega)}^2
+ \sum_{j\geq1}\frac{(qj+m+q)|a|^{2j}}{\rho^{2(qj+m+q)}}.
+\]
+If $|a|\leq\rho^q/2$, the last sum equals $\rho^{-2(m+q)}\sum_{j\geq1}(qj+m+q)x^j$ with $x=|a|^2\rho^{-2q}\leq1/4$, and this series is at most a constant times $x$. Hence \eqref{eq:curve-extension-norm-lower-bound} holds for $0<|a|<r=\rho^q/2$, with $c$ independent of $a$ and $H$.
+\end{proof}
+
+\begin{theorem}\label{thm:monotone-multiplier-stability}
+Let $(\psi_j)_{j\geq1}$ be an increasing sequence of weights on $X$ that converges almost everywhere to a weight $\varphi$. Then at every $x\in X$,
+\begin{equation}\label{eq:monotone-multiplier-stability}
+ \bigcup_j\mathcal I(\psi_j)_x=\mathcal I(\varphi)_x,
+\end{equation}
+and $\mathcal I(\psi_j)_x=\mathcal I(\varphi)_x$ for all sufficiently large $j$; the required index may depend on $x$ and on the sequence.
+\end{theorem}
+\begin{proof}
+Since the $\psi_j$ increase to $\varphi$ almost everywhere, $\psi_j\leq\varphi$ almost everywhere. The plurisubharmonic functions $\max\{\psi_j,\varphi\}$ and $\varphi$ therefore agree almost everywhere, hence everywhere by \cref{thm:psh-distribution-representative}; that is, $\psi_j\leq\varphi$ everywhere. Consequently $\mathcal I(\psi_j)\subset\mathcal I(\varphi)$ for every $j$, and the left side of \eqref{eq:monotone-multiplier-stability} is contained in the right side. We prove the reverse inclusion by induction on the dimension $n$ of $X$ at $x$. If $n=0$, all the weights are finite at $x$ and all the ideals equal $\mathcal O_{X,x}$. Let $n\geq1$, assume the theorem in dimension $n-1$, and take $x=0$ in a coordinate chart. We argue by contradiction, extending a germ that is missing from $\bigcup_j\mathcal I(\psi_j)_0$ from slices $\{z_1=a_i\}$ with $a_i\to0$, as outlined at the beginning of this section.
+
+\emph{Step 1: reduction to a curve.} The union $J=\bigcup_j\mathcal I(\psi_j)_0$ is an ideal, because the ideals increase with $j$. By \cref{prop:analytic-noetherian} it is generated by finitely many germs $g_1,\ldots,g_k$, $k\geq0$, and these all belong to $\mathcal I(\psi_{j_0})_0$ for some $j_0$. Suppose, to reach a contradiction, that some $F\in\mathcal I(\varphi)_0$ does not belong to $J$; in particular $F\neq0$. Choose representatives of $F$ and of the $g_l$ on a neighborhood $U$ of $0$ on which $|g_l|^2\mathrm e^{-\psi_{j_0}}$ and $|F|^2\mathrm e^{-\varphi}$ are integrable. If $|F|\leq C|g|$, with $|g|=(\sum_l|g_l|^2)^{1/2}$, held on a neighborhood of $0$, then $F\in\mathcal I(\psi_{j_0})_0\subset J$ by \cref{prop:multiplier-integral-closure}; so no such bound holds. \Cref{lem:bounded-domination-curve} now provides linear coordinates and a curve $\gamma(t)=(t^q,\gamma_2(t),\ldots,\gamma_n(t))$ such that $F\circ\gamma$ has no zeros for small $t\neq0$ and each $(g_l/F)\circ\gamma$ extends holomorphically with value $0$ at $t=0$. In these coordinates choose polydiscs $\Delta_{R_0}\times P_0\Subset U$ and $\Omega=\Delta_R\times P\Subset\Delta_{R_0}\times P_0$ centered at $0$, and let $r,c>0$ be the constants of \cref{lem:curve-extension-norm-lower-bound} for $\gamma$, $F$ and $\Omega$. Subtracting the same constant from $\varphi$ and all $\psi_j$, we may assume that $\varphi\leq0$ on $\Delta_{R_0}\times P_0$; then also $\psi_j\leq0$ there.
+
+\emph{Step 2: choice of slices.} By Fubini's theorem, the function
+\[
+ G(a)=\int_{P_0}|F(a,w)|^2\mathrm e^{-\varphi(a,w)}\,\mathrm dV_w
+\]
+is integrable on $\Delta_{R_0}$. Hence, given any null set $N\subset\Delta_{R_0}$, there is a sequence of points $a_i\notin N$, $a_i\neq0$, with $a_i\to0$ and $|a_i|^2G(a_i)\to0$; otherwise $G(a)\geq c'|a|^{-2}$ for almost every $a$ in some punctured disc around $0$, and $G$ would not be integrable. We take for $N$ the union of three sets: the set where $G=\infty$; the set of $a$ for which one of the countably many functions $\varphi(a,\cdot)$, $\psi_j(a,\cdot)$ is identically $-\infty$ on $P_0$; and the set of $a$ for which $\psi_j(a,\cdot)\to\varphi(a,\cdot)$ fails on a subset of $P_0$ of positive measure. The first set is null because $G$ is integrable, and the other two are null by Fubini's theorem, because pole sets of weights have measure zero and $\psi_j\to\varphi$ almost everywhere. Then the functions $\psi_j(a_i,\cdot)$ and $\varphi(a_i,\cdot)$ are weights on $P_0$ (\cref{prop:psh-holomorphic-pullback}), and the former increase to the latter almost everywhere on $P_0$. Moreover $G(a_i)>0$ for all large $i$, because $F(a_i,\cdot)$ does not vanish identically on $P_0$: for small $|a_i|$, the slice $\{a_i\}\times P_0$ contains the points $\gamma(b)$ with $b^q=a_i$, at which $F\neq0$. Discarding finitely many terms, we assume that this holds for all $i$.
+
+\emph{Step 3: integrability on a fixed inner slice.} Fix $i$. Since $G(a_i)<\infty$, the germ of $F(a_i,\cdot)$ at every point of $P_0$ belongs to $\mathcal I(\varphi(a_i,\cdot))$. By the induction hypothesis, applied on $P_0$, each point of the compact set $\overline P\subset P_0$ has a neighborhood on which $|F(a_i,\cdot)|^2\mathrm e^{-\psi_j(a_i,\cdot)}$ is integrable for some $j$. Covering $\overline P$ by finitely many such neighborhoods and using that the $\psi_j$ increase, we find one index $j$ for which $\int_P|F(a_i,w)|^2\mathrm e^{-\psi_j(a_i,w)}\,\mathrm dV_w<\infty$. For larger $j$ these integrands decrease and converge almost everywhere to $|F(a_i,\cdot)|^2\mathrm e^{-\varphi(a_i,\cdot)}$, so by dominated convergence their integrals over $P$ converge to a number at most $G(a_i)$. Since $G(a_i)>0$, we can choose an index $j_i$ with
+\[
+ \int_P|F(a_i,w)|^2\mathrm e^{-\psi_{j_i}(a_i,w)}\,\mathrm dV_w
+                          \leq2G(a_i).
+\]
+The polydisc $P$ does not depend on $i$; this is what makes the estimates of the next step uniform.
+
+\emph{Step 4: extension and contradiction.} For large $i$ we have $|a_i|<\min\{r,R\}$, so that the normal coordinate $z_1-a_i$ takes values in a disc of radius $2R$ on $\Omega$. The polydisc $\Omega$ is pseudoconvex by \cref{cor:pseudoconvex-sublevels-products}, being a product of discs, each of which is a sublevel set of a function $|\zeta-\zeta_0|^2$ on $\mathbb C$. Applying \cref{thm:local-ot-extension}, after reordering the coordinates, with the normal coordinate $z_1-a_i$, the radius $2R$ and the weight $\psi_{j_i}$, and using the last display of Step 3, we obtain $H_i\in\mathcal O(\Omega)$ with $H_i(a_i,\cdot)=F(a_i,\cdot)$ on $P$ and
+\[
+ \int_\Omega|H_i|^2\mathrm e^{-\psi_{j_i}}\,\mathrm dV\leq 8C_0R^2G(a_i),
+\]
+where $C_0$ is the absolute constant of that theorem. In particular the germ of $H_i$ at $0$ lies in $\mathcal I(\psi_{j_i})_0\subset J$, so $H_i=\sum_lb_lg_l$ near $0$ with holomorphic $b_l$, and $(H_i/F)\circ\gamma=\sum_l(b_l\circ\gamma)\cdot(g_l/F)\circ\gamma$ extends holomorphically across $t=0$ with value $0$. Since $\psi_{j_i}\leq0$, the last display also bounds $\int_\Omega|H_i|^2\,\mathrm dV$. Now \cref{lem:curve-extension-norm-lower-bound} gives $c|a_i|^{-2}\leq8C_0R^2G(a_i)$ for all large $i$, contradicting $|a_i|^2G(a_i)\to0$. Hence $F\in J$, which proves \eqref{eq:monotone-multiplier-stability}.
+
+Finally, $\mathcal I(\varphi)_x$ is generated by finitely many germs, which by \eqref{eq:monotone-multiplier-stability} all lie in $\mathcal I(\psi_j)_x$ for one index $j$. Then $\mathcal I(\varphi)_x\subset\mathcal I(\psi_j)_x$, and equality holds for this and every later index, since the ideals increase and are contained in $\mathcal I(\varphi)_x$.
+\end{proof}
+\index{multiplier ideal!monotone stability}
+
+\begin{corollary}[Strong openness]\label{cor:strong-openness}
+Let $\varphi$ and $\chi$ be weights on $X$, and let $x\in X$. Then
+\begin{equation}\label{eq:strong-openness}
+ \mathcal I(\varphi)_x=\bigcup_{\varepsilon>0}
+                   \mathcal I((1+\varepsilon)\varphi)_x
+\end{equation}
+and, more generally,
+\[
+ \mathcal I(\varphi)_x=\bigcup_{\varepsilon>0}
+                   \mathcal I(\varphi+\varepsilon\chi)_x.
+\]
+Moreover, there is a single $\varepsilon>0$ with $\mathcal I((1+\varepsilon)\varphi)_x=\mathcal I(\varphi)_x$, and similarly a single $\varepsilon>0$ with $\mathcal I(\varphi+\varepsilon\chi)_x=\mathcal I(\varphi)_x$.
+\end{corollary}
+\begin{proof}
+The assertions are local. On a relatively compact neighborhood of $x$ the weights are bounded above, and subtracting constants we may assume $\varphi\leq0$ and $\chi\leq0$ there; this changes $(1+\varepsilon)\varphi$ and $\varphi+\varepsilon\chi$ only by bounded amounts and hence changes none of the ideals. Then $(1+\varepsilon)\varphi$ and $\varphi+\varepsilon\chi$ decrease as $\varepsilon$ increases, so the corresponding ideals decrease with $\varepsilon$ and are contained in $\mathcal I(\varphi)_x$. The sequences $(1+1/j)\varphi$ and $\varphi+\chi/j$ increase with $j$ and converge to $\varphi$ wherever $\varphi$ and $\chi$ are finite, hence almost everywhere. By \cref{thm:monotone-multiplier-stability}, $\mathcal I((1+1/j)\varphi)_x=\mathcal I(\varphi)_x$ and $\mathcal I(\varphi+\chi/j)_x=\mathcal I(\varphi)_x$ for all large $j$, which proves both assertions.
+\end{proof}
+\index{strong openness theorem}
+
+\begin{example}\label{ex:multiplier-monomial-threshold}
+Let $c\geq0$ and $\varphi=c\log|z|^2$ on a disc around $0\in\mathbb C$, where $\varphi=0$ if $c=0$. A germ of order $k$ at $0$ is $z^k$ times a unit, so by polar coordinates it belongs to $\mathcal I(\varphi)_0$ if and only if $\int_0^rt^{2k-2c+1}\,\mathrm dt<\infty$, that is, $k+1>c$. Hence $\mathcal I(\varphi)=(z^{\lfloor c\rfloor})$. When $c$ is a positive integer, the germ $z^{c-1}$ just fails, because the radial integral diverges logarithmically. This strict threshold shows why \cref{thm:monotone-multiplier-stability} concerns increasing sequences: on the unit disc, the weights $\varphi_j=(1-1/j)\log|z|^2$, $j\geq2$, decrease to $\log|z|^2$, yet $\mathcal I(\varphi_j)=\mathcal O$ for every $j$, whereas $\mathcal I(\log|z|^2)=(z)$.
+\end{example}
+\index{multiplier ideal!of a logarithmic pole in one variable}
+
+\section{Birational change of variables and logarithmic thresholds}
+\label{sec:multiplier-birational-integrability}
+
+On a modification of $X$, the change of variables formula turns membership in a multiplier ideal into an integrability condition twisted by the Jacobian (\cref{prop:birational-weighted-change-variables}), which becomes explicit on a log resolution.
+
+Let $\pi\colon Y\to X$ be a proper bimeromorphic holomorphic map between complex manifolds of dimension $n$. Thus there is a nowhere dense analytic subset $A\subset X$ such that $\pi^{-1}(A)$ is nowhere dense in $Y$ and $\pi$ maps $Y\setminus\pi^{-1}(A)$ biholomorphically onto $X\setminus A$ (\cref{sec:reduced-spaces-normalization}). In local coordinates $w$ on $Y$ and $z$ on $X$, the complex Jacobian determinant $J_\pi=\det(\partial z_i/\partial w_j)$ is holomorphic, and it does not vanish identically on any nonempty open set, since it has no zeros on the dense open set $Y\setminus\pi^{-1}(A)$. By the chain rule, a change of coordinates on either side multiplies $J_\pi$ by a nowhere vanishing holomorphic function; equivalently, $\pi^*(\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n)=J_\pi\,\mathrm dw_1\wedge\cdots\wedge\mathrm dw_n$. Hence the functions $J_\pi$ are the local equations of an effective Cartier divisor $K_{Y/X}$ on $Y$ (\cref{sec:analytic-blowups-resolution}), the \emph{relative canonical divisor}, and $\mathcal O_Y(K_{Y/X})$ is generated locally by $J_\pi^{-1}$.
+
+We measure the vanishing of holomorphic functions along hypersurfaces as follows. Let $E\subset Y$ be a prime divisor, that is, an irreducible hypersurface. By \cref{cor:analytic-global-components}, applied to the family consisting of $E$ alone, its regular locus $E_{\mathrm{reg}}$ is a connected manifold, dense in $E$. Let $p\in E_{\mathrm{reg}}$, choose coordinates $w=(w_1,w')$ at $p$ with $E=\{w_1=0\}$ near $p$, and let $h$ be holomorphic near $p$. The \emph{order of $h$ along $E$ at $p$} is the supremum, in $\{0,1,2,\ldots\}\cup\{+\infty\}$, of the integers $k\geq0$ such that $h$ is divisible by $w_1^k$ near $p$, that is, $h=w_1^kh_1$ near $p$ with $h_1$ holomorphic. By the next lemma, it does not depend on the coordinates, and for a function defined near $E$ it does not depend on the point of $E_{\mathrm{reg}}$.
+
+\begin{lemma}\label{lem:divisor-order-independent}
+Let $E$ be a prime divisor on a complex manifold $Y$, let $p\in E_{\mathrm{reg}}$, let $w=(w_1,w')$ be holomorphic coordinates at $p$ with $E=\{w_1=0\}$ near $p$, and let $h$ be holomorphic near $p$. Let $\Delta=\Delta_1\times\Delta'$ be a polydisc centered at $p$, where $\Delta_1$ is a disc in the $w_1$-plane, so small that $E\cap\Delta=\{w_1=0\}\cap\Delta$ and that \eqref{eq:polydisc-power-series} gives the expansion
+\[
+ h=\sum_{l\geq0}a_l(w')w_1^l\quad\text{on }\Delta,\qquad a_l(w')=\frac1{l!}\partial_{w_1}^lh(0,w'),
+\]
+where the functions $a_l$ are holomorphic on $\Delta'$.
+\begin{enumerate}
+\item Let $k\geq0$ be an integer. If $h$ is divisible by $w_1^k$ near some point of $E\cap\Delta$, then $a_l=0$ for all $l<k$; conversely, if $a_l=0$ for all $l<k$, then $h$ is divisible by $w_1^k$ near $p$. In particular, a holomorphic function that vanishes on $E$ near $p$ is divisible by $w_1$ near $p$, and if $\tilde w=(\tilde w_1,\tilde w')$ are other coordinates at $p$ with $E=\{\tilde w_1=0\}$ near $p$, then $\tilde w_1$ is a unit times $w_1$ near $p$.
+\item The order of $h$ along $E$ at $p$ does not depend on the coordinates. It is the smallest $l$ with $a_l\neq0$, and it is $+\infty$ if and only if $h$ vanishes near $p$. In particular, $h$ is not divisible by $w_1$ near $p$ if and only if $h(0,\cdot)$ does not vanish identically near $p$. Moreover, the order of $h$ along $E$ is the same at all points of $E\cap\Delta$.
+\item If $h$ is holomorphic on a neighborhood of $E$, then its order along $E$ is the same at all points of $E_{\mathrm{reg}}$.
+\item Orders add under products: if $g$ is also holomorphic near $p$, then the order of $hg$ along $E$ at $p$ is the sum of the orders of $h$ and $g$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) If $h=w_1^kh_1$ near a point $(0,w'_0)$ of $E\cap\Delta$, with $h_1$ holomorphic, then the Leibniz rule gives $\partial_{w_1}^lh(0,w')=0$ for $l<k$ and $w'$ near $w'_0$; so $a_l=0$ near $w'_0$, and hence on the connected set $\Delta'$ by the identity theorem. Conversely, if $a_l=0$ for $l<k$, then $h=w_1^k\sum_{l\geq k}a_lw_1^{l-k}$ near $p$; the last series is obtained from the Taylor series of $h$ at $p$ by lowering the exponent of $w_1$ in each term by $k$, so it converges on the same polydiscs and defines a holomorphic function (\cref{sec:analytic-division}). If $h$ vanishes on $E$ near $p$, then $a_0=h(0,\cdot)$ vanishes near the center of $\Delta'$, hence on $\Delta'$, and the case $k=1$ shows that $h$ is divisible by $w_1$ near $p$. Applying this to $\tilde w_1$, and to $w_1$ with the roles of the two coordinate systems exchanged, we obtain $\tilde w_1=c\,w_1$ and $w_1=\tilde c\,\tilde w_1$ near $p$ with holomorphic $c$ and $\tilde c$. Then $c\tilde c=1$ off $E$; since the continuous function $c\tilde c$ equals $1$ on the dense set $\{w_1\neq0\}$, it equals $1$ near $p$, and $c$ is a unit.
+
+(2) By (1), $h$ is divisible by $w_1^k$ near $p$ if and only if it is divisible by $\tilde w_1^k$ near $p$, so the order does not depend on the coordinates. Let $k_0$ be the smallest $l$ with $a_l\neq0$, and $k_0=+\infty$ if all $a_l$ vanish. By (1), $h$ is divisible by $w_1^k$ near $p$ if and only if $k\leq k_0$, so the order of $h$ along $E$ at $p$ is $k_0$. If all $a_l$ vanish, then $h=0$ on $\Delta$; conversely, if $h$ vanishes near $p$, then all $a_l$ vanish near the center of $\Delta'$, hence on $\Delta'$. The case $k_0=0$ gives the assertion about $h(0,\cdot)=a_0$, because $a_0$ vanishes identically on $\Delta'$ if and only if it vanishes near the center of $\Delta'$. Finally, let $q=(0,w'_q)\in E\cap\Delta$. The coordinates $w$ are also coordinates at $q$ with $E=\{w_1=0\}$ near $q$, and by their formula the coefficients of the expansion of $h$ on a small polydisc centered at $q$ are the restrictions of the same functions $a_l$. Since $\Delta'$ is connected, $a_l$ vanishes near $w'_q$ if and only if it vanishes on $\Delta'$, by the identity theorem. Hence the orders of $h$ along $E$ at $q$ and at $p$ are equal.
+
+(3) By the last assertion of (2), the order of $h$ along $E$ is a locally constant function on $E_{\mathrm{reg}}$, which is connected (\cref{cor:analytic-global-components}). Hence it is constant.
+
+(4) Shrinking $\Delta$, we may assume that $g$ is defined on $\Delta$; let $b_j$ and $e_m$ be the coefficients of the expansions of $g$ and $hg$ on $\Delta$. By the Leibniz rule, $e_m=\sum_{i+j=m}a_ib_j$. If $h$ or $g$ has infinite order, then $hg$ vanishes near $p$ and has infinite order by (2). Otherwise let $k$ and $l$ be the orders of $h$ and $g$. Then $e_m=0$ for $m<k+l$, because each term $a_ib_j$ with $i+j<k+l$ has $i<k$ or $j<l$, and $e_{k+l}=a_kb_l$. Since $a_k$ and $b_l$ are not identically zero and the ring of holomorphic functions on the connected set $\Delta'$ is an integral domain, by the identity theorem, $e_{k+l}\neq0$. By (2), the order of $hg$ is $k+l$.
+\end{proof}
+
+If $h$ is holomorphic on a neighborhood of $E$, we call the common value in \cref{lem:divisor-order-independent}(3) the \emph{order} $\operatorname{ord}_Eh$ of $h$ along $E$. The order of $J_\pi$ along a prime divisor $E\subset Y$ is defined in the same way, because local Jacobians differ by units, which have order zero, and orders add under products (\cref{lem:divisor-order-independent}(4)); it is the coefficient $\operatorname{ord}_EK_{Y/X}$ of $E$ in $K_{Y/X}$.
+
+For divisors with simple normal crossings support we use local monomial equations.
+
+\begin{lemma}\label{lem:normal-crossings-monomial}
+Let $w$ be holomorphic coordinates centered at a point $p$ of a complex manifold, let $0\leq\ell\leq n$, and let $h$ be holomorphic near $p$, not identically zero near $p$, with zero set near $p$ contained in $\{w_1\cdots w_\ell=0\}$. For $i\leq\ell$ let $k_i$ be the largest integer such that $h$ is divisible by $w_i^{k_i}$ near $p$. Then $h=u\prod_{i\leq\ell}w_i^{k_i}$ near $p$, with $u$ holomorphic and $u(p)\neq0$. Moreover, a holomorphic function near $p$ that is divisible by $w_i^{a_i}$ near $p$ for each $i\leq\ell$ is divisible by $\prod_{i\leq\ell}w_i^{a_i}$.
+\end{lemma}
+\begin{proof}
+Let $g=\sum_\alpha c_\alpha w^\alpha$ be the power series at $p$ of a holomorphic function, as in \eqref{eq:polydisc-power-series}. If $g=w_i^ag'$ near $p$, then multiplying the series of $g'$ by $w_i^a$ shows that $c_\alpha=0$ whenever $\alpha_i<a$. Conversely, if $c_\alpha=0$ whenever $\alpha_i<a_i$ for some $i\leq\ell$, then $g=\prod_iw_i^{a_i}\cdot\sum_\alpha c_\alpha w^{\alpha-\sum_ia_ie_i}$, where $e_i$ is the $i$th unit vector, and the last series converges on the same polydiscs as that of $g$. This proves the last assertion, and it shows that $k_i<\infty$, since otherwise all $c_\alpha$ of $h$ would vanish. Hence $h=u\prod_{i\leq\ell}w_i^{k_i}$ with $u$ holomorphic near $p$, and $u$ is not divisible by any $w_i$, $i\leq\ell$, by the maximality of $k_i$.
+
+It remains to show that $u(p)\neq0$. Suppose, to the contrary, that $u(p)=0$. The zero set of $u$ near $p$ lies in that of $h$, hence in $\{w_1\cdots w_\ell=0\}$; so $\ell\geq1$. We work in the coordinates $w$, with $p=0$. Let $P$ be the first nonzero homogeneous term of $u$; it has positive degree $m$. Choose $v\in\mathbb C^n$ with $P(v)\neq0$ and $v_i\neq0$ for all $i$, which is possible since the polynomial $P(v)v_1\cdots v_n$ is not identically zero. Then $t\mapsto u(tv)$ has a zero of order $m$ at $t=0$; choose $\varepsilon>0$ such that it has no other zeros in $|t|\leq\varepsilon$, and such that all points $y+tv$ considered below lie in the neighborhood of $0$ where the hypothesis on the zero set holds. Since $(y,t)\mapsto u(y+tv)$ is continuous and does not vanish on the compact set $\{0\}\times\{|t|=\varepsilon\}$, there is a connected neighborhood $N$ of $0$ such that $u(y+tv)\neq0$ for $y\in N$ and $|t|=\varepsilon$. By the argument principle, the number of zeros of $t\mapsto u(y+tv)$ in $|t|<\varepsilon$, counted with multiplicity, is
+\[
+ \frac1{2\pi\mathrm i}\int_{|t|=\varepsilon}\frac{\partial_t[u(y+tv)]}{u(y+tv)}\,\mathrm dt,
+\]
+a continuous integer-valued function of $y\in N$; it equals $m\geq1$ at $y=0$, hence everywhere on $N$. So for every $y\in N$ there is $t$ with $u(y+tv)=0$, and then $y_i+tv_i=0$ for some $i\leq\ell$, that is, $u(\sigma_i(y))=0$ for the linear projection $\sigma_i(y)=y-(y_i/v_i)v$ onto the hyperplane $H_i=\{y_i=0\}$. Hence the product of the holomorphic functions $u\circ\sigma_i$, $i\leq\ell$, vanishes on $N$. If none of them vanished identically on $N$, each would be nonzero on a dense open subset of $N$, by the identity theorem, and so would be their product. Thus some $u\circ\sigma_i$ vanishes on $N$; since $\sigma_i(y)=y$ for $y\in H_i$, the function $u$ vanishes on $H_i\cap N$, which is a neighborhood of $0$ in $H_i$. By the first paragraph, applied with $a=1$, $u$ is then divisible by $w_i$ near $0$: all coefficients $c_\alpha$ of $u$ with $\alpha_i=0$ vanish, since they are the coefficients of the restriction of $u$ to $H_i$. This contradiction shows that $u(p)\neq0$.
+\end{proof}
+\index{divisor!local monomial equation}
+
+Let $D$ be an effective divisor on $Y$ with simple normal crossings support, and let $E_1,E_2,\ldots$ be the irreducible components of its support; they are smooth, and connected because their regular loci are (\cref{cor:analytic-global-components}). Near a point $p$ choose coordinates $w$ in which the support of $D$ is $\{w_1\cdots w_\ell=0\}$, with $E_i=\{w_i=0\}$ for the components through $p$. By \cref{lem:normal-crossings-monomial}, a local equation of $D$ at $p$ is a unit times $\prod_{i\leq\ell}w_i^{d_i}$, where $d_i\geq1$ is its order along $E_i$. Two local equations differ by a unit on the overlap of their domains, so $d_i$ does not depend on the point of $E_i$; it is the \emph{multiplicity} of $E_i$ in $D$, and we write $D=\sum_id_iE_i$. Conversely, for integers $a_i\geq0$ we write $\sum_ia_iE_i$ for the effective divisor whose local equations are the monomials $\prod_{i\leq\ell}w_i^{a_i}$. If $A$ and $B$ are effective divisors on $Y$ with local equations $s_A$ and $s_B$, then $\mathcal O_Y(A-B)=\mathcal O_Y(A)\mathcal O_Y(-B)$ is the sheaf of functions on the complement of the support of $A$ that are locally of the form $g\,s_B/s_A$ with $g$ holomorphic.
+\index{divisor!multiplicities of components}
+
+\begin{definition}\label{def:divisorial-order-discrepancy}
+Let $E\subset Y$ be a prime divisor. Its \emph{center} on $X$ is $\pi(E)$, which is an analytic subset of $X$ by \cref{thm:proper-analytic-image}; it is connected, because $E$ is. Let $f$ be a holomorphic function on an open set $V\subset X$ containing the center, and let $V_0$ be the connected component of $V$ containing it. If $f$ vanishes identically on $V_0$, for instance if $f=0$, we set $\operatorname{ord}_Ef=+\infty$. Otherwise $f\circ\pi$ does not vanish identically on any nonempty open subset of $\pi^{-1}(V_0)$, because such a set contains a nonempty open set mapped biholomorphically onto an open subset of $V_0$, on which $f$ does not vanish identically by the identity theorem; since $E\subset\pi^{-1}(V_0)$, the \emph{order} of $f$ along $E$ is $\operatorname{ord}_Ef=\operatorname{ord}_E(f\circ\pi)<\infty$. This order along a divisor differs from the order at a point of \cref{prop:lelong-calculus}, although the two agree for the exceptional divisor of the blowup of a point (\cref{ex:strict-transform-integrability}). For a holomorphic germ $f$ at a point $x$, this defines $\operatorname{ord}_Ef$ for the prime divisors $E$ on smooth models of open neighborhoods of $x$ on which $f$ is defined; this is how orders of germs enter the results below. The \emph{log discrepancy} of $E$ is
+\[
+ A_X(E)=1+\operatorname{ord}_E K_{Y/X},
+\]
+where $\operatorname{ord}_EK_{Y/X}=\operatorname{ord}_EJ_\pi$ is the coefficient of $E$ in $K_{Y/X}$. Since $J_\pi$ is holomorphic, $A_X(E)\geq1$, and a prime divisor on $X$ itself, with $\pi$ the identity, has log discrepancy one. The center, the order and the log discrepancy depend only on the prime divisor over $X$ represented by $E$.
+\end{definition}
+\index{log discrepancy}\index{relative canonical divisor}\index{divisorial order}\index{prime divisor!center}\index{order!along a prime divisor}
+
+To see that these notions depend only on the prime divisor over $X$, let $\rho\colon Y'\to Y$ be a map from a common smooth model and $E'$ the strict transform of $E$. By \cref{prop:smooth-bimeromorphic-divisor-locus}, $\rho$ is biholomorphic over $Y\setminus S$ for an analytic subset $S$ of codimension at least two, and it maps the nonempty open subset $E'\cap\rho^{-1}(Y\setminus S)$ of $E'$ isomorphically onto the dense open subset $E\setminus S$ of $E$; hence $\rho(E')=E$, since $\rho(E')$ is closed by properness. At a point $q'$ of $E'\cap\rho^{-1}(Y\setminus S)$ that is regular on $E'$ and maps to a regular point of $E$, the biholomorphism $\rho$ near $q'$ transforms local equations of $E$ into local equations of $E'$, so $\operatorname{ord}_{E'}(f\circ\pi\circ\rho)=\operatorname{ord}_E(f\circ\pi)$ and $\operatorname{ord}_{E'}(J_\pi\circ\rho)=\operatorname{ord}_EJ_\pi$, while $J_\rho$ does not vanish near $q'$. By the chain rule $J_{\pi\circ\rho}=(J_\pi\circ\rho)J_\rho$, and since orders add under products (\cref{lem:divisor-order-independent}(4)), $\operatorname{ord}_{E'}K_{Y'/X}=\operatorname{ord}_EK_{Y/X}$. Thus $E'$ has the same center $\pi(\rho(E'))=\pi(E)$ as $E$, and the same orders and log discrepancy. Since two representatives of the same prime divisor over $X$ have the same strict transform on a common smooth model, this proves the claim.
+
+\begin{proposition}\label{prop:birational-weighted-change-variables}
+Let $\varphi$ be a weight on $X$, $x\in X$, and $f\in\mathcal O_{X,x}$. Then $f\in\mathcal I(\varphi)_x$ if and only if, near every point of the compact fiber $\pi^{-1}(x)$, the function
+\begin{equation}\label{eq:birational-weighted-integrand}
+ |f\circ\pi|^2|J_\pi|^2\mathrm e^{-\varphi\circ\pi}
+\end{equation}
+is integrable with respect to Lebesgue measure in local coordinates on $Y$. Moreover, $\pi_*\mathcal O_Y(K_{Y/X})=\mathcal O_X$: if $U\subset X$ is open, then every section of $\mathcal O_Y(K_{Y/X})$ over $\pi^{-1}(U)$, that is, every function that is locally of the form $g/J_\pi$ with $g$ holomorphic, equals $f\circ\pi$ for a unique $f\in\mathcal O(U)$. Under this identification
+\begin{equation}\label{eq:multiplier-birational-transform}
+ \mathcal I(\varphi)
+ =\pi_*\bigl(\mathcal O_Y(K_{Y/X})\mathcal I(\varphi\circ\pi)\bigr),
+\end{equation}
+where $\mathcal O_Y(K_{Y/X})\mathcal I(\varphi\circ\pi)$ is the sheaf of functions that are locally of the form $g/J_\pi$ with $g$ a section of $\mathcal I(\varphi\circ\pi)$.
+\end{proposition}
+\begin{proof}
+By \cref{prop:smooth-bimeromorphic-divisor-locus}, $\pi$ is biholomorphic over $X\setminus S$ for an analytic subset $S\subset X$ of codimension at least two; in particular $S$ is nowhere dense. The analytic subset $\pi^{-1}(S)$ of $Y$ is nowhere dense as well, because every nonempty open subset of $Y$ contains a nonempty open set that $\pi$ maps biholomorphically onto an open subset of $X$, and such a set is not contained in $S$. Near each of their points, nowhere dense analytic subsets lie in the zero set of a holomorphic function that does not vanish identically on a connected neighborhood (\cref{sec:analytic-division}); so $S$ and $\pi^{-1}(S)$ are Lebesgue null sets in charts, by \cref{lem:holomorphic-zero-null}.
+
+In holomorphic coordinates the real Jacobian determinant of $\pi$, that is, the factor by which $\pi^*$ multiplies the volume form $\mathrm dx_1\wedge\mathrm dy_1\wedge\cdots\wedge\mathrm dx_n\wedge\mathrm dy_n$, is $|J_\pi|^2$. Indeed, since $\frac{\mathrm i}2\mathrm dz_j\wedge\mathrm d\bar z_j=\mathrm dx_j\wedge\mathrm dy_j$, this form equals $c_n\,\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n\wedge\mathrm d\bar z_1\wedge\cdots\wedge\mathrm d\bar z_n$ with $c_n=(\mathrm i/2)^n(-1)^{n(n-1)/2}$, the sign coming from moving each $\mathrm dz_j$ to the left past $\mathrm d\bar z_1,\ldots,\mathrm d\bar z_{j-1}$, and similarly in the coordinates $w$. Since $\pi^*(\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n)=J_\pi\,\mathrm dw_1\wedge\cdots\wedge\mathrm dw_n$ and the conjugate identity holds for the $\mathrm d\bar z_j$, the claim follows. The change of variables formula for nonnegative measurable functions, applied to the biholomorphism $\pi$ from $W\setminus\pi^{-1}(S)$ onto its image, therefore gives
+\[
+ \int_{\pi(W\setminus\pi^{-1}(S))}g\,\mathrm dV_z
+ =\int_W(g\circ\pi)|J_\pi|^2\,\mathrm dV_w
+\]
+for every nonnegative measurable $g$ and every open set $W$ in a coordinate chart of $Y$ that is mapped into a coordinate chart of $X$, with $J_\pi$ computed in these coordinates.
+
+Now suppose that $|f|^2\mathrm e^{-\varphi}$ is integrable on a coordinate neighborhood $V$ of $x$. Applying the formula with $g=|f|^2\mathrm e^{-\varphi}$ to small coordinate neighborhoods $W\subset\pi^{-1}(V)$, we see that \eqref{eq:birational-weighted-integrand} is integrable near every point of $\pi^{-1}(V)$. Conversely, suppose that \eqref{eq:birational-weighted-integrand} is integrable near every point of $\pi^{-1}(x)$, where $f$ is defined on a coordinate neighborhood $V_0$ of $x$. Cover the compact fiber by finitely many coordinate neighborhoods $W_1,\ldots,W_k\subset\pi^{-1}(V_0)$ on which it is integrable. Since $\pi$ is proper, $\pi(Y\setminus(W_1\cup\cdots\cup W_k))$ is closed and does not contain $x$, so there is a neighborhood $V\subset V_0$ of $x$ with $\pi^{-1}(V)\subset W_1\cup\cdots\cup W_k$. The sets $\pi(W_l\setminus\pi^{-1}(S))$ cover $V\setminus S$, and $S$ is a null set, so the formula gives $\int_V|f|^2\mathrm e^{-\varphi}\,\mathrm dV\leq\sum_l\int_{W_l}|f\circ\pi|^2|J_\pi|^2\mathrm e^{-\varphi\circ\pi}\,\mathrm dV_w<\infty$.
+
+Next let $U\subset X$ be open and $h$ a section of $\mathcal O_Y(K_{Y/X})$ over $\pi^{-1}(U)$; we may assume that $U$ is connected. Over $U\setminus S$ the map $\pi$ is biholomorphic and $J_\pi$ has no zeros, so $h$ is holomorphic on $\pi^{-1}(U\setminus S)$, and $h=f\circ\pi$ there for the holomorphic function $f=h\circ(\pi|_{\pi^{-1}(U\setminus S)})^{-1}$ on $U\setminus S$, which is connected by \cref{lem:bounded-holomorphic-removal}. If $f\not\equiv0$, the function $\log|f|^2$ is plurisubharmonic on $U\setminus S$ (\cref{prop:holomorphic-tuple-logarithm}), so by \cref{cor:analytic-codimension-two-psh-removal} it is locally bounded above near $S$; hence $f$ is locally bounded near $S$, and \cref{lem:bounded-holomorphic-removal} extends $f$ holomorphically to $U$. Locally $h=g/J_\pi$ with $g$ holomorphic, and $g=(f\circ\pi)J_\pi$ on the dense open set $\pi^{-1}(U\setminus S)$, hence everywhere; so $h=f\circ\pi$. The function $f$ is unique, since it is determined on $U\setminus S$, which is dense in $U$.
+
+Finally, let $U\subset X$ be open and $f\in\mathcal O(U)$. Since $\mathcal O_Y(K_{Y/X})$ is locally generated by $J_\pi^{-1}$, the function $f\circ\pi$ is a section of $\mathcal O_Y(K_{Y/X})\mathcal I(\varphi\circ\pi)$ over $\pi^{-1}(U)$ if and only if $(f\circ\pi)J_\pi$ is a section of $\mathcal I(\varphi\circ\pi)$ there, that is, if and only if \eqref{eq:birational-weighted-integrand} is integrable near every point of $\pi^{-1}(U)$. By the first part, applied at every point of $U$, this holds if and only if $f$ is a section of $\mathcal I(\varphi)$ over $U$. Together with the second part, which shows that every section of the right side of \eqref{eq:multiplier-birational-transform} over $\pi^{-1}(U)$ has the form $f\circ\pi$, this proves \eqref{eq:multiplier-birational-transform}.
+\end{proof}
+\index{multiplier ideal!birational transformation}
+
+Log resolutions put weights of the form $c\log\sum_j|g_j|^2$ into monomial form. Let $g_1,\ldots,g_r$ be holomorphic functions on $X$ that generate an ideal $\mathfrak a$ with $\mathfrak a\mathcal O_Y=\mathcal O_Y(-D)$, where $D=\sum_id_iE_i$ is an effective divisor with simple normal crossings support. Let $p\in Y$, and choose coordinates $w$ at $p$ in which the support of $D$ is a union of coordinate hyperplanes; after renumbering, $E_1,\ldots,E_\ell$ are the components of $D$ through $p$, with $E_i=\{w_i=0\}$ near $p$. By \cref{lem:normal-crossings-monomial}, the ideal $\mathfrak a\mathcal O_Y$ is generated near $p$ by $s=\prod_{i=1}^{\ell}w_i^{d_i}$, so $g_j\circ\pi=sh_j$ with holomorphic $h_j$. Writing $s=\sum_j\beta_j(g_j\circ\pi)=s\sum_j\beta_jh_j$ with holomorphic $\beta_j$ and cancelling $s$, which does not vanish identically on any open set, we get $\sum_j\beta_jh_j=1$. Hence the $h_j$ have no common zero near $p$, the function $\sum_j|h_j|^2$ is bounded above and below by positive constants on a smaller neighborhood of $p$, and
+\begin{equation}\label{eq:log-resolution-local-form}
+ \log\sum_{j=1}^r|g_j\circ\pi|^2=\sum_{i=1}^{\ell}d_i\log|w_i|^2+O(1)\qquad\text{near }p.
+\end{equation}
+
+\begin{theorem}\label{thm:analytic-log-resolution-integrability}
+Let $\varphi$ be a weight on $X$ such that near $x$
+\[
+ \varphi=c\log\left(\sum_{j=1}^r|g_j|^2\right)+b,
+ \qquad c>0,\quad b\text{ bounded},
+\]
+where the holomorphic functions $g_j$ generate a nonzero ideal $\mathfrak a$. Let $V$ be an open neighborhood of $x$ on which this holds, and let $\pi\colon Y\to V$ be a log resolution of $\mathfrak a$ (\cref{sec:analytic-blowups-resolution}), as supplied by \cref{thm:analytic-resolution-input,thm:marked-order-one-input}, with $\mathfrak a\mathcal O_Y=\mathcal O_Y(-D)$, where $D=\sum_id_iE_i$ is an effective divisor with simple normal crossings support, the $E_i$ being prime divisors and the $d_i$ positive integers. Then a holomorphic function $f$ on $V$ belongs to $\mathcal I(\varphi)_x$ if and only if
+\begin{equation}\label{eq:analytic-strict-valuative-threshold}
+ \operatorname{ord}_{E_i}f+A_X(E_i)>c d_i
+\end{equation}
+for every component $E_i$ of $D$ that meets $\pi^{-1}(x)$, exceptional or not. Since $\pi$ restricts to a log resolution of $\mathfrak a$ over every smaller open neighborhood $V'$ of $x$, the criterion applies to every germ at $x$, with the components of the restriction of $D$ to $\pi^{-1}(V')$ in place of the $E_i$. Equivalently, with $\lfloor cD\rfloor=\sum_i\lfloor cd_i\rfloor E_i$, near $x$
+\begin{equation}\label{eq:analytic-multiplier-divisor-formula}
+ \mathcal I(\varphi)=\pi_*\mathcal O_Y(K_{Y/X}-\lfloor cD\rfloor).
+\end{equation}
+For rational $c$, this computes the multiplier ideals of weights with analytic singularities (\cref{chap:q06}).
+\end{theorem}
+\begin{proof}
+Let $p\in\pi^{-1}(V)$, and choose coordinates $w$ at $p$ as before \eqref{eq:log-resolution-local-form}, so that $E_1,\ldots,E_\ell$ are the components of $D$ through $p$ and $E_i=\{w_i=0\}$ near $p$. Since $b$ is bounded, \eqref{eq:log-resolution-local-form}, applied to $\pi\colon Y\to V$, gives
+\[
+ \varphi\circ\pi=c\sum_{i=1}^{\ell}d_i\log|w_i|^2+O(1)
+\]
+near $p$.
+
+Let $h$ be holomorphic near $p$; we decide when $|h|^2\prod_{i\leq\ell}|w_i|^{-2cd_i}$, or equivalently $|h|^2\mathrm e^{-\varphi\circ\pi}$, is integrable near $p$. Let $k_i$ be the order of $h$ along $E_i$ at $p$, which is finite if $h$ does not vanish identically near $p$; if it does, the integrability is trivial and $k_i=+\infty$. We claim that the integrability holds if and only if $k_i+1>cd_i$ for $i=1,\ldots,\ell$. If these inequalities hold, write $h=\prod_iw_i^{k_i}\tilde h$ with $\tilde h$ holomorphic, by \cref{lem:normal-crossings-monomial}; the integrand is at most a constant times $\prod_i|w_i|^{2k_i-2cd_i}$, which is integrable near $p$ by Fubini's theorem and polar coordinates in each $w_i$, since $2k_i-2cd_i>-2$. Conversely, suppose that $k_1+1\leq cd_1$, say, and write $h=w_1^{k_1}\tilde h$ with $\tilde h$ not divisible by $w_1$. Then $\tilde h$ does not vanish identically on $\{w_1=0\}$ near $p$, by \cref{lem:divisor-order-independent}(2), so arbitrarily close to $p$ there are an open set $W'$ of points $w'=(w_2,\ldots,w_n)$ and $\delta,\rho>0$ with $|\tilde h(w_1,w')|\geq\delta$ for $|w_1|<\rho$ and $w'\in W'$. There the integrand is at least a positive constant times $|w_1|^{2k_1-2cd_1}$, since the other factors $|w_i|^{-2cd_i}$ are bounded below; as $2k_1-2cd_1\leq-2$, its integral in $w_1$ diverges, and by Fubini's theorem the integrand is not integrable near $p$.
+
+Now let $f$ be holomorphic on $V$, and apply this to $h=(f\circ\pi)J_\pi$, with $J_\pi$ computed in local coordinates near $p$. The function $f\circ\pi$ is holomorphic on $\pi^{-1}(V)$, which contains $E_i$, so its order along $E_i$ at $p$ is $\operatorname{ord}_{E_i}f$, by \cref{lem:divisor-order-independent}(3) and \cref{def:divisorial-order-discrepancy}; the order of $J_\pi$ along $E_i$ at $p$ is $\operatorname{ord}_{E_i}J_\pi$. Since orders add under products (\cref{lem:divisor-order-independent}(4)), $k_i=\operatorname{ord}_{E_i}f+\operatorname{ord}_{E_i}J_\pi=\operatorname{ord}_{E_i}f+A_X(E_i)-1$. Thus, for $p\in\pi^{-1}(x)$, the condition at $p$ is \eqref{eq:analytic-strict-valuative-threshold} for the components through $p$. As $p$ ranges over $\pi^{-1}(x)$, these are exactly the components meeting the fiber, and \cref{prop:birational-weighted-change-variables} proves the first assertion.
+
+For \eqref{eq:analytic-multiplier-divisor-formula}, let $U\subset V$ be open and $f\in\mathcal O(U)$, and put $h=(f\circ\pi)J_\pi$ on $\pi^{-1}(U)$. For an integer $k$, the strict inequality $k+1>cd_i$ is equivalent to $k\geq\lfloor cd_i\rfloor$. By \cref{prop:birational-weighted-change-variables} and the claim, applied at every point $p\in\pi^{-1}(U)$, we have $f\in\mathcal I(\varphi)(U)$ if and only if at every such $p$ the order of $h$ at $p$ along each component $E_i$ through $p$ is at least $\lfloor cd_i\rfloor$. By \cref{lem:normal-crossings-monomial}, this means that $h$ is divisible near every point of $\pi^{-1}(U)$ by the local equation $\prod_iw_i^{\lfloor cd_i\rfloor}$ of $\lfloor cD\rfloor$, that is, that $f\circ\pi=h/J_\pi$ is a section of $\mathcal O_Y(K_{Y/X}-\lfloor cD\rfloor)$ over $\pi^{-1}(U)$. Since $\lfloor cD\rfloor$ is effective, every section of $\mathcal O_Y(K_{Y/X}-\lfloor cD\rfloor)$ over $\pi^{-1}(U)$ is a section of $\mathcal O_Y(K_{Y/X})$, and hence of the form $f\circ\pi$ with $f\in\mathcal O(U)$, by \cref{prop:birational-weighted-change-variables}. This proves \eqref{eq:analytic-multiplier-divisor-formula} on $V$.
+\end{proof}
+\index{multiplier ideal!analytic singularities}
+
+For general weights we combine the change of variables with an estimate on one-dimensional slices transversal to a divisor.
+
+\begin{lemma}\label{lem:divisorial-slice-bound}
+Let $\psi$ be a weight on a complex manifold $Y$, let $E\subset Y$ be a prime divisor, let $p\in E_{\mathrm{reg}}$, and let $h$ be holomorphic near $p$ with $|h|^2\mathrm e^{-\psi}$ integrable near $p$. If $k$ is the order of $h$ along $E$ at $p$, then $k+1>\nu(\psi,E)$, where $\nu(\psi,E)$ is the generic Lelong number of \cref{prop:generic-divisorial-lelong}.
+\end{lemma}
+\begin{proof}
+We may assume $k<\infty$. Choose coordinates $w=(w_1,w')$ at $p$ with $E=\{w_1=0\}$, and write $h=w_1^kv$ with $v$ holomorphic and not divisible by $w_1$; then $v(0,\cdot)$ does not vanish identically near $p$, by \cref{lem:divisor-order-independent}(2). Moving $p$ slightly along $E$, we may assume that $v(p)\neq0$, so that $|v|\geq\delta>0$ on a neighborhood $\{|w_1|<\rho\}\times W'$ of $p$ on which $|h|^2\mathrm e^{-\psi}$ is integrable. By Fubini's theorem, for almost every $w'\in W'$ the function $w_1\mapsto|w_1|^{2k}|v|^2\mathrm e^{-\psi(w_1,w')}$ is integrable on $|w_1|<\rho$; moreover, for almost every $w'$ the function $u=\psi(\cdot,w')$ is not identically $-\infty$ on this disc, since the pole set of $\psi$ is a null set.
+
+Fix such a $w'$. By \cref{prop:psh-holomorphic-pullback}, $u$ is subharmonic on the disc, and its Lelong number at $0$ is at least $\nu(\psi,(0,w'))$: restricting the bound $\psi(w)\leq c\log\bigl(|w-(0,w')|^2/r_0^2\bigr)+C$ of \eqref{eq:lelong-attained-growth}, with $c=\nu(\psi,(0,w'))$, to the line through $(0,w')$ in the $w_1$-direction gives $u(w_1)\leq c\log(|w_1|^2/r_0^2)+C$. Moreover $\nu(\psi,(0,w'))\geq\nu(\psi,E)$, the latter being an infimum over $E$. Hence, by \eqref{eq:lelong-attained-growth} for $u$, there are $r_1\in(0,\rho]$ and $c'>0$ with $\mathrm e^{-u(w_1)}\geq c'|w_1|^{-2\nu(\psi,E)}$ for $0<|w_1|<r_1$. Therefore
+\[
+ \begin{aligned}
+ \infty&>\int_{|w_1|<r_1}|w_1|^{2k}|v|^2\mathrm e^{-u}\,\mathrm dV_2
+ \geq\delta^2c'\int_{|w_1|<r_1}|w_1|^{2k-2\nu(\psi,E)}\,\mathrm dV_2\\
+ &=2\pi\delta^2c'\int_0^{r_1}t^{2k-2\nu(\psi,E)+1}\,\mathrm dt,
+ \end{aligned}
+\]
+which forces $2k-2\nu(\psi,E)+2>0$, that is, $k+1>\nu(\psi,E)$.
+\end{proof}
+
+\begin{proposition}\label{prop:general-necessary-valuative-bound}
+Let $\varphi$ be a weight on $X$ and $f\in\mathcal I(\varphi)_x$. Then there are $\varepsilon>0$ and a neighborhood $V$ of $x$ on which $f$ is defined such that
+\begin{equation}\label{eq:general-necessary-valuative-bound}
+ \operatorname{ord}_E f+A_X(E)>(1+\varepsilon)\nu(\varphi,E)
+\end{equation}
+for every prime divisor $E$ over an open subset of $V$; in particular, this holds for every prime divisor over an open neighborhood of $x$ contained in $V$ whose center contains $x$.
+\end{proposition}
+\begin{proof}
+By \cref{cor:strong-openness} there are $\varepsilon>0$ and a neighborhood $V$ of $x$ on which $f$ is defined such that $|f|^2\mathrm e^{-(1+\varepsilon)\varphi}$ is integrable on $V$. Let $E$ be a prime divisor over an open set $U\subset V$, represented on a smooth model $\pi\colon Y\to U$; we may assume that $\operatorname{ord}_Ef<\infty$. Since $f\in\mathcal I((1+\varepsilon)\varphi)_y$ for every $y\in U$, \cref{prop:birational-weighted-change-variables}, applied to the weight $(1+\varepsilon)\varphi$ on $U$, shows that $|h|^2\mathrm e^{-(1+\varepsilon)\varphi\circ\pi}$, with $h=(f\circ\pi)J_\pi$, is integrable near every point of $Y$. Let $p\in E_{\mathrm{reg}}$. Since orders add under products, the order of $h$ along $E$ at $p$ is $\operatorname{ord}_Ef+\operatorname{ord}_EJ_\pi=\operatorname{ord}_Ef+A_X(E)-1$. By \cref{lem:divisorial-slice-bound}, applied to the weight $(1+\varepsilon)\varphi\circ\pi$, whose generic Lelong number along $E$ is $(1+\varepsilon)\nu(\varphi,E)$ by \cref{prop:lelong-calculus}, we obtain \eqref{eq:general-necessary-valuative-bound}.
+\end{proof}
+\index{multiplier ideal!valuative bounds}
+
+\begin{corollary}\label{cor:divisorial-lelong-ideal-recovery}
+Let $\varphi$ be a weight on $X$, let $E$ be a prime divisor over $X$, and let $m>0$ be a real number. Then
+\begin{equation}\label{eq:divisorial-multiplier-order-bounds}
+ m\nu(\varphi,E)-A_X(E)
+      <\operatorname{ord}_E\mathcal I(m\varphi)
+      \leq m\nu(\varphi,E).
+\end{equation}
+Here, for a smooth model $\pi\colon Y\to X$ on which $E$ lies, $\operatorname{ord}_E\mathcal I(m\varphi)$ is the order along $E$ of the pulled-back ideal $\mathcal I(m\varphi)\mathcal O_Y$, defined as follows. Near a point $p\in E_{\mathrm{reg}}$, let $g_1,\ldots,g_r$ generate $\mathcal I(m\varphi)$ near $\pi(p)$. The minimum of the orders of the functions $g_i\circ\pi$ along $E$ at $p$ does not depend on the choice of generators, since the members of a second system of generators are combinations of the $g_i$ with holomorphic coefficients near $\pi(p)$, and conversely. This minimum is locally constant along $E_{\mathrm{reg}}$, because the orders of the $g_i\circ\pi$ are, by \cref{lem:divisor-order-independent}(2); hence it is constant on the connected manifold $E_{\mathrm{reg}}$, and it is $\operatorname{ord}_E\mathcal I(m\varphi)$. As for the order of a function in \cref{def:divisorial-order-discrepancy}, it depends only on the prime divisor over $X$ represented by $E$. In particular,
+\[
+ \nu(\varphi,E)=\lim_{m\to\infty}\frac1m
+                           \operatorname{ord}_E\mathcal I(m\varphi).
+\]
+\end{corollary}
+\begin{proof}
+Let $k=\operatorname{ord}_E\mathcal I(m\varphi)$, and choose a point $p\in E_{\mathrm{reg}}$. Put $y=\pi(p)$, choose a bounded polydisc $\Omega$ around $y$ in a chart on which $\varphi$ is bounded above, and choose $g_1,\ldots,g_r\in\mathcal H_{m\varphi}(\Omega)$ generating $\mathcal I(m\varphi)$ near $y$ (\cref{thm:multiplier-ideal-coherence}(3)). Near $p$, in coordinates $w=(w_1,w')$ with $E=\{w_1=0\}$, let $k_i$ be the order of $g_i\circ\pi$ along $E$ at $p$, so that $k=\min_ik_i$; since $\mathcal I(m\varphi)_y\neq0$, this minimum is finite.
+
+For the lower bound, choose $i$ with $k_i=k$. Since $|g_i|^2\mathrm e^{-m\varphi}$ is integrable on $\Omega$, \cref{prop:birational-weighted-change-variables}, applied to the weight $m\varphi$, shows that $|h|^2\mathrm e^{-m\varphi\circ\pi}$, with $h=(g_i\circ\pi)J_\pi$, is integrable near $p$. The order of $h$ along $E$ at $p$ is $k+A_X(E)-1$, because orders add under products. By \cref{lem:divisorial-slice-bound}, applied to the weight $m\varphi\circ\pi$, whose generic Lelong number along $E$ is $m\nu(\varphi,E)$ by \cref{prop:lelong-calculus}, we obtain $k+A_X(E)>m\nu(\varphi,E)$. This is the left inequality.
+
+For the upper bound, \cref{lem:bounded-hilbert-ideal-generation} gives $m\varphi\leq\log\sum_i|g_i|^2+mC_m$ on a neighborhood of $y$. Near $p$ we have $g_i\circ\pi=w_1^{k_i}u_i$ with $u_i$ holomorphic, so $|g_i\circ\pi|\leq C|w_1|^{k_i}\leq C|w_1|^k$ where $|w_1|\leq1$; it follows that $m\varphi\circ\pi\leq k\log|w_1|^2+C''$ on a neighborhood $N$ of $p$. For $q\in E\cap N$ we have $|w_1|\leq|w-q|$, so $m\varphi\circ\pi(w)\leq k\log|w-q|^2+C''$ near $q$, and \cref{prop:lelong-logarithmic-growth,prop:lelong-calculus} give $\nu(\varphi\circ\pi,q)\geq k/m$. Since the generic value $\nu(\varphi\circ\pi,E)$ is attained at points of $E$ arbitrarily close to $p$ (\cref{prop:generic-divisorial-lelong}), we conclude that $m\nu(\varphi,E)\geq k$. Dividing \eqref{eq:divisorial-multiplier-order-bounds} by $m$ and letting $m\to\infty$ gives the limit formula.
+\end{proof}
+\index{Lelong number!recovery from multiplier ideals}
+
+\begin{theorem}\label{thm:general-valuative-multiplier-criterion}
+Let $\varphi$ be a weight on $X$, $x\in X$, and $f\in\mathcal O_{X,x}$. Then $f\in\mathcal I(\varphi)_x$ if and only if there are $\varepsilon>0$ and a neighborhood $V$ of $x$ on which $f$ is defined such that
+\begin{equation}\label{eq:uniform-valuative-multiplier-criterion}
+ \operatorname{ord}_E f+A_X(E)\geq(1+\varepsilon)\nu(\varphi,E)
+\end{equation}
+for every prime divisor $E$ over an open neighborhood of $x$ contained in $V$ whose center contains $x$. The criterion remains valid if $\geq$ is replaced by $>$. For a weight with analytic singularities, \cref{thm:analytic-log-resolution-integrability} needs instead only the finitely many strict inequalities \eqref{eq:analytic-strict-valuative-threshold} on one log resolution, without a parameter $\varepsilon$.
+\end{theorem}
+\begin{proof}
+Necessity, even with strict inequality, is \cref{prop:general-necessary-valuative-bound}. Since the strict condition implies the non-strict one, it suffices to show that the non-strict condition implies $f\in\mathcal I(\varphi)_x$; we may assume $f\neq0$. We compare $\varphi$ with a weight $\varphi_m$ with analytic singularities defined by generators of $\mathcal I(m\varphi)$, apply \cref{thm:analytic-log-resolution-integrability} to a multiple of $\varphi_m$, and then return to $\varphi$. Put $\lambda=1+\varepsilon/2$ and choose an integer $m\geq2$ with $\lambda\geq m/(m-1)$, that is, $(m-1)\lambda\geq m$. On a bounded polydisc $\Omega\subset V$ around $x$ on which $\varphi$ is bounded above, choose $g_1,\ldots,g_r\in\mathcal H_{m\varphi}(\Omega)$ generating $\mathcal I(m\varphi)$ near $x$, and put
+\[
+ \varphi_m=\frac1m\log\sum_i|g_i|^2.
+\]
+This is plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}, since $\mathcal I(m\varphi)_x\neq0$ by \cref{lem:multiplier-order-lelong-bounds}, so that the $g_i$ do not all vanish identically. By \eqref{eq:weight-versus-multiplier-generators}, $\varphi\leq\varphi_m+C_m$ on a neighborhood $W\subset V$ of $x$. Pulling this back to a smooth model and using the characterization of Lelong numbers in \cref{prop:lelong-logarithmic-growth} at every point, we see that $\nu(\varphi_m,E)\leq\nu(\varphi,E)$ for every prime divisor $E$ over an open subset of $W$. Hence, for every prime divisor $E$ over an open neighborhood of $x$ contained in $W$ whose center contains $x$,
+\[
+ \operatorname{ord}_E f+A_X(E)\geq(1+\varepsilon)\nu(\varphi,E)\geq(1+\varepsilon)\nu(\varphi_m,E),
+\]
+and this is strictly larger than $\lambda\nu(\varphi_m,E)$: when $\nu(\varphi_m,E)>0$ because $1+\varepsilon>\lambda$, and when $\nu(\varphi_m,E)=0$ because the left side is at least $A_X(E)\geq1$.
+
+Now let $\pi\colon Y\to W'$ be a log resolution of the ideal $(g_1,\ldots,g_r)$ over an open neighborhood $W'\subset W$ of $x$, with $(g_1,\ldots,g_r)\mathcal O_Y=\mathcal O_Y(-D)$ and $D=\sum_id_iE_i$. Let $q\in E_i$, and choose coordinates $w$ at $q$ as before \eqref{eq:log-resolution-local-form}, so that the components of $D$ through $q$ are coordinate hyperplanes and $E_i=\{w_i=0\}$. By \eqref{eq:log-resolution-local-form}, $\log\sum_l|g_l\circ\pi|^2=\sum_jd_j\log|w_j|^2+O(1)\leq d_i\log|w_i|^2+C$ near $q$, where $j$ runs over the components through $q$; since $|w_i|\leq|w-q|$, the characterization in \cref{prop:lelong-logarithmic-growth} gives $\nu(\varphi_m\circ\pi,q)\geq d_i/m$. If $q$ lies on no other component of $D$, then $\varphi_m\circ\pi=(d_i/m)\log|w_i|^2+O(1)$ near $q$, and $\nu(\varphi_m\circ\pi,q)=d_i/m$ by \cref{prop:lelong-calculus}. Such points exist, because $E_i$ is not contained in the union of the other components of the support of $D$ (\cref{cor:analytic-global-components}). Hence $\nu(\varphi_m,E_i)=d_i/m$. Every component $E_i$ meeting $\pi^{-1}(x)$ has a center containing $x$, so the strict inequality above reads $\operatorname{ord}_{E_i}f+A_X(E_i)>(\lambda/m)d_i$ for these components, and \cref{thm:analytic-log-resolution-integrability}, applied on $W'$ to the weight $\lambda\varphi_m$ with $c=\lambda/m$ and $b=0$, gives $f\in\mathcal I(\lambda\varphi_m)_x$.
+
+It remains to pass from $\lambda\varphi_m$ to $\varphi$. By the definition of the generators,
+\begin{equation}\label{eq:multiplier-generator-exponential-integrability}
+ \mathrm e^{m(\varphi_m-\varphi)}
+                =\sum_i|g_i|^2\mathrm e^{-m\varphi}\in L^1_{\loc}
+\end{equation}
+near $x$. Shrinking the neighborhood and subtracting a constant from $\varphi_m$, we may assume $\varphi_m\leq0$; this multiplies the functions in question by constants and changes none of the integrability statements. We split a small neighborhood of $x$ into the set where $\varphi\geq\lambda\varphi_m$ and its complement, ignoring the null set formed by the poles of $\varphi$ and the common zeros of the $g_i$, so that all exponents below are finite. On the first set, $|f|^2\mathrm e^{-\varphi}\leq|f|^2\mathrm e^{-\lambda\varphi_m}$, which is integrable because $f\in\mathcal I(\lambda\varphi_m)_x$. On the complement we have $(m-1)\varphi<(m-1)\lambda\varphi_m$, since $m\geq2$; as $(m-1)\lambda\geq m$ and $\varphi_m\leq0$, it follows that
+\[
+ (m-1)\varphi-m\varphi_m
+       \leq((m-1)\lambda-m)\varphi_m\leq0,
+\]
+and therefore
+\[
+ |f|^2\mathrm e^{-\varphi}
+ =|f|^2\mathrm e^{m(\varphi_m-\varphi)}
+                 \mathrm e^{(m-1)\varphi-m\varphi_m}
+ \leq C\mathrm e^{m(\varphi_m-\varphi)},
+\]
+where $C$ is a local bound for $|f|^2$. By \eqref{eq:multiplier-generator-exponential-integrability} the right side is integrable near $x$. Hence $|f|^2\mathrm e^{-\varphi}$ is integrable near $x$, that is, $f\in\mathcal I(\varphi)_x$.
+\end{proof}
+\index{multiplier ideal!valuative criterion}
+
+\begin{example}\label{ex:strict-transform-integrability}
+Let $c>0$ and $\varphi=c\log|z_1|^2$ on a polydisc in $\mathbb C^n$. The ideal $(z_1)$ is already principal with smooth zero set, so the identity map is a log resolution, with $D=E=\{z_1=0\}$, $d=1$ and $A_X(E)=1$. By \cref{thm:analytic-log-resolution-integrability}, a germ $f$ lies in $\mathcal I(\varphi)$ if and only if $\operatorname{ord}_Ef+1>c$. Here the log resolution has no exceptional divisors, and the only condition comes from the non-exceptional component $E$; this is why \cref{thm:analytic-log-resolution-integrability} involves all components of $D$ meeting the fiber, exceptional or not.
+
+For the blowup $\pi$ of the origin in dimension $n\geq2$, consider the chart $z_1=w_1$, $z_j=w_1w_j$ for $j>1$ of \cref{prop:smooth-center-blowup}. The Jacobian matrix $(\partial z_i/\partial w_j)$ is lower triangular with diagonal entries $1,w_1,\ldots,w_1$, so $J_\pi=w_1^{n-1}$, and the exceptional divisor $E=\{w_1=0\}$ has $A_X(E)=n$. Let $f$ be holomorphic near $0$ with homogeneous expansion $f=\sum_{k\geq k_0}P_k$ and $P_{k_0}\neq0$. Then $f\circ\pi(w)=\sum_{k\geq k_0}w_1^kP_k(1,w_2,\ldots,w_n)=w_1^{k_0}g(w)$ for small $w_1$ and bounded $(w_2,\ldots,w_n)$, where $g(0,w')=P_{k_0}(1,w')$; this polynomial is not identically zero, since $P_{k_0}(z)=z_1^{k_0}P_{k_0}(1,z_2/z_1,\ldots,z_n/z_1)$ for $z_1\neq0$. Hence $\operatorname{ord}_Ef=\operatorname{ord}_0f$.
+
+For $\varphi=c\log|z|^2$, this blowup is a log resolution of the maximal ideal, with $D=E$ and $d=1$, by \cref{prop:smooth-center-blowup}, so \cref{thm:analytic-log-resolution-integrability} gives $f\in\mathcal I(\varphi)_0$ if and only if $\operatorname{ord}_0f+n>c$. This agrees with a direct computation in polar coordinates: since $|f(z)|\leq C|z|^{k_0}$ near $0$ by \eqref{eq:homogeneous-expansion-remainder}, and $\int_{S^{2n-1}}|f(t\omega)|^2\,\mathrm dS(\omega)\geq c't^{2k_0}$ for small $t>0$, with $c'>0$, by \eqref{eq:sphere-lowest-term}, the integral of $|f|^2|z|^{-2c}$ over a small ball $B(0,r)$ is finite if and only if $\int_0^rt^{2k_0-2c+2n-1}\,\mathrm dt<\infty$, by \eqref{eq:polar-coordinates}, that is, if and only if $k_0+n>c$.
+\end{example}
+\index{log discrepancy!of a point blowup}

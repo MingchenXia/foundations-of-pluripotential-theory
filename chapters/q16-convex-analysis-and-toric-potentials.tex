@@ -1,2 +1,574 @@
 \chapter{Convex analysis and toric potentials}
 \label{chap:q16}
+Let the compact torus $(S^1)^n$ act on $(\mathbb C^*)^n$ by separate rotations of the coordinates, $(z_1,\ldots,z_n)\mapsto(\mathrm e^{\mathrm i\theta_1}z_1,\ldots,\mathrm e^{\mathrm i\theta_n}z_n)$. A plurisubharmonic function on $(\mathbb C^*)^n$ that is invariant under this action depends only on the logarithmic radii $x_j=\log|z_j|^2$, and we show in \cref{cor:toric-psh-finiteness} that, as a function of $x\in\mathbb R^n$, it is precisely a finite convex function. The complex Hessian accounts for the convexity; conversely, the supporting affine functions of a convex function give the submean inequality on complex lines. Questions about the growth and the Monge--Amp\`ere mass of invariant potentials thus become questions about convex functions on a real vector space, and we answer them in terms of the slopes of supporting affine functions.
+
+The first part of the chapter develops the convex analysis that this requires. Separation of convex sets produces supporting affine functions, and Legendre duality identifies the closure of the set of slopes of a convex function $F$ with the closure of the set where its conjugate $F^*$ is finite. An upper bound of $F$, up to a constant, by the support function of a convex body $P$ holds exactly when all slopes of $F$ lie in $P$ (\cref{prop:convex-support-growth-characterization}); this leads to convex analogues of the classes of potentials with bounded growth, full mass and finite energy. The real Monge--Amp\`ere measure of $F$ assigns to a set $E$ the volume of the set of slopes of $F$ at points of $E$, multiplied by $n!$. Since the subgradient map is multivalued, we construct this measure by pushing Lebesgue measure forward under the gradient of $F^*$, which is defined almost everywhere (\cref{thm:alexandrov-measure-construction}). Its total mass is $n!$ times the volume of the closed set of slopes, and it depends continuously on $F$ for local uniform convergence (\cref{thm:real-monge-ampere-vague-continuity}); when no mass escapes to infinity, the convergence also holds against bounded continuous functions. Finally, counting lattice points in the dilates $kP$ relates these volumes to dimensions of spaces of sections.
+
+The second part constructs, from a smooth lattice polytope $P$, a projective toric manifold $X_P$ with a very ample line bundle $L$. Monomial charts at the vertices of $P$ make its geometry explicit, and we read off from them the correspondence between torus orbits and faces of $P$, the orders of characters along the boundary divisors, and a basis of $H^0(X_P,L^k)$ indexed by the lattice points of $kP$ (\cref{thm:toric-character-section-basis}). The potential of Guillemin's reference metric on $L$ is the Legendre transform of an explicit entropy function on $P$, whose gradient has logarithmic singularities along the facets. In the same charts we show that these singularities cancel after the transformation, so that the metric is smooth, with positive definite curvature, also along the boundary orbits (\cref{thm:guillemin-reference-metric}). These are the foundations of convex analysis and of ample toric geometry used in \cite[Part I]{XiaSampleBook}.
+
+Throughout the chapter, $N_{\mathbb R}$ is a real vector space of finite dimension $n\geq0$ and $M_{\mathbb R}$ is its dual space, with pairing $\langle p,x\rangle$ for $p\in M_{\mathbb R}$ and $x\in N_{\mathbb R}$; we identify the dual of $M_{\mathbb R}$ with $N_{\mathbb R}$. Whenever an estimate requires a norm, we fix a Euclidean norm on $N_{\mathbb R}$ and give $M_{\mathbb R}$ the dual norm $|p|=\max_{|x|\leq1}\langle p,x\rangle$, so that $|\langle p,x\rangle|\leq|p||x|$; the open and closed balls $B(x,r)$ and $\overline{B(x,r)}$ of \cref{sec:convolution} are taken with respect to these norms. When volumes are involved, we also fix a lattice $N\subset N_{\mathbb R}$, that is, the set of integral linear combinations of a basis of $N_{\mathbb R}$, and the dual lattice $M=\{p\in M_{\mathbb R}:\langle p,x\rangle\in\mathbb Z\text{ for all }x\in N\}$. Lebesgue measure on $M_{\mathbb R}$, written $\mathrm dp$ or $\operatorname{vol}$, and Lebesgue measure $\mathrm dx$ on $N_{\mathbb R}$ are normalized so that a fundamental parallelepiped of $M$, respectively of $N$, has volume one; equivalently, they are Lebesgue measure in the coordinates of a lattice basis. (This volume of subsets of $M_{\mathbb R}$ is not to be confused with the volume of a cohomology class in \cref{def:positive-mixed-intersection-number}.) In dimension zero both spaces are a point and both measures are the unit point mass. A \emph{convex body}\index{convex body} is a nonempty compact convex set, possibly with empty interior.
+
+Historical remarks and references for this chapter are collected in \cref{sec:history-convex-measures}.
+
+\section{Closed convex functions and supporting slopes}
+\label{sec:closed-convex-functions}
+The conjugate of a finite convex function is in general finite only on a convex subset of the dual space. We therefore allow convex functions to take the value $+\infty$, and we impose lower semicontinuity as the regularity condition that controls their behavior at the boundary of the set where they are finite. The definitions and results of this section and the next are stated on $N_{\mathbb R}$; they apply equally to functions on $M_{\mathbb R}$, with the roles of the two spaces interchanged.
+
+\begin{definition}\label{def:proper-convex-function}
+A function $F\colon N_{\mathbb R}\to[-\infty,+\infty]$ is \emph{convex} if its epigraph
+\[
+ \operatorname{epi}F=\{(x,r)\in N_{\mathbb R}\times\mathbb R:r\geq F(x)\}
+\]
+is convex. A convex function is \emph{proper} if it does not take the value $-\infty$ and its \emph{effective domain} $\operatorname{dom}F=\{x:F(x)<+\infty\}$ is nonempty; a proper convex function is \emph{closed} if it is lower semicontinuous. The \emph{relative interior} $\operatorname{ri}C$ of a convex set $C$ is its interior in its affine span, and $\overline C\setminus\operatorname{ri}C$ is its \emph{relative boundary}. For a proper convex function $F$ and $x\in\operatorname{dom}F$, the \emph{subgradient set} of $F$ at $x$ is
+\[
+ \partial F(x)=\{p\in M_{\mathbb R}:F(y)\geq F(x)+\langle p,y-x\rangle
+                                      \text{ for every }y\in N_{\mathbb R}\}.
+\]
+Its elements are the \emph{subgradients}, or \emph{supporting slopes}, of $F$ at $x$: they are the slopes of the affine functions that lie below $F$ and agree with $F$ at $x$. We set $\partial F(x)=\varnothing$ for $x\notin\operatorname{dom}F$ and $\partial F(E)=\bigcup_{x\in E}\partial F(x)$ for $E\subset N_{\mathbb R}$.
+\end{definition}
+\index{convex function!extended-valued}\index{convex function!proper}\index{convex function!closed}\index{convex function!effective domain}\index{epigraph}\index{subgradient}\index{relative interior}
+For a function $F$ with values in $(-\infty,+\infty]$, the epigraph is convex if and only if $F((1-\lambda)x+\lambda y)\leq(1-\lambda)F(x)+\lambda F(y)$ for all $x,y\in N_{\mathbb R}$ and $0<\lambda<1$. Indeed, suppose that the epigraph is convex. If $F(x)$ and $F(y)$ are finite, the inequality expresses that the corresponding combination of $(x,F(x))$ and $(y,F(y))$ lies in $\operatorname{epi}F$; otherwise its right side is $+\infty$. Conversely, for $(x,r),(y,s)\in\operatorname{epi}F$ the inequality gives $F((1-\lambda)x+\lambda y)\leq(1-\lambda)r+\lambda s$. Thus \cref{def:proper-convex-function} extends the usual notion of a convex function, with the sign convention fixed in the Conventions, to functions with values in $[-\infty,+\infty]$. The effective domain of a convex function is convex, being the image of its epigraph under the projection to $N_{\mathbb R}$.
+
+A convex set contains every convex combination $\sum_{i=1}^q\lambda_ix_i$ of its points, where $\lambda_i\geq0$ and $\sum_i\lambda_i=1$: for $q\geq2$ and $\lambda_q<1$ this follows by induction on $q$ from $\sum_i\lambda_ix_i=(1-\lambda_q)\sum_{i<q}\frac{\lambda_i}{1-\lambda_q}x_i+\lambda_qx_q$. Consequently, the \emph{convex hull}\index{convex hull} of a set $S$, that is, the smallest convex set containing $S$, is the set of all convex combinations of points of $S$, since this set is convex and contains $S$. Applied to the epigraph, the same fact gives the finite form of Jensen's inequality\index{Jensen's inequality!finite form}
+\[
+ F\Bigl(\sum_{i=1}^q\lambda_ix_i\Bigr)\leq\sum_{i=1}^q\lambda_iF(x_i)
+\]
+for every convex function $F$ with values in $(-\infty,+\infty]$ and every convex combination.
+
+A function with values in $(-\infty,+\infty]$ is lower semicontinuous if and only if its epigraph is closed in $N_{\mathbb R}\times\mathbb R$. Indeed, if $F$ is lower semicontinuous and $(x_k,r_k)\in\operatorname{epi}F$ converge to $(x,r)$, then $F(x)\leq\varliminf_kF(x_k)\leq r$. Conversely, if the epigraph is closed and $x_k\to x$ with $\varliminf_kF(x_k)<r<F(x)$ for some real $r$, then $(x_k,r)\in\operatorname{epi}F$ for infinitely many $k$, and in the limit $(x,r)\in\operatorname{epi}F$, which is impossible.
+
+A \emph{finite} convex function is a real-valued one. A finite convex function $F$ on an open convex set $\Omega\subset N_{\mathbb R}$ is identified with the proper convex function on $N_{\mathbb R}$ that equals $F$ on $\Omega$ and $+\infty$ elsewhere; this extension is convex, since its convexity inequality is trivial when $x$ or $y$ lies outside $\Omega$. In particular, $\partial F(x)$ is defined for $x\in\Omega$. The subgradient notation $\partial F$ is unrelated to the boundary $\partial E$ of a set.
+
+We shall need a Lipschitz bound on cubes. Let $Q'\subset Q$ be closed cubes with a common center and half-sides $\delta$ and $2\delta$ in affine coordinates on an affine subspace of $N_{\mathbb R}$, and let $|\cdot|$ be the Euclidean norm of these coordinates. If a convex function $F$ is finite on $Q$, with oscillation $\omega=\sup_QF-\inf_QF<\infty$, then
+\begin{equation}\label{eq:convex-cube-lipschitz}
+ |F(z)-F(y)|\leq\frac{\omega}{\delta}|z-y|\qquad(y,z\in Q').
+\end{equation}
+Indeed, for $y\neq z$ in $Q'$ the point $w=z+\delta(z-y)/|z-y|$ lies in $Q$, and $z=(1-\lambda)y+\lambda w$ with $\lambda=|z-y|/(|z-y|+\delta)\leq|z-y|/\delta$. Convexity gives $F(z)-F(y)\leq\lambda(F(w)-F(y))\leq(\omega/\delta)|z-y|$, and we may exchange $y$ and $z$.
+
+\begin{lemma}\label{lem:finite-dimensional-convex-separation}
+Let $W$ be a real vector space of finite dimension $n$, and let $C\subset W$ be convex.
+\begin{enumerate}
+\item If $C$ is closed and nonempty and $z\in W\setminus C$, there is a linear functional $\ell$ on $W$ with $\sup_C\ell<\ell(z)$.
+\item If $C$ is closed and $z$ is a boundary point of $C$ in $W$, there is a nonzero linear functional $\ell$ on $W$ with $\sup_C\ell=\ell(z)$; that is, $C$ has a supporting hyperplane at $z$.
+\item Every point of the convex hull of a set $S\subset W$ is a convex combination of affinely independent points of $S$, hence of at most $n+1$ points of $S$.
+\item If $C\neq\varnothing$, then $\operatorname{ri}C\neq\varnothing$, and $(1-t)x_0+ty\in\operatorname{ri}C$ whenever $x_0\in\operatorname{ri}C$, $y\in\overline C$ and $0\leq t<1$. Moreover,
+\[
+ \overline{\operatorname{ri}C}=\overline C,\qquad
+ \operatorname{ri}C=\operatorname{ri}\overline C,
+\]
+and the relative boundary of $C$ has Lebesgue measure zero in the affine span of $C$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Fix a Euclidean inner product $y\cdot w$ on $W$, with norm $|y|$.
+
+(1) Choose $y_k\in C$ with $|z-y_k|\to\inf_{w\in C}|z-w|$. The sequence $(y_k)$ is bounded, so a subsequence converges to a point $y$, which lies in $C$ because $C$ is closed. Thus $y$ minimizes the distance to $z$ on $C$, and $y\neq z$. For $w\in C$ and $0\leq t\leq1$ the point $y+t(w-y)$ lies in $C$, so the function $t\mapsto|z-y-t(w-y)|^2$ on $[0,1]$ is minimal at $t=0$, and its derivative there, $-2(z-y)\cdot(w-y)$, is nonnegative. Hence $\ell(w)=(z-y)\cdot w$ satisfies $\ell(w)\leq\ell(y)=\ell(z)-|z-y|^2<\ell(z)$ for every $w\in C$.
+
+(2) Since $z$ is a boundary point of $C$, there are points $z_k\notin C$ with $z_k\to z$. By (1) there are unit vectors $a_k$ with $a_k\cdot w<a_k\cdot z_k$ for all $w\in C$. A subsequence of $(a_k)$ converges to a unit vector $a$, and in the limit $a\cdot w\leq a\cdot z$ for all $w\in C$. As $z\in C$, the functional $\ell(w)=a\cdot w$ has the required property.
+
+(3) Let $x=\sum_{i=1}^q\lambda_ix_i$ with $x_i\in S$, $\lambda_i>0$ and $\sum_i\lambda_i=1$. If the points $x_i$ are affinely dependent, the vectors $(x_i,1)\in W\times\mathbb R$ are linearly dependent, say $\sum_i\mu_i(x_i,1)=0$ with not all $\mu_i$ zero. Since $\sum_i\mu_i=0$, some $\mu_i$ is positive. Replacing each $\lambda_i$ by $\lambda_i-s\mu_i$, where $s=\min\{\lambda_i/\mu_i:\mu_i>0\}$, preserves $\sum_i\lambda_i$ and $\sum_i\lambda_ix_i$, keeps all coefficients nonnegative and makes at least one of them zero. We discard the points with zero coefficient and repeat. Eventually the remaining points are affinely independent, and an affinely independent subset of $W$ has at most $n+1$ elements.
+
+(4) Let $A$ be the affine span of $C$, of dimension $k$, and write $B_A(x,r)$ for the open ball of $A$ with center $x$ and radius $r$. If $k=0$, then $C$ is a point, equal to its relative interior and to its closure, and its relative boundary is empty; so assume $k\geq1$. A maximal affinely independent subset of $C$ spans an affine subspace containing $C$, hence equal to $A$, so it consists of $k+1$ points $x_0',\ldots,x_k'$. Every point $y\in A$ has unique barycentric coordinates $\lambda_i(y)$, which are affine functions of $y$ with $\sum_i\lambda_i(y)=1$ and $y=\sum_i\lambda_i(y)x_i'$. At the barycenter $c$ of the simplex with vertices $x_i'$ all of them equal $1/(k+1)$, so they are positive on a ball $B_A(c,r)$; every point of this ball is then a convex combination of the $x_i'$ and lies in $C$. Hence $c\in\operatorname{ri}C$.
+
+Now let $x_0\in\operatorname{ri}C$, choose $r>0$ with $B_A(x_0,r)\subset C$, and let $y\in\overline C$ and $0\leq t<1$. If $y\in C$, convexity gives $B_A((1-t)x_0+ty,(1-t)r)=(1-t)B_A(x_0,r)+ty\subset C$. In general choose $y_k\in C$ with $y_k\to y$; then $B_A((1-t)x_0+ty_k,(1-t)r)\subset C$, and for large $k$ this ball contains $B_A((1-t)x_0+ty,(1-t)r/2)$. Thus $(1-t)x_0+ty\in\operatorname{ri}C$. Letting $t\uparrow1$, we see that every point of $\overline C$ is a limit of points of $\operatorname{ri}C$, so $\overline{\operatorname{ri}C}=\overline C$. Next, $\operatorname{ri}C\subset\operatorname{ri}\overline C$, since both are interiors in the same affine space $A$. Conversely, if $x\in\operatorname{ri}\overline C$, then $y=x+\varepsilon(x-c)$ lies in $\overline C$ for small $\varepsilon>0$, and $x=(1-t)c+ty$ with $t=1/(1+\varepsilon)<1$; hence $x\in\operatorname{ri}C$.
+
+For the measure assertion, translate so that $c=0$ and identify $A$ with $\mathbb R^k$ by a linear isomorphism, which changes Lebesgue measure on $A$ only by a constant factor. Let $Z=\overline C\setminus\operatorname{ri}C$ be the relative boundary; it is closed in $A$, because $\operatorname{ri}C$ is open in $A$, hence Borel, and $0\notin Z$. We claim that the dilates $sZ$, $s>0$, are pairwise disjoint. Indeed, suppose that $sz=s'z'$ with $z,z'\in Z$ and $0<s<s'$. Then $z'=(s/s')z$ is of the form $(1-t)\cdot0+tz$ with $z\in\overline C$ and $0<t<1$, so $z'\in\operatorname{ri}C$ by what we have just shown, which is impossible. Now fix $R>0$ and put $Z_R=Z\cap B(0,R)$. The sets $sZ_R$ with $s$ rational in $[\frac12,1]$ are pairwise disjoint subsets of $B(0,R)$, and each has measure $s^k|Z_R|\geq2^{-k}|Z_R|$. Since infinitely many of them fit into a set of finite measure, $|Z_R|=0$. Letting $R\to\infty$, we obtain $|Z|=0$.
+\end{proof}
+\index{convex set!separation}\index{convex set!supporting hyperplane}\index{Carath\'eodory's theorem on convex hulls}\index{relative boundary}
+
+\begin{proposition}\label{prop:convex-local-regularity-and-subgradients}
+Let $F$ be a proper convex function on $N_{\mathbb R}$. Then $F$ is locally Lipschitz on $\operatorname{ri}(\operatorname{dom}F)$, and $\partial F(x)\neq\varnothing$ for every $x\in\operatorname{ri}(\operatorname{dom}F)$. Now let $F$ be a finite convex function on an open convex set $\Omega\subset N_{\mathbb R}$. Then the following hold.
+\begin{enumerate}
+\item The sets $\partial F(x)$, $x\in\Omega$, are compact and bounded uniformly for $x$ in each compact subset of $\Omega$, and the graph $\{(x,p):x\in\Omega,\ p\in\partial F(x)\}$ is closed in $\Omega\times M_{\mathbb R}$.
+\item For $x\in\Omega$ and $v\in N_{\mathbb R}$,
+\[
+ F'(x;v)=\lim_{t\downarrow0}\frac{F(x+tv)-F(x)}t
+                 =\max_{p\in\partial F(x)}\langle p,v\rangle.
+\]
+\item $F$ is differentiable at $x\in\Omega$ if and only if $\partial F(x)$ is a singleton; in that case $\partial F(x)=\{\nabla F(x)\}$, where $\nabla F(x)\in M_{\mathbb R}$ denotes the differential of $F$ at $x$.
+\item $F$ is differentiable almost everywhere on $\Omega$. More precisely, the set $\Omega_F$ of points of $\Omega$ at which $F$ is differentiable is a Borel set whose complement in $\Omega$ is a null set, and $\nabla F\colon\Omega_F\to M_{\mathbb R}$ is a Borel map.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We first show that $F$ is bounded, hence Lipschitz, near each point of $\operatorname{ri}(\operatorname{dom}F)$, and find a subgradient there by separation; then we prove (1)--(4). Let $A$ be the affine span of $\operatorname{dom}F$, of dimension $k$, and let $x\in\operatorname{ri}(\operatorname{dom}F)$. Choose affine coordinates on $A$ centered at $x$, with the associated Euclidean norm $|\cdot|$; since all norms on $A$ are equivalent, local Lipschitz continuity does not depend on this choice. For small $\delta>0$ the cube $Q$ of points of $A$ whose coordinates are at most $2\delta$ in absolute value lies in $\operatorname{dom}F$. Every point of $Q$ is a convex combination of the $2^k$ vertices of $Q$; this follows by induction on $k$, since writing the last coordinate of a point as a convex combination of $\pm2\delta$ exhibits the point as a convex combination of two points of the opposite faces of $Q$, which are cubes of dimension $k-1$. By the finite form of Jensen's inequality, $F\leq C$ on $Q$, where $C$ is the largest value of $F$ at a vertex. If $y\in Q$, then also $2x-y\in Q$, and $F(x)\leq\frac12(F(y)+F(2x-y))$ gives $F(y)\geq2F(x)-C$. Thus $F$ is bounded on $Q$, and by \eqref{eq:convex-cube-lipschitz} it is Lipschitz on the cube of half-side $\delta$ centered at $x$.
+
+Next we construct a subgradient at $x$. Since $\operatorname{dom}F\subset A$, the epigraph of $F$ lies in $A\times\mathbb R$; let $E$ be its closure, a closed convex subset of $A\times\mathbb R$. Because $F$ is continuous at $x$ as a function on $A$, the points $(x,F(x)-\varepsilon)$, $\varepsilon>0$, do not belong to $E$, so $(x,F(x))$ is a boundary point of $E$ in $A\times\mathbb R$. By \cref{lem:finite-dimensional-convex-separation}(2), applied in $A\times\mathbb R$ with origin $(x,F(x))$, there are a linear functional $a$ on the linear subspace $A_0=\{y-y':y,y'\in A\}$ parallel to $A$ and a real number $c$, not both zero, such that
+\[
+ \langle a,y-x\rangle+c\,(s-F(x))\geq0\qquad\text{for all }(y,s)\in E.
+\]
+Letting $s\to+\infty$ shows that $c\geq0$. If $c=0$, then $a\neq0$ and $\langle a,y-x\rangle\geq0$ for all $y\in\operatorname{dom}F$; but $\operatorname{dom}F$ contains a ball of $A$ about $x$, and this ball contains points $y$ with $\langle a,y-x\rangle<0$. Hence $c>0$, and taking $s=F(y)$ we obtain $F(y)\geq F(x)+\langle p_A,y-x\rangle$ for $y\in\operatorname{dom}F$, where $p_A=-a/c$. Extend $p_A$ to a linear functional $p\in M_{\mathbb R}$. The inequality $F(y)\geq F(x)+\langle p,y-x\rangle$ holds for $y\in\operatorname{dom}F$, because then $y-x\in A_0$, and also for $y\notin\operatorname{dom}F$, where $F(y)=+\infty$. Thus $p\in\partial F(x)$.
+
+From now on let $F$ be a finite convex function on the open convex set $\Omega$, so that $A=N_{\mathbb R}$ and $\operatorname{ri}(\operatorname{dom}F)=\Omega$. Fix a basis $e_1,\ldots,e_n$ of $N_{\mathbb R}$, let $K\subset\Omega$ be compact, and choose $r>0$ such that the set $K_r=\{y+\sum_is_ie_i:y\in K,\ |s_i|\leq r\}$ lies in $\Omega$. If $x\in K$ and $p\in\partial F(x)$, the subgradient inequality at $x$, evaluated at the points $x\pm re_i$, gives $\pm r\langle p,e_i\rangle\leq F(x\pm re_i)-F(x)$, hence $|\langle p,e_i\rangle|\leq2r^{-1}\max_{K_r}|F|$, where $F$ is bounded on the compact set $K_r$ because it is continuous. This is the uniform bound in (1). If $x_k\to x$ in $\Omega$, $p_k\in\partial F(x_k)$ and $p_k\to p$, then letting $k\to\infty$ in $F(y)\geq F(x_k)+\langle p_k,y-x_k\rangle$ and using that $F$ is continuous at $x$, we get $p\in\partial F(x)$. Thus the graph is closed, and each $\partial F(x)$ is closed and bounded, hence compact.
+
+For (2) and (4) we use the following slope inequalities for a convex function $\phi$ on an interval: if $s_1<s_2<s_3$, then
+\begin{equation}\label{eq:convex-three-slopes}
+ \frac{\phi(s_2)-\phi(s_1)}{s_2-s_1}\leq\frac{\phi(s_3)-\phi(s_1)}{s_3-s_1}\leq\frac{\phi(s_3)-\phi(s_2)}{s_3-s_2}.
+\end{equation}
+Indeed, $s_2=\lambda s_1+(1-\lambda)s_3$ with $\lambda=(s_3-s_2)/(s_3-s_1)\in(0,1)$, and the convexity inequality $\phi(s_2)\leq\lambda\phi(s_1)+(1-\lambda)\phi(s_3)$ is equivalent to each of the two inequalities. Now fix $x$ and $v$, and apply \eqref{eq:convex-three-slopes} to $\phi(t)=F(x+tv)$, which is convex on the open interval of those $t$ with $x+tv\in\Omega$: with $s_1=0$ it shows that the difference quotient in (2) is nondecreasing in $t>0$, so its limit as $t\downarrow0$ exists in $[-\infty,+\infty)$. Each $p\in\partial F(x)$ gives $F(x+tv)-F(x)\geq t\langle p,v\rangle$; hence $F'(x;v)\geq\max_{p\in\partial F(x)}\langle p,v\rangle$, the maximum being attained by compactness. Conversely, choose $p_t\in\partial F(x+tv)$. The subgradient inequality at $x+tv$, evaluated at $x$, gives $F(x+tv)-F(x)\leq t\langle p_t,v\rangle$. By (1) the vectors $p_t$ stay bounded as $t\downarrow0$, and each of their cluster points lies in $\partial F(x)$. Therefore $F'(x;v)\leq\varlimsup_{t\downarrow0}\langle p_t,v\rangle\leq\max_{p\in\partial F(x)}\langle p,v\rangle$.
+
+For (3), suppose that $\partial F(x)=\{p\}$, and choose $p_h\in\partial F(x+h)$. By (1), every cluster point of $p_h$ as $h\to0$ lies in $\partial F(x)$, so $p_h\to p$. The subgradient inequalities at $x$ and at $x+h$ give
+\[
+ 0\leq F(x+h)-F(x)-\langle p,h\rangle\leq\langle p_h-p,h\rangle=o(|h|),
+\]
+so $F$ is differentiable at $x$, with $\nabla F(x)=p$. Conversely, if $F$ is differentiable at $x$ and $p\in\partial F(x)$, dividing $F(x+tv)-F(x)\geq t\langle p,v\rangle$ by $t$ and letting $t\downarrow0$ gives $\langle\nabla F(x),v\rangle\geq\langle p,v\rangle$ for every $v$, hence $p=\nabla F(x)$. As $\partial F(x)\neq\varnothing$, it equals $\{\nabla F(x)\}$.
+
+For (4), fix $i$, and write $D_i^+F(x)=F'(x;e_i)$ and $D_i^-F(x)=-F'(x;-e_i)$ for the one-sided partial derivatives; they are finite by (2). Let $\phi$ be the restriction of $F$ to the intersection of $\Omega$ with a line parallel to $e_i$, parametrized as $\phi(s)=F(y+se_i)$ on an open interval. By \eqref{eq:convex-three-slopes}, $\phi$ has one-sided derivatives $\phi'_\pm$ at every point, $\phi'_-(s)\leq\phi'_+(s)$, and $\phi'_+(s)\leq\phi'_-(s')$ whenever $s<s'$, because both are bounded by the slope of the chord from $s$ to $s'$. Hence the open intervals $(\phi'_-(s),\phi'_+(s))$ are pairwise disjoint; each nonempty one contains a rational number, so only countably many of them are nonempty, and $\phi'_-=\phi'_+$ outside a countable set. Next, $D_i^+F$ is the pointwise limit on $\Omega$ of the Borel functions equal to $k(F(x+e_i/k)-F(x))$ where $x+e_i/k\in\Omega$ and to $0$ elsewhere, so it is a Borel function, and similarly for $D_i^-F$. Thus the set $Z_i\subset\Omega$ where $D_i^+F\neq D_i^-F$ is a Borel set that meets each line parallel to $e_i$ in a countable set, and Fubini's theorem, in the coordinates of the basis $e_1,\ldots,e_n$, shows that $Z_i$ is a null set. At a point $x\notin Z_1\cup\cdots\cup Z_n$, (2) gives
+\[
+ \max_{p\in\partial F(x)}\langle p,e_i\rangle=D_i^+F(x)=D_i^-F(x)=\min_{p\in\partial F(x)}\langle p,e_i\rangle
+\]
+for every $i$, so all subgradients at $x$ coincide, and $F$ is differentiable at $x$ by (3). Conversely, if $F$ is differentiable at $x$, then $D_i^+F(x)=D_i^-F(x)=\langle\nabla F(x),e_i\rangle$ for every $i$. Therefore $\Omega_F=\Omega\setminus(Z_1\cup\cdots\cup Z_n)$ is a Borel set with null complement, and the coordinates $\langle\nabla F,e_i\rangle=D_i^+F$ of $\nabla F$ are Borel functions on $\Omega_F$.
+\end{proof}
+\index{convex function!local Lipschitz continuity}\index{convex function!differentiability almost everywhere}
+
+\begin{proposition}\label{prop:convex-closure-and-dense-convergence}
+Let $F$ be a proper convex function on $N_{\mathbb R}$, and let $\overline F$ be its lower semicontinuous regularization, that is, the largest lower semicontinuous function on $N_{\mathbb R}$ that is at most $F$. Then $\overline F$ is a closed proper convex function, and $\overline F=F$ on $\operatorname{ri}(\operatorname{dom}F)$. A closed proper convex function is determined by its values on the relative interior of its effective domain. Finally, if a sequence of finite convex functions on an open convex set $\Omega\subset N_{\mathbb R}$ converges to a finite limit at each point of a dense subset of $\Omega$, then it converges locally uniformly on $\Omega$ to a finite convex function.
+\end{proposition}
+\begin{proof}
+By \cref{prop:convex-local-regularity-and-subgradients}, $F$ has a subgradient $p$ at some point $x_1\in\operatorname{ri}(\operatorname{dom}F)$, so $F$ lies above the affine function $\ell(y)=F(x_1)+\langle p,y-x_1\rangle$. The closure $E$ of $\operatorname{epi}F$ is convex, and it lies above the graph of $\ell$ because $\ell$ is continuous. Hence, for each $x$, the set $\{r:(x,r)\in E\}$ is closed and bounded below by $\ell(x)$, and with each of its points $r$ it contains $[r,+\infty)$, because $\operatorname{epi}F$ has this property. So this set is either empty or a closed half-line $[\widetilde F(x),+\infty)$ with $\widetilde F(x)\geq\ell(x)>-\infty$. Setting $\widetilde F(x)=+\infty$ in the first case, we see that $E$ is the epigraph of a convex function $\widetilde F$. It is lower semicontinuous because its epigraph is closed, and $\widetilde F\leq F$, so $\operatorname{dom}\widetilde F\supset\operatorname{dom}F\neq\varnothing$. If $G\leq F$ is lower semicontinuous, then $\operatorname{epi}G$ is closed and contains $\operatorname{epi}F$, hence also $E$, and so $G\leq\widetilde F$. Thus $\widetilde F=\overline F$, which is therefore closed, proper and convex.
+
+Let $x\in\operatorname{ri}(\operatorname{dom}F)$. If $(y_k,r_k)\in\operatorname{epi}F$ converge to $(x,r)$, then $y_k$ lies in the affine span of $\operatorname{dom}F$, on which $F$ is continuous at $x$; hence $r\geq\lim_kF(y_k)=F(x)$. This shows $\overline F(x)\geq F(x)$, and so $\overline F(x)=F(x)$.
+
+Now let $F$ be closed, fix $x_0\in\operatorname{ri}(\operatorname{dom}F)$, and let $x\in\overline{\operatorname{dom}F}$. By \cref{lem:finite-dimensional-convex-separation}(4), the points $(1-t)x_0+tx$ with $0\leq t<1$ lie in $\operatorname{ri}(\operatorname{dom}F)$, so the convex function $\phi(t)=F((1-t)x_0+tx)$ is finite on $[0,1)$. Convexity gives $\phi(t)\leq(1-t)\phi(0)+t\phi(1)$, hence $\varlimsup_{t\uparrow1}\phi(t)\leq\phi(1)$, while lower semicontinuity gives $\varliminf_{t\uparrow1}\phi(t)\geq\phi(1)$. Therefore
+\[
+ F(x)=\lim_{t\uparrow1}F((1-t)x_0+tx)
+                           \qquad(x\in\overline{\operatorname{dom}F}),
+\]
+also when $F(x)=+\infty$. Since $F=+\infty$ outside $\overline{\operatorname{dom}F}$, which is the closure of $\operatorname{ri}(\operatorname{dom}F)$, the function $F$ is determined by its restriction to $\operatorname{ri}(\operatorname{dom}F)$.
+
+Finally, let $(F_j)$ be a sequence of finite convex functions on $\Omega$ converging to a finite limit at every point of a dense set $S\subset\Omega$. We show that near each point of $\Omega$ the functions $F_j$ are uniformly bounded, hence uniformly Lipschitz, so that convergence on $S$ propagates to uniform convergence. Fix a basis of $N_{\mathbb R}$, write $Q(y,\rho)$ for the closed cube of half-side $\rho$ centered at $y$ in the corresponding coordinates, and let $x\in\Omega$ and $\rho>0$ with $Q(x,2\rho)\subset\Omega$. For each vertex $y$ of $Q(x,\rho)$ choose a point of $S$ whose coordinates differ from those of $y$ by less than $\rho/2$, and let $S_0\subset S\cap Q(x,2\rho)$ be the finite set of these points. Its convex hull $H$ is compact as the image of a simplex under a linear map, and it contains $Q(x,\rho/2)$. Indeed, let $\ell$ be a nonzero linear functional, $\ell(z)=\sum_ia_iz_i$ in the chosen coordinates, and put $\|a\|=\sum_i|a_i|$. At a vertex $y^*$ of $Q(x,\rho)$ where $\ell$ is maximal, $\ell(y^*)=\ell(x)+\rho\|a\|$, and the point $s\in S_0$ chosen for $y^*$ satisfies $\ell(s)>\ell(y^*)-\frac\rho2\|a\|=\max_{Q(x,\rho/2)}\ell$. Hence no point of $Q(x,\rho/2)$ can be separated from $H$ as in \cref{lem:finite-dimensional-convex-separation}(1).
+
+The sequences $(F_j(s))_j$, $s\in S_0$, converge, so they are bounded above by some $C$, and the finite form of Jensen's inequality gives $F_j\leq C$ on $H$ for all $j$. Choose $s_0\in S\cap Q(x,\rho/8)$. Then $Q(s_0,3\rho/8)\subset Q(x,\rho/2)$, and for $y\in Q(s_0,3\rho/8)$ the reflected point $2s_0-y$ lies in the same cube, so that $F_j(y)\geq2F_j(s_0)-C\geq2\inf_kF_k(s_0)-C$. Hence $|F_j|\leq B$ on $Q(x,\rho/4)\subset Q(s_0,3\rho/8)$ for all $j$, with a constant $B$. By \eqref{eq:convex-cube-lipschitz}, applied with $\delta=\rho/8$ and $\omega\leq2B$, the $F_j$ are Lipschitz on $Q(x,\rho/8)$ with the common constant $L=16B/\rho$, for the Euclidean norm $|\cdot|$ of the chosen coordinates.
+
+Given $\varepsilon>0$, choose a finite set $S_\varepsilon\subset S\cap Q(x,\rho/8)$ such that every point of $Q(x,\rho/8)$ lies within distance $\varepsilon/L$ of $S_\varepsilon$. To this end, cover the compact cube $Q(x,\rho/8)$ by finitely many balls of radius $\varepsilon/(2L)$ centered in the cube, and pick a point of the dense set $S$ in the intersection of each ball with the interior of the cube, a nonempty open set. For all sufficiently large $j,k$ we have $|F_j-F_k|<\varepsilon$ on $S_\varepsilon$, hence $|F_j-F_k|<3\varepsilon$ on $Q(x,\rho/8)$. Thus $(F_j)$ is uniformly Cauchy on $Q(x,\rho/8)$. Finitely many such cubes cover any given compact subset of $\Omega$, so $(F_j)$ converges locally uniformly to a finite continuous function, which is convex because the convexity inequalities pass to pointwise limits.
+\end{proof}
+\index{convex function!local uniform convergence}
+
+\input{chapters/inputs/q16-invariant-psh-convexity}
+
+\section{Legendre duality and convex envelopes}
+\label{sec:finite-dimensional-legendre-duality}
+The Legendre transform exchanges convex functions on $N_{\mathbb R}$ and on $M_{\mathbb R}$, and points with slopes: up to closure, the slopes of $F$ are the points where $F^*$ is finite. We prove the duality theorem and compute the conjugates of envelopes and sums.
+
+\begin{definition}\label{def:convex-legendre-transform}
+The \emph{Legendre transform}, or \emph{convex conjugate}, of a function $F\colon N_{\mathbb R}\to[-\infty,+\infty]$ is the function on $M_{\mathbb R}$ given by
+\[
+ F^*(p)=\sup_{x\in N_{\mathbb R}}(\langle p,x\rangle-F(x)).
+\]
+The conjugate of a function on $M_{\mathbb R}$ is defined in the same way and is a function on $N_{\mathbb R}$; we write $F^{**}=(F^*)^*$. The \emph{convex indicator function} $\chi_C$ of a nonempty set $C$, in either space, is $0$ on $C$ and $+\infty$ elsewhere. The \emph{support function} of a nonempty set $P\subset M_{\mathbb R}$ is
+\[
+ h_P(x)=\sup_{p\in P}\langle p,x\rangle\qquad(x\in N_{\mathbb R});
+\]
+it is convex with values in $(-\infty,+\infty]$, and it is finite when $P$ is bounded.
+\end{definition}
+\index{Legendre transform!of a convex function}\index{support function}\index{indicator function!convex set}
+
+\begin{theorem}\label{thm:finite-dimensional-fenchel-duality}
+Let $F$ be a proper convex function on $N_{\mathbb R}$. Then $F^*$ is a closed proper convex function on $M_{\mathbb R}$, and
+\[
+ F^{**}=\overline F,\qquad(\overline F)^*=F^*.
+\]
+If $F$ is closed, then for $x\in N_{\mathbb R}$ and $p\in M_{\mathbb R}$ the following conditions are equivalent:
+\[
+ p\in\partial F(x),\qquad x\in\partial F^*(p),\qquad
+                     F(x)+F^*(p)=\langle p,x\rangle;
+\]
+moreover,
+\[
+ \operatorname{ri}(\operatorname{dom}F^*)\subset\partial F(N_{\mathbb R})
+       \subset\operatorname{dom}F^*,\qquad
+ \overline{\partial F(N_{\mathbb R})}
+                         =\overline{\operatorname{dom}F^*}.
+\]
+Finally, for every nonempty closed convex set $P\subset M_{\mathbb R}$, the support function and the convex indicator function are conjugate: $h_P=\chi_P^*$ and $\chi_P=h_P^*$.
+\end{theorem}
+\begin{proof}
+The conjugate is the supremum of the continuous affine functions $p\mapsto\langle p,x\rangle-F(x)$, $x\in\operatorname{dom}F$, so it is convex and lower semicontinuous. Since $\operatorname{dom}F\neq\varnothing$, we have $F^*(p)\geq\langle p,x_0\rangle-F(x_0)>-\infty$ for any $x_0\in\operatorname{dom}F$. By \cref{prop:convex-local-regularity-and-subgradients}, $F$ has a subgradient $p_0$ at some point $x_1\in\operatorname{ri}(\operatorname{dom}F)$, and then $F^*(p_0)=\langle p_0,x_1\rangle-F(x_1)<+\infty$. Thus $F^*$ is closed and proper. The definition of $F^*$ gives $F(x)\geq\langle p,x\rangle-F^*(p)$ for all $p$, that is, $F^{**}\leq F$.
+
+We next show that $F^{**}=F$ when $F$ is closed. An affine function $\langle p,\cdot\rangle-c$ lies below $F$ if and only if $c\geq F^*(p)$. Hence $F^{**}$ is the supremum of all affine minorants of $F$, and it suffices to find, for every $x$ and every real $r<F(x)$, an affine minorant of $F$ whose value at $x$ exceeds $r$. The point $(x,r)$ does not belong to the closed convex set $\operatorname{epi}F$, so by \cref{lem:finite-dimensional-convex-separation}(1), applied in $N_{\mathbb R}\times\mathbb R$, there are $a\in M_{\mathbb R}$, $c\in\mathbb R$ and $\delta>0$ with
+\[
+ \langle a,y\rangle+cs\geq\langle a,x\rangle+cr+\delta
+                  \qquad\text{for all }(y,s)\in\operatorname{epi}F.
+\]
+Letting $s\to+\infty$ shows that $c\geq0$. If $c>0$, taking $s=F(y)$ gives the affine minorant $y\mapsto r+(\delta-\langle a,y-x\rangle)/c$, whose value at $x$ is $r+\delta/c>r$. If $c=0$, then $\langle a,y\rangle\geq\langle a,x\rangle+\delta$ for all $y\in\operatorname{dom}F$. Let $L_0$ be an affine minorant of $F$, which exists by the first paragraph. For $k>0$ the affine functions
+\[
+ L_0(y)+k\bigl(\langle a,x\rangle+\delta/2-\langle a,y\rangle\bigr)
+\]
+are again minorants of $F$, since the added term is at most $-k\delta/2$ on $\operatorname{dom}F$, and their values at $x$ tend to $+\infty$ as $k\to\infty$. In both cases the required minorant exists, so $F^{**}=F$. For a general proper convex $F$, a continuous affine function lies below $F$ if and only if it lies below the largest lower semicontinuous minorant $\overline F$. Therefore $F^*=(\overline F)^*$, and since $\overline F$ is closed and proper by \cref{prop:convex-closure-and-dense-convergence}, $F^{**}=(\overline F)^{**}=\overline F$.
+
+Let $F$ be closed. By definition, $p\in\partial F(x)$ means that $x\in\operatorname{dom}F$ and $\langle p,y\rangle-F(y)\leq\langle p,x\rangle-F(x)$ for all $y$, that is, the supremum defining $F^*(p)$ is attained at $x$; equivalently, $F(x)+F^*(p)=\langle p,x\rangle$. (If $x\notin\operatorname{dom}F$, both conditions fail, since then $F(x)+F^*(p)=+\infty$.) Applying this to the closed proper function $F^*$ and using $F^{**}=F$, we find that $x\in\partial F^*(p)$ if and only if $F^*(p)+F(x)=\langle p,x\rangle$. This proves the equivalences. If $p\in\operatorname{ri}(\operatorname{dom}F^*)$, then $F^*$ has a subgradient $x$ at $p$ by \cref{prop:convex-local-regularity-and-subgradients}, and $p\in\partial F(x)$ by the equivalences; this is the first inclusion. If $p\in\partial F(x)$, then $F^*(p)=\langle p,x\rangle-F(x)<+\infty$, which gives the second. The closures coincide because $\operatorname{ri}(\operatorname{dom}F^*)$ is dense in $\operatorname{dom}F^*$ by \cref{lem:finite-dimensional-convex-separation}(4). Finally, $\chi_P^*=h_P$ by the definitions, and $\chi_P$ is a closed proper convex function, so $h_P^*=\chi_P^{**}=\chi_P$.
+\end{proof}
+\index{Legendre transform!duality theorem}
+
+\begin{proposition}\label{prop:convex-envelope-algebra}
+\begin{enumerate}
+\item The pointwise supremum of a family of convex functions is convex. The pointwise limit of a decreasing net of convex functions is convex; it may take the value $-\infty$.
+\item Let $(F_i)_{i\in I}$ be a nonempty family of proper convex functions on $N_{\mathbb R}$, and put
+\[
+ H(x)=\inf\sum_{j=1}^q\lambda_jF_{i_j}(x_j),
+\]
+where the infimum is taken over the values $\sum_j\lambda_jF_{i_j}(x_j)$ of all \emph{admissible combinations} for $x$, that is, over all $q\geq1$, $i_j\in I$, $x_j\in\operatorname{dom}F_{i_j}$ and $\lambda_j>0$ with $\sum_j\lambda_j=1$ and $\sum_j\lambda_jx_j=x$; we set $H(x)=+\infty$ if no such combination exists. Then $H$, the \emph{convex envelope} of the family, is the largest convex function below $\inf_iF_i$, and $H^*=\sup_iF_i^*$. If $H$ has an affine minorant, then its lower semicontinuous regularization $\overline H$ is the largest lower semicontinuous convex function below $\inf_iF_i$, and $\overline H=(\sup_iF_i^*)^*$.
+\item For proper convex functions $F,G$ on $N_{\mathbb R}$, the \emph{infimal convolution}
+\[
+ (F\mathbin\square G)(x)=\inf_{y+z=x}(F(y)+G(z))
+\]
+is convex, and $(F\mathbin\square G)^*=F^*+G^*$.
+\item Let $F,G$ be finite convex functions on $N_{\mathbb R}$ and $p\in M_{\mathbb R}$. Then
+\[
+ (F+G)^*(p)=\min_{q+r=p}(F^*(q)+G^*(r))
+\]
+whenever the right-hand side is finite, the minimum being attained; and $(F+G)^*(p)=+\infty$ if $F^*(q)+G^*(r)=+\infty$ for every decomposition $p=q+r$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) The epigraph of a supremum is the intersection of the epigraphs. Let $(F_i)$ be a decreasing net of convex functions with limit $F=\inf_iF_i$, let $x,y\in N_{\mathbb R}$ and $0<\lambda<1$, and let $a>F(x)$ and $b>F(y)$ be real numbers. Choose indices $i_1,i_2$ with $F_{i_1}(x)<a$ and $F_{i_2}(y)<b$, and an index $i$ following both. Then $F_i(x)<a$ and $F_i(y)<b$, and convexity of $\operatorname{epi}F_i$ gives
+\[
+ F((1-\lambda)x+\lambda y)\leq F_i((1-\lambda)x+\lambda y)\leq(1-\lambda)a+\lambda b.
+\]
+Since $a$ and $b$ are arbitrary, this shows that $\operatorname{epi}F$ is convex; this also covers the case where $F(x)$ or $F(y)$ equals $-\infty$.
+
+(2) If $H(x)<a$ and $H(x')<a'$, we can choose admissible combinations for $x$ and $x'$ with values below $a$ and $a'$; mixing them with weights $1-\lambda$ and $\lambda$ gives an admissible combination for $(1-\lambda)x+\lambda x'$ with value below $(1-\lambda)a+\lambda a'$. Hence $H$ is convex. Combinations with $q=1$ show $H\leq F_i$ for each $i$. If $G$ is convex and $G\leq F_i$ for all $i$, then for every admissible combination the points $(x_j,F_{i_j}(x_j))$ lie in $\operatorname{epi}G$, and so does their convex combination with the weights $\lambda_j$, since a convex set contains the convex combinations of its points; that is,
+\[
+ G\Bigl(\sum_j\lambda_jx_j\Bigr)\leq\sum_j\lambda_jF_{i_j}(x_j).
+\]
+Hence $G\leq H$. For the conjugate, the supremum defining $H^*(p)$ is the supremum over all admissible combinations of
+\[
+ \Bigl\langle p,\sum_j\lambda_jx_j\Bigr\rangle-\sum_j\lambda_jF_{i_j}(x_j)=\sum_j\lambda_j\bigl(\langle p,x_j\rangle-F_{i_j}(x_j)\bigr)\leq\sup_iF_i^*(p),
+\]
+and combinations with $q=1$ give equality. Since affine functions are convex, an affine function lies below $H$ if and only if it lies below $\inf_iF_i$. Suppose that $H$ has an affine minorant. Then $H$ is proper, so $\overline H$ is a closed proper convex function by \cref{prop:convex-closure-and-dense-convergence}, and $\overline H=H^{**}=(\sup_iF_i^*)^*$ by \cref{thm:finite-dimensional-fenchel-duality}. A lower semicontinuous convex function below $\inf_iF_i$ lies below $H$, and therefore below $\overline H$.
+
+(3) Convexity of $F\mathbin\square G$ follows as in (2), by mixing decompositions $x=y+z$ and $x'=y'+z'$ whose values $F(y)+G(z)$ are close to the infima. The two suprema over $y$ and $z$ in
+\[
+ (F\mathbin\square G)^*(p)=\sup_{y,z}\bigl(\langle p,y\rangle-F(y)+\langle p,z\rangle-G(z)\bigr)=F^*(p)+G^*(p)
+\]
+are independent, which gives the conjugate formula.
+
+(4) If $n=0$, then $F$ and $G$ are constants and both sides equal $-F(0)-G(0)$; so let $n\geq1$. Let $J(p)=\inf_{q+r=p}(F^*(q)+G^*(r))$. Each conjugate is bounded below by minus its value at the origin: $F^*\geq-F(0)$ and $G^*\geq-G(0)$. Moreover, for every $R>0$, choosing $x$ with $|x|=R$ and $\langle q,x\rangle=R|q|$ gives
+\[
+ F^*(q)\geq R|q|-\max_{|x|\leq R}F(x),
+\]
+and the analogous bound holds for $G^*$. Consequently, if $p$ stays bounded and $F^*(q)+G^*(r)$ stays bounded above, then $q$ and $r=p-q$ stay bounded: for instance $F^*(q)\leq F^*(q)+G^*(r)+G(0)$, and the last bound with $R=1$ controls $|q|$. Lower semicontinuity of $F^*$ and $G^*$ therefore implies that the infimum defining $J(p)$ is attained whenever it is finite: a minimizing sequence of decompositions has a convergent subsequence. The same argument, applied to $p_k\to p$ and decompositions attaining $J(p_k)$, shows that $J$ is lower semicontinuous. By (3), $J=F^*\mathbin\square G^*$ is convex; it is bounded below by $-F(0)-G(0)$, and it is proper, since $J(q_0+r_0)\leq F^*(q_0)+G^*(r_0)<+\infty$ for subgradients $q_0\in\partial F(0)$ and $r_0\in\partial G(0)$. Finite convex functions are continuous, so $F$ and $G$ are closed and $F^{**}=F$, $G^{**}=G$. By (3), $J^*=F^{**}+G^{**}=F+G$, and \cref{thm:finite-dimensional-fenchel-duality} gives $J=J^{**}=(F+G)^*$.
+\end{proof}
+\index{infimal convolution}\index{convex envelope}
+
+\section{Slope bodies and bounded growth}
+\label{sec:convex-slope-bodies}
+We now study the finite convex functions on $N_{\mathbb R}$ whose growth at infinity is controlled by the support function $h_P$ of a convex body $P\subset M_{\mathbb R}$. By duality, such control is a condition on the set where the conjugate is finite, that is, on the slopes of the function.
+
+\begin{definition}\label{def:convex-growth-classes}
+Let $F,G$ be finite convex functions on $N_{\mathbb R}$. As for functions on a compact manifold (\cref{sec:analytic-approximation-comparison}), we write $F\preceq G$ if $F\leq G+C$ on $N_{\mathbb R}$ for some constant $C$, and $F\sim G$ if $F\preceq G$ and $G\preceq F$. The closed convex set
+\[
+ K_F=\overline{\operatorname{dom}F^*}\subset M_{\mathbb R}
+\]
+is nonempty, and by \cref{thm:finite-dimensional-fenchel-duality} it is the closure of the set $\partial F(N_{\mathbb R})$ of all supporting slopes of $F$; when it is compact we call it the \emph{slope body} of $F$. For a convex body $P\subset M_{\mathbb R}$, let $\mathcal P(N_{\mathbb R},P)$ be the set of finite convex functions $F$ on $N_{\mathbb R}$ with $F\preceq h_P$, and let the \emph{bounded class} $\mathcal E^\infty(N_{\mathbb R},P)$ be the set of those with $F\sim h_P$. If $P$ has nonempty interior, the \emph{full-mass class} $\mathcal E(N_{\mathbb R},P)$ is the set of $F\in\mathcal P(N_{\mathbb R},P)$ with $K_F=P$; if $P$ has empty interior, we set $\mathcal E(N_{\mathbb R},P)=\mathcal P(N_{\mathbb R},P)$. Finally, the \emph{finite-energy class} $\mathcal E^1(N_{\mathbb R},P)$ is the set of $F\in\mathcal E(N_{\mathbb R},P)$ with $\int_PF^*\,\mathrm dp<+\infty$. Since $F^*\geq-F(0)$ by the definition of $F^*$, this integral is well defined in $(-\infty,+\infty]$.
+\end{definition}
+\index{convex function!slope body}\index{convex function!bounded growth}\index{convex function!full mass}\index{convex function!finite energy}
+The notation is chosen by analogy with the classes $\mathcal E^\infty(X,\theta,\phi)\subset\mathcal E^1(X,\theta,\phi)\subset\mathcal E(X,\theta,\phi)$ of \cref{def:full-nonpluripolar-mass,def:relative-bounded-and-finite-energy-classes}, with the support function $h_P$ in the role of the model potential $\phi$.
+
+\begin{proposition}\label{prop:convex-support-growth-characterization}
+Let $P\subset M_{\mathbb R}$ be a convex body and $F$ a finite convex function on $N_{\mathbb R}$. The following conditions are equivalent:
+\[
+ F\preceq h_P,\qquad\operatorname{dom}F^*\subset P,
+                       \qquad\partial F(N_{\mathbb R})\subset P.
+\]
+If they hold, then $\max_x(F(x)-h_P(x))=F(0)$, and $F$ is Lipschitz on $N_{\mathbb R}$ with constant $\max_{p\in P}|p|$. Moreover, $F\sim h_P$ if and only if $F^*$ is bounded on $P$ and equal to $+\infty$ outside $P$, and
+\[
+ \mathcal E^\infty(N_{\mathbb R},P)\subset\mathcal E^1(N_{\mathbb R},P)\subset\mathcal E(N_{\mathbb R},P)\subset\mathcal P(N_{\mathbb R},P).
+\]
+If $F,G$ are finite convex functions on $N_{\mathbb R}$ and $K_F$ is compact, then
+\[
+ K_{F+G}=K_F+K_G.
+\]
+In particular, if $P'\subset M_{\mathbb R}$ is another convex body, $K_F=P$ and $K_G=P'$, then $F+G\in\mathcal E(N_{\mathbb R},P+P')$.
+\end{proposition}
+\begin{proof}
+If $F\leq h_P+C$, conjugation reverses the inequality and gives $F^*\geq h_P^*-C=\chi_P-C$ by \cref{thm:finite-dimensional-fenchel-duality}, so $\operatorname{dom}F^*\subset P$. Every subgradient of $F$ lies in $\operatorname{dom}F^*$ by the same theorem, so the second condition implies the third. If all slopes of $F$ lie in $P$ and $p\in\partial F(x)$, the subgradient inequality at $x$, evaluated at $0$, gives
+\[
+ F(x)-F(0)\leq\langle p,x\rangle\leq h_P(x).
+\]
+Thus $F\leq h_P+F(0)$, which proves the first condition and, since $h_P(0)=0$, the identity $\max_x(F(x)-h_P(x))=F(0)$. If $p_x\in\partial F(x)$ and $p_y\in\partial F(y)$, the subgradient inequalities give $\langle p_y,y-x\rangle\geq F(y)-F(x)\geq\langle p_x,y-x\rangle$, so $|F(y)-F(x)|\leq\max_{p\in P}|p|\,|y-x|$.
+
+Conjugation reverses inequalities, and $F^{**}=F$ because the finite convex function $F$ is continuous. Hence $h_P-C\leq F\leq h_P+C$ holds if and only if $\chi_P-C\leq F^*\leq\chi_P+C$, that is, if and only if $F^*=+\infty$ outside $P$ and $|F^*|\leq C$ on $P$. In that case $K_F=P$, so $F\in\mathcal E(N_{\mathbb R},P)$ (by the convention if $P$ has empty interior), and $\int_PF^*\,\mathrm dp\leq C\operatorname{vol}(P)<\infty$; thus $\mathcal E^\infty\subset\mathcal E^1$. The inclusions $\mathcal E^1\subset\mathcal E\subset\mathcal P$ hold by definition. If $P$ has empty interior and $n>0$, then $P$ lies in a proper affine subspace, because its relative interior is nonempty and open in its affine span (\cref{lem:finite-dimensional-convex-separation}(4)); hence $\operatorname{vol}(P)=0$, every integral over $P$ vanishes, and $\mathcal E^1=\mathcal E=\mathcal P$.
+
+Now let $F,G$ be finite convex functions with $K_F$ compact. By \cref{prop:convex-envelope-algebra}(4), $(F+G)^*(p)$ is finite exactly when $p=q+r$ with $q\in\operatorname{dom}F^*$ and $r\in\operatorname{dom}G^*$, so
+\[
+ \operatorname{dom}(F+G)^*=\operatorname{dom}F^*+\operatorname{dom}G^*.
+\]
+It remains to pass to closures. Since addition $M_{\mathbb R}\times M_{\mathbb R}\to M_{\mathbb R}$ is continuous, $K_F+K_G$ lies in the closure of $\operatorname{dom}F^*+\operatorname{dom}G^*$. Conversely, if $q_k+r_k\to s$ with $q_k\in\operatorname{dom}F^*$ and $r_k\in\operatorname{dom}G^*$, then a subsequence of $(q_k)$ converges to some $q\in K_F$, because $K_F$ is compact, and along it $r_k\to s-q\in K_G$; hence $s\in K_F+K_G$. This proves $K_{F+G}=K_F+K_G$. Finally, if $K_F=P$ and $K_G=P'$, then $F\preceq h_P$ and $G\preceq h_{P'}$ by the first part, and $h_P+h_{P'}=h_{P+P'}$; hence $F+G\in\mathcal P(N_{\mathbb R},P+P')$ and $K_{F+G}=P+P'$, so that $F+G\in\mathcal E(N_{\mathbb R},P+P')$.
+\end{proof}
+\index{support function!growth comparison}
+
+For smooth approximation we use mollification, which preserves convexity and, on convex functions, is monotone in the radius.
+
+\begin{lemma}\label{lem:convex-mollification}
+Let $A$ be a finite convex function on $N_{\mathbb R}$, and let $\rho_\varepsilon(y)=\varepsilon^{-n}\rho(y/\varepsilon)$ be the mollifiers of \cref{sec:convolution}, in the coordinates of a basis of $N$. Then the functions $A*\rho_\varepsilon$, $\varepsilon>0$, are smooth and convex, $A*\rho_\varepsilon(x)$ is a nondecreasing function of $\varepsilon>0$ with $A*\rho_\varepsilon\geq A$ for every $x$, and $A*\rho_\varepsilon\to A$ locally uniformly as $\varepsilon\to0$.
+\end{lemma}
+\begin{proof}
+If $n=0$, then $A*\rho_\varepsilon=A$ and there is nothing to prove; let $n\geq1$. Recall that $\rho$ is smooth, nonnegative, even, supported in the unit ball, and has integral one. Since $A$ is continuous, being locally Lipschitz by \cref{prop:convex-local-regularity-and-subgradients}, the functions $A*\rho_\varepsilon$ are smooth by \cref{sec:convolution}, and they converge to $A$ locally uniformly by \cref{lem:mollifier-density}(1). They are convex, because $A*\rho_\varepsilon(x)=\int A(x-y)\rho_\varepsilon(y)\,\mathrm dy$ and the convexity inequalities of the functions $x\mapsto A(x-y)$ can be integrated against $\rho_\varepsilon(y)\,\mathrm dy\geq0$. For fixed $x$, consider the function
+\[
+ g(\varepsilon)=\int A(x-\varepsilon y)\rho(y)\,\mathrm dy\qquad(\varepsilon\in\mathbb R),
+\]
+which is finite because $A$ is continuous and $\rho$ has compact support. The substitution $y\mapsto\varepsilon y$ shows that $g(\varepsilon)=A*\rho_\varepsilon(x)$ for $\varepsilon>0$, and $g(0)=A(x)$. For each $y$, the function $\varepsilon\mapsto A(x-\varepsilon y)$ is convex, so $g$ is convex; and $g$ is even, because $\rho$ is even. A convex even function on $\mathbb R$ is nondecreasing on $[0,+\infty)$: if $0\leq a<b$, then $a=\lambda b+(1-\lambda)(-b)$ with $\lambda=(a+b)/(2b)\in(0,1]$, so that $g(a)\leq\lambda g(b)+(1-\lambda)g(-b)=g(b)$. Hence $A*\rho_\varepsilon(x)$ is nondecreasing in $\varepsilon>0$ and bounded below by $g(0)=A(x)$.
+\end{proof}
+\index{convex function!mollification}
+
+\begin{proposition}\label{prop:convex-decreasing-smooth-growth-approximation}
+Let $P\subset M_{\mathbb R}$ be a convex body. Every $F\in\mathcal P(N_{\mathbb R},P)$ is the pointwise limit of a decreasing sequence of smooth functions $F_j\in\mathcal E^\infty(N_{\mathbb R},P)$, and the convergence is locally uniform. If functions $F_j\colon N_{\mathbb R}\to(-\infty,+\infty]$ decrease pointwise to a function $F$, then the conjugates $F_j^*$ increase pointwise to $F^*$. A sequence of finite convex functions on $N_{\mathbb R}$ converges pointwise to a finite function if and only if it converges locally uniformly.
+\end{proposition}
+\begin{proof}
+Let $A_j=\max\{F,h_P-j\}$. These are convex functions, decreasing in $j$, with $A_j\sim h_P$, and $A_j=F$ on every compact set on which $h_P-F\leq j$; hence $A_j\to F$ locally uniformly. With the mollifiers $\rho_\varepsilon$ of \cref{lem:convex-mollification}, choose $\varepsilon_j\downarrow0$ and set $F_j=A_j*\rho_{\varepsilon_j}$. By that lemma, these functions are smooth and convex, and the monotonicity in $\varepsilon$ together with $A_{j+1}\leq A_j$ gives $F_{j+1}=A_{j+1}*\rho_{\varepsilon_{j+1}}\leq A_j*\rho_{\varepsilon_{j+1}}\leq A_j*\rho_{\varepsilon_j}=F_j$, and $F_j\geq A_j\geq F$. By \cref{prop:convex-support-growth-characterization}, $F$ and $h_P$ are Lipschitz with constant $\max_{p\in P}|p|$, hence so is $A_j$, and therefore $|F_j-A_j|\leq C\varepsilon_j$ with $C=\max_{p\in P}|p|\int|y|\rho(y)\,\mathrm dy$. Consequently $F_j\sim A_j\sim h_P$, so $F_j\in\mathcal E^\infty(N_{\mathbb R},P)$, and $F_j\to F$ locally uniformly.
+
+If $F_j\downarrow F$ pointwise, then
+\[
+ \sup_jF_j^*(p)=\sup_j\sup_x\bigl(\langle p,x\rangle-F_j(x)\bigr)=\sup_x\sup_j\bigl(\langle p,x\rangle-F_j(x)\bigr)=F^*(p),
+\]
+and the conjugates $F_j^*$ increase, because conjugation reverses inequalities. Finally, if a sequence of finite convex functions on $N_{\mathbb R}$ converges pointwise to a finite function, it converges locally uniformly by \cref{prop:convex-closure-and-dense-convergence}, applied with $\Omega$ and the dense subset both equal to $N_{\mathbb R}$, and conversely local uniform convergence implies pointwise convergence.
+\end{proof}
+\index{convex function!smooth approximation}
+
+\begin{example}\label{ex:convex-degenerate-full-mass-sum}
+The hypotheses $K_F=P$ and $K_G=P'$ in the last assertion of \cref{prop:convex-support-growth-characterization} cannot be replaced by $F\in\mathcal E(N_{\mathbb R},P)$ and $G\in\mathcal E(N_{\mathbb R},P')$: when $P$ has empty interior, membership in $\mathcal E(N_{\mathbb R},P)$ does not force a function to use every slope in $P$. Let $N_{\mathbb R}=M_{\mathbb R}=\mathbb R^2$ with the standard pairing, $P=[0,1]\times\{0\}$ and $P'=\{0\}\times[0,1]$. Both bodies have empty interior, and the zero function belongs to $\mathcal P(N_{\mathbb R},P)=\mathcal E(N_{\mathbb R},P)$ and to $\mathcal E(N_{\mathbb R},P')$, since $0\leq h_P$ and $0\leq h_{P'}$. The sum of the zero function with itself is zero, whose slope body is $\{0\}$, whereas $P+P'=[0,1]^2$ has nonempty interior. Hence the zero function does not belong to $\mathcal E(N_{\mathbb R},P+P')$.
+\end{example}
+
+Finally, we compare logarithms of sums of exponentials with linear functions.
+
+\begin{lemma}\label{lem:monomial-growth-convex-hull}
+Let $m\geq1$ and $\beta_1,\ldots,\beta_m,\alpha\in M_{\mathbb R}$. The function
+\[
+ x\longmapsto\log\sum_{i=1}^m\mathrm e^{\langle\beta_i,x\rangle}
+                         -\langle\alpha,x\rangle
+\]
+is bounded below on $N_{\mathbb R}$ if and only if $\alpha$ belongs to the convex hull of $\beta_1,\ldots,\beta_m$. Suppose that all $\beta_i$ and $\alpha$ lie in $M$, identify $M$ with $\mathbb Z^n$ by a basis and $N_{\mathbb R}$ with $\mathbb R^n$ by the dual basis, and write $z^\alpha=z_1^{\alpha_1}\cdots z_n^{\alpha_n}$. Then this condition is also equivalent to the boundedness on $(\mathbb C^*)^n$ of
+\[
+ \frac{|z^\alpha|^2}{\sum_i|z^{\beta_i}|^2}.
+\]
+\end{lemma}
+\begin{proof}
+If $\alpha=\sum_i\lambda_i\beta_i$ is a convex combination, then $\langle\alpha,x\rangle\leq\max_i\langle\beta_i,x\rangle\leq\log\sum_i\mathrm e^{\langle\beta_i,x\rangle}$, so the function is nonnegative. Conversely, suppose that $\alpha$ is not in the convex hull. The hull is compact, being the image of the standard simplex under the linear map $(\lambda_i)\mapsto\sum_i\lambda_i\beta_i$, and convex, so \cref{lem:finite-dimensional-convex-separation}(1), applied in $M_{\mathbb R}$, gives $v\in N_{\mathbb R}$ with $\langle\alpha,v\rangle>\max_i\langle\beta_i,v\rangle$. Since the logarithmic sum differs from $\max_i\langle\beta_i,x\rangle$ by a number in $[0,\log m]$, the value of the function at $x=tv$ is at most $t(\max_i\langle\beta_i,v\rangle-\langle\alpha,v\rangle)+\log m$, which tends to $-\infty$ as $t\to+\infty$. For the last assertion, put $x_j=\log|z_j|^2$. Then $|z^\gamma|^2=\mathrm e^{\langle\gamma,x\rangle}$ for every $\gamma\in\mathbb Z^n$, including exponents with negative entries, so the displayed quotient equals the exponential of minus the function above; and $z\mapsto x$ maps $(\mathbb C^*)^n$ onto $\mathbb R^n$.
+\end{proof}
+\index{monomial!convex-hull growth criterion}
+
+\section{The real Monge--Amp\`ere measure}
+\label{sec:real-monge-ampere-measure}
+Let $F$ be a finite convex function on $N_{\mathbb R}$. Following Alexandrov, we measure a set $E\subset N_{\mathbb R}$ by the volume of the set $\partial F(E)$ of supporting slopes of $F$ at points of $E$. For a smooth $F$ with positive definite Hessian, $\partial F(E)=\nabla F(E)$, and the change of variables formula gives $\operatorname{vol}(\nabla F(E))=\int_E\det(D^2F)\,\mathrm dx$, so this is a weak form of the real Monge--Amp\`ere operator (see \cref{prop:smooth-and-mixed-real-monge-ampere}). Two difficulties arise in general: the subgradient map is multivalued, and it is not clear a priori that $\partial F(E)$ is measurable. Both are resolved by looking at the inverse map. By duality, a slope $p$ belongs to $\partial F(E)$ if and only if $E$ meets $\partial F^*(p)$, and $\partial F^*(p)$ is a single point for almost every $p$ in the domain of $F^*$.
+
+\begin{theorem}\label{thm:alexandrov-measure-construction}
+Let $F$ be a finite convex function on $N_{\mathbb R}$, let $G=F^*$, and let $D$ be the set of points of the interior of $\operatorname{dom}G$ at which $G$ is differentiable. For every Borel set $E\subset N_{\mathbb R}$, the set $\partial F(E)$ is measurable for the completed Lebesgue measure, and
+\[
+ \operatorname{MA}_{\mathbb R}(F)(E)=n!\operatorname{vol}(\partial F(E))
+\]
+defines a positive Radon measure on $N_{\mathbb R}$, the \emph{real Monge--Amp\`ere measure} of $F$. It is given by
+\[
+ \operatorname{MA}_{\mathbb R}(F)
+                  =(\nabla G)_*(n!\mathbf1_D\,\mathrm dp).
+\]
+If $\operatorname{dom}G$ has empty interior and $n>0$, then $\operatorname{MA}_{\mathbb R}(F)=0$. In every case
+\[
+ \operatorname{MA}_{\mathbb R}(F)(N_{\mathbb R})
+                        =n!\operatorname{vol}(K_F).
+\]
+\end{theorem}
+\begin{proof}
+The set $\operatorname{dom}G$ is convex, and its difference from its interior is a null set: if the interior is nonempty, this difference lies in the relative boundary, which is null by \cref{lem:finite-dimensional-convex-separation}(4); otherwise $\operatorname{dom}G$ lies in a proper affine subspace. By \cref{prop:convex-local-regularity-and-subgradients}(4), applied to the finite convex function $G$ on the interior of its domain, $D$ is a Borel set, the gradient $\nabla G\colon D\to N_{\mathbb R}$ is a Borel map, and the complement of $D$ in the interior of $\operatorname{dom}G$ is a null set. Therefore the complement of $D$ in $\operatorname{dom}G$ is a null set; it is a Borel set, because $\operatorname{dom}G=\bigcup_k\{G\leq k\}$ is a countable union of closed sets, $G$ being lower semicontinuous.
+
+Let $p\in D$. Then $\partial G(p)=\{\nabla G(p)\}$. Indeed, $\partial G(p)$ is nonempty by \cref{prop:convex-local-regularity-and-subgradients}, and every subgradient of $G$ at $p$ is also a subgradient at $p$ of the restriction of $G$ to the interior of $\operatorname{dom}G$, whose only subgradient at $p$ is $\nabla G(p)$ by \cref{prop:convex-local-regularity-and-subgradients}(3). Hence \cref{thm:finite-dimensional-fenchel-duality} gives, for every $E\subset N_{\mathbb R}$,
+\[
+ p\in\partial F(E)\quad\Longleftrightarrow\quad\nabla G(p)\in E.
+\]
+Every subgradient of $F$ lies in $\operatorname{dom}G$, so $\partial F(E)$ differs from the Borel set $(\nabla G)^{-1}(E)\cap D$ by a subset of the fixed null set $\operatorname{dom}G\setminus D$. Hence $\partial F(E)$ is measurable for the completed measure, and $\operatorname{vol}(\partial F(E))=\operatorname{vol}((\nabla G)^{-1}(E)\cap D)$. This proves the pushforward formula, which in turn shows that $E\mapsto n!\operatorname{vol}(\partial F(E))$ is countably additive on Borel sets.
+
+If $K$ is compact, $\partial F(K)$ is bounded by \cref{prop:convex-local-regularity-and-subgradients}(1), and it is closed, since the graph of $\partial F$ is closed and $K$ is compact; so $\partial F(K)$ is compact and has finite volume. Thus the measure is finite on compact sets, and it is a Radon measure by \cref{prop:borel-regularity}. If $\operatorname{dom}G$ has empty interior and $n>0$, then $D=\varnothing$ and the measure vanishes. In general, the total mass is $n!\operatorname{vol}(D)=n!\operatorname{vol}(\operatorname{dom}G)$, and $\operatorname{vol}(\operatorname{dom}G)=\operatorname{vol}(K_F)$ because $K_F\setminus\operatorname{dom}G$ lies in the relative boundary of $\operatorname{dom}G$, or in a proper affine subspace. In dimension zero, $F$ is a constant, $D$ is the single point of $M_{\mathbb R}$, and the formula gives unit mass, with $0!=1$.
+\end{proof}
+\index{real Monge--Amp\`ere measure}\index{Alexandrov measure}
+
+\begin{theorem}\label{thm:real-monge-ampere-vague-continuity}
+Let $F_j$ and $F$ be finite convex functions on $N_{\mathbb R}$ such that $F_j\to F$ locally uniformly. Then $\operatorname{MA}_{\mathbb R}(F_j)\to\operatorname{MA}_{\mathbb R}(F)$ vaguely. Moreover, let $P\subset M_{\mathbb R}$ be a convex body. A function $F\in\mathcal P(N_{\mathbb R},P)$ belongs to $\mathcal E(N_{\mathbb R},P)$ if and only if
+\[
+ \operatorname{MA}_{\mathbb R}(F)(N_{\mathbb R})=n!\operatorname{vol}(P).
+\]
+If $F$ and $H$ are finite convex functions with $F\preceq H$, then $K_F\subset K_H$, and the total mass of $\operatorname{MA}_{\mathbb R}(F)$ is at most that of $\operatorname{MA}_{\mathbb R}(H)$.
+\end{theorem}
+\begin{proof}
+Write $\mu_j=\operatorname{MA}_{\mathbb R}(F_j)$ and $\mu=\operatorname{MA}_{\mathbb R}(F)$. Steps 1 and 2 compare the masses of compact and of open sets, and Step 3 deduces vague convergence.
+
+\emph{Step 1: compact sets.} Let $K$ be compact. If $x\in K$ and $0\neq p\in\partial F_j(x)$ (in particular $n\geq1$), choose $e\in N_{\mathbb R}$ with $|e|=1$ and $\langle p,e\rangle=|p|$; the subgradient inequality at $x$, evaluated at $x+e$, gives $|p|\leq F_j(x+e)-F_j(x)\leq2\sup\{|F_j(y)|:\operatorname{dist}(y,K)\leq1\}$. By local uniform convergence, the sets $\partial F_j(K)$ are therefore contained in a fixed ball for all large $j$. If $x_j\in K$, $p_j\in\partial F_j(x_j)$, $x_j\to x$ and $p_j\to p$, then letting $j\to\infty$ in the subgradient inequalities gives $p\in\partial F(x)$. The set $\partial F(K)$ is compact, being bounded and closed by \cref{prop:convex-local-regularity-and-subgradients}(1), since $K$ is compact. Consequently, for every $\varepsilon>0$, the set $\partial F_j(K)$ lies in the closed $\varepsilon$-neighborhood $(\partial F(K))^\varepsilon$ of $\partial F(K)$ for all large $j$. Otherwise, for infinitely many $j$ there would be points $x_j\in K$ and $p_j\in\partial F_j(x_j)$ at distance at least $\varepsilon$ from $\partial F(K)$; as $K$ is compact and the $p_j$ are bounded, a subsequence of $(x_j,p_j)$ would converge to some $(x,p)$ with $p\in\partial F(x)$, which is impossible. As $\varepsilon\downarrow0$, these neighborhoods decrease to $\partial F(K)$, and continuity from above of Lebesgue measure on sets of finite measure gives
+\[
+ \varlimsup_j\mu_j(K)\leq\mu(K).
+\]
+
+\emph{Step 2: open sets.} Let $U$ be open and let $G=F^*$, with $D$ as in \cref{thm:alexandrov-measure-construction}. For $p\in\partial F(U)\cap D$, the point $x=\nabla G(p)$ lies in $U$ and is the only point with $p\in\partial F(x)$, so $x$ is the unique minimum point of $F-\langle p,\cdot\rangle$. Choose $r>0$ with $\overline{B(x,r)}\subset U$. Since the sphere $\{y:|y-x|=r\}$ is compact, $F-\langle p,\cdot\rangle$ exceeds its minimum by some $\delta>0$ on it. For large $j$ we have $|F_j-F|<\delta/3$ on $\overline{B(x,r)}$, so the minimum of $F_j-\langle p,\cdot\rangle$ on $\overline{B(x,r)}$ is attained at a point $x_j\in B(x,r)$. A local minimum of a convex function is a global minimum, because the function is convex along each segment starting at that point; hence $p\in\partial F_j(x_j)\subset\partial F_j(U)$ for all large $j$. Since $\partial F(U)\setminus D$ is a null set, Fatou's lemma, applied to the indicator functions of the sets $\partial F_j(U)$, gives
+\[
+ \mu(U)\leq\varliminf_j\mu_j(U).
+\]
+
+\emph{Step 3: vague convergence.} Let $f\geq0$ be continuous with compact support $S$. By Step 1 there is $C$ with $\mu_j(S)\leq C$ for all large $j$. For $t>0$, the set $\{f\geq t\}$ is compact and $\{f>t\}$ is open. By Tonelli's theorem, $\int f\,\mathrm d\nu=\int_0^\infty\nu(\{f>t\})\,\mathrm dt=\int_0^\infty\nu(\{f\geq t\})\,\mathrm dt$ for every positive measure $\nu$. Hence Step 2 and Fatou's lemma give
+\[
+\begin{split}
+ \int f\,\mathrm d\mu&=\int_0^\infty\mu(\{f>t\})\,\mathrm dt\\
+ &\leq\varliminf_j\int_0^\infty\mu_j(\{f>t\})\,\mathrm dt=\varliminf_j\int f\,\mathrm d\mu_j,
+\end{split}
+\]
+and Step 1 and Fatou's lemma, applied to the nonnegative functions $t\mapsto C-\mu_j(\{f\geq t\})$ on $(0,\max f]$, give
+\[
+\begin{split}
+ \varlimsup_j\int f\,\mathrm d\mu_j&=\varlimsup_j\int_0^{\max f}\mu_j(\{f\geq t\})\,\mathrm dt\\
+ &\leq\int_0^{\max f}\mu(\{f\geq t\})\,\mathrm dt=\int f\,\mathrm d\mu.
+\end{split}
+\]
+Hence $\int f\,\mathrm d\mu_j\to\int f\,\mathrm d\mu$. A general continuous function with compact support is the difference of its positive and negative parts, which proves vague convergence.
+
+\emph{Full mass.} Let $F\in\mathcal P(N_{\mathbb R},P)$. Then $K_F\subset P$ by \cref{prop:convex-support-growth-characterization}, and the total mass of $\operatorname{MA}_{\mathbb R}(F)$ is $n!\operatorname{vol}(K_F)$ by \cref{thm:alexandrov-measure-construction}. Suppose that $P$ has nonempty interior. If $K_F=P$, the two masses agree. If $K_F\neq P$, choose $p\in P\setminus K_F$ and a ball $B(p,r)$ disjoint from the closed set $K_F$. Since $P$ is the closure of its interior by \cref{lem:finite-dimensional-convex-separation}(4), there is an interior point $q$ of $P$ in $B(p,r/2)$, and a small ball about $q$ lies in $P\setminus K_F$. Hence $\operatorname{vol}(K_F)<\operatorname{vol}(P)$. This proves the equivalence when $P$ has nonempty interior. If $P$ has empty interior, then $n>0$, both $\operatorname{vol}(K_F)$ and $\operatorname{vol}(P)$ vanish, and $\mathcal E(N_{\mathbb R},P)=\mathcal P(N_{\mathbb R},P)$ by definition, so the equivalence holds as well.
+
+Finally, if $F\leq H+C$, then $F^*\geq H^*-C$, so $\operatorname{dom}F^*\subset\operatorname{dom}H^*$ and $K_F\subset K_H$. The inequality between the total masses follows from \cref{thm:alexandrov-measure-construction}.
+\end{proof}
+
+\begin{example}\label{ex:real-mass-escaping-to-infinity}
+In \cref{thm:real-monge-ampere-vague-continuity}, vague convergence cannot be replaced by narrow convergence without a condition that prevents mass from escaping to infinity. Let $n=1$, identify $N_{\mathbb R}$ and $M_{\mathbb R}$ with $\mathbb R$ so that $N=M=\mathbb Z$, and put
+\[
+ F_j(x)=\max\{0,x-j\}\longrightarrow0,
+       \qquad\operatorname{MA}_{\mathbb R}(F_j)=\delta_j.
+\]
+Indeed, $\partial F_j(x)$ is $\{0\}$ for $x<j$, $\{1\}$ for $x>j$, and $[0,1]$ for $x=j$. All slopes lie in $[0,1]$, and $F_j\to0$ locally uniformly. As in \cref{ex:escaping-mass}, the measures $\delta_j$ converge vaguely to $\operatorname{MA}_{\mathbb R}(0)=0$, while their total masses remain equal to one. Here each $F_j$ has full mass for $P=[0,1]$, but the limit does not. If the functions and their limit all have full mass for one fixed body, the measures converge narrowly by \cref{lem:full-mass-real-measure-bounded-testing} below.
+\end{example}
+\index{real Monge--Amp\`ere measure!escape of mass}
+
+\begin{proposition}\label{prop:smooth-and-mixed-real-monge-ampere}
+Let $F$ be a convex function on $N_{\mathbb R}$ of class $C^{1,1}_{\loc}$, that is, differentiable with locally Lipschitz gradient. Then the distributional Hessian $D^2F$ of $F$, computed in the coordinates of a basis of $N$, is a locally bounded measurable matrix-valued function, and
+\[
+ \operatorname{MA}_{\mathbb R}(F)
+                    =n!\det(D^2F)\,\mathrm dx.
+\]
+Moreover, there is a unique way to assign to every $n$-tuple $(F_1,\ldots,F_n)$ of finite convex functions on $N_{\mathbb R}$ a positive Radon measure $\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)$, the \emph{mixed real Monge--Amp\`ere measure}, which is symmetric in its arguments, additive and positively homogeneous in each argument, and satisfies $\operatorname{MA}_{\mathbb R}(F,\ldots,F)=\operatorname{MA}_{\mathbb R}(F)$. It is continuous for the vague topology under local uniform convergence of each argument.
+\end{proposition}
+\begin{proof}
+\emph{Smooth functions.} Let $F$ be smooth with positive definite Hessian. For $x\neq y$,
+\[
+ \langle\nabla F(y)-\nabla F(x),y-x\rangle=\int_0^1D^2F(x+s(y-x))(y-x,y-x)\,\mathrm ds>0,
+\]
+so $\nabla F$ is injective, and it is a local diffeomorphism by the inverse function theorem. Since $\partial F(E)=\nabla F(E)$ by \cref{prop:convex-local-regularity-and-subgradients}(3), the change of variables formula gives the asserted identity. Now let $F$ be smooth and convex; its Hessian is positive semidefinite, because the second derivatives of $F$ along lines are nonnegative. Apply the identity just proved to $F+\varepsilon|x|^2/2$, where $|x|$ is the Euclidean norm in the lattice coordinates. As $\varepsilon\downarrow0$, these functions converge to $F$ locally uniformly and their densities $n!\det(D^2F+\varepsilon I)$ converge to $n!\det(D^2F)$ locally uniformly; comparing the two vague limits, by \cref{thm:real-monge-ampere-vague-continuity}, proves the identity for $F$.
+
+\emph{Functions of class $C^{1,1}_{\loc}$.} We work in the coordinates of a basis of $N$. Fix $k$ and $l$, and let $g=\partial_kF$, which is locally Lipschitz. Let $B=B(x_0,r)$ be a ball, and let $L_B$ be a Lipschitz constant of $g$ on $\overline{B(x_0,2r)}$. For a nonnegative test function $\chi$ supported in $B$ and $0<|h|<r$, the substitution $x\mapsto x-he_l$ in one of the two terms gives
+\[
+ \int g(x)\frac{\chi(x+he_l)-\chi(x)}h\,\mathrm dx=\int\frac{g(x-he_l)-g(x)}h\,\chi(x)\,\mathrm dx,
+\]
+and the right side is at most $L_B\int\chi\,\mathrm dx$ in absolute value. As $h\to0$, the difference quotients of $\chi$ converge uniformly to $\partial_l\chi$, with supports in a fixed compact set, so the left side tends to $\int g\,\partial_l\chi\,\mathrm dx=-\langle\partial_lg,\chi\rangle$. Hence $|\langle\partial_l\partial_kF,\chi\rangle|\leq L_B\int\chi\,\mathrm dx$, and \cref{cor:distribution-bounded-density}(2), applied to Lebesgue measure, gives a Borel function $H_{kl}$ that represents the distribution $\partial_l\partial_kF$ and satisfies $|H_{kl}|\leq L_B$ almost everywhere on each such ball $B$. Covering $N_{\mathbb R}$ by countably many such balls and setting $H_{kl}=0$ on the null set of points of some ball of the cover at which the bound fails, we may assume that $H_{kl}$ is bounded on every compact set. This proves that $D^2F=(H_{kl})$ is a locally bounded Borel matrix-valued function. Since distributional derivatives commute, $H_{kl}=H_{lk}$ almost everywhere, by the uniqueness in \cref{cor:distribution-bounded-density}.
+
+Next, $D^2F(x)$ is positive semidefinite for almost every $x$. Indeed, let $v\in\mathbb R^n$ and let $\chi$ be a nonnegative test function. Taylor's formula shows that the second difference quotients $h^{-2}(\chi(x+hv)+\chi(x-hv)-2\chi(x))$ converge uniformly to $\sum_{k,l}v_kv_l\partial_k\partial_l\chi$ as $h\to0$, so the substitutions $x\mapsto x\mp hv$ give
+\[
+ \Bigl\langle\sum_{k,l}v_kv_l\partial_k\partial_lF,\chi\Bigr\rangle=\lim_{h\to0}\int\frac{F(x-hv)+F(x+hv)-2F(x)}{h^2}\,\chi(x)\,\mathrm dx\geq0,
+\]
+because $F$ is convex. Thus the function $\sum_{k,l}v_kv_lH_{kl}$ defines a positive distribution, so its mollifications are nonnegative by \cref{prop:distribution-smoothing}(3); since they converge to it at its Lebesgue points (\cref{thm:lebesgue-differentiation}), it is nonnegative almost everywhere. Applying this to a countable dense set of vectors $v$, and using the continuity of the quadratic form in $v$, we see that $D^2F(x)$ is positive semidefinite for almost every $x$.
+
+We now obtain the formula by mollification. With the mollifiers $\rho_\varepsilon$ of \cref{lem:convex-mollification}, in the same coordinates, the functions $F_\varepsilon=F*\rho_\varepsilon$ are smooth and convex, and they converge to $F$ locally uniformly, by that lemma. By \cref{prop:distribution-smoothing}(1), their second derivatives are $\partial_k\partial_lF_\varepsilon=H_{kl}*\rho_\varepsilon$. Hence, for $\varepsilon\leq1$, the Hessians $D^2F_\varepsilon$ are bounded on each compact set $K$ by the bound of $D^2F$ on the set of points at distance at most $1$ from $K$, and by \cref{thm:lebesgue-differentiation} they converge to $D^2F(x)$ at every point $x$ that is a Lebesgue point of all the entries $H_{kl}$, that is, almost everywhere. By the smooth case, $\operatorname{MA}_{\mathbb R}(F_\varepsilon)=n!\det(D^2F_\varepsilon)\,\mathrm dx$. Let $\varepsilon$ run through a sequence tending to zero. For $f\in C_c(N_{\mathbb R})$, dominated convergence gives $n!\int f\det(D^2F_\varepsilon)\,\mathrm dx\to n!\int f\det(D^2F)\,\mathrm dx$, while $\operatorname{MA}_{\mathbb R}(F_\varepsilon)\to\operatorname{MA}_{\mathbb R}(F)$ vaguely by \cref{thm:real-monge-ampere-vague-continuity}. This proves the formula.
+
+\emph{Mixed measures.} For smooth convex $F_1,\ldots,F_n$ define
+\[
+ \operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)=n!\,D(D^2F_1,\ldots,D^2F_n)\,\mathrm dx,
+\]
+where $D$ is the mixed discriminant of \cref{sec:positive-currents}, applied to the real symmetric, hence Hermitian, Hessian matrices. This measure is positive, because the mixed discriminant of positive semidefinite matrices is nonnegative (\cref{lem:mixed-discriminant-basic}(3)), and it is symmetric and multilinear, with $D(A,\ldots,A)=\det A$ (\cref{lem:mixed-discriminant-basic}(1)). Expanding $\operatorname{MA}_{\mathbb R}(\sum_{j\in J}F_j,\ldots,\sum_{j\in J}F_j)$ by multilinearity and using symmetry, we obtain the polarization identity
+\begin{equation}\label{eq:real-mixed-polarization}
+ \operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)=\frac1{n!}\sum_{J\subset\{1,\ldots,n\}}
+          (-1)^{n-|J|}\operatorname{MA}_{\mathbb R}
+                                 \left(\sum_{j\in J}F_j\right),
+\end{equation}
+where the empty sum is the zero function, whose measure is zero for $n>0$ (its only slope is $0$). Indeed, after the expansion, a term $\operatorname{MA}_{\mathbb R}(F_{\sigma(1)},\ldots,F_{\sigma(n)})$ with $\sigma\colon\{1,\ldots,n\}\to\{1,\ldots,n\}$ appears with total coefficient $\sum_{J\supset\sigma(\{1,\ldots,n\})}(-1)^{n-|J|}$, which vanishes unless $\sigma$ is a bijection, and the $n!$ bijections all give $\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)$ by symmetry. Any symmetric, multilinear assignment with the given diagonal values satisfies \eqref{eq:real-mixed-polarization}, by the same expansion; this proves uniqueness.
+
+Now let $F_1,\ldots,F_n$ be arbitrary finite convex functions, and let $F_{j,\varepsilon}=F_j*\rho_\varepsilon$ be their mollifications, which are smooth and convex by \cref{lem:convex-mollification}. For every $J$, $\sum_{j\in J}F_{j,\varepsilon}\to\sum_{j\in J}F_j$ locally uniformly as $\varepsilon\to0$ (\cref{lem:mollifier-density}(1)). Let $\varepsilon$ run through a sequence tending to zero. By \eqref{eq:real-mixed-polarization} for the smooth functions $F_{j,\varepsilon}$ and by \cref{thm:real-monge-ampere-vague-continuity}, for every $f\in C_c(N_{\mathbb R},\mathbb R)$ the integrals $\int f\,\mathrm d\operatorname{MA}_{\mathbb R}(F_{1,\varepsilon},\ldots,F_{n,\varepsilon})$ converge to
+\[
+ \Lambda(f)=\frac1{n!}\sum_{J\subset\{1,\ldots,n\}}(-1)^{n-|J|}\int f\,\mathrm d\operatorname{MA}_{\mathbb R}\Bigl(\sum_{j\in J}F_j\Bigr).
+\]
+The functional $\Lambda$ is linear, and it is positive as a limit of integrals against positive measures. By \cref{thm:positive-functional-measure}, there is a unique Radon measure $\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)$ with $\int f\,\mathrm d\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)=\Lambda(f)$ for every $f$; for smooth $F_j$ it agrees with the previous definition, by \eqref{eq:real-mixed-polarization}. It is symmetric, because $\Lambda$ is a symmetric function of $F_1,\ldots,F_n$. Additivity and positive homogeneity in each argument hold for the smooth mixed measures; since mollification is linear, they pass to the vague limit. For $F_1=\cdots=F_n=F$, the smooth mixed measures are $n!\det(D^2F_\varepsilon)\,\mathrm dx=\operatorname{MA}_{\mathbb R}(F_\varepsilon)$, which converge vaguely to $\operatorname{MA}_{\mathbb R}(F)$; hence $\operatorname{MA}_{\mathbb R}(F,\ldots,F)=\operatorname{MA}_{\mathbb R}(F)$. Finally, if $F_j^{(k)}\to F_j$ locally uniformly as $k\to\infty$ for each $j$, then $\sum_{j\in J}F_j^{(k)}\to\sum_{j\in J}F_j$ locally uniformly for every $J$, and the formula for $\Lambda$ together with \cref{thm:real-monge-ampere-vague-continuity} shows that $\operatorname{MA}_{\mathbb R}(F_1^{(k)},\ldots,F_n^{(k)})\to\operatorname{MA}_{\mathbb R}(F_1,\ldots,F_n)$ vaguely. In dimension zero the mixed measure has no arguments, and it is the unit mass at the point.
+\end{proof}
+\index{real Monge--Amp\`ere measure!mixed}
+
+\input{chapters/inputs/q16-compact-convex-interfaces}
+
+\section{Lattice points and volume}
+\label{sec:lattice-points-and-volume}
+By \cref{thm:toric-character-section-basis} below, the dimension of a space of sections on a projective toric manifold is the number of lattice points in a dilated polytope. We show that $k^{-n}$ times the number of lattice points in $kK$ tends to the volume of the convex body $K$, and that this remains true if the lattice points are prescribed only up to a sublinear distance from $kK$. The reason is that the boundary of a convex body has volume zero.
+
+In this section we fix a basis of $M$. Its coordinates identify $M_{\mathbb R}$ with $\mathbb R^n$ and $\operatorname{vol}$ with Lebesgue measure; we use the Euclidean norm of these coordinates on $M_{\mathbb R}$ and the dual norm on $N_{\mathbb R}$. For a convex body $K\subset M_{\mathbb R}$, $k>0$ and $\varepsilon>0$ put $kK=\{kp:p\in K\}$ and
+\[
+ K^\varepsilon=\{p:\operatorname{dist}(p,K)\leq\varepsilon\},
+ \qquad K_\varepsilon=\{p:\overline{B(p,\varepsilon)}\subset K\},
+\]
+and $K^0=K$. Since the distance to the compact set $K$ is attained, the outer parallel body $K^\varepsilon$ equals $K+\overline{B(0,\varepsilon)}$, the image of the compact convex set $K\times\overline{B(0,\varepsilon)}$ under addition; so it is a convex body. The inner set $K_\varepsilon=\bigcap_{|y|\leq\varepsilon}(K-y)$ is compact and convex but may be empty; it is empty whenever $K$ has empty interior and $n>0$, because a closed ball of positive radius has interior points.
+
+\begin{definition}\label{def:hausdorff-convex-body-distance}
+The \emph{Hausdorff distance} between convex bodies $K,L\subset M_{\mathbb R}$ is
+\[
+ d_{\mathrm H}(K,L)=\max\left\{\sup_{p\in K}\operatorname{dist}(p,L),
+                       \sup_{q\in L}\operatorname{dist}(q,K)\right\}.
+\]
+\end{definition}
+\index{Hausdorff metric!on convex bodies}
+
+\begin{proposition}\label{prop:convex-body-volume-continuity}
+If $n>0$, then for convex bodies $K,L\subset M_{\mathbb R}$
+\[
+ d_{\mathrm H}(K,L)=\max_{|x|=1}|h_K(x)-h_L(x)|.
+\]
+If convex bodies $K_j$ converge to a convex body $K$ in this distance, then $\operatorname{vol}(K_j)\to\operatorname{vol}(K)$. In particular,
+\[
+ \lim_{\varepsilon\downarrow0}\operatorname{vol}(K^\varepsilon)
+ =\operatorname{vol}(K)=
+ \lim_{\varepsilon\downarrow0}\operatorname{vol}(K_\varepsilon).
+\]
+In dimension zero the only convex body is the point, which has volume one.
+\end{proposition}
+\begin{proof}
+Let $n>0$. If $d_{\mathrm H}(K,L)\leq\varepsilon$, then every $p\in K$ has a point $q\in L$ with $|p-q|\leq\varepsilon$, and for $|x|=1$ we get $\langle p,x\rangle\leq\langle q,x\rangle+\varepsilon\leq h_L(x)+\varepsilon$; hence $h_K\leq h_L+\varepsilon$ on the unit sphere, and by symmetry $|h_K-h_L|\leq\varepsilon$ there. Conversely, suppose that $|h_K-h_L|\leq\varepsilon$ on the unit sphere. The support function of the convex body $L+\overline{B(0,\varepsilon)}$ is $h_L(x)+\varepsilon|x|$. If some $p\in K$ were outside $L+\overline{B(0,\varepsilon)}$, \cref{lem:finite-dimensional-convex-separation}(1) would give a unit vector $x$ with $\langle p,x\rangle>h_L(x)+\varepsilon\geq h_K(x)$, which is impossible. Hence $K\subset L+\overline{B(0,\varepsilon)}$, and by symmetry $d_{\mathrm H}(K,L)\leq\varepsilon$. This proves the formula. It shows that $d_{\mathrm H}$ satisfies the triangle inequality, and by \cref{lem:finite-dimensional-convex-separation}(1) a convex body is determined by its support function; thus $d_{\mathrm H}$ is a metric.
+
+Let $\varepsilon_j=d_{\mathrm H}(K_j,K)\to0$. For large $j$ all $K_j$ lie in the bounded set $K+\overline{B(0,1)}$. A point $p$ outside $K$ has positive distance from $K$, so $p\notin K_j$ once $\varepsilon_j<\operatorname{dist}(p,K)$. If $p$ is an interior point of $K$, choose $r>0$ with $\overline{B(p,r)}\subset K$. Then, for $|x|=1$,
+\[
+ h_{K_j}(x)\geq h_K(x)-\varepsilon_j
+          \geq\langle p,x\rangle+r-\varepsilon_j.
+\]
+If $\varepsilon_j<r$ and $p\notin K_j$, strict separation would give a unit vector $x$ with $\langle p,x\rangle>h_{K_j}(x)$, contradicting this inequality; hence $p\in K_j$ for large $j$. Thus $\mathbf1_{K_j}\to\mathbf1_K$ outside the boundary of $K$. If $K$ has nonempty interior, its boundary is a null set by \cref{lem:finite-dimensional-convex-separation}(4); if $K$ has empty interior, it lies in a proper affine subspace and is itself a null set, and $\mathbf1_{K_j}\to0=\mathbf1_K$ almost everywhere by the outside-point argument. In either case dominated convergence, with the dominating function $\mathbf1_{K+\overline{B(0,1)}}$, gives $\operatorname{vol}(K_j)\to\operatorname{vol}(K)$.
+
+The outer parallel bodies $K^\varepsilon$ have finite volume and decrease to the compact set $K$ as $\varepsilon\downarrow0$, so continuity of measure from above gives the first limit. The inner sets $K_\varepsilon$ increase, as $\varepsilon$ decreases, to the interior of $K$, which differs from $K$ by a null set, as we saw in the previous paragraph; monotone convergence gives the second limit. In dimension zero both $K^\varepsilon$ and $K_\varepsilon$ equal the single point for every $\varepsilon$.
+\end{proof}
+\index{convex body!volume continuity}
+
+\begin{theorem}\label{thm:convex-body-lattice-riemann-sums}
+Let $K\subset M_{\mathbb R}$ be a convex body, let $a_k\in M_{\mathbb R}$ be arbitrary, and let $r_k\geq0$ satisfy $r_k/k\to0$. Then for every continuous function $f\colon M_{\mathbb R}\to\mathbb R$,
+\[
+ \lim_{k\to\infty}\frac1{k^n}
+       \sum_{m\in (kK)^{r_k}\cap(M+a_k)}f(m/k)
+                         =\int_K f(p)\,\mathrm dp.
+\]
+In particular $k^{-n}\#(kK\cap M)\to\operatorname{vol}(K)$. Here the exponent $n$ and the measure are those of the ambient space, also when $K$ has empty interior. The convergence is uniform with respect to the translations $a_k$.
+\end{theorem}
+\begin{proof}
+For $n=0$ every set in question is the single point, and both sides equal its value under $f$. Suppose that $n>0$, and let $Q=[0,1)^n$ be the half-open unit cube in the chosen coordinates. The cells
+\[
+ \frac mk+\frac1k Q,\qquad m\in M+a_k,
+\]
+partition $M_{\mathbb R}$; each has volume $k^{-n}$, and its points lie within distance $c/k$ of its anchor $m/k$, where $c=\sqrt n$. Let $U_k$ be the union of the cells whose anchors $m/k$ occur in the sum, that is, with $m/k\in K^{r_k/k}$. Then
+\[
+ K_{c/k}\subset U_k\subset K^{(r_k+c)/k}.
+\]
+For the first inclusion, if $p\in K_{c/k}$, the anchor of the cell containing $p$ lies within $c/k$ of $p$, hence in $K$, so the cell is selected. For the second, every point of a selected cell lies within $c/k$ of its anchor, which lies within $r_k/k$ of $K$. Since $K_{c/k}\subset K\subset K^{(r_k+c)/k}$ and $(r_k+c)/k\to0$, \cref{prop:convex-body-volume-continuity} gives $\operatorname{vol}(U_k\mathbin\triangle K)\to0$, and the volumes $\operatorname{vol}(U_k)$ stay bounded.
+
+For large $k$ the selected cells lie in the fixed compact set $K^1$. Let $\omega_f$ be the modulus of continuity of $f$ on $K^1$. Since $k^{-n}f(m/k)$ is the integral of the constant $f(m/k)$ over the cell of $m$, we obtain
+\[
+ \left|k^{-n}\sum_m f(m/k)-\int_{U_k}f(p)\,\mathrm dp\right|
+            \leq\omega_f(c/k)\operatorname{vol}(U_k)\longrightarrow0.
+\]
+Since $f$ is bounded on $K^1$, the symmetric-difference estimate gives $\int_{U_k}f\,\mathrm dp\to\int_Kf\,\mathrm dp$. Taking $f=1$, $r_k=0$ and $a_k=0$ proves the counting formula. All the estimates depend only on the size of the cells, and not on their position, so they hold uniformly in the translations $a_k$.
+\end{proof}
+\index{lattice points!volume asymptotic}
+\index{Riemann sum!on a convex body}
+
+\begin{corollary}\label{cor:bounded-boundary-error-lattice-count}
+Let $K\subset M_{\mathbb R}$ be a convex body, and suppose that subsets $S_k\subset M$ satisfy
+\[
+ kK\cap M\subset S_k\subset(kK)^{r_k}\cap M,
+                         \qquad r_k\geq0,\quad r_k/k\to0.
+\]
+Then $k^{-n}\#S_k\to\operatorname{vol}(K)$. In particular, a boundary error of bounded size does not affect the leading term of the count, even when $K$ has zero volume.
+\end{corollary}
+\begin{proof}
+By \cref{thm:convex-body-lattice-riemann-sums} with $f=1$ and $a_k=0$, both $k^{-n}\#(kK\cap M)$ and $k^{-n}\#((kK)^{r_k}\cap M)$ tend to $\operatorname{vol}(K)$, and $\#S_k$ lies between these two counts.
+\end{proof}
+
+\input{chapters/inputs/q16-toric-foundations}

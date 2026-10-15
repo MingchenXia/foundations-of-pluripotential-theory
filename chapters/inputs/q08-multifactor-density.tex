@@ -1,0 +1,60 @@
+\subsection{Several independent factors}
+\label{sec:bt-multifactor-density}
+\Cref{cor:bounded-mixed-continuous-density} concerns products in which only two Hessians occur, each repeated several times. For a product $\ddc u_1\wedge\cdots\wedge\ddc u_n$ of $n$ arbitrary potentials, the coefficients $M_k$ of \cref{lem:determinant-linearization-mixed} are replaced by the mixed discriminant $D(A_1,\ldots,A_n)$ of Hermitian matrices. Recall from the paragraph before \cref{lem:mixed-discriminant-basic} that $D(A_1,\ldots,A_n)$ is $1/n!$ times the coefficient of $t_1\cdots t_n$ in $\det(\sum_jt_jA_j)$; it is symmetric and real multilinear, and $D(A,\ldots,A)=\det A$ (\cref{lem:mixed-discriminant-basic}(1)). We prove the geometric-mean inequality for $D$ by means of a reverse Cauchy--Schwarz inequality, which follows from the signature of $D$ computed in \cref{lem:mixed-discriminant-signature}. Convolution then extends it to locally bounded potentials as before.
+
+\begin{lemma}\label{lem:multifactor-mixed-discriminant}
+Let $n\geq1$. For positive semidefinite Hermitian $n\times n$ matrices $A_1,\ldots,A_n$,
+\[
+ D(A_1,\ldots,A_n)\geq\prod_{i=1}^n(\det A_i)^{1/n}.
+\]
+\end{lemma}
+\begin{proof}
+For $n=1$ both sides equal $A_1$. Let $n\geq2$, and assume first that all $A_i$ are positive definite. By \cref{lem:mixed-discriminant-basic}(3), $D$ is positive on positive definite matrices.
+
+We first derive the reverse Cauchy--Schwarz inequality. Fix positive definite matrices $A_3,\ldots,A_n$, and consider the symmetric bilinear form
+\[
+ q(A,B)=D(A,B,A_3,\ldots,A_n)
+\]
+on Hermitian matrices. Let $A,B$ be positive definite, put $c=q(A,B)/q(B,B)$ and $M=A-cB$. Then $q(M,B)=0$, so $q(M,M)\leq0$ by \cref{lem:mixed-discriminant-signature}. Since $q(M,M)=q(A,A)-q(A,B)^2/q(B,B)$, we obtain
+\begin{equation}\label{eq:mixed-discriminant-reverse-cauchy}
+ q(A,B)^2\geq q(A,A)q(B,B).
+\end{equation}
+
+Put $\widetilde A_i=(\det A_i)^{-1/n}A_i$, so that $\det\widetilde A_i=1$. By multilinearity it suffices to prove that $D(\widetilde A_1,\ldots,\widetilde A_n)\geq1$. Consider the finitely many ordered $n$-tuples whose entries belong to the set $\{\widetilde A_1,\ldots,\widetilde A_n\}$, and let $F>0$ be the smallest mixed discriminant of such a tuple. A tuple whose entries all equal $\widetilde A_i$ has discriminant $\det\widetilde A_i=1$, so $F\leq1$. The multiplicity of a matrix in a tuple is the number of entries equal to it. Among the tuples with discriminant $F$, choose one for which the sum of the squares of the multiplicities is largest.
+
+Suppose that this tuple contains two different matrices $A$ and $B$. By symmetry of $D$ we may place them in the first two slots, so that $F=q(A,B)$, where $q$ is formed with the remaining entries of the tuple. Replacing the pair $(A,B)$ by $(A,A)$ or by $(B,B)$ gives tuples with discriminants $q(A,A)\geq F$ and $q(B,B)\geq F$, whereas \eqref{eq:mixed-discriminant-reverse-cauchy} gives $q(A,A)q(B,B)\leq F^2$. Hence $q(A,A)=q(B,B)=F$, and both new tuples are minimizing. If $A$ and $B$ have multiplicities $r$ and $s$, the two replacements change the sum of the squared multiplicities by $2(r-s)+2$ and $2(s-r)+2$, respectively. These two numbers add up to $4$, so one of them is positive, which contradicts the choice of the tuple. Therefore all entries of the chosen tuple are equal, and $F=1$. In particular $D(\widetilde A_1,\ldots,\widetilde A_n)\geq1$.
+
+Finally, for positive semidefinite $A_i$, apply the inequality to $A_i+\varepsilon I$ and let $\varepsilon\downarrow0$. Both sides are continuous: $D$ is a polynomial in the matrix entries, and $(\det A)^{1/n}$ is continuous on positive semidefinite matrices.
+\end{proof}
+\index{mixed discriminant!geometric-mean inequality}
+
+\begin{corollary}\label{cor:bounded-multifactor-continuous-density}
+Let $u_1,\ldots,u_n$ be locally bounded plurisubharmonic functions on an open set $\Omega\subset\mathbb C^n$, $n\geq1$, and let $f_1,\ldots,f_n\geq0$ be continuous functions on $\Omega$ such that
+\[
+ (\ddc u_i)^n\geq f_i\eta^n\quad(1\leq i\leq n),
+ \qquad\eta=\ddc|z|^2.
+\]
+Then
+\[
+ \ddc u_1\wedge\cdots\wedge\ddc u_n
+                  \geq\left(\prod_{i=1}^n f_i^{1/n}\right)\eta^n.
+\]
+\end{corollary}
+\begin{proof}
+For $n=1$ this is the hypothesis, so let $n\geq2$. Put $u_{i,\varepsilon}=u_i*\rho_\varepsilon$, with the same radial mollifiers for all $i$. By the last assertion of \cref{prop:bounded-monge-ampere-linear-density}, applied to each $u_i$ with the density $f_i$,
+\[
+ \det\mathcal H(u_{i,\varepsilon})\geq(f_i^{1/n}*\rho_\varepsilon)^n\qquad(1\leq i\leq n).
+\]
+By \eqref{eq:bt-determinant-normalization}, applied to the smooth function $\sum_it_iu_{i,\varepsilon}$, the exterior powers of smooth forms satisfy
+\[
+ \Bigl(\ddc\sum_{i=1}^nt_iu_{i,\varepsilon}\Bigr)^n=\det\Bigl(\sum_{i=1}^nt_i\mathcal H(u_{i,\varepsilon})\Bigr)\eta^n\qquad(t_1,\ldots,t_n\in\mathbb R).
+\]
+Both sides are polynomials in $t_1,\ldots,t_n$. Since $2$-forms commute, the coefficient of $t_1\cdots t_n$ on the left is $n!\,\ddc u_{1,\varepsilon}\wedge\cdots\wedge\ddc u_{n,\varepsilon}$, and on the right it is $n!\,D(\mathcal H(u_{1,\varepsilon}),\ldots,\mathcal H(u_{n,\varepsilon}))\eta^n$. Since the Bedford--Taylor product of smooth functions is the exterior product of the forms $\ddc u_{i,\varepsilon}$ (\cref{prop:bt-positive-recursion}(1)), we obtain
+\[
+ \ddc u_{1,\varepsilon}\wedge\cdots\wedge\ddc u_{n,\varepsilon}
+ =D\bigl(\mathcal H(u_{1,\varepsilon}),\ldots,\mathcal H(u_{n,\varepsilon})\bigr)\eta^n
+ \geq\prod_{i=1}^n(f_i^{1/n}*\rho_\varepsilon)\,\eta^n,
+\]
+where the inequality is \cref{lem:multifactor-mixed-discriminant}, applied to the complex Hessians of the smooth plurisubharmonic functions $u_{i,\varepsilon}$, which are positive semidefinite (\cref{prop:smooth-psh-criterion}). As $\varepsilon\downarrow0$, the density on the right converges locally uniformly to $\prod_if_i^{1/n}$, and the left side converges weakly to $\ddc u_1\wedge\cdots\wedge\ddc u_n$ by \cref{thm:bt-decreasing-continuity}, since $u_{i,\varepsilon}\downarrow u_i$ for each $i$ (\cref{prop:smooth-psh-criterion}).
+\end{proof}
+\index{Bedford--Taylor product!multifactor density inequality}

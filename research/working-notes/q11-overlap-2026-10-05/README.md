@@ -1,0 +1,3 @@
+# Preserved Q11 application drafts
+
+These are the full active Q11/H01 files at commit d49f58922ae1ae78c79340526b72f12a47c8aa18 before further scoped overlap pruning. The removed ordered self-integral/L1 stability, rooftop derivative/energy diamond and two-obstacle exponential applications have no active callers. Finite-energy rooftop closure has an implicit prose caller in the Perron-slice proof and remains active, together with variational equation existence, both author additions and the complete geodesic foundation chain. These private files preserve research evidence rather than constitute another deliverable.

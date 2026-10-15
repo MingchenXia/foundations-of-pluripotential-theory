@@ -1,0 +1,103 @@
+\subsection{Contact with an arbitrary singular potential}
+\label{sec:irregular-potential-contact}
+\Cref{prop:metric-laplacian-regular-contact-density} computes the contact density of a potential with bounded metric Laplacian. We now remove this regularity assumption on the potential and keep it only for the obstacle. Let $u$ be an arbitrary quasi-plurisubharmonic potential below an obstacle $f$ with bounded metric Laplacian. Between $u$ and $f$ we insert the envelopes of smooth functions decreasing to $u$; by \cref{thm:kahler-metric-laplacian-rooftop} they have bounded metric Laplacian, so the regular theory applies to their contact with $f$. We then pass to the limit. The non-pluripolar measures of a decreasing sequence of unbounded potentials need not converge, so before passing to the limit we truncate at a fixed level and multiply by a bounded weight that vanishes below this level. The smooth functions decreasing to $u$ are provided by the following lemma.
+
+\begin{lemma}\label{lem:smooth-decreasing-usc-approximation}
+Let $u\colon X\to[-\infty,\infty)$ be upper semicontinuous. Then $u$ is the pointwise limit of a decreasing sequence of smooth real functions $\phi_j$ on $X$.
+\end{lemma}
+\begin{proof}
+If $u$ is identically $-\infty$, the constants $\phi_j=-j$ will do, so we assume that $u$ takes a finite value somewhere. Fix a distance $d$ defining the topology of the compact manifold $X$, and put $M=\max_Xu<\infty$. For each positive integer $j$ define
+\[
+ v_j(x)=\max_{y\in X}\{u(y)-j d(x,y)\};
+\]
+the maximum is attained because the function in braces is upper semicontinuous in $y$. The $v_j$ are finite and $j$-Lipschitz: a point where $u$ is finite bounds the maximum from below, and the triangle inequality bounds their differences. They decrease in $j$ and dominate $u$ (take $y=x$). If $u(x)$ is finite, a maximizing point $y_j$ satisfies $jd(x,y_j)\leq M-u(x)$, so $y_j\to x$, and since $v_j(x)\leq u(y_j)$, upper semicontinuity gives $v_j(x)\downarrow u(x)$. If $u(x)=-\infty$, then for every $N$ there is a small ball about $x$ on which $u<-N$, while outside this ball $u(y)-jd(x,y)\leq M-jd(x,y)<-N$ for large $j$. Thus $v_j(x)\downarrow u(x)$ in this case as well.
+
+The $v_j$ are only Lipschitz, so we smooth them while keeping monotonicity. Set $\phi_0=M+1$ and $\eta_j=4^{-j}$, and suppose inductively that $\phi_{j-1}\geq u+\eta_{j-1}$. The continuous function
+\[
+ q_j=\min\{\phi_{j-1}-2\eta_j,\ v_j+2\eta_j\}
+\]
+is at least $u+2\eta_j$, since $\eta_{j-1}=4\eta_j$. A continuous function on $X$ can be approximated uniformly by smooth functions: convolution in a chart converges uniformly on compact subsets of the chart (\cref{lem:mollifier-density}(1)), and a finite smooth partition of unity subordinate to charts (\cref{prop:manifold-cutoffs-stokes}) sums these errors with total weight one. Choose a smooth real $\phi_j$ with $\|\phi_j-q_j\|_\infty<\eta_j$. Then
+\[
+ u+\eta_j\leq\phi_j\leq\phi_{j-1}-\eta_j,
+ \qquad \phi_j\leq v_j+3\eta_j.
+\]
+These bounds continue the induction, show that the sequence $\phi_j$ decreases, and, since $v_j+3\eta_j\downarrow u$, show that $\phi_j\downarrow u$, also at the points where $u=-\infty$.
+\end{proof}
+\index{upper semicontinuity!smooth decreasing approximation}
+
+\begin{theorem}\label{thm:irregular-mixed-contact-density}
+Let $\theta_1,\ldots,\theta_n$ be closed smooth real $(1,1)$-forms. For each $j$ let $u_j\in\PSH(X,\theta_j)$, and let $f_j$ be a continuous real function on $X$ with bounded metric Laplacian. Suppose that $u_j\leq f_j$ everywhere, and put $E=\bigcap_j\{u_j=f_j\}$. Then
+\begin{equation}\label{eq:irregular-mixed-contact-density}
+ \mathbf1_E\left\langle\bigwedge_{j=1}^n
+                    (\theta_j+\ddc u_j)\right\rangle
+   =\mathbf1_E\bigwedge_{j=1}^n(\theta_j+\ddc f_j).
+\end{equation}
+Here the right side is the restriction to $E$ of the finite signed measure of \cref{cor:metric-laplacian-barrier-determinants}, defined by the weak second derivatives of the $f_j$; on $E$ its density is nonnegative and bounded.
+\end{theorem}
+\begin{proof}
+We first prove the scalar case, in which all $\theta_j$, $u_j$ and $f_j$ coincide, in three steps of increasing generality (Steps~1--3). The mixed case then follows by polarization (Step~4), and Step~5 proves the assertion about the density.
+
+\emph{Step 1: a K\"ahler background and a plurisubharmonic obstacle.} Let $\kappa$ be a K\"ahler form, let $u$ be $\kappa$-psh, and let $f\geq u$ be a continuous $\kappa$-psh function with bounded metric Laplacian. Write $F=\{u=f\}$ and $\mu_a=\langle(\kappa+\ddc a)^n\rangle$ for $\kappa$-psh $a$. Since $f$ is bounded, $\mu_f$ is the Bedford--Taylor product $(\kappa+\ddc f)^n$ (\cref{prop:nonpluripolar-bounded-factor-compatibility}, applied with smooth local potentials of $\kappa$). By \cref{prop:metric-laplacian-regular-contact-density}, applied with $u_j=f_j=f$, this measure is given by the weak second derivatives of $f$, so it is the measure $(\kappa+\ddc f)^n$ of \cref{cor:metric-laplacian-barrier-determinants}; we must show that $\mathbf1_F\mu_u=\mathbf1_F\mu_f$. Take smooth functions $\phi_j\downarrow u$ as in \cref{lem:smooth-decreasing-usc-approximation}, and set
+\[
+ \psi_j=P_\kappa(\min\{\phi_j,f\}).
+\]
+Each $\psi_j$ has bounded metric Laplacian by \cref{thm:kahler-metric-laplacian-rooftop}. Since $u\leq\phi_j$ and $u\leq f$, the function $u$ is a competitor for $\min\{\phi_j,f\}$, and since this obstacle is continuous, \cref{prop:obstacle-envelope-maximal-member}(1),(2) give $u\leq\psi_j\leq f$. The obstacles $\min\{\phi_j,f\}$ decrease to $\min\{u,f\}=u$, so $\psi_j$ decreases to $P_\kappa(u)$ by \cref{prop:obstacle-envelope-maximal-member}(5), and $P_\kappa(u)=u$, because $u$ is itself a competitor and every competitor lies below the upper semicontinuous obstacle $u$ by \cref{prop:obstacle-envelope-maximal-member}(2). Moreover $\psi_j=f$ on $F$, because $u\leq\psi_j\leq f$. The regular contact identity, \cref{prop:metric-laplacian-regular-contact-density}, applied on the contact set $\{\psi_j=f\}\supset F$, therefore gives
+\[
+ \mu_{\psi_j}\geq\nu,
+ \qquad \nu=\mathbf1_F\mu_f.
+\]
+
+To pass to the limit, choose $C>0$ with $\min_Xf>-C$, fix $\varepsilon>0$, and put
+\[
+ \begin{aligned}
+ \psi_j^C&=\max\{\psi_j,-C\},&
+ u^C&=\max\{u,-C\},\\
+ b_j&=\frac{\psi_j^C+C}{\psi_j^C+C+\varepsilon},&
+ b&=\frac{u^C+C}{u^C+C+\varepsilon}.
+ \end{aligned}
+\]
+The bounded $\kappa$-psh functions $\psi_j^C$ decrease to $u^C$, so they converge locally in capacity by \cref{prop:psh-decreasing-capacity}. The weights $b_j$ and $b$ are bounded by one, and they are quasi-continuous, since $\psi_j^C$ and $u^C$ are, by \cref{thm:psh-capacity-quasicontinuity} applied to their sums with smooth local potentials of $\kappa$; moreover $b_j\to b$ in capacity, because the map $t\mapsto t/(t+\varepsilon)$ on $[0,\infty)$ has Lipschitz constant at most $1/\varepsilon$. The weighted form of \cref{thm:bt-capacity-continuity}, applied with smooth local potentials of $\kappa$ and a finite partition of unity, gives
+\[
+ b_j\mu_{\psi_j^C}\longrightarrow b\mu_{u^C}
+ \quad\text{weakly on }X.
+\]
+The measures $\mu_{\psi_j^C}$ and $\mu_{\psi_j}$ agree on the plurifine open set $\{\psi_j>-C\}$, by plurifine locality (\cref{prop:nonpluripolar-local-calculus}), and $b_j$ vanishes on $\{\psi_j\leq-C\}$; hence $b_j\mu_{\psi_j^C}=b_j\mu_{\psi_j}$. In the same way $b\mu_{u^C}=b\mu_u$. On $F$ all the weights take the same continuous value $b_f=(f+C)/(f+C+\varepsilon)$, which is strictly positive on $X$. Since $\nu$ is carried by $F$, we get $b_j\mu_{\psi_j}\geq b_j\nu=b_f\nu$ for every $j$, and in the weak limit $b\mu_u\geq b_f\nu$. Restricting to $F$, where $b=b_f$, and dividing by $b_f$, whose reciprocal is bounded on $X$, we obtain $\mathbf1_F\mu_u\geq\nu$. The reverse inequality is the ordered contact inequality of \cref{lem:ordered-potential-contact-measure}. This proves the scalar identity for a K\"ahler background and a plurisubharmonic obstacle.
+
+\emph{Step 2: obstacles that are psh for a larger background.} Let $\theta$ be any closed smooth real $(1,1)$-form, let $u\in\PSH(X,\theta)$, and suppose that $u\leq f$ and that $f$ is $(\theta+A\omega)$-psh for some $A>0$. Increasing $A$, we may assume that $\theta+A\omega$ is K\"ahler. For every $t>A$, Step 1 applies to the K\"ahler background $\theta+t\omega$, with the same measuring metric $\omega$. For a continuous real function $g$ on $X$ consider
+\[
+ Q_g(t)=\int_{\{u=f\}}g\,
+        \langle(\theta+t\omega+\ddc u)^n\rangle
+        -\int_{\{u=f\}}g\,(\theta+t\omega+\ddc f)^n.
+\]
+This is a polynomial in $t$. Indeed, the first integrand expands by the multilinearity of the non-pluripolar product and its compatibility with smooth bounded factors (\cref{prop:nonpluripolar-local-calculus,prop:nonpluripolar-bounded-factor-compatibility}), and the second by expanding the wedge products of the weak forms. Every coefficient is a finite measure, by \cref{thm:compact-nonpluripolar-finiteness} and \cref{cor:metric-laplacian-barrier-determinants}. Step 1 gives $Q_g(t)=0$ for all $t>A$, so every coefficient vanishes, and in particular $Q_g(0)=0$. Now a finite signed Borel measure $\sigma$ on $X$ with $\int g\,\mathrm d\sigma=0$ for every continuous $g$ vanishes. Indeed, write $\sigma=\sigma^+-\sigma^-$ with finite positive Borel measures $\sigma^\pm$; then $\int g\,\mathrm d\sigma^+=\int g\,\mathrm d\sigma^-$ for every continuous $g\geq0$, so $\sigma^+\leq\sigma^-$ and $\sigma^-\leq\sigma^+$ on Borel sets by \cref{lem:measure-comparison-continuous-tests}(2), applied with $W=X$. Applied to the difference of the two measures in $Q_g(0)$, this proves the scalar identity whenever $f$ is $(\theta+A\omega)$-psh for some $A$.
+
+\emph{Step 3: general obstacles.} Let $f$ be any continuous real function with bounded metric Laplacian, and $u\leq f$. Choose $A>0$ such that $\kappa=\theta+A\omega$ is K\"ahler, and insert the envelope $v=P_\kappa(f)$:
+\[
+ u\leq v\leq f.
+\]
+Here $u\leq v$ because $u$ is $\kappa$-psh and lies below $f$. By \cref{thm:kahler-metric-laplacian-rooftop}, $v$ is a continuous $\kappa$-psh function with bounded metric Laplacian. Step 2, with $v$ as the obstacle, gives
+\[
+ \mathbf1_{\{u=v\}}\langle(\theta+\ddc u)^n\rangle
+   =\mathbf1_{\{u=v\}}(\theta+\ddc v)^n.
+\]
+Both $v$ and $f$ belong to $W^{2,p}$ for every finite $p$, by \cref{prop:compact-metric-laplacian-lp}, and the locality of weak Hessians (\cref{prop:bounded-complex-hessian-contact}) shows that their weak second derivatives agree almost everywhere on $\{v=f\}$. Since $\{u=f\}=\{u=v\}\cap\{v=f\}$, restricting the last identity to $\{u=f\}$ proves the scalar identity for $f$.
+
+\emph{Step 4: the mixed identity.} For $\lambda_1,\ldots,\lambda_n>0$ put $\theta_\lambda=\sum_j\lambda_j\theta_j$, $u_\lambda=\sum_j\lambda_ju_j$ and $f_\lambda=\sum_j\lambda_jf_j$. Then $u_\lambda$ is $\theta_\lambda$-psh, $f_\lambda$ is continuous with bounded metric Laplacian, $u_\lambda\leq f_\lambda$, and $E\subset\{u_\lambda=f_\lambda\}$. (Since the $f_j$ are finite, $E$ contains no pole of any $u_j$.) We restrict the scalar identity for $u_\lambda$ and $f_\lambda$ to $E$ and expand both sides as measure-valued polynomials in $\lambda$, using, as in Step~2, the multilinearity of the non-pluripolar product (\cref{prop:nonpluripolar-local-calculus}) and of the wedge product of the weak forms. Testing against a continuous function and comparing the coefficients of $\lambda_1\cdots\lambda_n$, which are $n!$ times the integrals of this function against the two sides of \eqref{eq:irregular-mixed-contact-density}, we see that these integrals agree; by the uniqueness proved in Step~2, we obtain \eqref{eq:irregular-mixed-contact-density}.
+
+\emph{Step 5: the density on $E$.} For each $j$ choose $A_j>0$ such that $\theta_j+A_j\omega$ is K\"ahler, and insert the envelope $v_j=P_{\theta_j+A_j\omega}(f_j)$. Since $u_j$ is $(\theta_j+A_j\omega)$-psh and lies below the continuous function $f_j$, we have $u_j\leq v_j\leq f_j$ by \cref{prop:obstacle-envelope-maximal-member}(1),(2), so $v_j=f_j$ on $\{u_j=f_j\}$; as in Step 3, \cref{prop:compact-metric-laplacian-lp,prop:bounded-complex-hessian-contact} show that the weak Hessians of $v_j$ and $f_j$ agree almost everywhere there. The positive form $\theta_j+A_j\omega+\ddc v_j$ has bounded coefficients by \cref{thm:kahler-metric-laplacian-rooftop}, so $\theta_j+\ddc f_j$ has bounded coefficients almost everywhere on $\{u_j=f_j\}$. Hence the density of the mixed product of the weak forms is bounded on $E$. It is nonnegative there, because by \eqref{eq:irregular-mixed-contact-density} its restriction to $E$ equals the restriction of a positive non-pluripolar product.
+\end{proof}
+\index{contact set!arbitrary singular potentials}
+
+\begin{corollary}\label{cor:big-regular-obstacle-density}
+Suppose that $\{\theta\}$ is big, and let $f$ be a continuous real function with bounded metric Laplacian. Then
+\[
+ \langle(\theta+\ddc P_\theta(f))^n\rangle
+   =\mathbf1_{\{P_\theta(f)=f\}}(\theta+\ddc f)^n.
+\]
+In particular $\langle(\theta+\ddc V_\theta)^n\rangle=\mathbf1_{\{V_\theta=0\}}\theta^n$. The same identities hold in every pseudo-effective class; this is \cref{cor:pseudoeffective-regular-obstacle-density} in the next chapter, which adds a zero-mass argument for classes that are not big.
+\end{corollary}
+\begin{proof}
+A constant shift of $V_\theta$ lies below the bounded function $f$, so the competitor family of $P_\theta(f)$ is nonempty, and it is bounded above by $\max_Xf$. Since $f$ is continuous, $u=P_\theta(f)$ satisfies $u\leq f$ everywhere, by \cref{prop:obstacle-envelope-maximal-member}. \Cref{thm:irregular-mixed-contact-density}, with all $\theta_j=\theta$, $u_j=u$ and $f_j=f$, identifies the restriction of $\langle(\theta+\ddc u)^n\rangle$ to $\{u=f\}$ with that of $(\theta+\ddc f)^n$. By \cref{thm:quasicontinuous-obstacle-contact}, applied to the continuous and hence quasi-continuous obstacle $f$, the measure $\langle(\theta+\ddc u)^n\rangle$ is carried by $\{u=f\}$. This proves the first identity. For $f=0$ the envelope is $V_\theta$ by definition, which gives the second.
+\end{proof}
+\index{envelope!measure for an obstacle with bounded metric Laplacian}
+\index{minimal singularities!Monge--Amp\`ere measure of $V_\theta$}

@@ -137,11 +137,16 @@
   {
     "id": "C1-M19",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C1-M19. Theorem 1.48, Step 2: truncation estimate has a false equality\n• Precise location: printed p. 32, Theorem 1.48, Step 2; the exact printed wording or display is reproduced\n  or quoted under Issue.\n\n• Issue: The proof writes an equality of the form\n                                    Z                  Z\n                                               m p\n                                        |uj − uj | = 2                 |uj |p ,\n                                       K                  K∩{uj ≤−m}\n\n   which is not correct. On {uj ≤ −m}, one has |uj − um\n                                                      j | = |uj + m|, not 2|uj |.\n\n• Correction / repair: Replace the equality by an inequality, e.g.\n                         Z                  Z                         Z\n                                                                   −1\n                            |uj − umj | p\n                                          ≤            |uj |p\n                                                              ≤ m       |uj |p+1 .\n                               K                K∩{uj ≤−m}                  K",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q02-05"
+    ],
+    "adjudication": "Printed GZ p32 (PDF57), full Step2 and original image directly checked. On {u_j<-m}, the difference is |u_j+m|, so the printed equality with 2|u_j| is false. The candidate bound by integral |u_j|^p <=m^(-1) integral |u_j|^(p+1) on that tail is valid. The book uses Holder interpolation from its internal uniform L^(2p) bound instead; no gradient assertion or other GZ proof step is certified.",
+    "evidence": [
+      "research/reviews/2026-10-04-q02-q11-capacity.json",
+      "research/reviews/2026-10-04-q02-q11-capacity.md"
+    ]
   },
   {
     "id": "C1-M20",
@@ -389,20 +394,32 @@
   {
     "id": "C3-M05",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "scope-limited",
     "text": "C3-M05. Proposition 3.15: the integration-by-parts step does not satisfy the stated hypotheses\n• Precise location: printed pp. 85–86, proof of Proposition 3.15; the exact printed wording or display is\n  reproduced or quoted under Issue.\n\n• Issue: The proof uses\n                              Z                              Z\n                                          c\n                                   (−φj )dd ρ ∧ T ∧ βp−1 =       (−ρ)ddc φj ∧ T ∧ βp−1 ,\n                               D                             D\n\n   citing Proposition 3.7. But Proposition 3.7 requires both functions to have boundary value 0; ρ does, whereas\n   φj = max(φ, −j) generally does not.\n\n• Correction / repair: The equality cannot simply be replaced by a useful inequality: Proposition 3.7 gives\n                         Z                             Z\n                            (−φj ) ddc ρ ∧ T ∧ β p−1 ≥   (−ρ) ddc φj ∧ T ∧ β p−1 ,\n                               D                             D\n\n\n\n                                                      11\n\fGuedj–Zeriahi errata                                                                             Revised 23 August 2026\n\n\n\n   the opposite direction from the estimate needed in the printed proof. A corrected proof must first modify φj\n   to have the same boundary value as ρ, or perform a cutoff integration by parts and bound the resulting\n   boundary/collar term using −M ≤ φ ≤ 0 near ∂D.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-02",
+      "Q08-04"
+    ],
+    "adjudication": "The printed equality on pp. 85–86 uses unequal boundary values; the stated integration-by-parts interface does not justify it. The unbounded compact-singularity proposition is not imported. Q08 instead proves a compact-difference common-collar identity and a weighted CLN estimate with its collar term retained. This adjudication confirms the local proof gap, not the full repaired source proposition.",
+    "evidence": [
+      "GZ printed pp. 85–86, PDF pp. 110–111, directly inspected; complete Proposition 3.15 proof read",
+      "lem:bt-common-collar; cor:bt-polynomial-weights; thm:cln-weighted"
+    ]
   },
   {
     "id": "C3-M06",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C3-M06. Lemma 3.22: the list u1 , . . . , un should be u1 , . . . , up\n• Precise location: printed p. 89, Lemma 3.22; the exact printed wording or display is reproduced or quoted\n  under Issue.\n\n• Issue: The current is T = 1≤i≤p ddc ui , so the later phrase should refer to u1 , . . . , up , not u1 , . . . , un .\n                            V\n\n• Correction / repair: Replace u1 , . . . , un by u1 , . . . , up in the indicated sentence.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-03"
+    ],
+    "adjudication": "The current has p factors; the subsequent list ending at n is an indexing typo. Read the complete lemma and increasing-continuity argument; the manuscript uses the actual number q of factors.",
+    "evidence": [
+      "GZ printed p. 89, PDF p. 114, directly inspected",
+      "Lemma 3.22 and Theorem 3.23, pp. 89–91, full proof read",
+      "lem:bounded-product-capacity-domination; thm:bt-increasing-continuity"
+    ]
   },
   {
     "id": "C3-M08",
@@ -497,20 +514,31 @@
   {
     "id": "C4-M03",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "scope-limited",
     "text": "C4-M03. Proposition 4.18(4): the sublevel-domain comparison is ordered incorrectly\n• Precise location: printed p. 109, proof of Proposition 4.18(4), sentence beginning Fix a plurisubharmonic\n  defining function and the choice of Ωc = {ρ < −c}.\n\n• Issue: the printed inclusion makes capacity monotonicity run in the wrong direction. Merely reversing the\n  inclusion to Ω0 b Ωc b Ω00 is not justified for sublevels of an arbitrary defining function.\n\n• Correction / repair: use a local finite-cover argument. Cover Ω0 by finitely many concentric pairs\n  Bj b Bj0 b Ω00 . On each pair, the explicit strictly plurisubharmonic quadratic barrier extends admissible\n  tests and gives\n                                   Cap(E ∩ Bj ; Bj0 ) ≤ Aj Cap∗ (E ∩ Bj ; Ω).\n   Domain monotonicity and finite subadditivity then yield\n                                                   \u0010X \u0011\n                                    Cap(E; Ω00 ) ≤      Aj Cap∗ (E; Ω).\n                                                       j",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-03"
+    ],
+    "adjudication": "The printed proof chooses the sublevel domain to contain Omega-double-prime and obtains the lower comparison, which does not prove the desired upper bound. This local proof gap is confirmed. Q08 proves its needed nested-ball comparison directly by quadratic gluing; it does not import the general defining-function claim.",
+    "evidence": [
+      "GZ printed p. 109, PDF p. 134, directly inspected",
+      "prop:bt-capacity-basic"
+    ]
   },
   {
     "id": "C4-M08",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C4-M08. Theorem 4.26: the wedge-product index is wrong\n• Precise location: printed p. 114, Theorem 4.26; the exact printed wording or display is reproduced or\n  quoted under Issue.\n\n• Issue: The displayed wedge product is indexed by 1 ≤ j ≤ p, but it should be i.\n\n• Correction / repair: Replace 1≤j≤p ddc uij by 1≤i≤p ddc uij on the left-hand side; make the same index\n                                  V              V\n  change in the limiting product.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-03"
+    ],
+    "adjudication": "The displayed wedge index is j although j is the sequence index. The product runs over potential index i. The theorem and complete proof were checked; Q08 uses l for the potential index and j for the sequence index.",
+    "evidence": [
+      "GZ printed p. 114, PDF p. 139, directly inspected",
+      "Theorem 4.26, pp. 114–115, full proof read",
+      "thm:bt-capacity-continuity"
+    ]
   },
   {
     "id": "C4-M09",
@@ -524,11 +552,16 @@
   {
     "id": "C4-M10",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C4-M10. Theorem 4.34: the last arbitrary-set display applies ddc to an unregularized envelope\n• Precise location: printed p. 121, proof of Theorem 4.34, final display for an arbitrary set E, where the\n  Monge–Ampère operator is written using hE .\n\n• Issue: for arbitrary E, the raw envelope hE need not be upper semicontinuous or plurisubharmonic, so\n  (ddc hE )n is not the object defined by the preceding theory. The earlier uses for open G are legitimate\n  because hG = h∗G .\n\n• Correction / repair: replace only this final occurrence under ddc by h∗E .",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q03-01"
+    ],
+    "adjudication": "The final arbitrary-set display on p. 121 applies ddc to the raw h_E rather than H_E=h_E*. The regularization omission is confirmed. The manuscript proves only the compact/open mass identities needed here and obtains the arbitrary zero-capacity criterion by decreasing open covers. It does not rely on the erroneous display or claim full arbitrary-set mass regularity.",
+    "evidence": [
+      "GZ printed p. 121, PDF p. 146, directly inspected; Theorem 4.34 proof read",
+      "prop:relative-extremal-compact; prop:relative-extremal-open; thm:zero-capacity-pluripolar"
+    ]
   },
   {
     "id": "C4-M11",
@@ -560,20 +593,31 @@
   {
     "id": "C4-N02",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C4-N02. Theorem 4.20: the two approximation errors consume the same epsilon budget\n• Type: quantitative proof gap.\n\n• Precise location: printed pp. 110–111, proof of Theorem 4.20, the two consecutive approximations each\n  bounded by ε before the final estimate.\n\n• Correction / repair: choose each preliminary error < ε/2 (or start with ε/2 throughout). The triangle\n  inequality then yields the announced final bound < ε.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-03"
+    ],
+    "adjudication": "Two open exceptional sets consume two capacity budgets. The complete printed proof confirms the missing division of epsilon. Q08 allocates epsilon/2 to each local truncation/continuity step and summable budgets to exhaustion compacts.",
+    "evidence": [
+      "GZ printed pp. 110–111, PDF pp. 135–136, directly inspected",
+      "Theorem 4.20, complete proof read",
+      "thm:psh-capacity-quasicontinuity"
+    ]
   },
   {
     "id": "C4-N03",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C4-N03. Theorem 4.40: wrong numbered cross-reference\n• Type: cross-reference error.\n\n• Precise location: printed p. 124, proof of Theorem 4.40, citation “Theorem 4.34(2).”\n\n• Correction / repair: replace it by “Theorem 4.32(2).” The cited assertion is the volume–capacity estimate\n  in that theorem.\n\n\n\n\n                                                       15\n\fGuedj–Zeriahi errata                                                                     Revised 23 August 2026",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q03-01"
+    ],
+    "adjudication": "The reference must be Theorem 4.32(2), which proves the extremal boundary limit. The unofficial errata correctly changes the number but incorrectly describes the assertion as a volume–capacity estimate. The actual printed proof invokes boundary decay. Our quadratic barrier supplies that decay directly.",
+    "evidence": [
+      "GZ printed p. 124, PDF p. 149, directly inspected; Theorem 4.32(2) pp. 118–119 read",
+      "prop:relative-extremal-compact; thm:zero-capacity-pluripolar"
+    ]
   },
   {
     "id": "C4-N04",
@@ -713,38 +757,62 @@
   {
     "id": "C5-M16",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C5-M16. Theorem 5.13 proof: formula (5.3.4) has the wrong order in |a|\n• Precise location: printed p. 145, Theorem 5.13 proof; the exact printed wording or display is reproduced\n  or quoted under Issue.\n\n• Issue: After the second-order Taylor expansion, the displayed estimate reads g ◦ Ta + g ◦ T−a ≤ 2g + 2C2 |a|.\n  The first-order terms cancel, so the error should be O(|a|2 ). The next displayed formula (5.3.5) uses |a|2 ,\n  confirming the typo.\n\n• Correction / repair: Replace 2C2 |a| by 2C2 |a|2 .",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-04",
+      "Q08-07"
+    ],
+    "adjudication": "The second symmetric difference in (5.3.4) must be quadratic in |a|; the following display (5.3.5) already uses |a|^2. Original p. 145 confirms the typo. Our exact-center automorphism argument gives the squared increment directly. The continuous-density continuation now uses the quadratic symmetric error and the half-sum once in the full nonzero-density calculation; its positive Jacobian-root lower bound is corrected before the envelope comparison.",
+    "evidence": [
+      "GZ printed p. 145, PDF p. 170, directly inspected; Theorem 5.13 full proof read",
+      "lem:ball-centered-automorphisms; thm:homogeneous-ball-dirichlet",
+      "2026-10-04 complete GZ printed143–149 proof read and original145/146 images; thm:continuous-density-ball-dirichlet; research/reviews/2026-10-04-q08-dirichlet.json"
+    ]
   },
   {
     "id": "C5-M17",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C5-M17. Theorem 5.13 proof: determinant factor in the pullback estimate needs absolute values\nand derivatives\n• Precise location: printed p. 145, Theorem 5.13 proof; the exact printed wording or display is reproduced\n   or quoted under Issue.\n\n• Issue: The proof writes terms like (det Ta0 )2/n and later | det Ta (z)|2/n . The determinant of a holomorphic\n  Jacobian is complex, and the relevant Monge–Ampère scaling factor is | det Ta0 (z)|2/n .\n\n• Correction / repair: Use | det Ta0 (z)|2/n throughout. The first-order expansion should be written with the\n  real part, e.g. | det Ta0 (z)|2/n = 1 + (2(n + 1)/n) Re < z, a > +O(|a|2 ).",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-07"
+    ],
+    "adjudication": "The original p.145 displays a holomorphic Jacobian factor without the required absolute value and later omits the derivative. Change of variables requires |det_C DS|^(2/n) in the density root. The manuscript uses the positive real factor and real Taylor expansion, so the first-order terms cancel for opposite increments.",
+    "evidence": [
+      "GZ printed145/PDF170 original image inspected; complete Theorem5.13 proof read",
+      "thm:continuous-density-ball-dirichlet; research/reviews/2026-10-04-q08-dirichlet.json"
+    ]
   },
   {
     "id": "C5-M18",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C5-M18. Theorem 5.13 proof: erroneous factors 1/2 on printed p. 146\n• Precise location: printed p. 146, Theorem 5.13 proof; the exact printed wording or display is reproduced\n  or quoted under Issue.\n\n• Issue: Since Va was already defined as 1/2(U ◦ Ta + U ◦ T−a ), for va = Va + C3 |a|2 (|z|2 − 2) one should have\n  ∆H va = ∆H Va + C3 |a|2 ∆H (|z|2 ), not 1/2∆H Va + .... Similarly, the line 1/2Va − C3 |a|2 ≤ 1/2Va + ... ≤ U\n  should not contain the factor 1/2.\n\n• Correction / repair: Remove the two spurious factors 1/2. Then the conclusion becomes Va ≤ U + C3 |a|2 ,\n  hence U ◦ Ta + U ◦ T−a − 2U ≤ 2C3 |a|2 .",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-04",
+      "Q08-07"
+    ],
+    "adjudication": "V_a was defined as the half-sum already; the extra factors 1/2 on p. 146 are inconsistent with that definition. The original page confirms them. The homogeneous proof here uses its half-sum exactly once and does not use the nonzero-density calculation. The continuous-density continuation now uses the quadratic symmetric error and the half-sum once in the full nonzero-density calculation; its positive Jacobian-root lower bound is corrected before the envelope comparison.",
+    "evidence": [
+      "GZ printed pp. 144–146, PDF p. 171 directly inspected, full proof read",
+      "thm:homogeneous-ball-dirichlet",
+      "2026-10-04 complete GZ printed143–149 proof read and original145/146 images; thm:continuous-density-ball-dirichlet; research/reviews/2026-10-04-q08-dirichlet.json"
+    ]
   },
   {
     "id": "C5-M19",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C5-M19. Corollary 5.15 proof: boundary comparison line confuses boundary data and densities\n• Precise location: printed p. 149, Corollary 5.15 proof; the exact printed wording or display is reproduced\n  or quoted under Issue.\n\n• Issue: The proof writes SinceUk + ε(|z|2 − 1) = fk ≤ fj ∈ ∂B.... On ∂B, Uk equals the boundary datum\n  ϕk , not the density fk . Moreover the proof assumes ϕj increases to ϕ, so for k ≥ j the desired boundary\n  inequality would go in the wrong direction.\n\n• Correction / repair: Either approximate the boundary data with an explicit uniform error term, or insert\n  Uk + ε(|z|2 − 1) − ||ϕk − ϕj ||L∞ (∂B) ≤ Uj after applying comparison. Then let j, k → ∞ and ε → 0. The\n  monotone statement for ϕj should be removed or adjusted.\n\n\n                                                      19\n\fGuedj–Zeriahi errata                                                                   Revised 23 August 2026",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-07"
+    ],
+    "adjudication": "The original p.149 comparison confuses density f_k with boundary value phi_k; the stated increasing boundary approximations also give the wrong ordering for k>=j. Subtracting ||phi_k-phi_j||_infty repairs comparison. The manuscript proves a symmetric root-density plus boundary-error estimate and uses arbitrary uniform approximations.",
+    "evidence": [
+      "GZ printed149/PDF174 original image inspected; complete Corollary5.15 proof read",
+      "eq:ball-dirichlet-root-stability; thm:continuous-density-ball-dirichlet; research/reviews/2026-10-04-q08-dirichlet.json"
+    ]
   },
   {
     "id": "C5-M21",
@@ -758,20 +826,30 @@
   {
     "id": "C5-M22",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "rejected",
     "text": "C5-M22. Corollary 5.21 proof invokes the wrong theorem for L1 densities\n• Precise location: printed p. 152, proof of Corollary 5.21, first sentence Applying Theorem 5.17.\n\n• Issue: Corollary 5.21 assumes 0 ≤ f ∈ L1 (B), but its proof says “Applying Theorem 5.17,” which only\n  treats L∞ densities.\n\n• Correction / repair: Invoke the corrected Corollary 5.19 / Cegrell–Sadullaev subsolution theorem instead,\n  explaining why the given local subsolution u supplies the required subsolution for the ball problem with the\n  approximating boundary data.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-04"
+    ],
+    "adjudication": "The candidate says the retained Corollary 5.21 assumes an L1 density, but the actual printed p. 152 explicitly assumes f in L-infinity(B), so the reference to bounded-density Theorem 5.17 is appropriate. The candidate appears to misread the infinity superscript. Only f=0 is reconstructed here; this rejection does not audit a more general L1-density statement.",
+    "evidence": [
+      "GZ printed p. 152, PDF p. 177, directly inspected",
+      "Retained Corollary 5.21 statement read with its L-infinity hypothesis"
+    ]
   },
   {
     "id": "C5-M23",
     "source": "gz-reader-errata",
-    "status": "candidate-unchecked",
+    "status": "accepted",
     "text": "C5-M23. Corollary 5.21 proof: monotonicity of Uj is again reversed\n• Precise location: printed p. 152, Corollary 5.21 proof; the exact printed wording or display is reproduced\n  or quoted under Issue.\n\n• Issue: The proof takes ϕj decreasing to u on B̄, but then states u ≤ Uj ≤ Uj+1 . With fixed right-hand side\n  and decreasing boundary data, comparison gives the reverse inequality u ≤ Uj+1 ≤ Uj .\n\n• Correction / repair: Replace by u ≤ Uj+1 ≤ Uj ; then take the decreasing limit.",
-    "target_tasks": [],
-    "adjudication": null,
-    "evidence": []
+    "target_tasks": [
+      "Q08-04"
+    ],
+    "adjudication": "Decreasing boundary approximants give decreasing homogeneous envelopes, so the printed inequality U_j<=U_(j+1) is reversed. The canonical replacement proof uses u<=H_(j+1)<=H_j and decreasing product continuity.",
+    "evidence": [
+      "GZ printed p. 152, PDF p. 177, directly inspected; Corollary 5.21 proof pp. 152–153 read",
+      "cor:homogeneous-psh-balayage"
+    ]
   },
   {
     "id": "C5-M24",

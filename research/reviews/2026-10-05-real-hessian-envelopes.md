@@ -1,0 +1,9 @@
+# Full real Hessian envelopes — scoped two-read review
+
+Two complete direct saved proof/history/seam reads establish the penalized real Hessian bound using only the obstacle value, gradient and upper real Hessian. The calculation proves the elementary spectral derivatives, retains the projection shift on nonleading eigenvalues, derives both positive third-derivative sums and proves their absorption of the negative logarithmic term. This gives a uniform bound without an obstacle lower-Hessian bound, so the smooth finite minimum can be used directly. Weak derivative passage and chart approximation prove the single and finite C1,1 rooftop assertions.
+
+Exact Chu–Tosatti–Weinkove1611.02390v2 is independently retained/hash-registered as the119th immutable original. The complete twelve-page source, including full Section2 and Lemmas2.1–2.2, is read; original images8–9 checked. Tosatti published pp283–287 are freshly reread, with earlier complete exact-version evidence retained. The published CTW17 bibliography is distinguished from the source version actually read. No general Hessian or geodesic theorem is imported.
+
+All42 selected first integrated pages are visually checked, with the new proof and history also at full size. After the second direct read, final pagination keeps key formulas with their explanations and the general-contact transition explicitly names the metric-Laplacian theorem. All496 first/final pages are rendered and compared; every one of the31 changed final images is inspected. Integrity/house audit pass with zero errors, and the final PDF has no overfull boxes, unresolved references/citations or fatal errors. The fresh tracked-source archive rebuild in an empty directory passes with identical text on all496 pages.
+
+This is a scoped authoring-agent review. Q10-02 remains drafting for big-class ample-locus bounded fixed metric-Laplacian regularity; final attribution/overlap and two whole-prequel polishing reads remain.

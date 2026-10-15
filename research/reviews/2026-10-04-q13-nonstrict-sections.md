@@ -1,0 +1,15 @@
+# Nonstrict singular sections and line volume
+
+Eight new results and full proofs, the revised nef-section proof, all transitions, the boundary-volume seam and the new history paragraph have two complete direct saved-source reads. This is scoped authoring-agent review, not independent certification.
+
+Gaussian rescaling handles every smooth curvature signature: if any eigenvalue is zero or negative, the local Gaussian integral diverges with radius, making the normalized Bergman upper limit zero. The fixed-data polynomial bound permits reverse Fatou integration. This is a limiting inequality, not finite-degree vanishing.
+
+The universal upper formula resolves gentle analytic types, applies that bound to the signed smooth residual, and dominates its positive determinant by a semipositive curvature allowance. The decreasing perturbed multiplier models retain all ideals by strong openness and quasi-equisingularity; their masses tend to the original multiplier volume. This also proves zero-volume section limits. In big classes, a strict minorant and convex distance continuity supply the reverse inequality. With a positive bundle on X, a fixed smooth divisor controls the loss under ample twisting with a constant independent of the twist ratio; a section of L^k A^{-1} then proves bigness from positive multiplier volume. No general compact Kahler bigness theorem is assumed.
+
+Minimal potentials converge under decreasing backgrounds, so the all-mass model limit identifies boundary class volume with the minimal current's mass. The normalized section weight gives the exact minimal-ideal section identity. A curvature allowance handles every fixed twist in the upper bound; lower equality is established in big or zero-volume classes. The general positive-volume/non-big case remains open in this manuscript.
+
+The published Darvas–Xia source was independently re-fetched; its hash matches the retained original. Every proof in Section 4.1 pp. 1972–1976 read and those original pages inspected. Only the adjacent Section 4.2 opening read; its later results are not credited. The source's weak Morse and positive-mass bigness inputs are replaced respectively by an internal proof and an explicit scope restriction. The supplied line-volume proof has a missing 1/k in its section-weight assertion; the corrected weight and a projective-line counterexample are recorded.
+
+The first 425-page build passed with one wide display. All 24 selected first affected images inspected. The display was split, the nef proof shortened and references made exact; all three second changed images inspected. Final build has zero audit errors, unresolved citations/references or overfull boxes. Fresh source archive rebuilt successfully in an empty directory; page text matches the current draft.
+
+General section and line-volume source claims remain partially covered, so no new full mapping is claimed: 184 total and 29/32 good-singularity claims. Toric, general positive-mass bigness and the other earlier/later-book gates remain. No whole-book completion is claimed.

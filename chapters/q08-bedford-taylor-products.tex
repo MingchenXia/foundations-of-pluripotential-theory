@@ -1,2 +1,989 @@
-\chapter{Bedford--Taylor products}
+\chapter{Bedford--Taylor products and local capacity}
 \label{chap:q08}
+
+Let $u$ be a plurisubharmonic function on an open set $\Omega\subset\mathbb{C}^n$. By \cref{thm:psh-distribution-representative}, $\ddc u$ is a closed positive $(1,1)$-current, but in general its coefficients are only measures. Since products of measures have no general meaning, the exterior powers of $\ddc u$ cannot be formed by multiplying coefficients. For $u\in C^2(\Omega)$ the top power is the Monge--Amp\`ere measure $(\ddc u)^n=n!\,\pi^{-n}\det(u_{j\bar k})\,\mathrm{d}V_{2n}$. This fully nonlinear expression in the second derivatives of $u$ plays in pluripotential theory the role that the Laplacian plays in classical potential theory. Bedford and Taylor showed that for locally bounded $u$ these powers can be defined by induction, and so can the mixed products $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T$ with a closed positive current $T$. Indeed, since $T$ has measure coefficients and $u$ is a locally bounded Borel function, the product $uT$ makes sense, and one puts $\ddc u\wedge T=\ddc(uT)$. This chapter develops the local theory of these products, whose factors are always locally bounded; products of unbounded potentials are treated in \cref{chap:q09}.
+
+The first two sections establish the basic properties of the products: positivity, the Chern--Levine--Nirenberg mass bounds, continuity along decreasing sequences and symmetry (\cref{thm:bt-decreasing-continuity}), and the comparison principle. The products then define the Monge--Amp\`ere capacity, a complex analogue of the relative capacity of \cref{chap:p04}. Locally, pole sets of plurisubharmonic functions have outer capacity zero; plurisubharmonic functions are quasi-continuous with respect to this capacity, and the products are continuous under convergence in capacity and along increasing sequences. Solving the homogeneous Monge--Amp\`ere equation on a ball, we show that a locally bounded plurisubharmonic function is maximal if and only if its Monge--Amp\`ere measure vanishes. These are the tools with which \cref{chap:q03} characterizes pluripolar sets.
+
+The remaining sections, needed for non-pluripolar products and envelopes on compact manifolds in \cref{chap:q09,chap:q10}, solve the equation $(\ddc u)^n=\mu$ on a ball for increasingly singular measures $\mu$: continuous densities, bounded densities, and finally compactly supported measures dominated by the Monge--Amp\`ere measure of a bounded plurisubharmonic function. The main application is a lower bound for mixed products: if $(\ddc u_i)^n\geq f_i\mu$ for $1\le i\le n$, then $\ddc u_1\wedge\cdots\wedge\ddc u_n\geq(f_1\cdots f_n)^{1/n}\mu$ (\cref{thm:bounded-multifactor-common-measure}). The chapter closes with the locality of complex Hessians on contact sets and a chain rule for gradients against positive currents.
+
+Historical remarks and references for this chapter are collected in \cref{sec:history-bounded-products}.
+
+\section{Bounded potentials and recursive products}
+\label{sec:bt-construction}
+
+Throughout this section and the next, $\Omega\subset\mathbb{C}^n$ is open, $n\ge1$, and $T$ is a closed positive current on $\Omega$ of bidimension $(r,r)$, where $0\le r\le n$ is an integer; thus $T$ has bidegree $(n-r,n-r)$. Let $\beta=(\mathrm{i}/2)\sum_j\mathrm{d}z_j\wedge\mathrm{d}\bar z_j$ be the form of \eqref{eq:euclidean-hermitian-form}. For a positive current $S$ of bidimension $(s,s)$ on $\Omega$ and a compact set $K\subset\Omega$ we write
+\[
+ \|S\|_K=\int_KS\wedge\frac{\beta^s}{s!}
+\]
+for the mass of $S$ on $K$; it is $1/s!$ times the value on $K$ of the trace measure of $S$ (\cref{def:positive-current}). By \cref{thm:positive-current-order-zero}, $S$ is a current of order zero, and the total variations of its coefficient measures are bounded by a constant multiple, depending only on $n$ and $s$, of its trace measure. Since plurisubharmonic functions are upper semicontinuous, they are bounded above on compact sets; hence a plurisubharmonic function is locally bounded if and only if it is bounded below on compact sets.
+
+\begin{definition}\label{def:bedford-taylor-product}
+Suppose that $r\ge1$, and let $u$ be a locally bounded plurisubharmonic function on $\Omega$. Let $uT$ be the current of order zero obtained by multiplying the coefficient measures of $T$ by the locally bounded Borel function $u$ (\cref{sec:positive-currents}), and define
+\[
+ \ddc u\wedge T=\ddc(uT).
+\]
+For an integer $1\le q\le r$ and locally bounded plurisubharmonic functions $u_1,\ldots,u_q$ on $\Omega$, define recursively
+\[
+ \ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T
+ =\ddc\bigl(u_1\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge T\bigr).
+\]
+Here $\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge T$ is a closed positive current, hence of order zero, by \cref{prop:bt-positive-recursion} below applied to $q-1$ factors; so its product with $u_1$ is defined as before. The product with no factors is $T$. When $T=1$ (so that $r=n$), $q=n$ and $u_1=\cdots=u_n=u$, the resulting positive current of bidegree $(n,n)$ is a positive measure, the \emph{Monge--Amp\`ere measure} $(\ddc u)^n$ of $u$.
+\end{definition}
+\index{Bedford--Taylor product}\index{Monge--Amp\`ere measure!locally bounded potentials}
+
+\begin{proposition}\label{prop:bt-positive-recursion}
+Every product $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T$ of \cref{def:bedford-taylor-product} is a closed positive current, and it has the following properties.
+\begin{enumerate}
+\item If $u_1,\ldots,u_q$ are smooth, it coincides with the exterior product of the smooth forms $\ddc u_j$ with $T$.
+\item The construction is local: if $u_j=v_j$ for every $j$ and $T=T'$ on an open set $U\subset\Omega$, then the two products agree on $U$.
+\item It is additive and positively homogeneous in each $u_j$ and in $T$, whenever the summands are locally bounded plurisubharmonic functions, respectively closed positive currents of bidimension $(r,r)$, and it does not change if a real constant is added to some $u_j$.
+\item If $\gamma$ is a smooth closed form of bidegree $(s,s)$, $q\le r-s$, such that $T\wedge\gamma$ is positive (for instance, $\gamma$ strongly positive), then
+\[
+ \ddc u_1\wedge\cdots\wedge\ddc u_q\wedge(T\wedge\gamma)=(\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T)\wedge\gamma.
+\]
+\item It is invariant under biholomorphic maps: if $F\colon\Omega'\to\Omega$ is biholomorphic and $F^*$ denotes the pullback of currents of \cref{prop:submersion-current-pullback}, then
+\[
+ F^*\bigl(\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T\bigr)=\ddc(u_1\circ F)\wedge\cdots\wedge\ddc(u_q\circ F)\wedge F^*T.
+\]
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+We first record two consequences of the Leibniz rule of \cref{sec:positive-currents}. Let $R$ be a current of even degree on an open subset of $\mathbb C^n$ such that $\partial R=\bar\partial R=0$; this holds if $R$ is closed and of pure bidegree. If $f$ is a smooth function, then $\mathrm d(fR)=\mathrm df\wedge R$ and $\mathrm d^{\mathrm c}(fR)=\mathrm d^{\mathrm c}f\wedge R$, and applying $\mathrm d$ to the latter gives
+\begin{equation}\label{eq:bt-smooth-factor-leibniz}
+ \ddc(fR)=\ddc f\wedge R.
+\end{equation}
+If $\gamma$ is a smooth closed form of pure bidegree, then $\partial\gamma$ and $\bar\partial\gamma$ are the components of $\mathrm d\gamma=0$ of two different bidegrees, so they vanish, and the Leibniz rule gives $\ddc(R'\wedge\gamma)=\ddc R'\wedge\gamma$ for every current $R'$.
+
+We now prove positivity and closedness, first for a single factor $u$. By \cref{prop:smooth-psh-criterion}, the regularizations $u_\varepsilon=u*\rho_\varepsilon$ by the radial mollifiers of \cref{sec:convolution} are smooth plurisubharmonic functions on $\Omega_\varepsilon$ with positive semidefinite complex Hessians, and they decrease to $u$ as $\varepsilon\downarrow0$. On each compact set the $u_\varepsilon$ are bounded uniformly in $\varepsilon$, because $u\le u_\varepsilon\le u_{\varepsilon_0}$ for $\varepsilon\le\varepsilon_0$ and $u$ is locally bounded. Dominated convergence with respect to the total variations of the coefficient measures of $T$ therefore gives $u_\varepsilon T\to uT$ weakly. By \eqref{eq:bt-smooth-factor-leibniz}, $\ddc(u_\varepsilon T)=\ddc u_\varepsilon\wedge T$. Since weak and strong positivity agree in bidegree $(1,1)$ (\cref{sec:positive-currents}), the positive smooth form $\ddc u_\varepsilon$ is strongly positive, so its product with the positive current $T$ is positive; it is also closed. As $\ddc$ is continuous for weak convergence, $\ddc u_\varepsilon\wedge T\to\ddc(uT)$ weakly, and positivity and closedness pass to the limit. Thus $\ddc u\wedge T$ is positive and closed. Applying this with $T$ replaced by the closed positive current $\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge T$, we obtain the first assertion by induction on $q$.
+
+(1) If the $u_j$ are smooth, \eqref{eq:bt-smooth-factor-leibniz} shows at each step of the recursion that the product is the exterior product of smooth forms with $T$.
+
+(2), (3) The definition uses only multiplication of coefficient measures by functions and the operator $\ddc$; both operations are local and linear, and no product of two measures occurs. This gives locality, and additivity and positive homogeneity in $u_1$ and in $T$; for the other factors they follow by induction on $q$, since multiplication by $u_1$ and $\ddc$ are linear. If $c$ is a constant and $R=\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge T$, then $\ddc((u_1+c)R)=\ddc(u_1R)+c\,\ddc R=\ddc(u_1R)$, since $R$ is closed; for the other factors the invariance under constants follows again by induction.
+
+(4) The product $T\wedge\gamma$ is closed, and multiplication of coefficient measures by $u_1$ commutes with the exterior product by $\gamma$. By the identity $\ddc(R'\wedge\gamma)=\ddc R'\wedge\gamma$ and induction on $q$, every step of the recursion commutes with $\wedge\gamma$.
+
+(5) The pullback $F^*T$ is closed and positive and commutes with $\partial$ and $\bar\partial$, hence with $\ddc$ (\cref{prop:submersion-current-pullback}), and the functions $u_j\circ F$ are locally bounded and plurisubharmonic (\cref{prop:psh-holomorphic-pullback}). We claim that $F^*(uT)=(u\circ F)F^*T$ for a locally bounded plurisubharmonic $u$. For a smooth function $f$ we have $F^*(fT)=(f\circ F)F^*T$: both sides are weakly continuous in $T$, they agree when $T$ is smooth, and on every relatively compact open subset of $\Omega$ the current $T$ is the weak limit of its smooth regularizations (discussion following \cref{thm:positive-current-order-zero}). Applying this to the regularizations $u_\varepsilon$ on relatively compact open subsets, and letting $\varepsilon\downarrow0$, we obtain the claim: $u_\varepsilon T\to uT$ as shown above, so $F^*(u_\varepsilon T)\to F^*(uT)$, while $(u_\varepsilon\circ F)F^*T\to(u\circ F)F^*T$ by dominated convergence with respect to the coefficient measures of the positive current $F^*T$. Consequently every step of the recursion commutes with $F^*$, which proves~(5). In particular, by~(2) and~(5), products of locally bounded plurisubharmonic functions with closed positive currents on a complex manifold can be computed in holomorphic charts: the products defined in two charts agree on their overlap.
+\end{proof}
+\index{Bedford--Taylor product!positivity and locality}
+
+Let $u\in C^2(\Omega)$ be real, and write $a_{jk}=u_{j\bar k}$, so that $\ddc u=\frac{\mathrm i}{2\pi}\sum_{j,k}a_{jk}\,\mathrm dz_j\wedge\mathrm d\bar z_k$ by \eqref{eq:complex-hessian-normalization}. The $2$-forms $\alpha_{jk}=\mathrm dz_j\wedge\mathrm d\bar z_k$ commute with each other, and $\alpha_{j_1k_1}\wedge\cdots\wedge\alpha_{j_nk_n}=0$ unless $(j_1,\ldots,j_n)$ and $(k_1,\ldots,k_n)$ are permutations of $(1,\ldots,n)$. If $j_i=\sigma(i)$ and $k_i=\tau(i)$ for permutations $\sigma,\tau$, we may reorder the commuting factors so that the first indices increase; with $\kappa=\tau\circ\sigma^{-1}$ we get $\mathrm dz_1\wedge\mathrm d\bar z_{\kappa(1)}\wedge\cdots\wedge\mathrm dz_n\wedge\mathrm d\bar z_{\kappa(n)}$, and permuting the $1$-forms $\mathrm d\bar z_{\kappa(i)}$ among themselves gives the sign $\operatorname{sgn}\kappa$. Hence
+\[
+ \Bigl(\sum_{j,k}a_{jk}\alpha_{jk}\Bigr)^n
+ =\sum_{\sigma,\tau}\prod_{i=1}^na_{\sigma(i)\tau(i)}\,\operatorname{sgn}(\tau\sigma^{-1})\,\bigwedge_{j=1}^n\alpha_{jj}
+ =n!\det(a_{jk})\bigwedge_{j=1}^n\alpha_{jj},
+\]
+because for each of the $n!$ permutations $\sigma$ the sum over $\tau$ is $\sum_\kappa\operatorname{sgn}\kappa\prod_ja_{j\kappa(j)}=\det(a_{jk})$. Since $\mathrm{i}\,\mathrm{d}z_j\wedge\mathrm{d}\bar z_j=2\,\mathrm{d}x_j\wedge\mathrm{d}y_j$, we have $\bigwedge_j(\mathrm i\alpha_{jj})=2^n\mathrm dV_{2n}$, and therefore
+\begin{equation}\label{eq:bt-determinant-normalization}
+ (\ddc u)^n=\Bigl(\frac{\mathrm i}{2\pi}\Bigr)^nn!\det(u_{j\bar k})\bigwedge_{j=1}^n\alpha_{jj}=\frac{n!}{\pi^n}\det(u_{j\bar k})\,\mathrm{d}V_{2n}.
+\end{equation}
+Here $(\ddc u)^n$ is the exterior power of the continuous form $\ddc u$; when $u$ is smooth and plurisubharmonic, it is the Monge--Amp\`ere measure of $u$, by \cref{prop:bt-positive-recursion}(1), and the same holds for plurisubharmonic $u\in C^2(\Omega)$ (see the remark after \cref{prop:bt-uniform-continuity}). In particular $\ddc|z|^2=\frac{\mathrm i}{2\pi}\sum_j\mathrm dz_j\wedge\mathrm d\bar z_j=\beta/\pi$ and $(\ddc|z|^2)^n=n!\pi^{-n}\,\mathrm dV_{2n}$. (The formula also holds for $n=0$: the empty product is the constant $1$, and both sides are the unit mass $\mathrm{d}V_0$ on the point $\mathbb C^0$.)
+\index{Monge--Amp\`ere measure!determinant formula}
+
+\begin{theorem}[Chern--Levine--Nirenberg]\label{thm:cln-bounded}
+Let $K,L\subset\Omega$ be compact sets with $K\subset\Int L$, and let $0\le q\le r$ be an integer. There is a constant $C_{K,L,q}$, depending only on $K$, $L$, $n$ and $q$, such that
+\[
+ \|\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T\|_K
+ \le C_{K,L,q}\|T\|_L\prod_{j=1}^q\|u_j\|_{L^\infty(L)}
+\]
+for every closed positive current $T$ of bidimension $(r,r)$ on $\Omega$ and all locally bounded plurisubharmonic functions $u_1,\ldots,u_q$ on $\Omega$. Here $\|u_j\|_{L^\infty(L)}=\sup_L|u_j|$ is the pointwise supremum.
+\end{theorem}
+\begin{proof}
+For $q=0$ the estimate holds with constant $1$, since $K\subset L$. Let $q=1$ and write $u=u_1$. By \cref{lem:mollifier-density} there is a smooth function $0\le\chi\le1$ with compact support in $\Int L$ which equals $1$ on a neighborhood of $K$; it depends only on $K$ and $L$. Since $\ddc u\wedge T\wedge\beta^{r-1}$ is a positive measure, $\beta$ is closed, and $(\ddc S)(\chi)=S(\ddc\chi)$ for currents $S$ of bidimension $(1,1)$, we have
+\[
+ \begin{aligned}
+ \int_K\ddc u\wedge T\wedge\beta^{r-1}
+ &\le\int\chi\,\ddc(uT)\wedge\beta^{r-1}
+ =\bigl(\ddc(uT\wedge\beta^{r-1})\bigr)(\chi)\\
+ &=\int uT\wedge\ddc\chi\wedge\beta^{r-1}
+ \le C\|u\|_{L^\infty(L)}\|T\|_L.
+ \end{aligned}
+\]
+The form $\ddc\chi\wedge\beta^{r-1}$ is smooth with support in $L$, though in general not positive; its coefficients are bounded by a constant depending only on $\chi$ and $n$. The last inequality therefore holds because the total variations of the coefficient measures of $T$ on $L$ are bounded by a constant multiple of $\|T\|_L$, the multiple depending only on $n$ and $r$ (\cref{thm:positive-current-order-zero}). Dividing by $(r-1)!$ and taking the largest of the constants obtained for $r=1,\ldots,n$, we obtain the case $q=1$ with a constant depending only on $K$, $L$ and $n$.
+
+For $q>1$, let $\delta>0$ be the distance from $K$ to $\mathbb C^n\setminus\Int L$ (if $K=\varnothing$ there is nothing to prove), and put $L_j=\{z:\operatorname{dist}(z,K)\le j\delta/(q+1)\}$ for $0\le j<q$ and $L_q=L$. These are compact sets, depending only on $K$, $L$ and $q$, with $K=L_0$ and $L_{j-1}\subset\Int L_j$ for $1\le j\le q$. By \cref{prop:bt-positive-recursion}, the currents $S_j=\ddc u_{j+1}\wedge\cdots\wedge\ddc u_q\wedge T$, $0\le j\le q$, are positive and closed, and $S_{j-1}=\ddc u_j\wedge S_j$. The case $q=1$, applied to $S_j$ and the pair $L_{j-1}\subset\Int L_j$, gives $\|S_{j-1}\|_{L_{j-1}}\le C_j\|u_j\|_{L^\infty(L)}\|S_j\|_{L_j}$ for $j=1,\ldots,q$, since $\|u_j\|_{L^\infty(L_j)}\le\|u_j\|_{L^\infty(L)}$. Combining these $q$ inequalities, we obtain the estimate with $C_{K,L,q}=C_1\cdots C_q$.
+\end{proof}
+\index{Chern--Levine--Nirenberg inequality}
+
+For continuous potentials, uniform convergence is enough to pass to the limit in the products.
+
+\begin{proposition}\label{prop:bt-uniform-continuity}
+Let $T_k\to T$ weakly, where $T_k$ and $T$ are closed positive currents on $\Omega$ of bidimension $(r,r)$, and let $0\le q\le r$. For $1\le j\le q$, let $(u_{j,k})_{k\ge1}$ be locally bounded plurisubharmonic functions on $\Omega$ converging locally uniformly, as $k\to\infty$, to a continuous function $u_j$, and let $(u_{0,k})_{k\ge1}$ be locally bounded Borel functions on $\Omega$ converging locally uniformly to a continuous function $u_0$. Then $u_1,\ldots,u_q$ are plurisubharmonic, and
+\[
+ \begin{aligned}
+ \ddc u_{1,k}\wedge\cdots\wedge\ddc u_{q,k}\wedge T_k
+ &\longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T,\\
+ u_{0,k}\ddc u_{1,k}\wedge\cdots\wedge\ddc u_{q,k}\wedge T_k
+ &\longrightarrow u_0\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T
+ \end{aligned}
+\]
+weakly as $k\to\infty$.
+\end{proposition}
+\begin{proof}
+We first show that $u_j$ is plurisubharmonic for $1\le j\le q$. Since plurisubharmonicity is a local property, it suffices to prove this on every ball $W\Subset\Omega$. Choose $k_1<k_2<\cdots$ such that $|u_{j,k_m}-u_j|\le2^{-m}$ on $W$, and put $w_m=u_{j,k_m}+3\cdot2^{-m}$. These functions are plurisubharmonic on $W$, and they decrease, because
+\[
+ w_{m+1}\le u_j+2^{-m-1}+3\cdot2^{-m-1}=u_j+2^{1-m}\le u_{j,k_m}+2^{-m}+2^{1-m}=w_m.
+\]
+Their limit $u_j$ is finite, so it is plurisubharmonic on $W$ by \cref{thm:psh-decreasing-nets}.
+
+Since the $u_{j,k}$ converge locally uniformly to continuous functions, they are bounded on each compact set uniformly in $k$. Since $T_k\to T$ weakly, the masses $\|T_k\|_L$ are bounded for each compact set $L$: if $\chi\in C^\infty_c(\Omega)$ satisfies $0\le\chi\le1$ and $\chi=1$ on $L$, then $\|T_k\|_L\le T_k(\chi\beta^r)/r!$, and the right-hand side converges. By \cref{thm:cln-bounded}, the masses of all the products considered below are therefore bounded on compact sets uniformly in $k$, and so are the total variations of their coefficient measures (\cref{thm:positive-current-order-zero}).
+
+We claim: if $S_k\to S$ weakly, where $S_k$ and $S$ are closed positive currents whose masses are bounded on compact sets uniformly in $k$, and if locally bounded Borel functions $v_k$ converge locally uniformly to a continuous function $v$, then $v_kS_k\to vS$ weakly. Applying this to $S_k=\ddc u_{2,k}\wedge\cdots\wedge\ddc u_{q,k}\wedge T_k$ and $v_k=u_{1,k}$, and then $\ddc$, which is weakly continuous, proves the first assertion by induction on $q$; the case $q=0$ is the hypothesis. The second assertion is the claim with $v_k=u_{0,k}$.
+
+To prove the claim, fix a test form $\varphi$ with compact support $K$ and $\varepsilon>0$. By \cref{lem:mollifier-density}(1), applied to $v$ on a relatively compact open neighborhood of $K$, there is a smooth function $v_\varepsilon$ on a neighborhood of $K$ with $|v-v_\varepsilon|\le\varepsilon$ on $K$. Write
+\[
+ v_kS_k-vS=(v_k-v)S_k+(v-v_\varepsilon)S_k
+             +v_\varepsilon(S_k-S)+(v_\varepsilon-v)S.
+\]
+Evaluated on $\varphi$, a term $fS_k$ with a bounded Borel function $f$ is at most $C_\varphi\sup_K|f|$ times the total variation on $K$ of the coefficient measures of $S_k$, where $C_\varphi$ bounds the coefficients of $\varphi$; the same holds for $S$. Hence the first term tends to zero, since $v_k\to v$ uniformly on $K$; the second and fourth terms are bounded by a constant times $\varepsilon$, uniformly in $k$; and the third tends to zero as $k\to\infty$, since $v_\varepsilon\varphi$ is a test form. Letting first $k\to\infty$ and then $\varepsilon\downarrow0$ proves the claim.
+\end{proof}
+\index{Bedford--Taylor product!uniformly convergent potentials}
+
+If $u\in C^2(\Omega)$ is plurisubharmonic, its Monge--Amp\`ere measure is given by \eqref{eq:bt-determinant-normalization}. Indeed, the regularizations $u_\varepsilon$ are smooth and plurisubharmonic on $\Omega_\varepsilon$ (\cref{prop:smooth-psh-criterion}) and converge to $u$ locally uniformly (\cref{lem:mollifier-density}(1)), and their second derivatives are the regularizations of the continuous second derivatives of $u$ (\cref{prop:distribution-smoothing}), so they also converge locally uniformly. Hence $\det((u_\varepsilon)_{j\bar k})\to\det(u_{j\bar k})$ locally uniformly. Applying \eqref{eq:bt-determinant-normalization} to $u_\varepsilon$ and \cref{prop:bt-uniform-continuity} on each $\Omega_{\varepsilon_0}$, along a sequence $\varepsilon_k\downarrow0$ with $\varepsilon_k<\varepsilon_0$, we obtain the formula for $u$ on every $\Omega_{\varepsilon_0}$, hence on $\Omega$.
+
+\section{Decreasing continuity and symmetry}
+\label{sec:bt-monotone}
+
+A bounded plurisubharmonic function need not be continuous (see the example after \cref{prop:bt-maximum-locality}), so in general it is not a uniform limit of continuous functions; it is, however, the limit of the decreasing sequence of its smooth regularizations. The main result of this section, \cref{thm:bt-decreasing-continuity}, states that the products are continuous along decreasing sequences and symmetric in their factors. Upper semicontinuity bounds every weak limit of weighted products from above (\cref{lem:usc-weight-weak-limit}). To prove equality, we first modify all functions so that they coincide with one fixed smooth function near the boundary of a ball, and then compare total masses by an integration by parts (\cref{lem:bt-common-collar}). As applications, we prove that the products are local on sets of the form $\{u>v\}$ (\cref{prop:bt-maximum-locality}) and derive the comparison principle (\cref{thm:bt-comparison}).
+
+We use the real operator $\mathrm{d}^{\mathrm c}$ of \eqref{eq:dc-operator}, for which $\mathrm{d}\mathrm{d}^{\mathrm c}=\ddc$. If $a$ and $b$ are smooth real functions, the $(1,1)$-part of $\mathrm{d}a\wedge\mathrm{d}^{\mathrm c}b$ is $\frac{\mathrm{i}}{4\pi}(\partial a\wedge\bar\partial b+\partial b\wedge\bar\partial a)$, which is symmetric in $a$ and $b$. Only this part survives multiplication by a current $R$ of bidegree $(n-1,n-1)$, so
+\[
+ \mathrm{d}a\wedge\mathrm{d}^{\mathrm c}b\wedge R=\mathrm{d}b\wedge\mathrm{d}^{\mathrm c}a\wedge R.
+\]
+Moreover, the $(2,0)$- and $(0,2)$-parts of $\mathrm{d}a\wedge\mathrm{d}^{\mathrm c}a$ are multiples of $\partial a\wedge\partial a=0$ and $\bar\partial a\wedge\bar\partial a=0$, so
+\begin{equation}\label{eq:bt-gradient-form}
+ \mathrm{d}a\wedge\mathrm{d}^{\mathrm c}a=\frac{\mathrm{i}}{2\pi}\partial a\wedge\bar\partial a;
+\end{equation}
+this is a positive $(1,1)$-form, because $\bar\partial a=\overline{\partial a}$ for real $a$.
+
+If $B$ is a ball, a \emph{collar} of $\partial B$ is an open neighborhood of the sphere $\partial B$.
+\index{collar of a sphere}
+
+Several proofs below make bounded plurisubharmonic functions coincide on a common collar as follows. Let $B=B(z_0,s)$, let $U$ be an open neighborhood of $\overline B$, put $\psi=|z-z_0|^2-s^2$, and let $N\ge1$ and $\delta>0$. If $v$ is plurisubharmonic on $U$ and $-N\le v\le-1$ there, then the function
+\begin{equation}\label{eq:bt-collar-modification}
+ \max\{v,A\psi\},\qquad A=N/\delta,
+\end{equation}
+is plurisubharmonic on $U$ (\cref{prop:psh-max-gluing}). It equals $v$ on $\{\psi<-\delta\}$, where $A\psi<-N$, and it equals $A\psi$ on the collar $\{z\in U:\psi(z)>-1/A\}$ of $\partial B$, where $A\psi>-1$; on $B$, where $\psi<0$, it takes values in $[-N,0)$. Since $t\mapsto\max\{t,A\psi(z)\}$ is increasing and continuous, the modification preserves inequalities between functions, monotone sequences, and convergence at each point.
+
+\begin{lemma}\label{lem:bt-common-collar}
+Let $B$ be a ball and $R$ a closed positive current of bidimension $(1,1)$ on a neighborhood of $\overline B$. Let $a$ be a smooth function and $b$ a bounded plurisubharmonic function on a neighborhood of $\overline B$, and suppose that $a=b$ on a collar of $\partial B$. Then
+\[
+ \int_B a\,\ddc b\wedge R=\int_B b\,\ddc a\wedge R.
+\]
+In particular one may take $R=S\wedge\gamma$, where $S$ is a closed positive current, $\gamma$ is a smooth closed form of pure bidegree, and $S\wedge\gamma$ is positive of bidimension $(1,1)$.
+\end{lemma}
+\begin{proof}
+Both integrals are finite, since $a$ and $b$ are bounded on $B$ and $\ddc a\wedge R$ and $\ddc b\wedge R$ are measures of finite total variation near $\overline B$. The function $h=b-a$ is bounded and Borel, and it vanishes on a collar $V$ of $\partial B$; hence its restriction to $B$ vanishes outside the compact set $K_0=\overline B\setminus V\subset B$. On $B$ we have $bR=aR+hR$, and since $R$ is closed, $\ddc(aR)=\ddc a\wedge R$ by \eqref{eq:bt-smooth-factor-leibniz}; thus
+\[
+ \ddc b\wedge R=\ddc a\wedge R+\ddc(hR)\quad\text{on }B,
+\]
+where $\ddc(hR)$ is a signed measure with support in $K_0$. Choose $\chi\in C^\infty_c(B)$ equal to $1$ on a neighborhood of $K_0$. By the definition of $\ddc$ on currents,
+\[
+ \int_Ba\,\ddc(hR)=\int\chi a\,\ddc(hR)=\int h\,\ddc(\chi a)\wedge R=\int_Bh\,\ddc a\wedge R.
+\]
+Consequently
+\[
+ \int_Ba\,\ddc b\wedge R=\int_Ba\,\ddc a\wedge R+\int_Bh\,\ddc a\wedge R=\int_Bb\,\ddc a\wedge R.
+\]
+The last assertion holds because $S\wedge\gamma$ is then closed, by the Leibniz rule, and positive of bidimension $(1,1)$; moreover $\ddc b\wedge(S\wedge\gamma)=(\ddc b\wedge S)\wedge\gamma$ by \cref{prop:bt-positive-recursion}(4).
+\end{proof}
+\index{integration by parts!bounded potentials on a ball}
+
+\begin{lemma}\label{lem:usc-weight-weak-limit}
+Let $\mu_j\to\mu$ weakly, where $\mu_j$ and $\mu$ are positive Radon measures on $\Omega$, and let $f_j$ be real-valued upper semicontinuous functions on $\Omega$ which decrease to a locally bounded function $f$. If $f_{j_k}\mu_{j_k}\to\nu$ weakly along a subsequence, then $\nu\le f\mu$.
+\end{lemma}
+\begin{proof}
+Let $\chi\ge0$ be a continuous function with compact support, let $N$ be a compact neighborhood of $\Supp\chi$, and put $W=\Int N$. The function $f_1$ is upper semicontinuous, hence bounded above on $N$, and $f$ is bounded below on $N$; since $f\le f_j\le f_1$, there is $c\ge0$ with $|f_j|\le c$ on $N$ for all $j$. The positive Radon measures $(f_{j_k}+c)\mu_{j_k}$ on $W$ converge weakly to $\nu+c\mu$. By \cref{prop:positive-distribution-convergence}, $\nu+c\mu$ is a positive Radon measure on $W$, and the convergence is vague. Since also $\mu_j\to\mu$ vaguely, we obtain $\int\psi f_{j_k}\,\mathrm d\mu_{j_k}\to\int\psi\,\mathrm d\nu$ for every continuous function $\psi$ with compact support in $W$.
+
+Fix $l$. By \cref{lem:usc-majorants}, there are bounded continuous functions $g_m$ on $N$ decreasing to $f_l$. For $j_k\ge l$ we have $f_{j_k}\le f_l\le g_m$ on $N$, so
+\[
+ \int\chi f_{j_k}\,\mathrm{d}\mu_{j_k}\le\int\chi g_m\,\mathrm{d}\mu_{j_k}.
+\]
+Letting $k\to\infty$ gives $\int\chi\,\mathrm{d}\nu\le\int\chi g_m\,\mathrm{d}\mu$. Since $-c\le f_l\le g_m\le g_1$ on $N$ and $\mu(N)<\infty$, bounded convergence as $m\to\infty$ gives $\int\chi\,\mathrm{d}\nu\le\int\chi f_l\,\mathrm{d}\mu$, and bounded convergence as $l\to\infty$ gives $\int\chi\,\mathrm{d}\nu\le\int\chi f\,\mathrm{d}\mu$. Since $\chi\ge0$ was arbitrary, $\nu\le f\mu$.
+\end{proof}
+
+To smooth the functions \eqref{eq:bt-collar-modification} without changing them on a collar, we replace the maximum by a smooth convex function of two variables.
+
+\begin{lemma}\label{lem:smooth-maximum}
+There are smooth convex functions $M_\varepsilon\colon\mathbb{R}^2\to\mathbb{R}$, $\varepsilon>0$, increasing in each variable, such that $M_\varepsilon\downarrow\max$ as $\varepsilon\downarrow0$, $\max\le M_\varepsilon\le\max+\varepsilon$, and $M_\varepsilon(s,t)=\max\{s,t\}$ when $|s-t|>2\varepsilon$. If $a$ and $b$ are smooth plurisubharmonic functions, so is $M_\varepsilon(a,b)$.
+\end{lemma}
+\begin{proof}
+Let $\rho_\varepsilon$ be the mollifier of \cref{sec:convolution} on $\mathbb{R}^2$; it is a nonnegative even radial probability density supported in the disc of radius $\varepsilon$. Put $M_\varepsilon=\max*\rho_\varepsilon$, that is, $M_\varepsilon(x)=\int\max(x-y)\rho_\varepsilon(y)\,\mathrm dy$, where $\max(s,t)=\max\{s,t\}$; it is smooth, since $\rho_\varepsilon$ is (\cref{sec:convolution}). Since $\rho_\varepsilon\ge0$ has integral $1$, and $x\mapsto\max(x-y)$ is convex and increasing in each variable for each $y$, the function $M_\varepsilon$ is convex and increasing in each variable. Since $\rho_\varepsilon$ is even, $\int y_i\rho_\varepsilon(y)\,\mathrm dy=0$ for $i=1,2$; integrating $\max(s-y_1,t-y_2)\ge s-y_1$ and $\max(s-y_1,t-y_2)\ge t-y_2$ against $\rho_\varepsilon$ therefore gives $M_\varepsilon(s,t)\ge s$ and $M_\varepsilon(s,t)\ge t$, that is, $M_\varepsilon\ge\max$. Since $|\max(x-y)-\max(x)|\le|y|\le\varepsilon$ on the support of $\rho_\varepsilon$, we have $M_\varepsilon\le\max+\varepsilon$. If $s-t>2\varepsilon$ and $|y|\le\varepsilon$, then $(s-y_1)-(t-y_2)\ge s-t-2\varepsilon>0$, so $M_\varepsilon(s,t)=\int(s-y_1)\rho_\varepsilon(y)\,\mathrm dy=s$; similarly $M_\varepsilon(s,t)=t$ if $t-s>2\varepsilon$.
+
+It remains to show that $M_\varepsilon$ increases with $\varepsilon$. For fixed $x\in\mathbb R^2$, the function $g(\varepsilon)=\int\max(x-\varepsilon y)\rho_1(y)\,\mathrm{d}y$, defined for all real $\varepsilon$, equals $M_\varepsilon(x)$ for $\varepsilon>0$ and $\max(x)$ for $\varepsilon=0$; it is convex, since $\varepsilon\mapsto\max(x-\varepsilon y)$ is convex, and even, since $\rho_1$ is even. For $0\le\varepsilon_1<\varepsilon_2$, writing $\varepsilon_1=\lambda(-\varepsilon_2)+(1-\lambda)\varepsilon_2$ with $\lambda\in(0,1]$, we get $g(\varepsilon_1)\le\lambda g(-\varepsilon_2)+(1-\lambda)g(\varepsilon_2)=g(\varepsilon_2)$. This proves the monotonicity, and together with $\max\le M_\varepsilon\le\max+\varepsilon$ this gives $M_\varepsilon\downarrow\max$ as $\varepsilon\downarrow0$.
+
+Finally, let $a$ and $b$ be smooth and plurisubharmonic, and write $(a_1,a_2)=(a,b)$. Denoting by $\partial_kM_\varepsilon$ and $\partial_k\partial_lM_\varepsilon$ the partial derivatives evaluated at $(a,b)$, the chain rule gives
+\[
+ \mathrm{i}\partial\bar\partial M_\varepsilon(a,b)
+ =\sum_{k=1}^2\partial_kM_\varepsilon\,\mathrm{i}\partial\bar\partial a_k
+ +\mathrm{i}\sum_{k,l=1}^2\partial_k\partial_lM_\varepsilon\,\partial a_k\wedge\bar\partial a_l.
+\]
+The first sum is positive because $\partial_kM_\varepsilon\ge0$, $M_\varepsilon$ being increasing in each variable, and the forms $\mathrm i\partial\bar\partial a_k$ are positive, since the smooth plurisubharmonic functions $a_k$ have positive semidefinite complex Hessians (\cref{prop:smooth-psh-criterion}). For the second, note that the real Hessian $H=(\partial_k\partial_lM_\varepsilon)$ is positive semidefinite: for $v\in\mathbb R^2$, the function $t\mapsto M_\varepsilon(x+tv)$ is convex, so its second derivative $v^tHv$ is nonnegative. Writing $H=\sum_m\lambda_mv_mv_m^t$ with $\lambda_m\ge0$ and real orthonormal vectors $v_m$, and putting $\theta_m=\sum_k(v_m)_k\partial a_k$, we get $\mathrm i\sum_{k,l}\partial_k\partial_lM_\varepsilon\,\partial a_k\wedge\bar\partial a_l=\sum_m\lambda_m\mathrm i\theta_m\wedge\bar\theta_m$, because $\bar\partial a_l=\overline{\partial a_l}$ for real $a_l$; this is a positive $(1,1)$-form. Hence the complex Hessian of $M_\varepsilon(a,b)$ is positive semidefinite, and $M_\varepsilon(a,b)$ is plurisubharmonic by \cref{prop:smooth-psh-criterion}.
+\end{proof}
+\index{regularized maximum}
+
+We also note that weak convergence of currents is a local property, so that it can be proved near each point.
+
+\begin{lemma}\label{lem:weak-convergence-local}
+Let $S_j$, $j\ge1$, and $S$ be currents of the same degree on an open set $\Omega\subset\mathbb C^n$. If every point of $\Omega$ has an open neighborhood $U\subset\Omega$ such that $S_j\to S$ weakly on $U$, then $S_j\to S$ weakly on $\Omega$.
+\end{lemma}
+\begin{proof}
+Let $\varphi$ be a test form on $\Omega$ of complementary degree. Its support is compact, so it is covered by finitely many open sets $U_1,\ldots,U_m$ as in the hypothesis. By \cref{lem:smooth-partition-unity}, there are smooth functions $\eta_1,\ldots,\eta_m$ with compact supports in $U_1,\ldots,U_m$, respectively, such that $\sum_i\eta_i=1$ on a neighborhood of $\Supp\varphi$. Then $\varphi=\sum_i\eta_i\varphi$, where $\eta_i\varphi$ is a test form supported in $U_i$, and therefore $S_j(\varphi)=\sum_iS_j(\eta_i\varphi)\to\sum_iS(\eta_i\varphi)=S(\varphi)$.
+\end{proof}
+\index{current!weak convergence!locality}
+
+\begin{theorem}[Bedford--Taylor]\label{thm:bt-decreasing-continuity}
+Let $T$ be a closed positive current on $\Omega$ of bidimension $(r,r)$, and let $0\le q\le r$ be an integer. For $0\le l\le q$, let $(u_{l,j})_{j\ge1}$ be a decreasing sequence of locally bounded plurisubharmonic functions on $\Omega$ whose limit $u_l$ is locally bounded (and therefore plurisubharmonic, by \cref{thm:psh-decreasing-nets}). Then
+\[
+ \begin{aligned}
+ \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}\wedge T
+ &\longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T,\\
+ u_{0,j}\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}\wedge T
+ &\longrightarrow u_0\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T
+ \end{aligned}
+\]
+weakly as $j\to\infty$. Moreover, the product $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T$ of locally bounded plurisubharmonic functions is symmetric in $u_1,\ldots,u_q$.
+\end{theorem}
+\begin{proof}
+We argue by induction on $q$. Step 1 derives the unweighted assertion and the symmetry from the weighted assertion for fewer factors. The other steps prove the weighted assertion on a ball, after a modification near its boundary: every weak limit of the weighted products is at most the expected limit (Step 4), and repeated integration by parts gives the reverse inequality for the total masses (Step 5).
+
+\emph{Step 1: the induction.} We prove the second (weighted) assertion by induction on $q$, simultaneously for all open sets $\Omega\subset\mathbb C^n$, all $r\ge q$, all closed positive currents $T$ of bidimension $(r,r)$ on $\Omega$ and all decreasing sequences as in the statement. For $q=0$ it states that $u_{0,j}T\to u_0T$; this follows from dominated convergence with respect to the total variations of the coefficient measures of $T$, since $u_0\le u_{0,j}\le u_{0,1}$. Let $q\ge1$ and assume the weighted assertion for fewer than $q$ factors. Applying it to the $q-1$ factors $u_{2,j},\ldots,u_{q,j}$ with the weight $u_{1,j}$, and then applying the weakly continuous operator $\ddc$, we obtain the unweighted assertion for $q$ factors.
+
+Next we prove symmetry for $q$ factors. Let $u_1,\ldots,u_q$ be locally bounded and plurisubharmonic, let $\varepsilon>0$, and choose $\varepsilon_k\downarrow0$ with $\varepsilon_k<\varepsilon$. The regularizations $u_l*\rho_{\varepsilon_k}$ are smooth plurisubharmonic functions on $\Omega_\varepsilon$ decreasing to $u_l$ (\cref{prop:smooth-psh-criterion}). By the unweighted assertion, the product $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T$ on $\Omega_\varepsilon$ is therefore the weak limit of exterior products of smooth forms with $T$ (\cref{prop:bt-positive-recursion}(1)), and these are symmetric in the factors because $2$-forms commute. Since the sets $\Omega_\varepsilon$ exhaust $\Omega$, products with $q$ factors are symmetric. It remains to prove the weighted assertion for $q$ factors; in doing so we may use the unweighted assertion and the symmetry for $q$ factors.
+
+\emph{Step 2: reduction to a common collar.} By \cref{lem:weak-convergence-local}, it suffices to prove the convergence near every point. Fix a ball $B=B(a,R)$, a larger ball $B_1$ with $\overline B\subset B_1\Subset\Omega$, and a compact set $K\subset B$; we prove the convergence on a neighborhood of $K$. Since $u_l\le u_{l,j}\le u_{l,1}$, all the functions $u_{l,j}$ and $u_l$ are bounded on $B_1$ uniformly in $j$. Subtracting a constant from $u_{l,j}$ and $u_l$ changes neither the Hessians nor, since the unweighted assertion is already known, the validity of the weighted assertion. We may therefore assume that $-N\le u_{l,j},u_l\le-1$ on $B_1$ for all $l$ and $j$, where $N\ge1$. Put $\psi=|z-a|^2-R^2$, choose $\delta>0$ with $K\subset\{\psi<-\delta\}$, and replace every function $v$ among the $u_{l,j}$ and $u_l$ by the function $\max\{v,A\psi\}$ of \eqref{eq:bt-collar-modification}, with $U=B_1$ and $A=N/\delta$. The new functions are plurisubharmonic on $B_1$, and the new sequences still decrease to the new limits. The functions are unchanged on the neighborhood $\{\psi<-\delta\}$ of $K$, and by locality so are their products. From now on, $u_{l,j}$ and $u_l$ denote the new functions; they take values in $[-N,0)$ on $B$ and coincide with $A\psi$ on the collar $V=\{z\in B_1:\psi(z)>-1/A\}$ of $\partial B$.
+
+\emph{Step 3: smooth approximation with the same collar.} Fix $\eta>0$ such that $\{\psi\le\eta\}\subset B_1$, and let $V'=\{z:-1/(2A)<\psi(z)<\eta\}$; it is a collar of $\partial B$ contained in $V$. Fix $l$ and $j$, and let $\tilde u$ be the function $u_{l,j}$ before the modification of Step 2, so that $\tilde u\le-1$ on $B_1$ and $u_{l,j}=\max\{\tilde u,A\psi\}$. For $0<\varepsilon<1/4$ smaller than the distance from $\{\psi\le\eta\}$ to $\partial B_1$, put
+\[
+ u^\varepsilon_{l,j}=M_\varepsilon(\tilde u*\rho_\varepsilon,A\psi),
+\]
+with $M_\varepsilon$ as in \cref{lem:smooth-maximum}. The functions $\tilde u*\rho_\varepsilon$ are smooth and plurisubharmonic on $\{\psi<\eta\}$ and decrease to $\tilde u$ as $\varepsilon\downarrow0$ (\cref{prop:smooth-psh-criterion}), so the $u^\varepsilon_{l,j}$ are smooth and plurisubharmonic on $\{\psi<\eta\}$ by \cref{lem:smooth-maximum}. Since $\tilde u*\rho_\varepsilon\le-1$, on $V'$ we have $A\psi-\tilde u*\rho_\varepsilon>1/2>2\varepsilon$, and therefore $u^\varepsilon_{l,j}=A\psi$. Since $M_\varepsilon$ decreases to $\max$, is increasing in each variable and satisfies $\max\le M_\varepsilon\le\max+\varepsilon$, the functions $u^\varepsilon_{l,j}$ decrease to $\max\{\tilde u,A\psi\}=u_{l,j}$. In particular $u^\varepsilon_{l,j}\ge u_{l,j}\ge u_l$, and all the functions $u_{l,j}$, $u_l$ and $u^\varepsilon_{l,j}$ coincide with $A\psi$ on $V'$.
+
+\emph{Step 4: an upper bound for weak limits.} Put
+\[
+ S_j=\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}\wedge T,\qquad
+ S=\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T.
+\]
+By Step 1, $S_j\to S$ weakly. On $B$ the weights $u_{0,j}$ take values in $[-N,0)$, so the currents $-u_{0,j}S_j$ are positive there, and by \cref{thm:cln-bounded}, since $|u_{l,j}|\le N$ on $B$, their masses on compact subsets of $B$ are bounded uniformly in $j$. By the compactness part of \cref{thm:positive-current-order-zero}, every subsequence of $(u_{0,j}S_j)$ has a further subsequence converging weakly on $B$. Let $\Theta$ be the limit of such a subsequence. Let $\varphi$ be a strongly positive test form on $B$ of complementary bidegree. The measures $\mu_j=S_j\wedge\varphi$ are positive and converge weakly to $S\wedge\varphi$, and along the chosen subsequence $u_{0,j}\mu_j\to\Theta\wedge\varphi$. Hence \cref{lem:usc-weight-weak-limit}, applied on $B$ with the real-valued upper semicontinuous functions $f_j=u_{0,j}$, gives $\Theta\wedge\varphi\le u_0S\wedge\varphi$. Evaluating this inequality of measures on a nonnegative test function equal to $1$ on $\Supp\varphi$, we get $(u_0S-\Theta)(\varphi)\ge0$; thus $u_0S-\Theta$ is a positive current on $B$. By locality (\cref{prop:bt-positive-recursion}), all the currents $u_{0,j}S_j$, and also $u_0S$, coincide on $V'$ with the fixed current $A\psi\,(A\ddc\psi)^q\wedge T$; hence so does $\Theta$, and $u_0S-\Theta$ has compact support in $B$.
+
+\emph{Step 5: comparison of masses.} Set $\gamma=\beta^{r-q}$ and
+\[
+ I=\int_Bu_0S\wedge\gamma,
+ \qquad I_j=\int_Bu_{0,j}S_j\wedge\gamma.
+\]
+We claim that $I\le I_j$ for every $j$. Fix $j$ and parameters $\varepsilon_0,\ldots,\varepsilon_q$, and abbreviate $w_l=u^{\varepsilon_l}_{l,j}$. For $0\le k\le q$ put
+\[
+ J_k=\int_Bu_k\,\ddc w_0\wedge\cdots\wedge\ddc w_{k-1}\wedge\ddc u_{k+1}\wedge\cdots\wedge\ddc u_q\wedge T\wedge\gamma,
+\]
+so that $J_0=I$. The measure in $J_k$ is positive and $u_k\le w_k$, so $J_k$ does not decrease if $u_k$ is replaced by $w_k$. If $k<q$, symmetry of products with $q$ factors and \cref{prop:bt-positive-recursion}(4) let us write that measure as $\ddc u_{k+1}\wedge R_k$, where
+\[
+ R_k=\ddc w_0\wedge\cdots\wedge\ddc w_{k-1}\wedge\ddc u_{k+2}\wedge\cdots\wedge\ddc u_q\wedge T\wedge\gamma
+\]
+is a closed positive current of bidimension $(1,1)$ on $\{\psi<\eta\}$; then \cref{lem:bt-common-collar}, with $a=w_k$ and $b=u_{k+1}$, which both equal $A\psi$ on the collar $V'$, gives
+\[
+ J_k\le\int_Bw_k\,\ddc u_{k+1}\wedge R_k=\int_Bu_{k+1}\,\ddc w_k\wedge R_k=J_{k+1}.
+\]
+Hence
+\[
+ I=J_0\le J_1\le\cdots\le J_q\le\int_Bw_q\,\ddc w_0\wedge\cdots\wedge\ddc w_{q-1}\wedge T\wedge\gamma.
+\]
+
+Now let $\varepsilon_q\downarrow0$, then $\varepsilon_{q-1}\downarrow0$, and so on down to $\varepsilon_1\downarrow0$, keeping $\varepsilon_0$ fixed. We claim that the right-hand side of the last inequality then tends to
+\[
+ \int_Bu_{q,j}\,\ddc w_0\wedge\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q-1,j}\wedge T\wedge\gamma.
+\]
+When $\varepsilon_q\downarrow0$, the measure is fixed and the bounded weights $w_q$ decrease to $u_{q,j}$, so dominated convergence applies. When $\varepsilon_k\downarrow0$ for some $1\le k\le q-1$, the integrand is, after moving the smooth factors next to $T$ by symmetry,
+\[
+ u_{q,j}\,\ddc u^{\varepsilon_k}_{k,j}\wedge\ddc u_{k+1,j}\wedge\cdots\wedge\ddc u_{q-1,j}\wedge T_k\wedge\gamma,
+\]
+where $T_k=\ddc w_0\wedge\cdots\wedge\ddc w_{k-1}\wedge T$ is a fixed closed positive current on $\{\psi<\eta\}$ of bidimension $(r-k,r-k)$. There are $q-k\le q-1$ Hessian factors and the fixed weight $u_{q,j}$. Along any sequence $\varepsilon_k\downarrow0$, the functions $u^{\varepsilon_k}_{k,j}$ decrease to $u_{k,j}$ (Step 3), so the induction hypothesis, applied on $\{\psi<\eta\}$ with the base current $T_k$, constant sequences for the other factors and the constant weight $u_{q,j}$, shows that these currents converge weakly; so do their exterior products with $\gamma$.
+
+In each case the convergence holds for the integrals over $B$, and not only against compactly supported test forms, because all the currents involved coincide on the collar $V'$ with the same fixed current: if $\chi\in C^\infty_c(B)$ equals $1$ on $B\setminus V'$, the integrals against $\chi$ converge, and the integrals against $1-\chi$ do not depend on the parameters.
+
+By \cref{lem:bt-common-collar}, with $a=w_0$ and $b=u_{q,j}$, and by symmetry of products with $q$ factors, the limit integral equals
+\[
+ \int_Bw_0\,\ddc u_{q,j}\wedge\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q-1,j}\wedge T\wedge\gamma
+ =\int_Bu^{\varepsilon_0}_{0,j}\,S_j\wedge\gamma.
+\]
+Hence $I\le\int_Bu^{\varepsilon_0}_{0,j}S_j\wedge\gamma$ for every $\varepsilon_0$, and dominated convergence with respect to the finite measure $S_j\wedge\gamma$ on $B$ gives $I\le I_j$ as $\varepsilon_0\downarrow0$.
+
+\emph{Step 6: conclusion.} Along the subsequence defining $\Theta$, splitting the integrals with a cutoff as in Step 5 shows that $I_j\to\int_B\Theta\wedge\gamma$. Therefore
+\[
+ \int_B(u_0S-\Theta)\wedge\gamma=I-\lim_jI_j\le0.
+\]
+Since $u_0S-\Theta$ is positive with compact support in $B$, its trace measure $(u_0S-\Theta)\wedge\gamma$ is a positive measure of total mass at most zero, hence zero; by the coefficient bounds of \cref{thm:positive-current-order-zero}, $u_0S-\Theta=0$ on $B$. Thus every subsequence of $(u_{0,j}S_j)$ has a further subsequence converging weakly to $u_0S$ on $B$. Hence the whole sequence converges to $u_0S$ on $B$: otherwise there would be a test form $\varphi$ on $B$ and a subsequence along which $|(u_{0,j}S_j-u_0S)(\varphi)|$ stays bounded away from zero, and no further subsequence of it could converge to $u_0S$. The replacement by maxima in Step 2 changes neither the functions nor, by locality, the weighted products on the neighborhood $\{\psi<-\delta\}$ of $K$, and the subtraction of constants does not affect the convergence; hence the original weighted products converge on this neighborhood. As $K$ and $B$ were arbitrary, this proves the weighted assertion for $q$ factors on $\Omega$ and completes the induction.
+\end{proof}
+\index{Bedford--Taylor product!decreasing continuity}\index{Bedford--Taylor product!symmetry}
+
+\begin{corollary}\label{cor:bt-polynomial-weights}
+Let $P$ be a real polynomial in $m$ variables and, for $1\le i\le m$, let $(v_{i,j})_{j\ge1}$ be a decreasing sequence of locally bounded plurisubharmonic functions on $\Omega$ with locally bounded limit $v_i$. Then in \cref{thm:bt-decreasing-continuity} the weight $u_{0,j}$ may be replaced by $P(v_{1,j},\ldots,v_{m,j})$, and the limit is then
+\[
+ P(v_1,\ldots,v_m)\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge T.
+\]
+Moreover, the identity of \cref{lem:bt-common-collar} also holds when $a$ and $b$ are both bounded plurisubharmonic functions on a neighborhood of $\overline B$ which coincide on a collar of $\partial B$.
+\end{corollary}
+\begin{proof}
+Since weak convergence is a local property (\cref{lem:weak-convergence-local}), it suffices to prove the convergence on every relatively compact open set $W\Subset\Omega$. On $W$ all the functions $v_{i,j}$ and $v_i$ are bounded, because $v_i\le v_{i,j}\le v_{i,1}$. Adding a constant $c_i$ to each $v_{i,j}$ and to $v_i$ replaces $P$ by the polynomial $P(x_1-c_1,\ldots,x_m-c_m)$; so we may assume that all these functions are nonnegative on $W$. Since the weighted products depend linearly on the weight, it suffices to treat a monomial. A constant weight is covered by the unweighted assertion of the theorem. A monomial of degree $N\ge1$ is a product $a_1\cdots a_N$, where each $a_l$ is one of the $v_i$, repetitions being allowed; we write $a_{l,j}$ for the corresponding function $v_{i,j}$. For real numbers $x_1,\ldots,x_N$ we have the polarization identity
+\begin{equation}\label{eq:bt-polarization-identity}
+ N!\,x_1\cdots x_N=\sum_{I\subset\{1,\ldots,N\}}(-1)^{N-|I|}\Bigl(\sum_{l\in I}x_l\Bigr)^N.
+\end{equation}
+To prove it, expand $(\sum_{l\in I}x_l)^N=\sum_\alpha\frac{N!}{\alpha!}x^\alpha$, the sum running over the multi-indices $\alpha\in\mathbb N^N$ with $|\alpha|=N$ and $\alpha_l=0$ for $l\notin I$. Fix such an $\alpha$, and let $J=\{l:\alpha_l>0\}$ have $k$ elements. The monomial $x^\alpha$ occurs exactly in the terms with $I\supset J$, so its total coefficient on the right-hand side is
+\[
+ \frac{N!}{\alpha!}\sum_{I\supset J}(-1)^{N-|I|}=\frac{N!}{\alpha!}\sum_{i=0}^{N-k}\binom{N-k}{i}(-1)^{N-k-i}=\frac{N!}{\alpha!}(1-1)^{N-k}.
+\]
+This vanishes unless $k=N$, in which case $\alpha=(1,\ldots,1)$ and the coefficient is $N!$.
+
+Each sum $s=\sum_{l\in I}a_l$ is a bounded nonnegative plurisubharmonic function on $W$, and so is $s^N$. For $N=1$ there is nothing to prove; for $N\ge2$ and smooth $s$ this follows from
+\[
+ \ddc(s^N)=Ns^{N-1}\ddc s+N(N-1)s^{N-2}\,\mathrm{d}s\wedge\mathrm{d}^{\mathrm c}s,
+\]
+in which both terms are positive $(1,1)$-forms, the first because $s\ge0$ and $s$ has a positive semidefinite complex Hessian, and the second by \eqref{eq:bt-gradient-form}; hence $s^N$ is plurisubharmonic, by both directions of \cref{prop:smooth-psh-criterion}. In general, the regularizations $s*\rho_\varepsilon$ are smooth, plurisubharmonic and nonnegative, and they decrease to $s$ (\cref{prop:smooth-psh-criterion}); since $t\mapsto t^N$ is increasing on $[0,\infty)$, the plurisubharmonic functions $(s*\rho_\varepsilon)^N$ decrease to $s^N$, which is therefore plurisubharmonic by \cref{thm:psh-decreasing-nets}. Likewise the sums $s_j=\sum_{l\in I}a_{l,j}$ are nonnegative and decrease to $s$, so the $s_j^N$ are bounded plurisubharmonic functions on $W$ decreasing to $s^N$. The weighted assertion of the theorem therefore applies with the weights $s_j^N$, and by \eqref{eq:bt-polarization-identity}, with $x_l=a_{l,j}$, it applies to the monomial weights $a_{1,j}\cdots a_{N,j}$.
+
+For the second assertion, let $a$ and $b$ be bounded plurisubharmonic functions on a neighborhood $U$ of $\overline B$ which are equal on a collar $V$ of $\partial B$. Let $d>0$ be smaller than the distances from $\partial B$ to $\mathbb C^n\setminus V$ and from $\overline B$ to $\mathbb C^n\setminus U$, and put $V'=\{z:\operatorname{dist}(z,\partial B)<d/2\}$. For $\varepsilon=\varepsilon_k\downarrow0$ with $\varepsilon_k<d/2$, the regularizations $a_\varepsilon=a*\rho_\varepsilon$ and $b_\varepsilon=b*\rho_\varepsilon$ are smooth and plurisubharmonic on a neighborhood of $\overline B$ and decrease to $a$ and $b$ (\cref{prop:smooth-psh-criterion}); moreover $a_\varepsilon=b_\varepsilon$ on the collar $V'$, because $a=b$ on the ball $B(z,\varepsilon)\subset V$ for $z\in V'$. By \cref{lem:bt-common-collar}, applied to the smooth function $a_\varepsilon$ and the bounded plurisubharmonic function $b_\varepsilon$,
+\[
+ \int_Ba_\varepsilon\,\ddc b_\varepsilon\wedge R=\int_Bb_\varepsilon\,\ddc a_\varepsilon\wedge R.
+\]
+Choose $\chi\in C^\infty_c(B)$ equal to $1$ on $B\setminus V'$. On $V'$ the measures $a_\varepsilon\ddc b_\varepsilon\wedge R$ and $b_\varepsilon\ddc a_\varepsilon\wedge R$ coincide, by locality, so the identity is equivalent to $\int\chi a_\varepsilon\,\ddc b_\varepsilon\wedge R=\int\chi b_\varepsilon\,\ddc a_\varepsilon\wedge R$. By the weighted assertion of the theorem with one factor and the fixed base current $R$, this passes to the limit: $\int\chi a\,\ddc b\wedge R=\int\chi b\,\ddc a\wedge R$. Since $a=b$ on $V$, the measures $a\,\ddc b\wedge R$ and $b\,\ddc a\wedge R$ also coincide on $V'$, and adding the integrals against $1-\chi$ over $B$ gives the identity for $a$ and $b$.
+\end{proof}
+\index{Bedford--Taylor product!polynomial weights}\index{polarization identity!for monomials}
+
+\begin{proposition}\label{prop:bt-maximum-locality}
+Let $T$ be a closed positive current on $\Omega$ of bidimension $(r,r)$, let $u$ and $v$ be locally bounded plurisubharmonic functions on $\Omega$, and let $0\le p\le r$ be an integer. Then
+\[
+ \mathbf1_{\{u>v\}}(\ddc\max\{u,v\})^p\wedge T
+ =\mathbf1_{\{u>v\}}(\ddc u)^p\wedge T.
+\]
+Here the indicator function multiplies the coefficient measures of these currents of order zero, as in \cref{sec:positive-currents}; the set $\{u>v\}$ is Borel, but in general not open (see the example following the proof).
+\end{proposition}
+\begin{proof}
+The assertion is local, so it suffices to prove it on each $\Omega_{\varepsilon_0}$, $\varepsilon_0>0$. Let $u_j=u*\rho_{\varepsilon_j}$ with $\varepsilon_j\downarrow0$, $\varepsilon_j<\varepsilon_0$; these are smooth plurisubharmonic functions on $\Omega_{\varepsilon_0}$ decreasing to $u$ (\cref{prop:smooth-psh-criterion}). Since $u_j$ is continuous and $v$ is upper semicontinuous, the set $\{u_j>v\}$ is open, and on it $w_j=\max\{u_j,v\}$ equals $u_j$; by locality, $(\ddc w_j)^p\wedge T=(\ddc u_j)^p\wedge T$ there. The nonnegative Borel function $f_j=w_j-v$ vanishes outside $\{u_j>v\}$, so
+\[
+ f_j(\ddc w_j)^p\wedge T=f_j(\ddc u_j)^p\wedge T.
+\]
+The functions $w_j$ decrease to $w=\max\{u,v\}$. Both sides of the last identity are differences of weighted products, for instance $f_j(\ddc w_j)^p\wedge T=w_j(\ddc w_j)^p\wedge T-v(\ddc w_j)^p\wedge T$. Applying \cref{thm:bt-decreasing-continuity} to them, with the weights $w_j$ and the constant weight $v$, and with the factors $w_j$ on the left and $u_j$ on the right, we obtain $f(\ddc w)^p\wedge T=f(\ddc u)^p\wedge T$, where $f=w-v\ge0$. Multiply the coefficient measures of both sides by $1/(f+\varepsilon)$ and let $\varepsilon\downarrow0$. Since $f/(f+\varepsilon)$ increases to the indicator of $\{f>0\}=\{u>v\}$, dominated convergence with respect to the locally finite total variations of the coefficient measures gives the assertion.
+\end{proof}
+\index{Bedford--Taylor product!maximum locality}
+
+To see that $\{u>v\}$ need not be open, let $D=\{z\in\mathbb C^n:|z_1|<1/2\}$, put $a_j=\mathrm e^{-j}$ for $j\ge1$, and let $w=\sum_{j\ge1}2^{-j}\log|z_1-a_j|$ on $D$. Each term is a positive multiple of $\log|z_1-a_j|^2$, which is plurisubharmonic by \cref{prop:holomorphic-tuple-logarithm}, and it is negative on $D$, because $|z_1-a_j|<1/2+\mathrm e^{-1}<1$. Hence the partial sums form a decreasing sequence of plurisubharmonic functions (\cref{prop:psh-max-gluing}), and since $w(0)=-\sum_jj2^{-j}=-2$ is finite, $w$ is plurisubharmonic on the domain $D$ by \cref{thm:psh-decreasing-nets}. The function $u=\max\{w,-4\}$ is plurisubharmonic with values in $[-4,0]$, and for the constant $v=-3$ the set $\{u>v\}=\{w>-3\}$ contains the origin but none of the points $(a_j,0,\ldots,0)$, at which $w=-\infty$; these points converge to the origin. Since $u(0)=-2$ while $u=-4$ at these points, $u$ is also an example of a bounded plurisubharmonic function which is not continuous.
+
+\begin{theorem}\label{thm:bt-comparison}
+Let $D\subset\mathbb{C}^n$ be a bounded open set, and let $u$ and $v$ be locally bounded plurisubharmonic functions on $D$ such that $\varliminf_{D\ni z\to x}(u(z)-v(z))\ge0$ for every $x\in\partial D$. Then
+\[
+ \int_{\{u<v\}}(\ddc v)^n\le\int_{\{u<v\}}(\ddc u)^n,
+\]
+where both sides may be infinite. If $(\ddc u)^n=0$, then $u\ge v$ on $D$.
+\end{theorem}
+\begin{proof}
+Let $\varepsilon>0$ and $w=\max\{u,v-\varepsilon\}$. We show that $(\ddc w)^n$ and $(\ddc u)^n$ have the same mass near a compact set outside which $w=u$, and then identify $(\ddc w)^n$ by \cref{prop:bt-maximum-locality}. Every $x\in\partial D$ has an open neighborhood $U_x$ with $u>v-\varepsilon$ on $U_x\cap D$, and finitely many of them cover the compact set $\partial D$; let $U$ be their union. Then $F=D\setminus U=\overline D\setminus U$ is a compact subset of $D$, it contains $\{u\le v-\varepsilon\}$, and $w=u$ on $D\setminus F$. For $0\le l\le n-1$ put $R_l=(\ddc w)^l\wedge(\ddc u)^{n-1-l}$. By additivity and symmetry of the products (\cref{prop:bt-positive-recursion,thm:bt-decreasing-continuity}),
+\[
+ \begin{aligned}
+ \ddc\bigl((w-u)R_l\bigr)&=\ddc w\wedge R_l-\ddc u\wedge R_l\\
+ &=(\ddc w)^{l+1}\wedge(\ddc u)^{n-1-l}-(\ddc w)^l\wedge(\ddc u)^{n-l},
+ \end{aligned}
+\]
+and summing over $l$, the right-hand sides telescope:
+\[
+ (\ddc w)^n-(\ddc u)^n
+ =\ddc\Bigl((w-u)\sum_{l=0}^{n-1}R_l\Bigr).
+\]
+The current in parentheses vanishes outside $F$, since $w-u$ does. Hence the signed measure $(\ddc w)^n-(\ddc u)^n$ is supported in $F$, and if $\chi\in C^\infty_c(D)$ equals $1$ on a neighborhood of $F$, then its total mass is
+\[
+ \int\chi\,\mathrm d\bigl((\ddc w)^n-(\ddc u)^n\bigr)=\Bigl((w-u)\sum_lR_l\Bigr)(\ddc\chi)=0,
+\]
+because $\ddc\chi=0$ on a neighborhood of $F$. Choose a relatively compact open set $D'\subset D$ containing $F$. Both measures are finite on $D'$, and $\int_{D'}(\ddc w)^n=\int_{D'}(\ddc u)^n$. By \cref{prop:bt-maximum-locality}, $(\ddc w)^n$ coincides with $(\ddc v)^n$ on $\{u<v-\varepsilon\}$ and with $(\ddc u)^n$ on $\{u>v-\varepsilon\}$; here we use that adding the constant $-\varepsilon$ does not change $(\ddc v)^n$. Since $\{u<v-\varepsilon\}$ and $D'\cap\{u>v-\varepsilon\}$ are disjoint Borel subsets of $D'$, and $\{u\le v-\varepsilon\}\subset F\subset D'$,
+\[
+ \begin{aligned}
+ \int_{\{u<v-\varepsilon\}}(\ddc v)^n
+ &\le\int_{D'}(\ddc w)^n
+       -\int_{D'\cap\{u>v-\varepsilon\}}(\ddc u)^n\\
+ &=\int_{\{u\le v-\varepsilon\}}(\ddc u)^n
+ \le\int_{\{u<v\}}(\ddc u)^n.
+ \end{aligned}
+\]
+As $\varepsilon\downarrow0$, the sets $\{u<v-\varepsilon\}$ increase to $\{u<v\}$, and monotone convergence proves the comparison inequality.
+
+The last assertion is the case of \cref{cor:bt-local-domination} below in which the roles of $u$ and $v$ are interchanged: if $(\ddc u)^n=0$, then $v\le u$ holds almost everywhere for $(\ddc u)^n$. The proof of that corollary uses only the comparison inequality.
+\end{proof}
+\index{comparison principle!bounded plurisubharmonic functions}
+
+\begin{corollary}\label{cor:bt-local-domination}
+Let $D\subset\mathbb C^n$ be a bounded open set, $n\geq1$, and let $u$ and $v$ be locally bounded plurisubharmonic functions on $D$. Suppose that
+\[
+ \varliminf_{D\ni z\to x}(v(z)-u(z))\geq0
+       \quad(x\in\partial D),\qquad
+ u\leq v\quad\text{almost everywhere for }(\ddc v)^n.
+\]
+Then $u\leq v$ everywhere on $D$.
+\end{corollary}
+\begin{proof}
+Choose $R$ with $D\subset B(0,R)$, and for $\delta>0$ put $u_\delta=u+\delta(|z|^2-R^2)$, a locally bounded plurisubharmonic function. Since $u_\delta\le u$ on $D$, the boundary condition still holds for $v$ and $u_\delta$, and the set $A=\{v<u_\delta\}$ is contained in $\{v<u\}$. By additivity, positive homogeneity and symmetry of the products (\cref{prop:bt-positive-recursion,thm:bt-decreasing-continuity}), $(\ddc u_\delta)^n=\sum_{k=0}^n\binom nk\delta^k(\ddc u)^{n-k}\wedge(\ddc|z|^2)^k$ is a sum of positive measures, and its term with $k=n$ is $\delta^nn!\,\pi^{-n}\,\mathrm dV_{2n}$, by \eqref{eq:bt-determinant-normalization}. The comparison inequality of \cref{thm:bt-comparison}, applied to $v$ and $u_\delta$, therefore gives
+\[
+ \delta^n\frac{n!}{\pi^n}|A|\leq\int_A(\ddc u_\delta)^n\leq\int_A(\ddc v)^n=0,
+\]
+where the last equality holds because $A\subset\{v<u\}$ and $u\le v$ almost everywhere for $(\ddc v)^n$. Thus $A$ is a Lebesgue null set, and $\max\{u_\delta,v\}=v$ almost everywhere. Both functions are plurisubharmonic, so the uniqueness of plurisubharmonic representatives in \cref{thm:psh-distribution-representative}, applied on each connected component of $D$, gives $\max\{u_\delta,v\}=v$ everywhere, that is, $u_\delta\leq v$. Letting $\delta\downarrow0$ gives $u\le v$.
+\end{proof}
+\index{domination principle!locally bounded potentials}
+
+\section{Weighted estimates and Monge--Amp\`ere capacity}
+\label{sec:bt-capacity}
+
+We now use the products to define a capacity adapted to plurisubharmonic functions. The Monge--Amp\`ere capacity of a set $E$ is the supremum of the masses that the measures $(\ddc v)^n$ give to $E$ when $v$ ranges over the plurisubharmonic functions with values in $[0,1]$. To control exceptional sets with it, we need integral estimates that are uniform over this whole class. The first one is a version of the Chern--Levine--Nirenberg inequality with an unbounded plurisubharmonic weight.
+
+\begin{theorem}\label{thm:cln-weighted}
+Let $\Omega\subset\mathbb C^n$ be open, $n\ge1$, let $K,L\subset\Omega$ be compact sets with $K\subset\Int L$, and let $0\le q\le n$ be an integer. There is a constant $C_{K,L,q}$, depending only on $K$, $L$, $n$ and $q$, such that for every $V\in\PSH(\Omega)$ and all locally bounded plurisubharmonic functions $u_1,\ldots,u_q$ on $\Omega$,
+\[
+ \int_K |V|\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}
+ \le C_{K,L,q}\|V\|_{L^1(L)}
+            \prod_{l=1}^q\|u_l\|_{L^\infty(L)}.
+\]
+In particular, the function $V$, with its values $-\infty$ on the pole set $\{V=-\infty\}$, is locally integrable with respect to the trace measure $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}$.
+\end{theorem}
+\begin{proof}
+For $q\le n-1$ we integrate $V$ by parts against a cutoff function on a ball, after making the factors coincide near its boundary (Steps 1--4); the case $q=n$ follows by adding one variable (Step 5).
+
+\emph{Step 1: reductions.} By \cref{thm:psh-distribution-representative}, $V$ is locally integrable, so $\|V\|_{L^1(L)}<\infty$. For $q=0$ the left-hand side equals $n!\int_K|V|\,\mathrm{d}V_{2n}\le n!\|V\|_{L^1(L)}$, by \eqref{eq:euclidean-hermitian-form}. Let $q\ge1$. If $\|u_l\|_{L^\infty(L)}=0$ for some $l$, then $u_l=0$ on $\Int L$, so the product vanishes on $\Int L\supset K$ by locality. Otherwise we replace each $u_l$ by $u_l/(2\|u_l\|_{L^\infty(L)})-3/2$, which takes values in $[-2,-1]$ on $L$; by \cref{prop:bt-positive-recursion}(3) this multiplies the left-hand side by $\prod_l(2\|u_l\|_{L^\infty(L)})^{-1}$. For each $a\in K$ choose $R_a>0$ with $\overline{B(a,R_a)}\subset\Int L$; finitely many of the balls $B(a,R_a/2)$ cover $K$, and this choice depends only on $K$ and $L$. Hence it suffices to prove the following: for concentric balls $B'=B(a,R')$ and $B=B(a,R)$ with $R'<R$ and $\overline B\subset\Int L$, there is a constant $C$, depending only on $B'$, $B$, $L$, $n$ and $q$, such that
+\[
+ \int_{B'}|V|\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}\le C\|V\|_{L^1(L)}
+\]
+whenever $u_1,\ldots,u_q$ are plurisubharmonic on $\Omega$ with values in $[-2,-1]$ on $L$.
+
+\emph{Step 2: a common collar.} Put $\psi=|z-a|^2-R^2$ and $b=\ddc\psi=\beta/\pi$, and choose $\delta>0$ with $\overline{B'}\subset\{\psi<-\delta\}$. Replace each $u_l$ by $\max\{u_l,A\psi\}$, where $A=2/\delta$; this function is plurisubharmonic on $\Omega$ (\cref{prop:psh-max-gluing}). By \eqref{eq:bt-collar-modification}, with $N=2$ and $U=\Int L$, it is unchanged on $\{\psi<-\delta\}$, it equals $A\psi$ on the collar $V_0=\{z\in\Int L:\psi(z)>-\delta/2\}$ of $\partial B$, and it takes values in $[-2,0)$ on $B$. Let $S=\ddc u_1\wedge\cdots\wedge\ddc u_q$ be the product of the modified functions. Put $\tau=\delta/4$ and $B_\tau=\{\psi<-\tau\}$. Then $\overline{B'}\subset B_\tau$, and on the neighborhood $V_0$ of $\overline B\setminus B_\tau$ we have $S=(A\,\ddc\psi)^q=A^qb^q$ by \cref{prop:bt-positive-recursion}(1),(2). By \cref{lem:mollifier-density}(4) there is $\theta\in C^\infty_c(B)$ with $0\le\theta\le1$ and $\theta=1$ on a neighborhood of $\overline{B_\tau}$; the function $\chi=-\psi\theta$ is smooth, nonnegative, has compact support in $B$, and equals $-\psi$ on a neighborhood of $\overline{B_\tau}$. All these choices depend only on $B'$, $B$ and $L$.
+
+\emph{Step 3: smooth $V$ and $q\le n-1$.} Suppose that $q\le n-1$ and that $V$ is smooth and plurisubharmonic on a neighborhood of $\overline B$ with $V\le0$ on $B_\tau$. The signed measure $S\wedge b^{n-q-1}\wedge\ddc\chi$ has compact support in $B$. Splitting its integral against $V$ over $B_\tau$, where $\ddc\chi=-b$, and over $B\setminus B_\tau\subset V_0$, where $S=A^qb^q$, we obtain
+\[
+ \begin{aligned}
+ \int_{B_\tau}(-V)S\wedge b^{n-q}
+ &=\int_B V S\wedge b^{n-q-1}\wedge\ddc\chi
+       -A^q\int_{B\setminus B_\tau}V b^{n-1}\wedge\ddc\chi\\
+ &=\int_B\chi\,\ddc V\wedge S\wedge b^{n-q-1}
+       -A^q\int_{B\setminus B_\tau}V b^{n-1}\wedge\ddc\chi.
+ \end{aligned}
+\]
+The second equality holds because the first integral is $(VS\wedge b^{n-q-1})(\ddc\chi)=\bigl(\ddc(VS\wedge b^{n-q-1})\bigr)(\chi)$, and $\ddc(VS\wedge b^{n-q-1})=\ddc V\wedge S\wedge b^{n-q-1}$ by \eqref{eq:bt-smooth-factor-leibniz}, the current $S\wedge b^{n-q-1}$ being closed. The smooth form $\ddc V$ is closed, and it is strongly positive, since its coefficient matrix is positive semidefinite (\cref{prop:smooth-psh-criterion}) and weak and strong positivity agree in bidegree $(1,1)$ (\cref{sec:positive-currents}); so by \cref{prop:bt-positive-recursion}(4), with $T=1$ and $\gamma=\ddc V$, the current $\ddc V\wedge S$ is the product $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\ddc V$ with the closed positive base current $\ddc V$ of bidimension $(n-1,n-1)$.
+
+Choose a compact set $L'\subset B$ whose interior contains $\Supp\chi$. The first term is at most $\pi^{q+1-n}\sup\chi$ times the mass of the trace measure of $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\ddc V$ on $\Supp\chi$. Since the modified $u_l$ take values in $[-2,0)$ on $B$, \cref{thm:cln-bounded}, applied to $\Supp\chi\subset\Int L'$, shows that the first term is at most $C\|\ddc V\|_{L'}$, with $C$ depending only on $\chi$, $L'$, $n$ and $q$. Let $\chi'\in C^\infty_c(B)$ satisfy $0\le\chi'\le1$ and $\chi'=1$ on $L'$. Since $\ddc V\wedge\beta^{n-1}\ge0$,
+\[
+ \|\ddc V\|_{L'}\le\int\chi'\,\ddc V\wedge\frac{\beta^{n-1}}{(n-1)!}=\int V\,\ddc\chi'\wedge\frac{\beta^{n-1}}{(n-1)!}\le C\int_B|V|\,\mathrm{d}V_{2n},
+\]
+where $C$ bounds the coefficient of the smooth $(n,n)$-form $\ddc\chi'\wedge\beta^{n-1}/(n-1)!$. The collar term is bounded by the same quantity, because $b^{n-1}\wedge\ddc\chi$ has bounded smooth coefficients. Hence
+\[
+ \int_{B_\tau}(-V)S\wedge b^{n-q}\le C\int_B|V|\,\mathrm{d}V_{2n}.
+\]
+
+\emph{Step 4: general $V$ and $q\le n-1$.} Let $V\in\PSH(\Omega)$, and choose $r_0>0$ with $2r_0<\operatorname{dist}(\overline B,\mathbb C^n\setminus\Int L)$. The function $V$ is subharmonic (\cref{thm:psh-distribution-representative}). If $x$ lies within distance $r_0$ of $\overline B$, then $\overline{B(x,r_0)}\subset\Int L$, and the ball submean inequality of \cref{thm:subharmonic-comparison}(2) gives
+\[
+ V(x)\le\frac1{|B(x,r_0)|}\int_{B(x,r_0)}V\,\mathrm dV_{2n}\le c_0\|V\|_{L^1(L)},\qquad c_0=|B(0,r_0)|^{-1};
+\]
+put $c=c_0\|V\|_{L^1(L)}$. For $0<\varepsilon<r_0$ the regularization $V_\varepsilon=V*\rho_\varepsilon$ is smooth and plurisubharmonic on the neighborhood $\{z:\operatorname{dist}(z,\overline B)<r_0\}$ of $\overline B$ (\cref{prop:smooth-psh-criterion}), since this neighborhood lies in $\Omega_\varepsilon$. It satisfies $V_\varepsilon\le c$ on $\overline B$, since $V_\varepsilon(x)$ is an average of values of $V$ at points within distance $\varepsilon$ of $x$, and $\int_B|V_\varepsilon|\,\mathrm{d}V_{2n}\le\int\rho_\varepsilon(y)\int_B|V(x-y)|\,\mathrm dV_{2n}(x)\,\mathrm dV_{2n}(y)\le\|V\|_{L^1(L)}$ by Tonelli's theorem, since $B-y\subset L$ for $|y|\le\varepsilon$. Applying Step 3 to $V_\varepsilon-c$ gives
+\[
+ \int_{B_\tau}(c-V_\varepsilon)\,S\wedge b^{n-q}\le C\bigl(\|V\|_{L^1(L)}+c|B|\bigr)\le C'\|V\|_{L^1(L)}.
+\]
+As $\varepsilon\downarrow0$, the nonnegative functions $c-V_\varepsilon$ increase to $c-V$, by \eqref{eq:canonical-subharmonic}, so monotone convergence gives the same bound for $\int_{B_\tau}(c-V)\,S\wedge b^{n-q}$. Since $V\le c$ on $B_\tau$, we have $|V|\le(c-V)+c$ there, and the mass of $S\wedge b^{n-q}$ on $B_\tau$ is bounded by a constant depending only on $B'$, $B$, $n$ and $q$, by \cref{thm:cln-bounded} applied to $\overline{B_\tau}\subset B=\Int\overline B$, since the modified $u_l$ take values in $[-2,0]$ on $\overline B$. Since $S$ coincides with the original product on $B'\subset B_\tau$, by locality, this proves the estimate of Step 1 for $q\le n-1$. By the finite cover and the normalizations of Step 1, the theorem holds for $q\le n-1$, in every dimension.
+
+\emph{Step 5: the case $q=n$.} Consider $\mathbb C^{n+1}$ with coordinates $(z,w)$, the unit disc $\Delta\subset\mathbb C$, and the projection $p(z,w)=z$; let $\beta_z$, $\beta_w$ be the forms \eqref{eq:euclidean-hermitian-form} in the variables $z$ and $w$, so that $\beta_z+\beta_w$ is the form $\beta$ of $\mathbb C^{n+1}$, and $\beta_w=\mathrm dV_2(w)$. By \cref{prop:psh-holomorphic-pullback}, the functions $u_l\circ p$ are locally bounded and plurisubharmonic on $\Omega\times\Delta$, and $V\circ p$ is plurisubharmonic there, since it is not identically $-\infty$ on any connected component $\Omega_0\times\Delta$ of $\Omega\times\Delta$. Let $\mu=\ddc u_1\wedge\cdots\wedge\ddc u_n$, a positive measure on $\Omega$. We claim that
+\[
+ \ddc(u_1\circ p)\wedge\cdots\wedge\ddc(u_n\circ p)\wedge(\beta_z+\beta_w)=\mu\otimes\mathrm{d}V_2.
+\]
+If the $u_l$ are smooth, then $\ddc(u_l\circ p)=p^*\ddc u_l$, so the product of these $n$ factors is the pullback $p^*\mu$ of the $(n,n)$-form $\mu=g\,\mathrm dV_{2n}$ (\cref{prop:bt-positive-recursion}(1)). Its exterior product with $\beta_z$ is $p^*(\mu\wedge\beta)=0$, since $\mu\wedge\beta$ has bidegree $(n+1,n+1)$ on $\mathbb C^n$, and its exterior product with $\beta_w$ is $g(z)\,\mathrm dV_{2n}(z)\wedge\mathrm dV_2(w)$, the density of $\mu\otimes\mathrm dV_2$.
+
+In general, let $u_{l,\varepsilon}=u_l*\rho_\varepsilon$, which are smooth plurisubharmonic functions on $\Omega_{\varepsilon_0}$ for $\varepsilon<\varepsilon_0$, decreasing to $u_l$ as $\varepsilon\downarrow0$ (\cref{prop:smooth-psh-criterion}). By \cref{thm:bt-decreasing-continuity}, applied on $\Omega_{\varepsilon_0}\times\Delta$ to the functions $u_{l,\varepsilon}\circ p$, which decrease to $u_l\circ p$, the left-hand sides for $u_{l,\varepsilon}$ converge weakly to the left-hand side for $u_l$. By the same theorem on $\Omega_{\varepsilon_0}$, the measures $\mu_\varepsilon=\ddc u_{1,\varepsilon}\wedge\cdots\wedge\ddc u_{n,\varepsilon}$ converge weakly to $\mu$; hence $\mu_\varepsilon\otimes\mathrm dV_2\to\mu\otimes\mathrm dV_2$, because for a test function $\varphi$ on $\Omega_{\varepsilon_0}\times\Delta$ we have $\int\varphi\,\mathrm d(\mu_\varepsilon\otimes\mathrm dV_2)=\int\Phi\,\mathrm d\mu_\varepsilon$ with $\Phi(z)=\int_\Delta\varphi(z,w)\,\mathrm dV_2(w)$, a test function on $\Omega_{\varepsilon_0}$ (differentiate under the integral sign). Since $\varepsilon_0$ is arbitrary, the claim follows from the smooth case.
+
+Now apply the case already proved in dimension $n+1$, with $q=n\le(n+1)-1$, to the compact sets $\widetilde K=K\times\{|w|\le1/2\}$ and $\widetilde L=L\times\{|w|\le3/4\}$ in $\Omega\times\Delta$; note that $\widetilde K\subset\Int\widetilde L$. By the claim and Fubini's theorem, the left-hand side of the estimate for $V\circ p$ and the $u_l\circ p$ is $\frac\pi4\int_K|V|\,\mathrm d\mu$, while $\|V\circ p\|_{L^1(\widetilde L)}=\frac{9\pi}{16}\|V\|_{L^1(L)}$ and $\|u_l\circ p\|_{L^\infty(\widetilde L)}=\|u_l\|_{L^\infty(L)}$. Hence the estimate holds in $\mathbb C^n$ with the constant $\frac94C_{\widetilde K,\widetilde L,n}$, which depends only on $K$, $L$ and $n$. This proves the case $q=n$.
+\end{proof}
+\index{Chern--Levine--Nirenberg inequality!weighted}
+
+The base current in \cref{thm:cln-weighted} is $T=1$, and for a general closed positive current $T$ no such estimate holds, already for $q=0$. Let $n\ge1$, let $H=\{z_1=0\}\subset\mathbb C^n$, and let $T=[H]$ be the current of integration of \cref{ex:submanifold-current}, a closed positive current of bidimension $(n-1,n-1)$. In the coordinates $z_2,\ldots,z_n$ of $H$, the restriction of $\beta$ to $H$ is the form \eqref{eq:euclidean-hermitian-form} of $\mathbb C^{n-1}$, so $T\wedge\beta^{n-1}/(n-1)!$ is Lebesgue measure on $H$. The function $V=\log|z_1|$ is plurisubharmonic (\cref{prop:holomorphic-tuple-logarithm}), hence $\|V\|_{L^1(L)}<\infty$ for every compact $L$, but $V=-\infty$ on $H$. Therefore $\int_K|V|\,T\wedge\beta^{n-1}=\infty$ for the closed unit ball $K$, which meets $H$ in a set of positive Lebesgue measure on $H$.
+
+\begin{definition}\label{def:monge-ampere-capacity}
+Let $D\subset\mathbb{C}^n$, $n\ge1$, be a bounded open set. The \emph{Monge--Amp\`ere capacity} of a Borel set $E\subset D$ is
+\[
+ \operatorname{Cap}_D(E)=\sup\left\{\int_E(\ddc v)^n:
+            v\in\PSH(D),\ 0\le v\le1\right\}.
+\]
+The functions $v$ in this supremum are called \emph{competitors} for $\operatorname{Cap}_D$. The \emph{outer capacity} of an arbitrary set $A\subset D$ is
+\[
+ \operatorname{Cap}_D^*(A)=\inf\{\operatorname{Cap}_D(G):A\subset G\subset D,
+                                                  \ G\text{ open}\}.
+\]
+\end{definition}
+\index{capacity!Monge--Amp\`ere}\index{capacity!outer Monge--Amp\`ere}\index{competitor!Monge--Amp\`ere capacity}
+On a complex manifold we use these capacities in coordinate charts, taking for $D$ a bounded open set, usually a ball, which is relatively compact in the chart.
+
+\begin{proposition}\label{prop:bt-capacity-basic}
+Let $D\subset\mathbb C^n$ be a bounded open set. The set functions $\operatorname{Cap}_D$ and $\operatorname{Cap}^*_D$ are increasing with respect to inclusion and countably subadditive. Moreover:
+\begin{enumerate}
+\item $\operatorname{Cap}_D(K)<\infty$ for every compact $K\subset D$, and $\operatorname{Cap}_D(E)=\sup\{\operatorname{Cap}_D(K):K\subset E\text{ compact}\}$ for every Borel set $E\subset D$;
+\item if $E_j\subset D$ are Borel sets increasing to $E$, then $\operatorname{Cap}_D(E_j)\to\operatorname{Cap}_D(E)$;
+\item there is a constant $C_D$ such that $|E|\le C_D\operatorname{Cap}_D(E)$ for every Borel set $E\subset D$, where $|E|$ is Lebesgue measure;
+\item if $B\Subset D$ is a ball and $K\subset B$ is compact, there is a constant $C$ such that, for every Borel set $E\subset K$,
+\[
+ \operatorname{Cap}_D(E)\le\operatorname{Cap}_B(E)
+                              \le C\operatorname{Cap}_D(E),
+\]
+and the same inequalities hold for the outer capacities of arbitrary subsets of $K$;
+\item both capacities are invariant under biholomorphisms between bounded open sets: if $F\colon D\to D'$ is biholomorphic, then $\operatorname{Cap}_{D'}(F(E))=\operatorname{Cap}_D(E)$ for Borel sets $E\subset D$ and $\operatorname{Cap}^*_{D'}(F(A))=\operatorname{Cap}^*_D(A)$ for arbitrary sets $A\subset D$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+For each competitor $v$, the measure $(\ddc v)^n$ is increasing and countably subadditive on Borel sets: $\int_{\bigcup_jE_j}(\ddc v)^n\le\sum_j\int_{E_j}(\ddc v)^n\le\sum_j\operatorname{Cap}_D(E_j)$. Taking the supremum over $v$ gives the same properties for $\operatorname{Cap}_D$. Outer capacity is increasing by definition. For countable subadditivity, given sets $A_j$ with $\sum_j\operatorname{Cap}^*_D(A_j)<\infty$ and $\varepsilon>0$, choose open sets $G_j\supset A_j$ with $\operatorname{Cap}_D(G_j)<\operatorname{Cap}^*_D(A_j)+\varepsilon2^{-j}$; then $\operatorname{Cap}^*_D(\bigcup_jA_j)\le\operatorname{Cap}_D(\bigcup_jG_j)\le\sum_j\operatorname{Cap}^*_D(A_j)+\varepsilon$.
+
+Finiteness on a compact set $K$ follows from \cref{thm:cln-bounded} with $T=1$, applied to $K$ and a compact neighborhood $L$ of $K$ in $D$, since $\|v\|_{L^\infty(L)}\le1$ for every competitor. Inner regularity of each Radon measure $(\ddc v)^n$ (\cref{def:radon-measure}) gives $\int_E(\ddc v)^n=\sup_K\int_K(\ddc v)^n\le\sup_K\operatorname{Cap}_D(K)$ over compact $K\subset E$, and taking the supremum over $v$ gives~(1). For~(2), $\operatorname{Cap}_D(E_j)\le\operatorname{Cap}_D(E)$ by monotonicity, and for every competitor $v$ monotone convergence gives $\int_E(\ddc v)^n=\lim_j\int_{E_j}(\ddc v)^n\le\lim_j\operatorname{Cap}_D(E_j)$; taking the supremum over $v$ gives~(2). For~(3), choose $a\in D$ and $d>0$ with $D\subset B(a,d)$; the function $|z-a|^2/d^2$ is a competitor, and by \eqref{eq:bt-determinant-normalization} and \cref{prop:bt-positive-recursion}(3) its Monge--Amp\`ere measure is $n!\pi^{-n}d^{-2n}\,\mathrm dV_{2n}$. Hence~(3) holds with $C_D=\pi^nd^{2n}/n!$.
+
+For~(4), the first inequality holds because the restriction to $B$ of a competitor for $D$ is a competitor for $B$, with the same Monge--Amp\`ere measure on $B$. For the second, write $B=B(a,r)$ and choose $\lambda>0$ such that $\rho=\lambda(|z-a|^2-r^2)<-1$ on a neighborhood of $K$. Given a competitor $v$ for $B$, let $w$ be the function equal to $\max\{v-1,\rho\}$ on $B$ and to $\rho$ on $D\setminus B$. Since $v-1\le0$ on $B$ and $\rho=0$ on $\partial B$, \cref{prop:psh-max-gluing} shows that $w$ is plurisubharmonic on $D$. It equals $v-1$ near $K$, satisfies $w\ge-1$ on $D$, and is bounded above by $\Lambda=\max\{0,\sup_D\rho\}$, which does not depend on $v$. Thus $(w+1)/(\Lambda+1)$ is a competitor for $D$, and by locality its Monge--Amp\`ere measure near $K$ is $(\Lambda+1)^{-n}(\ddc v)^n$. This gives the second inequality with $C=(\Lambda+1)^n$; the first inequality holds for all Borel subsets of $B$.
+
+For the outer capacities in~(4), let $K'$ be a compact neighborhood of $K$ in $B$; the constant obtained for $K'$ also serves for $K$, and we use it. If $A\subset K$ and $G$ is an open subset of $D$ or of $B$ containing $A$, then $G\cap\Int K'$ is open in both $B$ and $D$, contains $A$, lies in $K'$, and has no larger capacity than $G$. Applying the inequalities to these sets and taking infima over $G$ gives them for the outer capacities of $A$.
+
+For~(5), let $F\colon D\to D'$ be biholomorphic. By \cref{prop:psh-holomorphic-pullback}, applied to $F$ and to $F^{-1}$, the map $v\mapsto v\circ F$ is a bijection from the competitors for $D'$ onto the competitors for $D$, and by \cref{prop:bt-positive-recursion}(5), $(\ddc(v\circ F))^n=F^*\bigl((\ddc v)^n\bigr)$. We claim that for every positive Radon measure $\mu$ on $D'$, regarded as a current of bidegree $(n,n)$, the pullback $F^*\mu$ is the image of $\mu$ under $F^{-1}$, that is, $\int\psi\,\mathrm d(F^*\mu)=\int\psi\circ F^{-1}\,\mathrm d\mu$ for every test function $\psi$ on $D$.
+
+If $\mu=g\,\mathrm dV_{2n}$ with $g$ smooth, then $F^*\mu=(g\circ F)\,|\det F'|^2\,\mathrm dV_{2n}$, because $F^*(\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n)=\det F'\,\mathrm dz_1\wedge\cdots\wedge\mathrm dz_n$ and similarly for the conjugate forms; since $|\det F'|^2$ is the Jacobian determinant of $F$ as a map of $\mathbb R^{2n}$, the change of variables formula gives the claim. Both sides of the claimed identity are weakly continuous in $\mu$ (\cref{prop:submersion-current-pullback}), and on relatively compact open subsets of $D'$ every $\mu$ is the weak limit of its smooth regularizations, so the claim holds in general. Consequently $(F^*\mu)(F^{-1}(E'))=\mu(E')$ for Borel sets $E'\subset D'$, since two Radon measures that agree on test functions agree on Borel sets (\cref{prop:distribution-smoothing}(4)). Applying this to $\mu=(\ddc v)^n$ and $E'=F(E)$ and taking the supremum over $v$ gives $\operatorname{Cap}_D(E)=\operatorname{Cap}_{D'}(F(E))$. Since $F$ is a homeomorphism, it maps the open sets containing a set $A$ bijectively onto the open sets containing $F(A)$, so the outer capacities agree as well.
+\end{proof}
+\index{capacity!comparison of Monge--Amp\`ere capacities}
+
+\begin{proposition}\label{prop:bt-poles-zero-capacity}
+Let $D\subset\mathbb C^n$ be a bounded open set, let $K,L\subset D$ be compact sets with $K\subset\Int L$, and let $V\in\PSH(D)$. There is a constant $C_{K,L}$, depending only on $K$, $L$ and $n$, such that
+\[
+ \operatorname{Cap}_D^*(K\cap\{V<-s\})
+                 \le\frac{C_{K,L}}{s}\|V\|_{L^1(L)},\qquad s>0.
+\]
+Moreover, let $E\subset D$ be a set locally contained in pole sets of plurisubharmonic functions, that is, every point of $D$ has an open neighborhood $W\subset D$ and a plurisubharmonic function $V_W$ on $W$ with $E\cap W\subset\{V_W=-\infty\}$. (Such sets are called pluripolar in \cref{chap:q03}.) Then $\operatorname{Cap}^*_D(E\cap K)=0$ for every compact set $K\subset D$, and $E$ is contained in a Borel set which has measure zero for every measure $\ddc u_1\wedge\cdots\wedge\ddc u_n$ with locally bounded plurisubharmonic functions $u_1,\ldots,u_n$ on $D$.
+\end{proposition}
+\begin{proof}
+Choose an open neighborhood $U$ of $K$ with compact closure in $\Int L$. For every competitor $v$, \cref{thm:cln-weighted}, applied to $\overline U\subset\Int L$ with $q=n$ and $u_1=\cdots=u_n=v$, gives
+\[
+ \int_{U\cap\{V<-s\}}(\ddc v)^n\le s^{-1}\int_{\overline U}|V|\,(\ddc v)^n
+\le C s^{-1}\|V\|_{L^1(L)}.
+\]
+Since $V$ is upper semicontinuous, $U\cap\{V<-s\}$ is an open set containing $K\cap\{V<-s\}$; taking the supremum over $v$ proves the estimate. Since $V$ is locally integrable (\cref{thm:psh-distribution-representative}), $\|V\|_{L^1(L)}<\infty$, and letting $s\to\infty$ gives $\operatorname{Cap}^*_D(K\cap\{V=-\infty\})=0$.
+
+Now let $E$ be as in the statement. Let $x\in D$, let $W$ and $V_W$ be as in the hypothesis, and choose $r>0$ with $\overline{B(x,3r)}\subset W$; put $B_x=B(x,3r)$, $K_x=\overline{B(x,r)}$ and $L_x=\overline{B(x,2r)}$. Then $E\cap B_x\subset\{V_W=-\infty\}$, and the restriction of $V_W$ to $B_x$ is plurisubharmonic. The estimate just proved, applied in $B_x$ to this restriction and to $K_x\subset\Int L_x$, gives $\operatorname{Cap}^*_{B_x}(E\cap K_x)=0$; since every open set in $B_x$ is open in $D$, the first inequality of \cref{prop:bt-capacity-basic}(4) gives $\operatorname{Cap}^*_D(E\cap K_x)=0$. A compact set $K\subset D$ is covered by finitely many interiors $\Int K_x$, and subadditivity gives $\operatorname{Cap}^*_D(E\cap K)=0$. Finally, by \cref{thm:cln-weighted}, applied on $B_x$ to $K_x\subset\Int L_x$ with $q=n$, the function $V_W$ is integrable on $K_x$ for every measure $\ddc u_1\wedge\cdots\wedge\ddc u_n$ as in the statement, so the Borel set $K_x\cap\{V_W=-\infty\}$ has measure zero for all these measures. Since $D$ has a countable basis, countably many sets $\Int K_x$ cover $D$, and the union of the corresponding sets $K_x\cap\{V_W=-\infty\}$ is a Borel set with the required property.
+\end{proof}
+\index{pole set!zero Monge--Amp\`ere capacity}
+
+The next estimate controls, uniformly over all competitors, the set where two bounded plurisubharmonic functions with the same boundary values differ.
+
+\begin{proposition}[B\l{}ocki]\label{prop:blocki-difference-estimate}
+Let $B$ be a ball, and let $u$ and $h$ be bounded plurisubharmonic functions on a neighborhood of $\overline B$ with $u\le h$ on $B$ and $u=h$ on a collar of $\partial B$. Let $v$ be a bounded plurisubharmonic function on a neighborhood of $\overline B$, and put $M=\sup_Bv-\inf_Bv$. Then
+\[
+ \int_B(h-u)^{n+1}(\ddc v)^n
+       \le(n+1)!M^n\int_B(h-u)(\ddc u)^n.
+\]
+\end{proposition}
+\begin{proof}
+First suppose that $u$, $h$ and $v$ are smooth; then $\ddc u$, $\ddc h$ and $\ddc v$ are positive $(1,1)$-forms, by \cref{prop:smooth-psh-criterion}. Subtracting $\sup_Bv$ from $v$, we may assume $-M\le v\le0$ on $B$. Put $w=h-u\ge0$; it vanishes on a collar of $\partial B$. Let $p\ge2$, and let $R$ be a smooth closed strongly positive form of bidegree $(n-1,n-1)$; the exterior product of $R$ with a positive $(1,1)$-form is then a nonnegative multiple of the volume form, by \cref{prop:positivity-cones}, since positive $(1,1)$-forms are strongly positive. Since $\mathrm{d}w\wedge\mathrm{d}^{\mathrm c}w$ is a positive $(1,1)$-form by \eqref{eq:bt-gradient-form} and $\ddc h\wedge R\ge0$, the chain rule $\ddc(w^p)=pw^{p-1}\ddc w+p(p-1)w^{p-2}\mathrm dw\wedge\mathrm d^{\mathrm c}w$ gives
+\[
+ \begin{aligned}
+ \ddc(w^p)\wedge R&=\bigl(p w^{p-1}(\ddc h-\ddc u)
+               +p(p-1)w^{p-2}\mathrm{d}w\wedge\mathrm{d}^{\mathrm c}w\bigr)\wedge R\\
+ &\ge-pw^{p-1}\ddc u\wedge R.
+ \end{aligned}
+\]
+Since $w^p$ has compact support in $B$ and $R$ is closed, \eqref{eq:bt-smooth-factor-leibniz} gives $\int_Bw^p\ddc v\wedge R=(\ddc(vR))(w^p)=(vR)(\ddc(w^p))$. As $v\le0$ and $-v\le M$, the preceding inequality therefore yields
+\[
+ \int_Bw^p\ddc v\wedge R
+   =\int_Bv\,\ddc(w^p)\wedge R
+   \le pM\int_Bw^{p-1}\ddc u\wedge R.
+\]
+For $k=1,\ldots,n$, apply this with $p=n+2-k$ and $R=(\ddc v)^{n-k}\wedge(\ddc u)^{k-1}$, a product of positive $(1,1)$-forms, hence strongly positive (\cref{prop:positivity-cones}) and closed. This gives
+\[
+ \int_Bw^{n+2-k}(\ddc v)^{n+1-k}\wedge(\ddc u)^{k-1}\le(n+2-k)M\int_Bw^{n+1-k}(\ddc v)^{n-k}\wedge(\ddc u)^k,
+\]
+and chaining these $n$ inequalities from $k=1$ to $k=n$ gives the asserted inequality, since $(n+1)n\cdots2=(n+1)!$.
+
+In general, write $B=B(a,r)$ and let $V$ be a collar of $\partial B$ on which $u=h$. Since $\partial B$ is compact, there is $r''<r$ with $\{z:r''\le|z-a|\le r\}\subset V$; choose $r'\in(r'',r)$ and put $B'=B(a,r')$. Then $h-u$ vanishes on $B\setminus\overline{B(a,r'')}$. Convolve $u$, $h$ and $v$ with the same radial kernel $\rho_\varepsilon$, with $\varepsilon<\min\{(r'-r'')/2,r-r'\}$ so small that the regularizations are defined, smooth and plurisubharmonic on a neighborhood of $\overline{B'}$ (\cref{prop:smooth-psh-criterion}). At points of $\overline{B'}$ they are averages over balls of radius $\varepsilon$ contained in $B$, where $u\le h$; hence $u_\varepsilon\le h_\varepsilon$ on $\overline{B'}$. Moreover $h_\varepsilon-u_\varepsilon$ vanishes on the collar $\{z:r''+\varepsilon<|z-a|<r-\varepsilon\}$ of $\partial B'$ and outside $\overline{B(a,r''+\varepsilon)}$ in $B'$, hence outside the compact set $\overline{B(a,(r'+r'')/2)}\subset B'$. The values of $v_\varepsilon$ on $B'$ are averages of values of $v$ on $B$, so the oscillation of $v_\varepsilon$ on $B'$ is at most $M$.
+
+Apply the smooth case on $B'$ and let $\varepsilon=\varepsilon_k\downarrow0$. The weights $(h_\varepsilon-u_\varepsilon)^{n+1}$ and $h_\varepsilon-u_\varepsilon$ are polynomials in decreasing sequences of bounded plurisubharmonic functions, and they, as well as their limits $(h-u)^{n+1}$ and $h-u$, vanish in $B'$ outside the fixed compact set $\overline{B(a,(r'+r'')/2)}$. Testing against a function $\chi\in C^\infty_c(B')$ equal to $1$ on this set, \cref{cor:bt-polynomial-weights} lets both sides pass to the limit. Since $h-u$ vanishes on $B\setminus B'$, the limiting inequality on $B'$ is the asserted inequality on $B$.
+\end{proof}
+\index{B\l{}ocki's estimate}
+
+In the next two sections we use the proposition through a capacity bound. Let $u$ and $h$ be as in \cref{prop:blocki-difference-estimate}, and let $D\subset\mathbb C^n$ be a bounded open set with $\overline B\subset D$. Every competitor $v$ for $\operatorname{Cap}_D$ has oscillation at most $1$ on $B$. Hence Chebyshev's inequality and the proposition give, for every $\delta>0$,
+\begin{equation}\label{eq:blocki-capacity-bound}
+ \begin{aligned}
+ \operatorname{Cap}_D\bigl(B\cap\{h-u>\delta\}\bigr)
+ &\le\sup_v\frac{1}{\delta^{n+1}}\int_B(h-u)^{n+1}(\ddc v)^n\\
+ &\le\frac{(n+1)!}{\delta^{n+1}}\int_B(h-u)(\ddc u)^n,
+ \end{aligned}
+\end{equation}
+where the supremum is taken over all competitors $v$.
+
+\section{Quasi-continuity and convergence in capacity}
+\label{sec:bt-quasicontinuity}
+
+Throughout this section and the next, $D\subset\mathbb{C}^n$, $n\ge1$, is a bounded open set. By \cref{thm:subharmonic-quasicontinuity}, locally integrable subharmonic functions are quasi-continuous in the sense of \cref{part:potential}: they are continuous outside open sets of arbitrarily small relative capacity. We now define quasi-continuity with respect to the Monge--Amp\`ere capacity instead, which is the meaning of the term in the rest of the book, prove that plurisubharmonic functions are quasi-continuous in this sense, and then show that the products are continuous under convergence in capacity.
+
+\begin{definition}\label{def:quasi-continuity}
+A Borel function $f\colon D\to[-\infty,\infty]$ is \emph{quasi-continuous} (for $\operatorname{Cap}_D$) if for every compact set $K\subset D$ and every $\varepsilon>0$ there is an open set $G\subset D$ with $\operatorname{Cap}_D(G)<\varepsilon$ such that the restriction of $f$ to $K\setminus G$ is continuous. Here $[-\infty,\infty]$ carries its order topology.
+\end{definition}
+\index{quasi-continuity!Monge--Amp\`ere capacity}
+The same definition applies to a function defined on an open subset $W\subset D$, with compact sets $K\subset W$ and still with $\operatorname{Cap}_D$. The sum $f_1+f_2$ and the difference $f_1-f_2$ of two real-valued quasi-continuous functions $f_1,f_2$ are quasi-continuous, and so is $\Phi\circ f_1$ for every continuous function $\Phi\colon\mathbb R\to\mathbb R$. Indeed, these functions are Borel. Given $K$ and $\varepsilon$, choose open sets $G_i\subset D$ with $\operatorname{Cap}_D(G_i)<\varepsilon/2$ such that $f_i$ is continuous on $K\setminus G_i$, $i=1,2$. Then $G=G_1\cup G_2$ satisfies $\operatorname{Cap}_D(G)<\varepsilon$ by subadditivity (\cref{prop:bt-capacity-basic}), and $f_1+f_2$ and $f_1-f_2$ are continuous on $K\setminus G$, as sums and differences of continuous real functions there; similarly, $\Phi\circ f_1$ is continuous on $K\setminus G_1$.
+
+\begin{theorem}\label{thm:psh-capacity-quasicontinuity}
+Let $u\in\PSH(D)$. For every $\varepsilon>0$ there is an open set $G\subset D$ with $\operatorname{Cap}_D(G)<\varepsilon$ which contains the pole set $\{u=-\infty\}$ and such that the restriction of $u$ to $D\setminus G$ is finite and continuous. In particular $u$ is quasi-continuous.
+\end{theorem}
+\begin{proof}
+\emph{Step 1: locally bounded $u$.} Let $u$ be locally bounded, $K\subset D$ compact and $\varepsilon>0$; we find an open set $G\subset D$ with $\operatorname{Cap}_D(G)<\varepsilon$ such that $u$ is continuous on $K\setminus G$. For each $x\in K$ choose $r_x>0$ with $\overline{B(x,3r_x)}\subset D$; finitely many balls $B(x_i,r_{x_i})$, $1\le i\le m$, cover $K$. Suppose that for each $i$ we find an open set $G_i$ with $\operatorname{Cap}_D(G_i)<\varepsilon/m$ such that $u$ is continuous on $\overline{B(x_i,r_{x_i})}\setminus G_i$. Then $G=\bigcup_iG_i$ satisfies $\operatorname{Cap}_D(G)<\varepsilon$, and $u$ is continuous on $K\setminus G$, because the finitely many sets $(K\setminus G)\cap\overline{B(x_i,r_{x_i})}$ are closed in $K\setminus G$ and cover it, and $u$ is continuous on each of them. We may therefore assume that $K=\overline{B'}$, where $B'=B(x,r)$, $B=B(x,2r)$ and $B_1=B(x,3r)$ satisfy $\overline{B_1}\subset D$.
+
+Subtracting a constant, we may assume that $-N\le u\le-1$ on $B_1$. Let $j>2/r$. Since $U=B(x,5r/2)$, a neighborhood of $\overline B$, lies at distance $r/2>1/j$ from $\mathbb C^n\setminus B_1$, the regularization $u*\rho_{1/j}$ is smooth and plurisubharmonic on $U$ and takes values in $[-N,-1]$ there; moreover, $u*\rho_{1/j}$ decreases to $u$ as $j\to\infty$ (\cref{prop:smooth-psh-criterion}). Put $\psi=|z-x|^2-4r^2$, choose $\delta>0$ with $\overline{B'}\subset\{\psi<-\delta\}$, and let $g=\max\{u,A\psi\}$ and $g_j=\max\{u*\rho_{1/j},A\psi\}$, with $A=N/\delta$, be the functions \eqref{eq:bt-collar-modification} on $U$. The $g_j$ are continuous and plurisubharmonic on $U$ and decrease to $g$; moreover, $g=u$ on $\{\psi<-\delta\}\supset\overline{B'}$, and $g_j=g=A\psi$ on a collar of $\partial B$.
+
+For $\delta'>0$ put $G_{j,\delta'}=\{z\in B:g_j(z)-g(z)>\delta'\}$; it is open, because $g_j$ is continuous and $g$ is upper semicontinuous. By \eqref{eq:blocki-capacity-bound}, applied with $h=g_j$, $u=g$ and $\delta'$ in place of $\delta$,
+\[
+ \operatorname{Cap}_D(G_{j,\delta'})\le\frac{(n+1)!}{\delta'^{n+1}}\int_B(g_j-g)(\ddc g)^n.
+\]
+The right-hand side tends to zero as $j\to\infty$ by dominated convergence: $(\ddc g)^n$ has finite mass on $B$, since $g$ is bounded and plurisubharmonic near $\overline B$, and the functions $g_j-g\ge0$ are bounded on $B$ uniformly in $j$ and decrease to zero. Choose $j_1<j_2<\cdots$ such that $G_l=G_{j_l,2^{-l}}$ satisfies $\operatorname{Cap}_D(G_l)<\varepsilon2^{-l}$, and let $G=\bigcup_lG_l$. Then $\operatorname{Cap}_D(G)<\varepsilon$, and on $B\setminus G$ we have $0\le g_{j_l}-g\le2^{-l}$ for every $l$. Thus $g$ is a uniform limit of continuous functions on $B\setminus G$, hence continuous there; in particular $u=g$ is continuous on $\overline{B'}\setminus G$.
+
+\emph{Step 2: arbitrary $u$.} Let $K\subset D$ be compact and $\varepsilon>0$. By \cref{prop:bt-poles-zero-capacity}, applied to $K$ and a compact neighborhood $L$ of $K$ in $D$, there is $s>0$ with $\operatorname{Cap}^*_D(K\cap\{u<-s\})<\varepsilon/2$, and hence an open set $G_1\supset K\cap\{u<-s\}$ with $\operatorname{Cap}_D(G_1)<\varepsilon/2$. By Step 1, applied to the locally bounded plurisubharmonic function $\max\{u,-s\}$, there is an open set $G_2$ with $\operatorname{Cap}_D(G_2)<\varepsilon/2$ such that $\max\{u,-s\}$ is continuous on $K\setminus G_2$. On $K\setminus(G_1\cup G_2)$ we have $u\ge-s$, hence $u=\max\{u,-s\}$. Thus $G=G_1\cup G_2$ contains $K\cap\{u=-\infty\}$, $\operatorname{Cap}_D(G)<\varepsilon$, and $u$ is finite and continuous on $K\setminus G$.
+
+\emph{Step 3: a single exceptional set.} Choose compact sets $K_l$ with $K_l\subset\Int K_{l+1}$ and $\bigcup_lK_l=D$. By Step 2 there are open sets $G^{(l)}\supset K_l\cap\{u=-\infty\}$ with $\operatorname{Cap}_D(G^{(l)})<\varepsilon2^{-l}$ such that $u$ is finite and continuous on $K_l\setminus G^{(l)}$. Put $G=\bigcup_lG^{(l)}$. Then $\operatorname{Cap}_D(G)<\varepsilon$, and $G$ contains the pole set of $u$. Every $x\in D\setminus G$ lies in some $\Int K_l$, and on the neighborhood $\Int K_l\setminus G$ of $x$ in $D\setminus G$ the function $u$ is a restriction of the continuous function $u|_{K_l\setminus G^{(l)}}$. Hence $u|_{D\setminus G}$ is finite and continuous.
+\end{proof}
+\index{plurisubharmonic function!quasi-continuity}
+
+In the proofs below we extend continuous functions from compact sets, using the following elementary case of Tietze's extension theorem.
+
+\begin{lemma}\label{lem:compact-tietze-extension}
+Let $(X,d)$ be a metric space, let $F\subset X$ be compact, and let $f\colon F\to\mathbb R$ be continuous with $|f|\le a$. Then $f$ has a continuous extension $g\colon X\to\mathbb R$ with $|g|\le a$.
+\end{lemma}
+\index{Tietze extension theorem}
+\begin{proof}
+If $F=\varnothing$ or $a=0$, take $g=0$. Otherwise, for $L>0$ put
+\[
+ f_L(x)=\max\Bigl\{-a,\min\bigl\{a,\inf_{y\in F}(f(y)+L\,d(x,y))\bigr\}\Bigr\},\qquad x\in X.
+\]
+The infimum is finite, since $f\ge-a$, and as an infimum of functions that are Lipschitz with constant $L$ it is Lipschitz with constant $L$; hence $f_L$ is continuous and $|f_L|\le a$. We claim that $f_L\to f$ uniformly on $F$ as $L\to\infty$. Taking $y=x$ shows $f_L\le f$ on $F$. Given $\eta>0$, uniform continuity of $f$ on the compact set $F$ gives $r>0$ with $|f(y)-f(x)|<\eta$ for $x,y\in F$ with $d(x,y)<r$. Let $Lr>2a$ and $x\in F$. Points $y\in F$ with $d(x,y)\ge r$ give $f(y)+L\,d(x,y)\ge-a+Lr>a\ge f(x)$, and the other points give $f(y)+L\,d(x,y)>f(x)-\eta$. Hence the infimum is at least $f(x)-\eta$, and so is $f_L(x)$, because $a\ge f(x)>f(x)-\eta$ and $-a\le f(x)$. This proves the claim. Consequently there is a continuous $g_1$ on $X$ with $|g_1|\le a$ and $|f-g_1|\le a/2$ on $F$. Applying the same construction to $f-g_1$ on $F$, we find a continuous $g_2$ with $|g_2|\le a/2$ and $|f-g_1-g_2|\le a/4$ on $F$, and inductively continuous $g_k$ with $|g_k|\le2^{1-k}a$ and $|f-g_1-\cdots-g_k|\le2^{-k}a$ on $F$. The series $\sum_kg_k$ converges uniformly on $X$; its sum is continuous and equals $f$ on $F$, and clamping it to $[-a,a]$, that is, replacing it by $\max\{-a,\min\{a,\sum_kg_k\}\}$, does not change its values on $F$.
+\end{proof}
+
+\begin{lemma}\label{lem:quasi-continuous-level-capacity}
+Let $K,L\subset D$ be compact sets with $K\subset\Int L$, and let $f$ be a real Borel function which is defined and quasi-continuous on a neighborhood of $L$. Then, for every $\delta>0$,
+\[
+ \operatorname{Cap}_D^*(K\cap\{|f|>\delta\})
+       \le\operatorname{Cap}_D(L\cap\{|f|>\delta/2\}).
+\]
+\end{lemma}
+\begin{proof}
+Let $\eta>0$. By quasi-continuity, applied to the compact set $L$, there is an open set $G\subset D$ with $\operatorname{Cap}_D(G)<\eta$ such that $f$ is continuous on $L\setminus G$; let $g$ be a continuous extension of $f|_{L\setminus G}$ to $\mathbb{C}^n$ (\cref{lem:compact-tietze-extension}); here $f|_{L\setminus G}$ is bounded, being continuous on a compact set. The open set $G\cup(\Int L\cap\{|g|>\delta/2\})$ contains $K\cap\{|f|>\delta\}$, since $K\subset\Int L$ and $g=f$ on $K\setminus G$. Its part outside $G$ is a Borel set contained in $L\cap\{|f|>\delta/2\}$, because $g=f$ on $L\setminus G$. By monotonicity and subadditivity,
+\[
+ \operatorname{Cap}_D^*(K\cap\{|f|>\delta\})\le\eta+\operatorname{Cap}_D(L\cap\{|f|>\delta/2\}).
+\]
+Let $\eta\downarrow0$.
+\end{proof}
+
+\begin{definition}\label{def:local-capacity-convergence}
+A net $(f_a)$ of Borel functions $f_a\colon D\to[-\infty,+\infty]$ \emph{converges locally in capacity} to a Borel function $f\colon D\to[-\infty,+\infty]$ if, for every compact set $K\subset D$ and every $\delta>0$,
+\[
+ \operatorname{Cap}_D^*(K\cap\{f_a>f+\delta\})\longrightarrow0,
+ \qquad
+ \operatorname{Cap}_D^*(K\cap\{f_a<f-\delta\})\longrightarrow0.
+\]
+Here $\pm\infty+\delta=\pm\infty$ and $\pm\infty-\delta=\pm\infty$.
+\end{definition}
+\index{convergence!Monge--Amp\`ere capacity}
+For finite functions, $K\cap\{|f_a-f|>\delta\}$ is the union of the two sets in the definition, so by monotonicity and subadditivity of outer capacity the two conditions together are equivalent to $\operatorname{Cap}_D^*(K\cap\{|f_a-f|>\delta\})\to0$. Convergence locally in capacity is a local property: it holds on $D$ if and only if, for every ball $B\Subset D$, it holds on $B$ with $\operatorname{Cap}_B$ in place of $\operatorname{Cap}_D$. Indeed, if it holds on $D$ and $K\subset B$ is compact, then \cref{prop:bt-capacity-basic}(4) gives $\operatorname{Cap}^*_B(A)\le C\operatorname{Cap}^*_D(A)$ for all $A\subset K$. Conversely, if it holds on every ball $B\Subset D$, cover a compact set $K\subset D$ by finitely many balls $B(x_i,r_i)$ with $\overline{B(x_i,2r_i)}\subset D$; for $A\subset K_i=K\cap\overline{B(x_i,r_i)}$, \cref{prop:bt-capacity-basic}(4) gives $\operatorname{Cap}^*_D(A)\le\operatorname{Cap}^*_{B(x_i,2r_i)}(A)$, and subadditivity over $i$ gives the condition on $D$. In particular, for functions on an open set $W\subset D$, convergence locally in capacity with $\operatorname{Cap}_W$ is equivalent to the same condition, for compact subsets of $W$, with $\operatorname{Cap}_D$, since both are equivalent to the condition on balls $B\Subset W$.
+
+\begin{proposition}\label{prop:psh-decreasing-capacity}
+Let $u_j$ be locally bounded plurisubharmonic functions on $D$ decreasing to a locally bounded function $u$. Then $u_j\to u$ locally in capacity. Moreover, a net of real Borel functions on $D$ which is uniformly bounded on each compact subset of $D$ and converges locally in capacity to a locally bounded real Borel function also converges in $L^1_{\loc}(D)$.
+\end{proposition}
+\begin{proof}
+Let $K\subset D$ be compact and $\delta>0$. Since $u_j\ge u$, the sets $\{u_j<u-\delta\}$ are empty, and we must show that $\operatorname{Cap}^*_D(K\cap\{u_j-u>\delta\})\to0$. By \cref{thm:psh-decreasing-nets}, $u$ is plurisubharmonic. Covering $K$ by finitely many balls $B(x,r)$ with $\overline{B(x,4r)}\subset D$ and using subadditivity of outer capacity, we may assume that $K\subset\overline{B(x,r)}$ for such a ball; put $L=\overline{B(x,3r/2)}$, $B=B(x,3r)$ and $B_1=B(x,4r)$.
+
+We first make the functions coincide near $\partial B$. Since $u\le u_j\le u_1$, all these functions are bounded on $B_1$ uniformly in $j$, so there are constants $c$ and $N\ge1$ with $-N\le u_j-c,\,u-c\le-1$ on $B_1$. Put $\psi=|z-x|^2-9r^2$, choose $\delta_0>0$ with $L\subset\{\psi<-\delta_0\}$, and let $\hat u_j=\max\{u_j-c,A\psi\}$ and $\hat u=\max\{u-c,A\psi\}$, with $A=N/\delta_0$, be the functions \eqref{eq:bt-collar-modification} on $B_1$, with $\delta_0$ in place of $\delta$. They are bounded and plurisubharmonic on $B_1$, $\hat u_j\downarrow\hat u$, $\hat u_j-\hat u=u_j-u$ on $L$, and $\hat u_j=\hat u$ on a collar of $\partial B$. By \eqref{eq:blocki-capacity-bound}, applied with $u=\hat u$ and $h=\hat u_j$,
+\[
+ \operatorname{Cap}_D\bigl(B\cap\{\hat u_j-\hat u>\delta/2\}\bigr)
+ \le(n+1)!\,(2/\delta)^{n+1}\int_B(\hat u_j-\hat u)(\ddc\hat u)^n,
+\]
+and the right-hand side tends to zero by dominated convergence, since $(\ddc\hat u)^n$ has finite mass on $B$ and $0\le\hat u_j-\hat u\le\hat u_1-\hat u$ decreases to zero. The real function $w_j=u_j-u$ is quasi-continuous on $D$, as a difference of two real quasi-continuous functions (\cref{thm:psh-capacity-quasicontinuity} and the remark following \cref{def:quasi-continuity}), and $w_j=\hat u_j-\hat u$ on $L$. Hence \cref{lem:quasi-continuous-level-capacity} gives
+\[
+ \operatorname{Cap}^*_D(K\cap\{w_j>\delta\})\le\operatorname{Cap}_D(L\cap\{w_j>\delta/2\})\le\operatorname{Cap}_D\bigl(B\cap\{\hat u_j-\hat u>\delta/2\}\bigr)\longrightarrow0.
+\]
+
+For the second assertion, let $f_a\to f$ be as in the statement, let $K\subset D$ be compact, and let $M$ bound $|f_a|$ and $|f|$ on $K$. Splitting $K$ into the Borel set where $|f_a-f|>\delta$ and its complement, and using \cref{prop:bt-capacity-basic}(3) together with $\operatorname{Cap}_D\le\operatorname{Cap}^*_D$ on Borel sets, we get
+\[
+ \int_K|f_a-f|\,\mathrm{d}V_{2n}
+ \le 2MC_D\operatorname{Cap}_D^*(K\cap\{|f_a-f|>\delta\})
+          +\delta|K|.
+\]
+Taking the limit along the net and then letting $\delta\downarrow0$ proves $L^1$ convergence on $K$.
+\end{proof}
+\index{convergence!capacity for decreasing sequences}
+
+\begin{lemma}\label{lem:bounded-product-capacity-domination}
+Let $B\subset\mathbb C^n$ be a ball, and let $\mathcal U$ be a family of plurisubharmonic functions on $B$ which is uniformly bounded on each compact subset of $B$.
+\begin{enumerate}
+\item For every compact set $K\subset B$ there is a constant $C$ such that, for all integers $0\le q\le n$, all $u_1,\ldots,u_q\in\mathcal U$ and all Borel sets $E\subset K$, the trace measure $\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}$, and the total variation of every coefficient measure of $\ddc u_1\wedge\cdots\wedge\ddc u_q$, give $E$ mass at most $C\operatorname{Cap}_B(E)$.
+\item Let $S_j=\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}$ with $u_{l,j}\in\mathcal U$, and suppose that $S_j\to S$ weakly. Let $f_j$ be real Borel functions on $B$, uniformly bounded on each compact subset of $B$, which converge locally in capacity (for $\operatorname{Cap}_B$) to a real Borel function $f$ that is locally bounded and quasi-continuous. Then $f_jS_j\to fS$ weakly, and the same holds for the trace measures of $S_j$ and $S$. This applies in particular to a fixed weight $f_j=f$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) Let $B=B(a,R)$, fix $K$, and choose $R'<R$ with $K\subset B'=B(a,R')$. Let $M\ge1$ be a common bound for $|u|$ on $B'$, $u\in\mathcal U$. For $u_1,\ldots,u_q\in\mathcal U$ put $v_l=(u_l+M)/(2M)$ and $\phi=|z-a|^2/R'^2$; these functions take values in $[0,1]$ on $B'$, and so does
+\[
+ F=\frac1n\bigl(v_1+\cdots+v_q+(n-q)\phi\bigr),
+\]
+which is therefore a competitor for $\operatorname{Cap}_{B'}$. Expand $(\ddc F)^n$ by additivity, positive homogeneity and symmetry (\cref{prop:bt-positive-recursion,thm:bt-decreasing-continuity}). All terms are positive measures, and those in which each $\ddc v_l$ occurs once and $\ddc\phi$ occurs $n-q$ times add up to $c_{n,q}\,\ddc v_1\wedge\cdots\wedge\ddc v_q\wedge(\ddc\phi)^{n-q}$, where $c_{n,q}=n^{-n}\,n!\,(n-q)^{n-q}/(n-q)!>0$ (with $0^0=1$) is the corresponding multinomial coefficient. Hence $\ddc v_1\wedge\cdots\wedge\ddc v_q\wedge(\ddc\phi)^{n-q}\le c_{n,q}^{-1}(\ddc F)^n$. Since $\ddc\phi=\beta/(\pi R'^2)$ and $\ddc u_l=2M\ddc v_l$, it follows that $\int_E\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\beta^{n-q}\le C\operatorname{Cap}_{B'}(E)$ for Borel $E\subset B'$. The bound for the coefficient measures follows from \cref{thm:positive-current-order-zero}, and \cref{prop:bt-capacity-basic}(4), applied to $B'\Subset B$ and $K$, replaces $\operatorname{Cap}_{B'}$ by $\operatorname{Cap}_B$ on subsets of $K$.
+
+(2) The weak limit $S$ is a positive current (\cref{thm:positive-current-order-zero}). Let $\sigma_j$ be either the trace measure or a coefficient measure of $S_j$, and $\sigma$ the corresponding measure of $S$; then $\int\psi\,\mathrm d\sigma_j\to\int\psi\,\mathrm d\sigma$ for every test function $\psi$, since this integral is the value of $S_j$ on a test form. Fix a continuous function $\chi$ with compact support in $B$ and a compact set $K\subset B$ with $\Supp\chi\subset\Int K$, and let $C$ be the constant of~(1) for $K$; in particular $|\sigma_j|(K)\le C\operatorname{Cap}_B(K)$, which is finite by \cref{prop:bt-capacity-basic}(1). A similar bound holds for $\sigma$ on open subsets $U\subset\Int K$: for the trace measure, which is the vague limit of the trace measures of $S_j$ (\cref{sec:positive-currents}), \cref{prop:vague-set-inequalities} gives $\sigma(U)\le\varliminf_j\sigma_j(U)\le C\operatorname{Cap}_B(U)$, and the total variations of the coefficient measures of the positive current $S$ are bounded by a constant multiple of its trace measure.
+
+Since the total variations $|\sigma_j|(K)$ are bounded, the convergence $\int\psi\,\mathrm d\sigma_j\to\int\psi\,\mathrm d\sigma$ extends to continuous functions $\psi$ with support in $\Int K$: approximating $\psi$ uniformly by test functions supported in a fixed compact subset of $\Int K$ (\cref{lem:mollifier-density}(5)) changes the integrals by at most $\sup|\psi-\psi_\varepsilon|$ times a bound for $|\sigma_j|(K)$ and $|\sigma|(K)$.
+
+Consider first the fixed weight $f$, and let $\eta>0$. Since $f$ is quasi-continuous, there is an open set $G\subset B$ with $\operatorname{Cap}_B(G)<\eta$ such that $f$ is continuous on $K\setminus G$; let $g$ be a continuous extension of $f|_{K\setminus G}$ to $\mathbb C^n$ with $\sup|g|\le\sup_K|f|$ (\cref{lem:compact-tietze-extension}). Then
+\[
+ \Bigl|\int\chi f\,\mathrm{d}\sigma_j-\int\chi g\,\mathrm{d}\sigma_j\Bigr|\le2\sup_K|f|\sup|\chi|\,|\sigma_j|(G\cap\Supp\chi)\le C'\eta,
+\]
+and similarly for $\sigma$, using the open set $G\cap\Int K$. Since $\chi g$ is continuous with support in $\Int K$, we have $\int\chi g\,\mathrm{d}\sigma_j\to\int\chi g\,\mathrm{d}\sigma$. Hence $\varlimsup_j|\int\chi f\,\mathrm{d}\sigma_j-\int\chi f\,\mathrm{d}\sigma|\le2C'\eta$ for every $\eta>0$, which proves $f\sigma_j\to f\sigma$.
+
+For varying weights, let $M_K$ bound $|f_j|$ and $|f|$ on $K$, and let $\delta>0$. By~(1),
+\[
+ \Bigl|\int\chi(f_j-f)\,\mathrm{d}\sigma_j\Bigr|
+ \le\sup|\chi|\Bigl(\delta\,C\operatorname{Cap}_B(K)+2M_KC\operatorname{Cap}^*_B\bigl(K\cap\{|f_j-f|>\delta\}\bigr)\Bigr).
+\]
+As $j\to\infty$, the second term tends to zero by convergence in capacity; then we let $\delta\downarrow0$. Together with the fixed-weight case, this proves $f_j\sigma_j\to f\sigma$, and hence $f_jS_j\to fS$.
+\end{proof}
+\index{capacity!domination of mixed Monge--Amp\`ere measures}
+
+\begin{theorem}\label{thm:bt-capacity-continuity}
+Let $0\le q\le n$ be an integer. For $1\le l\le q$, let $(u_{l,j})_{j\ge1}$ be a sequence of plurisubharmonic functions on $D$, uniformly bounded on each compact subset of $D$, which converges locally in capacity to a locally bounded plurisubharmonic function $u_l$. Then
+\[
+ \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}
+             \longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_q
+\]
+weakly. More generally, if $f_j$ are real Borel functions on $D$, uniformly bounded on each compact subset of $D$, which converge locally in capacity to a locally bounded, quasi-continuous real Borel function $f$, then $f_j\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}\to f\ddc u_1\wedge\cdots\wedge\ddc u_q$ weakly.
+\end{theorem}
+\index{Bedford--Taylor product!continuity under convergence in capacity}
+\begin{proof}
+Weak convergence is local (\cref{lem:weak-convergence-local}), so it suffices to prove the convergence on every ball $B\Subset D$. By the remark following \cref{def:local-capacity-convergence}, the convergence in capacity holds with $\operatorname{Cap}_B$ in place of $\operatorname{Cap}_D$ on every ball $B\Subset D$. The limit $f$ is quasi-continuous for $\operatorname{Cap}_B$ as well: if $K\subset B$ is compact, $K'$ is a compact neighborhood of $K$ in $B$, and $G\subset D$ is open with $f$ continuous on $K'\setminus G$, then $G\cap\Int K'$ is open in $B$, $f$ is continuous on $K\setminus(G\cap\Int K')=K\setminus G$, and $\operatorname{Cap}_B(G\cap\Int K')\le C\operatorname{Cap}_D(G)$ by \cref{prop:bt-capacity-basic}(4) applied to $K'$. Finally, the functions $u_{l,j}$ and $u_l$, restricted to $B$, form a family which is uniformly bounded on compact subsets of $B$. We may therefore work on such a ball and use \cref{lem:bounded-product-capacity-domination}.
+
+We argue by induction on $q$. For $q=0$ the product is $1$, and the weighted assertion is the second part of the lemma with $S_j=1$. Let $q\ge1$, and assume that $S_j=\ddc u_{2,j}\wedge\cdots\wedge\ddc u_{q,j}$ converges weakly to $S=\ddc u_2\wedge\cdots\wedge\ddc u_q$. The functions $u_{1,j}$ converge in capacity to $u_1$, which is quasi-continuous by \cref{thm:psh-capacity-quasicontinuity}; hence the second part of the lemma gives $u_{1,j}S_j\to u_1S$, and applying $\ddc$ proves the unweighted assertion for $q$ factors. The weighted assertion then follows from the second part of the lemma once more.
+\end{proof}
+
+Unlike \cref{thm:bt-decreasing-continuity}, \cref{thm:bt-capacity-continuity} concerns only products with the base current $T=1$.
+
+\section{Increasing limits and exceptional envelopes}
+\label{sec:bt-increasing}
+
+The supremum of an increasing sequence of plurisubharmonic functions need not be upper semicontinuous, and it may differ from its upper semicontinuous regularization on an exceptional set. For instance, on the unit ball of $\mathbb C^n$ the functions $\max\{j^{-1}\log|z_1|,-1\}$ are plurisubharmonic (\cref{prop:holomorphic-tuple-logarithm,prop:psh-max-gluing}) and increase with $j$, since $\log|z_1|<0$ there; their supremum equals $0$ where $z_1\ne0$ and $-1$ on the hyperplane $\{z_1=0\}$, while its upper semicontinuous regularization is $0$. We show that the products are nevertheless continuous along increasing sequences. The proof follows the pattern of the decreasing case: the inequality $u_{0,j}\le u_0$ bounds weak limits from above, while the quasi-continuity of the fixed weights, through \cref{lem:bounded-product-capacity-domination}, supplies the lower bound for the masses. As a consequence, the exceptional set of an upper envelope has outer capacity zero.
+
+\begin{theorem}\label{thm:bt-increasing-continuity}
+Let $0\le q\le n$ be an integer. For $0\le l\le q$, let $(u_{l,j})_{j\ge1}$ be an increasing sequence of locally bounded plurisubharmonic functions on $D$ which converges almost everywhere to a locally bounded plurisubharmonic function $u_l$. Then
+\[
+ \begin{aligned}
+ \ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}
+ &\longrightarrow\ddc u_1\wedge\cdots\wedge\ddc u_q,\\
+ u_{0,j}\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}
+ &\longrightarrow u_0\ddc u_1\wedge\cdots\wedge\ddc u_q
+ \end{aligned}
+\]
+weakly. Moreover $u_{l,j}\to u_l$ locally in capacity for every $l$.
+\end{theorem}
+\begin{proof}
+We first note that $u_{l,j}\le u_l$ everywhere. Indeed, $u_{l,j}\le u_l$ almost everywhere, so the plurisubharmonic functions $\max\{u_{l,j},u_l\}$ and $u_l$ agree almost everywhere, and hence everywhere, by the uniqueness of plurisubharmonic representatives in \cref{thm:psh-distribution-representative}, applied on each connected component of $D$. Consequently $u_{l,1}\le u_{l,j}\le u_l$, and the sequences are uniformly bounded on each compact subset of $D$.
+
+As in the proof of \cref{thm:bt-decreasing-continuity}, we prove the weighted assertion by induction on $q$, for all bounded open sets $D$ and all sequences as in the statement; convergence in capacity is proved at the end. For $q=0$ it follows from dominated convergence with respect to Lebesgue measure. Let $q\ge1$ and assume the weighted assertion for $q-1$ factors; applying $\ddc$ to it, with the weight $u_{1,j}$, gives the unweighted assertion for $q$ factors. Put $S_j=\ddc u_{1,j}\wedge\cdots\wedge\ddc u_{q,j}$ and $S=\ddc u_1\wedge\cdots\wedge\ddc u_q$, so that $S_j\to S$ weakly.
+
+Weak convergence is a local property (\cref{lem:weak-convergence-local}). Fix $x\in D$ and $r>0$ with $\overline{B(x,4r)}\subset D$, and put $B=B(x,3r)$ and $B_1=B(x,4r)$; we prove the convergence on $B(x,2r)$. Subtracting constants does not affect the assertions, since the unweighted assertion for $q$ factors is known, so we may assume that $-N\le u_{l,j},u_l\le-1$ on $B_1$ for all $l$ and $j$, where $N\ge1$. Put $\psi=|z-x|^2-9r^2$, choose $\delta_0>0$ such that $\overline{B(x,2r)}\subset\{\psi<-\delta_0\}$, and replace each function $v$ among the $u_{l,j}$ and $u_l$ by the function $\max\{v,A\psi\}$ of \eqref{eq:bt-collar-modification}, with $U=B_1$, $\delta_0$ in place of $\delta$ and $A=N/\delta_0$. The new functions are plurisubharmonic on $B_1$ and take values in $[-N,0)$ on $B$; the new sequences still increase, satisfy $u_{l,j}\le u_l$ and converge almost everywhere. The functions do not change on $B(x,2r)$, and by locality neither do the products. On the collar $V=\{z\in B_1:\psi(z)>-1/A\}$ of $\partial B$ the new functions coincide with $A\psi$.
+
+By locality, on $V$ all the currents considered below coincide with fixed currents, independent of $j$ and $k$. Hence, if $\chi\in C^\infty_c(B)$ equals $1$ on $B\setminus V$, the integral over $B$ of each of these currents splits into its integral against $\chi$, to which weak convergence applies, and its integral against $(1-\chi)\mathbf1_B$, which only involves values on $V$ and therefore does not change; we use this without further comment. The currents $-u_{0,j}S_j$ are positive on $B$, and their masses on compact subsets of $B$ are bounded uniformly in $j$ by \cref{thm:cln-bounded}; by the compactness part of \cref{thm:positive-current-order-zero}, every subsequence of $(u_{0,j}S_j)$ has a further subsequence converging weakly on $B$. Let $\Theta$ be the limit of such a subsequence.
+
+Since $u_{0,j}\le u_0$, the currents $(u_0-u_{0,j})S_j$ are positive. Let $\varphi$ be a strongly positive test form on $B$ of complementary bidegree. The positive measures $-u_0S_j\wedge\varphi$ have bounded masses on compact sets, so by \cref{thm:local-measure-selection} a further subsequence of $u_0S_j\wedge\varphi$ converges weakly to some $\nu$, and \cref{lem:usc-weight-weak-limit}, applied to the constant sequence $f_j=u_0$ and the measures $S_j\wedge\varphi\to S\wedge\varphi$, gives $\nu\le u_0S\wedge\varphi$. The measures $(u_0-u_{0,j})S_j\wedge\varphi$ are positive and converge along this subsequence to $\nu-\Theta\wedge\varphi$, which is therefore positive. Hence $\Theta\wedge\varphi\le u_0S\wedge\varphi$. Evaluating this inequality of measures on a nonnegative test function equal to $1$ on $\Supp\varphi$, we get $(u_0S-\Theta)(\varphi)\ge0$. Thus $u_0S-\Theta$ is a positive current on $B$, and it vanishes on $V$, since all the currents $u_{0,j}S_j$ and $u_0S$ coincide there with $A\psi(A\ddc\psi)^q$. Write $\gamma=\beta^{n-q}$.
+
+For fixed $k$ and all $j\ge k$, positivity of $S_j\wedge\gamma$ and $u_{0,j}\ge u_{0,k}$ give
+\[
+ \int_Bu_{0,j}S_j\wedge\gamma\ge\int_Bu_{0,k}S_j\wedge\gamma.
+\]
+Let $j\to\infty$ along the subsequence defining $\Theta$. The left-hand side tends to $\int_B\Theta\wedge\gamma$. The fixed weight $u_{0,k}$ is quasi-continuous for $\operatorname{Cap}_B$ by \cref{thm:psh-capacity-quasicontinuity}, and the functions $u_{l,j}$, $u_l$ form a family which is uniformly bounded on $B$; so by \cref{lem:bounded-product-capacity-domination}(2) the right-hand side tends to $\int_Bu_{0,k}S\wedge\gamma$. By the second assertion of \cref{cor:bt-polynomial-weights}, applied with $a=u_{0,k}$, $b=u_1$ and $R=\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge\gamma$, and by symmetry,
+\[
+ \int_Bu_{0,k}S\wedge\gamma=\int_Bu_1\,\ddc u_{0,k}\wedge\ddc u_2\wedge\cdots\wedge\ddc u_q\wedge\gamma.
+\]
+As $k\to\infty$, the unweighted assertion for $q$ factors, already established, gives $\ddc u_{0,k}\wedge\ddc u_2\wedge\cdots\wedge\ddc u_q\to\ddc u_0\wedge\ddc u_2\wedge\cdots\wedge\ddc u_q$ weakly, and \cref{lem:bounded-product-capacity-domination}, with the fixed quasi-continuous weight $u_1$, passes the integral to the limit. A second application of \cref{cor:bt-polynomial-weights} identifies the limit with $\int_Bu_0\,\ddc u_1\wedge\cdots\wedge\ddc u_q\wedge\gamma=\int_Bu_0S\wedge\gamma$. We have shown that $\int_B\Theta\wedge\gamma\ge\int_Bu_0S\wedge\gamma$.
+
+Since $u_0S-\Theta$ is positive with compact support in $B$, its trace measure has total mass $\int_B(u_0S-\Theta)\wedge\gamma\le0$ and therefore vanishes, and $\Theta=u_0S$ by \cref{thm:positive-current-order-zero}. Thus every subsequence of $(u_{0,j}S_j)$ has a further subsequence converging weakly to $u_0S$ on $B$. Hence the whole sequence converges to $u_0S$ on $B$: otherwise there would be a test form $\varphi$ on $B$ and a subsequence along which $|(u_{0,j}S_j-u_0S)(\varphi)|$ stays bounded away from zero, and no further subsequence of it could converge to $u_0S$. Since the modifications change neither the functions nor the weighted products on $B(x,2r)$, the original weighted products converge on $B(x,2r)$; this completes the induction.
+
+Now that both assertions are known for every $q\le n$, we prove convergence in capacity. Fix $l$, a compact set $K\subset D$ and $\delta>0$. Since $u_{l,j}\le u_l$, the sets $\{u_{l,j}>u_l+\delta\}$ are empty. Covering $K$ by finitely many balls and using subadditivity of outer capacity, we may assume that $K\subset\overline{B(x,r)}$ with $\overline{B(x,4r)}\subset D$; put $L=\overline{B(x,3r/2)}$. Let $\hat u_{l,j}$ and $\hat u_l$ be the functions obtained by the modification above, on $B=B(x,3r)$; on $\{\psi<-\delta_0\}\supset L$ we have $\hat u_l-\hat u_{l,j}=u_l-u_{l,j}$. These functions are bounded and plurisubharmonic on $B_1$, they satisfy $\hat u_{l,j}\le\hat u_l$, and both coincide with $A\psi$ on the collar $V$ of $\partial B$. By \eqref{eq:blocki-capacity-bound}, applied with $u=\hat u_{l,j}$ and $h=\hat u_l$,
+\[
+ \operatorname{Cap}_D\bigl(B\cap\{\hat u_l-\hat u_{l,j}>\delta/2\}\bigr)\le\frac{(n+1)!\,2^{n+1}}{\delta^{n+1}}\int_B(\hat u_l-\hat u_{l,j})(\ddc\hat u_{l,j})^n.
+\]
+The right-hand side tends to zero: $\int_B\hat u_l(\ddc\hat u_{l,j})^n\to\int_B\hat u_l(\ddc\hat u_l)^n$ by the unweighted assertion and \cref{lem:bounded-product-capacity-domination}(2) with the fixed quasi-continuous weight $\hat u_l$, and $\int_B\hat u_{l,j}(\ddc\hat u_{l,j})^n\to\int_B\hat u_l(\ddc\hat u_l)^n$ by the weighted assertion with all factors and the weight equal to $\hat u_{l,j}$; as before, the integrals over $B$ are split by a cutoff. The real function $u_l-u_{l,j}$ is quasi-continuous on $D$ (\cref{thm:psh-capacity-quasicontinuity} and the remark following \cref{def:quasi-continuity}), so \cref{lem:quasi-continuous-level-capacity} gives
+\[
+ \begin{aligned}
+ \operatorname{Cap}^*_D\bigl(K\cap\{u_l-u_{l,j}>\delta\}\bigr)&\le\operatorname{Cap}_D\bigl(L\cap\{u_l-u_{l,j}>\delta/2\}\bigr)\\
+ &\le\operatorname{Cap}_D\bigl(B\cap\{\hat u_l-\hat u_{l,j}>\delta/2\}\bigr)\longrightarrow0.
+ \end{aligned}
+\]
+\end{proof}
+\index{Bedford--Taylor product!increasing continuity}
+
+\begin{corollary}\label{cor:psh-envelope-zero-capacity}
+Let $\mathcal F$ be a nonempty family of plurisubharmonic functions on $D$ which is locally uniformly bounded above, and let $F=\sup_{v\in\mathcal F}v$ be its pointwise supremum and $F^*$ its upper semicontinuous regularization. Then $\operatorname{Cap}^*_D(K\cap\{F<F^*\})=0$ for every compact set $K\subset D$.
+\end{corollary}
+\begin{proof}
+By \cref{thm:psh-upper-envelopes}, $u=F^*$ is plurisubharmonic, and there is a countable subfamily $\{w_1,w_2,\ldots\}\subset\mathcal F$ with $(\sup_kw_k)^*=u$. The functions $v_j=\max\{w_1,\ldots,w_j\}$ are plurisubharmonic (\cref{prop:psh-max-gluing}) and increase to $G=\sup_kw_k$, and $G=G^*=u$ almost everywhere by \cref{thm:psh-upper-envelopes}, applied to the countable family. Fix an integer $m\ge1$. The functions $\max\{v_j,-m\}$ are locally bounded and plurisubharmonic on $D$, and they increase almost everywhere to the locally bounded plurisubharmonic function $\max\{u,-m\}$, so by \cref{thm:bt-increasing-continuity} they converge to it locally in capacity. For rational $\delta>0$, the set where $\sup_j\max\{v_j,-m\}<\max\{u,-m\}-\delta$ is contained in $\{\max\{v_k,-m\}<\max\{u,-m\}-\delta\}$ for every $k$, and the outer capacities of the intersections of the latter sets with a compact set tend to zero as $k\to\infty$. Taking the union over rational $\delta$, countable subadditivity shows that the set
+\[
+ E_m=\Bigl\{\sup_j\max\{v_j,-m\}<\max\{u,-m\}\Bigr\}
+\]
+meets every compact set in a set of outer capacity zero.
+
+If $\sup_jv_j(x)<u(x)$, then $u(x)>-\infty$, so $u(x)>-m$ for some integer $m$, and then $x\in E_m$. Hence $\{\sup_jv_j<u\}\subset\bigcup_mE_m$ also meets every compact set in a set of outer capacity zero. Finally, $\sup_jv_j\le F\le u$, so $\{F<F^*\}\subset\{\sup_jv_j<u\}$. (Since outer capacity is defined for all sets, we need not know whether $\{F<F^*\}$ is Borel.)
+\end{proof}
+\index{plurisubharmonic function!capacity-zero envelope discrepancy}
+
+\section{The homogeneous Dirichlet problem and balayage}
+\label{sec:bt-homogeneous-dirichlet}
+
+A plurisubharmonic function is maximal if it cannot be increased on a compact set without losing plurisubharmonicity (\cref{def:maximal-plurisubharmonic}). We show in \cref{thm:bounded-psh-maximality} that, for locally bounded functions, maximality is equivalent to $(\ddc u)^n=0$. The proof replaces $u$ on a ball by a solution $H$ of the homogeneous equation $(\ddc H)^n=0$ with the same boundary values (\cref{cor:homogeneous-psh-balayage}); in \cref{chap:q03} the same replacement shows that relative extremal functions have vanishing Monge--Amp\`ere measure away from the sets on which they are constrained. We construct $H$ as an upper envelope. To show that it solves the equation, we bound its second differences by composing with automorphisms of the ball (\cref{lem:ball-centered-automorphisms}), which makes it twice differentiable almost everywhere (\cref{lem:second-difference-regularity}).
+
+\begin{lemma}\label{lem:ball-centered-automorphisms}
+Let $B\subset\mathbb C^n$ be the unit ball. For $a\in B$ and $h\in\mathbb C^n$ with $|h|$ small, depending on $a$, there are biholomorphic automorphisms $S_{a,h}$ of $B$ such that $S_{a,0}$ is the identity and $S_{a,h}(a)=a+h$. Each $S_{a,h}$ extends to a holomorphic map on a neighborhood of $\overline B$ which maps $\partial B$ onto $\partial B$. For every compact set $K\subset B$ there is $h_0>0$ such that the map $(a,h,z)\mapsto S_{a,h}(z)$ is defined and smooth on an open subset of $\mathbb C^n\times\mathbb C^n\times\mathbb C^n$ containing $K\times\overline{B(0,h_0)}\times\overline B$, and holomorphic in $z$ there. In particular, there is a constant $C$ such that, for $a\in K$, $|h|\le h_0$ and $z\in\overline B$, the first and second derivatives of $S_{a,h}(z)$ with respect to the real variable $h\in\mathbb C^n=\mathbb R^{2n}$ are bounded by $C$.
+\end{lemma}
+\index{automorphisms of the ball}
+\begin{proof}
+Use the Hermitian product $\langle z,a\rangle=\sum z_j\bar a_j$, put $s_a=\sqrt{1-|a|^2}$, and define
+\[
+ T_a(z)=\frac{s_a z+\langle z,a\rangle a/(1+s_a)-a}
+                       {1-\langle z,a\rangle}.
+\]
+This expression depends smoothly on $(a,z)$ in the open set $\{(a,z):|a|<1,\ |a||z|<1\}$, where the denominator does not vanish, and it is holomorphic in $z$; moreover $T_0$ is the identity. If $U$ is a unitary matrix, then $\langle Uz,Ua\rangle=\langle z,a\rangle$ and $s_{Ua}=s_a$, so $T_{Ua}(Uz)=UT_a(z)$. Given $a\ne0$, choose $U$ with $Ua=(t,0,\ldots,0)$, $t=|a|$; it therefore suffices to verify the following identities for $a=(t,0,\ldots,0)$ with $0\le t<1$, and also for $-a=(-t,0,\ldots,0)$. Put $s=s_a=\sqrt{1-t^2}$. Then $\langle z,a\rangle=tz_1$, and the first component of the numerator of $T_a(z)$ is $sz_1+t^2z_1/(1+s)-t=z_1-t$, because $s(1+s)+t^2=s+s^2+t^2=1+s$. Hence
+\[
+ \begin{aligned}
+ T_a(z)&=\left(\frac{z_1-t}{1-tz_1},
+           \frac{s\,z_2}{1-tz_1},\ldots,
+           \frac{s\,z_n}{1-tz_1}\right),\\
+ T_{-a}(w)&=\left(\frac{w_1+t}{1+tw_1},
+           \frac{s\,w_2}{1+tw_1},\ldots,
+           \frac{s\,w_n}{1+tw_1}\right),
+ \end{aligned}
+\]
+the second formula by the same computation with $t$ replaced by $-t$. In particular $T_a(a)=0$ and $T_{-a}(0)=a$. If $w=T_a(z)$, then
+\[
+ w_1+t=\frac{(1-t^2)z_1}{1-tz_1},\qquad 1+tw_1=\frac{1-t^2}{1-tz_1},
+\]
+so the first component of $T_{-a}(w)$ is $z_1$ and the others are $s\cdot sz_k/(1-tz_1)\cdot(1-tz_1)/(1-t^2)=z_k$; thus $T_{-a}\circ T_a=\mathrm{id}$, and by symmetry $T_a\circ T_{-a}=\mathrm{id}$. Finally,
+\[
+ |1-tz_1|^2-|z_1-t|^2-(1-t^2)\sum_{k\ge2}|z_k|^2=(1-t^2)(1-|z_1|^2)-(1-t^2)\sum_{k\ge2}|z_k|^2,
+\]
+because the terms $\mp2t\Real z_1$ cancel; dividing by $|1-tz_1|^2$ gives
+\[
+ 1-|T_a(z)|^2=\frac{(1-|a|^2)(1-|z|^2)}{|1-\langle z,a\rangle|^2}.
+\]
+Hence $T_a$ maps $B$ into $B$ and the sphere $\partial B$ into itself, and the same holds for $T_{-a}$; since $T_{-a}$ is inverse to $T_a$, the map $T_a$ is a biholomorphic automorphism of $B$ which maps $\partial B$ onto itself.
+
+Set $S_{a,h}=T_{-(a+h)}\circ T_a$ for $|a+h|<1$. It maps $a$ to $T_{-(a+h)}(0)=a+h$ and is the identity for $h=0$. The map $T_a$ is holomorphic on the neighborhood $\{z:|a||z|<1\}$ of $\overline B$, and, as we have just seen, it maps $\overline B$ into $\overline B$ and $\partial B$ onto $\partial B$; the same holds for $T_{-(a+h)}$. Hence $S_{a,h}$ is holomorphic on the neighborhood $\{z:|a||z|<1,\ |a+h||T_a(z)|<1\}$ of $\overline B$, and it maps $\partial B$ onto $\partial B$. Let $K\subset B$ be compact (we may assume $K\neq\varnothing$), put $t_K=\max_K|a|<1$, and choose $h_0>0$ with $t_K+3h_0<1$. On the open set $O$ of all $(a,h,z)$ with $|a|<t_K+h_0$, $|h|<2h_0$, $|a||z|<1$ and $(t_K+3h_0)|T_a(z)|<1$, we have $|a+h|<1$ and $|a+h||T_a(z)|<1$, so $(a,h,z)\mapsto S_{a,h}(z)$ is defined and smooth on $O$, and holomorphic in $z$. Since $|T_a(z)|\le1$ for $|z|\le1$, the set $O$ contains the compact set $K\times\overline{B(0,h_0)}\times\overline B$, on which the continuous first and second derivatives of $S_{a,h}(z)$ with respect to $h$ are therefore bounded by a constant $C$.
+\end{proof}
+
+A plurisubharmonic function whose second differences are bounded above is locally of class $C^{1,1}$, and its Monge--Amp\`ere measure is then given by the determinant of its complex Hessian.
+
+\begin{lemma}\label{lem:second-difference-regularity}
+Let $U\subset\mathbb C^n$ be open, $n\ge1$, and let $H$ be a locally bounded plurisubharmonic function on $U$. Suppose that for every compact set $K\subset U$ there are constants $C_K\ge0$ and $h_K>0$ such that, for all $a\in K$ and all $h\in\mathbb C^n$ with $|h|\le h_K$, the points $a\pm h$ lie in $U$ and
+\begin{equation}\label{eq:second-difference-bound}
+ H(a+h)+H(a-h)-2H(a)\le2C_K|h|^2\qquad(a\in K,\ |h|\le h_K).
+\end{equation}
+Then $H$ is continuous, $H\in C^{1,1}_{\loc}(U)$, and the distributional real Hessian of $H$ is a matrix $A=(A_{ab})$ of measurable functions which are bounded on compact subsets of $U$. Almost every $x\in U$ satisfies
+\[
+ H(x+h)=H(x)+\nabla H(x)\cdot h+\tfrac12h^tA(x)h+o(|h|^2)\qquad(h\to0).
+\]
+Moreover, let $H_{j\bar k}$ be the coefficients of the distributional complex Hessian of $H$, which are fixed complex linear combinations of the $A_{ab}$. Then the matrix $(H_{j\bar k})$ is positive semidefinite almost everywhere, and
+\[
+ (\ddc H)^n=\frac{n!}{\pi^n}\det(H_{j\bar k})\,\mathrm dV_{2n}.
+\]
+\end{lemma}
+\index{plurisubharmonic function!second differences and $C^{1,1}$ regularity}
+\begin{proof}
+Let $H_\varepsilon=H*\rho_\varepsilon$. Fix $a_0\in U$ and $r>0$ with $\overline{B(a_0,4r)}\subset U$, put $K=\overline{B(a_0,3r)}$, and let $M_0=\sup_K|H|$, which is finite because $H$ is locally bounded. For $0<\varepsilon<r$, the regularization $H_\varepsilon$ is smooth and plurisubharmonic on a neighborhood of $\overline{B(a_0,2r)}$ (\cref{prop:smooth-psh-criterion}), and $|H_\varepsilon|\le M_0$ on $\overline{B(a_0,2r)}$, since its values there are averages of values of $H$ on $K$. For $x\in\overline{B(a_0,2r)}$ and $|h|\le h_K$,
+\[
+ \begin{aligned}
+ &H_\varepsilon(x+h)+H_\varepsilon(x-h)-2H_\varepsilon(x)\\
+ &\qquad=\int\bigl(H(x-y+h)+H(x-y-h)-2H(x-y)\bigr)\rho_\varepsilon(y)\,\mathrm dy\le2C_K|h|^2,
+ \end{aligned}
+\]
+by \eqref{eq:second-difference-bound}, because $x-y\in K$ for $|y|\le\varepsilon$. Replacing $h$ by $th$ with $0<t\le1$, dividing by $t^2$ and letting $t\to0$, we get $D^2H_\varepsilon(x)[h,h]\le2C_K|h|^2$ for $|h|\le h_K$, and hence, by homogeneity, for all $h\in\mathbb C^n=\mathbb R^{2n}$. On the other hand, the complex Hessian of the smooth plurisubharmonic function $H_\varepsilon$ is positive semidefinite (\cref{prop:smooth-psh-criterion}), and $D^2H_\varepsilon[h,h]+D^2H_\varepsilon[\mathrm ih,\mathrm ih]=4\sum_{j,k}(H_\varepsilon)_{j\bar k}h_j\bar h_k\ge0$; hence $D^2H_\varepsilon(x)[h,h]\ge-2C_K|h|^2$ as well. Thus the second derivatives of the $H_\varepsilon$ are bounded on $\overline{B(a_0,2r)}$ by a constant $\Lambda_0$ independent of $\varepsilon$. For $x\in\overline{B(a_0,r)}$ and a unit vector $e$, Taylor's formula
+\[
+ H_\varepsilon(x+re)=H_\varepsilon(x)+r\,\partial_eH_\varepsilon(x)+\int_0^r(r-t)D^2H_\varepsilon(x+te)[e,e]\,\mathrm dt
+\]
+gives $|\partial_eH_\varepsilon(x)|\le2M_0/r+\Lambda_0r=\Lambda$. By the mean value theorem on the convex set $B(a_0,r)$, $|H_\varepsilon(x)-H_\varepsilon(y)|\le\Lambda|x-y|$ for $x,y\in B(a_0,r)$. Since $H_\varepsilon\to H$ pointwise as $\varepsilon\downarrow0$, by \eqref{eq:canonical-subharmonic}, the same inequality holds for $H$. Hence $H$ is continuous on $B(a_0,r)$, and, as $a_0$ was arbitrary, on $U$.
+
+Moreover, $H_\varepsilon\to H$ in $L^1$ on compact subsets of $U$, by dominated convergence, and hence in the sense of distributions; and every ball $B_0\Subset U$ is covered by finitely many balls $B(a_0,2r)$ as above, so the second derivatives of the $H_\varepsilon$ are bounded on $B_0$ uniformly in small $\varepsilon$. By the converse part of \cref{prop:bounded-hessian-taylor}, the distributional real Hessian of $H$ has locally bounded measurable coefficients $A_{ab}$; hence $H\in C^{1,1}_{\loc}(U)$, and almost every $x\in U$ satisfies the second-order expansion of the statement.
+
+The functions $H_{j\bar k}$ are bounded measurable functions on compact subsets of $U$. By \cref{prop:distribution-smoothing}, the complex Hessian of $H_\varepsilon$ has the coefficients $(H_{j\bar k})_\varepsilon$; these are bounded on compact sets uniformly in small $\varepsilon$, and they converge to $H_{j\bar k}$ at every Lebesgue point of $H_{j\bar k}$, hence almost everywhere (\cref{thm:lebesgue-differentiation}). In particular, the matrix $(H_{j\bar k})$ is positive semidefinite almost everywhere, as an almost everywhere limit of the positive semidefinite complex Hessians of the smooth plurisubharmonic functions $H_\varepsilon$. Since $H$ is continuous, $H_\varepsilon\to H$ locally uniformly (\cref{lem:mollifier-density}(1)), so $(\ddc H_\varepsilon)^n\to(\ddc H)^n$ weakly on every ball $B_0\Subset U$ as $\varepsilon\downarrow0$ along a sequence, by \cref{prop:bt-uniform-continuity} applied on $B_0$. By \eqref{eq:bt-determinant-normalization}, $(\ddc H_\varepsilon)^n=n!\pi^{-n}\det((H_{j\bar k})_\varepsilon)\,\mathrm dV_{2n}$, and the determinants converge almost everywhere and are bounded on compact sets uniformly in small $\varepsilon$. Hence, for every test function $\chi$ supported in such a ball $B_0$, dominated convergence gives
+\[
+ \int\chi\,(\ddc H)^n=\frac{n!}{\pi^n}\int\chi\det(H_{j\bar k})\,\mathrm dV_{2n}.
+\]
+By \cref{lem:smooth-partition-unity}, every test function on $U$ is a finite sum of test functions supported in balls $B_0\Subset U$, so this identity holds for all test functions on $U$, and the two Radon measures coincide by \cref{prop:distribution-smoothing}(4).
+\end{proof}
+
+\begin{theorem}\label{thm:homogeneous-ball-dirichlet}
+Let $B\subset\mathbb C^n$ be a ball and $\varphi$ a real continuous function on $\partial B$. There is a unique $H\in\PSH(B)\cap C(\overline B)$ such that
+\[
+ (\ddc H)^n=0\quad\text{on }B,\qquad H|_{\partial B}=\varphi.
+\]
+It is the upper envelope of the class of all $v\in\PSH(B)$ with $\varlimsup_{B\ni z\to x}v(z)\le\varphi(x)$ for every $x\in\partial B$. If $\varphi$ is the restriction of a $C^2$ function on a neighborhood of $\partial B$, then $H\in C^{1,1}_{\loc}(B)$.
+\end{theorem}
+\begin{proof}
+After an affine change of coordinates $z\mapsto z_0+Rz$ with $R>0$, we may assume that $B$ is the unit ball; plurisubharmonicity, the boundary conditions, $C^2$ data and the vanishing of the Monge--Amp\`ere measure are preserved by such a change, by \cref{prop:psh-holomorphic-pullback} and \cref{prop:bt-positive-recursion}(5). We call the functions $v$ in the statement the \emph{subsolutions for} $\varphi$ of the homogeneous equation. If $v$ is a subsolution for $\varphi$ and $\varphi\le\varphi'+c$ on $\partial B$ with a constant $c$, then $v-c$ is a subsolution for $\varphi'$. Every subsolution is subharmonic on $B$ (\cref{thm:psh-distribution-representative}), so the comparison principle (\cref{thm:subharmonic-comparison} and the remark following it), applied with the harmonic function $P\varphi$, the Poisson integral of $\varphi$ given by \cref{thm:ball-dirichlet}, gives $v\le P\varphi$, and $P\varphi\le\max_{\partial B}\varphi$ because the Poisson kernel is positive with integral $1$. Hence, as soon as the class of subsolutions is nonempty, its upper envelope $H$ is defined, and $H\le P\varphi$.
+
+\emph{Step 1: the envelope for $C^2$ data.} Suppose that $\varphi$ is the restriction of a $C^2$ function on a neighborhood of $\partial B$. Multiplying this function by a cutoff equal to $1$ near $\partial B$, we obtain a $C^2$ function $\tilde\varphi$ with compact support in $\mathbb{C}^n$ and $\tilde\varphi=\varphi$ on $\partial B$. Its complex Hessian is continuous with compact support, so there is $\lambda>0$ with $\sum_{j,k}\tilde\varphi_{j\bar k}\xi_j\bar\xi_k\ge-\lambda|\xi|^2$ everywhere. The function $s=\tilde\varphi+\lambda(|z|^2-1)$ is then of class $C^2$ with positive semidefinite complex Hessian, so it is plurisubharmonic by \cref{prop:smooth-psh-criterion}. As $s=\varphi$ on $\partial B$, it is a subsolution. Hence $s\le H\le P\varphi$. By \cref{thm:psh-upper-envelopes}, the upper semicontinuous regularization $H^*$ is plurisubharmonic, and $s\le H^*\le P\varphi$ since $P\varphi$ is continuous. As $s$ and $P\varphi$ are continuous on $\overline B$ with boundary values $\varphi$, we have $H^*(z)\to\varphi(x)$ as $z\to x\in\partial B$; so $H^*$ is a subsolution, $H^*\le H$, and $H=H^*$ is plurisubharmonic. Moreover $H(z)\to\varphi(x)$ as $z\to x\in\partial B$, and $H$ is bounded.
+
+\emph{Step 2: second differences.} Let $K\subset B$ be compact, and let $S_{a,h}$, $h_0$ and $C$ be as in \cref{lem:ball-centered-automorphisms}. For $x\in\partial B$ and $a\in K$, the function $g(h)=\tilde\varphi(S_{a,h}(x))$, $|h|\le h_0$, is of class $C^2$, and by the chain rule its second derivatives are bounded by a constant $2C_K$ independent of $a$ and $x$, since the first and second derivatives of $\tilde\varphi$ are bounded and those of $S_{a,h}(x)$ with respect to $h$ are bounded by $C$. Since $g(0)=\varphi(x)$, Taylor's formula with integral remainder gives $g(h)+g(-h)-2g(0)=\int_0^1(1-t)\bigl(D^2g(th)[h,h]+D^2g(-th)[h,h]\bigr)\,\mathrm dt\le2C_K|h|^2$. As $S_{a,\pm h}$ maps $\partial B$ to $\partial B$, where $\tilde\varphi=\varphi$, this reads
+\[
+ \tfrac12\bigl(\varphi\circ S_{a,h}+\varphi\circ S_{a,-h}\bigr)
+                 \le\varphi+C_K|h|^2\quad\text{on }\partial B\qquad(a\in K,\ |h|\le h_0).
+\]
+The function $w=\frac12(H\circ S_{a,h}+H\circ S_{a,-h})-C_K|h|^2$ is plurisubharmonic on $B$, by \cref{prop:psh-holomorphic-pullback,prop:psh-max-gluing}, since $S_{a,\pm h}$ are automorphisms of $B$ and $H$ is bounded. If $y\in\partial B$ and $z\to y$ in $B$, then $S_{a,\pm h}(z)\to S_{a,\pm h}(y)\in\partial B$, so $H(S_{a,\pm h}(z))\to\varphi(S_{a,\pm h}(y))$ by Step 1, and the preceding inequality gives $\varlimsup_{z\to y}w(z)\le\varphi(y)$. Thus $w$ is a subsolution, so $w\le H$. Evaluating at $z=a$, where $S_{a,\pm h}(a)=a\pm h$, we obtain
+\[
+ H(a+h)+H(a-h)-2H(a)\le2C_K|h|^2\qquad(a\in K,\ |h|\le h_0).
+\]
+
+Since $K$ was arbitrary and the points $a\pm h=S_{a,\pm h}(a)$ lie in $B$, \cref{lem:second-difference-regularity} applies on $U=B$. Thus $H$ is continuous on $B$ and belongs to $C^{1,1}_{\loc}(B)$, and its distributional real Hessian $A$ and complex Hessian $(H_{j\bar k})$ have the properties stated there: the second-order expansion holds almost everywhere, $(H_{j\bar k})$ is positive semidefinite almost everywhere, and $(\ddc H)^n=n!\,\pi^{-n}\det(H_{j\bar k})\,\mathrm dV_{2n}$.
+
+\emph{Step 3: the equation.} Suppose that $\det(H_{j\bar k})>0$ on a set of positive measure, and choose a point $a$ of this set at which $(H_{j\bar k}(a))$ is positive semidefinite and the second-order expansion holds. The Taylor polynomial $Q(z)=H(a)+\nabla H(a)\cdot(z-a)+\frac12(z-a)^tA(a)(z-a)$ is a real quadratic polynomial with real Hessian $A(a)$, so its complex Hessian is the constant matrix $(H_{j\bar k}(a))$; this matrix is positive semidefinite with positive determinant, hence positive definite. Let $\eta>0$ be smaller than its smallest eigenvalue; then $Q-\eta|z-a|^2$ has positive semidefinite complex Hessian and is plurisubharmonic (\cref{prop:smooth-psh-criterion}). For sufficiently small $r>0$ we have $\overline{B(a,r)}\subset B$ and, by the expansion, $|H-Q|<\eta r^2/2$ on the sphere $|z-a|=r$. The polynomial $\tilde Q=Q-\eta|z-a|^2+\eta r^2/4$ is then strictly smaller than $H$ on that sphere, since there $\tilde Q<H+\eta r^2/2-3\eta r^2/4$, and $\tilde Q(a)=H(a)+\eta r^2/4>H(a)$. By \cref{prop:psh-max-gluing}, applied with $D=B(a,r)$ and $v=\tilde Q$, whose boundary inequality holds because $\tilde Q$ and $H$ are continuous, the function equal to $\max\{H,\tilde Q\}$ on $B(a,r)$ and to $H$ elsewhere is plurisubharmonic on $B$. It coincides with $H$ near $\partial B$, so it is a subsolution, and it exceeds $H$ at $a$, a contradiction. Hence $\det(H_{j\bar k})=0$ almost everywhere, and $(\ddc H)^n=0$. This proves the theorem for $C^2$ data, including the $C^{1,1}$ regularity, except for uniqueness.
+
+\emph{Step 4: continuous data and uniqueness.} For continuous $\varphi$, the function $z\mapsto\varphi(z/|z|)$ is continuous on the annulus $\{1/2<|z|<2\}$, and its mollifications $\varphi_j$, $j\ge4$, are smooth on the neighborhood $\{3/4<|z|<3/2\}$ of $\partial B$ and converge to $\varphi$ uniformly on $\partial B$ (\cref{lem:mollifier-density}(1)). Let $H_j$ be the envelope for $\varphi_j|_{\partial B}$; by Steps 1--3 it is continuous on $\overline B$ with boundary values $\varphi_j$, plurisubharmonic, and $(\ddc H_j)^n=0$. Put $c_j=\max_{\partial B}|\varphi_j-\varphi|$. Since $H_j-c_j$ is a subsolution for $\varphi$, the class of subsolutions for $\varphi$ is nonempty, and its envelope $H$ satisfies $H_j-c_j\le H$; symmetrically, $H-c_j\le H_j$. Therefore $\sup_B|H_j-H|\le c_j\to0$, so $H$ is a uniform limit of continuous functions on $B$; it is continuous, extends continuously to $\overline B$ with the boundary values $\varphi$, and is plurisubharmonic, being equal to its regularization $H^*$, which is plurisubharmonic by \cref{thm:psh-upper-envelopes}. By \cref{prop:bt-uniform-continuity}, $(\ddc H)^n=\lim_j(\ddc H_j)^n=0$. Finally, if $H'$ and $H''$ are two solutions, then $H'-H''\to0$ at $\partial B$, and the last assertion of \cref{thm:bt-comparison}, applied in both directions, gives $H'=H''$.
+\end{proof}
+\index{Dirichlet problem!homogeneous Monge--Amp\`ere}
+
+\begin{corollary}\label{cor:homogeneous-psh-balayage}
+Let $u$ be a locally bounded plurisubharmonic function on an open set $\Omega\subset\mathbb C^n$, and let $B\Subset\Omega$ be a ball. There is a locally bounded plurisubharmonic function $\widehat u$ on $\Omega$ which equals $u$ outside $B$, satisfies $\widehat u\ge u$ on $B$, and $(\ddc\widehat u)^n=0$ on $B$. The function $\widehat u$ is increasing in $u$, and its restriction to $B$ is the largest plurisubharmonic function $v$ on $B$ with $\varlimsup_{B\ni z\to x}v(z)\le u(x)$ for every $x\in\partial B$.
+\end{corollary}
+\begin{proof}
+Let $u_j=u*\rho_{\varepsilon_j}$, with $\varepsilon_j\downarrow0$ smaller than the distance from $\overline B$ to $\mathbb C^n\setminus\Omega$, be radial regularizations of $u$; they are smooth plurisubharmonic functions on a neighborhood of $\overline B$ decreasing to $u$ (\cref{prop:smooth-psh-criterion}). Let $H_j$ be the solution of \cref{thm:homogeneous-ball-dirichlet} with boundary values $u_j|_{\partial B}$, that is, the upper envelope of the subsolutions for $u_j|_{\partial B}$. Since $u_j$ is such a subsolution, $u\le u_j\le H_j$ on $B$. Since $u_{j+1}\le u_j$ on $\partial B$, every subsolution for $u_{j+1}|_{\partial B}$ is one for $u_j|_{\partial B}$, so the envelopes decrease: $H_{j+1}\le H_j$. Let $H=\lim_jH_j$. The function $H_1$ is subharmonic on $B$ and continuous on $\overline B$ with boundary values $u_1$, so $H_1\le\max_{\partial B}u_1$ by the comparison principle (\cref{thm:subharmonic-comparison}). Hence $\inf_{\overline B}u\le H\le\max_{\partial B}u_1$, so $H$ is bounded; it is plurisubharmonic by \cref{thm:psh-decreasing-nets}, and \cref{thm:bt-decreasing-continuity} gives $(\ddc H)^n=\lim_j(\ddc H_j)^n=0$. For $x\in\partial B$, since $H\le H_j$ and $H_j$ is continuous on $\overline B$ with $H_j=u_j$ on $\partial B$,
+\[
+ \varlimsup_{B\ni z\to x}H(z)\le u_j(x)\quad\text{for every }j,
+ \qquad\text{hence}\quad\varlimsup_{B\ni z\to x}H(z)\le u(x).
+\]
+By \cref{prop:psh-max-gluing}, the function $\widehat u$ equal to $\max\{u,H\}=H$ on $B$ and to $u$ outside $B$ is plurisubharmonic on $\Omega$. It is locally bounded, since $H$ is bounded and $u$ is locally bounded; it equals $u$ outside $B$, satisfies $\widehat u\ge u$ on $B$, and $(\ddc\widehat u)^n=(\ddc H)^n=0$ on $B$ by locality.
+
+Let $v$ be plurisubharmonic on $B$ with $\varlimsup_{B\ni z\to x}v(z)\le u(x)$ for $x\in\partial B$. Since $u\le u_j$, the function $v$ is a subsolution for the boundary values $u_j|_{\partial B}$, so $v\le H_j$ by \cref{thm:homogeneous-ball-dirichlet}. Letting $j\to\infty$ gives $v\le H$. Conversely, $H$ belongs to this class by the displayed estimate, so $H$ is its largest member. If $u\le u'$, the class for $u$ is contained in the class for $u'$, which proves that $\widehat u\le\widehat{u'}$.
+\end{proof}
+\index{balayage!plurisubharmonic homogeneous replacement}
+
+\begin{definition}\label{def:maximal-plurisubharmonic}
+Let $\Omega\subset\mathbb C^n$ be open. A plurisubharmonic function $u$ on $\Omega$ is \emph{maximal} if every plurisubharmonic function $v$ on $\Omega$ with $v\le u$ outside a compact subset of $\Omega$ satisfies $v\le u$ everywhere.
+\end{definition}
+\index{plurisubharmonic function!maximal}\index{maximal plurisubharmonic function}
+
+\begin{theorem}\label{thm:bounded-psh-maximality}
+A locally bounded plurisubharmonic function $u$ on an open set $\Omega\subset\mathbb C^n$ is maximal if and only if $(\ddc u)^n=0$. In particular, maximality is a local property for locally bounded plurisubharmonic functions.
+\end{theorem}
+\index{Monge--Amp\`ere measure!vanishing and maximality}
+\begin{proof}
+Suppose that $(\ddc u)^n=0$, and let $v$ be plurisubharmonic on $\Omega$ with $v\le u$ outside a compact set $K$. Choose a bounded open set $D$ with $K\subset D\Subset\Omega$. By upper semicontinuity, $v$ is bounded above on $\overline D$; since $u$ is bounded on $\overline D$, we may choose $M$ with $-M<\inf_Du$. The function $\max\{v,-M\}$ is bounded and plurisubharmonic on $D$, and it is at most $u$ on $D\setminus K$; since every point of $D$ near $\partial D$ lies in $D\setminus K$, we get $\varliminf_{D\ni z\to x}(u(z)-\max\{v(z),-M\})\ge0$ for $x\in\partial D$. The last assertion of \cref{thm:bt-comparison} therefore gives $\max\{v,-M\}\le u$ on $D$. Hence $v\le u$ everywhere, and $u$ is maximal.
+
+Conversely, suppose that $u$ is maximal, and let $B\Subset\Omega$ be a ball. The function $\widehat u$ of \cref{cor:homogeneous-psh-balayage} is plurisubharmonic, satisfies $\widehat u\ge u$, and equals $u$ outside the compact set $\overline B$. Maximality gives $\widehat u\le u$, so $\widehat u=u$ and $(\ddc u)^n=(\ddc\widehat u)^n=0$ on $B$. Since the balls $B\Subset\Omega$ cover $\Omega$, and a distribution vanishing on each member of a family of open sets vanishes on their union (\cref{lem:smooth-partition-unity}), $(\ddc u)^n=0$ on $\Omega$. For the last assertion, let every point of $\Omega$ have an open neighborhood $U$ such that $u|_U$ is maximal on $U$. By the first part applied on $U$, and by locality of the products (\cref{prop:bt-positive-recursion}), $(\ddc u)^n$ vanishes on each such $U$, hence on $\Omega$, and $u$ is maximal on $\Omega$. Conversely, if $u$ is maximal on $\Omega$, then $(\ddc u)^n=0$ on every open set $U\subset\Omega$, so $u|_U$ is maximal on $U$.
+\end{proof}
+
+\input{chapters/inputs/q08-mixed-continuous-density}
+
+\input{chapters/inputs/q08-multifactor-density}
+
+\input{chapters/inputs/q08-ball-dirichlet}
+
+\input{chapters/inputs/q08-measurable-ball-dirichlet}
+
+\input{chapters/inputs/q08-local-energy-moments}
+
+\input{chapters/inputs/q08-grid-energy-convergence}
+
+\input{chapters/inputs/q08-grid-capacity-convergence}
+
+\input{chapters/inputs/q08-bounded-subsolution-dirichlet}
+
+\input{chapters/inputs/q08-mixed-local-energy}
+
+\input{chapters/inputs/q08-common-measure-mixed}
+
+\input{chapters/inputs/q08-contact-hessians}
+
+\input{chapters/inputs/q08-current-gradients}

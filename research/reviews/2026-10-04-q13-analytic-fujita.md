@@ -1,0 +1,11 @@
+# Analytic volume approximation on modifications
+
+All four saved results, complete proofs, section transition and new historical paragraph have two direct mathematical/editorial reads. This is scoped authoring-agent review, not independent certification.
+
+The earlier smooth-center blowup curvature construction supplies a rational exceptional correction. Gentle analytic diagonals converge to the multiplier envelope, retaining that target rather than the unprojected strict minorants. On a resolution, each current splits into a rational effective divisor and a smooth residual form bounded below by the pullback of a positive form. Exceptional correction yields an exact Kähler-plus-rational-divisor class decomposition whose smooth top intersection tends to multiplier volume. Paired multiplier-ideal stability retains both inclusions with their distinct exponents.
+
+For a big class, pushforward identifies the upper bound in the supremum: outside the exceptional image and divisor the non-pluripolar measure is the smooth upstairs measure, and the omitted sets have zero mass. This proof does not import a general support or pull-push theorem. For a tuple, simultaneous principalization gives one modification and one exceptional correction. The analytic mixed mass error and correction error are each below 1/k; the earlier uniform perturbation bound passes to arbitrary classes and zero masses.
+
+Boucksom's published Theorem 1.4 statement and complete proof, and complete Lemma 4.4 statement/proof, were directly read at the recorded pages. The two original proof pages were visually inspected, and Crossref independently confirmed the bibliographic metadata and DOI. That source uses the absolutely continuous determinant; the present mass approximation instead follows from internal gentle approximation and distance continuity. The surrounding Calabi–Yau and other source interfaces are not adopted.
+
+All seventeen first selected affected images and both final changed images were inspected. A Needspace adjustment keeps the mixed theorem statement together. The final draft is 405 pages, with zero audit errors, no unresolved citations/references or overfull boxes. The source archive rebuilds in an empty directory with matching page text. Section asymptotics, projectivity, positive-mass bigness and the later book remain unfinished.

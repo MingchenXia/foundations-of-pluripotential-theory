@@ -1,0 +1,9 @@
+# Section-space and local domination foundations
+
+The final psh graph identifies two precise interfaces. The native compact Bergman type comparison is left in SGPT, with its complete removed draft preserved privately. Q07 retains the weighted holomorphic section Hilbert space, basis formula, actual twisted background and gentle rational singularities as one lemma. Point extension and the finite-discrepancy integrability-to-growth foundation remain; they prove the native comparison without reproducing its application.
+
+The delegated local domination statement at source psh633 had only its related comparison foundation in the prequel. Q08 now states and completely proves the exact locally bounded version. A negative strict quadratic perturbation stays below u; the boundary lower limit places its strict sublevel set in a compact subset. On a relatively compact neighborhood the potentials are bounded, so comparison forces the strict set to have zero volume. Canonical representatives give the pointwise inequality, and two parameter limits remove the perturbation. No global boundedness or boundary regularity is assumed.
+
+The full saved new statements/proofs and their affected seams/history received two direct reads around the first build and visual check. Integrity, house audit and both builds pass. All 494 first/final pages were rendered; four contact sheets and eight supplementary sheets cover the selected pages and every page changed from the prior draft. Full pages134 and260 were inspected. Every final raster equals its first. This is scoped authoring-agent evidence, not a whole-Q07/Q08/prequel review. No source original or new accepted external result is added. Exact psh dispositions cover123 source rows;195 rows and final H01/polishing obligations remain.
+
+Fresh staged tracked source archive rebuilt in an empty directory; all494 page texts match. Release log:research/reviews/logs/2026-10-05-section-domination-interfaces-release.log.

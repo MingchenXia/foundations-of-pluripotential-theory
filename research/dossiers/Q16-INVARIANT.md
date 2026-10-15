@@ -1,0 +1,13 @@
+# Invariant psh finiteness and convexity
+
+The fresh complete saved1127-line ample-toric read in seven contiguous successful chunks identifies the exact psh473 lemma used by toric137. The earlier disposition mistakenly points to the adjacent Kiselman theorem. The source proof invokes logarithmic convexity of circular means from HK76. That theorem is not silently imported.
+
+The new internal proof pulls rotation-invariant potentials to a tube by logarithmic covering. Radial psh smoothings are invariant and have real Hessian four times their positive complex Hessian. Fubini gives almost-everywhere finiteness. If the canonical value were minus infinity at one real point, midpoint convexity and a common local upper bound would force minus infinity on a real ball, contradicting L1. The finite pointwise limit is convex. Conversely a supporting affine slope gives the complex-line circle submean inequality directly.
+
+The unit belongs beside supporting-slope regularity, before Legendre duality. It only supplies the analytic starting interface, leaving the full native toric dictionary and multiplier/energy/distance applications in SGPT. Correct source disposition/evidence after both saved reads and build/image stages. No new accepted external result.
+
+## 2026-10-05 — Invariant psh bridge and exact ample-toric dispositions
+
+Q16-07 supplies invariant tube finiteness/convexity by a direct Hessian/L1 argument and the exact log-radius correspondence by holomorphic covering. Both complete saved input/seam/history reads, first/final passing builds and eighteen first/four final affected images are recorded in research/reviews/2026-10-05-invariant.json. All500 first/final rasters coincide at matching scale. The earlier psh473 adjacent-Kiselman mapping is corrected explicitly; no HK76 result is silently imported. Q16 retains its earlier scoped proofs plus this new unit.106 currently identified mathematical tasks are scoped verified; H01 and both whole-prequel reads remain open.
+
+The complete fresh1127-line ample-toric source read and every saved23-row disposition are checked directly. Geometry, entropy metric, character basis, compact dual envelopes and full-mass bounded testing have exact internal interfaces. The source global toric dictionary, Yao/dimension, energy and d1 applications remain in SGPT. Two local Yao coordinate/band corrections are preserved. Psh123+npp47+toric23=193/318 explicit source decisions;125 remain:77envelope and48ray. Reviews:research/audits/2026-10-05-toric-dispositions.json and the corrected psh audit. The priorb15ec55 head passed exact-head CI37263705780/37263701078. This is scoped authoring-agent evidence, not independent or whole-prequel certification.

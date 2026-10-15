@@ -1,0 +1,11 @@
+# Relative variational equation core
+
+Six new saved definitions/results and full proofs, the relocated tangent proof, notation/metric seams and two history paragraphs have two complete direct reads. This is scoped authoring-agent review, not independent certification.
+
+The general projected first variation follows by contact concentration and the two tangent inequalities. The projected potentials remain within a uniform bounded difference of their E1 base, hence retain full mass and converge in capacity. This supplies weak convergence of their measures and continuity of the derivative. A projected continuous test converts a maximizer into the prescribed-measure equation; concavity proves the converse on its finite-integral domain.
+
+Bounded density makes the linear measure term continuous for L1 convergence and uniformly bounded on normalized psh potentials. The maximizing sequence therefore stays in a compact energy sublevel. The exponential problem controls both its additive constant and energy: Jensen supplies a positive lower exponential integral on normalized competitors, and mc-a exp(lambda c)/lambda tends to minus infinity in both directions. Projected differentiation gives the equation. Relative comparison followed by domination proves the supersolution inequality and uniqueness for arbitrary finite non-pluripolar measure whenever a full-mass solution exists.
+
+The actual published BBGZ variational argument and its complete projected-derivative portion pp. 207–209 read, with exact normalization. The relevant complete DDNL v3 bounded-density and exponential portions read and original pages inspected; published metadata checked, publication proof unavailable. Their general-measure existence, fixed point and uniqueness inputs are not imported. The supplied equation statements explicitly omit proofs; only partial targets are recorded here.
+
+All 53 first affected images and seven second changed images inspected. Final draft 429 pages, zero audit errors, unresolved references/citations or overfull boxes. Fresh source archive rebuilt in an empty directory with matching page text for the 429-page draft. The whole book and the general-measure equation cases remain unfinished.

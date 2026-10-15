@@ -1,2 +1,451 @@
 \chapter{Plurisubharmonic functions}
 \label{chap:q02}
+
+Plurisubharmonic functions are the basic objects of pluripotential theory. On a domain $\Omega\subset\mathbb{C}^n$, a plurisubharmonic function is an upper semicontinuous function whose restriction to every complex line is subharmonic. By \eqref{eq:complex-hessian-normalization}, the Laplacian of a function on $\Omega$, viewed as an open subset of $\mathbb R^{2n}$, is four times the trace of its complex Hessian, so subharmonicity controls only this trace. Subharmonicity on all complex lines is the pointwise counterpart of the positivity of the whole complex Hessian, $\ddc u\geq0$.
+
+Since $\ddc u\geq0$ determines $u$ only almost everywhere, the pointwise definition and the distributional condition must be kept apart. We first show that the upper semicontinuity required in the definition follows from the condition on complex lines (\cref{thm:automatic-psh-usc}); the proof combines the incidence estimate of \cref{chap:p06} with the distributional theory of \cref{chap:p03}. We then identify the plurisubharmonic functions with the canonical representatives, in the sense of \cref{thm:subharmonic-distribution}, of the distributions with positive complex Hessian (\cref{thm:psh-distribution-representative}). This makes the potential theory of Part I available. A smooth function is plurisubharmonic exactly when its complex Hessian is positive semidefinite, and mollification approximates every plurisubharmonic function from above by smooth ones. Plurisubharmonicity is invariant under holomorphic maps, hence makes sense on complex manifolds, and it is preserved by decreasing limits, regularized upper envelopes and $L^1_{\loc}$ limits. Moreover, plurisubharmonic functions belong to $L^p_{\loc}$ for every finite $p$, and near each point $\mathrm e^{-\alpha u}$ is integrable for small $\alpha>0$.
+
+In the last two sections we extend plurisubharmonic functions across closed sets that are locally contained in zero sets of holomorphic functions or are small in the sense of Hausdorff measure, and we prove Kiselman's minimum principle: although an infimum of plurisubharmonic functions is in general not plurisubharmonic, a partial infimum over real variables is plurisubharmonic or identically $-\infty$ under convexity assumptions, provided that the function does not depend on the corresponding imaginary parts.
+
+Historical remarks and references for this chapter are collected in \cref{sec:history-plurisubharmonic}.
+
+\section{The line definition and upper semicontinuity}
+\label{sec:psh-definition}
+
+We identify $\mathbb{C}^n$ with $\mathbb R^{2n}$ through $z_j=x_j+\mathrm{i}y_j$, and we call a function on an open subset of $\mathbb{C}^n$ \emph{subharmonic} if it is subharmonic in the sense of \cref{def:subharmonic} on the corresponding open subset of $\mathbb R^{2n}$. Recall from \cref{sec:high-value-stars} that an affine complex line is a set $L=\{a+\zeta b:\zeta\in\mathbb{C}\}$ with $a\in\mathbb{C}^n$ and $b\in\mathbb{C}^n\setminus\{0\}$. For an open set $\Omega\subset\mathbb{C}^n$, the section $L\cap\Omega$ is identified with the open set $\{\zeta\in\mathbb{C}:a+\zeta b\in\Omega\}$, and a function on a connected component of $L\cap\Omega$ is called subharmonic if its composite with $\zeta\mapsto a+\zeta b$ is subharmonic; this does not depend on the parametrization of $L$. Accordingly, the restriction of a function $u$ on $\Omega$ to $L\cap\Omega$ is the function $\zeta\mapsto u(a+\zeta b)$.
+
+\begin{definition}\label{def:plurisubharmonic}
+Let $\Omega\subset\mathbb{C}^n$ be a domain. If $n\ge1$, a function $u\colon\Omega\to[-\infty,\infty)$ is \emph{plurisubharmonic} if $u\not\equiv-\infty$, $u$ is upper semicontinuous, and for every affine complex line $L$ the restriction of $u$ to each connected component of $L\cap\Omega$ is subharmonic or identically $-\infty$. The set of plurisubharmonic functions on $\Omega$ is denoted by $\PSH(\Omega)$. In dimension zero a domain is a single point, and the plurisubharmonic functions on it are the real-valued functions.
+\end{definition}
+\index{plurisubharmonic function}\index{plurisubharmonic function!line definition}
+We often abbreviate \emph{plurisubharmonic} to \emph{psh}. Since the constant $-\infty$ is subharmonic by \cref{def:subharmonic}, the alternative ``identically $-\infty$'' in the line condition is stated only for emphasis; it occurs, for instance, for $\log|z_1|^2$ on the line $\{z_1=0\}$. In dimension one the only affine complex line is $\mathbb{C}$ itself, so $\PSH(\Omega)$ is the set of nontrivial subharmonic functions on $\Omega$, that is, of those not identically $-\infty$. Whenever a limit of plurisubharmonic functions may degenerate to the function identically $-\infty$, we state this alternative explicitly.
+
+We keep upper semicontinuity in \cref{def:plurisubharmonic}, but it is redundant: \cref{thm:automatic-psh-usc} below shows that it follows from the other two conditions. The proof of that theorem uses the following slicing lemma, which we apply again in \cref{thm:psh-distribution-representative,thm:psh-small-set-extension}: for a locally integrable function, subharmonicity on the complex lines parallel to a fixed direction makes the second derivative in that direction a positive distribution.
+
+\begin{lemma}\label{lem:psh-line-slicing}
+Let $\Omega\subset\mathbb{C}^n$ be open, $n\ge1$, let $u\colon\Omega\to[-\infty,\infty)$ be a locally integrable function, let $a\in\mathbb{C}^n$ be a unit vector, and let $\chi\in C^\infty_c(\Omega)$ be nonnegative. Write the points of $\mathbb{C}^n$ as $v+ta$ with $v\in(\mathbb{C}a)^\perp$ and $t\in\mathbb{C}$, and put $K_v=\{t\in\mathbb{C}:v+ta\in\Supp\chi\}$. Assume that for almost every $v\in(\mathbb{C}a)^\perp$ there is an open set $G_v\subset\{t\in\mathbb{C}:v+ta\in\Omega\}$ containing $K_v$ such that the restriction of $t\mapsto u(v+ta)$ to each connected component of $G_v$ is subharmonic, possibly identically $-\infty$. Then
+\[
+ \Bigl\langle\sum_{j,k}a_j\bar a_ku_{j\bar k},\chi\Bigr\rangle\geq0.
+\]
+Consequently, if this hypothesis holds for every unit vector $a$ and every nonnegative $\chi\in C^\infty_c(\Omega)$, then $\ddc u\geq0$. This is the case, in particular, if the restriction of $u$ to each connected component of each affine complex-line section of $\Omega$ is subharmonic.
+\end{lemma}
+\begin{proof}
+The map $(v,t)\mapsto v+ta$ is a unitary isomorphism of $(\mathbb{C}a)^\perp\times\mathbb{C}$ onto $\mathbb{C}^n$, so it preserves Lebesgue measure, and by the chain rule $\partial_t\partial_{\bar t}[\chi(v+ta)]=\sum_{j,k}a_j\bar a_k\chi_{j\bar k}(v+ta)$. We extend $u$ and $\chi$ by zero outside $\Omega$. Since $u$ is locally integrable and the derivatives of $\chi$ are bounded and supported in $\Supp\chi$, Fubini's theorem gives
+\[
+ \Bigl\langle\sum_{j,k}a_j\bar a_ku_{j\bar k},\chi\Bigr\rangle
+ =\int_{(\mathbb{C}a)^\perp}I(v)\,\mathrm{d}V_{2n-2}(v),
+\]
+where
+\[
+ I(v)=\int_{\mathbb{C}}u(v+ta)\,\partial_t\partial_{\bar t}[\chi(v+ta)]\,\mathrm{d}V_2(t).
+\]
+Applied to $|u|\mathbf1_{\Supp\chi}$, Fubini's theorem also shows that for almost every $v$ the function $t\mapsto u(v+ta)$ is integrable on $K_v$. It therefore suffices to show that $I(v)\geq0$ for every $v$ for which this integrability holds and an open set $G_v$ as in the hypothesis exists.
+
+Fix such a $v$. The compact set $K_v$ is covered by the disjoint open connected components of $G_v$, so it meets only finitely many of them, say $U_1,\ldots,U_N$, and each set $K_v\cap U_i$ is compact, being the complement in $K_v$ of the open set $K_v\cap\bigcup_{l\neq i}U_l$. Hence the function $\chi_i(t)=\chi(v+ta)$, $t\in U_i$, is a nonnegative test function on $U_i$, and
+\[
+ I(v)=\sum_{i=1}^N\int_{U_i}u(v+ta)\,\partial_t\partial_{\bar t}\chi_i(t)\,\mathrm{d}V_2(t).
+\]
+If $\chi_i\equiv0$, the $i$-th term vanishes. Otherwise $\chi_i>0$ on a nonempty open subset of $U_i$, contained in $K_v$, on which $t\mapsto u(v+ta)$ is integrable and hence finite almost everywhere. Thus the subharmonic function $w_i(t)=u(v+ta)$ on the domain $U_i$ is not identically $-\infty$, and it is locally integrable by \cref{prop:subharmonic-local-integrability}. Since $\partial_t\partial_{\bar t}=\frac14\Delta$, the $i$-th term equals $\frac14\langle\Delta w_i,\chi_i\rangle$, which is nonnegative by \cref{thm:subharmonic-distribution}(1). Hence $I(v)\geq0$.
+
+If the hypothesis holds for every unit vector $a$ and every $\chi$, then $\sum_{j,k}a_j\bar a_ku_{j\bar k}$ is a positive distribution for every unit vector $a$, and by homogeneity for every $a\in\mathbb{C}^n$. Since $\ddc u$ is a real $(1,1)$-current, the matrix criterion for positivity in \cref{sec:local-complex-potentials} shows that $\ddc u\geq0$. For the last assertion, take $G_v=\{t\in\mathbb{C}:v+ta\in\Omega\}$ for every $v$; its connected components are the connected components of the affine complex-line sections of $\Omega$ in the direction $a$.
+\end{proof}
+\index{complex line!slicing}\index{plurisubharmonic function!slicing by complex lines}
+
+The proof of the next theorem also uses polar coordinates adapted to the complex lines through a point. Let $n\geq1$, let $\tau$ be the normalized surface measure on the unit sphere $S^{2n-1}\subset\mathbb{C}^n$, and let $s_{2n-1}$ be the area of this sphere. Let $x\in\mathbb{C}^n$ and $r>0$. For every Borel function $F\colon B(x,r)\to[0,\infty]$, integration in polar coordinates \eqref{eq:polar-coordinates}, in which $\mathrm dS=s_{2n-1}\,\mathrm d\tau$, gives the first equality in
+\begin{equation}\label{eq:complex-line-polar-coordinates}
+ \begin{split}
+ \int_{B(x,r)}F\,\mathrm{d}V_{2n}
+ &=s_{2n-1}\int_{S^{2n-1}}\int_0^rF(x+\rho a)\rho^{2n-1}\,\mathrm{d}\rho\,\mathrm{d}\tau(a)\\
+ &=\frac{s_{2n-1}}{2\pi}\int_{S^{2n-1}}\int_{|t|<r}
+      F(x+ta)|t|^{2n-2}\,\mathrm{d}V_2(t)\,\mathrm{d}\tau(a).
+ \end{split}
+\end{equation}
+For the second, we replace $a$ by $\mathrm{e}^{\mathrm{i}\theta}a$, which does not change $\tau$, average over $\theta\in[0,2\pi]$, and use polar coordinates $t=\rho\mathrm{e}^{\mathrm{i}\theta}$ in $\mathbb{C}$; Tonelli's theorem justifies the exchanges of integrals.
+
+\begin{theorem}\label{thm:automatic-psh-usc}
+Let $\Omega\subset\mathbb{C}^n$ be a domain, $n\ge1$, and let $u\colon\Omega\to[-\infty,\infty)$ be a function that is not identically $-\infty$. Assume that for every affine complex line $L$ the restriction of $u$ to each connected component of $L\cap\Omega$ is subharmonic or identically $-\infty$. Then $u$ is upper semicontinuous, and hence $u\in\PSH(\Omega)$.
+\end{theorem}
+\begin{proof}
+We first treat finite nonnegative functions, in Steps 1--3, and then reduce the general case to this one by truncation in Step 4. For the first part we prove by induction on $n\geq1$ the following assertion: \emph{if $\Omega\subset\mathbb{C}^n$ is a domain and $u\colon\Omega\to[0,\infty)$ is a finite function whose restriction to each connected component of each affine complex-line section of $\Omega$ is subharmonic, then $u$ is upper semicontinuous.} For $n=1$ the only affine complex line is $\mathbb{C}$, so $u$ is subharmonic on $\Omega$ and in particular upper semicontinuous.
+
+Let $n\geq2$, assume the assertion in dimension $n-1$, and let $u$ be as in the assertion. Write $z=(z',w)$ with $z'\in\mathbb{C}^{n-1}$ and $w\in\mathbb{C}$. For fixed $w$, the restriction of $u(\,\cdot\,,w)$ to each connected component of the open set $\{z':(z',w)\in\Omega\}$ satisfies the hypothesis in dimension $n-1$. Indeed, affine complex lines in $\mathbb{C}^{n-1}\times\{w\}$ are affine complex lines in $\mathbb{C}^n$, a connected component of a line section of the slice lies in a connected component of the corresponding line section of $\Omega$, and subharmonicity is inherited by open subsets. By the induction hypothesis, $u(\,\cdot\,,w)$ is therefore upper semicontinuous on this open set. For fixed $z'$, the function $u(z',\,\cdot\,)$ is subharmonic on each connected component of $\{w:(z',w)\in\Omega\}$.
+
+\emph{Step 1: $u$ is Borel measurable.} We need joint measurability of $u$ before we can integrate it. Fix a ball $B'\subset\mathbb{C}^{n-1}$, a point $w_0\in\mathbb{C}$ and $\rho>0$ with $B'\times B(w_0,2\rho)\subset\Omega$. For integers $N\ge1$ put $u_N=\min\{u,N\}$, and for $0<r<\rho$ and $(z',w)\in B'\times B(w_0,\rho)$ define
+\[
+ F_r^N(z',w)=\frac{1}{\pi r^2}\int_{B(w,r)}u_N(z',\eta)\,\mathrm{d}V_2(\eta).
+\]
+The integral exists, since $u(z',\,\cdot\,)$ is subharmonic, hence upper semicontinuous, on $B(w_0,2\rho)\supset B(w,r)$, so the integrand is a Borel function with values in $[0,N]$. For fixed $w$, the function $F_r^N(\,\cdot\,,w)$ is upper semicontinuous: if $z'_l\to z'$ in $B'$, the reverse Fatou lemma, applicable because $0\le u_N\le N$, gives
+\[
+ \varlimsup_{l\to\infty}F_r^N(z'_l,w)
+ \le\frac{1}{\pi r^2}\int_{B(w,r)}\varlimsup_{l\to\infty}u_N(z'_l,\eta)\,\mathrm{d}V_2(\eta)
+ \le F_r^N(z',w),
+\]
+where the last inequality holds because each $u_N(\,\cdot\,,\eta)$ is upper semicontinuous on $B'$. For fixed $z'$, the function $F_r^N(z',\,\cdot\,)$ is continuous: for $|w-v|\leq r$ the symmetric difference $B(w,r)\mathbin\triangle B(v,r)$ lies in the annulus $\{r-|w-v|\leq|\eta-w|<r+|w-v|\}$, whose area is $4\pi r|w-v|$, so that $|F_r^N(z',w)-F_r^N(z',v)|\le4N|w-v|/r$.
+
+A function on $B'\times B(w_0,\rho)$ that is Borel in $z'$ and continuous in $w$ is Borel; we check this for $F_r^N$. For $k\geq1$ partition $B(w_0,\rho)$ into countably many Borel sets $E_{k,i}$ of diameter less than $1/k$, choose a point $w_{k,i}$ in each nonempty $E_{k,i}$, and put $F_k(z',w)=F_r^N(z',w_{k,i})$ for $w\in E_{k,i}$. Each $F_k$ is Borel, because each $F_r^N(\,\cdot\,,w_{k,i})$ is upper semicontinuous, hence Borel, and $F_k(z',w)\to F_r^N(z',w)$ for every $(z',w)$, because $F_r^N(z',\,\cdot\,)$ is continuous and the chosen points $w_{k,i}$ with $w\in E_{k,i}$ tend to $w$. Thus $F_r^N$ is Borel, and so is $G_N=\varlimsup_{k\to\infty}F^N_{\rho/(k+1)}$.
+
+Now fix $(z',w)\in B'\times B(w_0,\rho)$. The upper semicontinuous function $u(z',\,\cdot\,)$ is bounded above on the closed disc $\overline{B(w,\rho/2)}$ by some $M$. For $N\geq M$ the truncation does not change $u(z',\,\cdot\,)$ on this disc, so $F^N_{\rho/(k+1)}(z',w)$ is the mean of $u(z',\,\cdot\,)$ over $B(w,\rho/(k+1))$. The function $u(z',\,\cdot\,)$ is subharmonic and finite on $B(w_0,2\rho)$, hence locally integrable there by \cref{prop:subharmonic-local-integrability}, and by \eqref{eq:canonical-subharmonic} its means over the discs $B(w,\rho/(k+1))$ converge to $u(z',w)$ as $k\to\infty$. Hence $G_N(z',w)=u(z',w)$ for all $N\geq M$, and $u=\lim_NG_N$ is Borel on $B'\times B(w_0,\rho)$. Countably many such product sets cover $\Omega$, so $u$ is Borel on $\Omega$.
+
+\emph{Step 2: the canonical representative.} By \cref{cor:borel-line-subharmonic-bound}, the finite Borel function $u$ is locally bounded above. Since $u\geq0$, it follows that $u\in L^1_{\loc}(\Omega)$. Since the restriction of $u$ to each connected component of each affine complex-line section of $\Omega$ is subharmonic, \cref{lem:psh-line-slicing} gives $\ddc u\geq0$. In particular $\Delta u=4\sum_ju_{j\bar j}\geq0$, so by \cref{thm:subharmonic-distribution} $u$ has a canonical subharmonic representative $\widetilde u$, a locally integrable subharmonic function on $\Omega$ equal to $u$ almost everywhere. Its complex Hessian is the same positive current $\ddc u$. Applying \cref{prop:positive-hessian-holomorphic-composition} to the parametrizations of affine complex lines, we see that the restriction of $\widetilde u$ to each connected component of each affine complex-line section of $\Omega$ is subharmonic or identically $-\infty$. Since $\widetilde u$ is upper semicontinuous and agrees almost everywhere with the finite function $u$, we conclude that $\widetilde u\in\PSH(\Omega)$.
+
+\emph{Step 3: $u=\widetilde u$ everywhere.} Fix $x\in\Omega$ and $r>0$ with $\overline{B(x,r)}\subset\Omega$. The set $Z=\{u\ne\widetilde u\}$ is Borel, by Step 1, and Lebesgue null, so the left-hand side of \eqref{eq:complex-line-polar-coordinates} vanishes for $F=\mathbf1_Z$. Since the weight $|t|^{2n-2}$ is positive for $t\neq0$, for $\tau$-almost every $a$ the set $\{t:|t|<r,\ x+ta\in Z\}$ has planar measure zero. Fix such an $a$. On the disc $\{|t|<r\}$, the function $t\mapsto u(x+ta)$ is finite and subharmonic, while $t\mapsto\widetilde u(x+ta)$ is subharmonic or identically $-\infty$; the latter is impossible, because the two functions agree almost everywhere on the disc. By \cref{prop:subharmonic-local-integrability} both are locally integrable subharmonic functions on the disc that agree almost everywhere, so they agree everywhere by \cref{thm:subharmonic-distribution}. At $t=0$ this gives $u(x)=\widetilde u(x)$. As $x$ was arbitrary, $u=\widetilde u$ is upper semicontinuous. This completes the induction.
+
+\emph{Step 4: truncation.} Let $u$ be as in the theorem, and for integers $m\geq1$ put $u_m=\max\{u,-m\}+m$. This is a finite nonnegative function. Its restriction to each connected component of each affine complex-line section of $\Omega$ is subharmonic: if the restriction of $u$ is subharmonic, so is its maximum with the constant $-m$, and if the restriction of $u$ is identically $-\infty$, the restriction of $u_m$ is the constant $0$. By the case already proved, each $u_m$, and hence each $\max\{u,-m\}$, is upper semicontinuous. For every real $c$ we have $\{u<c\}=\bigcup_m\{\max\{u,-m\}<c\}$, which is open. Thus $u$ is upper semicontinuous, and together with the hypotheses this gives $u\in\PSH(\Omega)$.
+\end{proof}
+\index{upper semicontinuity!forced by complex-line subharmonicity}\index{plurisubharmonic function!automatic upper semicontinuity}
+
+\section{Positive Hessians and holomorphic maps}
+\label{sec:psh-hessian-maps}
+
+We now compare plurisubharmonicity with the distributional condition $\ddc u\geq0$, where $(u_{j\bar k})$ is the complex Hessian of \eqref{eq:complex-hessian-normalization}. The next theorem shows that every almost-everywhere class satisfying this condition contains exactly one plurisubharmonic function, namely its canonical representative. We then treat smooth functions, regularization and holomorphic maps, and define plurisubharmonic functions on complex manifolds.
+
+\begin{theorem}\label{thm:psh-distribution-representative}
+Let $\Omega\subset\mathbb{C}^n$ be a domain, $n\ge1$. Every $u\in\PSH(\Omega)$ is subharmonic and locally integrable on $\Omega$, and $\ddc u\geq0$. Conversely, a real distribution $T$ on $\Omega$ with $\ddc T\geq0$ has a unique plurisubharmonic representative, that is, there is exactly one $u\in\PSH(\Omega)$ with $\langle T,\chi\rangle=\int_\Omega u\chi\,\mathrm dV_{2n}$ for every test function $\chi$. This representative is the canonical subharmonic representative of $T$ given by \cref{thm:subharmonic-distribution}, and it satisfies \eqref{eq:canonical-subharmonic}.
+\end{theorem}
+\begin{proof}
+Let $u\in\PSH(\Omega)$. Being upper semicontinuous, $u$ is bounded above on compact sets. Fix $x\in\Omega$ and $r>0$ with $\overline{B(x,r)}\subset\Omega$, and let $M$ be an upper bound for $u$ on $\overline{B(x,r)}$. For every unit vector $a\in\mathbb{C}^n$ the closed disc $\{x+ta:|t|\leq r\}$ lies in $\Omega$, and the restriction $t\mapsto u(x+ta)$ is subharmonic, possibly identically $-\infty$, on a neighborhood of this disc. The monotonicity of circle means in \cref{thm:subharmonic-comparison} therefore gives
+\[
+ u(x)\leq\frac1{2\pi}\int_0^{2\pi}u(x+r\mathrm{e}^{\mathrm{i}\theta}a)\,\mathrm d\theta.
+\]
+With $\tau$ as in \eqref{eq:complex-line-polar-coordinates}, we integrate this inequality over $a\in S^{2n-1}$ with respect to $\tau$; by Tonelli's theorem, applied to the nonnegative function $M-u$, and by the invariance of $\tau$ under $a\mapsto\mathrm{e}^{\mathrm{i}\theta}a$, the right-hand side becomes the sphere mean $\int_{S^{2n-1}}u(x+ra)\,\mathrm{d}\tau(a)$. Thus $u$ satisfies the submean inequality of \cref{def:subharmonic} at every point, so $u$ is subharmonic. Since $\Omega$ is connected and $u\not\equiv-\infty$, \cref{prop:subharmonic-local-integrability} shows that $u\in L^1_{\loc}(\Omega)$. Since, moreover, the restriction of $u$ to each connected component of each affine complex-line section of $\Omega$ is subharmonic, possibly identically $-\infty$, \cref{lem:psh-line-slicing} gives $\ddc u\ge0$.
+
+Conversely, let $T$ be a real distribution with $\ddc T\geq0$. Then $\Delta T=4\sum_jT_{j\bar j}\geq0$, so by \cref{thm:subharmonic-distribution} $T$ has a canonical subharmonic representative $v$, which is locally integrable and satisfies \eqref{eq:canonical-subharmonic}. Since $\ddc v=\ddc T\geq0$, \cref{prop:positive-hessian-holomorphic-composition} shows that the restriction of $v$ to each connected component of each affine complex-line section of $\Omega$ is subharmonic or identically $-\infty$. As $v$ is upper semicontinuous and locally integrable, hence not identically $-\infty$, it is plurisubharmonic. If $w$ is another plurisubharmonic representative of $T$, then $w$ is a locally integrable subharmonic function by the first part, and $w=v$ almost everywhere; by the uniqueness in \cref{thm:subharmonic-distribution}, $w=v$ everywhere.
+\end{proof}
+\index{plurisubharmonic function!distributional representative}
+
+The condition $\ddc u\geq0$ depends only on the almost-everywhere class of $u$, whereas plurisubharmonicity is a pointwise property, and \cref{thm:psh-distribution-representative} singles out one function in each class. For example, the function equal to $1$ at one point $x_0$ and to $0$ elsewhere is upper semicontinuous and has zero distributional complex Hessian, but it violates the submean inequality on complex lines at $x_0$; the plurisubharmonic representative of its class is the zero function.
+
+For smooth functions, plurisubharmonicity is a pointwise condition on the complex Hessian, and every plurisubharmonic function is, locally, the decreasing limit of smooth plurisubharmonic functions. In the next proposition, $\rho_\varepsilon$ is the radial mollifier of \cref{sec:convolution} and, as there, $\Omega_\varepsilon=\{x\in\Omega:\operatorname{dist}(x,\mathbb C^n\setminus\Omega)>\varepsilon\}$ for an open set $\Omega\subset\mathbb C^n$ and $\varepsilon>0$.
+
+\begin{proposition}\label{prop:smooth-psh-criterion}
+Let $\Omega\subset\mathbb{C}^n$ be open, $n\geq1$.
+\begin{enumerate}
+\item A real function $u$ of class $C^2$ on $\Omega$ is plurisubharmonic on each connected component of $\Omega$ if and only if the Hermitian matrix $(u_{j\bar k}(z))$ is positive semidefinite at every point $z\in\Omega$.
+\item Let $u$ be a function on $\Omega$ which is plurisubharmonic on each connected component of $\Omega$, and let $\varepsilon>0$. Then $u*\rho_\varepsilon$ is smooth on $\Omega_\varepsilon$ and plurisubharmonic on each connected component of $\Omega_\varepsilon$, and $u*\rho_\varepsilon(x)$ decreases to $u(x)$ as $\varepsilon\downarrow0$, for every $x\in\Omega$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+(1) Let $\Omega_0$ be a connected component of $\Omega$. We show that both conditions are equivalent to $\ddc u\geq0$ on $\Omega_0$. Since $u$ is of class $C^2$, integration by parts shows that its distributional derivatives $u_{j\bar k}$ are the continuous functions $\partial_{z_j}\partial_{\bar z_k}u$, so for $\xi\in\mathbb{C}^n$ the distribution $\sum_{j,k}u_{j\bar k}\xi_j\bar\xi_k$ is the continuous real function $z\mapsto\sum_{j,k}u_{j\bar k}(z)\xi_j\bar\xi_k$. A continuous real function is a positive distribution exactly when it is nonnegative: if it were negative at a point, it would be negative on a ball around that point, and its integral against a nonnegative test function supported in this ball and positive at its center would be negative. Hence, by the matrix criterion of \cref{sec:local-complex-potentials}, $\ddc u\geq0$ on $\Omega_0$ if and only if $(u_{j\bar k}(z))$ is positive semidefinite at every $z\in\Omega_0$.
+
+If $u$ is plurisubharmonic on $\Omega_0$, then $\ddc u\geq0$ there by \cref{thm:psh-distribution-representative}. Conversely, if $\ddc u\geq0$ on $\Omega_0$, then by \cref{thm:psh-distribution-representative} the class of $u$ has a plurisubharmonic representative $v$ on $\Omega_0$ satisfying the ball-average formula in \eqref{eq:canonical-subharmonic}. Since $v=u$ almost everywhere and $u$ is continuous, $v(x)$ is the limit of the averages of $u$ over the balls $B(x,r)$ as $r\to0$, that is, $v(x)=u(x)$. Hence $u=v$ is plurisubharmonic on $\Omega_0$.
+
+(2) By \cref{thm:psh-distribution-representative}, applied on each connected component of $\Omega$, the function $u$ is subharmonic and locally integrable on $\Omega$, and $\ddc u\geq0$. By \cref{prop:distribution-smoothing}(1), $u*\rho_\varepsilon$ is smooth on $\Omega_\varepsilon$, and its derivatives are the mollifications of the distributional derivatives of $u$. Thus, for $\xi\in\mathbb{C}^n$, the function $\sum_{j,k}(u*\rho_\varepsilon)_{j\bar k}\xi_j\bar\xi_k$ is the mollification of the distribution $\sum_{j,k}u_{j\bar k}\xi_j\bar\xi_k$, which is positive by the matrix criterion; so it is nonnegative by \cref{prop:distribution-smoothing}(3). By (1), $u*\rho_\varepsilon$ is plurisubharmonic on each connected component of $\Omega_\varepsilon$. Finally, since $u$ is subharmonic on $\Omega$, \cref{thm:subharmonic-distribution}(2) shows that $u*\rho_\varepsilon(x)\downarrow u(x)$ as $\varepsilon\downarrow0$, for every $x\in\Omega$.
+\end{proof}
+\index{plurisubharmonic function!smooth}\index{plurisubharmonic function!regularization by convolution}
+
+Let $u$ be a smooth real function on an open set $\Omega\subset\mathbb C^n$. We call $u$ \emph{strictly plurisubharmonic} if its complex Hessian matrix $(u_{j\bar k})$ is positive definite everywhere. For a general $u$, strict plurisubharmonicity means that every point has a neighborhood on which $u-\varepsilon|z|^2$ is plurisubharmonic for some $\varepsilon>0$; on a complex manifold we require this in local holomorphic coordinates around each point, and $\varepsilon$ may depend on the point and the coordinates.
+\index{strict plurisubharmonicity}\index{plurisubharmonic function!strict}
+
+For smooth $u$ the two definitions agree. Since $(|z|^2)_{j\bar k}=\delta_{jk}$, the complex Hessian of $u-\varepsilon|z|^2$ is $(u_{j\bar k})-\varepsilon I$. The smallest eigenvalue $\lambda(z)=\min_{|\xi|=1}\sum_{j,k}u_{j\bar k}(z)\xi_j\bar\xi_k$ of the matrix $(u_{j\bar k}(z))$ is a continuous function of $z$, as the minimum over the compact unit sphere of a jointly continuous function of $(z,\xi)$. If the matrix is positive definite everywhere, then $\lambda$ is positive, hence bounded below by some $\varepsilon>0$ on a closed ball around each point, and on the open ball the smooth function $u-\varepsilon|z|^2$ has a positive semidefinite complex Hessian, so it is plurisubharmonic by \cref{prop:smooth-psh-criterion}(1). Conversely, the plurisubharmonicity of $u-\varepsilon|z|^2$ on a ball around a point gives $(u_{j\bar k})\geq\varepsilon I$ there, by the same criterion.
+
+\begin{proposition}\label{prop:psh-holomorphic-pullback}
+Let $D\subset\mathbb{C}^m$ and $\Omega\subset\mathbb{C}^n$ be domains, let $F\colon D\to\Omega$ be a holomorphic map, and let $u\in\PSH(\Omega)$. Then $u\circ F$ is either identically $-\infty$ or plurisubharmonic on $D$. More generally, if $D\subset\mathbb{C}^m$ is only assumed to be open, this alternative holds on each connected component of $D$.
+\end{proposition}
+\begin{proof}
+The statement for open $D$ follows by applying the statement for domains to each connected component of $D$. If $n=0$, then $\Omega$ is a point, $u$ is a real constant, and so is $u\circ F$. If $m=0$, then $D$ is a point and $u\circ F$ is a single value in $[-\infty,\infty)$; it is either $-\infty$ or a real number, that is, a plurisubharmonic function on the point. Now let $m,n\geq1$. By \cref{thm:psh-distribution-representative}, $u$ is the canonical subharmonic representative of a locally integrable function with $\ddc u\geq0$, so \cref{prop:positive-hessian-holomorphic-composition} applies: $u\circ F$ is either identically $-\infty$, or locally integrable and subharmonic, in particular upper semicontinuous. In the second case, the restriction of $u\circ F$ to a connected component of an affine complex-line section of $D$ is the composition of $u$ with a holomorphic map from an open subset of $\mathbb{C}$, so it is subharmonic or identically $-\infty$ by the same proposition. Hence $u\circ F$ is plurisubharmonic.
+\end{proof}
+\index{plurisubharmonic function!holomorphic pullback}
+
+Let $X$ be a complex manifold. A function $u\colon X\to[-\infty,\infty)$ is \emph{plurisubharmonic} if its expression in every holomorphic chart with connected domain is plurisubharmonic in the sense of \cref{def:plurisubharmonic}; we write $\PSH(X)$ for the set of such functions.
+\index{plurisubharmonic function!on a complex manifold}
+
+On a domain $\Omega\subset\mathbb C^n$, plurisubharmonicity is a local property: if every point of $\Omega$ has an open neighborhood on which $u$ is plurisubharmonic, then $u\in\PSH(\Omega)$. Indeed, upper semicontinuity is a local condition. Let $\Lambda$ be a connected component of an affine complex-line section of $\Omega$. Near each point of $\Lambda$, the restriction of $u$ to $\Lambda$ is subharmonic or identically $-\infty$, hence subharmonic; since subharmonicity is a local property, the restriction of $u$ to $\Lambda$ is subharmonic. Finally, $u$ is locally integrable by \cref{thm:psh-distribution-representative}, hence not identically $-\infty$.
+
+It follows that it suffices to check the condition on $X$ for the charts of one atlas with connected chart domains. Indeed, the transition maps are biholomorphic, so by \cref{prop:psh-holomorphic-pullback} the expression of $u$ in another chart with connected domain is, on a connected neighborhood of each point, plurisubharmonic or identically $-\infty$. The second alternative would make the expression of $u$ in a chart of the atlas identically $-\infty$ on a nonempty open set, which is impossible because plurisubharmonic functions are locally integrable. Hence the expression of $u$ in the other chart is plurisubharmonic near each point, and therefore on its connected domain.
+
+Consequently plurisubharmonicity is also a local property on $X$: if every point of $X$ has a neighborhood on which $u$ is plurisubharmonic, then $u\in\PSH(X)$, because the expression of $u$ in a chart with connected domain is then plurisubharmonic near each point. Since a plurisubharmonic function on $X$ is locally integrable in charts, it is not identically $-\infty$ on any connected component of $X$. On an open set $\Omega\subset\mathbb C^n$, regarded as a complex manifold, a function is plurisubharmonic exactly when it is plurisubharmonic on each connected component of $\Omega$: each component is a connected chart domain, and conversely the locality just proved applies.
+
+Limits of plurisubharmonic functions may degenerate to the constant $-\infty$. On a connected manifold, whether this happens can be decided locally.
+
+\begin{lemma}\label{lem:psh-local-alternative}
+Let $X$ be a connected complex manifold, and let $v\colon X\to[-\infty,\infty)$ be a function such that every point of $X$ has an open neighborhood on which $v$ is plurisubharmonic or identically $-\infty$. Then $v$ is plurisubharmonic on $X$ or identically $-\infty$ on $X$.
+\end{lemma}
+\begin{proof}
+Let $A$ be the set of points of $X$ having an open neighborhood on which $v\equiv-\infty$, and $B$ the set of points having an open neighborhood on which $v$ is plurisubharmonic. Both sets are open, and they cover $X$ by hypothesis. They are disjoint: if $x\in A\cap B$, with open neighborhoods $W_1$ on which $v\equiv-\infty$ and $W_2$ on which $v$ is plurisubharmonic, then the restriction of $v$ to the nonempty open set $W_1\cap W_2$ is plurisubharmonic and identically $-\infty$, which is impossible because plurisubharmonic functions are locally integrable. Since $X$ is connected, either $X=A$, and then $v\equiv-\infty$, or $X=B$, and then $v$ is plurisubharmonic near every point, hence on $X$, because plurisubharmonicity is a local property.
+\end{proof}
+\index{plurisubharmonic function!local alternative}
+
+Every closed positive $(1,1)$-current $T$ on a complex manifold of positive dimension has local plurisubharmonic potentials: every point has a neighborhood on which $T=\ddc u$ for a plurisubharmonic function $u$. Indeed, on a coordinate ball inside the neighborhood given by \cref{thm:local-positive-current-potential}, the canonical local potential is the canonical subharmonic representative of a class with positive complex Hessian, hence plurisubharmonic by \cref{thm:psh-distribution-representative}.
+
+\begin{proposition}\label{prop:psh-max-gluing}
+Let $X$ be a complex manifold. Nonnegative multiples, finite sums and maxima of nonempty finite families of plurisubharmonic functions on $X$ are plurisubharmonic; here the zero multiple of a function is the zero function. Moreover, let $u\in\PSH(X)$, let $D\subset X$ be open, and let $v\in\PSH(D)$. If
+\[
+ \varlimsup_{D\ni y\to x}v(y)\le u(x)\qquad\text{for every }x\in\partial D,
+\]
+where $\partial D$ is the boundary of $D$ in $X$, then the function equal to $\max\{u,v\}$ on $D$ and to $u$ on $X\setminus D$ is plurisubharmonic on $X$. This boundary inequality holds in particular if
+\[
+ \varliminf_{\substack{D\ni y\to x\\v(y)>-\infty}}(u(y)-v(y))\ge0
+ \qquad\text{for every }x\in\partial D.
+\]
+\end{proposition}
+\begin{proof}
+In local coordinates, upper semicontinuity and the submean inequality on complex lines are preserved by nonnegative multiples, sums and maxima; for sums we use that circle means are additive on functions with values in $[-\infty,\infty)$. It remains to check that the resulting functions are not identically $-\infty$ on any component. For $cu$ with $c>0$ this holds because $cu=-\infty$ exactly where $u=-\infty$; a sum of plurisubharmonic functions is locally integrable by \cref{thm:psh-distribution-representative}, and a maximum dominates each of its members. This proves the first assertion.
+
+Let $w$ denote the glued function. On $D$ it equals $\max\{u,v\}$, which is plurisubharmonic by the first part, and on the open set $X\setminus\overline D$ it equals $u$. At $x\in\partial D$ we have $w(x)=u(x)$, and the upper semicontinuity of $u$ together with the boundary inequality gives
+\[
+ \varlimsup_{y\to x}w(y)\leq\max\Bigl\{\varlimsup_{y\to x}u(y),\ \varlimsup_{D\ni y\to x}v(y)\Bigr\}\leq u(x)=w(x).
+\]
+Hence $w$ is upper semicontinuous. To verify the line condition, work in a chart and restrict $w$ to a connected component of an affine complex-line section. At points of $D$ and of $X\setminus\overline D$, the restriction satisfies the submean inequality on small circles, because $w$ is plurisubharmonic near such points. At a point $x\in\partial D$ we have $w\geq u$ everywhere and $w(x)=u(x)$, so each small circle mean of $w$ is at least the corresponding circle mean of $u$, which is at least $u(x)=w(x)$; if the restriction of $u$ is identically $-\infty$, then $w(x)=u(x)=-\infty$ and there is nothing to prove. Thus the restriction of $w$ is upper semicontinuous and satisfies the submean inequality on small circles at every point; that is, it is subharmonic. Finally $w\geq u$, so $w$ is not identically $-\infty$ in any chart, and $w$ is plurisubharmonic.
+
+For the sufficient condition, fix $x\in\partial D$ and $\varepsilon>0$. By hypothesis, $x$ has a neighborhood $W$ such that $v(y)<u(y)+\varepsilon$ for all $y\in W\cap D$ with $v(y)>-\infty$. Hence $v\leq u+\varepsilon$ on $W\cap D$, the inequality being trivial where $v=-\infty$, and the upper semicontinuity of $u$ gives
+\[
+ \varlimsup_{D\ni y\to x}v(y)\leq\varlimsup_{y\to x}u(y)+\varepsilon\leq u(x)+\varepsilon.
+\]
+Letting $\varepsilon\downarrow0$ gives the boundary inequality.
+\end{proof}
+\index{plurisubharmonic function!max gluing}
+
+\section{Limits, envelopes and local integrability}
+\label{sec:psh-limits-envelopes}
+
+This section treats limits and envelopes of plurisubharmonic functions and their local integrability. Throughout, $X$ is a complex manifold of positive dimension, except in \cref{thm:psh-local-lp-integrability}, which also allows dimension zero. By \cref{thm:psh-distribution-representative}, plurisubharmonic functions are locally integrable, and we regard each of them as the distinguished representative of its class. Local $L^p$ norms on $X$ are computed with Euclidean volume in local coordinates, and ``almost everywhere'' refers to Lebesgue measure in charts. Any smooth positive volume form gives the same local $L^p$ spaces and the same $L^p_{\loc}$ convergence, since in coordinates its density is bounded above and below by positive constants on compact sets. By the discussion following \cref{def:complex-manifold}, each connected component of $X$ has a countable basis; $X$ itself need not have one, and we assume this explicitly when a global countable selection is needed.
+
+We call a subset of an open set in $\mathbb{C}^n$ \emph{real polar} if it is polar in the sense of \cref{def:polar-set} when $\mathbb{C}^n$ is identified with $\mathbb R^{2n}$. The adjective distinguishes these sets from the pluripolar sets of \cref{chap:q03}. Real polar sets are Lebesgue null, by the remark following \cref{def:polar-set}.
+\index{polar set!real}
+
+\begin{theorem}\label{thm:psh-decreasing-nets}
+Let $(u_i)_{i\in I}$ be a decreasing net in $\PSH(X)$, that is, $u_j\leq u_i$ whenever $i\leq j$, and let $u=\lim_iu_i=\inf_iu_i$ be its pointwise limit. Then on each connected component $X_0$ of $X$, exactly one of the following holds: either $u$ is plurisubharmonic on $X_0$ and $u_i\to u$ in $L^1_{\loc}(X_0)$, or $u\equiv-\infty$ on $X_0$ and $u_i\to-\infty$ locally uniformly on $X_0$.
+\end{theorem}
+\begin{proof}
+The limit $u$ is upper semicontinuous, since $\{u<c\}=\bigcup_i\{u_i<c\}$ is open for every real $c$. Fix a connected component $X_0$ of $X$; it has a countable basis.
+
+\emph{Step 1: a decreasing sequence with the same limit.} Let $i_0\in I$. We show that there are indices $i_0\leq i_1\leq i_2\leq\cdots$ such that $u_{i_l}\downarrow u$ pointwise on $X_0$. Replacing $I$ by the cofinal directed set $\{i\in I:i\geq i_0\}$, which does not change the limit, we only have to find indices $i_1\leq i_2\leq\cdots$. For each rational $c$, the open sets $\{u_i<c\}\cap X_0$ cover $\{u<c\}\cap X_0$, and countably many of them suffice: for each basis element of $X_0$ contained in some set $\{u_i<c\}$, choose one such index $i$; every point of $\{u<c\}\cap X_0$ lies in such a basis element. Let $k_1,k_2,\ldots$ be an enumeration, with repetitions allowed, of the indices chosen for all rational $c$. Since $I$ is directed, we can choose inductively $i_1\geq k_1$ and $i_{l+1}\geq i_l,k_{l+1}$. The sequence $(u_{i_l})$ is decreasing and bounded below by $u$. If $u(x)<c$ with $c$ rational and $x\in X_0$, then $u_{k_l}(x)<c$ for some $l$, hence $u_{i_l}(x)\leq u_{k_l}(x)<c$. Therefore $u_{i_l}\downarrow u$ on $X_0$.
+
+\emph{Step 2: the limit.} Let $V\subset X_0$ be a connected coordinate neighborhood, identified with a domain in $\mathbb{C}^n$. On each connected component of each affine complex-line section of $V$, the restrictions of the $u_{i_l}$ form a decreasing sequence of subharmonic functions, whose limit is subharmonic by \cref{thm:subharmonic-decreasing}. Since $u$ is upper semicontinuous, it is either plurisubharmonic on $V$ or identically $-\infty$ on $V$, by \cref{def:plurisubharmonic}. As $X_0$ is connected, \cref{lem:psh-local-alternative} shows that either $u$ is plurisubharmonic on $X_0$ or $u\equiv-\infty$ on $X_0$.
+
+\emph{Step 3: convergence.} Suppose first that $u$ is plurisubharmonic on $X_0$. Fix $i_0\in I$, take the sequence of Step 1, and let $K$ be a compact subset of a coordinate neighborhood in $X_0$. Then $0\leq u_{i_l}-u\leq u_{i_0}-u$ almost everywhere, namely wherever $u$ is finite, and $u_{i_0}-u$ is integrable on $K$. By dominated convergence, $\|u_{i_l}-u\|_{L^1(K)}\to0$. Given $\varepsilon>0$, choose $l$ with $\|u_{i_l}-u\|_{L^1(K)}<\varepsilon$; for every $i\geq i_l$ we have $0\leq u_i-u\leq u_{i_l}-u$ almost everywhere, hence $\|u_i-u\|_{L^1(K)}<\varepsilon$. Thus the net converges to $u$ in $L^1(K)$, and covering an arbitrary compact subset of $X_0$ by finitely many such sets $K$ gives convergence in $L^1_{\loc}(X_0)$.
+
+Suppose now that $u\equiv-\infty$ on $X_0$, and let $K\subset X_0$ be compact and $A>0$. The open sets $\{u_i<-A\}$ cover $K$, so finitely many of them, say those with indices $j_1,\ldots,j_p$, already cover $K$. If $i\geq j_1,\ldots,j_p$, then $u_i\leq u_{j_q}$ for each $q$, and hence $u_i<-A$ on $K$. This is locally uniform convergence to $-\infty$.
+\end{proof}
+\index{plurisubharmonic function!decreasing nets}
+
+Recall that a function $F$ with values in $[-\infty,\infty)$ that is locally bounded above has an upper semicontinuous regularization $F^*$, the smallest upper semicontinuous function that dominates $F$. On $X$ it is given by $F^*(x)=\inf_W\sup_WF$, where $W$ ranges over the neighborhoods of $x$, and in a chart it is the regularization of \cref{sec:subharmonic-envelopes}.
+
+\begin{theorem}\label{thm:psh-upper-envelopes}
+Let $(u_i)_{i\in I}$ be a nonempty family in $\PSH(X)$ that is locally uniformly bounded above, and let $F=\sup_iu_i$ be its upper envelope. Then the upper semicontinuous regularization $F^*$ is plurisubharmonic, and $F=F^*$ almost everywhere; more precisely, in every coordinate chart the set $\{F<F^*\}$ is real polar. If $X$ has a countable basis, there is a countable subset $J\subset I$ such that $(\sup_{i\in J}u_i)^*=F^*$.
+\end{theorem}
+\begin{proof}
+Since $F^*$ is defined by a local formula and plurisubharmonicity is a local property, it suffices to prove that $F^*$ is plurisubharmonic on every connected coordinate neighborhood $V$, which we identify with a domain in $\mathbb{C}^n$. By \cref{thm:subharmonic-envelope}, $F^*$ is subharmonic on $V$, and $F$ is Lebesgue measurable and equal to $F^*$ almost everywhere on $V$. By Choquet's lemma, \cref{lem:choquet-selection}, there is a countable set $J_V\subset I$ with $(\sup_{i\in J_V}u_i)^*=F^*$ on $V$.
+
+We next show that $\ddc F^*\geq0$ on $V$. Fix $i_0\in I$, enumerate $J_V\cup\{i_0\}$ as $i_0,i_1,i_2,\ldots$, with repetitions if this set is finite, and put $v_j=\max\{u_{i_0},\ldots,u_{i_j}\}$. The functions $v_j$ are plurisubharmonic by \cref{prop:psh-max-gluing}, increase with $j$, are locally uniformly bounded above, and dominate the locally integrable function $u_{i_0}$. Their limit $G=\sup_jv_j$ lies between $\sup_{i\in J_V}u_i$ and $F$, so $G^*=F^*$, and hence $G=F^*$ almost everywhere by \cref{thm:subharmonic-envelope} applied to the countable family. On a compact set $K\subset V$ on which every $u_i$ is bounded above by $M$, we have $0\leq v_j-u_{i_0}\leq M-u_{i_0}$, so dominated convergence gives $v_j\to F^*$ in $L^1(K)$. Therefore $\ddc F^*\geq0$, as a limit of positive currents. Since $F^*$ is subharmonic and dominates the locally integrable function $u_{i_0}$, it is locally integrable and hence the canonical representative of its class, and \cref{thm:psh-distribution-representative} shows that $F^*$ is plurisubharmonic on $V$.
+
+If $X$ has a countable basis, cover $X$ by countably many connected coordinate neighborhoods $V_1,V_2,\ldots$ and put $J=\bigcup_mJ_{V_m}$. On each $V_m$ we have $F^*=(\sup_{i\in J_{V_m}}u_i)^*\leq(\sup_{i\in J}u_i)^*\leq F^*$, and since the regularization is local, $(\sup_{i\in J}u_i)^*=F^*$ on $X$.
+
+Finally, in each chart the functions $u_i$ are subharmonic, so the second assertion of \cref{thm:polar-limit-discrepancy} shows that $\{F<F^*\}$ is polar in the corresponding open subset of $\mathbb R^{2n}$, that is, real polar.
+\end{proof}
+\index{plurisubharmonic function!upper envelope}\index{Choquet selection!plurisubharmonic envelopes}
+
+\begin{proposition}\label{prop:holomorphic-tuple-logarithm}
+Let $\Omega\subset\mathbb{C}^n$ be a domain, $n\geq1$, and let $g=(g_1,\ldots,g_r)$, $r\geq1$, be a tuple of holomorphic functions on $\Omega$, not all identically zero. Then the function $\log\sum_j|g_j|^2$, with the value $-\infty$ at the common zeros of the $g_j$, is plurisubharmonic on $\Omega$. In particular, for every $a\in\mathbb{C}^n$ the function $\log|z-a|^2$ is plurisubharmonic on $\mathbb{C}^n$.
+\end{proposition}
+\begin{proof}
+By the Cauchy--Schwarz inequality, with equality for $\lambda$ proportional to $(\overline{g_1(z)},\ldots,\overline{g_r(z)})$, we have
+\[
+ \log\sum_j|g_j(z)|^2
+       =\sup_{\sum_j|\lambda_j|^2=1}\log\left|\sum_j\lambda_jg_j(z)\right|^2
+\]
+for every $z\in\Omega$, both sides being $-\infty$ at a common zero. The supremum does not change if we omit the $\lambda$ for which $\sum_j\lambda_jg_j$ vanishes identically: at a point $z$ that is not a common zero, the maximizing $\lambda$ gives $\sum_j\lambda_jg_j(z)\neq0$, and at a common zero all terms equal $-\infty$. Some $g_j$ is not identically zero, so the remaining family is nonempty. Its members are plurisubharmonic by \cref{prop:holomorphic-logarithm-hessian,thm:psh-distribution-representative}, and they are locally uniformly bounded above by the left-hand side. Their supremum $\log\sum_j|g_j|^2$ is already upper semicontinuous: it is continuous as a map to $[-\infty,\infty)$, because $\sum_j|g_j|^2$ is continuous and its logarithm tends to $-\infty$ at a common zero. Hence it equals its regularization, which is plurisubharmonic by \cref{thm:psh-upper-envelopes}. The particular case is the tuple $(z_1-a_1,\ldots,z_n-a_n)$.
+\end{proof}
+\index{plurisubharmonic function!logarithm of a holomorphic norm}
+
+\begin{theorem}\label{thm:psh-compactness-hartogs}
+Let $\Omega\subset\mathbb C^n$ be a domain, $n\geq1$. Every sequence in $\PSH(\Omega)$ that is locally uniformly bounded above has a subsequence that either converges locally uniformly to $-\infty$ or converges in $L^1_{\loc}(\Omega)$ to a plurisubharmonic function. If a sequence $(u_j)$ in $\PSH(\Omega)$ converges in $L^1_{\loc}(\Omega)$, then its limit has a plurisubharmonic representative $u$, and the following holds: for every compact set $K\subset\Omega$ and every lower semicontinuous function $f\colon K\to\mathbb R$ with $u<f$ on $K$, for instance every real continuous function on $K$, one has $u_j<f$ on $K$ for all sufficiently large $j$. In particular $\varlimsup_j u_j(x)\le u(x)$ for every $x\in\Omega$.
+\end{theorem}
+\begin{proof}
+Plurisubharmonic functions are subharmonic by \cref{thm:psh-distribution-representative}. Hence, by the compactness theorem (\cref{thm:subharmonic-compactness}), a sequence as in the first assertion either tends to $-\infty$ locally uniformly, or has a subsequence converging in $L^1_{\loc}(\Omega)$ to a locally integrable subharmonic function $v$. In the second case $\ddc v\geq0$, as a distributional limit of positive currents, and $v$ is the canonical representative of its class; so $v$ is plurisubharmonic by \cref{thm:psh-distribution-representative}.
+
+Now let $(u_j)$ converge in $L^1_{\loc}(\Omega)$ to $T$. As above, $\ddc T\geq0$, so $T$ has a plurisubharmonic representative $u$, namely its canonical subharmonic representative. The $u_j$ are locally integrable subharmonic functions converging in $L^1_{\loc}(\Omega)$, and $u$ is the canonical representative of their limit, so the remaining assertions are Hartogs' lemma for subharmonic functions, \cref{thm:hartogs-subharmonic}, which requires no upper bound on the sequence; the last one is its first assertion with the constant sequence $x_j=x$.
+\end{proof}
+\index{Hartogs' lemma!plurisubharmonic}\index{plurisubharmonic function!compactness}
+
+\input{chapters/inputs/q02-local-lp-integrability}
+
+\input{chapters/inputs/q02-local-exponential-integrability}
+
+\section{Extension across closed exceptional sets}
+\label{sec:psh-extension}
+
+Let $S$ be a relatively closed subset of a domain $\Omega\subset\mathbb{C}^n$. We give two conditions under which plurisubharmonic functions on $\Omega\setminus S$ extend across $S$. In the first, $S$ is locally contained in the zero set of a holomorphic function, and the function is assumed to be locally bounded above near $S$; a logarithmic barrier built from the holomorphic function then gives the extension. In the second, $S$ is small in the sense of Hausdorff measure, and the local upper bound is not assumed but follows from the smallness of $S$ by an argument with complex lines.
+
+\begin{theorem}\label{thm:psh-bounded-zero-extension}
+Let $\Omega\subset\mathbb{C}^n$ be a domain, $n\ge1$, and let $S\subset\Omega$ be relatively closed. Assume that every point of $S$ has a connected neighborhood $W\subset\Omega$ with a holomorphic function $f\not\equiv0$ on $W$ such that $S\cap W\subset\{f=0\}$. Let $u$ be a plurisubharmonic function on $\Omega\setminus S$ that is locally bounded above near $S$, that is, every point of $S$ has a neighborhood $W$ such that $u$ is bounded above on $W\setminus S$. Then $u$ has a unique plurisubharmonic extension $\widetilde u$ to $\Omega$, and its value at $x\in S$ is
+\[
+ \widetilde u(x)=\varlimsup_{\Omega\setminus S\ni y\to x}u(y).
+\]
+\end{theorem}
+\begin{proof}
+Define $\widetilde u$ by $u$ on $\Omega\setminus S$ and by the displayed formula on $S$. Since plurisubharmonicity is a local property, it suffices to show that every point $x_0\in S$ has a neighborhood on which $\widetilde u$ is plurisubharmonic; uniqueness is proved at the end. By hypothesis there are a connected neighborhood $W_0$ of $x_0$ with a holomorphic function $f\not\equiv0$ on $W_0$ such that $S\cap W_0\subset\{f=0\}$, and a neighborhood $W_1$ of $x_0$ such that $u$ is bounded above on $W_1\setminus S$. Choose a ball $W$ about $x_0$ with $\overline W\subset W_0\cap W_1$. By the identity theorem, $f$ does not vanish identically on $W$, and $u$ is bounded above on $W\setminus S$. Multiplying $f$ by a nonzero constant, we may assume that $|f|\leq1$, that is, $\log|f|^2\le0$, on $W$. For $\varepsilon>0$ define $u_\varepsilon$ on $W$ by
+\[
+ u_\varepsilon=u+\varepsilon\log|f|^2\quad\text{on }W\setminus S,\qquad
+ u_\varepsilon=-\infty\quad\text{on }S\cap W.
+\]
+
+\emph{Step 1: $u_\varepsilon\in\PSH(W)$.} At a point $x\in S\cap W$ we have $f(x)=0$, so $\log|f(y)|^2\to-\infty$ as $y\to x$, while $u$ is bounded above near $x$; hence $u_\varepsilon(y)\to-\infty$ as $y\to x$, and $u_\varepsilon$ is upper semicontinuous at $x$. On $W\setminus S$, $u_\varepsilon$ is upper semicontinuous as a sum of upper semicontinuous functions.
+
+Now let $\Lambda$ be a connected component of $L\cap W$ for an affine complex line $L$. If $f$ vanishes identically on $\Lambda$, then $u_\varepsilon\equiv-\infty$ on $\Lambda$. Otherwise the zeros of $f$ on the connected set $\Lambda$ are isolated, by the identity theorem in one variable. Since $S$ is relatively closed, $A=S\cap\Lambda$ is therefore a closed discrete subset of $\Lambda$, hence countable, because each of the countably many compact sets exhausting $\Lambda$ contains only finitely many of its points. It is polar, because points are polar in the plane and countable unions of polar sets are polar by \cref{prop:polar-globalization}.
+
+Each connected component of $\Lambda\setminus A$ is a connected subset of $L\cap(\Omega\setminus S)$ and therefore lies in a connected component of this line section, on which the restriction of $u$ is subharmonic or identically $-\infty$. Hence the restriction of $u$ to $\Lambda\setminus A$ is subharmonic, the constant $-\infty$ being subharmonic. The function $\log|f|^2$ is subharmonic on $\Lambda$ by \cref{ex:subharmonic-convex-log}. Thus $u_\varepsilon$ is subharmonic on $\Lambda\setminus A$, and it is bounded above there by $\sup_{W\setminus S}u$, because $\log|f|^2\leq0$. By \cref{thm:polar-removable}, it has a subharmonic extension to $\Lambda$ whose value at $x\in A$ is $\varlimsup_{\Lambda\setminus A\ni y\to x}u_\varepsilon(y)=-\infty$, which is the value of $u_\varepsilon$ at $x$. Hence the restriction of $u_\varepsilon$ to $\Lambda$ is subharmonic. Finally, $u_\varepsilon$ is not identically $-\infty$, because $u$ is finite almost everywhere on $W\setminus S$ and $\{f=0\}$ is Lebesgue null by \cref{lem:holomorphic-zero-null}. Thus $u_\varepsilon\in\PSH(W)$.
+
+\emph{Step 2: the extension.} As $\varepsilon\downarrow0$ the functions $u_\varepsilon$ increase, because $\log|f|^2\leq0$, and they are bounded above on $W$ by $\sup_{W\setminus S}u$. Let $F=\sup_{\varepsilon>0}u_\varepsilon$. By \cref{thm:psh-upper-envelopes}, $F^*\in\PSH(W)$ and $F^*=F$ almost everywhere. Since $F=u$ outside the null set $\{f=0\}$, we get $F^*=u$ almost everywhere on $W\setminus S$; both functions are locally integrable and subharmonic there, so $F^*=u$ everywhere on $W\setminus S$ by \cref{thm:subharmonic-distribution}.
+
+It remains to show that $F^*=\widetilde u$ on $S\cap W$, which is Lebesgue null as a subset of $\{f=0\}$. Let $x\in S\cap W$. Since $F^*=u$ on $W\setminus S$, the upper semicontinuity of $F^*$ gives $\widetilde u(x)=\varlimsup_{W\setminus S\ni y\to x}u(y)\leq F^*(x)$. Conversely, for small $r>0$ the ball submean inequality for $F^*$ gives $F^*(x)\leq|B(x,r)|^{-1}\int_{B(x,r)\setminus S}F^*\,\mathrm dV\leq\sup_{B(x,r)\setminus S}u$, because removing the null set $S$ does not change the integral, and letting $r\to0$ gives $F^*(x)\leq\widetilde u(x)$. Hence $\widetilde u=F^*$ on $W$, and $\widetilde u$ is plurisubharmonic on $W$.
+
+\emph{Uniqueness.} The set $S$ is Lebesgue null, since it is covered by countably many neighborhoods $W$ as in the hypothesis and $S\cap W\subset\{f=0\}$ is null. Two plurisubharmonic extensions of $u$ therefore agree almost everywhere, and hence everywhere by \cref{thm:psh-distribution-representative}.
+\end{proof}
+\index{plurisubharmonic function!bounded extension}
+
+For the second criterion we measure the size of $S$ by Hausdorff measure. Let $q>0$. A subset $E$ of a metric space is \emph{$\mathcal H^q$-null} if for all $\delta,\eta>0$ it can be covered by countably many balls of radii $r_l<\delta$ with $\sum_l r_l^q<\eta$. This means that the $q$-dimensional Hausdorff measure of $E$, which is defined by coverings with sets of small diameter, vanishes, whatever its normalization: a set of diameter $\ell$ lies in the ball of radius $\ell'$ about any of its points for every $\ell'>\ell$, and a ball of radius $r$ has diameter at most $2r$. Every subset of an $\mathcal H^q$-null set is $\mathcal H^q$-null, and so is every countable union of $\mathcal H^q$-null sets $E_1,E_2,\ldots$: cover $E_l$ by balls of radii less than $\delta$ with sum of the $q$-th powers of the radii less than $2^{-l}\eta$.
+
+We use two further elementary properties. First, if $E$ is $\mathcal H^q$-null and $\Phi$ is a Lipschitz map with constant $L>0$ from $E$ to a metric space, then $\Phi(E)$ is $\mathcal H^q$-null. To see this, discard the covering balls that do not meet $E$, and replace each remaining ball $B(c,r)$ by $B(c',2r)$ with $c'\in E\cap B(c,r)$; then $\Phi(E\cap B(c',2r))\subset B(\Phi(c'),2Lr)$, so $\Phi(E)$ is covered by balls of radii $2Lr_l<2L\delta$ with $\sum_l(2Lr_l)^q<(2L)^q\eta$. Second, if $q\leq b$, every $\mathcal H^q$-null subset of $\mathbb R^b$ is Lebesgue null, because the total volume of the covering balls is at most a constant times $\sum_lr_l^b\leq\delta^{b-q}\sum_l r_l^q$.
+\index{Hausdorff null set}\index{Hausdorff measure!null sets}
+
+For $n\geq2$, let $\sigma$ be the unitarily invariant probability measure on $\mathbb P^{n-1}(\mathbb C)$ and $d$ the metric on $\mathbb P^{n-1}(\mathbb C)$ introduced in \cref{sec:unitary-measures}. For $v\in\mathbb{C}^n\setminus\{0\}$ we write $[v]\in\mathbb P^{n-1}(\mathbb C)$ for the complex line spanned by $v$; thus the restriction of $v\mapsto[v]$ to the unit sphere is the Hopf map of \cref{sec:unitary-measures}. For $y\neq x$ in $\mathbb{C}^n$, the point $[y-x]$ is the \emph{direction} of $y$ from $x$.
+
+\begin{lemma}\label{lem:small-set-polar-directions}
+Let $n\ge2$ and let $K\subset\mathbb{C}^n$ be a compact $\mathcal H^{2n-3}$-null set. Then:
+\begin{enumerate}
+\item $K$ is real polar;
+\item for every $x\in\mathbb{C}^n$, the set of directions from $x$ of the points of $K\setminus\{x\}$ has $\sigma$-measure zero;
+\item the orthogonal projection of $K$ onto any complex hyperplane is Lebesgue null.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+(1) Suppose that $K$ is not polar. By \cref{thm:compact-polar-energy}, $K$ carries a nonzero positive measure of finite energy; dividing it by its mass, we obtain a probability measure $\mu$ on $K$ of finite energy $I(\mu)$ for the Newtonian kernel $k(x,y)=|x-y|^{2-2n}/((2n-2)s_{2n-1})$ of \cref{sec:kernel-energy} in $\mathbb R^{2n}$. Its potential $U^\mu$ is lower semicontinuous, and it is finite $\mu$-almost everywhere because $\int U^\mu\,\mathrm d\mu=I(\mu)<\infty$. The sets $E_M=K\cap\{U^\mu\le M\}$, $M\in\mathbb N$, are compact, because $U^\mu$ is lower semicontinuous, and they increase to a set of full $\mu$-measure; hence $\mu(E_M)>0$ for $M$ large enough. Let $\nu$ be the restriction of $\mu$ to $E_M$. For $a\in E_M$ and $r>0$,
+\[
+ \frac{r^{2-2n}\,\nu(B(a,r))}{(2n-2)s_{2n-1}}\leq\int_{B(a,r)}k(a,y)\,\mathrm d\nu(y)\leq U^\mu(a)\leq M,
+\]
+so $\nu(B(a,r))\le C_nMr^{2n-2}$ with $C_n=(2n-2)s_{2n-1}$. Now cover $E_M$ by balls $B(c_l,r_l)$ with $r_l<1$ and $\sum_lr_l^{2n-3}<\eta$, and discard those not meeting $E_M$. Each remaining ball lies in $B(a_l,2r_l)$ for some $a_l\in E_M$, so
+\[
+ \nu(E_M)\leq\sum_l\nu(B(a_l,2r_l))\leq2^{2n-2}C_nM\sum_lr_l^{2n-2}\leq2^{2n-2}C_nM\eta,
+\]
+where we used $r_l<1$. Since $\eta>0$ is arbitrary, $\nu(E_M)=0$, a contradiction. Hence $K$ is polar.
+
+(2) Fix $x$. For $m\geq1$ the set $K_m=K\cap\{|y-x|\geq1/m\}$ is compact and $\mathcal H^{2n-3}$-null, and $K\setminus\{x\}=\bigcup_mK_m$. The direction map $\Phi(y)=[y-x]$ is Lipschitz on $K_m$. Indeed, $\Phi(y)=[(y-x)/|y-x|]$. The normalization $y\mapsto(y-x)/|y-x|$ has Lipschitz constant at most $2m$ on $\{|y-x|\geq1/m\}$: for nonzero vectors $a,b$,
+\[
+ \Bigl|\frac a{|a|}-\frac b{|b|}\Bigr|\leq\frac{|a-b|}{|a|}+|b|\,\Bigl|\frac1{|a|}-\frac1{|b|}\Bigr|=\frac{|a-b|+\bigl||b|-|a|\bigr|}{|a|}\leq\frac{2|a-b|}{|a|},
+\]
+and we apply this with $a=y-x$, $b=y'-x$ and $|a|\geq1/m$. The Hopf map is Lipschitz with constant $\pi/2$ for the metric $d$. Indeed, let $e,e'$ be unit vectors and $\delta=\arccos\Real\langle e,e'\rangle\in[0,\pi]$ their spherical distance. Since $d$ is the minimum of the spherical distance over the unit representatives (\cref{sec:unitary-measures}), we have $d([e],[e'])\leq\delta$. Moreover $|e-e'|^2=2-2\cos\delta=4\sin^2(\delta/2)$, and $\sin s\geq2s/\pi$ for $0\leq s\leq\pi/2$, so $|e-e'|\geq2\delta/\pi$. Hence
+\[
+ d([e],[e'])\leq\delta\leq\tfrac\pi2|e-e'|.
+\]
+Since Lipschitz images of $\mathcal H^{2n-3}$-null sets are $\mathcal H^{2n-3}$-null, the compact set $\Phi(K_m)$ is $\mathcal H^{2n-3}$-null in $(\mathbb P^{n-1}(\mathbb C),d)$. Cover it by balls of radii $r_l<1$ with $\sum_lr_l^{2n-3}<\eta$. By \cref{lem:projective-ball-volume}, and since $r_l<1$, we have $\sigma(\Phi(K_m))\leq\sum_lr_l^{2n-2}<\eta$, so $\sigma(\Phi(K_m))=0$. Hence the set of directions $\Phi(K\setminus\{x\})=\bigcup_m\Phi(K_m)$ is a Borel set of $\sigma$-measure zero.
+
+(3) An orthogonal projection onto a complex hyperplane $H\cong\mathbb R^{2n-2}$ is $1$-Lipschitz. Hence the projection of $K$ is $\mathcal H^{2n-3}$-null in $H$, and therefore Lebesgue null because $2n-3<2n-2$.
+\end{proof}
+
+\begin{theorem}\label{thm:psh-small-set-extension}
+Let $n\ge2$, let $\Omega\subset\mathbb{C}^n$ be a domain, and let $S\subset\Omega$ be relatively closed and locally $\mathcal H^{2n-3}$-null, that is, every point of $S$ has a neighborhood $W$ such that $S\cap W$ is $\mathcal H^{2n-3}$-null. Then every plurisubharmonic function on $\Omega\setminus S$ extends uniquely to a plurisubharmonic function on $\Omega$, given on $S$ by the same upper-limit formula as in \cref{thm:psh-bounded-zero-extension}.
+\end{theorem}
+\begin{proof}
+Let $u$ be a plurisubharmonic function on $\Omega\setminus S$. For every closed ball $\overline B\subset\Omega$, the compact set $S\cap\overline B$ is covered by finitely many neighborhoods $W$ as in the hypothesis, and is therefore $\mathcal H^{2n-3}$-null.
+
+\emph{Step 1: $u$ is locally bounded above near $S$.} Fix $p\in S$ and $r>0$ with $\overline B=\overline{B(p,r)}\subset\Omega$, and write $B=B(p,r)$. By \cref{lem:small-set-polar-directions}(2) applied with $x=p$, almost every complex line through $p$ meets $S\cap\overline B$ only at $p$; fix such a line $L=\{p+te:t\in\mathbb{C}\}$, with $|e|=1$. The circle $\Gamma=L\cap\partial B$ is a compact subset of $\Omega\setminus S$, so the upper semicontinuous function $u$ is bounded above on $\Gamma$ by a finite constant $C$, and the open set $O=\{y\in\Omega\setminus S:u(y)<C+1\}$ contains $\Gamma$.
+
+Suppose that $u$ is not bounded above near $p$. Then there are points $x_j\in B\setminus S$ with $x_j\to p$ and $u(x_j)\to+\infty$. For each $j$, \cref{lem:small-set-polar-directions}(2) applied with $x=x_j$ shows that the directions of the lines through $x_j$ meeting $S\cap\overline B$ form a $\sigma$-null set. Every nonempty open ball in $\mathbb P^{n-1}(\mathbb C)$ has positive $\sigma$-measure by \cref{lem:projective-ball-volume}, so the complement of this null set is dense. We can therefore choose directions $\xi_j$ outside this null set with $d(\xi_j,[e])<1/j$. Since $d$ is the minimum of the spherical distance over the unit representatives, $\xi_j$ has a unit representative $e_j$ whose spherical distance to $e$ is less than $1/j$, and then $|e_j-e|<1/j$, because a chord is shorter than the arc. Thus $e_j\to e$, and the lines $L_j=\{x_j+te_j:t\in\mathbb{C}\}$ do not meet $S\cap\overline B$.
+
+We claim that $L_j\cap\partial B\subset O$ for all large $j$. Let $c_j$ be the point of $L_j$ closest to $p$, that is, the orthogonal projection of $p$ to $L_j$; then $|c_j-p|\leq|x_j-p|\to0$. Since $L_j$ is a complex line, $c_j=x_j+\langle p-x_j,e_j\rangle e_j$ and $\langle c_j-p,e_j\rangle=0$ for the Hermitian inner product, so $\Real\langle c_j-p,se_j\rangle=0$ and $|c_j+se_j-p|^2=|c_j-p|^2+|s|^2$ for $s\in\mathbb{C}$. Hence $L_j\cap\partial B$ is the circle $\{c_j+\rho_j\mathrm{e}^{\mathrm{i}\theta}e_j\}$ with $\rho_j=(r^2-|c_j-p|^2)^{1/2}\to r$. Since $|c_j+\rho_j\mathrm{e}^{\mathrm{i}\theta}e_j-p-r\mathrm{e}^{\mathrm{i}\theta}e|\leq|c_j-p|+|\rho_j-r|+r|e_j-e|$, these circles converge uniformly in $\theta$ to $\Gamma=\{p+r\mathrm{e}^{\mathrm{i}\theta}e\}$. The distance from the compact set $\Gamma$ to the closed complement of the open set $O$ is positive, so the circles lie in $O$ for large $j$.
+
+For such $j$, the closed disc $\Delta_j=L_j\cap\overline B$ lies in $\Omega\setminus S$, and the restriction of $u$ to the connected component of $L_j\cap(\Omega\setminus S)$ containing $\Delta_j$ is subharmonic or identically $-\infty$. Its values on the boundary circle of $\Delta_j$ are less than $C+1$, so the maximum principle, that is, \cref{thm:subharmonic-comparison} with the constant harmonic function $C+1$, gives $u\leq C+1$ on $\Delta_j$. Since $x_j\in B\cap L_j\subset\Delta_j$, this gives $u(x_j)\leq C+1$, contradicting $u(x_j)\to+\infty$. Hence $u$ is bounded above near every point of $S$.
+
+\emph{Step 2: the subharmonic extension.} By \cref{lem:small-set-polar-directions}(1), every compact set $S\cap\overline B$ as above is real polar. Countably many such sets cover $S$, so $S$ is real polar by \cref{prop:polar-globalization}. By Step 1 and the upper semicontinuity of $u$ on $\Omega\setminus S$, the function $u$ is bounded above on $K\setminus S$ for every compact $K\subset\Omega$. Moreover $u$ is subharmonic on $\Omega\setminus S$ by \cref{thm:psh-distribution-representative}. By \cref{thm:polar-removable}, $u$ has a subharmonic extension $\widetilde u$ to $\Omega$, given on $S$ by the upper-limit formula. Since $S$ is Lebesgue null and $u$ is finite almost everywhere on $\Omega\setminus S$, the function $\widetilde u$ is not identically $-\infty$ on the domain $\Omega$, so it is locally integrable.
+
+\emph{Step 3: $\widetilde u$ is plurisubharmonic.} We verify the hypothesis of \cref{lem:psh-line-slicing} for the locally integrable function $\widetilde u$. Fix a unit vector $a\in\mathbb{C}^n$ and a nonnegative $\chi\in C^\infty_c(\Omega)$, and write $z=v+ta$ with $v\in(\mathbb{C}a)^\perp$ and $t\in\mathbb{C}$, as in that lemma. The compact set $S\cap\Supp\chi$ is $\mathcal H^{2n-3}$-null, since it is covered by finitely many of the sets $S\cap\overline B$ of the first paragraph, so by \cref{lem:small-set-polar-directions}(3) its orthogonal projection onto $(\mathbb{C}a)^\perp$ is Lebesgue null. For $v$ outside this projection, the line $\{v+ta:t\in\mathbb{C}\}$ meets $\Supp\chi$ only in $\Omega\setminus S$. Thus the open set $G_v=\{t:v+ta\in\Omega\setminus S\}$ contains $K_v=\{t:v+ta\in\Supp\chi\}$, and its connected components are the connected components of an affine complex-line section of $\Omega\setminus S$, on each of which the restriction of $\widetilde u=u$ is subharmonic or identically $-\infty$. As $a$ and $\chi$ are arbitrary, \cref{lem:psh-line-slicing} gives $\ddc\widetilde u\geq0$. Since $\widetilde u$ is a locally integrable subharmonic function, it is the canonical representative of its class, and it is plurisubharmonic by \cref{thm:psh-distribution-representative}. Uniqueness follows from the same theorem, since two plurisubharmonic extensions agree outside the Lebesgue null set $S$.
+\end{proof}
+\index{plurisubharmonic function!extension across small sets}
+
+\section{Kiselman's minimum principle}
+\label{sec:kiselman-minimum}
+
+An infimum of plurisubharmonic functions need not be plurisubharmonic. For instance, the function $v(z,w)=|w|^2+2\Real(zw)=|w+\bar z|^2-|z|^2$ is plurisubharmonic on $\mathbb{C}^2$, since $2\Real(zw)$ is pluriharmonic, but $\inf_{w\in\mathbb{C}}v(z,w)=-|z|^2$ is not. Kiselman's minimum principle shows that, under convexity assumptions on the domain, the infimum is plurisubharmonic or identically $-\infty$ if it is taken only over the real parts of some variables and the function does not depend on their imaginary parts. The reason is visible for a smooth function $u(z,w)$ that depends only on $z$ and $\Real w$. Its complex Hessian in $w$ is a quarter of its real Hessian in $\Real w$, and at a nondegenerate minimum over $\Real w$, the complex Hessian of the infimum is the Schur complement of the $w$-block in the complex Hessian of $u$, which is positive semidefinite.
+
+Throughout this section, points of $\mathbb{C}^m\times\mathbb{C}^k$ are written $(z,w)$, and $w=t+\mathrm{i}s$ with $t=\Real w$ and $s=\Img w$ in $\mathbb R^k$. A set $\Omega\subset\mathbb{C}^m\times\mathbb{C}^k$ is \emph{invariant under imaginary translations} if $(z,w+\mathrm{i}s')\in\Omega$ for all $(z,w)\in\Omega$ and $s'\in\mathbb R^k$. A function $u$ on such a set is \emph{invariant under imaginary translations} if $u(z,w+\mathrm{i}s')=u(z,w)$ for all such $(z,w)$ and $s'$, that is, if $u(z,w)$ depends only on $z$ and $\Real w$.\index{imaginary translations!invariance under} For such $\Omega$ and $u$, we identify $t\in\mathbb R^k$ with $t+\mathrm{i}0\in\mathbb{C}^k$, so that $u(z,t)$ is defined. We write
+\[
+ V_z=\{t\in\mathbb R^k:(z,t)\in\Omega\},\qquad
+ \Omega_{\mathbb R}=\{(z,t)\in\mathbb{C}^m\times\mathbb R^k:t\in V_z\}
+\]
+for the real fiber of $\Omega$ over $z\in\mathbb{C}^m$ and the real slice of $\Omega$, and $p(\Omega)=\{z:V_z\neq\varnothing\}$ for the projection of $\Omega$ to $\mathbb{C}^m$; it is the image of $\Omega$ under $(z,w)\mapsto z$, because $(z,\Real w)\in\Omega$ for every $(z,w)\in\Omega$ by invariance. Since this projection is continuous and open, $p(\Omega)$ is open if $\Omega$ is open, and connected if $\Omega$ is connected.
+
+\begin{theorem}[Kiselman's minimum principle]\label{thm:kiselman-invariant-exhaustion}
+Let $m,k\ge1$, and let $\Omega\subset\mathbb{C}^m\times\mathbb{C}^k$ be a domain invariant under imaginary translations whose nonempty real fibers $V_z$ are convex. Assume that there is a plurisubharmonic function $\psi$ on $\Omega$, invariant under imaginary translations, such that for every $c\in\mathbb R$ the set
+\[
+ \{(z,t)\in\Omega_{\mathbb R}:\psi(z,t)\le c\}
+\]
+is compact. If $u\in\PSH(\Omega)$ is invariant under imaginary translations, then the function
+\[
+ v(z)=\inf_{t\in V_z}u(z,t)
+\]
+is plurisubharmonic or identically $-\infty$ on $p(\Omega)$.
+\end{theorem}
+\begin{proof}
+We first treat smooth functions with positive definite real Hessian in $t$ that tend to $+\infty$ at the boundary of the real fibers (Step 1). We then approximate $u$ by such functions on subdomains exhausting $\Omega$ (Step 2) and pass to the limit (Step 3).
+
+\emph{Step 1: a smooth case.} In this step, $\Omega$ may be any open set invariant under imaginary translations whose real fibers are convex. Suppose that $u$ is smooth and plurisubharmonic, invariant under imaginary translations, and that for every $z\in p(\Omega)$ the function $t\mapsto u(z,t)$ has positive definite real Hessian on $V_z$ and tends to $+\infty$ at the boundary of $V_z$ and, if $V_z$ is unbounded, as $|t|\to\infty$. We show that $v$ is plurisubharmonic on each connected component of $p(\Omega)$.
+
+Fix $z\in p(\Omega)$ and put $f(t)=u(z,t)$ for $t\in V_z$. Since its Hessian is positive definite, $f$ is strictly convex on every segment in the open convex set $V_z$, hence on $V_z$. Its sublevel sets $\{t\in V_z:f(t)\leq c\}$ are compact: they are bounded, because $f\to+\infty$ as $|t|\to\infty$ when $V_z$ is unbounded, and the limit in $\mathbb R^k$ of a convergent sequence in such a set cannot lie on the boundary of $V_z$, because $f\to+\infty$ there, so it lies in $V_z$ and, since $f$ is continuous on $V_z$, in the sublevel set. Hence $f$ attains its minimum on the nonempty set $V_z$, and by strict convexity at a unique point $g(z)$.
+
+This point is the only critical point of $f$: if $\nabla f(t_1)=0$, then the convex function $s\mapsto f(t_1+s(t_2-t_1))$ has derivative zero at $s=0$, hence $f(t_2)\geq f(t_1)$ for every $t_2\in V_z$, and $t_1=g(z)$. Fix $z_0\in p(\Omega)$. Since the $t$-Hessian is invertible, the implicit function theorem gives a smooth solution $t=G(z)$ of $\partial_tu(z,t)=0$ near $z_0$ with $G(z_0)=g(z_0)$, and $G=g$ near $z_0$ because $g(z)$ is the only critical point. Hence $g$ and $v(z)=u(z,g(z))$ are smooth on $p(\Omega)$.
+
+At the point $(z,g(z))$, let $H=(\partial^2u/\partial t_a\partial t_b)$, $B=(\partial^2u/\partial z_j\partial t_a)$ and $C=(\partial^2u/\partial z_j\partial\bar z_l)$. Thus $H$ is a real symmetric positive definite $k\times k$ matrix and $B$ is a complex $m\times k$ matrix; since $u$ is real, $(\partial^2u/\partial t_a\partial\bar z_j)=B^*$, the conjugate transpose of $B$. Differentiating the identity $\partial_tu(z,g(z))=0$ with respect to $\bar z$ gives $B^*+Hg_{\bar z}=0$, where $g_{\bar z}=(\partial g_a/\partial\bar z_j)$; hence $g_{\bar z}=-H^{-1}B^*$. By the chain rule and the same identity, $v_{z_j}(z)=u_{z_j}(z,g(z))$, and differentiating once more with respect to $\bar z$ gives
+\[
+ v_{z\bar z}=C+Bg_{\bar z}=C-BH^{-1}B^*.
+\]
+On the other hand, for functions of $z$ and $\Real w$ we have $\partial_{w_a}=\partial_{\bar w_a}=\frac12\partial_{t_a}$. Hence the complex Hessian of $u$ with respect to $(z,w)$, which is positive semidefinite by \cref{prop:smooth-psh-criterion}(1), is
+\[
+ \begin{pmatrix} C&B/2\\ B^*/2&H/4\end{pmatrix}\ge0.
+\]
+Evaluating the associated Hermitian quadratic form at $(\xi,-2H^{-1}B^*\xi)$, $\xi\in\mathbb{C}^m$, gives $\xi^*(C-BH^{-1}B^*)\xi\geq0$. Thus $v_{z\bar z}\geq0$, and the smooth function $v$ is plurisubharmonic on each component of $p(\Omega)$ by \cref{prop:smooth-psh-criterion}(1).
+
+\emph{Step 2: regularization.} Now let $u$ be as in the theorem. For $\varepsilon>0$ let $u_\varepsilon=u*\rho_\varepsilon$ and $\psi_\varepsilon=\psi*\rho_\varepsilon$ on $\Omega_\varepsilon=\{x\in\Omega:\operatorname{dist}(x,\mathbb{C}^{m+k}\setminus\Omega)>\varepsilon\}$, where $\rho_\varepsilon$ is the radial mollifier of \cref{sec:convolution}. Imaginary translations are isometries preserving $\Omega$, and convolution commutes with translations, so $\Omega_\varepsilon$, $u_\varepsilon$ and $\psi_\varepsilon$ are invariant under imaginary translations. By \cref{prop:smooth-psh-criterion}, the functions $u_\varepsilon$ and $\psi_\varepsilon$ are smooth and plurisubharmonic on each connected component of $\Omega_\varepsilon$, so their complex Hessians are positive semidefinite at every point, and they decrease to $u$ and $\psi$ as $\varepsilon\downarrow0$; in particular $u_\varepsilon\geq u$ and $\psi_\varepsilon\geq\psi$.
+
+The real fibers of $\Omega_\varepsilon$ are convex. Indeed, $(z,t)\in\Omega_\varepsilon$ if and only if the closed ball of radius $\varepsilon$ about $(z,t)$ lies in $\Omega$ (if it does, its distance to the closed complement of $\Omega$ is positive, because it is compact); by invariance this means that $(z+y,t+y')\in\Omega_{\mathbb R}$ for all $(y,y')\in\mathbb{C}^m\times\mathbb R^k$ with $|y|^2+|y'|^2\leq\varepsilon^2$. Hence the real fiber of $\Omega_\varepsilon$ over $z$ is the intersection of the convex sets $V_{z+y}-y'$ over these $(y,y')$. Moreover, on each real fiber of $\Omega_\varepsilon$ the function $t\mapsto\psi_\varepsilon(z,t)$ is convex, since by invariance its real Hessian is four times the complex Hessian of $\psi_\varepsilon$ in $w$, which is positive semidefinite, and a smooth function with positive semidefinite Hessian on an open convex set is convex along every segment.
+
+For $c\in\mathbb R$ let $K_c=\{(z,t)\in\Omega_{\mathbb R}:\psi(z,t)\le c\}$; it is a compact subset of $\Omega$. Choose $\varepsilon_j\downarrow0$, $j\geq1$, such that $\operatorname{dist}(K_{j+1},\mathbb{C}^{m+k}\setminus\Omega)>4\varepsilon_j$ whenever $K_{j+1}\neq\varnothing$. Since $\psi$ and the distance to the complement of $\Omega$ are invariant under imaginary translations, the same bound holds for the set $\{x\in\Omega:\psi(x)\leq j+1\}=K_{j+1}+\mathrm{i}\mathbb R^k$. Define
+\[
+ G_j=\{(z,w)\in\Omega_{\varepsilon_j}:\psi_{\varepsilon_j}(z,w)<j\},\qquad
+ U_j=u_{\varepsilon_j}+\frac{|\Real w|^2}{j}
+       +\frac{1}{j-\psi_{\varepsilon_j}}\quad\text{on }G_j.
+\]
+The open set $G_j$ is invariant under imaginary translations, and its real fiber over $z$ is a sublevel set of the convex function $\psi_{\varepsilon_j}(z,\,\cdot\,)$ on the convex real fiber of $\Omega_{\varepsilon_j}$, hence convex. Since $\psi\leq\psi_{\varepsilon_j}$, the real slice of $G_j$ is contained in the compact set $K_j\subset K_{j+1}$, which lies in $\Omega_{\varepsilon_j}$ at positive distance from its complement. Consequently, for each $z$, the closure of the real fiber of $G_j$ over $z$ is a compact subset of the real fiber of $\Omega_{\varepsilon_j}$, and $\psi_{\varepsilon_j}(z,\,\cdot\,)=j$ on its boundary.
+
+The function $U_j$ is smooth, plurisubharmonic and invariant under imaginary translations. Indeed, by the chain rule the complex Hessian of $1/(j-\psi_{\varepsilon_j})$ has the entries
+\[
+ \frac{(\psi_{\varepsilon_j})_{a\bar b}}{(j-\psi_{\varepsilon_j})^2}
+ +\frac{2(\psi_{\varepsilon_j})_a(\psi_{\varepsilon_j})_{\bar b}}{(j-\psi_{\varepsilon_j})^3},
+\]
+where the subscripts denote derivatives with respect to the coordinates of $(z,w)$. Since $j-\psi_{\varepsilon_j}>0$ on $G_j$ and $(\psi_{\varepsilon_j})_{\bar b}=\overline{(\psi_{\varepsilon_j})_b}$, this matrix is the sum of positive multiples of the complex Hessian of $\psi_{\varepsilon_j}$ and of a positive semidefinite matrix of rank at most one, hence positive semidefinite. Moreover, $|\Real w|^2$ has the positive semidefinite complex Hessian in $(z,w)$ given by the diagonal matrix with entries $0$ in the $z$-directions and $\frac12$ in the $w$-directions. Hence $U_j$ is plurisubharmonic on each connected component of $G_j$, by \cref{prop:smooth-psh-criterion}(1).
+
+The real $t$-Hessian of $U_j$ is positive definite: the $t$-Hessians of $u_{\varepsilon_j}$ and $1/(j-\psi_{\varepsilon_j})$ are positive semidefinite, as for $\psi_\varepsilon$ above, and that of $|t|^2/j$ is $(2/j)I$. On each real fiber of $G_j$, which is bounded, $U_j(z,t)\to+\infty$ at the boundary, because $1/(j-\psi_{\varepsilon_j})\to+\infty$ there while the other two terms are bounded below on the compact closure of the fiber. Hence Step 1 applies to $U_j$ on $G_j$, and
+\[
+ v_j(z)=\inf\{U_j(z,t):(z,t)\in G_j\}
+\]
+is plurisubharmonic on each connected component of $p(G_j)$.
+
+\emph{Step 3: passage to the limit.} The sets $G_j$ increase to $\Omega$. Indeed, $\varepsilon_{j+1}\leq\varepsilon_j$ gives $\Omega_{\varepsilon_j}\subset\Omega_{\varepsilon_{j+1}}$ and $\psi_{\varepsilon_{j+1}}\leq\psi_{\varepsilon_j}<j<j+1$ on $G_j$. Every point $x\in\Omega$ lies in $\Omega_{\varepsilon_j}$ for large $j$, and $\psi_{\varepsilon_j}(x)\to\psi(x)<\infty$, so $x\in G_j$ for large $j$. On $G_j$ we have $U_{j+1}\leq U_j$, since $u_{\varepsilon_{j+1}}\leq u_{\varepsilon_j}$, $|\Real w|^2/(j+1)\leq|\Real w|^2/j$ and $0<j-\psi_{\varepsilon_j}\leq j+1-\psi_{\varepsilon_{j+1}}$. Hence the functions $v_j$ decrease on the increasing open sets $p(G_j)$. They satisfy $v_j\geq v$, since $U_j\geq u_{\varepsilon_j}\geq u$. Conversely, let $z\in p(\Omega)$ and $t\in V_z$. Then $(z,t)\in G_j$ for large $j$, and $U_j(z,t)\to u(z,t)$, also when $u(z,t)=-\infty$, because $u_{\varepsilon_j}(z,t)\to u(z,t)$ and the other two terms tend to zero. Hence $\lim_jv_j(z)\leq u(z,t)$ for every $t\in V_z$, and therefore $v_j\downarrow v$ on $p(\Omega)$.
+
+Let $B'\Subset p(\Omega)$ be a ball. Since $\overline{B'}$ is compact and covered by the increasing open sets $p(G_j)$, we have $B'\subset p(G_j)$ for large $j$, and the $v_j$ with such $j$ form a decreasing sequence of plurisubharmonic functions on $B'$. By \cref{thm:psh-decreasing-nets}, $v$ is plurisubharmonic or identically $-\infty$ on $B'$. Since every point of the connected open set $p(\Omega)$ lies in such a ball, \cref{lem:psh-local-alternative} shows that $v$ is plurisubharmonic or identically $-\infty$ on $p(\Omega)$; this proves the theorem.
+\end{proof}
+\index{Kiselman's minimum principle}
+
+\begin{corollary}\label{cor:kiselman-product-tube}
+Let $m,k\geq1$, let $D\subset\mathbb{C}^m$ be a domain and let $V\subset\mathbb{R}^k$ be a nonempty open convex set. If $u\in\PSH(D\times(V+\mathrm{i}\mathbb{R}^k))$ is invariant under imaginary translations, then the function $z\mapsto\inf_{t\in V}u(z,t)$ is plurisubharmonic or identically $-\infty$ on $D$. The same holds for $z\mapsto\inf_{t\in V}(u(z,t)-\ell(t))$, for every real affine function $\ell$ on $\mathbb R^k$.
+\end{corollary}
+\begin{proof}
+It suffices to prove the assertion on every ball $B(z_0,r)\Subset D$: since $D$ is connected, \cref{lem:psh-local-alternative} then gives it on $D$. We construct a function $\psi$ as in \cref{thm:kiselman-invariant-exhaustion} for the domain $B(z_0,r)\times(V+\mathrm{i}\mathbb R^k)$, which is invariant under imaginary translations and has real fibers $V$.
+
+We first need a continuous convex function $b\geq0$ on $V$ with compact sublevel sets. If $V=\mathbb R^k$, take $b(t)=|t|^2$. Otherwise let $\delta(t)=\operatorname{dist}(t,\mathbb{R}^k\setminus V)$, which is continuous and positive on $V$. It is concave on $V$: if the balls $B(t_1,r_1)$ and $B(t_2,r_2)$ lie in $V$ and $0\leq\lambda\leq1$, then by convexity $V$ contains $\lambda B(t_1,r_1)+(1-\lambda)B(t_2,r_2)=B(\lambda t_1+(1-\lambda)t_2,\lambda r_1+(1-\lambda)r_2)$, so $\delta(\lambda t_1+(1-\lambda)t_2)\geq\lambda r_1+(1-\lambda)r_2$, and letting $r_i\uparrow\delta(t_i)$ gives concavity. Consequently $1/\delta$ is convex: since $x\mapsto1/x$ is decreasing and convex on $(0,\infty)$,
+\[
+ \frac1{\delta(\lambda t_1+(1-\lambda)t_2)}\leq\frac1{\lambda\delta(t_1)+(1-\lambda)\delta(t_2)}\leq\frac\lambda{\delta(t_1)}+\frac{1-\lambda}{\delta(t_2)}.
+\]
+Put $b(t)=|t|^2+1/\delta(t)$. For $c>0$ the set $\{b\leq c\}$ is closed in $V$ and contained in the compact set $\{t:|t|^2\leq c,\ \delta(t)\geq1/c\}\subset V$, hence compact.
+
+A continuous convex function $f$ on $V$ defines a plurisubharmonic function $f(\Real w)$ on every domain of the form $D'\times(V+\mathrm{i}\mathbb R^k)$. Indeed, $f(\Real w)$ is continuous, and its restriction to an affine complex line is $f\circ A$ for a real affine map $A$ from an open subset of $\mathbb{C}$ to $V$. If the closed disc of radius $r$ about $\zeta_0$ lies in the domain of $A$, then, since $A$ is affine, $A(\zeta_0)$ is the midpoint of $A(\zeta_0+r\mathrm{e}^{\mathrm{i}\theta})$ and $A(\zeta_0-r\mathrm{e}^{\mathrm{i}\theta})$ for every $\theta$, and the convexity of $f$ gives
+\[
+ f(A(\zeta_0))\leq\tfrac12\bigl(f(A(\zeta_0+r\mathrm{e}^{\mathrm{i}\theta}))+f(A(\zeta_0-r\mathrm{e}^{\mathrm{i}\theta}))\bigr).
+\]
+Averaging over $\theta\in[0,2\pi]$, we obtain the submean inequality for the continuous function $f\circ A$ on this circle.
+
+Now put $\psi(z,w)=(r^2-|z-z_0|^2)^{-1}+b(\Real w)$. This function is continuous, positive and invariant under imaginary translations. It is plurisubharmonic as a sum of two plurisubharmonic functions (\cref{prop:psh-max-gluing}). The second term is plurisubharmonic by the preceding paragraph. For the first, $x\mapsto(r^2-x)^{-1}$ is convex and increasing on $(-\infty,r^2)$ and $|z-z_0|^2$ has the complex Hessian $I$, so by the chain rule the complex Hessian of $(r^2-|z-z_0|^2)^{-1}$ is positive semidefinite, and \cref{prop:smooth-psh-criterion}(1) applies. For $c>0$, the set $\{(z,t)\in B(z_0,r)\times V:\psi(z,t)\leq c\}$ is closed in $B(z_0,r)\times V$ and, since both terms of $\psi$ are nonnegative, contained in the compact set $\{|z-z_0|^2\leq r^2-1/c\}\times\{b\leq c\}$; it is therefore compact, and for $c\leq0$ it is empty. Hence \cref{thm:kiselman-invariant-exhaustion} applies on $B(z_0,r)\times(V+\mathrm{i}\mathbb R^k)$, and shows that $\inf_{t\in V}u(z,t)$ is plurisubharmonic or identically $-\infty$ on $B(z_0,r)$.
+
+Finally, if $\ell$ is real affine, then $\ell(\Real w)$ is the real part of a complex affine function of $w$. Hence $-\ell(\Real w)$ is smooth with vanishing complex Hessian, so it is plurisubharmonic by \cref{prop:smooth-psh-criterion}(1), and $u-\ell(\Real w)$ is plurisubharmonic by \cref{prop:psh-max-gluing}. It is invariant under imaginary translations, and the first part applies to it.
+\end{proof}
+\index{Kiselman's minimum principle!product tubes}

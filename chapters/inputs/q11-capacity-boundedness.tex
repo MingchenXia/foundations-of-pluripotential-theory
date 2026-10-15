@@ -1,0 +1,104 @@
+\subsection{Bounded differences from the reference}
+\label{sec:relative-capacity-boundedness}
+The solutions constructed so far belong to $\mathcal E(X,\theta,\phi)$, but in general their difference from $\phi$ is unbounded. We now show that the difference is bounded when the measure is dominated by a power $1+\delta>1$ of the Monge--Amp\`ere capacity $\operatorname{Cap}_{\theta,\phi}$ relative to $\phi$ (\cref{def:relative-monge-ampere-capacity}). If $\mu_u\leq A\operatorname{Cap}_{\theta,\phi}^{1+\delta}$, the sublevel estimate of \cref{prop:relative-capacity-sublevel-estimate} bounds the capacity of the deeper sublevel set $\{u<\phi-s-t\}$ by $At^{-n}$ times the $(1+\delta)$th power of the capacity of $\{u<\phi-s\}$. Iterating with geometrically decreasing steps $t$, we reach a finite level beyond which the capacity vanishes. Measures with $L^p$ densities, $p>1$, satisfy such a bound by \cref{cor:relative-lp-capacity-domination}.
+
+\begin{theorem}\label{thm:relative-capacity-dominated-boundedness}
+Let $u\in\mathcal E(X,\theta,\phi)$ with $u\leq\phi$. Let $0\leq a<1$, $A>0$ and $\delta>0$, and let $\nu$ be a positive Borel measure on $X$ such that
+\begin{equation}\label{eq:relative-capacity-measure-domination}
+ \mu_u\leq\nu+a\mu_\phi,\qquad
+ \nu(E)\leq A\operatorname{Cap}_{\theta,\phi}(E)^{1+\delta}
+                    \quad\text{for every Borel set }E\subset X.
+\end{equation}
+Then there is a finite constant $C\geq0$ such that $\phi-C\leq u\leq\phi$ on $X$. If, in addition, $I=\int_X(\phi-u)\,\mathrm d\nu<\infty$, then one can take
+\begin{equation}\label{eq:relative-capacity-moment-depth}
+ C=2+\frac I{1-a}\left(2\left(\frac A{1-a}\right)^{1/n}\right)^{n/\delta}
+                         +\frac1{1-2^{-\delta}}.
+\end{equation}
+Here $\phi-u$ and the sublevel sets $\{u<\phi-s\}$ are taken on the set where $\phi$ is finite; its complement is pluripolar, hence of zero capacity (\cref{prop:relative-capacity-basic}) and therefore $\nu$-null.
+\end{theorem}
+\begin{proof}
+We derive a recursive inequality for the capacities of the sublevel sets of $u-\phi$ and iterate it along levels that converge to a finite depth. For $s>0$ put
+\[
+ E_s=\{u<\phi-s\},\qquad g(s)=\operatorname{Cap}_{\theta,\phi}(E_s)^{1/n},\qquad B=\left(\frac A{1-a}\right)^{1/n}.
+\]
+The sets $E_s$ decrease as $s$ increases, so $g$ is nonincreasing.
+
+We first compare the measures on $E_s$. Both $u$ and $\phi-s$ belong to $\mathcal E(X,\theta,\phi)$, so the comparison principle of \cref{prop:relative-mixed-comparison}, applied to $u$ and $\phi-s$, gives $\mu_\phi(E_s)\leq\mu_u(E_s)$. By \eqref{eq:relative-capacity-measure-domination},
+\[
+ \mu_u(E_s)\leq\nu(E_s)+a\mu_\phi(E_s)\leq\nu(E_s)+a\mu_u(E_s),
+\]
+and hence $(1-a)\mu_u(E_s)\leq\nu(E_s)$. Since $u$ has full mass relative to $\phi$, \cref{prop:relative-capacity-sublevel-estimate} gives $t^n\operatorname{Cap}_{\theta,\phi}(E_{s+t})\leq\mu_u(E_s)$ for $0<t\leq1$. Combining this with the last inequality and the capacity bound in \eqref{eq:relative-capacity-measure-domination}, we obtain $t^ng(s+t)^n\leq B^ng(s)^{n(1+\delta)}$, that is,
+\begin{equation}\label{eq:relative-capacity-iteration}
+ t g(s+t)\leq B g(s)^{1+\delta},\qquad s>0,\quad0<t\leq1.
+\end{equation}
+
+By the second assertion of \cref{prop:relative-capacity-sublevel-estimate}, $g(s)\to0$ as $s\to\infty$. Choose $s_0>0$ with $2Bg(s_0)^\delta\leq1$, and put
+\begin{equation}\label{eq:relative-capacity-explicit-depth}
+ C=s_0+\frac{2B}{1-2^{-\delta}}g(s_0)^\delta.
+\end{equation}
+We claim that $g(C)=0$. If $g(s_0)=0$, then $C=s_0$ and there is nothing to prove. Otherwise, as long as $g(s_j)>0$, define inductively
+\[
+ t_j=2B g(s_j)^\delta,\qquad s_{j+1}=s_j+t_j.
+\]
+Since $g$ is nonincreasing, $t_j\leq2Bg(s_0)^\delta\leq1$, and \eqref{eq:relative-capacity-iteration} with $s=s_j$ and $t=t_j$ gives
+\[
+ g(s_{j+1})\leq\frac{Bg(s_j)^{1+\delta}}{t_j}=\frac{g(s_j)}2.
+\]
+Hence $g(s_j)\leq2^{-j}g(s_0)$ and $t_j\leq2^{-j\delta}\cdot2Bg(s_0)^\delta$, so that
+\[
+ s_j\leq s_0+2B g(s_0)^\delta\sum_{i=0}^\infty2^{-i\delta}=C
+ \qquad\text{for every }j.
+\]
+If the construction stops because $g(s_j)=0$ for some $j$, then $g(C)\leq g(s_j)=0$. Otherwise $g(C)\leq g(s_j)\leq2^{-j}g(s_0)$ for every $j$, and again $g(C)=0$. This proves the claim.
+
+Thus $\operatorname{Cap}_{\theta,\phi}(E_C)=0$. The capacity bound in \eqref{eq:relative-capacity-measure-domination} gives $\nu(E_C)=0$. Since $\phi$ itself is a competitor for $\operatorname{Cap}_{\theta,\phi}$ (\cref{def:relative-monge-ampere-capacity}), we also have $\mu_\phi(E_C)\leq\operatorname{Cap}_{\theta,\phi}(E_C)=0$. The measure inequality in \eqref{eq:relative-capacity-measure-domination} therefore gives $\mu_u(\{u<\phi-C\})=0$. As $\phi-C\in\mathcal E(X,\theta,\phi)$, the domination principle, \cref{thm:relative-full-mass-domination}, yields $u\geq\phi-C$ everywhere.
+
+Now suppose that $I<\infty$. On $E_s$ the weight $\phi-u$ exceeds $s$, so Markov's inequality gives $\nu(E_s)\leq I/s$. Taking $t=1$ in the sublevel estimate and using the measure inequality on $E_s$, we find
+\[
+ g(s+1)^n\leq\mu_u(E_s)\leq\frac{\nu(E_s)}{1-a}
+                          \leq\frac I{(1-a)s}.
+\]
+Choose $s=1+I(2B)^{n/\delta}/(1-a)$ and $s_0=s+1$. Since $(1-a)s>I(2B)^{n/\delta}$, we get $g(s_0)^n\leq(2B)^{-n/\delta}$, that is, $2Bg(s_0)^\delta\leq1$. Thus $s_0$ satisfies the condition imposed on it above, and the constant in \eqref{eq:relative-capacity-explicit-depth} is at most $s_0+(1-2^{-\delta})^{-1}$. Since $(2B)^{n/\delta}=\bigl(2(A/(1-a))^{1/n}\bigr)^{n/\delta}$, this is the right side of \eqref{eq:relative-capacity-moment-depth}. The lower bound $\phi-C\leq u$ remains true when $C$ is increased, which proves \eqref{eq:relative-capacity-moment-depth}.
+\end{proof}
+\index{Monge--Amp\`ere equation!capacity boundedness estimate}
+
+\begin{corollary}\label{cor:relative-capacity-energy-boundedness}
+Let $u\in\mathcal E^1(X,\theta,\phi)$ with $u\leq\phi$, and let $A>0$ and $\delta>0$ be such that
+\[
+ \mu_u(E)\leq A\operatorname{Cap}_{\theta,\phi}(E)^{1+\delta}
+                         \quad\text{for every Borel set }E\subset X.
+\]
+If $L\geq0$ and $E_\theta^\phi(u)\geq-L$, then
+\[
+ \phi-\left(2+(n+1)L(2A^{1/n})^{n/\delta}
+                        +\frac1{1-2^{-\delta}}\right)\leq u\leq\phi.
+\]
+\end{corollary}
+\begin{proof}
+Apply \cref{thm:relative-capacity-dominated-boundedness} with $a=0$ and $\nu=\mu_u$. By the first inequality in \eqref{eq:relative-energy-integrability-bounds}, $I=\int_X(\phi-u)\,\mu_u\leq(n+1)\bigl(-E_\theta^\phi(u)\bigr)\leq(n+1)L$, and \eqref{eq:relative-capacity-moment-depth} with $a=0$ gives the stated bound.
+\end{proof}
+\index{finite energy!bounded difference under capacity domination}
+
+\begin{corollary}\label{cor:relative-lp-capacity-boundedness}
+Let $p>1$, let $0\leq f\in L^p(X,\omega^n)$ and $0\leq a<1$, and let $u\in\mathcal E(X,\theta,\phi)$ satisfy $\sup_Xu=0$ and
+\[
+ \mu_u\leq f\omega^n+a\mu_\phi.
+\]
+Then $\phi-C\leq u\leq\phi$, where $C$ depends only on $X,\theta,\omega,p,m,\|f\|_{L^p}$ and $(1-a)^{-1}$. In particular, if $\int_X f\omega^n=m$, then the equation $\mu_u=f\omega^n$ has a solution $u\in\mathcal E(X,\theta,\phi)$ with $\sup_Xu=0$, and this solution has bounded difference from $\phi$.
+\end{corollary}
+\begin{proof}
+Since $\sup_Xu=0$, \cref{lem:model-normalized-supremum} gives $u\leq\phi$; recall also that $\sup_X\phi=0$, by \cref{def:singularity-p-envelope}. Let $q=p/(p-1)$ be the conjugate exponent. By \cref{cor:normalized-global-psh-lp-bound}, the $L^q(X,\omega^n)$ norms of $u$ and $\phi$ are at most a constant $M_q$ depending only on $X,\theta,\omega,q$. H\"older's inequality gives
+\[
+ I=\int_X(\phi-u)f\omega^n
+       \leq\|f\|_{L^p}\|\phi-u\|_{L^q}
+       \leq2M_q\|f\|_{L^p}.
+\]
+By \cref{cor:relative-lp-capacity-domination} with $r=2$, the measure $\nu=f\omega^n$ satisfies the capacity bound in \eqref{eq:relative-capacity-measure-domination} with $\delta=1$ and $A=B_2\|f\|_{L^p}/m^2$, where $B_2$ depends only on $X,\theta,\omega,p$. (If $f=0$ almost everywhere, take $A=1$ instead.) With $\delta=1$, the constant \eqref{eq:relative-capacity-moment-depth} equals $4+2^nAI/(1-a)^2$. Inserting the bounds for $A$ and $I$, and recalling that the lower bound $\phi-C\leq u$ survives an increase of $C$, we see that \cref{thm:relative-capacity-dominated-boundedness} gives the assertion with
+\[
+ C=4+\frac{2^{n+1}B_2M_q\|f\|_{L^p}^2}{m^2(1-a)^2},
+\]
+which has the stated dependence.
+
+Finally, the measure $f\omega^n$ is non-pluripolar, as noted after \cref{def:nonpluripolar-radon-measure}. If its mass is $m$, \cref{thm:nonpluripolar-relative-prescribed-measure-existence} gives a solution $u\in\mathcal E(X,\theta,\phi)$ of $\mu_u=f\omega^n$ with $\sup_Xu=0$, and the bound just proved, with $a=0$, shows that $u$ has bounded difference from $\phi$.
+\end{proof}
+\index{Monge--Amp\`ere equation!$L^p$ density}

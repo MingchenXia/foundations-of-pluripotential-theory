@@ -1,29 +1,33 @@
 # Foundations of pluripotential theory
 
-A private writing repository for Mingchen Xia's book, **Foundations of pluripotential theory**. All manuscript text, project documentation, plans, editorial records and task prompts use English. Original reference documents and bibliographic titles retain their source language. The current deliverable is the writing infrastructure and blueprint; the book remains in progress.
+A private mathematics book for Mingchen Xia: a **systematic, self-contained prequel to Part I of Singularities in global pluripotential theory (SGPT)**. It supplies foundations used without complete proofs there, with a small amount of necessary overlap. The author also requests the foundational construction behind SGPT Example 6.1.3 and the complete proof of Theorem 1.2 of arXiv:2607.12797, on ceilings and singularity envelopes at arbitrary mass. Broader Parts II and III remain outside scope.
 
-- [Writing blueprint](plan/BLUEPRINT.md): audience, scope, two-part structure and the self-containedness contract.
-- [Chapters and dependencies](plan/CHAPTER_MAP.md), [progress](plan/PROGRESS.md) and [open tasks](plan/OPEN_TASKS.md): JSON is the authoritative task state; the script generates the Markdown views.
-- [Sample coverage matrix](research/SAMPLE_COVERAGE.md): foundations and application dependencies extracted from all sample chapters, appendices and nested inputs.
-- [Source library](references/README.md): original manuscript, zip, PDFs, checksums, bibliographic identities and the actual reading scope.
-- [PSHD results](research/dossiers/PSHD.md) and [quantitative Demailly regularization](research/dossiers/DEMAILLY.md): exact conclusions, proof dependencies, convention conversions and unresolved checks.
-- [Cloud continuation](codex/CLOUD.md) and [first writing task](codex/FIRST_TASK.md). Both writing skills and the audit script are included in `.agents/skills/`; the skill memory's Chinese feedback has been translated into English.
+The book develops classical potential theory, then local and global pluripotential prerequisites, from undergraduate analysis and elementary complex analysis. The source Part I contains psh functions, non-pluripolar products, envelopes, geodesic rays and ample toric potentials. Its complete proof graphs govern which missing results enter this prequel; reproducing all its statements is not the objective.
 
-The author requested repository setup only and will continue with another account. Connect that account to a GitHub identity with access to this private repository, then create the cloud environment using the supplied instructions.
+- [Contents](plan/CONTENTS_OUTLOOK.md), [blueprint](plan/BLUEPRINT.md) and [writing sequence](plan/WRITING_SEQUENCE.md): reader, exact scope, coherent order and completion gates.
+- [Part I proof-gap and overlap ledger](research/SGPT_PART_I_GAPS.md): checked source boundary, required foundations and closed source decisions.
+- [Progress](plan/PROGRESS.md), [open tasks](plan/OPEN_TASKS.md) and [chapter map](plan/CHAPTER_MAP.md): generated from JSON, with excluded old tasks distinguished.
+- [Source inventory](research/SAMPLE_COVERAGE.md), [references](references/README.md) and [scoped reviews](research/reviews): evidence and actual reading scope.
 
-## Local commands
+The current draft has eighteen chapters and two appendices. After the two rounds of the presentation revision of 6 October 2026, the round of complete proofs of 7 October 2026 and the proofreading round of 13 October 2026 it builds to 950 physical pages (last printed page 936); the source archive of tracked files was last rebuilt in an empty directory on 7 October 2026 for the 932-page version. All 318 Part I source statements have explicit proof/overlap decisions: 123 psh, 47 non-pluripolar, 23 ample-toric, 77 envelope and 48 ray statements. The necessary definitions and foundations remain; source-native energy-metric, ray, multiplier-ideal envelope and later-volume applications stay in SGPT. Broader Parts II/III drafts and their evidence are preserved privately outside the active book. The Example 6.1.3 foundations and the arbitrary/zero-mass proof of arXiv:2607.12797v1 Theorem 1.2 are included at the author's explicit request.
+
+All 109 required tasks have recorded verification evidence. The earlier proof and source reviews adjudicated all 603 labelled results, definitions and examples and 73 cited source identities, with their exact versions, locators, normalizations and reading scopes retained. The two registered resolution/principalization existence interfaces are the only external mathematical inputs. General singular-space disc equivalence and unused broader theory are excluded.
+
+The additional [reader-precision review](research/reviews/2026-10-05-reader-precision-round.json) is complete for all twenty chapter/appendix units. Each has two fresh complete source reads, builds and affected-page inspections. The whole-book and both part introductions now develop the mathematical questions and proof dependencies. Chapter openings, first-use notation and hypotheses have been refined, and verified result locators appear in formal citations. The active project contains 61 TeX inputs. Earlier reviews remain separate historical evidence and are not counted as fresh reads.
+
+The [presentation revision](research/reviews/2026-10-06-presentation-revision.md) rewrote the whole book as textbook prose: chapter and section openings, self-contained statements, written-out proof steps, notation declared at first use and a book-wide notation list in the Conventions. Each unit had a complete first revision and an independent second read against the previous text; the errors found and corrected, and the points left for the author, are listed there. A [second round](research/reviews/2026-10-06-presentation-revision-round2.md) read the book as one connected text: repeated definitions became exact cross-references, differing meanings of shared terms are stated where they arise, the front matter was aligned with the chapters, about 340 index entries were added, and every unit was again independently checked. A [third round](research/reviews/2026-10-07-complete-proofs-round3.md) gave every result mentioned in the book a complete proof in the book, apart from resolution of singularities and log principalization, which remain the only external inputs. It also gave statements their natural hypotheses; each unit, each final sweep of references into other proofs and the notes were checked independently.
+
+The [SGPT independence review](research/reviews/2026-10-06-sgpt-proof-independence.json) classifies all 53 active SGPT citations as introductory or historical attribution and checks selected internal dependency chains. SGPT supplies no proof premise. The integrity check guards against SGPT citations in proofs or mathematical assertions; semantic dependency review remains necessary. The [chapter prerequisite graph](plan/DEPENDENCIES.md) is now regenerated with the current required scope.
+
+The [current delivery record](research/reviews/2026-10-06-reader-precision-final-delivery.json) records the whole-book checks, actual visual scope and fresh source-package rebuild. The [earlier release record](research/reviews/2026-10-05-whole-prequel-final-release.json) preserves its original scope. These are authoring-agent reviews, not independent certification. Build success alone is not mathematical verification. The source package excludes the local operational handoff log; all manuscript, bibliography and build files remain included.
 
 ```sh
-make check      # Validate dependencies, status evidence, labels/citations and source integrity
-make audit      # Run the actual mingchen-writing audit script
-make build      # Run pdfLaTeX, BibTeX and makeindex; produce build/book.pdf
-make progress   # Regenerate progress and open-task views from JSON
-make verify     # Run check, audit and build
-make release    # Verify and create source/PDF packages in build/release/
+make check      # Source integrity, dependencies, labels and citations
+make audit      # The repository-local house writing audit
+make build      # Build the active prequel PDF
+make progress   # Regenerate required-scope progress, task views and prerequisite graph
+make verify     # Integrity, audit and build
+make release    # Rebuild a tracked source archive in an empty directory
 ```
 
-Requirements: Python 3, GNU Make, latexmk, pdfLaTeX, BibTeX, makeindex and TeX Live with newtx, tikz-cd, dsfont and the other template packages. `scripts/setup-cloud.sh` installs the Ubuntu dependencies. Builds do not depend on the author's local Downloads or skill installation paths; the retained references are available offline.
-
-The active manuscript contains the preface, the sample's global conventions and the beginning of P01. Other chapter skeletons are excluded from the printed draft. Activate each coherent chapter in `book.tex` after writing and review. The sample's `svmono[envcountsect]`, fonts, macros, theorem counters, index and single BibTeX bibliography are preserved.
-
-Mathematical completion requires complete proofs and two recorded reads. `make verify` checks repository integrity and compilation; it does not certify mathematical correctness.
+Use English in the manuscript and project records; original sources and bibliographic titles retain their language. Preserve svmono, the shared theorem counters, index and single bibliography. Required tools are Python 3, GNU Make, latexmk, pdfLaTeX/BibTeX/makeindex and the template's TeX packages. `scripts/setup-cloud.sh` supplies the cloud dependencies. Work stays private; checked writing is committed and pushed regularly.
