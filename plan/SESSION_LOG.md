@@ -972,3 +972,7 @@ The author asked to keep the current order of the homepage list (`AGENTS.md` upd
 ## 15 October 2026 — public source integration
 
 Consolidated both branches into main and merged PR #5 without source-tree loss. CI is disabled at the author's request. Local integrity, writing audit and full 952-page PDF build completed. Updated public-source instructions and README; the issue audit records retained completion evidence for #1–#4 and its limits. Gerby publication combines source contributions by topic. See research/reviews/2026-10-15-integration-issue-audit.md.
+
+## 18 October 2026 — Kiselman exhaustion note
+
+Added the author's requested sentence after the proof of Theorem 8.5.1: the invariant exhaustion function psi always exists when Omega is pseudoconvex, with a reference to the existing construction in Corollary 11.2.6. Local statement/proof and construction reads, a second local read, integrity and writing checks, the full 952-page build and affected-page inspection are recorded in `research/reviews/2026-10-18-kiselman-exhaustion-note.md`. Existing task/chapter verification is retained. The compiled PDF and the in-place homepage entry (952 pages, October 18, 2026) were pushed together in homepage commit `70ec5c6`; no source archive was regenerated.
