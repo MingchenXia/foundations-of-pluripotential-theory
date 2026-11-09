@@ -972,3 +972,9 @@ The author asked to keep the current order of the homepage list (`AGENTS.md` upd
 ## 15 October 2026 — public source integration
 
 Consolidated both branches into main and merged PR #5 without source-tree loss. CI is disabled at the author's request. Local integrity, writing audit and full 952-page PDF build completed. Updated public-source instructions and README; the issue audit records retained completion evidence for #1–#4 and its limits. Gerby publication combines source contributions by topic. See research/reviews/2026-10-15-integration-issue-audit.md.
+
+## 9 November 2026 — author's reference and proof-ending corrections
+
+Applied all six editorial requests: SGPT's public URL, concise references and VX "to appear", prose after the ten display-ended proofs, the Radon-regularity footnote, the title-page dedication to Charles Favre, and removal of Tao citations for standard material in Appendix B. Updated the repository-local book skill and citation policy, and linked the scoped review from the affected task/chapter records without changing mathematical statuses. The final 949-page build (last printed page 935) passes integrity and writing checks with no unresolved references; all 597 proof end marks are accounted for and the ten revised endings have direct visual checks. See `research/reviews/2026-11-09-author-editorial-corrections.md` for actual reading and visual scope, font setup and four small layout warnings on unchanged source lines.
+
+The compiled PDF and the existing homepage list entry were pushed together to `MingchenXia/mingchenxia.github.io` main in commit `c1dafbc4253fc9a056f2d76328631c7b331c50af`. The entry remains in place and says 949 pages, updated November 9, 2026. GitHub Pages run `42547326658` has built successfully and is deploying; verification of the public endpoint is pending.

@@ -59,7 +59,7 @@ For chapter-by-chapter work, the unit includes every recursive author input, fig
 
 Use existing project checks and release procedures. Keep a compact record of the files actually read, mathematical changes, source-check scope, verification performed and next chapter. Do not claim a chapter complete after editing only its opening, running searches or counting environments. Do not regenerate every historical audit or retest unrelated unchanged material. A local correction requires a proportionate check; it does not automatically initiate a whole-book rewrite.
 
-Keep editorial bookkeeping out of the reader-facing book. Report material changes and real uncertainties succinctly. Mark the broader writing goal complete only when its remaining obligations are actually fulfilled.
+Keep editorial bookkeeping out of the reader-facing book. Source provenance and retrieval or retention dates belong in research records; follow the project's citation policy for the printed bibliography. End proofs with a mathematical closing sentence rather than a display when the author requires it, and inspect the rendered QED symbol. Report material changes and real uncertainties succinctly. Mark the broader writing goal complete only when its remaining obligations are actually fulfilled.
 
 ## Learn from the author's interventions
 

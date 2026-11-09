@@ -24,6 +24,10 @@ Earlier Chinese feedback is presented here in English translation. These histori
 | 30 September 2026: publish each full-book compilation to SHPT_vibe.pdf and update the homepage, using the last printed page number. | Keep the authorized PDF and its description in one publication; derive the extent from the actual printed running head and verify deployment. | Specific public destination and trigger belong to the Hermitian-book profile. The current example ends on printed page 883 despite 907 physical PDF pages. Companion builds, extracted-source checks and private source files are outside this publication scope. |
 | 26 September 2026: create a book skill and improve it as the author intervenes. | Maintain this skill as part of subsequent substantive feedback work. | Changes should be supported by actual feedback or a demonstrated failure, with their scope recorded. No new scheduled automation is implied. |
 
+## FPT editorial corrections
+
+- **Separate source audit evidence from printed references.** On 9 November 2026, the author asked that the FPT bibliography and historical appendix omit descriptions such as author-supplied manuscript, arXiv version and copy-retention dates, that SGPT link to `Lectures/SGPT_final.pdf`, and that Vu--Xia read "to appear". Standard materials need no source assignment, including citations to Tao's expository notes. Exact source identities and checked locators remain in research records; this does not waive attribution for research results or justify changing a locator to one from a different text. The author also requires prose after a proof's last display so that its QED symbol remains visible. The operative project policy is in `AGENTS.md`; these are scoped editorial corrections, not new mathematical claims.
+
 ## Lessons derived from completed revisions
 
 These are review methods, not additional user quotations or new mathematical premises.
