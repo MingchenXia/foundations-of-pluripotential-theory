@@ -26,3 +26,5 @@ Read the changed passages twice in context, including their adjacent statements 
 - SGPT destination responded HTTP 200. Final PDF: 949 physical pages, last printed page 935. SHA-256: `0059c9b8e4d86b44962f167ffc7d5e6b2cde4f3e85fc3140ce4d1404f602181a`.
 
 The standing publication destination is `MingchenXia/mingchenxia.github.io`, `Papers/FPT_vibe.pdf`; the homepage entry retains its position and existing dedication description, with the physical page count and update date revised together with the PDF. Publication outcome is recorded in the session handoff.
+
+Publication verification: homepage commit `c1dafbc4253fc9a056f2d76328631c7b331c50af` is on remote main. Downloading its immutable public `raw.githubusercontent.com` PDF returned exactly the compiled SHA-256 above. The source edits were pushed as `0145d3f3ee0109ce9c5f73e630ebabafc345e70b`. At the final hosting check, GitHub Pages run `42547326658` had completed the build and was still deploying; the main site still served the previous PDF. The immutable uploaded PDF is available while hosting finishes.
