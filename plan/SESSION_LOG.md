@@ -984,3 +984,9 @@ The source edits were pushed to main as `0145d3f3ee0109ce9c5f73e630ebabafc345e70
 ## 9 November 2026 — main website deployment completed
 
 At the author's request, completed the live-site update after the original file-sync timeout. A failed-job retry remained queued; the direct Pages rebuild API was unavailable to the integration. Updated only the existing FPT link with `?v=20261109` in homepage commit `2c6cce4f84d8c07cc6b57719b0111226d5a6f398`, triggering successful Pages run `42550668176`. Verified the live homepage's unchanged entry position, 949-page count and November 9 update date, and downloaded its linked PDF. It matches the checked build byte for byte (SHA-256 `0059c9b8e4d86b44962f167ffc7d5e6b2cde4f3e85fc3140ce4d1404f602181a`). The main website is current; no deployment work remains.
+
+## 9 November 2026 — approved acknowledgements integrated
+
+Integrated the approved five-paragraph English acknowledgements, including the Lean 4 paragraph, after the Introduction and before the Contents. Replaced the literal references with `\cite{XiaSampleBook}` and `\cref{chap:q02}`; verified both named PDF destinations, the SGPT external link in the bibliography, and the new Contents entry. Complete first and second reads and direct inspection of the acknowledgements/Contents/chapter target are recorded in `research/reviews/2026-11-09-acknowledgements.md`. Integrity and writing checks pass; the 951-page PDF has no unresolved references. Mathematical text and task states are unchanged.
+
+Published the compiled PDF and updated homepage entry together as homepage commit `538054756cf2596fb7020bba90a80e07ae00c614`; successful Pages run `42574310248`. Verified the live homepage and downloaded its linked PDF: byte-identical to the checked build, with both acknowledgement references clickable. PDF SHA-256: `4f3fca775226e8369a382ddab581912126be0ebac82369e3a1e4720f1ce1eecb`. No integration or publication work remains.
