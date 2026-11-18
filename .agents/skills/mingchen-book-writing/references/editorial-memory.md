@@ -28,6 +28,8 @@ Earlier Chinese feedback is presented here in English translation. These histori
 
 - **Separate source audit evidence from printed references.** On 9 November 2026, the author asked that the FPT bibliography and historical appendix omit descriptions such as author-supplied manuscript, arXiv version and copy-retention dates, that SGPT link to `Lectures/SGPT_final.pdf`, and that Vu--Xia read "to appear". Standard materials need no source assignment, including citations to Tao's expository notes. Exact source identities and checked locators remain in research records; this does not waive attribution for research results or justify changing a locator to one from a different text. The author also requires prose after a proof's last display so that its QED symbol remains visible. The operative project policy is in `AGENTS.md`; these are scoped editorial corrections, not new mathematical claims.
 
+- On 18 November 2026, the author set the citation label of the earlier book to [SGPT], withdrew the unpublished PSHD manuscript from the book's references, and requested page locators only where theorem numbers or comparable identifiers cannot locate the cited material. This applies to reader-facing citations and historical notes. Publication page ranges and the internal source audit still serve their own purposes.
+
 ## Lessons derived from completed revisions
 
 These are review methods, not additional user quotations or new mathematical premises.

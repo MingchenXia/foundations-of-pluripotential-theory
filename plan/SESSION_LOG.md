@@ -994,3 +994,7 @@ Published the compiled PDF and updated homepage entry together as homepage commi
 ## 9 November 2026 — SGPT acceptance status in the references
 
 Added the author-requested "Accepted by Springer's LNM series" to the [Xia] bibliography entry, preserving its SGPT URL. Integrity, writing audit and PDF build pass; the complete rendered entry on physical page 951 was checked, with its external link intact. The book remains 951 pages. Published PDF plus refreshed existing homepage link as homepage commit `48216847b743150d78852a8f440f72f5eff1f2ab`; successful Pages run `42575068936`. Verified the live homepage and byte-identical live PDF (SHA-256 `73e674983db42603b7ea8b7f1f5b9597ae5e72c1a860876d2793d473e48d6587`). Scoped record: `research/reviews/2026-11-09-sgpt-lnm-acceptance.md`.
+
+## 18 November 2026 — citation labels and locators
+
+Set the earlier book's printed label to [SGPT], removed PSHD citations and the bibliography entry, and credited Theorem 8.1.3 to the proof in this book. Replaced redundant page locators by numbered or named source passages across the active manuscript. See `research/reviews/2026-11-18-citation-locators.md` for the scope and source checks. The managed executor failed to start. PDF build and website publication are pending.
