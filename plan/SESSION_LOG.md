@@ -997,4 +997,8 @@ Added the author-requested "Accepted by Springer's LNM series" to the [Xia] bibl
 
 ## 18 November 2026 — citation labels and locators
 
-Set the earlier book's printed label to [SGPT], removed PSHD citations and the bibliography entry, and credited Theorem 8.1.3 to the proof in this book. Replaced redundant page locators by numbered or named source passages across the active manuscript. See `research/reviews/2026-11-18-citation-locators.md` for the scope and source checks. The managed executor failed to start. PDF build and website publication are pending.
+Set the earlier book's printed label to [SGPT], removed PSHD citations and the bibliography entry, and credited Theorem 8.1.3 to the proof in this book. Replaced redundant page locators by numbered or named source passages across the active manuscript. See `research/reviews/2026-11-18-citation-locators.md` for the scope and source checks. The managed executor did not start during the editorial session.
+
+Rebuilt source commit `84195a3` with `make check`, `make audit`, and `make build`. The audit reported 0 errors and 81 warnings. The final LaTeX log passed the citation and cross-reference checks and reported four overfull boxes of 2.05 to 3.63 pt. Inspected the 38 physical pages that differed in extracted text from the previous release: 1, 3-5, 7, 14, 178, 794, 838, 887, 910-936, and 951. Verified the [SGPT] citation and its bibliography link, and the internal link to Theorem 8.1.3.
+
+Published the 951-page PDF and the dated homepage entry together in homepage commit `7389f9d`. GitHub Pages run `44253712063` successfully deployed the subsequent homepage commit `5a8fab7`, which uses the canonical PDF URL. The public homepage shows 951 pages and November 18, 2026. The PDF downloaded from that link matches the checked build byte for byte. SHA-256 `5584d2789ec9522b55c3b957ada1eb5eec294b6926599a8fb785158700d265b6`.
