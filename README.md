@@ -19,7 +19,3 @@ make progress   # Regenerate required-scope progress, task views and prerequisit
 make verify     # Integrity, audit and build
 make release    # Rebuild a tracked source archive in an empty directory
 ```
-
-Use English in the manuscript and project records; original sources and bibliographic titles retain their language. Preserve svmono, the shared theorem counters, index and single bibliography. Required tools are Python 3, GNU Make, latexmk, pdfLaTeX/BibTeX/makeindex and the template's TeX packages. `scripts/setup-cloud.sh` supplies the cloud dependencies. The source repository is public; checked writing is committed and pushed regularly. GitHub Actions CI is currently disabled at the author's request; checks and publication are performed locally.
-
-The [15 October integration and issue audit](research/reviews/2026-10-15-integration-issue-audit.md) records the consolidated branches, local build, and evidence supporting closure of issues #1–#4. Those issue closures rely on the retained scoped reviews and are not a new independent mathematical certification.
