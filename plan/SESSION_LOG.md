@@ -1006,3 +1006,7 @@ Published the 951-page PDF and the dated homepage entry together in homepage com
 ## 24 November 2026 — terminology, subharmonic convention and Introduction
 
 At the author's request, removed the word "collar" from the book (Chapters 9, 15, 17 and Appendix B; three labels renamed, also in `plan/tasks.json`), recorded after `def:subharmonic` and in the Conventions that allowing a subharmonic function to be identically $-\infty$ differs from [SGPT, Definition 1.1.1], and rewrote the Introduction without emphasis on the ceiling identity or the SGPT example, adding the book's principles and a reading guide. Integrity and audit pass; the forced build has 949 pages, no unresolved references and no overfull boxes. See `research/reviews/2026-11-24-collar-convention-introduction.md`.
+
+## 24 November 2026 — weak-convergence arrows and dd^c
+
+At the author's request, arrows representing weak convergence now use $\rightharpoonup$ throughout (notation introduced in the Conventions, Chapter 1 and Chapter 7; about 120 arrows replaced and independently checked). The empty identity "dd^c = dd^c" in Section 9.2, Chapter 17 and the definition of $\mathrm d^{\mathrm c}$ was rewritten. Integrity and audit pass; 949 pages, no unresolved references, no overfull boxes. See `research/reviews/2026-11-24-weak-convergence-arrows.md`.
